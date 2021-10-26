@@ -8,37 +8,36 @@ import NewsLetter from './.vitepress/theme/components/NewsLetter.vue'
 
 <section id="hero">
   <h1 class="tagline">
-    The <span class="accent">Progressive</span><br>
-    JavaScript Framework
+    <span class="accent">渐进式</span><br> JavaScript 框架
   </h1>
   <p class="description">
-    An approachable, performant and versatile framework for building web user interfaces.
+    一款用于构建 Web 界面，易学易用，性能出色且功能丰富的框架。
   </p>
   <p class="actions">
-    <a class="get-started" href="/guide/introduction.html">Get Started <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24"><path d="M13.025 1l-2.847 2.828 6.176 6.176h-16.354v3.992h16.354l-6.176 6.176 2.847 2.828 10.975-11z"/></svg></a>
-    <a class="setup" href="/guide/quick-start.html">Install</a>
+    <a class="get-started" href="/guide/introduction.html">快速开始 <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24"><path d="M13.025 1l-2.847 2.828 6.176 6.176h-16.354v3.992h16.354l-6.176 6.176 2.847 2.828 10.975-11z"/></svg></a>
+    <a class="setup" href="/guide/quick-start.html">安装</a>
   </p>
 </section>
 
 <!-- TODO make dynamic based on data -->
 <section id="special-sponsor">
-  <span>Special Sponsor</span>
+  <span>特别赞助</span>
   <a href="#"><img src="/images/hbuilder.png"></a>
-  <span>Advanced IDE for Vue</span>
+  <span>为 Vue 打造的先进 IDE</span>
 </section>
 
 <section id="highlights" class="vt-box-container">
   <div class="vt-box">
-    <h3>Approachable</h3>
-    <p>Builds on top of standard HTML, CSS and JavaScript with intuitive API and world-class documentation.</p>
+    <h3>易学易用</h3>
+    <p>基于 HTML、CSS 和 JavaScript 标准构建，拥有直观的 API 和世界一流的文档。</p>
   </div>
   <div class="vt-box">
-    <h3>Performant</h3>
-    <p>Truly reactive, compiler-optimized rendering system that rarely requires manual optimization.</p>
+    <h3>性能出色</h3>
+    <p>经过编译器优化、完全响应式的渲染系统，几乎不需要手动优化。</p>
   </div>
   <div class="vt-box">
-    <h3>Versatile</h3>
-    <p>A rich, incrementally adoptable ecosystem that scales between a library and a full-featured framework.</p>
+    <h3>功能丰富</h3>
+    <p>拥有丰富的、可渐进式集成的生态系统，可以根据规模在仅使用一个库和使用整套框架间切换自如。</p>
   </div>
 </section>
 

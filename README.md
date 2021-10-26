@@ -1,50 +1,14 @@
-# vuejs.org
+# Vuejs.org 新版中文文档
 
-This is the WIP branch of the brand new vuejs.org. **The content is under heavy updates and re-organization so please refrain from submitting PRs to this branch until we have removed this notice.**
+这里是即将焕然一新的 vuejs.org。
 
-## Dev Setup
+## 如何进行翻译
 
-This site is built with [VitePress](https://github.com/vuejs/vitepress) and [@vue/theme](https://github.com/vuejs/vue-theme). Site content is written in Markdown format located in `src`.
+本站基于 [VitePress](https://github.com/vuejs/vitepress) 和 [@vue/theme](https://github.com/vuejs/vue-theme) 建立。网站内容以 Markdown 格式书写，位于 `src` 文件夹中。
 
-Make sure to use [pnpm](https://pnpm.io/) as the package manager:
+确保使用 [pnpm](https://pnpm.io/) 作为包管理工具：
 
 ```sh
-pnpm i
-pnpm run dev
-```
-
-## Writing
-
-See the [Vue Docs Writing Guide](https://v3.vuejs.org/guide/writing-guide.html) for our rules and recommendations on writing and maintaining documentation.
-
-## Developing
-
-For now, local development requires cloning both this repo and `vuejs/theme`:
-
-1. Clone repositories
-
-```bash
-git clone git@github.com:vuejs/docs.git
-git clone git@github.com:vuejs/theme.git
-```
-
-2. Link theme into docs repo
-
-```bash
-# In ./theme
-# Install dependencies
-pnpm i
-# Link workspace in ./theme
-pnpm link --global
-
-# in ./docs
-pnpm link --global @vue/theme
-```
-
-3. Install deps and start VitePress server
-
-```bash
-# in ./docs
 pnpm i
 pnpm run dev
 ```

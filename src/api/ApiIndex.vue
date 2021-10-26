@@ -63,7 +63,7 @@ function slugify(text) {
 <template>
   <div id="api-index">
     <div class="header">
-      <h1>API Reference</h1>
+      <h1>API 参考</h1>
       <input class="api-filter" placeholder="Filter" v-model="query" />
     </div>
 
