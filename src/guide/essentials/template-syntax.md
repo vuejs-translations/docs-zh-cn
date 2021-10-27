@@ -2,7 +2,7 @@
 
 Vue 使用一种基于 HTML 的模板语法，使我们能够声明式地将其组件实例的数据绑定到呈现的 DOM 上。所有的 Vue 模板都是语法上合法的 HTML，可以被符合规范的浏览器和 HTML 解析器解析。
 
-Vue 会在底层机制中将模板编译成高度优化的 JavaScript 代码。结合响应式系统，Vue 能够智能地计算出要最少需要重新渲染组件的数量，并应用在最少的 DOM 上。
+Vue 会在底层机制中将模板编译成高度优化的 JavaScript 代码。结合响应式系统，Vue 能够智能地计算出最少需要重新渲染组件的数量，并应用在最少的 DOM 上。
 
 如果你对虚拟 DOM 概念比较熟悉，并且更喜欢利用 JavaScript 更强的表达力，你也可以 [直接手写渲染函数](/guide/advanced/render-function.html) 而不采用模板，同时也支持选用 JSX。但请注意他们将不会享受到和模板同等级别的编译时优化。
 
@@ -39,7 +39,7 @@ Mustaches 标签会被替换为相应组件实例中 `msg` 属性的值。同时
 `span` 的内容将会被替换为 `rawHtml` 属性的值，插值为纯 HTML，数据绑定将会被忽略。注意，你不能使用 `v-html` 来拼接组合模板，因为 Vue 不是一个基于字符串的模板引擎。相反，组件更应该作为 UI 重用和组合的基本单元。
 
 :::warning 安全警告
-在网站上动态渲染任意 HTML 是非常危险的，因为这非常容易造成 [XSS 漏洞](https://en.wikipedia.org/wiki/Cross-site_scripting)。请仅在内容安全可信时使用 `v-html` 并 **永远不要** 使用用户提供的 HTML 内容。
+在网站上动态渲染任意 HTML 是非常危险的，因为这非常容易造成 [XSS 漏洞](https://en.wikipedia.org/wiki/Cross-site_scripting)。请仅在内容安全可信时再使用 `v-html`，并且 **永远不要** 使用用户提供的 HTML 内容。
 :::
 
 ## Attribute 绑定 {#attribute-bindings}
@@ -60,7 +60,7 @@ Mustaches 不能被用在 HTML attributes 中。相应的，应该使用 [`v-bin
 <div :id="dynamicId"></div>
 ```
 
-开头为 `:` 的 attribute 可能和其他通常的 HTML 看起来不太一样，但它的确是合法的 attribute 名称字符，并且所有支持 Vue 的浏览器都能正确解析它。此外，他们不会出现在最终渲染的标签中。缩写语法是可选的，但相信学了之后，你应该会更喜欢它。
+开头为 `:` 的 attribute 可能和一般的 HTML attribute 看起来不太一样，但它的确是合法的 attribute 名称字符，并且所有支持 Vue 的浏览器都能正确解析它。此外，他们不会出现在最终渲染的标签中。缩写语法是可选的，但相信学了之后，你应该会更喜欢它。
 
 > 接下来的指引中，我们都将在示例中使用缩写语法，因为大多数 Vue 开发者都会这样使用。
 
@@ -74,7 +74,7 @@ Mustaches 不能被用在 HTML attributes 中。相应的，应该使用 [`v-bin
 <button :disabled="isButtonDisabled">Button</button>
 ```
 
-若 `isButtonDisabled` 为 [truthy value](https://developer.mozilla.org/en-US/docs/Glossary/Truthy) 值时，元素将会包含该 `disabled` attribute。同时若此值是一个空字符串时也会被包含，即 `<button disabled="">`。当为 falsy 值时 attribute 将被忽略。
+若 `isButtonDisabled` 为 [真值](https://developer.mozilla.org/en-US/docs/Glossary/Truthy) 或一个空字符串（即 `<button disabled="">`）时，元素会包含这个 `disabled` attribute。而当其为假值时 attribute 将被忽略。
 
 ### 动态绑定多个值 {#dynamically-binding-multiple-attributes}
 
@@ -113,7 +113,7 @@ data() {
 
 ## 使用 JavaScript 表达式
 
-至此我们仅仅是在模板中绑定一些组件中简单的属性。但是 Vue 实际上在数据绑定中也对 JavaScript 表达式有完整的支持：
+至此我们仅仅是在模板中绑定了一些组件中简单的属性。但是 Vue 实际上在数据绑定中也对 JavaScript 表达式有完整的支持：
 
 ```vue-html
 {{ number + 1 }}
@@ -125,7 +125,7 @@ data() {
 <div :id="`list-${id}`"></div>
 ```
 
-这些表达式都会被作为 JavaScript ，以组件为数据作用域解析执行。
+这些表达式都会被作为 JavaScript ，以组件为作用域解析执行。
 
 在 Vue 模板内，JavaScript 表达式可以被使用在如下场景上：
 
@@ -262,6 +262,6 @@ data() {
 
 之后在讲到 [`v-on`](./event-handling.html#event-modifiers) 和 [`v-model`](./forms.html#modifiers) 的功能时，你将会看到其他修饰符的例子。
 
-最后，在这里你可以直观地看到完整的指令语法：
+最后，在这里你可以直观地看到完整的指令语法：  
 
 ![directive syntax graph](/images/directive.png)
