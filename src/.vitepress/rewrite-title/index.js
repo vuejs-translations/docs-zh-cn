@@ -1,7 +1,7 @@
 const path = require('path')
 const fsp = require('fs').promises
 const matterService = require('../utils/frontmatter-service')
-const vitepress = path.resolve(__dirname, '..', '..')
+const vitepressWorkspacePath = path.resolve(__dirname, '..', '..')
 
 /**
  * Why this?
@@ -14,7 +14,6 @@ const vitepress = path.resolve(__dirname, '..', '..')
 
 const h1MdRegExp = /^#\s+(.+)\s+(\{#([\w-]+)\})$/
 /** 在此书写所有文章所在的目录名 */
-const articleDirs = ['blog', 'config', 'guide', 'plugins']
 
 const rewriteMarkdownTitle = (filePath) => {
   const matter = matterService.open(filePath)
