@@ -22,17 +22,17 @@ import { VTLink } from '@vue/theme'
             id="member_email"
             name="member[email]"
             type="email"
-            placeholder="Email address"
+            placeholder="邮箱地址"
             required
           />
 
           <div class="action">
             <input
               class="button"
-              id="member_submit"
+              id="member_submit"  
               name="member[subscribe]"
               type="submit"
-              value="SUBSCRIBE"
+              value="订阅"
             />
           </div>
         </form>
