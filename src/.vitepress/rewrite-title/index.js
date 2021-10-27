@@ -1,7 +1,7 @@
 const path = require('path')
 const fsp = require('fs').promises
 const matterService = require('../utils/frontmatter-service')
-const workspacePath = path.resolve(__dirname, '..', '..')
+const vitepress = path.resolve(__dirname, '..', '..')
 
 /**
  * Why this?
@@ -38,9 +38,7 @@ const ergodicDirectory = async (dirPath) => {
           rewriteMarkdownTitle(filePath)
         }
       } else if (stats.isDirectory()) {
-        if (articleDirs.includes(filePath.split('/').pop())) {
-          await ergodicDirectory(filePath)
-        }
+        await ergodicDirectory(filePath)
       }
     }
   } catch (err) {
@@ -50,4 +48,6 @@ const ergodicDirectory = async (dirPath) => {
   }
 }
 
-module.exports = () => ergodicDirectory(workspacePath)
+module.exports = () => {
+  ergodicDirectory(vitepressWorkspacePath)
+}
