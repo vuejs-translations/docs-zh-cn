@@ -29,7 +29,7 @@ import NewsLetter from './.vitepress/theme/components/NewsLetter.vue'
 <section id="highlights" class="vt-box-container">
   <div class="vt-box">
     <h3>易学易用</h3>
-    <p>基于 HTML、CSS 和 JavaScript 标准构建，拥有直观的 API 和世界一流的文档。</p>
+    <p>基于标准 HTML、CSS 和 JavaScript 构建，拥有直观的 API 和世界一流的文档。</p>
   </div>
   <div class="vt-box">
     <h3>性能出色</h3>

@@ -1,7 +1,7 @@
 {
   "scripts": {
     "dev": "vitepress dev src",
-    "build": "vitepress build src",
+    "build": "node ./scripts/build.js",
     "serve": "vitepress serve src"
   },
   "dependencies": {
@@ -12,6 +12,8 @@
   "devDependencies": {
     "@types/node": "^16.9.1",
     "cheap-watch": "^1.0.3",
+    "chalk": "^4.1.2",
+    "gray-matter": "^4.0.3",
     "vitepress": "^0.20.5"
   }
 }
