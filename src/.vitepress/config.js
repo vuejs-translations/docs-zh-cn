@@ -190,7 +190,7 @@ const sidebar = {
       ]
     },
     {
-      text: '规模升级',
+      text: '升级规模',
       items: [
         { text: '单文件组件', link: '/guide/scaling-up/sfc' },
         { text: '工具链', link: '/guide/scaling-up/tooling' },
