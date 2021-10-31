@@ -1,5 +1,7 @@
 # Vuejs.org 新版中文文档
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/b0932ac3-776d-4cba-a3fa-a48be2f1eb94/deploy-status)](https://app.netlify.com/sites/vue-new-docs-cn/deploys)
+
 这里是即将焕然一新的 vuejs.org。
 
 ## 如何进行翻译

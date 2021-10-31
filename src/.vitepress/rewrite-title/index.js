@@ -47,6 +47,6 @@ const ergodicDirectory = async (dirPath) => {
   }
 }
 
-module.exports = () => {
-  ergodicDirectory(vitepressWorkspacePath)
+module.exports = async () => {
+  await ergodicDirectory(vitepressWorkspacePath)
 }
