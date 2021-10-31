@@ -13,7 +13,7 @@ const awesome = ref(true)
 <h1 v-if="awesome">Vue 最棒啦！</h1>
 ```
 
-# `v-else` {#v-else}
+## `v-else` {#v-else}
 
 也可以使用 `v-else` 为 `v-if` 添加一个 “else 区块”。
 
@@ -43,8 +43,7 @@ const awesome = ref(true)
 
 一个 `v-else` 元素必须跟在一个 `v-if` 或者 `v-else-if` 元素，否则将不会识别它。
 
-## `v-else-if`
-
+### `v-else-if` {#v-else-if}
 
 顾名思义，`v-else-if` 提供的是相应于 `v-if` 的 “else if 区块”。它可以连续多次：
 
@@ -77,9 +76,9 @@ const awesome = ref(true)
 </template>
 ```
 
-`v-else` and `v-else-if` can also be used on `<template>`.
+`v-else` 和 `v-else-if` 也可以在 `<template>` 上使用。
 
-## `v-show`
+## `v-show` {#v-show}
 
 可以用来按条件显示一个元素的选项是 `v-show` 指令。用法基本一致：
 
@@ -91,7 +90,7 @@ const awesome = ref(true)
 
 `v-show` 不支持在 `<template>` 元素上使用，也没有 `v-else` 来配合。
 
-## `v-if` vs `v-show`
+## `v-if` vs `v-show` {#v-if-vs-v-show}
 
 `v-if` 是 “真实的” 按条件渲染，因为它确保了条件区块内的事件监听器和子组件都会在切换时被销毁与重建。
 
