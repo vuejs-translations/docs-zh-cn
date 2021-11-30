@@ -259,7 +259,7 @@ function mutateDeeply() {
 
 <div class="composition-api">
 
-### 响应式代理 vs. 原始对象 \*\* {#reactive-proxy-vs-original}
+### 响应式代理 vs. 原始对象 {#reactive-proxy-vs-original} \*\*
 
 值得注意的是，`reactive()` 返回的是一个源对象的 [Proxy](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy)，它和源对象是不相等的：
 
@@ -447,7 +447,6 @@ const otherCount = ref(2)
 state.count = otherCount
 console.log(state.count) // 2
 // 原来的 ref 现在已经和 state.count 脱去联系
-// original ref is now disconnected from state.count
 console.log(count.value) // 1
 ```
 
