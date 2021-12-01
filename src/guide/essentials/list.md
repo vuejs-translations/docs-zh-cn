@@ -217,7 +217,7 @@ data() {
 </ul>
 ```
 
-## `v-for` 于 `v-if` {#v-for-with-v-if}
+## `v-for` 与 `v-if` {#v-for-with-v-if}
 
 :::warning 注意
 同时使用 `v-if` 和 `v-for` 是 **不推荐的**，因为这样二者的优先级不明显。请看 [风格指南](/style-guide/#avoid-v-if-with-v-for-essential) 查看更多信息。
