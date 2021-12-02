@@ -8,7 +8,7 @@ Vue 会在底层机制中将模板编译成高度优化的 JavaScript 代码。�
 
 ## 文本插值 {#text-interpolation}
 
-大多数绑定数据的基本形式是文本插值，使用的是 “Mustache” 语法（即双大括号）：
+最基本的数据绑定形式是文本插值，使用的是 “Mustache” 语法（即双大括号）：
 
 ```vue-html
 <span>Message: {{ msg }}</span>
