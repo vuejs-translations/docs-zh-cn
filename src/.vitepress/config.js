@@ -134,7 +134,7 @@ const sidebar = {
         { text: '表单输入绑定', link: '/guide/essentials/forms' },
         {
           text: '生命周期',
-          link: '/guide/components/lifecycle'
+          link: '/guide/essentials/lifecycle'
         },
         { text: '监听器', link: '/guide/essentials/watchers' },
         { text: '模板 ref', link: '/guide/essentials/template-refs' },
