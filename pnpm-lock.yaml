@@ -6,6 +6,8 @@ specifiers:
   '@vue/theme': ^0.1.19
   chalk: ^4.1.2
   cheap-watch: ^1.0.3
+  gray-matter: ^4.0.3
+  lodash: ^4.17.21
   vitepress: ^0.20.5
   vue: ^3.2.25
 
@@ -18,6 +20,8 @@ devDependencies:
   '@types/node': 16.10.3
   chalk: 4.1.2
   cheap-watch: 1.0.4
+  gray-matter: 4.0.3
+  lodash: 4.17.21
   vitepress: 0.20.5
 
 packages:
@@ -767,6 +771,22 @@ packages:
 
   /sourcemap-codec/1.4.8:
     resolution: {integrity: sha512-9NykojV5Uih4lgo5So5dtw+f0JgJX30KCNI8gwhz2J9A15wD0Ml6tjHKwf6fTSa6fAdVBdZeNOs9eJ71qCk8vA==}
+
+  /sprintf-js/1.0.3:
+    resolution: {integrity: sha1-BOaSb2YolTVPPdAVIDYzuFcpfiw=}
+    dev: true
+
+  /strip-bom-string/1.0.0:
+    resolution: {integrity: sha1-5SEekiQ2n7uB1jOi8ABE3IztrZI=}
+    engines: {node: '>=0.10.0'}
+    dev: true
+
+  /supports-color/7.2.0:
+    resolution: {integrity: sha512-qpCAvRl9stuOHveKsn7HncJRvv501qIacKzQlO/+Lwxc9+0q2wLyv4Dfvt80/DPn2pqOBsJdDiogXGR9+OvwRw==}
+    engines: {node: '>=8'}
+    dependencies:
+      has-flag: 4.0.0
+    dev: true
 
   /vite/2.7.1:
     resolution: {integrity: sha512-TDXXhcu5lyQ6uosK4ZWaOyB4VzOiizk0biitRzDzaEtgSUi8rVYPc4k1xgOjLSf0OuceDJmojFKXHOX9DB1WuQ==}
