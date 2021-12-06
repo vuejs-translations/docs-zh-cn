@@ -32,7 +32,7 @@ createApp({
 </div>
 ```
 
-**Result**
+**结果展示**
 
 <script setup>
 import { ref } from 'vue'
@@ -44,13 +44,13 @@ const count = ref(0)
     点击了 {{ count }} 次
   </button>
   <button @click="count = 0">重置</button>
-</p>
+</div>
 
 上面的示例展示了两个 Vue 的核心功能：
 
 - **声明式渲染**: Vue 通过自己的模板语法扩展了标准 HTML，使得我们可以声明式地描述基于 JavaScript 状态输出的 HTML。
 
-- **Reactivity**: Vue 会自动跟踪 JavaScript 状态变化并在改变发生时响应式地更新 DOM。
+- **响应性**: Vue 会自动跟踪 JavaScript 状态变化并在改变发生时响应式地更新 DOM。
 
 你可能已经有了些疑问 - 别担心。我们会在接下来的文档中覆盖到每一个细节。对现在来说，请继续读下去，这会让你对 Vue 所提供的功能有一个宏观的认知。
 
