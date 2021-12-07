@@ -146,7 +146,7 @@ export default {
 <footer>...</footer>
 ```
 
-## Accessing Fallthrough Attributes in JavaScript {#accessing-fallthrough-attributes-in-javascript}
+## 在 JavaScript 中 访问透传 Attributes {#accessing-fallthrough-attributes-in-javascript}
 
 <div class="composition-api">
 
