@@ -1,6 +1,6 @@
 # 组件注册 {#component-registration}
 
-> 阅读此章节时，我们假设你应该已经读过了 [组件基础](/guide/essentials/component-basics)，若你对组件还完全不了解，请先阅读它。
+> 阅读此章节时，我们假设你已经读过 [组件基础](/guide/essentials/component-basics)，若你对组件还完全不了解，请先阅读它。
 
 一个 Vue 组件需要被 “注册” 使得 Vue 在渲染模板时能找到其实现。有两种方式来注册组件：全局注册和局部注册。
 

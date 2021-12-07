@@ -70,6 +70,19 @@ const nav = [
     ]
   },
   {
+    text: '语言',
+    items: [
+      {
+        text: '简体中文',
+        link: 'https://vue-new-docs-cn.netlify.app/'
+      },
+      {
+        text: 'English',
+        link: 'https://vue-docs-preview.netlify.app/'
+      },
+    ]
+  },
+  {
     text: '关于',
     activeMatch: `^/about/`,
     items: [
