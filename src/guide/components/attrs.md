@@ -2,135 +2,135 @@
 aside: deep
 ---
 
-# Fallthrough Attributes
+# 透传 attribute {#fallthrough-attributes}
 
-> This page assumes you've already read the [Components Basics](/guide/essentials/component-basics). Read that first if you are new to components.
+> 阅读此章节时，我们假设你已经读过 [组件基础](/guide/essentials/component-basics)，若你对组件还完全不了解，请先阅读它。
 
-## Attribute Inheritance
+## Attribute 继承 {#attribute-inheritance}
 
-A "fallthrough attribute" is an attribute or `v-on` event listener that is passed to a component, but is not explicitly declared in the receiving component's [props](./props) or [emits](./events.html#defining-custom-events). Common examples of this include `class`, `style`, and `id` attributes.
+“透传 attribute” 的意思是 attribute 或者被传递给一个组件的 `v-on` 事件监听器，但并没有显式地声明在所接收组件的 [props](./props) 或 [emits](./events.html#defining-custom-events) 上。最常见的例子就是 `class`、`style` 和 `id`。
 
-When a component renders a single root element, fallthrough attributes will be automatically added to the root element's attributes. For example, given a `<MyButton>` component with the following template:
+当一个组件以单个元素为根作渲染时，透传的 attribute 会自动添加到根元素的 attribute 中。举个例子，下面这个 `<MyButton>` 组件有这样的模板：
 
 ```vue-html
-<!-- template of <MyButton> -->
+<!-- <MyButton> 的模板 -->
 <button>click me</button>
 ```
 
-And a parent using this component with:
+一个父组件使用了这个组件：
 
 ```vue-html
 <MyButton class="large" />
 ```
 
-The final rendered DOM would be:
+最后渲染出的 DOM 结果是：
 
 ```html
 <button class="large">click me</button>
 ```
 
-### `class` and `style` Merging
+### 对 `class` 和 `style` 的合并 {#class-and-style-merging}
 
-If the child component's root element already has existing `class` or `style` attributes, it will be merged with the `class` and `style` values that are inherited from the parent. Suppose we change the template of `<MyButton>` in the previous example to:
+如果一个子组件的根元素已经有了 `class` 或 `style` attribute，它会和从父组件上继承的值合并。将之前的 `<MyButton>` 组件的模板改成这样：
 
 ```vue-html
-<!-- template of <MyButton> -->
+<!-- <MyButton> 的模板 -->
 <button class="btn">click me</button>
 ```
 
-Then the final rendered DOM would now become:
+最后渲染出的 DOM 结果是：
 
 ```html
 <button class="btn large">click me</button>
 ```
 
-### `v-on` Listener Inheritance
+### `v-on` 监听器继承 {#v-on-listener-inheritance}
 
-Same rule applies to `v-on` event listeners:
+同样的规则也适用于 `v-on` 事件监听器：
 
 ```vue-html
 <MyButton @click="onClick" />
 ```
 
-The `click` listener will be added to the root element of `<MyButton>`, i.e. the native `<button>` element. When the native `<button>` is clicked, it will trigger the `onClick` method of the parent component. If the native `<button>` already has a `click` listener bound with `v-on`, then both listeners will trigger.
+监听器 `click` 会被添加到 `<MyButton>` 的根元素，即那个原生的 `<button>` 元素之上。当原生的 `<button>` 被点击，会触发父组件的 `onClick` 方法。如果原生 `button` 元素已经通过 `v-on` 绑定了一个事件监听器，则这些监听器都会被触发。
 
-### Nested Component Inheritance
+### 深层组件继承 {#nested-component-inheritance}
 
-If a component renders another component as its root node, for example, we refactored `<MyButton>` to render a `<BaseButton>` as its root:
+如果一个组件在根节点上渲染另一个组件，例如，我们重构一下 `<MyButton>`，让它在根节点上渲染 `<BaseButton>`：
 
 ```vue-html
-<!-- template of <MyButton/> that simply renders another component -->
+<!-- <MyButton/> 的模板，只是渲染另一个组件 -->
 <BaseButton />
 ```
 
-Then the fallthrough attributes received by `<MyButton>` will be automatically forwarded to `<BaseButton>`.
+此时 `<MyButton>` 接收的透传 attribute 会直接传向 `<BaseButton>`。
 
-Note that:
+请注意：
 
-1. Forwarded attributes do not include any attributes that are declared as props by `<MyButton>` - in other words, the declared props have been "consumed" by `<MyButton>`.
+1. 直传的 attribute 不会包含 `<MyButton>` 上声明过的 props，换句话说，声明过的 props 被 `<MyButton>` “消费” 了。
 
-2. Forwarded attributes may be accepted as props by `<BaseButton>`, if declared by it.
+2. 直传的 attribute 若符合声明，也可以作为 props 传入 `<BaseButton>`。
 
-## Disabling Attribute Inheritance
+## 禁用 Attribute 继承 {#disabling-attribute-inheritance}
 
-If you do **not** want a component to automatically inherit attributes, you can set `inheritAttrs: false` in the component's options.
+如果你 **不想要** 一个组件自动地继承 attribute，你可以在组件选项中设置 `inheritAttrs: false`。
 
 <div class="composition-api">
 
-If using `<script setup>`, you will need to declare this option using a separate, normal `<script>` block:
+如果你使用了 `<script setup>`，你需要一个额外的 `<script>` 块来书写这个选项声明：
 
 ```vue
 <script>
-// use normal <script> to declare options
+// 使用一个简单的 <script> to declare options
 export default {
   inheritAttrs: false
 }
 </script>
 
 <script setup>
-// ...setup logic
+// ...setup 部分逻辑
 </script>
 ```
 
 </div>
 
-The common scenario for disabling an attribute inheritance is when attributes need to be applied to other elements besides the root node. By setting the `inheritAttrs` option to `false`, you can take full control over where the fallthrough attributes should be applied to.
+最常见的需要禁用 attribute 继承的场景就是 attribute 需要应用在根节点以外的其他元素上。通过设置 `inheritAttrs` 选项为 `false`，你可以完全控制透传进来的 attribute 如何应用。
 
-These fallthrough attributes can be accessed directly in template expressions as `$attrs`:
+这些透传进来的 attribute 可以在模板的表达式中直接用 `$attrs` 访问到。
 
 ```vue-html
-<span>Fallthrough attributes: {{ $attrs }}</span>
+<span>透传 attribute: {{ $attrs }}</span>
 ```
 
-The `$attrs` object includes all attributes not included to component `props` and `emits` properties (e.g., `class`, `style`, `v-on` listeners, etc.).
+这个 `$attrs` 对象包含了除组件的 `props` 和 `emits` 属性外的所有其他 attribute，例如 `class`，`style`，`v-on` 监听器等等。
 
-Using our `<MyButton>` component example from the [previous section](#attribute-inheritance) - sometimes we may need to wrap the actual `<button>` element with an extra `<div>` for styling purposes:
+现在我们要再次使用一下 [之前小节](#attribute-inheritance) 中的 `<MyButton>` 组件例子。有时候我们可能为了样式，需要在 `<button>` 元素外包裹一层 `<div>`：
 
 ```vue-html
 <div class="btn-wrapper">
-  <button class="btn">click me</button>
+  <button class="btn">点击此处</button>
 </div>
 ```
 
-We want all fallthrough attributes like `class` and `v-on` listeners to be applied to the inner `<button>`, not the outer `<div>`. We can achieve this with `inheritAttrs: false` and `v-bind="$attrs"`:
+我们想要所有像 `class` 和 `v-on` 监听器这样的透传 attribute 都应用在内部的 `<button>` 上而不是外层的 `<div>` 上。我们可以通过设定 `inheritAttrs: false` 和使用 `v-bind="$attrs"` 来实现：
 
 ```vue-html{2}
 <div class="btn-wrapper">
-  <button class="btn" v-bind="$attrs">click me</button>
+  <button class="btn" v-bind="$attrs">点击此处</button>
 </div>
 ```
 
-Remember that [`v-bind` without argument](/guide/essentials/template-syntax.html#dynamically-binding-multiple-attributes) binds every property of an object as attributes to the target element.
+请记住 [没有参数的 `v-bind`](/guide/essentials/template-syntax.html#dynamically-binding-multiple-attributes) 会将一个对象的所有属性都作为 attribute 应用到目标元素上。
 
-## Attribute Inheritance on Multiple Root Nodes
+## 多根节点的 Attribute 继承 {#attribute-inheritance-on-multiple-root-nodes}
 
-Unlike single root node components, components with multiple root nodes do not have an automatic attribute fallthrough behavior. If `$attrs` are not bound explicitly, a runtime warning will be issued.
+和单根节点组件有所不同，有着多个根节点的组件没有自动 attribute 透传行为。
 
 ```vue-html
 <CustomLayout id="custom-layout" @click="changeValue" />
 ```
 
-If `<CustomLayout>` has the following multi-root template, there will be a warning because Vue cannot be sure where to apply the fallthrough attributes:
+如果 `<CustomLayout>` 有下面这样的多根节点模板，由于 Vue 不知道要将 attribute 透传到哪里，所以会抛出一个警告。
 
 ```vue-html
 <header>...</header>
@@ -138,7 +138,7 @@ If `<CustomLayout>` has the following multi-root template, there will be a warni
 <footer>...</footer>
 ```
 
-The warning will be suppressed if `$attrs` is explicitly bound:
+如果 `$attrs` 被显式绑定，则不会有警告：
 
 ```vue-html{2}
 <header>...</header>
@@ -146,11 +146,11 @@ The warning will be suppressed if `$attrs` is explicitly bound:
 <footer>...</footer>
 ```
 
-## Accessing Fallthrough Attributes in JavaScript
+## Accessing Fallthrough Attributes in JavaScript {#accessing-fallthrough-attributes-in-javascript}
 
 <div class="composition-api">
 
-You can access a component's fallthrough attributes in `<script setup>` using the `useAttrs()` API:
+你可以在 `<script setup>` 中使用 `useAttrs()` API 来访问一个组件的所有透传 attribute：
 
 ```vue
 <script setup>
@@ -160,12 +160,12 @@ const attrs = useAttrs()
 </script>
 ```
 
-If not using `<script setup>`, `attrs` will be exposed as a property of the `setup()` context:
+如果没有使用 `<script setup>`，`attrs` 会作为 `setup()` 上下文对象的一个属性暴露：
 
 ```js
 export default {
   setup(props, ctx) {
-    // fallthrough attributes are exposed as ctx.attrs
+    // 透传 attribute 被暴露为 ctx.attrs
     console.log(ctx.attrs)
   }
 }
@@ -175,7 +175,7 @@ export default {
 
 <div class="options-api">
 
-You can access a component's fallthrough attributes via the `$attrs` instance property:
+你可以通过 `$attrs` 这个实例属性来访问组件的所有透传 attribute：
 
 ```js
 export default {
