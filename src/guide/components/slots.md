@@ -2,23 +2,23 @@
 aside: deep
 ---
 
-# Slots
+# 插槽 {#slots}
 
-> This page assumes you've already read the [Components Basics](/guide/essentials/component-basics). Read that first if you are new to components.
+> 阅读此章节时，我们假设你已经读过 [组件基础](/guide/essentials/component-basics)，若你对组件还完全不了解，请先阅读它。
 
-## Slot Content and Outlet
+## 插槽内容与插口 {#slot-content-and-outlet}
 
-We have learned that components can accept props, which can be JavaScript values of any type. But how about template content? In some cases, we may want to pass a template fragment to a child component, and let the child component render the fragment within its own template.
+我们已经学习过组件能够接收任意类型的 JavaScript 值作为 props，但组件要如何接收模板内容呢？在某些场景中，我们可能想要为子组件传递一些模板片段，让子组件在它们的组件中渲染这些片段。
 
-For example, we may have a `<FancyButton>` component that supports usage like this:
+举个例子，这里有一个 `<FancyButotn>` 组件，可以像这样使用：
 
 ```vue-html{2}
 <FancyButton>
-  Click me! <!-- slot content -->
+  Click me! <!-- 插槽内容 -->
 </FancyButton>
 ```
 
-This is how the template of `<FancyButton>` looks like:
+而 `<FancyButton>` 的模板是这样的：
 
 ```vue-html{2}
 <button class="fancy-btn">
@@ -26,11 +26,11 @@ This is how the template of `<FancyButton>` looks like:
 </button>
 ```
 
-The `<slot>` element is a **slot outlet** that indicates where the parent-provided **slot content** should be rendered.
+`<slot>` 元素是一个**插槽的插口**，指出了父元素提供的 **插槽内容** 在哪里被渲染。
 
-![slot diagram](/images/slots.png)
+![插槽图示](/images/slots.png)
 
-And the final rendered DOM:
+最终渲染出的 DOM 结果是这样：
 
 ```html
 <button class="fancy-btn">
@@ -49,15 +49,15 @@ And the final rendered DOM:
 
 </div>
 
-With slots, the `<FancyButton>` is responsible for rendering the outer `<button>` (and its fancy styling), while the inner content is provided by the parent component.
+`<FancyButton>` 通过插槽承担了渲染 `<button>` 这个外壳（以及想要的样式），而内部的内容由父元素提供。
 
-Another way to understand slots is by comparing them to JavaScript functions:
+若你想换一种方式理解插槽，那么不妨和 JavaScript 的函数作个比较：
 
 ```js
-// parent component passing slot content
+// 父元素传入插槽内容
 FancyButton('Click me!')
 
-// FancyButton renders slot content in its own template
+// FancyButton 在自己的模板中渲染插槽内容
 function FancyButton(slotContent) {
   return (
     `<button class="fancy-btn">
@@ -67,11 +67,11 @@ function FancyButton(slotContent) {
 }
 ```
 
-Slot content is not just limited to text. It can be any valid template content. For example, we can pass in multiple elements, or even other components:
+插槽内容不仅仅局限于文本。它也可以是任意合法的模板内容，例如我们可以传入一些元素，甚至是组件：
 
 ```vue-html
 <FancyButton>
-  <span style="color:red">Click me!</span>
+  <span style="color:red">试试点击这里！</span>
   <AwesomeIcon name="plus" />
 </FancyButton>
 ```
@@ -87,28 +87,28 @@ Slot content is not just limited to text. It can be any valid template content. 
 
 </div>
 
-By using slots, our `<FancyButton>` is more flexible and reusable. We can now use it in different places with different inner content, but all with the same fancy styling.
+当有了插槽之后，`<FancyButton>` 组件变得更灵活，也更容易复用。我们现在可以在不同的地方使用它，传入不同的内容，但都具有相同的外部样式。
 
-Vue components' slot mechanism is inspired by the [native Web Component `<slot>` element](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/slot), but with additional capabilities that we will see later.
+Vue 组件的插槽机制是受到了 [原生 Web Component `<slot>` 元素](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/slot) 的启发，但也作出了一些功能的拓展，我们后面就会看到。
 
-## Render Scope
+## 渲染作用域 {#render-scope}
 
-Slot content has access to the data scope of the parent component, because it is defined in the parent. For example:
+插槽内容可以访问到父组件的数据，因为插槽内容本身也是在父组件模板的一部分。举个例子：
 
 ```vue-html
 <span>{{ message }}</span>
 <FancyButton>{{ message }}</FancyButton>
 ```
 
-Here both <span v-pre>`{{ message }}`</span> interpolations will render the same content.
+这里的两个 <span v-pre>`{{ message }}`</span> 插值表达式渲染的内容都是一样的。
 
-Slot content does **not** have access to the child component's data. As a rule, remember that:
+插槽内容 **无法访问** 子组件的数据，请牢记一条规则：
 
-> Everything in the parent template is compiled in parent scope; everything in the child template is compiled in the child scope.
+> 任何父组件模板中的东西都是被编译到父组件的作用域中；而任何子组件模板中的东西都只被编译到子组件的作用域中。
 
-## Fallback Content
+## 默认内容 {#fallback-content}
 
-There are cases when it's useful to specify fallback (i.e. default) content for a slot, to be rendered only when no content is provided. For example, in a `<SubmitButton>` component:
+我们也经常会遇到外部没有提供任何内容的情况，此时可能会为插槽提供一个默认的内容来渲染。比如在 `<SubmitButton>` 组件中：
 
 ```vue-html
 <button type="submit">
@@ -116,38 +116,38 @@ There are cases when it's useful to specify fallback (i.e. default) content for 
 </button>
 ```
 
-We might want the text "Submit" to be rendered inside the `<button>` if the parent didn't provide any slot content. To make "Submit" the fallback content, we can place it in between the `<slot>` tags:
+如果外部没有提供任何插槽内容，我们可能想在 `<button>` 中渲染 “提交” 这两个字。要让这两个字成为默认内容，需要写在 `<slot>` 标签之间：
 
 ```vue-html{3}
 <button type="submit">
   <slot>
-    Submit <!-- fallback content -->
+    提交 <!-- 默认内容 -->
   </slot>
 </button>
 ```
 
-Now when we use `<submit-button>` in a parent component, providing no content for the slot:
+当我们在父组件中使用 `<submit-button>` 但不提供任何插槽内容：
 
 ```vue-html
 <SubmitButton />
 ```
 
-This will render the fallback content, "Submit":
+那么将渲染出下面这样的 DOM 结构，包含默认的 “提交” 二字：
 
 ```html
-<button type="submit">Submit</button>
+<button type="submit">提交</button>
 ```
 
-But if we provide content:
+但如果我们提供了别的内容给插槽：
 
 ```vue-html
-<SubmitButton>Save</SubmitButton>
+<SubmitButton>保存</SubmitButton>
 ```
 
-Then the provided content will be rendered instead:
+那么渲染的 DOM 中会选择使用提供的插槽内容：
 
 ```html
-<button type="submit">Save</button>
+<button type="submit">保存</button>
 ```
 
 <div class="composition-api">
@@ -161,25 +161,25 @@ Then the provided content will be rendered instead:
 
 </div>
 
-## Named Slots
+## 具名插槽 {#named-slots}
 
-There are times when it's useful to have multiple slot outlets in a single component. For example, in a `<BaseLayout>` component with the following template:
+有时一个组件中可能会有多个插槽的插口。举个例子，在一个 `<BaseLayout>` 组件中，有如下这样的模板：
 
 ```vue-html
 <div class="container">
   <header>
-    <!-- We want header content here -->
+    <!-- 标题内容放这里 -->
   </header>
   <main>
-    <!-- We want main content here -->
+    <!-- 主要内容放这里 -->
   </main>
   <footer>
-    <!-- We want footer content here -->
+    <!-- 底部内容放这里 -->
   </footer>
 </div>
 ```
 
-For these cases, the `<slot>` element has a special attribute, `name`, which can be used to assign a unique ID to different slots so you can determine where content should be rendered:
+对于这种场景，`<slot>` 元素可以有一个特殊的 attribute `name`，可以是一个独一无二的标识符，用来区分各个插槽，确定每一处最终会渲染的内容：
 
 ```vue-html
 <div class="container">
@@ -195,56 +195,56 @@ For these cases, the `<slot>` element has a special attribute, `name`, which can
 </div>
 ```
 
-A `<slot>` outlet without `name` implicitly has the name "default".
+没有提供 `name` 的 `<slot>` 插口会隐式地命名为 "default"。
 
-In a parent component using `<BaseLayout>`, we need a way to pass multiple slot content framgents, each targeting a different slot outlet. This is where **named slots** comes in.
+在父组件中使用到 `<BaseLayout>` 时，我们需要给各个插槽传入内容，为了模板片段让各入各门、各寻其所。此时就需要用到 **具名插槽** 了：
 
-To pass a named slot, we need to use a `<template>` element with the `v-slot` directive, and then pass the name of the slot as an argument to `v-slot`:
+要为具名插槽传入内容，我们需要使用一个含 `v-slot` 指令的 `<template>` 元素，并将目标插槽的名字传给该指令：
 
 ```vue-html
 <BaseLayout>
   <template v-slot:header>
-    <!-- content for the header slot -->
+    <!-- header 插槽的内容放这里 -->
   </template>
 </BaseLayout>
 ```
 
-`v-slot` has a dedicated shorthand `#`, so `<template v-slot:header>` can be shortened to just `<template #header>`. Think of it as "render this template fragment in the child component's 'header' slot".
+`v-slot` 有对应的简写 `#`，因此 `<template v-slot:header>` 可以简写为 `<template #header>`。其意思就是 “将这部分模板片段传入子组件的 header 插槽中”。
 
-![named slots diagram](/images/named-slots.png)
+![具名插槽图示](/images/named-slots.png)
 
-Here's the code passing content to all three slots to `<BaseLayout>` using the shorthand syntax:
+下面我们给出完整的、向 `<BaseLayout>` 传递内容的代码，指令均使用的是缩写形式：
 
 ```vue-html
 <BaseLayout>
   <template #header>
-    <h1>Here might be a page title</h1>
+    <h1>这里是一个页面标题</h1>
   </template>
 
   <template #default>
-    <p>A paragraph for the main content.</p>
-    <p>And another one.</p>
+    <p>一个文章内容的段落</p>
+    <p>另一个段落</p>
   </template>
 
   <template #footer>
-    <p>Here's some contact info</p>
+    <p>这里有一些联系方式</p>
   </template>
 </BaseLayout>
 ```
 
-Now everything inside the `<template>` elements will be passed to the corresponding slots. The final rendered HTML will be:
+现在 `<template>` 里的所有元素都会被插入到相应的插槽中，最终渲染出的 HTML 是这样的：
 
 ```html
 <div class="container">
   <header>
-    <h1>Here might be a page title</h1>
+    <h1>这里是一个页面标题</h1>
   </header>
   <main>
-    <p>A paragraph for the main content.</p>
-    <p>And another one.</p>
+    <p>一个文章内容的段落</p>
+    <p>另一个段落</p>
   </main>
   <footer>
-    <p>Here's some contact info</p>
+    <p>这里有一些联系方式</p>
   </footer>
 </div>
 ```
@@ -260,17 +260,17 @@ Now everything inside the `<template>` elements will be passed to the correspond
 
 </div>
 
-Again, it may help you understand named slots better using the JavaScript function analogy:
+我们还是用 JavaScript 函数的作类比来理解：
 
 ```js
-// passing multiple slot fragments with different names
+// 传入不同的内容给不同名字的插槽
 BaseLayout({
   header: `...`,
   default: `...`,
   footer: `...`
 })
 
-// <BaseLayout> renders them in different places
+// <BaseLayout> 渲染插槽内容到对应位置
 function BaseLayout(slots) {
   return (
     `<div class="container">
@@ -282,9 +282,9 @@ function BaseLayout(slots) {
 }
 ```
 
-## Dynamic Slot Names
+## 动态插槽名 {#dynamic-slot-names}
 
-[Dynamic directive arguments](/guide/essentials/template-syntax.md#dynamic-arguments) also work on `v-slot`, allowing the definition of dynamic slot names:
+[动态指令参数](/guide/essentials/template-syntax.md#dynamic-arguments) 在 `v-slot` 上也是有效的，即可以定义下面这样的动态插槽名：
 
 ```vue-html
 <base-layout>
@@ -292,31 +292,31 @@ function BaseLayout(slots) {
     ...
   </template>
 
-  <!-- with shorthand -->
+  <!-- 缩写为 -->
   <template #[dynamicSlotName]>
     ...
   </template>
 </base-layout>
 ```
 
-Do note the expression is subject to the same [syntax constraints](/guide/essentials/template-syntax.html#directives) of dynamic directive arguments.
+注意这里的表达式和动态指令参数受相同的 [语法限制](/guide/essentials/template-syntax.html#directives)。
 
-## Scoped Slots
+## 作用域插槽 {#scoped-slots}
 
-As discussed in [Render Scope](#render-scope), slot content does not have access to state in the child component.
+在上面的 [渲染作用域](#render-scope) 中我们讨论到，插槽的内容无法访问到子组件的状态。
 
-However, there are cases where it could be useful if a slot's content can make use of data from both the parent scope and the child scope. To achieve that, we need a way for the child to pass data to a slot when rendering it.
+然而在某些场景下插槽的内容可能想要同时利用父组件域内和子组件域内的数据。要做到这一点，我们需要让子组件将一部分数据在渲染时提供给插槽。
 
-In fact, we can do exactly that - we can pass attributes to a slot outlet just like passing props to a component:
+而我们确实也有办法这么做！我们可以像对组件传递 props 那样，向一个插槽的插口上传递 attribute：
 
 ```vue-html
-<!-- <MyComponent> template -->
+<!-- <MyComponent> 的模板 -->
 <div>
   <slot :text="greetingMessage" :count="1"></slot>
 </div>
 ```
 
-Receiving the slot props is a bit different when using a single default slot vs. using named slots. We are going to show how to receive props using a single default slot first, by using `v-slot` directly on the child component tag:
+当需要接收插槽 props 时，一般的默认插槽和具名插槽的使用方式有了一些小小的区别。下面我们将会展示是怎样的不同，首先是一个默认插槽，通过子组件标签上的 `v-slot` 指令，直接接收到了一个插槽 props 对象：
 
 ```vue-html
 <MyComonent v-slot="slotProps">
@@ -335,13 +335,13 @@ Receiving the slot props is a bit different when using a single default slot vs.
 
 </div>
 
-The props passed to the slot by the child is available as the value of the corresponding `v-slot` directive, which can be accessed by expressions inside the slot.
+子组件传入插槽的 props 作为了 `v-slot` 指令的值，可以在插槽内的表达式中访问。
 
-You can think of a scoped slot as a function being passed into the child component. The child component then calls it and passing props as arguments:
+你可以将作用于插槽类比为一个传入子组件的函数。子组件会将相应的 props 作为参数传给它：
 
 ```js
 MyComponent({
-  // passing the default slot, but as a function
+  // 类比默认插槽，将其想成一个函数
   default: (slotProps) => {
     return `${slotProps.text} ${slotProps.count}`
   }
@@ -351,16 +351,16 @@ function MyComponent(slots) {
   const greetingMessage = 'hello'
   return (
     `<div>${
-      // call the slot function with props!
+      // 在插槽函数调用时传入 props
       slots.default({ text: greetingMessage, count: 1 })
     }</div>`
   )
 }
 ```
 
-In fact, this is very close to how scoped slots are compiled, and how you would use scoped slots in manual [render functions](/guide/advanced/render-function.html).
+实际上，这已经和作用域插槽的最终的代码编译结果、以及手动地调用 [渲染函数](/guide/advanced/render-function.html) 的方式非常类似了。
 
-Notice how `v-slot="slotProps"` matches the slot function signature - this means similar to function arguments, we can use destructuring in `v-slot`:
+`v-slot="slotProps"` 可以类比这里的函数签名，和函数的参数类似，我们也可以在 `v-slot` 使用:
 
 
 ```vue-html
@@ -369,9 +369,9 @@ Notice how `v-slot="slotProps"` matches the slot function signature - this means
 <MyComponent>
 ```
 
-### Named Scoped Slots
+### 具名作用域插槽 {#named-scoped-slots}
 
-Named scoped slots work similarly - slot props are accessible as the value of the `v-slot` directive: `v-slot:name="slotProps"`. When using the shorthand, it looks like this:
+具名作用域插槽的工作方式也是类似的，插槽 props 可以作为 `v-slot` 指令的值被访问到：`v-slot:name="slotProps"`。当使用缩写时是这样：
 
 ```vue-html
 <MyComponent>
@@ -389,31 +389,31 @@ Named scoped slots work similarly - slot props are accessible as the value of th
 </MyComponent>
 ```
 
-Passing props to a named slot:
+向具名插槽中传入 props：
 
 ```vue-html
 <slot name="header" message="hello"></slot>
 ```
 
-Note the `name` of a slot won't be included in the props because it is reserved - so the resulting `headerProps` would be `{ message: 'hello' }`.
+注意插槽上的 `name` 是由 Vue 保留的，不会作为 props 传递给插槽。因此最终 `headerProps` 的结果是 `{ message: 'hello' }`。
 
 
-### Fancy List Example
+### 一个好看的列表示例 {#fancy-list-example}
 
-You may be wondering what would be a good use case for scoped slots. Here's an example: imagine a `<FancyList>` component that renders a list of items - it may encapsulate the logic for loading remote data, using the data to display a list, or even advanced features like pagination or infinite scrolling. However, we want it to be flexible with how each item looks and leave the stying of each item to the parent component consuming it. So the desired usage may look like this:
+想要了解作用域插槽怎么样使用更好吗？不妨看看这个 `<FancyList>` 组件的例子，它会渲染一个列表，其中会封装一些加载远端数据的逻辑、并提供此数据来做列表的渲染，或者是像分页、无限滚动这样更进阶的功能。然而我们希望它能够灵活处理每一项的外观，并将对每一项样式的控制权留给使用它的父组件。我们期望的用法可能是这样的:
 
 ```vue-html
 <FancyList :api-url="url" :per-page="10">
   <template #item="{ body, username, likes }">
     <div class="item">
       <p>{{ body }}</p>
-      <p>by {{ username }} | {{ likes }} likes</p>
+      <p>作者：{{ username }} | {{ likes }} 人赞过</p>
     </div>
   </template>
 </FancyList>
 ```
 
-Inside `<FancyList>`, we can render the same `<slot>` multiple times with different item data (notice we are using `v-bind` to pass an object as slot props):
+在 `<FancyList>` 之中，我们可以多次渲染 `<slot>` 并每次都提供不同的数据（注意我们这里使用了 `v-bind` 来传递插槽的 props）：
 
 ```vue-html
 <ul>
@@ -434,13 +434,13 @@ Inside `<FancyList>`, we can render the same `<slot>` multiple times with differ
 
 </div>
 
-### Renderless Components
+### 无渲染组件 {#renderless-components}
 
-The `<FancyList>` use case we discussed above encapsulates both reusable logic (data fetching, pagination etc.) and visual output, while delegating part of the visual output to the consumer component via scoped slots.
+上面的 `<FancyList>` 用例同时封装了可重用的逻辑（数据获取、分页等）和视图输出，但也将部分视图的最终输出通过作用域插槽交给了消费者组件来管理。
 
-If we push this concept a bit further, we can come up with components that only encapsulate logic and do not render anything by themselves - visual output is fully delegated to the consumer component with scoped slots. We call this type of components **Renderless Components**.
+如果我们将这个概念拓展一下，可以想象的是，一些组件可能只包括了逻辑而不需要自己渲染内容，视图的输出通过作用域插槽全权交给了消费者组件。我们将这种类型的组件称为 **无渲染组件**。
 
-An exmaple renderless component could be one that encapsulates the logic of tracking the current mouse position:
+这里有一个无渲染组件的例子，一个封装了追踪当前鼠标位置逻辑的组件：
 
 ```vue-html
 <MouseTracker v-slot="{ x, y }">
@@ -459,6 +459,6 @@ An exmaple renderless component could be one that encapsulates the logic of trac
 
 </div>
 
-While an interesting pattern, most of what can be achieved with Renderless Components can be achieved in a more efficient fashion with Composition API, without incurring the overhead of extra component nesting. Later, we will see how we can implement the same mouse tracking functionality as a [Composable](/guide/reusability/composables.html).
+虽然这是一个有趣的模式，但能用使用无渲染组件实现的大部分功能都可以通过组合式 API 以另一种更有效的方式实现，且不会产生额外的组件嵌套的开销。之后我们会在 [组合](/guide/reusability/composables.html) 一章中介绍如何更高效地实现追踪鼠标位置的逻辑。
 
-That said, scoped slots are still useful in cases where we need to both encapsulate logic **and** compose visual output, like in the `<FancyList>` example.
+尽管如此，作用域插槽还是在需要 **同时** 封装逻辑、组合视图界面时很有用，就像上面的 `<FancyList>` 组件那样。
