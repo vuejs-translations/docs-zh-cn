@@ -2,7 +2,7 @@
 aside: deep
 ---
 
-# Composables
+# 可组合函数 {#composables}
 
 <script setup>
 import { useMouse } from './mouse'
@@ -10,20 +10,20 @@ const { x, y } = useMouse()
 </script>
 
 :::tip
-This section assumes basic knowledge of Composition API. If you have been learning Vue with Options API only, you can set the API Preference to Composition API (using the toggle at the top of the left sidebar) and re-read the [Reactivity Fundamentals](/guide/essentials/reactivity-fundamentals.html) and [Lifecycle Hooks](/guide/essentials/lifecycle.html) chapters.
+这一章假设你已经对组合式 API 有了一个基本的了解。如果你只学习过选项式 API，你可以通过侧边栏左上角的切换按钮将 API 风格切换为组合式 API，然后重新阅读 [响应性基础](/guide/essentials/reactivity-fundamentals.html) 和 [生命周期钩子](/guide/essentials/lifecycle.html) 两个章节。
 :::
 
-## What is a "Composable"?
+## 什么是一个 "可组合函数"? {#what-is-a-composable}
 
-In the context of Vue applications, a "composable" is a function that leverages Vue Composition API to encapsulate and reuse **stateful logic**.
+在 Vue 应用的概念中，一个 “可组合函数” 是一个利用组合式 API 来封装可重用 **有状态逻辑** 的函数。
 
-When building frontend applications, we often have the need to reuse logic for common tasks. For example, we may need to format dates in many places, so we extract a reusable function for that. This formatter function encapsulates **stateless logic**: it takes some input and immediately returns expected output. There are many libraries out there for reusing stateless logic - for example [lodash](https://lodash.com/) and [date-fns](https://date-fns.org/), which you may have heard of.
+当构建前端应用时，我们常常需要重用一些任务逻辑。举个例子，我们需要在很多地方格式化时间，为此我们抽取出了一个可重用的函数。这个格式化函数封装了 **无状态的逻辑**：取得一些输入值然后立刻返回所期望的输出。有许多这样的封装了无状态逻辑的库，比如 [lodash](https://lodash.com/) 和 [date-fns](https://date-fns.org/) 等，你可能已经听说过它们了。
 
-In comparison, stateful logic involves managing state that changes over time. A simple example would be tracking the current position of the mouse on a page. In real world scenarios, it could also be more complex logic such as touch gestures or connection status to a database.
+相比之下，有状态逻辑中需要管理随时可能发生变化的状态。一个简单的例子是跟踪当前鼠标在页面中的位置。在真实应用中，它也可以是更复杂的逻辑，如触摸手势或与数据库的连接状态。
 
-## Mouse Tracker Example
+## 鼠标跟踪器示例 {#mouse-tracker-example}
 
-If we were to implement the mouse tracking functionality using Composition API directly inside a component, it would look like this:
+如果我们要直接在组件中使用组合式 API 实现鼠标跟踪功能，它会是这样的:
 
 ```vue
 <script setup>
@@ -41,38 +41,38 @@ onMounted(() => window.addEventListener('mousemove', update))
 onUnmounted(() => window.removeEventListener('mousemove', update))
 </script>
 
-<template>Mouse position is at: {{ x }}, {{ y }}</template>
+<template>鼠标位置：{{ x }}, {{ y }}</template>
 ```
 
-But what if we want reuse the same logic in multiple components? We can extract the logic into an external file, as a composable function:
+但是，如果我们想在多个组件中重用相同的逻辑呢？我们可以将逻辑提取到一个外部文件中，作为一个可组合函数:
 
 ```js
 // mouse.js
 import { ref, onMounted, onUnmounted } from 'vue'
 
-// by convention, composable function names start with "use"
+// 按照惯例，可组合函数名以 “use” 开头
 export function useMouse() {
-  // state encapsulated and managed by the composable
+  // 被可组合函数封装和管理的状态
   const x = ref(0)
   const y = ref(0)
 
-  // a composable can update its managed state over time.
+  // 可组合函数可以随时更改其状态。
   function update(event) {
     x.value = event.pageX
     y.value = event.pageY
   }
 
-  // a composable can also hook into owner component's lifecycle
-  // to setup and teardown side effects.
+  // 一个可组合函数也可以 “挂靠” 宿主组件的生命周期
+  // 来启动和卸载副作用
   onMounted(() => window.addEventListener('mousemove', update))
   onUnmounted(() => window.removeEventListener('mousemove', update))
 
-  // expose managed state as return value
+  // 将所管理的状态作为返回值
   return { x, y }
 }
 ```
 
-And this is how it can be used in components:
+下面是它在组件中使用的方式:
 
 ```vue
 <script setup>
@@ -81,26 +81,26 @@ import { useMouse } from './mouse.js'
 const { x, y } = useMouse()
 </script>
 
-<template>Mouse position is at: {{ x }}, {{ y }}</template>
+<template>鼠标位置：{{ x }}, {{ y }}</template>
 ```
 
 <div class="demo">
-  Mouse position is at: {{ x }}, {{ y }}
+  鼠标位置：{{ x }}, {{ y }}
 </div>
 
-[Try it in the Playground](https://sfc.vuejs.org/#eyJBcHAudnVlIjoiPHNjcmlwdCBzZXR1cD5cbmltcG9ydCB7IHVzZU1vdXNlIH0gZnJvbSAnLi9tb3VzZS5qcydcblxuY29uc3QgeyB4LCB5IH0gPSB1c2VNb3VzZSgpXG48L3NjcmlwdD5cblxuPHRlbXBsYXRlPlxuICBNb3VzZSBwb3NpdGlvbiBpcyBhdDoge3sgeCB9fSwge3sgeSB9fVxuPC90ZW1wbGF0ZT4iLCJpbXBvcnQtbWFwLmpzb24iOiJ7XG4gIFwiaW1wb3J0c1wiOiB7XG4gICAgXCJ2dWVcIjogXCJodHRwczovL3NmYy52dWVqcy5vcmcvdnVlLnJ1bnRpbWUuZXNtLWJyb3dzZXIuanNcIlxuICB9XG59IiwibW91c2UuanMiOiJpbXBvcnQgeyByZWYsIG9uTW91bnRlZCwgb25Vbm1vdW50ZWQgfSBmcm9tICd2dWUnXG5cbmV4cG9ydCBmdW5jdGlvbiB1c2VNb3VzZSgpIHtcbiAgY29uc3QgeCA9IHJlZigwKVxuICBjb25zdCB5ID0gcmVmKDApXG5cbiAgZnVuY3Rpb24gdXBkYXRlKGV2ZW50KSB7XG4gICAgeC52YWx1ZSA9IGV2ZW50LnBhZ2VYXG4gICAgeS52YWx1ZSA9IGV2ZW50LnBhZ2VZXG4gIH1cblxuICBvbk1vdW50ZWQoKCkgPT4gd2luZG93LmFkZEV2ZW50TGlzdGVuZXIoJ21vdXNlbW92ZScsIHVwZGF0ZSkpXG4gIG9uVW5tb3VudGVkKCgpID0+IHdpbmRvdy5yZW1vdmVFdmVudExpc3RlbmVyKCdtb3VzZW1vdmUnLCB1cGRhdGUpKVxuXG4gIHJldHVybiB7IHgsIHkgfVxufSJ9)
+[在 Playground 中尝试一下](https://sfc.vuejs.org/#eyJBcHAudnVlIjoiPHNjcmlwdCBzZXR1cD5cbmltcG9ydCB7IHVzZU1vdXNlIH0gZnJvbSAnLi9tb3VzZS5qcydcblxuY29uc3QgeyB4LCB5IH0gPSB1c2VNb3VzZSgpXG48L3NjcmlwdD5cblxuPHRlbXBsYXRlPlxuICBNb3VzZSBwb3NpdGlvbiBpcyBhdDoge3sgeCB9fSwge3sgeSB9fVxuPC90ZW1wbGF0ZT4iLCJpbXBvcnQtbWFwLmpzb24iOiJ7XG4gIFwiaW1wb3J0c1wiOiB7XG4gICAgXCJ2dWVcIjogXCJodHRwczovL3NmYy52dWVqcy5vcmcvdnVlLnJ1bnRpbWUuZXNtLWJyb3dzZXIuanNcIlxuICB9XG59IiwibW91c2UuanMiOiJpbXBvcnQgeyByZWYsIG9uTW91bnRlZCwgb25Vbm1vdW50ZWQgfSBmcm9tICd2dWUnXG5cbmV4cG9ydCBmdW5jdGlvbiB1c2VNb3VzZSgpIHtcbiAgY29uc3QgeCA9IHJlZigwKVxuICBjb25zdCB5ID0gcmVmKDApXG5cbiAgZnVuY3Rpb24gdXBkYXRlKGV2ZW50KSB7XG4gICAgeC52YWx1ZSA9IGV2ZW50LnBhZ2VYXG4gICAgeS52YWx1ZSA9IGV2ZW50LnBhZ2VZXG4gIH1cblxuICBvbk1vdW50ZWQoKCkgPT4gd2luZG93LmFkZEV2ZW50TGlzdGVuZXIoJ21vdXNlbW92ZScsIHVwZGF0ZSkpXG4gIG9uVW5tb3VudGVkKCgpID0+IHdpbmRvdy5yZW1vdmVFdmVudExpc3RlbmVyKCdtb3VzZW1vdmUnLCB1cGRhdGUpKVxuXG4gIHJldHVybiB7IHgsIHkgfVxufSJ9)
 
-As we can see, the core logic remains exactly the same - all we had to do was moving it into an external function and return the state that should be exposed. The same `useMouse()` functionality can now be used in any component.
+正如我们所看到的，核心逻辑保持完全相同，我们只需要将其移动到一个外部函数中，将要暴露的状态返回即可。现在任意组件中都可以使用 `useMouse()` 的功能了。
 
-You can use the full range of [Composition API functions](/api/#composition-api) in composables. You can also nest them: one composable function can call one or more other composable functions. This enables us to compose complex logic using small, isolated units, similar to how we compose an entire application using components. In fact, this is why we decided to call the collection of APIs that make this pattern possible Composition API.
+你可以在可组合函数中使用任意 [组合式 API 提供的函数](/api/#composition-api)。你还可以作出嵌套：一个可组合函数可以调用一个或多个其他的可组合函数。这使得我们可以通过组合多个较小的函数、独立的单元来实现复杂的逻辑，这与我们使用组件来组合一整个大型应用类似。实际上，这也正是我们打算命名这套 API 模式 为组合式 API 的原因。
 
 :::tip
-Each component instance calling `useMouse()` will create its own copies of `x` and `y` state so they won't interfere with one another. If you want to manage shared state between components, read the [State Management](/guide/scaling-up/state-management.html) chapter.
+每一个调用 `useMouse()` 的组件实例会创建其独有的 `x`、`y` 状态拷贝，因此他们不会互相影响。如果你想要在组件之间共享状态，请阅读 [状态管理](/guide/scaling-up/state-management.html) 这一章。
 :::
 
-## Async State Example
+## 异步状态示例 {#async-state-example}
 
-The `useMouse()` composable doesn't take any arguments, so let's take a look at another example that makes use of one. When doing async data fetching, we often need to handle different states: loading, success, and error:
+`useMouse()` 可组合函数没有接收任何参数，因此让我们再来看一个需要接收一个参数的可组合函数示例。当需要做异步数据请求时，我们常常会需要处理不同的状态：加载中、加载成功和加载失败。
 
 ```vue
 <script setup>
@@ -116,13 +116,13 @@ fetch('...')
 </script>
 
 <template>
-  <div v-if="error">Oops! Error encountered: {{ error.message }}</div>
-  <div v-else-if="data">Data loaded: <pre>{{ data }}</pre></div>
-  <div v-else>Loading...</div>
+  <div v-if="error">糟糕！出错了：{{ error.message }}</div>
+  <div v-else-if="data">加载完成：<pre>{{ data }}</pre></div>
+  <div v-else>加载中...</div>
 </template>
 ```
 
-Again, it would be tedious to have to repeat this pattern in every component that needs to fetch data. Let's extract it into a composable:
+同样，如果在每个需要获取数据的组件中都要重复这种模式，那就太繁琐了。让我们把它抽取成一个可组合函数：
 
 ```js
 // fetch.js
@@ -141,7 +141,7 @@ export function useFetch(url) {
 }
 ```
 
-Now in our component we can just do:
+现在在我们的组件中，我们可以这样做：
 
 ```vue
 <script setup>
@@ -151,7 +151,7 @@ const { data, error } = useFetch('...')
 </script>
 ```
 
-`useFetch()` takes a static URL string as input - so it performs the fetch only once and is then done. What if we want it to re-fetch whenever the URL changes? We can achieve that by also accepting refs as an argument:
+`useFetch()` 接收一个静态的 URL 字符串作为输入，所以它只执行一次请求，然后就完成了。但如果我们想让他在 URL 变化时重新请求呢？那我们可以使用一个 ref 作为其参数：
 
 ```js
 // fetch.js
@@ -162,10 +162,10 @@ export function useFetch(url) {
   const error = ref(null)
 
   function doFetch() {
-    // reset state before fetching..
+    // 在请求之前重设状态...
     data.value = null
     error.value = null
-    // unref() unwraps potential refs
+    // unref() 解套可能为 ref 的值
     fetch(unref(url))
       .then((res) => res.json())
       .then((json) => (data.value = json))
@@ -173,11 +173,11 @@ export function useFetch(url) {
   }
 
   if (isRef(url)) {
-    // setup reactive re-fetch if input URL is a ref
+    // 若输入的 URL 是一个 ref，那么启动一个响应式的请求
     watchEffect(doFetch)
   } else {
-    // otherwise, just fetch once
-    // and avoid the overhead of a watcher
+    // 否则只请求一次
+    // 避免监听器的额外开销
     doFetch()
   }
 
@@ -185,79 +185,79 @@ export function useFetch(url) {
 }
 ```
 
-This version of `useFetch()` now accepts both static URL strings and refs of URL strings. When it detects that the URL is a dynamic ref using [`isRef()`](/api/reactivity-utilities.html#isref), it sets up a reactive effect using [`watchEffect()`](/api/reactivity-core.html#watcheffect). The effect will run immediately, and tracking the URL ref as a dependency in the process. Whenver the URL ref changes, the data will be reset and fetched again.
+这个版本的 `useFetch()` 现在同时可以接收静态的 URL 字符串和 URL 字符串的 ref。当它通过 [`isRef()`](/api/reactivity-utilities.html#isref) 检测到 URL 是一个 ref 时，它会通过 [`watchEffect()`](/api/reactivity-core.html#watcheffect) 启动一个响应式的副作用。该副作用会立刻运行一次，然后跟踪 URL ref 的变化，将其作为此过程的依赖。一旦 URL ref 变化了，数据就会被重置并重新发起请求。
 
-Here's [the updated version of `useFetch()`](https://sfc.vuejs.org/#eyJBcHAudnVlIjoiPHNjcmlwdCBzZXR1cD5cbmltcG9ydCB7IHJlZiwgY29tcHV0ZWQgfSBmcm9tICd2dWUnXG5pbXBvcnQgeyB1c2VGZXRjaCB9IGZyb20gJy4vdXNlRmV0Y2guanMnXG5cbmNvbnN0IGJhc2VVcmwgPSAnaHR0cHM6Ly9qc29ucGxhY2Vob2xkZXIudHlwaWNvZGUuY29tL3RvZG9zLydcbmNvbnN0IGlkID0gcmVmKCcxJylcbmNvbnN0IHVybCA9IGNvbXB1dGVkKCgpID0+IGJhc2VVcmwgKyBpZC52YWx1ZSlcblxuY29uc3QgeyBkYXRhLCBlcnJvciwgcmV0cnkgfSA9IHVzZUZldGNoKHVybClcbjwvc2NyaXB0PlxuXG48dGVtcGxhdGU+XG4gIExvYWQgcG9zdCBpZDpcbiAgPGJ1dHRvbiB2LWZvcj1cImkgaW4gNVwiIEBjbGljaz1cImlkID0gaVwiPnt7IGkgfX08L2J1dHRvbj5cblxuXHQ8ZGl2IHYtaWY9XCJlcnJvclwiPlxuICAgIDxwPk9vcHMhIEVycm9yIGVuY291bnRlcmVkOiB7eyBlcnJvci5tZXNzYWdlIH19PC9wPlxuICAgIDxidXR0b24gQGNsaWNrPVwicmV0cnlcIj5SZXRyeTwvYnV0dG9uPlxuICA8L2Rpdj5cbiAgPGRpdiB2LWVsc2UtaWY9XCJkYXRhXCI+RGF0YSBsb2FkZWQ6IDxwcmU+e3sgZGF0YSB9fTwvcHJlPjwvZGl2PlxuICA8ZGl2IHYtZWxzZT5Mb2FkaW5nLi4uPC9kaXY+XG48L3RlbXBsYXRlPiIsImltcG9ydC1tYXAuanNvbiI6IntcbiAgXCJpbXBvcnRzXCI6IHtcbiAgICBcInZ1ZVwiOiBcImh0dHBzOi8vc2ZjLnZ1ZWpzLm9yZy92dWUucnVudGltZS5lc20tYnJvd3Nlci5qc1wiXG4gIH1cbn0iLCJ1c2VGZXRjaC5qcyI6ImltcG9ydCB7IHJlZiwgaXNSZWYsIHVucmVmLCB3YXRjaEVmZmVjdCB9IGZyb20gJ3Z1ZSdcblxuZXhwb3J0IGZ1bmN0aW9uIHVzZUZldGNoKHVybCkge1xuICBjb25zdCBkYXRhID0gcmVmKG51bGwpXG4gIGNvbnN0IGVycm9yID0gcmVmKG51bGwpXG5cbiAgYXN5bmMgZnVuY3Rpb24gZG9GZXRjaCgpIHtcbiAgICAvLyByZXNldCBzdGF0ZSBiZWZvcmUgZmV0Y2hpbmcuLlxuICAgIGRhdGEudmFsdWUgPSBudWxsXG4gICAgZXJyb3IudmFsdWUgPSBudWxsXG4gICAgXG4gICAgLy8gcmVzb2x2ZSB0aGUgdXJsIHZhbHVlIHN5bmNocm9ub3VzbHkgc28gaXQncyB0cmFja2VkIGFzIGFcbiAgICAvLyBkZXBlbmRlbmN5IGJ5IHdhdGNoRWZmZWN0KClcbiAgICBjb25zdCB1cmxWYWx1ZSA9IHVucmVmKHVybClcbiAgICBcbiAgICB0cnkge1xuICAgICAgLy8gYXJ0aWZpY2lhbCBkZWxheSAvIHJhbmRvbSBlcnJvclxuICBcdCAgYXdhaXQgdGltZW91dCgpXG4gIFx0ICAvLyB1bnJlZigpIHdpbGwgcmV0dXJuIHRoZSByZWYgdmFsdWUgaWYgaXQncyBhIHJlZlxuXHQgICAgLy8gb3RoZXJ3aXNlIHRoZSB2YWx1ZSB3aWxsIGJlIHJldHVybmVkIGFzLWlzXG4gICAgXHRjb25zdCByZXMgPSBhd2FpdCBmZXRjaCh1cmxWYWx1ZSlcblx0ICAgIGRhdGEudmFsdWUgPSBhd2FpdCByZXMuanNvbigpXG4gICAgfSBjYXRjaCAoZSkge1xuICAgICAgZXJyb3IudmFsdWUgPSBlXG4gICAgfVxuICB9XG5cbiAgaWYgKGlzUmVmKHVybCkpIHtcbiAgICAvLyBzZXR1cCByZWFjdGl2ZSByZS1mZXRjaCBpZiBpbnB1dCBVUkwgaXMgYSByZWZcbiAgICB3YXRjaEVmZmVjdChkb0ZldGNoKVxuICB9IGVsc2Uge1xuICAgIC8vIG90aGVyd2lzZSwganVzdCBmZXRjaCBvbmNlXG4gICAgZG9GZXRjaCgpXG4gIH1cblxuICByZXR1cm4geyBkYXRhLCBlcnJvciwgcmV0cnk6IGRvRmV0Y2ggfVxufVxuXG4vLyBhcnRpZmljaWFsIGRlbGF5XG5mdW5jdGlvbiB0aW1lb3V0KCkge1xuICByZXR1cm4gbmV3IFByb21pc2UoKHJlc29sdmUsIHJlamVjdCkgPT4ge1xuICAgIHNldFRpbWVvdXQoKCkgPT4ge1xuICAgICAgaWYgKE1hdGgucmFuZG9tKCkgPiAwLjMpIHtcbiAgICAgICAgcmVzb2x2ZSgpXG4gICAgICB9IGVsc2Uge1xuICAgICAgICByZWplY3QobmV3IEVycm9yKCdSYW5kb20gRXJyb3InKSlcbiAgICAgIH1cbiAgICB9LCAzMDApXG4gIH0pXG59In0=), with an artificial delay and randomized error for demo purposes.
+这里是一个 [升级版的 `useFetch()`](https://sfc.vuejs.org/#eyJBcHAudnVlIjoiPHNjcmlwdCBzZXR1cD5cbmltcG9ydCB7IHJlZiwgY29tcHV0ZWQgfSBmcm9tICd2dWUnXG5pbXBvcnQgeyB1c2VGZXRjaCB9IGZyb20gJy4vdXNlRmV0Y2guanMnXG5cbmNvbnN0IGJhc2VVcmwgPSAnaHR0cHM6Ly9qc29ucGxhY2Vob2xkZXIudHlwaWNvZGUuY29tL3RvZG9zLydcbmNvbnN0IGlkID0gcmVmKCcxJylcbmNvbnN0IHVybCA9IGNvbXB1dGVkKCgpID0+IGJhc2VVcmwgKyBpZC52YWx1ZSlcblxuY29uc3QgeyBkYXRhLCBlcnJvciwgcmV0cnkgfSA9IHVzZUZldGNoKHVybClcbjwvc2NyaXB0PlxuXG48dGVtcGxhdGU+XG4gIExvYWQgcG9zdCBpZDpcbiAgPGJ1dHRvbiB2LWZvcj1cImkgaW4gNVwiIEBjbGljaz1cImlkID0gaVwiPnt7IGkgfX08L2J1dHRvbj5cblxuXHQ8ZGl2IHYtaWY9XCJlcnJvclwiPlxuICAgIDxwPk9vcHMhIEVycm9yIGVuY291bnRlcmVkOiB7eyBlcnJvci5tZXNzYWdlIH19PC9wPlxuICAgIDxidXR0b24gQGNsaWNrPVwicmV0cnlcIj5SZXRyeTwvYnV0dG9uPlxuICA8L2Rpdj5cbiAgPGRpdiB2LWVsc2UtaWY9XCJkYXRhXCI+RGF0YSBsb2FkZWQ6IDxwcmU+e3sgZGF0YSB9fTwvcHJlPjwvZGl2PlxuICA8ZGl2IHYtZWxzZT5Mb2FkaW5nLi4uPC9kaXY+XG48L3RlbXBsYXRlPiIsImltcG9ydC1tYXAuanNvbiI6IntcbiAgXCJpbXBvcnRzXCI6IHtcbiAgICBcInZ1ZVwiOiBcImh0dHBzOi8vc2ZjLnZ1ZWpzLm9yZy92dWUucnVudGltZS5lc20tYnJvd3Nlci5qc1wiXG4gIH1cbn0iLCJ1c2VGZXRjaC5qcyI6ImltcG9ydCB7IHJlZiwgaXNSZWYsIHVucmVmLCB3YXRjaEVmZmVjdCB9IGZyb20gJ3Z1ZSdcblxuZXhwb3J0IGZ1bmN0aW9uIHVzZUZldGNoKHVybCkge1xuICBjb25zdCBkYXRhID0gcmVmKG51bGwpXG4gIGNvbnN0IGVycm9yID0gcmVmKG51bGwpXG5cbiAgYXN5bmMgZnVuY3Rpb24gZG9GZXRjaCgpIHtcbiAgICAvLyByZXNldCBzdGF0ZSBiZWZvcmUgZmV0Y2hpbmcuLlxuICAgIGRhdGEudmFsdWUgPSBudWxsXG4gICAgZXJyb3IudmFsdWUgPSBudWxsXG4gICAgXG4gICAgLy8gcmVzb2x2ZSB0aGUgdXJsIHZhbHVlIHN5bmNocm9ub3VzbHkgc28gaXQncyB0cmFja2VkIGFzIGFcbiAgICAvLyBkZXBlbmRlbmN5IGJ5IHdhdGNoRWZmZWN0KClcbiAgICBjb25zdCB1cmxWYWx1ZSA9IHVucmVmKHVybClcbiAgICBcbiAgICB0cnkge1xuICAgICAgLy8gYXJ0aWZpY2lhbCBkZWxheSAvIHJhbmRvbSBlcnJvclxuICBcdCAgYXdhaXQgdGltZW91dCgpXG4gIFx0ICAvLyB1bnJlZigpIHdpbGwgcmV0dXJuIHRoZSByZWYgdmFsdWUgaWYgaXQncyBhIHJlZlxuXHQgICAgLy8gb3RoZXJ3aXNlIHRoZSB2YWx1ZSB3aWxsIGJlIHJldHVybmVkIGFzLWlzXG4gICAgXHRjb25zdCByZXMgPSBhd2FpdCBmZXRjaCh1cmxWYWx1ZSlcblx0ICAgIGRhdGEudmFsdWUgPSBhd2FpdCByZXMuanNvbigpXG4gICAgfSBjYXRjaCAoZSkge1xuICAgICAgZXJyb3IudmFsdWUgPSBlXG4gICAgfVxuICB9XG5cbiAgaWYgKGlzUmVmKHVybCkpIHtcbiAgICAvLyBzZXR1cCByZWFjdGl2ZSByZS1mZXRjaCBpZiBpbnB1dCBVUkwgaXMgYSByZWZcbiAgICB3YXRjaEVmZmVjdChkb0ZldGNoKVxuICB9IGVsc2Uge1xuICAgIC8vIG90aGVyd2lzZSwganVzdCBmZXRjaCBvbmNlXG4gICAgZG9GZXRjaCgpXG4gIH1cblxuICByZXR1cm4geyBkYXRhLCBlcnJvciwgcmV0cnk6IGRvRmV0Y2ggfVxufVxuXG4vLyBhcnRpZmljaWFsIGRlbGF5XG5mdW5jdGlvbiB0aW1lb3V0KCkge1xuICByZXR1cm4gbmV3IFByb21pc2UoKHJlc29sdmUsIHJlamVjdCkgPT4ge1xuICAgIHNldFRpbWVvdXQoKCkgPT4ge1xuICAgICAgaWYgKE1hdGgucmFuZG9tKCkgPiAwLjMpIHtcbiAgICAgICAgcmVzb2x2ZSgpXG4gICAgICB9IGVsc2Uge1xuICAgICAgICByZWplY3QobmV3IEVycm9yKCdSYW5kb20gRXJyb3InKSlcbiAgICAgIH1cbiAgICB9LCAzMDApXG4gIH0pXG59In0=)，出于演示目的，人为地设置了一个延迟和随机误差。
 
-## Conventions and Best Practices
+## 约定和最佳实践 {#conventions-and-best-practices}
 
-### Naming
+### 命名 {#naming}
 
-It is a convention to name composable functions with camelCase names that start with "use".
+约定将可组合函数命名为以 “use” 开头的函数。
 
-### Input Arguments
+### 输入参数 {#input-arguments}
 
-A composable can accept ref arguments even if it doesn't rely on it for reactivity. If you are writing a composable that may be used by other developers, it's a good idea to handle the case of input arguments being refs instead of raw values. The [`unref()`](/api/reactivity-utilities.html#unref) utility function will come handy for this purpose:
+一个可组合函数可以接收 ref 作为参数，即使并不依赖其响应性。如果你正在编写一个提供给其他开发者使用的可组合函数，最好处理输入参数是 ref 而不是原始值。[`unref()`](/api/reactivity-utilities.html#unref) 工具函数在此时带来极大方便：
 
 ```js
 import { unref } from 'vue'
 
 function useFeature(maybeRef) {
-  // if maybeRef is indeed a ref, its .value will be returned
-  // otherwise, maybeRef is returned as-is
+  // 若 maybeRef 的确是一个 ref，它的 .value 会被返回
+  // 否则返回其本身
   const value = unref(maybeRef)
 }
 ```
 
-If your composable expects to setup a `watchEffect()` using the input ref, make sure to call `unref()` inside the effect callback so it's tracked as a dependency.
+如果你的可组合函数期望使用该输入参数 ref 启动一个 `watchEffect()`，请确保在副作用回调中调用 `unref()` 以保证其被追踪为依赖。
 
-### Return Values
+### 返回值 {#return-values}
 
-You have probably noticed that we have been exclusively using `ref()` instead of `reactive()` in composables. The recommended convention is to always return an object of refs from composables, so that it can be destructured in components while [retaining reactivity](/guide/advanced/reactivity-in-depth.html#retaining-reactivity):
+你可能已经注意到了，我们一直在可组合函数中使用 `ref()` 而不是 `reactive()`。约定推荐始终从可组合函数中返回一个包含 ref 的对象，这样在对象解构时可以 [保持响应性](/guide/advanced/reactivity-in-depth.html#retaining-reactivity)：
 
 ```js
-// x and y are refs
+// x 和 y 是两个 ref
 const { x, y } = useMouse()
 ```
 
-Returning a reactive object from a composable will cause such destructures to lose the reactivity connection to the state inside the composable.
+从可组合函数返回一个响应式对象会导致对象解构时丢失与可组合函数内状态的响应性连接。
 
-If you prefer to use returned state from composables as object properties, you can wrap the returned object with `reactive()` so that the refs are unwrapped. For example:
+如果你更想使用可组合函数返回对象的属性，你可以将该返回对象用 `reactive()` 包裹，因而其中的 ref 在访问时会自动解套，举个例子：
 
 ```js
 const mouse = reactive(useMouse())
-// mouse.x is linked to original ref
+// mouse.x 链接到了原来的 x ref
 console.log(mouse.x)
 ```
 ```vue-html
-Mouse position is at: {{ mouse.x }}, {{ mouse.y }}
+鼠标位置：{{ mouse.x }}, {{ mouse.y }}
 ```
 
-### Side Effects
+### 副作用 {#side-effects}
 
-It is OK to perform side effects (e.g. adding DOM event listeners or fetching data) in composables, but pay attention to the following rules:
+在可组合函数中的确可以执行副作用（例如：添加 DOM 事件监听器或者请求数据），但请注意以下规则：
 
-- If your are working in an application that utilizes [Server-Side Rendering](/guide/advanced/server-side-rendering.html) (SSR), make sure to perform DOM-specific side effects in post-mount lifecycle hooks, e.g. `onMounted()`. These hooks are only called in the browser so you can ensure code inside it has access to the DOM.
+- 如果你在一个应用程序中使用了 [服务器端渲染](/guide/advanced/server-side-rendering.html)（SSR），请确保在后置加载的声明钩子上执行 DOM 相关的副作用，例如： `onMounted()`。这些钩子仅会在浏览器中使用，因此可以确保能访问到 DOM。
 
-- Make sure to clean up side effects in `onUnmounted()`. For example, if a composable sets up a DOM event listener, it should remove that listener in `onUnmounted()` (as we have seen in the `useMouse()` example). It can also be a good idea to use [a composable that automatically does this for you](https://vueuse.org/core/useeventlistener/).
+- 确保在 `onUnmounted()` 时清理副作用。举个例子，如果一个可组合函数设置了一个事件监听器，它就应该在 `onUnmounted()` 中被移除（就像我们在 `useMouse()` 示例中看到的一样）。当然也可以使用 [一个已经为你准备好的 `useEventListenr` 函数](https://vueuse.org/core/useeventlistener/)。
 
-### Usage Restrictions
+### 使用限制 {#usage-restrictions}
 
-Composables should only be called **synchronously** in `<script setup>` or the `setup()` hook. In some cases, you can also call them in lifecycle hooks like `onMounted()`.
+可组合函数应该在 `<script setup>` 或 `setup()` 钩子中始终被 **同步地** 调用。在某些场景下，你可能也需要在生命周期钩子（比如 `onMounted()`）中使用。
 
-These are the contexts where Vue is able to determine the current active component instance. Access to an active component instance is necessary so that:
+这些是 Vue 能够确定当前活动组件实例的上下文。对活动组件实例的访问是必要的，所以：
 
-1. Lifecycle hooks can be registered to it.
+1. 可以在可组合函数中注册生命周期钩子
 
-2. Computed properties and watchers can be linked to it for disposal on component unmount.
+2. 计算属性和监听器可以链接到当前组件实例，以便在组件卸载时处理掉。
 
 :::tip
-`<script setup>` is the only place where you can call composables **after** usage of `await`. The compiler automatically restores the active instance context after the async operation for you.
+若想要在使用了 `await` 之后还可以调用可组合函数，只能在 `<script setup>` 里。编译器会自动地在异步操作之后自动地为你恢复当前活跃的组件实例。
 :::
 
-## Extracting Composables for Code Organization
+## 抽取可组合函数实现代码整理 {#extracting-composables-for-code-organization}
 
-Composables can be extracted not only for reuse, but also for code organization. As the complexity of your components grow, you may end up with components that are too large to navigate and reason about. Composition API gives you the full flexibility to organize your component code into smaller functions based on logical concerns:
+抽取可组合函数不仅是为了可重用，更是为了更好地管理代码。随着你的组件复杂度增高，你可能会最终发现组件太大，难以浏览和推理。组合式 API 给予了我们足够的灵活性来管理你的组件代码，可以基于逻辑关注点将其拆分为更小的函数：
 
 ```vue
 <script setup>
@@ -271,11 +271,11 @@ const { qux } = iseFeatureC(baz)
 </script>
 ```
 
-To some extent, you can think of these extracted composables as component-scoped services that can talk to one another.
+在某种程度上，您可以将这些提取的可组合函数看作是可以相互通信的组件范围内的服务。
 
-## Using Composables in Options API
+## 在选项式 API 中使用可组合函数 {#using-composables-in-options-api}
 
-If you are using Options API, comspoables must be called inside `setup()`, and the returned bindings must be returned from `setup()` so that they are exposed to `this` and the template:
+如果你正在使用选项式 API，可组合函数必须在 `setup()` 中调用，若某处要绑定某个可组合函数的返回值，必须将要在 `setup()` 中返回，这样才能将其暴露给 `this` 上下文和模板：
 
 ```js
 import { useMouse } from './mouse.js'
@@ -288,41 +288,41 @@ export default {
     return { x, y, data, error }
   },
   mounted() {
-    // setup() exposed properties can be accessed on `this`
+    // setup() 暴露的属性可以在 `this` 上下文中访问到
     console.log(this.x)
   }
-  // ...other options
+  // ...其它选项
 }
 ```
 
-## Comparisons with Other Techniques
+## 与其他技巧的比较 {#comparisons-with-other-techniques}
 
-### vs. Mixins
+### vs. 混入 {#vs-mixins}
 
-Users coming from Vue 2 may be familiar with the [mixins](/api/options-composition.html#mixins) option, which also allows us to extract component logic into reusable units. There are two primary drawbacks for mixins:
+Vue 2 的用户可能会对 [混入（mixins）](/api/options-composition.html#mixins) 选项比较属性，它使得我们可以抽取组件逻辑到可重用的单元。然而混入有两个短板：
 
-1. **Unclear source of properties**: when using many mixins, it becomes unclear which instance property is injected by which mixin, making it difficult to trace the implementation and understand the component's behavior. This is also why we recommend using the refs + destructure pattern for composables: it makes the property source clear in consuming components.
+1. **不清晰的属性来源**：当使用了多个混入时，无法清晰得知某个组件实例是来自哪个混入，使我们很难追溯其实现和理解组件的行为。这也是我们推荐在可组合函数中使用 ref + 解构模式的原因：这样可以使属性来源在消费者组件中更清晰易懂。
 
-2. **Namespace collisions:**: multiple mixins from different authors can potentially register the same property keys, causing namespace collisions. With composables, you can rename the destructured variables in case there are conclicting keys from different composables.
+2. **名称空间冲突**：来自不同作者的多个混入可能不小心注册了相同的属性名，会造成名称空间冲突。使用可组合函数，你可以在解构时很方便地重命名变量，以区分不同可组合函数得到的属性。
 
-3. **Implicit cross-mixin communication**: multiple mixins that need to interact with one another have to rely on shared property keys, making them implicitly coupled. With composables, values returned from one composable can be passed into another as arguments, just like normal functions.
+3. **隐式的多个混入间交流**：多个需要相互作用的混入必须依赖共享的属性 key，这使得它们隐性地耦合在一起。有了可组合函数，其返回的值可以作为参数传入另一个可组合函数，就像普通的函数那样。
 
-For the above reasons, we no longer recommend using mixins in Vue 3. The feature is kept only for migration and familiarity reasons.
+由于上面的几种原因，我们不再推荐在 Vue 3 中继续使用混入。保留该功能只是为了迁移升级需要和旧版用户熟悉的原因。
 
-### vs. Renderless Components
+### vs. 无渲染组件 {#vs-renderless-components}
 
-In the component slots chapter, we discussed the [Renderless Component](/guide/components/slots.html#renderless-components) pattern based on scoped slots. We even implemented the same mouse tracking demo using renderless components.
+在组件插槽一章中，我们讨论过了基于作用域插槽的 [无渲染组件](/guide/components/slots.html#renderless-components)。我们甚至用它实现了一样的鼠标追踪器示例。
 
-The main advantage of composables over renderless components is that composables do not incur the extra component instance overhead. When used across an entire application, the amount of extra component instances created by the renderless component pattern can become a noticeable performance overhead.
+可组合函数相对于无渲染组件的主要优势是：可组合函数不会产生额外的组件实例开销。当在整个应用程序中使用时，由无渲染组件创建的额外组件实例所带来的性能消耗是无法忽略的。
 
-The recommendation is to use composables when reusing pure logic, and use components when reusing both logic and visual layout.
+推荐的做法是用可组合函数来封装纯逻辑，而要同时重用视图布局和逻辑时再使用无渲染组件。
 
-### vs. React Hooks
+### vs. React Hooks {#vs-react-hooks}
 
-If you have experience with React, you may notice that this looks very similar to custom React hooks. Composition API was in part inspired by React hooks, and Vue composables are indeed similar to React hooks in terms of logic composition capabilities. However, Vue composables are based on Vue's fine-grained reactivity system, which is fundamentally different from React hooks' execution model. This is discussed in more details in the [Composition API FAQ](/guide/advanced/composition-api-faq).
+如果你有过开发 React 的经验，你可能注意到可组合函数和自定义 React hooks 非常类似。组合式 API 一部分灵感也正来自于 React hooks，Vue 的可组合函数也的确在逻辑组合方面和 React hooks 类似。然而，Vue 的可组合函数是基于 Vue 细粒度的响应式系统，这和 React hooks 的执行模型有本质上的不同。关于此中细节的更多讨论请参见 [组合式 API FAQ](/guide/advanced/composition-api-faq).
 
-## Further Reading
+## 延伸阅读 {#further-reading}
 
-- [Reactivity In Depth](/guide/advanced/reactivity-in-depth.html): for a low-level understanding of how Vue's reactivity system works.
-- [State Management](/guide/scaling-up/state-management.html): for patterns of managing state shared by multiple components.
-- [VueUse](https://vueuse.org/): an ever-growing collection of Vue composables. The source code is also a great learning resource.
+- [深入了解响应性](/guide/advanced/reactivity-in-depth.html)：从更底层的角度理解 Vue 的响应式系统是如何工作的。
+- [状态管理](/guide/scaling-up/state-management.html)：了解管理多个组件间共享状态的模式。
+- [VueUse](https://vueuse.org/)：一个不断增长的 Vue 可组合函数的集合。它的源代码本身就是一份不错的学习资料。
