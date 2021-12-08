@@ -169,7 +169,7 @@ const sidebar = {
         { text: '事件', link: '/guide/components/events' },
         { text: '插槽', link: '/guide/components/slots' },
         {
-          text: 'Provide / inject',
+          text: '供给 / 注入',
           link: '/guide/components/provide-inject'
         },
         {
