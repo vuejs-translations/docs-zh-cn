@@ -182,14 +182,14 @@ const sidebar = {
       text: '可重用性',
       items: [
         {
-          text: 'Composables',
+          text: '组合',
           link: '/guide/reusability/composables'
         },
         {
-          text: 'Custom Directives',
+          text: '自定义指令',
           link: '/guide/reusability/custom-directives'
         },
-        { text: 'Plugins', link: '/guide/reusability/plugins' }
+        { text: '插件', link: '/guide/reusability/plugins' }
       ]
     },
     {
