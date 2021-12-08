@@ -73,7 +73,7 @@ export default {
 
 对于以对象形式声明中的每个属性，key 是 prop 的名称，而值应该是预期类型的构造函数。
 
-这不仅使你的组件自文档化，还同样在其他开发者使用到你的组件但传入了错误类型的 prop 时抛出警告。我们还会在下面的 [prop 验证](#prop-validation) 小节中继续讨论关于这个的更多细节。
+这不仅使你的组件自文档化，还同样在其他开发者使用到你的组件但传入了错误类型的 prop 时抛出警告。我们还会在下面的 [prop 校验](#prop-validation) 小节中继续讨论关于这个的更多细节。
 
 <div class="composition-api">
 
@@ -342,18 +342,18 @@ export default {
 
 这种更改的主要缺陷是它允许了子组件以某种不明显的方式影响了父组件的状态，可能会使数据流在将来变得更难以推理。按照最佳实践来讲，你应该避免这样的更改，除非父子组件在设计上耦合得非常紧密。在大多数的用例场景中，子组件都应该 [抛出一个事件](/guide/components/events.html) 来通知父组件做出改变。
 
-## Prop 验证 {#prop-validation}
+## Prop 校验 {#prop-validation}
 
 组件可以更细致地指定对其 props 的需求，比如你上面看到的类型限制，如果并没有指定要求，Vue 会在浏览器的 JavaScript 控制台中抛出警告来提醒你。这在开发为其他人提供的组件时非常有用。
 
-要描述对 prop 的验证，你可以向 <span class="composition-api">`defineProps()` 宏</span><span class="options-api">`props` 选项</span> 提供一个带有 prop 验证的对象，而不是一个字符串数组，例如：
+要描述对 prop 的校验，你可以向 <span class="composition-api">`defineProps()` 宏</span><span class="options-api">`props` 选项</span> 提供一个带有 prop 校验的对象，而不是一个字符串数组，例如：
 
 <div class="composition-api">
 
 ```js
 defineProps({
   // 基础类型检查
-  // （给出 `null` 和 `undefined` 值则会跳过任何类型验证）
+  // （给出 `null` 和 `undefined` 值则会跳过任何类型校验）
   propA: Number,
   // 多种可能的类型
   propB: [String, Number],
@@ -376,7 +376,7 @@ defineProps({
       return { message: 'hello' }
     }
   },
-  // 自定义类型验证函数
+  // 自定义类型校验函数
   propF: {
     validator(value) {
       // The value must match one of these strings
@@ -404,7 +404,7 @@ defineProps({
 ```js
 export default {
   props: {
-    // 基础类型检查（给出 `null` 和 `undefined` 值则会跳过任何类型验证）
+    // 基础类型检查（给出 `null` 和 `undefined` 值则会跳过任何类型校验）
     propA: Number,
     // 多种可能的类型
     propB: [String, Number],
@@ -428,7 +428,7 @@ export default {
         return { message: 'hello' }
       }
     },
-    // 自定义类型验证函数
+    // 自定义类型校验函数
     propF: {
       validator(value) {
         // The value must match one of these strings
@@ -449,7 +449,7 @@ export default {
 
 </div>
 
-当 prop 的验证失败后，Vue 会抛出一个控制台警告（在开发模式下）。
+当 prop 的校验失败后，Vue 会抛出一个控制台警告（在开发模式下）。
 
 <div class="composition-api">
 
@@ -459,7 +459,7 @@ export default {
 <div class="options-api">
 
 ::: tip 注意
-注意 prop 的验证是在组件实例被创建 **之前**，所以实例的属性（比如 `data`、`computed` 等）将在 `default` 或 `validator` 函数中不可用。
+注意 prop 的校验是在组件实例被创建 **之前**，所以实例的属性（比如 `data`、`computed` 等）将在 `default` 或 `validator` 函数中不可用。
 :::
 
 </div>
@@ -511,4 +511,4 @@ export default {
 
 </div>
 
-这会验证 `author` prop 的值是否是由 `new Person` 创建的。
+这会校验 `author` prop 的值是否是由 `new Person` 创建的。
