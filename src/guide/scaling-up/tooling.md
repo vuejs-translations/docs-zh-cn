@@ -13,7 +13,7 @@
 
 同时在报告 Bug时也建议使用这个在线 Playground 来提供一个最小可重现的副本。
 
-## Project Scaffolding {#project-scaffolding}
+## 项目脚手架 {#project-scaffolding}
 
 ### Vite {#vite}
 
