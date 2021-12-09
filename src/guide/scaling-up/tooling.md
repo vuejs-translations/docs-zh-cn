@@ -1,148 +1,148 @@
-# Tooling
+# 工具链 {#tooling}
 
-## Try It Online
+## 在线尝试 {#try-it-online}
 
-You don't need to install anything on your machine to try out Vue SFCs - there are online playgrounds that allow you to do so right in the browser:
+你不需要在机器上安装任何东西，也可以尝试单文件组件的使用。我们提供了一个在线的 Playground，可以在浏览器中访问：
 
 - [Vue SFC Playground](https://sfc.vuejs.org)
-  - Always deployed from latest commit
-  - Designed for inspecting component compilation results
-- [Vue + Vite on StackBlitz](https://vite.new/vue)
-  - IDE-like environment running actual Vite dev server in the browser
-  - Closest to local setup
+  - 始终根据最新的提交部署
+  - 用来检查编译输出的结果
+- [StackBlitz 中的 Vue + Vite](https://vite.new/vue)
+  - 类似 IDE 的环境，但实际是在浏览器中运行 Vite 开发服务器
+  - 和本地启动效果最接近
 
-It is also recommended to use these online playgrounds to provide reproductions when reporting bugs.
+同时在报告 Bug时也建议使用这个在线 Playground 来提供一个最小可重现的副本。
 
-## Project Scaffolding
+## Project Scaffolding {#project-scaffolding}
 
-### Vite
+### Vite {#vite}
 
-[Vite](https://vitejs.dev/) is a lightweight and fast build tool with first-class Vue SFC support. It is created by Evan You, who is also the author of Vue!
+[Vite](https://vitejs.dev/) 是一个轻量级的、速度极快的构建工具，对 Vue SFC 提供第一优先级支持。作者是尤雨溪，同时也是 Vue 的作者！
 
-To get started with Vite + Vue, simply run:
+要使用 Vite 来启动一个 Vue 项目，非常简单：
 
 <div class="language-sh"><pre><code><span class="line"><span style="color:var(--vt-c-green);">$</span> <span style="color:#A6ACCD;">npm init vue@latest</span></span></code></pre></div>
 
-This command will install and execute [create-vue](https://github.com/vuejs/create-vue), the official Vue project scaffolding tool.
+这个命令同时还会安装和执行 [create-vue](https://github.com/vuejs/create-vue)，它是 Vue 提供的官方脚手架工具。
 
-- To learn more about Vite, check out the [Vite docs](https://vitejs.dev).
-- To configure Vue-specific behavior in a Vite project, for example passing options to the Vue compiler, check out the docs for [@vitejs/plugin-vue](https://github.com/vitejs/vite/tree/main/packages/plugin-vue#readme).
+- 要学习更多关于 Vite 的知识，请查看 [Vite 官方文档](https://cn.vitejs.dev).
+- 若要了解如何为一个 Vite 项目配置 Vue 相关的特殊行为，比如向 Vue 编译器传递相关选项，请查看 [@vitejs/plugin-vue](https://github.com/vitejs/vite/tree/main/packages/plugin-vue#readme) 的文档。
 
-Both online playgrounds mentioned above also support downloading files as a Vite project.
+上面提到的两种在线 Playground 也支持下载文件为一个 Vite 项目。
 
-### Vue CLI
+### Vue CLI {#vue-cli}
 
-[Vue CLI](https://cli.vuejs.org/) is the official webpack-based toolchain for Vue. It is now in maintenance mode and we recommend starting new projects with Vite unless you rely on specific webpack-only features. Vite will provide superior developer experience in most cases.
+[Vue CLI](https://cli.vuejs.org/) 是官方提供的基于 Webpack 的 Vue 工具链。它现在处于维护模式，我们建议使用 Vite 开始新的项目，除非你依赖特定的 Webpack 的特性。在大多数情况下，Vite 将提供更优秀的开发体验。
 
-### Note on In-Browser Template Compilation
+### 浏览器内模板编译注意事项 {#note-on-in-browser-template-compilation}
 
-When using Vue without a build step, component templates are written either directly in the page's HTML or as inlined JavaScript strings. In such cases, Vue needs to ship the template compiler to the browser in order to perform on-the-fly template compilation. On the other hand, the compiler would be unnecessary if we pre-compile the templates with a build step. To reduce client bundle size, Vue provides [different "builds"](https://unpkg.com/browse/vue@3/dist/) optimized for different use cases.
+当以无构建步骤方式使用 Vue 时，组件模板要么是写在页面的 HTML 中，或者是内联的 JavaScript 字符串。在这些场景中，为了执行动态模板编译，Vue 需要将模板编译器运行在浏览器中。相对的，如果我们使用了构建步骤，由于提前编译了模板，那么就无须再在浏览器中运行了。要减小打包出的客户端代码体积，Vue 提供了 [不同的 "构建版本"](https://unpkg.com/browse/vue@3/dist/) 以适配不同场景下的优化需求。
 
-- Build files that start with `vue.runtime.*` are **runtime-only builds**: they do not include the compiler. When using these builds, all templates must be pre-compiled via a build step.
+- 前缀为 `vue.runtime.*` 的构建版本是 **只包含运行时的版本**：不包含编译器，当使用这个版本时，所有的模板都必须由构建步骤预先编译。
 
-- Build files that do not include `.runtime` are **full builds**: they include the compiler and support compiling templates directly in the browser. However, they will increase the payload by ~14kb.
+- 名称中不包含 `.runtime` 的版本则是 **完全版**：即包含了编译器，并支持在浏览器中直接编译模板。然而，体积也会因此增长大约 14kb。
 
-Our default tooling setups use the runtime-only build since all templates in SFCs are pre-compiled. If, for some reason, you need in-browser template compilation even with a build step, you can do so by configuring the build tool to alias `vue` to `vue/dist/vue.esm-bundler.js` instead.
+默认的工具链中都会使用仅含运行时的版本，因为所有 SFC 中的模板都已经被预编译了。如果因为某些原因，在有构建步骤时，你仍需要浏览器内的模板编译，你可以更改构建工具配置，将 `vue` 改为相应的版本 `vue/dist/vue.esm-bundler.js`。
 
-If you are looking for a lighter-weight alternative for no-build-step usage, check out [petite-vue](https://github.com/vuejs/petite-vue).
+如果你正需要一种更轻量级的替代方案，不含构建步骤，那么不妨看看 [petite-vue](https://github.com/vuejs/petite-vue)。
 
-## IDE Support
+## IDE 支持 {#ide-support}
 
-- The recommended IDE setup is [VSCode](https://code.visualstudio.com/) + the [Volar](https://github.com/johnsoncodehk/volar) extension. Volar provides syntax highlighting, TypeScript support, and intellisense for template expressions and component props.
+- 推荐使用的 IDE 是 [VSCode](https://code.visualstudio.com/) + 配备 [Volar](https://github.com/johnsoncodehk/volar) 插件。Volar 提供了语法高亮、TypeScript 支持，和模板内表达式与组件 props 的智能提示。
 
-- [WebStorm](https://www.jetbrains.com/webstorm/) also provides great built-in support for Vue SFCs.
+- [WebStorm](https://www.jetbrains.com/webstorm/) 同样也为 Vue 的单文件组件提供了很好的内置支持。
 
-- Other IDEs that support the [Language Service Protocol](https://microsoft.github.io/language-server-protocol/) (LSP) can also leverage Volar's core functionalities via LSP. One examples is [coc-volar](https://github.com/yaegassy/coc-volar) which provides Vue SFC support for vim/Neovim.
+- 其他支持 [语言服务协议](https://microsoft.github.io/language-server-protocol/)（LSP）的 IDE 也可以通过 LSP 享受到 Volar 所提供的的核心功能。例如 [coc-volar](https://github.com/yaegassy/coc-volar)，它是为 Vim/NeoVim 提供更多 Vue SFC 支持。
 
-## Browser Devtools
+## 浏览器内开发者插件 {#browser-devtools}
 
-The Vue browser devtools extension allows you to explore a Vue app's component tree, inspect the state of individual components, track state management events, and profile performance.
+Vue 的浏览器内开发者插件使我们可以浏览一个 Vue 应用的组件树，查看各个组件的状态，追踪状态管理的事件，还有测评性能表现。
 
-![devtools screenshot](https://raw.githubusercontent.com/vuejs/devtools/main/media/screenshot-shadow.png)
+![devtools 截图](https://raw.githubusercontent.com/vuejs/devtools/main/media/screenshot-shadow.png)
 
 // TODO update links after swapping versions
 
-- [Documentation](https://devtools.vuejs.org/)
-- [Chrome Extension](https://chrome.google.com/webstore/detail/vuejs-devtools/ljjemllljcmogpfapbkkighbhhppjdbg)
-- [Firefox Addon](https://addons.mozilla.org/en-US/firefox/addon/vue-js-devtools/)
-- [Standalone Electron app](https://github.com/vuejs/vue-devtools/blob/dev/packages/shell-electron/README.md)
+- [文档](https://devtools.vuejs.org/)
+- [Chrome 插件商店页](https://chrome.google.com/webstore/detail/vuejs-devtools/ljjemllljcmogpfapbkkighbhhppjdbg)
+- [Firefox 所属插件页](https://addons.mozilla.org/en-US/firefox/addon/vue-js-devtools/)
+- [独立的 Electron 应用所属插件](https://github.com/vuejs/vue-devtools/blob/dev/packages/shell-electron/README.md)
 
-## TypeScript
+## TypeScript {#typescript}
 
 // TODO links and recommendations
 
-- `vue-tsc`: Type check Vue SFCs
-- `vue-dts-gen`: Generate type declarations from Vue SFCs
+- `vue-tsc`：对 Vue SFC 进行类型检查
+- `vue-dts-gen`：为 Vue SFC 提供类型定义生成
 
-See also: [Using Vue with TypeScript](/guide/scaling-up/typescript).
+更多内容请参阅 [搭配 TypeScript 开发 Vue](/guide/scaling-up/typescript)。
 
-## Testing
+## 测试 {#testing}
 
-- If using Vite, we recommend [Cypress](https://www.cypress.io/) as the test runner for both unit and e2e tests. Unit tests for Vue SFCs can be done with the [Cypress Component Test Runner](https://www.cypress.io/blog/2021/04/06/introducing-the-cypress-component-test-runner/).
+- 如果你正在使用 Vite，我们推荐使用 [Cypress](https://www.cypress.io/) 作为单元测试和 e2e 测试的运行环境。对 Vue SFC 的单元测试可以使用 [Cypress 组件测试运行环境](https://www.cypress.io/blog/2021/04/06/introducing-the-cypress-component-test-runner/)。
 
-- Vue CLI comes with [Jest](https://jestjs.io/) and [Mocha](https://mochajs.org/) integrations.
+- Vue CLI 内集成了 [Jest](https://jestjs.io/) 和 [Mocha](https://mochajs.org/)。
 
-- If you are manually configuring Jest to work with Vue SFCs, check out [vue-jest](https://github.com/vuejs/vue-jest) which is the official Jest transform for Vue SFCs.
+- 如果你想手动地配置 Jest 来测试 Vue SFC，请查看 [vue-jest](https://github.com/vuejs/vue-jest) 的文档，它是 Vue SFC 的官方 Jest 测试工具。
 
-See also: [Testing Guide](/guide/scaling-up/testing).
+更多内容请参阅 [测试指引](/guide/scaling-up/testing)。
 
-## Linting
+## 代码规范 {#linting}
 
-The Vue team maintains [eslint-plugin-vue](https://github.com/vuejs/eslint-plugin-vue), an [ESLint](https://eslint.org/) plugin that supports SFC-specific linting rules.
+Vue 团队维护着 [eslint-plugin-vue](https://github.com/vuejs/eslint-plugin-vue) 项目，它是一个 [ESLint](https://eslint.org/) 插件，会提供 SFC 相关规则的定义。
 
-Users previously using Vue CLI may be used to having linters configured via webpack loaders. However when using a Vite-based build setup, our general recommendation is:
+之前使用 Vue CLI 的用户可能习惯于通过 Webpack loader 来配置规范检查器。然而，若基于 Vite 构建，我们一般推荐：
 
-1. `npm install -D eslint eslint-plugin-vue`, then follow `eslint-plugin-vue`'s [configuration guide](https://eslint.vuejs.org/user-guide/#usage).
+1. `npm install -D eslint eslint-plugin-vue`，然后遵照 `eslint-plugin-vue` 的 [指引](https://eslint.vuejs.org/user-guide/#usage) 进行配置。
 
-2. Setup ESLint IDE extensions, for example [ESLint for VSCode](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint), so you get linter feedback right in your editor during development. This also avoids unnecessary linting cost when starting the dev server.
+2. 启用 ESLint IDE 插件，比如 [ESLint for VSCode](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)，然后你就可以在开发时获得规范检查器的反馈。这同时也避免了启动开发服务器时不必要的规范检查。
 
-3. Run ESLint as part of the production build command, so you get full linter feedback before shipping to production.
+3. 将 ESLint 格式检查作为一个生产构建的步骤，保证你可以在最终打包时获得完整的规范检查反馈。
 
-4. (Optional) Setup tools like [lint-staged](https://github.com/okonet/lint-staged) to automatically lint modified files on git commit.
+4. （可选）启用类似 [lint-staged](https://github.com/okonet/lint-staged) 一类的工具来自动地在 git commit 提交时自动作规范检查。
 
-## Formatting
+## 格式化 {#formatting}
 
-- The [Volar](https://github.com/johnsoncodehk/volar) VSCode extension provides formatting for Vue SFCs out of the box.
+- [Volar](https://github.com/johnsoncodehk/volar) VSCode 插件为 Vue SFC 提供了开箱即用的格式化功能
 
-- Alternatively, [Prettier](https://prettier.io/) provides built-in Vue SFC formatting support.
+- 除此之外，[Prettier](https://prettier.io/) 也提供了内置的 Vue SFC 格式化支持。
 
-## Backend Framework Integrations
+## Backend Framework Integrations {#backend-framework-integrations}
 
 // TODO
 
-## SFC Custom Block Integrations
+## SFC 自定义块集成 {#sfc-custom-block-integrations}
 
-Custom blocks are compiled into imports to the same Vue file with different request queries. It is up to the underlying build tool to handle these import requests.
+自定义块被编译成导入到同一 Vue 文件的不同请求查询。这取决于底层构建工具如何处理这类导入请求。
 
-- If using Vite, a custom Vite plugin should be used to transform matched custom blocks into executable JavaScript. [Example](https://github.com/vitejs/vite/tree/main/packages/plugin-vue#example-for-transforming-custom-blocks)
+- 如果使用 Vite，需使用一个自定义 Vite 插件将自定义块转换为可执行的 JavaScript 代码，[可以看看这个示例](https://github.com/vitejs/vite/tree/main/packages/plugin-vue#example-for-transforming-custom-blocks)。
 
-- If using Vue CLI or plain webpack, a webpack loader should be configured to transform the matched blocks. [Example](https://vue-loader.vuejs.org/custom-blocks.html#custom-blocks)
+- 如果使用 Vue CLI 或只是 Webpack，需要使用一个 loader 来配置如何转换匹配到的自定义块。[可以看看这个示例](https://vue-loader.vuejs.org/custom-blocks.html#custom-blocks)。
 
-## Lower-Level Packages
+## 底层库 {#lower-level-packages}
 
-### `@vue/compiler-sfc`
+### `@vue/compiler-sfc` {#vuecompiler-sfc}
 
-- [Docs](https://github.com/vuejs/vue-next/tree/master/packages/compiler-sfc)
+- [文档](https://github.com/vuejs/vue-next/tree/master/packages/compiler-sfc)
 
-This package is part of the Vue core monorepo and is always published with the same version as the main `vue` package. In v3.2.13+, it is now a dependency of the main `vue` package and proxied under `vue/compiler-sfc` so you don't need to install it individually.
+这个包是 Vue 核心 monorepo 的一部分，并始终和 `vue` 主包版本号保持一致。在 v3.2.13 及之后，它就已经成为 `vue` 主包的一个依赖并代理到了 `vue/compiler-sfc` 目录下，因此你无需单独安装它。
 
-The package itself provides lower-level utilities for processing Vue SFCs and is only meant for tooling authors that need to support Vue SFCs in custom tools.
+这个包本社您提供了处理 Vue SFC 的底层的功能，并只适用于需要支持 Vue SFC 相关工具链的作者。
 
-### `@vitejs/plugin-vue`
+### `@vitejs/plugin-vue` {#vitejsplugin-vue}
 
-- [Docs](https://github.com/vitejs/vite/tree/main/packages/plugin-vue)
+- [文档](https://github.com/vitejs/vite/tree/main/packages/plugin-vue)
 
-Official plugin that provides Vue SFC support in Vite.
+为 Vite 提供 Vue SFC 支持的官方插件。
 
-### `vue-loader`
+### `vue-loader` {#vue-loader}
 
-- [Docs](https://vue-loader.vuejs.org/)
+- [文档](https://vue-loader.vuejs.org/)
 
-The official loader that provides Vue SFC support in webpack. If you are using Vue CLI, also see [docs on modifying `vue-loader` options in Vue CLI](https://cli.vuejs.org/guide/webpack.html#modifying-options-of-a-loader).
+为 Webpack 提供 Vue SFC 支持的官方 loader。如果你正在使用 Vue CLI，也可以看看 [如何在 Vue CLI 中更改 `vue-loader` 选项的文档](https://cli.vuejs.org/guide/webpack.html#modifying-options-of-a-loader)。
 
-## Other Online Playgrounds
+## 其他在线 Playground {#other-online-playgrounds}
 
 - [VueUse Playground](https://play.vueuse.org)
-- [Vue + Vite on Repl.it](https://replit.com/@templates/VueJS-with-Vite)
-- [Vue on CodeSandbox](https://codesandbox.io/s/vue-3)
-- [Vue on Codepen](https://codepen.io/pen/editor/vue)
+- [Repl.it 上使用 Vue + Vite](https://replit.com/@templates/VueJS-with-Vite)
+- [CodeSandbox 的 Vue 模板](https://codesandbox.io/s/vue-3)
+- [CodePen 的 Vue 模板](https://codepen.io/pen/editor/vue)
