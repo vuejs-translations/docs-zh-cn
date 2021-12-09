@@ -1,4 +1,4 @@
-# Custom Directives
+# 自定义指令 {#custom-directives}
 
 <script setup>
 const vFocus = {
@@ -6,19 +6,19 @@ const vFocus = {
 }
 </script>
 
-## Introduction
+## 介绍 {#introduce}
 
-In addition to the default set of directives shipped in core (like `v-model` or `v-show`), Vue also allows you to register your own custom directives.
+除了 Vue 内置的一系列指令（比如 `v-model` 或 `v-show`）之外，Vue 还允许你注册自定义的指令。
 
-We have introduced two forms of code reuse in Vue: [components](/guide/essentials/component-basics.html) and [composables](./composables). Components are the main building blocks, while composables are focused on reusing stateful logic. Custom directives, on the other hand, are mainly intended for reusing logic that involves low-level DOM access on plain elements.
+我们已经介绍过了两种 Vue 中重用逻辑的方式：[组件](/guide/essentials/component-basics.html) 和 [可组合函数](./composables)。组件主要关注构建视图区块，而可组合函数关注与有状态的逻辑。自定义指令则主要是封装了可重用的对底层 DOM 访问的逻辑。
 
-A custom directive is defined as an object containing lifecycle hooks similar to those of a component. The hooks receive the element the directive is bound to. Here is an example of a directive that focuses an input when the element is inserted into the DOM by Vue:
+一个自定义指令被定义为一个包含类似于组件的生命周期钩子的对象。钩子接收指令绑定到的元素。下面是一个自定义指令的例子，当元素被 Vue 插入到 DOM 中时，会聚焦一个 input 元素：
 
 <div class="composition-api">
 
 ```vue
 <script setup>
-// enables v-focus in templates
+// 在模板中注册 v-focus
 const vFocus = {
   mounted: (el) => el.focus()
 }
@@ -40,7 +40,7 @@ const focus = {
 
 export default {
   directives: {
-    // enables v-focus in template
+    // 在模板中注册 v-focus
     focus
   }
 }
@@ -56,13 +56,13 @@ export default {
   <input v-focus placeholder="This should be focused" />
 </div>
 
-Assuming you haven't clicked elsewhere on the page, the input above should be auto-focused. This directive is more useful than the `autofocus` attribute because it works not just on page load - it also works when the element is dynamically inserted by Vue.
+假设你还未点击页面中的其他地方，那么上面这个 input 元素则会被自动聚焦。该指令比 `autofocus` attribute 更有用，因为它不仅仅可以在页面加载完成后运行，还可以在 Vue 动态插入元素后运行。
 
 <div class="composition-api">
 
-In `<script setup>`, any camelCase variable that starts with the `v` prefix can be used as a custom directive. In the example above, `vFocus` can be used in the template as `v-focus`.
+在 `<script setup>` 中，任何以 `v` 开头的 camelCase 格式的变量都会可以被用作一个自定义指令。再上线的例子中，`vFocus` 即可以在模板中被用作指令 `v-focus`。
 
-If not using `<script setup>`, custom directives can be registered using the `directives` option:
+如果不使用 `<script setup>`，自定义指令可以通过 `directives` 选项注册：
 
 ```js
 export default {
@@ -70,7 +70,7 @@ export default {
     /*...*/
   },
   directives: {
-    // enables v-focus in template
+    // 在模板中启用 v-focus
     focus: {
       /* ... */
     }
@@ -82,103 +82,103 @@ export default {
 
 <div class="options-api">
 
-Similar to components, custom directives must be registered so that they can be used in templates. In the example above, we are using local registration via the `directives` option.
+和组件类似，自定义指令必须被注册才能在模板中使用。在上面的例子中，我们使用 `directives` 选项局部注册了指令。
 
 </div>
 
-It is also common to globally register custom directives at the app level:
+常常也会将一个自定义指令注册到应用全局：
 
 ```js
 const app = createApp({})
 
-// make v-focus usable in all components
+// 使 v-focus 在所有组件中都可用
 app.directive('focus', {
   /* ... */
 })
 ```
 
 :::tip
-Custom directives should only be used when the desired functionality can only be achieved via direct DOM manipulation. Prefer declarative templating using built-in directives such as `v-bind` when possible because they are more efficient and server-rendering-friendly.
+只有当所需功能只能通过直接 DOM 操作来实现时，才应该使用自定义指令。尽可能使用声明式的模板、使用内置指令例如 `v-bind`，因为这更高效、更对服务端渲染友好。
 :::
 
-## Directive Hooks
+## 指令钩子 {#directive-hooks}
 
-A directive definition object can provide several hook functions (all optional):
+一个指令的定义对象可以提供几种钩子函数（都是可选的）：
 
 ```js
 const myDir = {
-  // called before bound element's attributes
-  // or event listeners are applied
-  created(el binding, vnode, prevVnode) {
-    // see below for details on arguments
+  // 在帮顶元素的 attribute 前调用
+  // 或事件监听器应用前调用
+  created(el, binding, vnode, prevVnode) {
+    // 下面会介绍各个参数的细节
   },
-  // called right before the element is inserted into the DOM.
+  // 在元素被插入到 DOM 前调用
   beforeMount() {},
-  // called when the bound element's parent component
-  // and all its children are mounted.
+  // 在绑定元素的父组件
+  // 及他自己的所有子节点都 挂载 完成后调用
   mounted() {},
-  // called before the parent component is updated
+  // 绑定元素的父组件更新前调用
   beforeUpdate() {},
-  // called after the parent component and
-  // all of its children have updated
+  // 在绑定元素的父组件
+  // 及他自己的所有子节点都 更新 完成后调用
   updated() {},
-  // called before the parent component is unmounted
+  // 绑定元素的父组件卸载之前调用
   beforeUnmount() {},
-  // called when the parent component is unmounted
+  // 绑定元素的父组件卸载之后调用
   unmounted() {}
   }
 }
 ```
 
-### Hook Arguments
+### 钩子参数 {#hook-arguments}
 
-Directive hooks are passed these arguments:
+指令的钩子会传递以下几种参数：
 
-- `el`: the element the directive is bound to. This can be used to directly manipulate the DOM.
+- `el`：指令绑定到的元素。这可以用于直接操作 DOM。
 
-- `binding`: an object containing the following properties.
-  - `value`: The value passed to the directive. For example in `v-my-directive="1 + 1"`, the value would be `2`.
-  - `oldValue`: The previous value, only available in `beforeUpdate` and `updated`. It is available whether or not the value has changed.
-  - `arg`: The argument passed to the directive, if any. For example in `v-my-directive:foo`, the arg would be `"foo"`.
-  - `modifiers`: An object containing modifiers, if any. For example in `v-my-directive.foo.bar`, the modifiers object would be `{ foo: true, bar: true }`.
-  - `instance`: The instance of the component where directive is used.
-  - `dir`: the directive definition object.
+- `binding`：一个对象，包含以下属性
+  - `value`：传递给指令的值。例如 `v-my-directive="1 + 1"` 之中，值就是 `2`。
+  - `oldValue`：之前的值，仅在 `beforeUpdate` 和 `updated` 中可用。无论值是否更改，它都可用。
+  - `arg`：传递给指令的参数，例如 `v-my-directive:foo` 之中，参数就是 `"foo"`。
+  - `modifiers`：一个对象，包含使用到的所有修饰符。例如 `v-my-directive.foo.bar` 之中，修饰符对象会是 `{ foo: true, bar: true }`。
+  - `instance`：使用该指令的组件实例。
+  - `dir`：指令定义对象
 
-- `vnode`: the underlying VNode representing the bound element.
-- `prevNode`: the VNode representing the bound element from the previous render. Only available in the `beforeUpdate` and `updated` hooks.
+- `vnode`：代表绑定元素的底层 VNode。
+- `prevNode`：之前的渲染中代表指令所绑定元素的 VNode。仅在 `beforeUpdate` 和 `updated` 钩子中可用。
 
-As an example, the following directive usage:
+举个例子，像下面这样使用指令：
 
 ```vue-html
 <div v-example:foo.bar="baz">
 ```
 
-The `binding` argument would be an object in the shape of:
+`binding` 参数会是一个这样的对象：
 
 ```js
 {
   arg: 'foo',
   modifiers: { baz: true },
-  value: /* value of `baz` */,
-  oldValue: /* value of `baz` from previous update */
+  value: /* `baz` 的值 */,
+  oldValue: /* 上一次更新后时`baz` 的值 */
 }
 ```
 
-Similar to built-in directives, custom directive arguments can be dynamic. For example:
+和内置指令类似，自定义指令的参数也可以是动态的，举个例子：
 
 ```vue-html
 <div v-example:[arg]="value"></div>
 ```
 
-Here the directive argument will be reactively updated based on `arg` property in our component state.
+这里指令的参数会基于组件状态 `arg` 属性响应式地更新。
 
 :::tip Note
-Apart from `el`, you should treat these arguments as read-only and never modify them. If you need to share information across hooks, it is recommended to do so through element's [dataset](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/dataset).
+除了 `el` 外，你应该将这些参数都视为只读的，并一律不更改它们。若你需要在不同的钩子间共享信息，推荐方法是通过元素的 [dataset](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/dataset) attribute。
 :::
 
-## Function Shorthand
+## 简化形式 {#function-shorthand} {#function-shorthand}
 
-It's common for a custom directive to need the same behavior for `mounted` and `updated`, and don't care about the other hooks. In such cases we can define the directive as a function:
+对于自定义指令来说，`mounted` 和 `updated` 需要相同的行为、又并不关心其他钩子的情况很常见。在这种时候，此时你可以将指令定义成一个下面这样的函数：
 
 ```vue-html
 <div v-color="color"></div>
@@ -186,40 +186,40 @@ It's common for a custom directive to need the same behavior for `mounted` and `
 
 ```js
 app.directive('color', (el, binding) => {
-  // this will be called for both `mounted` and `updated`
+  // 这会在 `mounted` 和 `updated` 时都调用
   el.style.color = binding.value
 })
 ```
 
-## Object Literals
+## 对象字面量 {#object-literals} {#object-literals}
 
-If your directive needs multiple values, you can also pass in a JavaScript object literal. Remember, directives can take any valid JavaScript expression.
+如果你的指令需要多个值，你可以向它传递一个 JavaScript 对象字面量。请记住，指令也可以接收任何合法的 JavaScript 表达式。
 
 ```vue-html
-<div v-demo="{ color: 'white', text: 'hello!' }"></div>
+<div v-demo="{ color: '白色', text: '你好!' }"></div>
 ```
 
 ```js
 app.directive('demo', (el, binding) => {
-  console.log(binding.value.color) // => "white"
-  console.log(binding.value.text) // => "hello!"
+  console.log(binding.value.color) // => "白色"
+  console.log(binding.value.text) // => "你好!"
 })
 ```
 
-## Usage on Components
+## 在组件上使用 {#usage-on-components} {#usage-on-components}
 
-When used on components, custom directive will always apply to component's root node, similarly to [Fallthrough Attributes](/guide/components/attrs.html).
+当在组件上使用自定义指令时，它会始终应用于组件的根节点，和 [透传 attributes](/guide/components/attrs.html) 类似。
 
 ```vue-html
 <MyComponent v-demo="test" />
 ```
 
 ```vue-html
-<!-- template of MyComponent -->
+<!-- MyComponent 的模板 -->
 
-<div> <!-- v-demo directive will be applied here -->
-  <span>My component content</span>
+<div> <!-- v-demo 指令会被应用在此处 -->
+  <span>我的组件内容</span>
 </div>
 ```
 
-Note that components can potentially have more than one root nodes. When applied to a multi-root component, directive will be ignored and the warning will be thrown. Unlike attributes, directives can't be passed to a different element with `v-bind="$attrs"`. In general, it is **not** recommended to use custom directives on components.
+如果组件可能含有多个根节点，指令不会起效、被忽略，还会抛出一个警告。和 attribute 不同，指令不可以通过 `v-bind="$attrs"` 来传递给一个不同的元素。总而言之，**不推荐** 在组件上使用自定义指令。
