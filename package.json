@@ -13,8 +13,8 @@
   "devDependencies": {
     "@types/node": "^16.9.1",
     "cheap-watch": "^1.0.3",
-    "lodash": "^4.17.21",
     "gray-matter": "^4.0.3",
+    "lodash": "^4.17.21",
     "vitepress": "^0.20.5"
   }
 }
