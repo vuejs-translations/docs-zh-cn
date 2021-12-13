@@ -89,9 +89,9 @@ Our `$translate` function will take a string such as `greetings.hello`, look ins
 请谨慎使用全局属性，如果在整个应用程序中使用不同插件注入的太多全局属性，很容易令开发者困惑。
 :::
 
-### 插件的供给 / 注入
+### 插件中的供给 / 注入
 
-插件编写中，我们可以通过 `inject` 来为插件用户供给一个函数或 attribute。举个例子，我们可以让应用内全局可以访问 `options` 参数，以便能够在各处都能使用这个翻译字典对象。
+插件编写中，我们可以通过 `provide` 来为插件用户供给一个函数或 attribute。举个例子，我们可以让应用内全局可以访问 `options` 参数，以便能够在各处都能使用这个翻译字典对象。
 
 ```js{10}
 // plugins/i18n.js
@@ -108,7 +108,7 @@ export default {
 }
 ```
 
-插件用户可以在它们的组件中用 `inject('i18n')` 来注入并访问该选项对象。
+插件用户可以在它们的组件中用 `'i18n'` 为 key 注入并访问插件的选项对象。
 
 <div class="composition-api">
 
