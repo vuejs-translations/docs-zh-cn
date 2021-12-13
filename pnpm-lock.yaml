@@ -8,6 +8,7 @@ specifiers:
   cheap-watch: ^1.0.3
   gray-matter: ^4.0.3
   lodash: ^4.17.21
+  patch-vue-directive-ssr: ^0.0.1
   vitepress: ^0.20.5
   vue: ^3.2.25
 
@@ -22,6 +23,7 @@ devDependencies:
   cheap-watch: 1.0.4
   gray-matter: 4.0.3
   lodash: 4.17.21
+  patch-vue-directive-ssr: 0.0.1
   vitepress: 0.20.5
 
 packages:
@@ -707,6 +709,11 @@ packages:
     dependencies:
       lru-cache: 5.1.1
     dev: false
+
+  /patch-vue-directive-ssr/0.0.1:
+    resolution: {integrity: sha512-n84llktHah+EXUGo+RvmTJcAQJQVW0kHHHiJ34ZSLijzhHi32zCMjCc5VAFv4jmdC91bpaYGPk0cDW1D8hQ3GQ==}
+    requiresBuild: true
+    dev: true
 
   /path-parse/1.0.7:
     resolution: {integrity: sha512-LDJzPVEEEPR+y48z93A0Ed0yXb8pAByGWo/k5YYdYgpY2/2EsOsksJrq7lOHxryrVOn1ejG6oAp8ahvOIQD8sw==}
