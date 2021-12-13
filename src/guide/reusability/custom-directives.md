@@ -53,7 +53,7 @@ export default {
 </div>
 
 <div class="demo">
-  <input v-focus placeholder="This should be focused" />
+  <input v-focus placeholder="此处会被聚焦" />
 </div>
 
 假设你还未点击页面中的其他地方，那么上面这个 input 元素则会被自动聚焦。该指令比 `autofocus` attribute 更有用，因为它不仅仅可以在页面加载完成后运行，还可以在 Vue 动态插入元素后运行。
