@@ -1,10 +1,8 @@
-// @ts-check
-const fs = require('fs')
-const path = require('path')
-const { genApiIndex } = require('../../scripts/genApiIndex')
-const { genExamplesData } = require('../../scripts/genExamplesData')
-const { genTutorialData } = require('../../scripts/genTutorialData')
-const { headerPlugin } = require('./headerMdPlugin')
+import fs from 'fs'
+import path from 'path'
+import { defineConfig } from 'vitepress'
+import baseConfig from '@vue/theme/config'
+import { headerPlugin } from './headerMdPlugin'
 
 const nav = [
   {
@@ -107,7 +105,7 @@ const nav = [
   }
 ]
 
-const sidebar = {
+export const sidebar = {
   '/guide/': [
     {
       text: '开始',
@@ -489,37 +487,8 @@ const sidebar = {
   ]
 }
 
-genApiIndex(sidebar['/api/'])
-genExamplesData()
-genTutorialData()
-
-/**
- * @type {import('vitepress').UserConfig}
- */
-module.exports = {
-  // @ts-ignore
-  extends: require('@vue/theme/config'),
-  vite: {
-    define: {
-      __VUE_OPTIONS_API__: false
-    },
-    optimizeDeps: {
-      exclude: ['@vue/repl']
-    },
-    ssr: {
-      external: ['@vue/repl']
-    },
-    server: {
-      host: true
-    },
-    build: {
-      minify: 'terser',
-      chunkSizeWarningLimit: Infinity
-    },
-    json: {
-      stringify: true
-    }
-  },
+export default defineConfig({
+  extends: baseConfig,
 
   lang: 'zh-CN',
   title: 'Vue.js',
@@ -576,5 +545,42 @@ module.exports = {
       },
       copyright: 'Copyright © 2014-2021 Evan You'
     }
+  },
+
+  vite: {
+    define: {
+      __VUE_OPTIONS_API__: false
+    },
+    optimizeDeps: {
+      exclude: ['@vue/repl']
+    },
+    // @ts-ignore
+    ssr: {
+      external: ['@vue/repl']
+    },
+    server: {
+      host: true,
+      fs: {
+        // for when developing with locally linked theme
+        allow: ['../..']
+      }
+    },
+    build: {
+      minify: 'terser',
+      chunkSizeWarningLimit: Infinity
+    },
+    json: {
+      stringify: true
+    }
+  },
+
+  vue: {
+    template: {
+      compilerOptions: {
+        directiveTransforms: {
+          focus: () => ({ props: [] })
+        }
+      }
+    }
   }
-}
+})

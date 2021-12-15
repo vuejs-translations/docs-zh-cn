@@ -10,14 +10,14 @@
  * https://github.com/vitejs/docs-cn/tree/main/.vitepress/markdown-it-custom-anchor
  */
 
- const anchorMatch = /^.+(\s*\{#([a-z0-9\-_]+?)\}\s*)$/;
+const anchorMatch = /^.+(\s*\{#([a-z0-9\-_]+?)\}\s*)$/;
 
- const removeAnchorFromTitle = (oldTitle) => {
-   const match = anchorMatch.exec(oldTitle);
-   return match ? oldTitle.replace(match[1], '').trim() : oldTitle;
- }
+const removeAnchorFromTitle = (oldTitle) => {
+  const match = anchorMatch.exec(oldTitle);
+  return match ? oldTitle.replace(match[1], '').trim() : oldTitle;
+}
 
-exports.headerPlugin = (md) => {
+export const headerPlugin = (md) => {
   const oldTitle = md.renderer.rules.text;
   md.renderer.rules.text = (tokens, idx, options, env, slf) => {
     const titleAndId = oldTitle(tokens, idx, options, env, slf);

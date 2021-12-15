@@ -1,5 +1,8 @@
 <script setup lang="ts">
-import apiIndex from './index.json'
+// in .vue components or .md pages:
+// named import "data" is the resolved static data
+// can also import types for type consistency
+import { data as apiIndex, APIGroup } from './api.data'
 import { ref, computed } from 'vue'
 
 const query = ref('')
@@ -39,11 +42,11 @@ const filtered = computed(() => {
         ? { text: section.text, items: matchedGroups }
         : null
     })
-    .filter((i) => i)
+    .filter((i) => i) as APIGroup[]
 })
 
 // same as vitepress' slugify logic
-function slugify(text) {
+function slugify(text: string): string {
   return (
     text
       // Replace special characters
@@ -81,10 +84,9 @@ function slugify(text) {
       </div>
     </div>
 
-    <div
-      v-if="!filtered.length"
-      class="no-match"
-    >No API matching "{{ query }}" found.</div>
+    <div v-if="!filtered.length" class="no-match">
+      No API matching "{{ query }}" found.
+    </div>
   </div>
 </template>
 

@@ -6,17 +6,15 @@
     "clean": "rm -rf src/.vitepress/dist"
   },
   "dependencies": {
-    "@vue/repl": "^0.4.4",
-    "@vue/theme": "^0.1.19",
+    "@vue/repl": "^0.4.7",
+    "@vue/theme": "^0.1.22",
+    "vitepress": "^0.20.9",
     "vue": "^3.2.25"
   },
   "devDependencies": {
     "@types/node": "^16.9.1",
     "chalk": "^4.1.2",
-    "cheap-watch": "^1.0.3",
     "gray-matter": "^4.0.3",
-    "lodash": "^4.17.21",
-    "patch-vue-directive-ssr": "^0.0.1",
-    "vitepress": "^0.20.5"
+    "lodash": "^4.17.21"
   }
 }

@@ -22,7 +22,12 @@ import NewsLetter from './.vitepress/theme/components/NewsLetter.vue'
 <!-- TODO make dynamic based on data -->
 <section id="special-sponsor">
   <span>特别赞助</span>
-  <a href="#"><img src="/images/hbuilder.png"></a>
+  <a href="#">
+    <picture>
+      <source type="image/avif" srcset="/images/sponsors/hbuilder.avif">
+      <img alt="hbuilder logo" width="97" height="36" src="/images/sponsors/hbuilder.png">
+    </picture>
+  </a>
   <span>为 Vue 打造的先进 IDE</span>
 </section>
 
