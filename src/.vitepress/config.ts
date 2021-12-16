@@ -51,7 +51,7 @@ const nav = [
       {
         text: '帮助',
         items: [
-          { text: 'Chat', link: 'https://discord.com/invite/HBherRA' },
+          { text: '聊天室', link: 'https://discord.com/invite/HBherRA' },
           { text: '论坛', link: 'https://forum.vuejs.org/' },
           { text: 'DEV Community', link: 'https://dev.to/t/vue' }
         ]
@@ -181,7 +181,7 @@ export const sidebar = {
       text: '可重用性',
       items: [
         {
-          text: '组合',
+          text: '可组合函数',
           link: '/guide/reusability/composables'
         },
         {
@@ -264,7 +264,7 @@ export const sidebar = {
           link: '/guide/advanced/server-side-rendering'
         },
         {
-          text: 'Vue and Web Components',
+          text: 'Vue 与 Web Components',
           link: '/guide/advanced/web-components'
         },
         // {
@@ -472,14 +472,14 @@ export const sidebar = {
   ],
   '/tutorial/': [
     {
-      text: 'Tutorial',
+      text: '教程',
       items: [
         {
-          text: '1. Adding Data',
+          text: '1. 添加数据',
           link: '/tutorial/#step-1'
         },
         {
-          text: '2. Two-way Binding',
+          text: '2. 双向绑定',
           link: '/tutorial/#step-2'
         }
       ]
