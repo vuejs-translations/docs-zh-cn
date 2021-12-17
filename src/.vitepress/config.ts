@@ -510,7 +510,7 @@ export default defineConfig({
   markdown: {
     config(md) {
       md.use(headerPlugin)
-    }
+    },
   },
 
   themeConfig: {

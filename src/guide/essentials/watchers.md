@@ -1,8 +1,8 @@
-# 监听器 {#watchers}
+# 侦听器 {#watchers}
 
 ## 基本示例 {#basic-example}
 
-计算属性允许我们声明性地计算派生值。然而，在有些情况下，我们需要对状态的变化展现出犹如 "副作用" 一般的反应，例如更改 DOM，或基于某异步操作其他状态。
+计算属性允许我们声明性地计算派生值。然而，在有些情况下，我们需要对状态的变化展现出犹如有 "副作用" 一般的反应，例如更改 DOM，或基于某异步操作其他状态。
 
 <div class="options-api">
 
@@ -74,7 +74,7 @@ import { ref, watch } from 'vue'
 const question = ref('')
 const answer = ref('问句通常都会带一个问号。;-)')
 
-// 直接监听一个 ref
+// 直接侦听一个 ref
 watch(question, async (newQuestion, oldQuestion) => {
   if (newQuestion.indexOf('?') > -1) {
     answer.value = '思考中...'
@@ -99,7 +99,7 @@ watch(question, async (newQuestion, oldQuestion) => {
 
 [在 Playground 尝试一下](https://sfc.vuejs.org/#eyJBcHAudnVlIjoiPHNjcmlwdCBzZXR1cD5cbmltcG9ydCB7IHJlZiwgd2F0Y2ggfSBmcm9tICd2dWUnXG5cbmNvbnN0IHF1ZXN0aW9uID0gcmVmKCcnKVxuY29uc3QgYW5zd2VyID0gcmVmKCdRdWVzdGlvbnMgdXN1YWxseSBjb250YWluIGEgcXVlc3Rpb24gbWFyay4gOy0pJylcblxud2F0Y2gocXVlc3Rpb24sIGFzeW5jIChuZXdRdWVzdGlvbikgPT4ge1xuICBpZiAobmV3UXVlc3Rpb24uaW5kZXhPZignPycpID4gLTEpIHtcbiAgICBhbnN3ZXIudmFsdWUgPSAnVGhpbmtpbmcuLi4nXG4gICAgdHJ5IHtcbiAgICAgIGNvbnN0IHJlcyA9IGF3YWl0IGZldGNoKCdodHRwczovL3llc25vLnd0Zi9hcGknKVxuICAgICAgYW5zd2VyLnZhbHVlID0gKGF3YWl0IHJlcy5qc29uKCkpLmFuc3dlclxuICAgIH0gY2F0Y2ggKGUpIHtcbiAgICAgIGFuc3dlci52YWx1ZSA9ICdFcnJvciEgQ291bGQgbm90IHJlYWNoIHRoZSBBUEkuICcgKyBlcnJvclxuICAgIH1cbiAgfVxufSlcbjwvc2NyaXB0PlxuXG48dGVtcGxhdGU+XG4gIDxwPlxuICAgIEFzayBhIHllcy9ubyBxdWVzdGlvbjpcbiAgICA8aW5wdXQgdi1tb2RlbD1cInF1ZXN0aW9uXCIgLz5cbiAgPC9wPlxuICA8cD57eyBhbnN3ZXIgfX08L3A+XG48L3RlbXBsYXRlPiIsImltcG9ydC1tYXAuanNvbiI6IntcbiAgXCJpbXBvcnRzXCI6IHtcbiAgICBcInZ1ZVwiOiBcImh0dHBzOi8vc2ZjLnZ1ZWpzLm9yZy92dWUucnVudGltZS5lc20tYnJvd3Nlci5qc1wiXG4gIH1cbn0ifQ==)
 
-### 监听来源类型 {#watch-source-types}
+### 侦听来源类型 {#watch-source-types}
 
 `watch`的第一个参数可以是不同类型的响应式 “源”：它可以是一个 ref（包括计算属性），一个响应式对象，一个函数，或是一个数组表示多个源：
 
@@ -151,11 +151,11 @@ watch(
 
 </div>
 
-## 深层监听器 {#deep-watchers}
+## 深层侦听器 {#deep-watchers}
 
 <div class="options-api">
 
-`watch` 默认是浅层的：回调函数仅在被监听的属性被新的值赋值时才执行，而内层的属性变化则不会触发。如果你想要对象内所有层级的更改都触发该回调，那么你需要使用一个深层监听器：
+`watch` 默认是浅层的：回调函数仅在被侦听的属性被新的值赋值时才执行，而内层的属性变化则不会触发。如果你想要对象内所有层级的更改都触发该回调，那么你需要使用一个深层侦听器：
 
 ```js
 export default {
@@ -176,7 +176,7 @@ export default {
 
 <div class="composition-api">
 
-当你直接对一个响应式对象调用 `watch()`，会隐式地创建一个深层监听器，回调会在每个层级更改时都被触发：
+当你直接对一个响应式对象调用 `watch()`，会隐式地创建一个深层侦听器，回调会在每个层级更改时都被触发：
 
 ```js
 const obj = reactive({ count: 0 })
@@ -222,9 +222,9 @@ watch(
 
 <div class="options-api">
 
-## 积极监听 {#eager-watchers}
+## 积极侦听 {#eager-watchers}
 
-`watch` 默认是懒监听的：仅在监听源发生更改时才会被调用。但在某些场景中，我们希望该回调函数以积极态运行，举个例子，首先需要请求一些初始数据，之后再在相关状态变化后重新获取。
+`watch` 默认是懒侦听的：仅在侦听源发生更改时才会被调用。但在某些场景中，我们希望该回调函数以积极态运行，举个例子，首先需要请求一些初始数据，之后再在相关状态变化后重新获取。
 
 我们可以通过使用一个带有 `handler` 函数和 `immediate: true` 选项的对象来声明监视器的回调函数，从而强制它立即执行:
 
@@ -250,7 +250,7 @@ export default {
 
 ## `watchEffect()` \*\*
 
-`watch()` 是懒执行的：回调函数只有在监听的源更改时才会调用。但某些场景下我们可能希望回调函数能呈积极态调用。举个例子，我们可能会请求一些初始数据，然后在相应状态改变时重新请求。我们可以这样来写：
+`watch()` 是懒执行的：回调函数只有在侦听的源更改时才会调用。但某些场景下我们可能希望回调函数能呈积极态调用。举个例子，我们可能会请求一些初始数据，然后在相应状态改变时重新请求。我们可以这样来写：
 
 ```js
 const url = ref('https://...')
@@ -263,7 +263,7 @@ async function fetchData() {
 
 // 立即获取
 fetchData()
-// ...再监听 url 变化
+// ...再侦听 url 变化
 watch(url, fetchData)
 ```
 
@@ -300,7 +300,7 @@ watchEffect(async () => {
 
 默认情况下，用户创建的副作用都会在 Vue 组件更新的副作用 **之前** 被调用。这意味着，如果您试图在监视器回调中访问 DOM, DOM 将是 Vue 执行任何更新之前的状态。
 
-如果你想于 Vue 更新之后，在监听器回调中访问 DOM，你需要指明 `flush: 'post'` 选项：
+如果你想于 Vue 更新之后，在侦听器回调中访问 DOM，你需要指明 `flush: 'post'` 选项：
 
 <div class="options-api">
 
@@ -346,7 +346,7 @@ watchPostEffect(() => {
 
 ## `this.$watch()` \* {#watch}
 
-我们也可以使用组件实例的 [`$watch()` 方法](/api/component-instance.html#watch) 来命令式地创建一个监听器：
+我们也可以使用组件实例的 [`$watch()` 方法](/api/component-instance.html#watch) 来命令式地创建一个侦听器：
 
 ```js
 export default {
@@ -358,22 +358,22 @@ export default {
 }
 ```
 
-当您需要有条件地设置一个监视器，或者只监听响应用户交互的内容时，这会很有用。它还使你可以提前停止监听器。
+当您需要有条件地设置一个监视器，或者只侦听响应用户交互的内容时，这会很有用。它还使你可以提前停止侦听器。
 
 </div>
 
-## 停止监听器 {#stopping-a-watcher}
+## 停止侦听器 {#stopping-a-watcher}
 
 <div class="options-api">
 
-由 `watch` 选项和 `$watch()` 实例方法声明的监听器会在宿主组件卸载时自动停止，因此大多数场景下你无需关心要怎么操作来停止它。
+由 `watch` 选项和 `$watch()` 实例方法声明的侦听器会在宿主组件卸载时自动停止，因此大多数场景下你无需关心要怎么操作来停止它。
 
-在少数情况下，若你的确需要在组件卸载前停止一个监听器，`$watch()` API 会返回一个能这样做的函数：
+在少数情况下，若你的确需要在组件卸载前停止一个侦听器，`$watch()` API 会返回一个能这样做的函数：
 
 ```js
 const unwatch = this.$watch('foo', callback)
 
-// ...当该监听器不再需要时
+// ...当该侦听器不再需要时
 unwatch()
 ```
 
@@ -381,9 +381,9 @@ unwatch()
 
 <div class="composition-api">
 
-在 `setup()` 或 `<script setup>` 同步声明的监听器会和宿主组件绑，也会在组件卸载时自动停止，在大多数场景下你无需关心要怎么操作来停止它。
+在 `setup()` 或 `<script setup>` 同步声明的侦听器会和宿主组件绑，也会在组件卸载时自动停止，在大多数场景下你无需关心要怎么操作来停止它。
 
-一个关键点是，监听器必须是被 **同步** 创建的：如果监听器是在异步回调中被创建的，它将不会绑定当前组件为宿主，并且必须手动停止以防内存泄漏，如下方这个例子所示：
+一个关键点是，侦听器必须是被 **同步** 创建的：如果侦听器是在异步回调中被创建的，它将不会绑定当前组件为宿主，并且必须手动停止以防内存泄漏，如下方这个例子所示：
 
 ```vue
 <script setup>
@@ -399,16 +399,16 @@ setTimeout(() => {
 </script>
 ```
 
-要手动停止一个监听器，请使用返回的处理函数。`watch` 和 `watchEffect` 都是这样：
+要手动停止一个侦听器，请使用返回的处理函数。`watch` 和 `watchEffect` 都是这样：
 
 ```js
 const unwatch = watchEffect(() => {})
 
-// ...当该监听器不再需要时
+// ...当该侦听器不再需要时
 unwatch()
 ```
 
-注意，需要异步创建监视器的情况应该很少，并且应该尽可能首选同步创建。如果需要等待一些异步数据，可以将监听逻辑设置为有条件的：
+注意，需要异步创建监视器的情况应该很少，并且应该尽可能首选同步创建。如果需要等待一些异步数据，可以将侦听逻辑设置为有条件的：
 
 ```js
 // 需要异步请求得到的数据
