@@ -9,6 +9,7 @@ import {
 import './styles/utilities.css'
 import './styles/inline-demo.css'
 import './styles/options-boxes.css'
+import './styles/scrollbar.css'
 
 export default Object.assign({}, VPTheme, {
   Layout: () => {

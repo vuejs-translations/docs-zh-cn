@@ -1,0 +1,12 @@
+.VPSidebar::-webkit-scrollbar {
+  width: 6px;
+}
+.VPSidebar::-webkit-scrollbar-track {
+  background-color: #e1e1e1;
+  border-radius: 20px;
+}
+.VPSidebar::-webkit-scrollbar-thumb {
+  background: linear-gradient(315deg,#42d392 25%,#647eff);
+  box-shadow: inset 2px 2px 5px 0 rgba(#fff, 0.5);
+  border-radius: 20px;
+}
