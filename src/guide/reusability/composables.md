@@ -90,9 +90,43 @@ const { x, y } = useMouse()
 
 [在 Playground 中尝试一下](https://sfc.vuejs.org/#eyJBcHAudnVlIjoiPHNjcmlwdCBzZXR1cD5cbmltcG9ydCB7IHVzZU1vdXNlIH0gZnJvbSAnLi9tb3VzZS5qcydcblxuY29uc3QgeyB4LCB5IH0gPSB1c2VNb3VzZSgpXG48L3NjcmlwdD5cblxuPHRlbXBsYXRlPlxuICBNb3VzZSBwb3NpdGlvbiBpcyBhdDoge3sgeCB9fSwge3sgeSB9fVxuPC90ZW1wbGF0ZT4iLCJpbXBvcnQtbWFwLmpzb24iOiJ7XG4gIFwiaW1wb3J0c1wiOiB7XG4gICAgXCJ2dWVcIjogXCJodHRwczovL3NmYy52dWVqcy5vcmcvdnVlLnJ1bnRpbWUuZXNtLWJyb3dzZXIuanNcIlxuICB9XG59IiwibW91c2UuanMiOiJpbXBvcnQgeyByZWYsIG9uTW91bnRlZCwgb25Vbm1vdW50ZWQgfSBmcm9tICd2dWUnXG5cbmV4cG9ydCBmdW5jdGlvbiB1c2VNb3VzZSgpIHtcbiAgY29uc3QgeCA9IHJlZigwKVxuICBjb25zdCB5ID0gcmVmKDApXG5cbiAgZnVuY3Rpb24gdXBkYXRlKGV2ZW50KSB7XG4gICAgeC52YWx1ZSA9IGV2ZW50LnBhZ2VYXG4gICAgeS52YWx1ZSA9IGV2ZW50LnBhZ2VZXG4gIH1cblxuICBvbk1vdW50ZWQoKCkgPT4gd2luZG93LmFkZEV2ZW50TGlzdGVuZXIoJ21vdXNlbW92ZScsIHVwZGF0ZSkpXG4gIG9uVW5tb3VudGVkKCgpID0+IHdpbmRvdy5yZW1vdmVFdmVudExpc3RlbmVyKCdtb3VzZW1vdmUnLCB1cGRhdGUpKVxuXG4gIHJldHVybiB7IHgsIHkgfVxufSJ9)
 
-正如我们所看到的，核心逻辑保持完全相同，我们只需要将其移动到一个外部函数中，将要暴露的状态返回即可。现在任意组件中都可以使用 `useMouse()` 的功能了。
+正如我们所看到的，核心逻辑保持完全相同，我们只需要将其移动到一个外部函数中，将要暴露的状态返回即可。和在组件中一样，你也可以在可组合函数中使用 [组合式 API 函数](/api/#composition-api)，现在任意组件中都可以使用 `useMouse()` 的功能了。
 
-你可以在可组合函数中使用任意 [组合式 API 提供的函数](/api/#composition-api)。你还可以作出嵌套：一个可组合函数可以调用一个或多个其他的可组合函数。这使得我们可以通过组合多个较小的函数、独立的单元来实现复杂的逻辑，这与我们使用组件来组合一整个大型应用类似。实际上，这也正是我们打算命名这套 API 模式 为组合式 API 的原因。
+最酷也最有趣的一点是，你还可以将多个可组合函数进行嵌套：一个可组合函数可以调用一个或多个其他的可组合函数。这使得我们可以通过组合多个较小的函数、独立的单元来实现复杂的逻辑，这与我们使用组件来组合一整个大型应用类似。实际上，这也正是我们打算命名这套 API 模式 为组合式 API 的原因。
+
+举个例子，我们可以将添加和清除 DOM 事件监听器的逻辑放入一个可组合函数中：
+
+```js
+// event.js
+import { onMounted, onUnmounted } from 'vue'
+
+export function useEventListener(target, event, callback) {
+  // 如果你想的话，
+  // 也可以用字符串形式的 CSS选择器来寻找目标 DOM 元素
+  onMounted(() => target.addEventListener(event, callback))
+  onUnmounted(() => target.removeEventListener(event, callback))
+}
+```
+
+And now our `useMouse()` can be simplified to:
+
+```js{3,9-12}
+// mouse.js
+import { ref } from 'vue'
+import { useEventListener } from './event'
+
+export function useMouse() {
+  const x = ref(0)
+  const y = ref(0)
+
+  useEventListener(window, 'mousemove', (event) => {
+    x.value = event.pageX
+    y.value = event.pageY
+  })
+
+  return { x, y }
+}
+```
 
 :::tip
 每一个调用 `useMouse()` 的组件实例会创建其独有的 `x`、`y` 状态拷贝，因此他们不会互相影响。如果你想要在组件之间共享状态，请阅读 [状态管理](/guide/scaling-up/state-management.html) 这一章。
@@ -117,7 +151,10 @@ fetch('...')
 
 <template>
   <div v-if="error">糟糕！出错了：{{ error.message }}</div>
-  <div v-else-if="data">加载完成：<pre>{{ data }}</pre></div>
+  <div v-else-if="data">
+    加载完成：
+    <pre>{{ data }}</pre>
+  </div>
   <div v-else>加载中...</div>
 </template>
 ```
@@ -209,7 +246,7 @@ function useFeature(maybeRef) {
 }
 ```
 
-如果你的可组合函数期望使用该输入参数 ref 启动一个 `watchEffect()`，请确保在副作用回调中调用 `unref()` 以保证其被追踪为依赖。
+如果你的可组合函数期望使用一个 ref 为参数启动一个 `watchEffect()`，请确保使用 `watch()` 显式地监听此 ref ，或者在副作用回调中调用 `unref()` 以保证其被追踪为依赖。
 
 ### 返回值 {#return-values}
 
@@ -229,6 +266,7 @@ const mouse = reactive(useMouse())
 // mouse.x 链接到了原来的 x ref
 console.log(mouse.x)
 ```
+
 ```vue-html
 鼠标位置：{{ mouse.x }}, {{ mouse.y }}
 ```
@@ -239,7 +277,7 @@ console.log(mouse.x)
 
 - 如果你在一个应用程序中使用了 [服务器端渲染](/guide/advanced/server-side-rendering.html)（SSR），请确保在后置加载的声明钩子上执行 DOM 相关的副作用，例如： `onMounted()`。这些钩子仅会在浏览器中使用，因此可以确保能访问到 DOM。
 
-- 确保在 `onUnmounted()` 时清理副作用。举个例子，如果一个可组合函数设置了一个事件监听器，它就应该在 `onUnmounted()` 中被移除（就像我们在 `useMouse()` 示例中看到的一样）。当然也可以使用 [一个已经为你准备好的 `useEventListenr` 函数](https://vueuse.org/core/useeventlistener/)。
+- 确保在 `onUnmounted()` 时清理副作用。举个例子，如果一个可组合函数设置了一个事件监听器，它就应该在 `onUnmounted()` 中被移除（就像我们在 `useMouse()` 示例中看到的一样）。当然也可以使用一个可组合函数来自动帮你做这些事，例如之前的 `useEventListener()` 示例。
 
 ### 使用限制 {#usage-restrictions}
 
@@ -319,7 +357,7 @@ Vue 2 的用户可能会对 [混入（mixins）](/api/options-composition.html#m
 
 ### vs. React Hooks {#vs-react-hooks}
 
-如果你有过开发 React 的经验，你可能注意到可组合函数和自定义 React hooks 非常类似。组合式 API 一部分灵感也正来自于 React hooks，Vue 的可组合函数也的确在逻辑组合方面和 React hooks 类似。然而，Vue 的可组合函数是基于 Vue 细粒度的响应式系统，这和 React hooks 的执行模型有本质上的不同。关于此中细节的更多讨论请参见 [组合式 API FAQ](/guide/advanced/composition-api-faq).
+如果你有过开发 React 的经验，你可能注意到可组合函数和自定义 React hooks 非常类似。组合式 API 一部分灵感也正来自于 React hooks，Vue 的可组合函数也的确在逻辑组合方面和 React hooks 类似。然而，Vue 的可组合函数是基于 Vue 细粒度的响应式系统，这和 React hooks 的执行模型有本质上的不同。关于此中细节的更多讨论请参见 [组合式 API FAQ](/guide/advanced/composition-api-faq#comparison-with-react-hooks).
 
 ## 延伸阅读 {#further-reading}
 

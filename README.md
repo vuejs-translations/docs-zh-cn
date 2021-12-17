@@ -4,6 +4,8 @@
 
 这里是即将焕然一新的 vuejs.org。
 
+您也可以点击这里访问 [英文原文文档](https://vue-docs-preview.netlify.app/)，基于 vuejs/docs 的 [next](https://github.com/vuejs/docs/tree/next) 分支。
+
 ## 如何进行翻译
 
 进行翻译之前，请确保你已经完成了 [翻译说明](https://vue-new-docs-cn.netlify.app/about/translation.html) 的阅读。
