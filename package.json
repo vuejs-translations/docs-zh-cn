@@ -7,7 +7,9 @@
   },
   "dependencies": {
     "@vue/repl": "^0.4.7",
-    "@vue/theme": "^0.1.22",
+    "@vue/theme": "^0.1.23",
+    "dynamics.js": "^1.1.5",
+    "gsap": "^3.9.0",
     "vitepress": "^0.20.9",
     "vue": "^3.2.25"
   },
@@ -16,5 +18,22 @@
     "chalk": "^4.1.2",
     "gray-matter": "^4.0.3",
     "lodash": "^4.17.21"
+  },
+  "pnpm": {
+    "packageExtensions": {
+      "@docsearch/react": {
+        "peerDepndenciesMeta": {
+          "react": {
+            "optional": true
+          },
+          "react-dom": {
+            "optional": true
+          },
+          "@types/react": {
+            "optional": true
+          }
+        }
+      }
+    }
   }
 }

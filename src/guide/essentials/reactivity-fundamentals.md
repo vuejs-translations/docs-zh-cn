@@ -75,7 +75,7 @@ import { reactive } from 'vue'
 const state = reactive({ count: 0 })
 ```
 
-响应式对象其实是 [JavaScript Proxy](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy)，行为表现与一般对象并无二致。不同之处在于 Vue 能够跟踪对响应式对象属性的访问与更改操作。如果你对这其中的细节感到好奇，我们在 [深入响应式系统](/guide/advanced/reactivity-in-depth.html) 一章中会进行解释，但我们推荐你先读完这里的主要指引。
+响应式对象其实是 [JavaScript Proxy](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy)，行为表现与一般对象并无二致。不同之处在于 Vue 能够跟踪对响应式对象属性的访问与更改操作。如果你对这其中的细节感到好奇，我们在 [深入响应式系统](/guide/extras/reactivity-in-depth.html) 一章中会进行解释，但我们推荐你先读完这里的主要指引。
 
 要在组件模板中使用响应式状态，请在 `setup()` 函数中定义并返回。
 
@@ -522,13 +522,14 @@ app.component('save-button', {
 
 ### 响应性转换 <Badge type="warning" text="实验性" /> \*\* {#reactivity-transform}
 
-必须对 ref 使用 `.value` 是一个因受限于 JavaScript 语言能力约束而带来的缺点。然而通过编译时期自动在合适的位置上添加上 `.value` 来改进开发体验。[Vue 响应性转换](https://github.com/vuejs/vue-next/tree/master/packages/ref-transform) 是我们可以像这样书写上面的示例：
+必须对 ref 使用 `.value` 是一个因受限于 JavaScript 语言能力约束而带来的缺点。然而通过编译时期自动在合适的位置上添加上 `.value` 来改进开发体验。Vue 提供了一个语法糖，在编译时作相应转换，使得我们可以像这样书写上面的计数器示例：
 
 ```vue
 <script setup>
 let count = $ref(0)
 
 function increment() {
+  // no need for .value
   count++
 }
 </script>
@@ -538,8 +539,6 @@ function increment() {
 </template>
 ```
 
-:::warning 实验性功能
-响应性转换现在还是一个实验性功能。除非你 [显式地选用](https://github.com/vuejs/rfcs/blob/ref-sugar-2/active-rfcs/0000-ref-sugar.md#enabling-the-macros)，否则它会被默认禁用。可能在最终定稿前仍会变动。更多细节请参考关于它的 [提案和在 Github 上的讨论](https://github.com/vuejs/rfcs/discussions/369)。
-:::
+你可以在 [Reactivity Transform](/guide/extras/reactivity-transform.html) 这个专门的章节了解更多细节。请注意它仍处于实验性阶段，在最终提案落地前仍可能发生改动。
 
 </div>

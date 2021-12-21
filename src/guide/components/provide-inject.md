@@ -10,13 +10,13 @@ aside: deep
 
 通常情况下，当我们需要从父组件向子组件传递数据时，会使用 props。想象一下这样的结构：有一些多层级嵌套的组件，形成了一颗巨大的组件树，而某个深层的子组件需要一个较远的祖先组件中的部分内容。在这种情况下，如果使用 props 则必须将其沿着组件链逐级传递下去，这会非常麻烦：
 
-![Props 深潜过程的图示](/images/props-drilling.png)
+![Props 深潜过程的图示](./images/props-drilling.png)
 
 这里的 `<Footer>` 组件可能其实根本不关心这些 props，但它仍然需要定义并将它们传递下去使得 `<DeepChild>` 能访问到这些 props，如果组件链路非常长，可能会影响到更多这条路上的组件。这一过程被称为 “props 深潜”，这似乎不太好解决。
 
 为解决这一问题，可以使用 `provide` 和 `inject`。（译者注：在本章及后续章节中，**”供给“** 将成为对应 Provide 的一个专有概念）一个父组件相对于其所有的后代组件，会作为 **依赖供给者**。任何后代的组件树，无论层级有多深，都可以 **注入** 由父组件供给给整条链路的依赖。
 
-![Provide/inject 模式](/images/provide-inject.png)
+![Provide/inject 模式](./images/provide-inject.png)
 
 ## 供给 {#provide}
 

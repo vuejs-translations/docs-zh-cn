@@ -60,7 +60,7 @@ Vue 的浏览器内开发者插件使我们可以浏览一个 Vue 应用的组�
 
 ![devtools 截图](https://raw.githubusercontent.com/vuejs/devtools/main/media/screenshot-shadow.png)
 
-// TODO update links after swapping versions
+<!-- TODO update links after swapping versions -->
 
 - [文档](https://devtools.vuejs.org/)
 - [Chrome 插件商店页](https://chrome.google.com/webstore/detail/vuejs-devtools/ljjemllljcmogpfapbkkighbhhppjdbg)
@@ -69,22 +69,21 @@ Vue 的浏览器内开发者插件使我们可以浏览一个 Vue 应用的组�
 
 ## TypeScript {#typescript}
 
-// TODO links and recommendations
+Main article: [Using Vue with TypeScript](/guide/scaling-up/typescript).
 
-- `vue-tsc`：对 Vue SFC 进行类型检查
-- `vue-dts-gen`：为 Vue SFC 提供类型定义生成
+- [Volar](https://github.com/johnsoncodehk/volar) provides type checking for SFCs using `<script lang="ts">` blocks, including template expressions and cross-component props validation.
 
-更多内容请参阅 [搭配 TypeScript 开发 Vue](/guide/scaling-up/typescript)。
+- Use [`vue-tsc`](https://github.com/johnsoncodehk/volar/tree/master/packages/vue-tsc) for performing the same type checking from the command line, or for generating `d.ts` files for SFCs.
 
 ## 测试 {#testing}
 
-- 如果你正在使用 Vite，我们推荐使用 [Cypress](https://www.cypress.io/) 作为单元测试和 e2e 测试的运行环境。对 Vue SFC 的单元测试可以使用 [Cypress 组件测试运行环境](https://www.cypress.io/blog/2021/04/06/introducing-the-cypress-component-test-runner/)。
+Main article: [Testing Guide](/guide/scaling-up/testing).
+
+- If using Vite, we recommend [Cypress](https://www.cypress.io/) as the test runner for both unit and e2e tests. Unit tests for Vue SFCs can be done with the [Cypress Component Test Runner](https://www.cypress.io/blog/2021/04/06/introducing-the-cypress-component-test-runner/).
 
 - Vue CLI 内集成了 [Jest](https://jestjs.io/) 和 [Mocha](https://mochajs.org/)。
 
 - 如果你想手动地配置 Jest 来测试 Vue SFC，请查看 [vue-jest](https://github.com/vuejs/vue-jest) 的文档，它是 Vue SFC 的官方 Jest 测试工具。
-
-更多内容请参阅 [测试指引](/guide/scaling-up/testing)。
 
 ## 代码规范 {#linting}
 
@@ -105,10 +104,6 @@ Vue 团队维护着 [eslint-plugin-vue](https://github.com/vuejs/eslint-plugin-v
 - [Volar](https://github.com/johnsoncodehk/volar) VSCode 插件为 Vue SFC 提供了开箱即用的格式化功能
 
 - 除此之外，[Prettier](https://prettier.io/) 也提供了内置的 Vue SFC 格式化支持。
-
-## Backend Framework Integrations {#backend-framework-integrations}
-
-// TODO
 
 ## SFC 自定义块集成 {#sfc-custom-block-integrations}
 
@@ -146,3 +141,5 @@ Vue 团队维护着 [eslint-plugin-vue](https://github.com/vuejs/eslint-plugin-v
 - [Repl.it 上使用 Vue + Vite](https://replit.com/@templates/VueJS-with-Vite)
 - [CodeSandbox 的 Vue 模板](https://codesandbox.io/s/vue-3)
 - [CodePen 的 Vue 模板](https://codepen.io/pen/editor/vue)
+
+<!-- TODO ## Backend Framework Integrations -->

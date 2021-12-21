@@ -4,7 +4,7 @@ Vue 使用一种基于 HTML 的模板语法，使我们能够声明式地将其�
 
 Vue 会在底层机制中将模板编译成高度优化的 JavaScript 代码。结合响应式系统，Vue 能够智能地计算出最少需要重新渲染组件的数量，并应用在最少的 DOM 上。
 
-如果你对虚拟 DOM 概念比较熟悉，并且更喜欢利用 JavaScript 更强的表达力，你也可以 [直接手写渲染函数](/guide/advanced/render-function.html) 而不采用模板，同时也支持选用 JSX。但请注意他们将不会享受到和模板同等级别的编译时优化。
+如果你对虚拟 DOM 概念比较熟悉，并且更喜欢利用 JavaScript 更强的表达力，你也可以 [直接手写渲染函数](/guide/extras/render-function.html) 而不采用模板，同时也支持选用 JSX。但请注意他们将不会享受到和模板同等级别的编译时优化。
 
 ## 文本插值 {#text-interpolation}
 
@@ -264,4 +264,4 @@ data() {
 
 最后，在这里你可以直观地看到完整的指令语法：  
 
-![directive syntax graph](/images/directive.png)
+![directive syntax graph](./images/directive.png)

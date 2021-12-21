@@ -227,57 +227,62 @@ export const sidebar = {
           link: '/guide/best-practices/performance'
         },
         {
-          text: '安全',
-          link: '/guide/best-practices/security'
-        },
-        {
           text: '可访问性 A11y',
           link: '/guide/best-practices/accessibility'
+        },
+        {
+          text: '安全',
+          link: '/guide/best-practices/security'
         }
       ]
     },
     {
-      text: '进阶指南',
+      text: '进阶内容',
       items: [
         {
           text: '使用 Vue 的多种方式',
-          link: '/guide/advanced/ways-of-using-vue'
-        },
-        {
-          text: '深入响应式系统',
-          link: '/guide/advanced/reactivity-in-depth'
+          link: '/guide/extras/ways-of-using-vue'
         },
         {
           text: '组合式 API FAQ',
-          link: '/guide/advanced/composition-api-faq'
+          link: '/guide/extras/composition-api-faq'
+        },
+        {
+          text: '深入响应式系统',
+          link: '/guide/extras/reactivity-in-depth'
         },
         {
           text: '渲染机制',
-          link: '/guide/advanced/rendering-mechanism'
+          link: '/guide/extras/rendering-mechanism'
         },
         {
           text: '渲染函数 & JSX',
-          link: '/guide/advanced/render-function'
+          link: '/guide/extras/render-function'
         },
         {
-          text: '服务端渲染',
-          link: '/guide/advanced/server-side-rendering'
+          text: '服务端渲染（SSR）',
+          link: '/guide/extras/ssr'
         },
         {
           text: 'Vue 与 Web Components',
-          link: '/guide/advanced/web-components'
+          link: '/guide/extras/web-components'
         },
+        {
+          text: '动画技巧',
+          link: '/guide/extras/animation'
+        },
+        {
+          text: '响应性语法糖',
+          link: '/guide/extras/reactivity-transform'
+        }
         // {
         //   text: '为 Vue 构建一个库',
-        //   link: '/guide/advanced/building-a-library'
+        //   link: '/guide/extras/building-a-library'
         // },
-        // {
-        //   text: '动画进阶',
-        //   link: '/guide/advanced/animation'
-        // }
+        // { text: 'Custom Renderers', link: '/guide/extras/custom-renderer' },
         // {
         //   text: 'Vue for React 开发者',
-        //   link: '/guide/advanced/vue-for-react-devs'
+        //   link: '/guide/extras/vue-for-react-devs'
         // }
       ]
     }
@@ -567,7 +572,17 @@ export default defineConfig({
     },
     build: {
       minify: 'terser',
-      chunkSizeWarningLimit: Infinity
+      chunkSizeWarningLimit: Infinity,
+      rollupOptions: {
+        output: {
+          manualChunks(id, ctx) {
+            if (id.includes('gsap')) {
+              return 'gsap'
+            }
+            return moveToVendor(id, ctx)
+          }
+        }
+      }
     },
     json: {
       stringify: true
@@ -575,6 +590,7 @@ export default defineConfig({
   },
 
   vue: {
+    reactivityTransform: true,
     template: {
       compilerOptions: {
         directiveTransforms: {
@@ -584,3 +600,59 @@ export default defineConfig({
     }
   }
 })
+
+const cache = new Map<string, boolean>()
+
+/**
+ * This is temporarily copied from Vite - which should be exported in a
+ * future release.
+ *
+ * @TODO when this is exported by Vite, VitePress should ship a better
+ * manual chunk strategy to split chunks for deps that are imported by
+ * multiple pages but not all.
+ */
+function moveToVendor(id: string, { getModuleInfo }: any) {
+  if (
+    id.includes('node_modules') &&
+    !/\.css($|\\?)/.test(id) &&
+    staticImportedByEntry(id, getModuleInfo, cache)
+  ) {
+    return 'vendor'
+  }
+}
+
+function staticImportedByEntry(
+  id: string,
+  getModuleInfo: any,
+  cache: Map<string, boolean>,
+  importStack: string[] = []
+): boolean {
+  if (cache.has(id)) {
+    return cache.get(id) as boolean
+  }
+  if (importStack.includes(id)) {
+    // circular deps!
+    cache.set(id, false)
+    return false
+  }
+  const mod = getModuleInfo(id)
+  if (!mod) {
+    cache.set(id, false)
+    return false
+  }
+
+  if (mod.isEntry) {
+    cache.set(id, true)
+    return true
+  }
+  const someImporterIs = mod.importers.some((importer: string) =>
+    staticImportedByEntry(
+      importer,
+      getModuleInfo,
+      cache,
+      importStack.concat(id)
+    )
+  )
+  cache.set(id, someImporterIs)
+  return someImporterIs
+}

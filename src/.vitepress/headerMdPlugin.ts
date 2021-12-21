@@ -34,7 +34,7 @@ export const headerPlugin = (md) => {
     return originalOpen.call(null, tokens, i, ...rest)
   }
 
-  md.renderer.rules.heading_close = (tokens, i, options, env, self) => {
+  md.renderer.rules.heading_close = (tokens, i, options, _env, self) => {
     const headers = md.__data?.headers
     if (headers) {
       headers.forEach(element => {

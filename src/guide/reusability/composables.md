@@ -250,7 +250,7 @@ function useFeature(maybeRef) {
 
 ### 返回值 {#return-values}
 
-你可能已经注意到了，我们一直在可组合函数中使用 `ref()` 而不是 `reactive()`。约定推荐始终从可组合函数中返回一个包含 ref 的对象，这样在对象解构时可以 [保持响应性](/guide/advanced/reactivity-in-depth.html#retaining-reactivity)：
+你可能已经注意到了，我们一直在可组合函数中使用 `ref()` 而不是 `reactive()`。约定推荐始终从可组合函数中返回一个包含 ref 的对象，这样在对象解构时可以 [保持响应性](/guide/extras/reactivity-in-depth.html#retaining-reactivity)：
 
 ```js
 // x 和 y 是两个 ref
@@ -275,7 +275,7 @@ console.log(mouse.x)
 
 在可组合函数中的确可以执行副作用（例如：添加 DOM 事件监听器或者请求数据），但请注意以下规则：
 
-- 如果你在一个应用程序中使用了 [服务器端渲染](/guide/advanced/server-side-rendering.html)（SSR），请确保在后置加载的声明钩子上执行 DOM 相关的副作用，例如： `onMounted()`。这些钩子仅会在浏览器中使用，因此可以确保能访问到 DOM。
+- 如果你在一个应用程序中使用了 [服务器端渲染](/guide/extras/ssr.html)（SSR），请确保在后置加载的声明钩子上执行 DOM 相关的副作用，例如： `onMounted()`。这些钩子仅会在浏览器中使用，因此可以确保能访问到 DOM。
 
 - 确保在 `onUnmounted()` 时清理副作用。举个例子，如果一个可组合函数设置了一个事件监听器，它就应该在 `onUnmounted()` 中被移除（就像我们在 `useMouse()` 示例中看到的一样）。当然也可以使用一个可组合函数来自动帮你做这些事，例如之前的 `useEventListener()` 示例。
 
@@ -357,10 +357,10 @@ Vue 2 的用户可能会对 [混入（mixins）](/api/options-composition.html#m
 
 ### vs. React Hooks {#vs-react-hooks}
 
-如果你有过开发 React 的经验，你可能注意到可组合函数和自定义 React hooks 非常类似。组合式 API 一部分灵感也正来自于 React hooks，Vue 的可组合函数也的确在逻辑组合方面和 React hooks 类似。然而，Vue 的可组合函数是基于 Vue 细粒度的响应式系统，这和 React hooks 的执行模型有本质上的不同。关于此中细节的更多讨论请参见 [组合式 API FAQ](/guide/advanced/composition-api-faq#comparison-with-react-hooks).
+如果你有过开发 React 的经验，你可能注意到可组合函数和自定义 React hooks 非常类似。组合式 API 一部分灵感也正来自于 React hooks，Vue 的可组合函数也的确在逻辑组合方面和 React hooks 类似。然而，Vue 的可组合函数是基于 Vue 细粒度的响应式系统，这和 React hooks 的执行模型有本质上的不同。关于此中细节的更多讨论请参见 [组合式 API FAQ](/guide/extras/composition-api-faq#comparison-with-react-hooks).
 
 ## 延伸阅读 {#further-reading}
 
-- [深入了解响应性](/guide/advanced/reactivity-in-depth.html)：从更底层的角度理解 Vue 的响应式系统是如何工作的。
+- [深入了解响应性](/guide/extras/reactivity-in-depth.html)：从更底层的角度理解 Vue 的响应式系统是如何工作的。
 - [状态管理](/guide/scaling-up/state-management.html)：了解管理多个组件间共享状态的模式。
 - [VueUse](https://vueuse.org/)：一个不断增长的 Vue 可组合函数的集合。它的源代码本身就是一份不错的学习资料。

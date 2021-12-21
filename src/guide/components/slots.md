@@ -14,7 +14,7 @@ aside: deep
 
 ```vue-html{2}
 <FancyButton>
-  Click me! <!-- 插槽内容 -->
+  点击这里 <!-- 插槽内容 -->
 </FancyButton>
 ```
 
@@ -28,13 +28,13 @@ aside: deep
 
 `<slot>` 元素是一个**插槽的插口**，指出了父元素提供的 **插槽内容** 在哪里被渲染。
 
-![插槽图示](/images/slots.png)
+![插槽图示](./images/slots.png)
 
 最终渲染出的 DOM 结果是这样：
 
 ```html
 <button class="fancy-btn">
-  Click me!
+  点击这里
 </button>
 ```
 
@@ -55,7 +55,7 @@ aside: deep
 
 ```js
 // 父元素传入插槽内容
-FancyButton('Click me!')
+FancyButton('点击此处')
 
 // FancyButton 在自己的模板中渲染插槽内容
 function FancyButton(slotContent) {
@@ -211,7 +211,7 @@ Vue 组件的插槽机制是受到了 [原生 Web Component `<slot>` 元素](htt
 
 `v-slot` 有对应的简写 `#`，因此 `<template v-slot:header>` 可以简写为 `<template #header>`。其意思就是 “将这部分模板片段传入子组件的 header 插槽中”。
 
-![具名插槽图示](/images/named-slots.png)
+![具名插槽图示](./images/named-slots.png)
 
 下面我们给出完整的、向 `<BaseLayout>` 传递内容的代码，指令均使用的是缩写形式：
 
@@ -232,7 +232,25 @@ Vue 组件的插槽机制是受到了 [原生 Web Component `<slot>` 元素](htt
 </BaseLayout>
 ```
 
-现在 `<template>` 里的所有元素都会被插入到相应的插槽中，最终渲染出的 HTML 是这样的：
+When a component accepts both default slot and named slots, all top-level non-`<template>` nodes are implciitly treated as content for default slot. So the above can also be written as:
+
+```vue-html
+<BaseLayout>
+  <template #header>
+    <h1>Here might be a page title</h1>
+  </template>
+
+  <!-- implicit default slot -->
+  <p>A paragraph for the main content.</p>
+  <p>And another one.</p>
+
+  <template #footer>
+    <p>Here's some contact info</p>
+  </template>
+</BaseLayout>
+```
+
+Now everything inside the `<template>` elements will be passed to the corresponding slots. The final rendered HTML will be:
 
 ```html
 <div class="container">
@@ -358,7 +376,7 @@ function MyComponent(slots) {
 }
 ```
 
-实际上，这已经和作用域插槽的最终的代码编译结果、以及手动地调用 [渲染函数](/guide/advanced/render-function.html) 的方式非常类似了。
+实际上，这已经和作用域插槽的最终的代码编译结果、以及手动地调用 [渲染函数](/guide/extras/render-function.html) 的方式非常类似了。
 
 `v-slot="slotProps"` 可以类比这里的函数签名，和函数的参数类似，我们也可以在 `v-slot` 使用:
 
