@@ -4,7 +4,7 @@
 
 ![组件树](./images/components.png)
 
-这和我们嵌套 HTML 元素的方式类似，Vue 实现了自己的组件数据模型，使我们可以在每个组件内封装自定义内容与逻辑。Vue 同样也能很好地配合原生 Web Component。如果你想知道 Vue 组件与原生 Web Components 相比如何，可以 [阅读此章节](/guide/advanced/web-components.html)。
+这和我们嵌套 HTML 元素的方式类似，Vue 实现了自己的组件数据模型，使我们可以在每个组件内封装自定义内容与逻辑。Vue 同样也能很好地配合原生 Web Component。如果你想知道 Vue 组件与原生 Web Components 相比如何，可以 [阅读此章节](/guide/extras/web-components.html)。
 
 ## 定义一个组件 {#defining-a-component}
 
