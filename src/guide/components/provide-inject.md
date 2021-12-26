@@ -12,11 +12,15 @@ aside: deep
 
 ![Props 深潜过程的图示](./images/props-drilling.png)
 
+<!-- https://www.figma.com/file/yNDTtReM2xVgjcGVRzChss/props-drilling -->
+
 这里的 `<Footer>` 组件可能其实根本不关心这些 props，但它仍然需要定义并将它们传递下去使得 `<DeepChild>` 能访问到这些 props，如果组件链路非常长，可能会影响到更多这条路上的组件。这一过程被称为 “props 深潜”，这似乎不太好解决。
 
 为解决这一问题，可以使用 `provide` 和 `inject`。（译者注：在本章及后续章节中，**”供给“** 将成为对应 Provide 的一个专有概念）一个父组件相对于其所有的后代组件，会作为 **依赖供给者**。任何后代的组件树，无论层级有多深，都可以 **注入** 由父组件供给给整条链路的依赖。
 
 ![Provide/inject 模式](./images/provide-inject.png)
+
+<!-- https://www.figma.com/file/PbTJ9oXis5KUawEOWdy2cE/provide-inject -->
 
 ## 供给 {#provide}
 
@@ -91,7 +95,7 @@ export default {
 }
 ```
 
-然而，请注意这 **不会** 使注入保持响应性。我们会在后续小节中讨论如何 [让注入转变为响应式](#injection-reactivity)。
+然而，请注意这 **不会** 使注入保持响应性。我们会在后续小节中讨论如何 [让注入转变为响应式](#working-with-reactivity)。
 
 </div>
 
@@ -171,8 +175,6 @@ export default {
 
 [带有响应性的供给 + 注入完整示例](https://sfc.vuejs.org/#eyJBcHAudnVlIjoiPHNjcmlwdD5cbmltcG9ydCBDaGlsZCBmcm9tICcuL0NoaWxkLnZ1ZSdcblxuZXhwb3J0IGRlZmF1bHQge1xuICBjb21wb25lbnRzOiB7IENoaWxkIH0sXG4gIHByb3ZpZGUoKSB7XG4gICAgcmV0dXJuIHtcbiAgICAgIG1lc3NhZ2U6ICdoZWxsbydcbiAgICB9XG4gIH1cbn1cbjwvc2NyaXB0PlxuXG48dGVtcGxhdGU+XG4gIDxDaGlsZCAvPlxuPC90ZW1wbGF0ZT4iLCJpbXBvcnQtbWFwLmpzb24iOiJ7XG4gIFwiaW1wb3J0c1wiOiB7XG4gICAgXCJ2dWVcIjogXCJodHRwczovL3NmYy52dWVqcy5vcmcvdnVlLnJ1bnRpbWUuZXNtLWJyb3dzZXIuanNcIlxuICB9XG59IiwiQ2hpbGQudnVlIjoiPHNjcmlwdD5cbmltcG9ydCBHcmFuZENoaWxkIGZyb20gJy4vR3JhbmRDaGlsZC52dWUnXG5cbmV4cG9ydCBkZWZhdWx0IHtcbiAgY29tcG9uZW50czoge1xuICAgIEdyYW5kQ2hpbGRcbiAgfVxufVxuPC9zY3JpcHQ+XG5cbjx0ZW1wbGF0ZT5cbiAgPEdyYW5kQ2hpbGQgLz5cbjwvdGVtcGxhdGU+IiwiR3JhbmRDaGlsZC52dWUiOiI8c2NyaXB0PlxuZXhwb3J0IGRlZmF1bHQge1xuICBpbmplY3Q6IFsnbWVzc2FnZSddXG59XG48L3NjcmlwdD5cblxuPHRlbXBsYXRlPlxuICA8cD5cbiAgICBNZXNzYWdlIHRvIGdyYW5kIGNoaWxkOiB7eyBtZXNzYWdlIH19XG4gIDwvcD5cbjwvdGVtcGxhdGU+In0=)
 
-
-
 ### 注入的别名 * {#injection-aliasing}
 
 当以数组形式使用 `inject`，注入的属性会以同名的 key 暴露到组件实例上。在上面的例子中，供给的属性名为 `"message"`，注入成了 `this.message`。访问属性的名字和注入名是相同的：<!--这里英文原文的 local 指代的就是访问 this.message 属性这一当前组件的局部状态，所以直接使用了 “访问属性的名字” 是为意译 -->
@@ -234,7 +236,61 @@ export default {
 }
 ```
 
-## 注入的响应性 * {#injection-reactivity}
+</div>
+
+## 配合响应性 {#working-with-reactivity}
+
+<div class="composition-api">
+
+When using reactive provide / inject values, **it is recommended to keep any mutations to reactive state inside of the _provider_ whenever possible**. This ensures that the provided state and its possible mutations are co-located in the same component, making it easier to maintain in the future.
+
+There may be times where we need to update the data from a injector component. In such cases, we recommend providing a method that is responsible for mutating the state:
+
+```vue{7-9,13}
+<!-- inside provider component -->
+<script setup>
+import { provide, ref } from 'vue'
+
+const location = ref('North Pole')
+
+function updateLocation() {
+  location.value = 'South Pole'
+}
+
+provide('location', {
+  location,
+  updateLocation
+})
+</script>
+```
+
+```vue{5}
+<!-- in injector component -->
+<script setup>
+import { inject } from 'vue'
+
+const { location, updateLocation } = inject('location')
+</script>
+
+<template>
+  <button @click="updateLocation">{{ location }}</button>
+</template>
+```
+
+Finally, you can wrap the provided value with [`readonly()`](/api/reactivity-core.html#readonly) if you want to ensure that the data passed through `provide` cannot be mutated by the injected component.
+
+```vue
+<script setup>
+import { ref, provide, readonly } from 'vue'
+
+const count = ref(0)
+provide('read-only-count', readonly(count))
+</script>
+```
+
+</div>
+
+<div class="options-api">
 
 为保证注入方和供给端的响应性链接，我们需要使用 [computed()](/api/reactivity-core.html#computed) 函数提供一个计算属性：
 
@@ -282,7 +338,9 @@ export const myInjectionKey = Symbol()
 import { provide } from 'vue'
 import { myInjectionKey } from './keys.js'
 
-provide(myInjectionKey, { /* 要供给的数据 */ })
+provide(myInjectionKey, { /* 
+  要供给的数据 
+*/ });
 ```
 
 ```js
@@ -292,6 +350,8 @@ import { myInjectionKey } from './keys.js'
 
 const injected = inject(myInjectionKey)
 ```
+
+See also: [Typing Provide / Inject](/guide/typescript/composition-api.html#typing-provide-inject) <Badge type="ts" text="TS" />
 
 </div>
 
@@ -304,7 +364,9 @@ import { myInjectionKey } from './keys.js'
 export default {
   provide() {
     return {
-      [myInjectionKey]: { /* 要供给的数据 */ }
+      [myInjectionKey]: { 
+        /* 要供给的数据 */ 
+      }
     }
   }
 }

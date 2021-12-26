@@ -10,6 +10,8 @@ aside: deep
 
 组件需要显式声明 props，这样 Vue 才能知道外部传入的哪些是 props，哪些是透传 attribute（下一章中我们会讨论到它）。
 
+<div class="composition-api">
+
 在单文件组件中使用 `<script setup>` 时，props 可以使用 `defineProps()` 宏来定义：
 
 ```vue
@@ -20,9 +22,7 @@ console.log(props.foo)
 </script>
 ```
 
-在没有使用 `<script setup>` 的组件中，props 需使用 `props` 选项来定义：
-
-<div class="composition-api">
+在没有使用 `<script setup>` 的组件中，props 需使用 [`props`](/api/options-state.html#props) 选项来定义：
 
 ```js
 export default {
@@ -34,8 +34,13 @@ export default {
 }
 ```
 
+请注意，传给 `defineProps()` 的参数和提供给 `props` 选项的值是相同的，两种声明方式背后其实使用的都是 props 选项。
+
 </div>
+
 <div class="options-api">
+
+Props are declared using the [`props`](/api/options-state.html#props) option:
 
 ```js
 export default {
@@ -49,9 +54,21 @@ export default {
 
 </div>
 
-请注意，传给 `defineProps()` 的参数和提供给 `props` 选项的值是相同的，两种声明方式背后其实使用的都是 props 选项。
-
 除了使用字符串数组来声明 props 外，还可以使用对象的形式：
+
+<div class="options-api">
+
+```js
+export default {
+  props: {
+    title: String,
+    likes: Number
+  }
+}
+```
+
+</div>
+<div class="composition-api">
 
 ```js
 // 使用 <script setup>
@@ -62,7 +79,7 @@ defineProps({
 ```
 
 ```js
-// 非-<script setup>
+// 非 <script setup>
 export default {
   props: {
     title: String,
@@ -71,13 +88,21 @@ export default {
 }
 ```
 
+</div>
+
 对于以对象形式声明中的每个属性，key 是 prop 的名称，而值应该是预期类型的构造函数。
 
 这不仅使你的组件自文档化，还同样在其他开发者使用到你的组件但传入了错误类型的 prop 时抛出警告。我们还会在下面的 [prop 校验](#prop-validation) 小节中继续讨论关于这个的更多细节。
 
+<div class="options-api">
+
+See also: [Typing Component Props](/guide/typescript/options-api.html#typing-component-props) <Badge type="ts" text="TS" />
+
+</div>
+
 <div class="composition-api">
 
-如果你正在搭配 TypeScript 使用 `<script setup>`，也可以 [使用类型标注来声明 props](/api/sfc-script-setup.html#typescript-only-features)：
+如果你正在搭配 TypeScript 使用 `<script setup>`，也可以使用类型标注来声明 props：
 
 ```vue
 <script setup lang="ts">
@@ -87,6 +112,8 @@ defineProps<{
 }>()
 </script>
 ```
+
+查看这一章获取更多 [组件 props 类型标注](/guide/typescript/composition-api.html#typing-component-props) 的相关细节。<Badge type="ts" text="TS" />
 
 </div>
 

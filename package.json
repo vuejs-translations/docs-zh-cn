@@ -6,11 +6,11 @@
     "clean": "rm -rf src/.vitepress/dist"
   },
   "dependencies": {
-    "@vue/repl": "^0.4.7",
-    "@vue/theme": "^0.1.23",
+    "@vue/repl": "^0.4.8",
+    "@vue/theme": "^0.1.28",
     "dynamics.js": "^1.1.5",
     "gsap": "^3.9.0",
-    "vitepress": "^0.20.9",
+    "vitepress": "^0.20.10",
     "vue": "^3.2.25"
   },
   "devDependencies": {

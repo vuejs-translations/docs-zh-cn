@@ -77,6 +77,8 @@ const state = reactive({ count: 0 })
 
 响应式对象其实是 [JavaScript Proxy](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy)，行为表现与一般对象并无二致。不同之处在于 Vue 能够跟踪对响应式对象属性的访问与更改操作。如果你对这其中的细节感到好奇，我们在 [深入响应式系统](/guide/extras/reactivity-in-depth.html) 一章中会进行解释，但我们推荐你先读完这里的主要指引。
 
+你也可以看看：[为响应式对象标注类型](/guide/typescript/composition-api.html#typing-reactive)。 <Badge type="ts" text="TS" />
+
 要在组件模板中使用响应式状态，请在 `setup()` 函数中定义并返回。
 
 ```js{5,9-11}
@@ -346,6 +348,8 @@ console.log(count.value) // 0
 count.value++
 console.log(count.value) // 1
 ```
+
+你也可以看看：[为 ref 标注类型](/guide/typescript/composition-api.html#typing-ref)。 <Badge type="ts" text="TS" />
 
 和响应式对象的属性类似，ref 的 `.value` 属性也是响应式的。同时，当值为对象类型时，会用 `reactive()` 自动转换它的 `.value`。
 

@@ -51,6 +51,8 @@ setTimeout(() => {
 
 下面是实例生命周期的图表。您不需要完全理解当前正在进行的所有事情，但随着您学习和构建更多内容，它将是一个有用的参考。
 
-![Component lifecycle diagram](./images/lifecycle.svg)
+![Component lifecycle diagram](./images/lifecycle.png)
+
+<!-- https://www.figma.com/file/Xw3UeNMOralY6NV7gSjWdS/Vue-Lifecycle -->
 
 Consult the <span class="composition-api">[Lifecycle Hooks API reference](/api/composition-api-lifecycle.html)</span><span class="options-api">[Lifecycle Hooks API reference](/api/options-lifecycle.html)</span> for details on all lifecycle hooks and their respective use cases.

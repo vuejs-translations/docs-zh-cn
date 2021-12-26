@@ -304,7 +304,6 @@ const obj = reactive({
 console.log(obj.count === 0) // true
 ```
 
-
 ### 保持响应性 {#retaining-reactivity}
 
 当我们只想取用一个很大的响应式对象上的一小部分属性时，可能会想到使用解构来获取想要的属性。然而被解构的属性会丢失与代理对象的响应性连接。
@@ -444,3 +443,13 @@ watchEffect(async (onInvalidate) => {
 一个异步函数会隐式返回一个 Promise，但清理函数需要在 Promise 完成前立即注册。另外，Vue 也依赖这个返回的 Promise 来自动地处理 Promise 链上潜在的错误。
 
 </div>
+
+## Integration with External State Systems
+
+### State Machines
+
+// TODO `useMachine()` example
+
+### RxJS
+
+The [VueUse](https://vueuse.org/) library provides the [`@vueuse/rxjs`](https://vueuse.org/rxjs/readme.html) add-on for connecting RxJS streams with Vue's reactivity system.

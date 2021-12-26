@@ -5,7 +5,7 @@
 在大型项目中，我们可能需要拆分应用为更小的块，并仅在需要时再从服务器加载。要做到这一点，Vue 提供了一个 [`defineAsyncComponent`](/api/general.html#defineasynccomponent) 方法：
 
 ```js
-const { defineAsyncComponent } = Vue
+import { defineAsyncComponent } from 'vue'
 
 const AsyncComp = defineAsyncComponent(() => {
   return new Promise((resolve, reject) => {

@@ -50,6 +50,10 @@
 
 - 推荐使用的 IDE 是 [VSCode](https://code.visualstudio.com/) + 配备 [Volar](https://github.com/johnsoncodehk/volar) 插件。Volar 提供了语法高亮、TypeScript 支持，和模板内表达式与组件 props 的智能提示。
 
+  :::tip
+  Volar 替代了 [Vetur](https://marketplace.visualstudio.com/items?itemName=octref.vetur)，那是我们之前为 Vue 2 提供的官方 VSCode 扩展。如果你之前已经安装了 Vetur，请确保在 Vue 3 的项目中禁用它。
+  :::
+
 - [WebStorm](https://www.jetbrains.com/webstorm/) 同样也为 Vue 的单文件组件提供了很好的内置支持。
 
 - 其他支持 [语言服务协议](https://microsoft.github.io/language-server-protocol/)（LSP）的 IDE 也可以通过 LSP 享受到 Volar 所提供的的核心功能。例如 [coc-volar](https://github.com/yaegassy/coc-volar)，它是为 Vim/NeoVim 提供更多 Vue SFC 支持。
@@ -69,21 +73,21 @@ Vue 的浏览器内开发者插件使我们可以浏览一个 Vue 应用的组�
 
 ## TypeScript {#typescript}
 
-Main article: [Using Vue with TypeScript](/guide/scaling-up/typescript).
+请见主要介绍这个的文章：[配合 TypeScript 使用 Vue](/guide/typescript/overview)。
 
-- [Volar](https://github.com/johnsoncodehk/volar) provides type checking for SFCs using `<script lang="ts">` blocks, including template expressions and cross-component props validation.
+- [Volar](https://github.com/johnsoncodehk/volar) 为 `<script lang="ts">` 块提供类型检查，还包括对模板内表达式和组件之间 props 的验证。
 
-- Use [`vue-tsc`](https://github.com/johnsoncodehk/volar/tree/master/packages/vue-tsc) for performing the same type checking from the command line, or for generating `d.ts` files for SFCs.
+- 使用 [`vue-tsc`](https://github.com/johnsoncodehk/volar/tree/master/packages/vue-tsc) 可以在命令行中执行相同的类型检查，通常用来生成单文件组件的 `d.ts` 文件。
 
 ## 测试 {#testing}
 
-Main article: [Testing Guide](/guide/scaling-up/testing).
+请见主要介绍这个的文章：[Testing Guide](/guide/scaling-up/testing)。
 
-- If using Vite, we recommend [Cypress](https://www.cypress.io/) as the test runner for both unit and e2e tests. Unit tests for Vue SFCs can be done with the [Cypress Component Test Runner](https://www.cypress.io/blog/2021/04/06/introducing-the-cypress-component-test-runner/).
+- [Cypress](https://www.cypress.io/) 推荐用于 E2E 测试。也可以通过 [Cypress 组件测试运行器](https://docs.cypress.io/guides/component-testing/introduction) 来给 Vue SFC 作单文件组件测试。
 
-- Vue CLI 内集成了 [Jest](https://jestjs.io/) 和 [Mocha](https://mochajs.org/)。
+- [Vitest](https://vitest.dev/) 是一个追求更快运行速度的测试运行器，由 Vue / Vite 团队成员开发。主要针对基于 Vite 的应用设计，可以为组件提供即时响应的测试反馈。
 
-- 如果你想手动地配置 Jest 来测试 Vue SFC，请查看 [vue-jest](https://github.com/vuejs/vue-jest) 的文档，它是 Vue SFC 的官方 Jest 测试工具。
+- [Jest](https://jestjs.io/) 可以通过 [vite-jest](https://github.com/sodatea/vite-jest) 配合 Vite 使用。不过只推荐在你已经有一套基于 Jest 的测试集、且想要迁移到基于 Vite 的开发配置时使用，因为 Vitest 会提供类似的功能，但集成更方便高效。
 
 ## 代码规范 {#linting}
 
@@ -119,9 +123,13 @@ Vue 团队维护着 [eslint-plugin-vue](https://github.com/vuejs/eslint-plugin-v
 
 - [文档](https://github.com/vuejs/vue-next/tree/master/packages/compiler-sfc)
 
-这个包是 Vue 核心 monorepo 的一部分，并始终和 `vue` 主包版本号保持一致。在 v3.2.13 及之后，它就已经成为 `vue` 主包的一个依赖并代理到了 `vue/compiler-sfc` 目录下，因此你无需单独安装它。
+这个包是 Vue 核心 monorepo 的一部分，并始终和 `vue` 主包版本号保持一致。它已经成为 `vue` 主包的一个依赖并代理到了 `vue/compiler-sfc` 目录下，因此你无需单独安装它。
 
 这个包本社您提供了处理 Vue SFC 的底层的功能，并只适用于需要支持 Vue SFC 相关工具链的作者。
+
+:::tip
+请始终选择通过 `vue/compiler-sfc` 的深度导入来使用这个包，因为这样可以确保其与 Vue 运行时版本同步。 <!-- TODO: need check -->
+:::
 
 ### `@vitejs/plugin-vue` {#vitejsplugin-vue}
 

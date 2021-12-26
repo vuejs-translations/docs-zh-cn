@@ -4,6 +4,8 @@
 
 ![组件树](./images/components.png)
 
+<!-- https://www.figma.com/file/qa7WHDQRWuEZNRs7iZRZSI/components -->
+
 这和我们嵌套 HTML 元素的方式类似，Vue 实现了自己的组件数据模型，使我们可以在每个组件内封装自定义内容与逻辑。Vue 同样也能很好地配合原生 Web Component。如果你想知道 Vue 组件与原生 Web Components 相比如何，可以 [阅读此章节](/guide/extras/web-components.html)。
 
 ## 定义一个组件 {#defining-a-component}
@@ -217,6 +219,8 @@ const props = defineProps(['title'])
 console.log(props.title)
 ```
 
+你也可以看看 [为组件 props 标注类型](/guide/typescript/composition-api.html#typing-component-props) 这一章了解更多。<Badge type="ts" text="TS" />
+
 如果你没有使用 `<script setup>`，props 必须以 `props` 选项的方式声明，props 对象会作为 `setup()` 函数的第一个参数：
 
 ```js
@@ -426,6 +430,8 @@ const emit = defineEmits(['enlarge-text'])
 emit('enlarge-text')
 ```
 
+你也可以看看 [为组件 emits 标注类型](/guide/typescript/composition-api.html#typing-component-emits) 这一章了解更多。<Badge type="ts" text="TS" />
+
 如果你没有在使用 `<script setup>`，你可以通过 `emits` 选项定义组件会抛出的事件。你可以从 `setup()` 函数的第二个参数，即 setup 上下文对象上访问到 `emit` 函数：
 
 ```js
@@ -453,7 +459,7 @@ export default {
 
 这会渲染成这样：
 
-:::danger Error
+:::danger 这是一个用来展示 Error 弹框的示例
 发生了一些错误。
 :::
 

@@ -114,9 +114,22 @@ methods: {
 
 以方法作事件处理器，会自动地接受原生 DOM 事件并触发执行，在上面的例子中，我们能够通过被触发事件的 `event.target.tagName` 访问到该 DOM 元素。
 
-模板编译器通过检查 `v-on` 的字符串值是否为一个 JavaScript 标识符或访问路径来检测是否是以方法作事件处理器。举个例子，`foo`、`foo.bar` 和 `foo['bar]` 都将被视为用作事件处理器的方法。而 `foo()` 和 `count++` 则会被视为内联事件处理器。
+<div class="composition-api">
 
-## 内联处理器中调用方法 {#methods-in-inline-handlers}
+你也可以看看 [为组件事件处理器标注类型](/guide/typescript/composition-api.html#typing-event-handlers) 这一章了解更多。<Badge type="ts" text="TS" />
+
+</div>
+<div class="options-api">
+
+你也可以看看 [为组件事件处理器标注类型](/guide/typescript/options-api.html#typing-event-handlers) 这一章了解更多。<Badge type="ts" text="TS" />
+
+</div>
+
+### 方法还是内联函数的区别 {#method-vs-inline-detection}
+
+模板编译器会通过传给 `v-on` 的值字符串是否是一个合法的 JavaScript 标识符或属性访问来断定是何种形式的事件处理器。举个例子，`foo`、`foo.bar` 和 `foo['bar']` 都会被视为方法、而 `foo()` 和 `count++` 都会被视为内联事件处理器。
+
+## 在内联处理器中调用方法 {#methods-in-inline-handlers}
 
 除了直接绑定一个方法名，我们还可以在内联事件处理器中调用方法。这使我们可以在原生事件外在向方法中传入更多自定义参数：
 
@@ -157,10 +170,18 @@ methods: {
 
 </div>
 
-有时我们也需要在内联语句中访问 DOM 原生事件。你可以传给方法一个特殊的 `$event` 变量：
+## 在内联事件处理器中访问事件参数 {#accessing-event-argument-in-inline-handlers}
+
+有时我们会需要在内联的事件处理器中访问原生 DOM 事件。你可以给该处理器方法传入一个特殊的 `$event` 变量，或者使用一个内联箭头函数：
 
 ```vue-html
-<button @click="warn('表格此时还不能提交。', $event)">
+<!-- 使用特殊的 $event 变量 -->
+<button @click="warn('Form cannot be submitted yet.', $event)">
+  Submit
+</button>
+
+<!-- 使用箭头函数 -->
+<button @click="(event) => warn('Form cannot be submitted yet.', event)">
   Submit
 </button>
 ```

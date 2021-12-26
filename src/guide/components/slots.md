@@ -30,6 +30,8 @@ aside: deep
 
 ![插槽图示](./images/slots.png)
 
+<!-- https://www.figma.com/file/LjKTYVL97Ck6TEmBbstavX/slot -->
+
 最终渲染出的 DOM 结果是这样：
 
 ```html
@@ -212,6 +214,8 @@ Vue 组件的插槽机制是受到了 [原生 Web Component `<slot>` 元素](htt
 `v-slot` 有对应的简写 `#`，因此 `<template v-slot:header>` 可以简写为 `<template #header>`。其意思就是 “将这部分模板片段传入子组件的 header 插槽中”。
 
 ![具名插槽图示](./images/named-slots.png)
+
+<!-- https://www.figma.com/file/2BhP8gVZevttBu9oUmUUyz/named-slot -->
 
 下面我们给出完整的、向 `<BaseLayout>` 传递内容的代码，指令均使用的是缩写形式：
 

@@ -38,9 +38,9 @@ const nav = [
         items: [
           { text: '合作伙伴', link: '/ecosystem/partners' },
           { text: '主题', link: '/ecosystem/themes' },
-          { text: '视频课程', link: '/ecosystem/video-courses' },
           { text: '工作', link: 'https://vuejobs.com/?ref=vuejs' },
           { text: 'T-Shirt 商店', link: 'https://vue.threadless.com/' }
+          // { text: '视频课程', link: '/ecosystem/video-courses' },
           // TODO should start a separate branch for Vue 3?
           // {
           //   text: 'Awesome Vue',
@@ -94,7 +94,11 @@ const nav = [
             text: '贡献指南',
             link: '/about/contribution-guide'
           },
-          { text: '行为准则', link: '/about/coc' }
+          { text: '行为准则', link: '/about/coc' },
+          {
+            text: '纪录片 · The Documentary',
+            link: 'https://www.youtube.com/watch?v=OrxmtDw4pVI'
+          }
         ]
       }
     ]
@@ -212,7 +216,10 @@ export const sidebar = {
           link: '/guide/scaling-up/state-management'
         },
         { text: '测试', link: '/guide/scaling-up/testing' },
-        { text: 'TypeScript', link: '/guide/scaling-up/typescript' }
+        {
+          text: '服务端渲染（SSR）',
+          link: '/guide/scaling-up/ssr'
+        }
       ]
     },
     {
@@ -237,7 +244,18 @@ export const sidebar = {
       ]
     },
     {
-      text: '进阶内容',
+      text: 'TypeScript',
+      items: [
+        { text: '总览', link: '/guide/typescript/overview' },
+        {
+          text: 'TS 与 Composition API',
+          link: '/guide/typescript/composition-api'
+        },
+        { text: 'TS 与 Options API', link: '/guide/typescript/options-api' }
+      ]
+    },
+    {
+      text: '进阶主题',
       items: [
         {
           text: '使用 Vue 的多种方式',
@@ -258,10 +276,6 @@ export const sidebar = {
         {
           text: '渲染函数 & JSX',
           link: '/guide/extras/render-function'
-        },
-        {
-          text: '服务端渲染（SSR）',
-          link: '/guide/extras/ssr'
         },
         {
           text: 'Vue 与 Web Components',

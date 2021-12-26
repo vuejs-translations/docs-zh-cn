@@ -265,3 +265,5 @@ data() {
 最后，在这里你可以直观地看到完整的指令语法：  
 
 ![directive syntax graph](./images/directive.png)
+
+<!-- https://www.figma.com/file/BGWUknIrtY9HOmbmad0vFr/Directive -->

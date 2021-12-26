@@ -124,6 +124,41 @@ export default {
 
 </div>
 
+这个 `emits` 选项同样支持以一个对象作为值，可以用来描述对要抛出事件的验证过程：
+
+<div class="composition-api">
+
+```vue
+<script setup>
+const emit = defineEmits({
+  submit(payload) {
+    // 通过返回值为 `true` 还是为 `false` 来判断
+    // 验证是否通过
+  }
+})
+</script>
+```
+
+你也可以看看这一章了解 [如何为组件所抛出事件标注类型](/guide/typescript/composition-api.html#typing-component-emits)。 <Badge type="ts" text="TS" />
+
+</div>
+<div class="options-api">
+
+```js
+export default {
+  emits: {
+    submit(payload) {
+      // 通过返回值为 `true` 还是为 `false` 来判断
+    // 验证是否通过
+    }
+  }
+}
+```
+
+你也可以看看这一章了解 [如何为组件所抛出事件标注类型](/guide/typescript/options-api.html#typing-component-emits)。 <Badge type="ts" text="TS" />
+
+</div>
+
 尽管是可选的，我们还是推荐你定义所有要抛出的事件，以此更好地在代码中描述和呈现组件的作用。这也使得 Vue 能更好地将事件和 [透传 attribute](/guide/components/attrs.html#v-on-listener-inheritance) 作出区分。
 
 :::tip

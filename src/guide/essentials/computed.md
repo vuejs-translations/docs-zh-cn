@@ -89,6 +89,8 @@ export default {
 
 在模板中使用计算属性和一般的属性并无二致。Vue 会意识到 `this.publishedBooksMessage` 依赖于 `this.author.books`，所以当 `this.author.books` 改变时，任何绑定 `vm.publishedBooksMessage` 都将同时更新。
 
+See also: [Typing Computed Properties](/guide/typescript/options-api.html#typing-computed) <Badge type="ts" text="TS" />
+
 </div>
 
 <div class="composition-api">
@@ -123,6 +125,8 @@ const publishedBooksMessage = computed(() => {
 我们在这里定义了一个计算属性 `publishedBooksMessage`。`computed()` 方法期望接收一个函数，返回值为一个 **计算 ref**。和其他一般的 ref 类似，你可以通过 `publishedBooksMessage.value` 访问到计算结果。计算 ref 也会在模板中自动解套因此在模板的表达式中无需 `.value`。
 
 一个计算属性会自动跟踪响应式依赖。Vue 会意识到 `this.publishedBooksMessage` 依赖于 `this.author.books`，所以当 `this.author.books` 改变时，任何绑定 `vm.publishedBooksMessage` 都将同时更新。
+
+See also: [Typing Computed](/guide/typescript/composition-api.html#typing-computed) <Badge type="ts" text="TS" />
 
 </div>
 

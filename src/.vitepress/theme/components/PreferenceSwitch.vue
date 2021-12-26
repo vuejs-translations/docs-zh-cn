@@ -195,9 +195,6 @@ function useToggleFn(
     font-size: 11px;
     padding: 8px 12px;
   }
-  .switch-container:first-child {
-    margin-bottom: 8px;
-  }
   .switch-container label:first-child {
     width: 46px;
   }
