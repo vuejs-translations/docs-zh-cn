@@ -46,7 +46,7 @@
 - 推荐的开发工具配置是 [Visual Studio Code](https://code.visualstudio.com/) + [Volar 插件](https://marketplace.visualstudio.com/items?itemName=johnsoncodehk.volar)，[WebStorm](https://www.jetbrains.com/webstorm/) 也是可以的。
 - 更多工具细节我们将会在 [工具链指引](/guide/scaling-up/tooling.html) 章节进行讨论。
 - 要了解更多 Vite 构建工具的细节，请查看 [Vite 文档](https://cn.vitejs.dev)。
-- 如果你选择使用 TypeScript，请阅读 [在 Vue 中使用 TypeScript](scaling-up/typescript.html)。
+- 如果你选择使用 TypeScript，请阅读 [在 Vue 中使用 TypeScript](typescript/overview.html)。
 
 当你准备将你的应用程序发布到生产环境中时，运行以下命令：
 
