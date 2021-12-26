@@ -20,7 +20,7 @@ function dismiss() {
 
 <template>
   <div class="banner" v-if="open">
-    Work in Progress - for Preview Only
+    持续编写中 - 仅供预览
   </div>
 </template>
 

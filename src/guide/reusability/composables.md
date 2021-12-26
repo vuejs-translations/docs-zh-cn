@@ -1,5 +1,6 @@
 ---
 aside: deep
+title: 可组合函数
 ---
 
 # 可组合函数 {#composables}

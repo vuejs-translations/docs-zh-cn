@@ -1,5 +1,6 @@
 ---
 aside: deep
+title: 响应式基础
 ---
 
 # 响应式基础 {#reactivity-fundamentals}

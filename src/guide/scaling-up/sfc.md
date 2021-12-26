@@ -1,3 +1,6 @@
+---
+title: 单文件组件
+---
 # 单文件组件 {#single-file-components}
 
 ## 介绍 {#introduction}

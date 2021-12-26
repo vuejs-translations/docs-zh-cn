@@ -1,5 +1,6 @@
 ---
 aside: deep
+title: Props
 ---
 
 # Props {#props}

@@ -1,3 +1,6 @@
+---
+title: 创建一个 Vue 应用
+---
 # 创建一个 Vue 应用 {#creating-a-vue-application}
 
 ## 应用实例 {#the-app-instance}

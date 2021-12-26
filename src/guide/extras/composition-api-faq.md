@@ -1,5 +1,6 @@
 ---
 aside: deep
+title: 组合式 API FAQ
 ---
 
 # 组合式 API FAQ {#composition-api-faq}

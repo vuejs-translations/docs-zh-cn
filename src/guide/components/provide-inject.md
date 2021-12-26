@@ -1,5 +1,6 @@
 ---
 aside: deep
+title: 供给 / 注入
 ---
 
 # 供给 / 注入 {#provide-inject}
