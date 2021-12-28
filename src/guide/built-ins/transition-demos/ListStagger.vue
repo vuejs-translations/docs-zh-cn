@@ -41,7 +41,7 @@ function onLeave(el, done) {
 
 <template>
   <div class="demo" style="height: 265px">
-    <input v-model="query" style="margin-bottom: 20px" />
+    <input v-model="query" style="margin-bottom: 20px" placeholder="输入内容来过滤列表" />
     <TransitionGroup
       tag="ul"
       :css="false"
