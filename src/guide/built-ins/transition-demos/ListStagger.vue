@@ -2,11 +2,11 @@
 import gsap from 'gsap'
 
 const list = [
-  { msg: 'Bruce Lee' },
-  { msg: 'Jackie Chan' },
-  { msg: 'Chuck Norris' },
-  { msg: 'Jet Li' },
-  { msg: 'Kung Fury' }
+  { msg: 'JavaScript' },
+  { msg: 'TypeScript' },
+  { msg: 'Vue.js' },
+  { msg: '开源' },
+  { msg: '前端' }
 ]
 
 let query = $ref('')

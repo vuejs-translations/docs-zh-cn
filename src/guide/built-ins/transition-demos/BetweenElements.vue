@@ -6,17 +6,17 @@ let docState = $ref('saved')
 
 <template>
   <div class="demo transition-demo">
-    <span style="margin-right: 20px">Click to cycle through states:</span>
+    <span style="margin-right: 20px">点击这里来滚动：</span>
     <div class="btn-container">
       <Transition name="slide-up" :mode="mode">
         <button v-if="docState === 'saved'" @click="docState = 'edited'">
-          Edit
+          编辑
         </button>
         <button v-else-if="docState === 'edited'" @click="docState = 'editing'">
-          Save
+          保存
         </button>
         <button v-else-if="docState === 'editing'" @click="docState = 'saved'">
-          Cancel
+          取消
         </button>
       </Transition>
     </div>
@@ -37,6 +37,7 @@ let docState = $ref('saved')
 
 .transition-demo button {
   position: absolute;
+  min-width: 60px;
 }
 
 .transition-demo button + button {
