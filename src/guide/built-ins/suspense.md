@@ -2,41 +2,41 @@
 aside: deep
 ---
 
-# Suspense
+# Suspense {#suspense}
 
-:::warning Experimental Feature
-`<Suspense>` is an experimental feature. It is not guaranteed to reach stable status and the API may change before it does.
+:::warning 实验性功能
+`<Suspense>` 是一项实验性功能。它还没有达到稳定状态，而且在那之前，相关 API 可能会发生变化。
 :::
 
-`<Suspense>` is a built-in component for orchestrating async dependencies in a component tree. It can render a loading state while waiting for multiple nested async dependencies down the component tree to be resolved.
+`<Suspense>` 是一个内置组件，用来在组件树中编排异步依赖。它可以渲染一个加载状态，同时等待组件树下的多个深层级的异步依赖执行完成。
 
-## Async Dependencies
+## 异步依赖 {#async-dependencies}
 
-To explain the problem `<Suspense>` is trying to solve and how it interacts with these async dependencies, let's imagine a component hierarchy like the following:
+要了解 `<Suspense>` 所解决的问题和它是如何与异步依赖进行交互的，我们需要想象这样一种组件层级结构：
 
 ```
 <Suspense>
 └─ <Dashboard>
    ├─ <Profile>
-   │  └─ <FriendStatus> (component with async setup())
+   │  └─ <FriendStatus>（组件有异步的 setup()）
    └─ <Content>
-      ├─ <ActivityFeed> (async component)
-      └─ <Stats> (async component)
+      ├─ <ActivityFeed> （异步组件）
+      └─ <Stats>（异步组件）
 ```
 
-In the component tree there are multiple nested components whose rendering depends on some async resource to be resolved first. Without `<Suspense>`, each of them will need to handle its own loading / error and loaded states. In the worst case scenario, we may see three loading spinners on the page, with content displayed at different times.
+在这个组件树中有多个嵌套组件，要渲染出它们，得依赖于所需的一些异步资源获得结果。如果没有 `<Suspense>`，则它们每个都需要处理自己的加载、报错和完成状态。在最坏的情况下，我们可能会在页面上看到三个旋转的加载态，在不同的时间显示出内容。
 
-The `<Suspense>` component gives us the ability to display top-level loading / error states while we wait on these nested async dependencies to be resolved.
+有了 `<Suspense>` 组件后，我们就可以在等待整个多层级组件树中的各个异步依赖获取结果时，在顶层展示出加载中或加载失败的状态。
 
-There are two types of async dependencies that `<Suspense>` can wait on:
+`<Suspense>` 可以等待的异步依赖有两种：
 
-1. Components with an async `setup()` hook. This includes components with `<script setup>` that contains top-level `await` expressions.
+1. 带有异步 `setup()` 钩子的组件。这也包含了使用 `<script setup>` 时有顶层 `await` 表达式的组件。
 
-2. [Async Components](/guide/components/async.html).
+2. [异步组件](/guide/components/async.html).
 
-### `async setup()`
+### `async setup()` {#async-setup}
 
-A Composition API component's `setup()` hook can be async:
+一个组合式 API 形式的组件 `setup()` 钩子可以是异步的：
 
 ```js
 export default {
@@ -50,7 +50,7 @@ export default {
 }
 ```
 
-If using `<script setup>`, the presence of top-level `await` expressions automatically makes the component an async dependency:
+如果正在使用 `<script setup>`，那么顶层的 `await` 表达式会自动让该组件成为一个异步依赖：
 
 ```vue
 <script setup>
@@ -63,53 +63,53 @@ const posts = await res.json()
 </template>
 ```
 
-### Async Components
+### 异步组件 {#async-components}
 
-Async components are **"suspensible"** by default. This means that if it has a `<Suspense>` in the parent chain, it will be treated as an async dependency of that `<Suspense>`. In this case, the loading state will be controlled by the `<Suspense>`, and the component's own loading, error, delay and timeout options will be ignored.
+异步组件默认就是 **"suspensible"** 的。这意味着如果组件关系链上有一个 `<Suspense>`，那么这个异步组件就会被当作这个 `<Suspense>` 的一个异步依赖。在这种情况下，加载状态是由 `<Suspense>` 控制，而该组件自己的加载、报错、延时和超时等选项都将被忽略。
 
-The async component can opt-out of `Suspense` control and let the component always control its own loading state by specifying `suspensible: false` in its options.
+异步组件也可以通过在选项中指定 `suspensible: false` 表明不用 `Suspense` 控制，并让组件始终自己控制其加载状态。
 
-## Loading State
+## 加载中状态 {#loading-state}
 
-The `<Suspense>` component has two slots: `#default` and `#fallback`. Both slots only allow for **one** immediate child node. The node in the default slot is shown if possible. If not, the node in the fallback slot will be shown instead.
+`<Suspense>` 组件有两个插槽：`#default` 和 `#fallback`。两个插槽都只允许 **一个** 直接子节点。在可能的时候都将显示默认槽中的节点。否则将显示后备槽中的节点。
 
 ```vue-html
 <Suspense>
-  <!-- component with nested async dependencies -->
+  <!-- 具有深层异步依赖的组件 -->
   <Dashboard />
 
-  <!-- loading state via #fallback slot -->
+  <!-- 在 #fallback 插槽中显示 “正在加载中” -->
   <template #fallback>
     Loading...
   </template>
 </Suspense>
 ```
 
-On initial render, `<Suspense>` will render its default slot content in memory. If any async dependencies are encountered during the process, it will enter **pending** state. During pending state, the fallback content will be displayed. When all encountered async dependencies have been resolved, `<Suspense>` enters **resolved** state and the resolved default slot content is displayed.
+在初始渲染时，`<Suspense>` 将渲染其默认的插槽内容并存储到内存中。如果在这个过程中遇到任何异步依赖，则会进入 **挂起** 状态。在挂起状态期间，展示的是后备内容。当所有遇到的异步依赖都完成后，`<Suspense>` 会进入 **完成** 状态，并将展示出默认插槽的内容。
 
-If no async dependencies were encountered during the initial render, `<Suspense>` will directly go into resolved state.
+如果在初次渲染时没有遇到异步依赖，`<Suspense>` 会直接进入完成状态。
 
-Once in resolved state, `<Suspense>` will only revert to pending state if the root node of the `#default` slot is replaced. New async dependencies nested deeper in the tree will **not** cause the `<Suspense>` to revert into pending state.
+进入完成状态后，只有当默认插槽的根节点被替换时，`<Suspense>` 才会回到挂起状态。组件树中新的更深层次的异步依赖 **不会** 造成 `<Suspense>` 回退到挂起状态。
 
-When a revert happens, fallback content will not be immediately displayed. Instead, `<Suspense>` will display the previous `#default` content while waiting for the new content and its async dependencies to be resolved. This behavior can be configured with the `timeout` prop: `<Suspense>` will switch to fallback content if it takes longer than `timeout` to render the new default content. A `timeout` value of `0` will cause the fallback content to be displayed immediately when default content is replaced.
+发生回退时，后备内容不会立即展示出来。相反，`<Suspense>` 在等待新内容和异步依赖完成时，会展示之前 `#default` 插槽的内容。这个行为可以通过一个 `timeout` prop 进行配置：在等待渲染新内容耗时超过 `timeout` 之后，`<Suspense>` 将会切换为展示后备内容。若 `timeout` 值为 `0` 将导致在替换默认内容时立即显示后备内容。
 
-## Events
+## 事件 {#events}
 
-In addition to the `pending` event, the `<suspense>` component also has `resolve` and `fallback` events. The `resolve` event is emitted when new content has finished resolving in the `default` slot. The `fallback` event is fired when the contents of the `fallback` slot are shown.
+除了 `pending` 事件之外，`<suspense>` 组件还有 `resolve` 和 `fallback` 事件。`resolve` 事件是在 `default` 插槽完成获取新内容时触发。`fallback` 事件则是在 `fallback` 插槽展示时触发。
 
-The events could be used, for example, to show a loading indicator in front of the old DOM while new components are loading.
+例如，可以使用这些事件在加载新组件时在之前的 DOM 最上层显示一个加载指示器。
 
-## Error Handling
+## 错误处理 {#error-handling}
 
-`<Suspense>` currently does not provide error handling via the component itself - however, you can use the [`errorCaptured`](/api/options-lifecycle.html#errorcaptured) option or the [`onErrorCaptured()`](/api/composition-api-lifecycle.html#onerrorcaptured) hook to capture and handle async errors in the parent component of `<Suspense>`.
+`<Suspense>` 组件自身目前还不提供错误处理，不过你可以使用 [`errorCaptured`](/api/options-lifecycle.html#errorcaptured) 选项或者 [`onErrorCaptured()`](/api/composition-api-lifecycle.html#onerrorcaptured) 钩子，在使用到 `<Suspense>` 的父组件中捕获和处理异步错误。
 
-## Combining with Other Components
+## 和其他组件结合 {#combining-with-other-components}
 
-It is common to want to use `<Suspense>` in combination with the [`<Transition>`](./transition) and [`<KeepAlive>`](./keep-alive) components. The nesting order of these components is important to get them all working correctly.
+我们常常会将 `<Suspense>` 和 [`<Transition>`](./transition)、[`<KeepAlive>`](./keep-alive) 等组件结合。要保证这些组件都能正常工作，嵌套的顺序非常重要。
 
-In addition, these components are often used in conjunction with the `<RouterView>` component from [Vue Router](https://next.router.vuejs.org/).
+另外，这些组件都通常与 [Vue Router](https://next.router.vuejs.org/) 中的 `<RouterView>` 组件结合使用。
 
-The following example shows how to nest these components so that they all behave as expected. For simpler combinations you can remove the components that you don't need:
+下面的示例展示了如何嵌套这些组件，使它们都能按照预期的方式运行。若想组合得更简单，你也可以删除一些你不需要的组件：
 
 ```vue-html
 <RouterView v-slot="{ Component }">
@@ -117,12 +117,12 @@ The following example shows how to nest these components so that they all behave
     <Transition mode="out-in">
       <KeepAlive>
         <Suspense>
-          <!-- main content -->
+          <!-- 主要内容 -->
           <component :is="Component"></component>
 
-          <!-- loading state -->
+          <!-- 加载中状态 -->
           <template #fallback>
-            Loading...
+            正在加载...
           </template>
         </Suspense>
       </KeepAlive>
@@ -131,4 +131,4 @@ The following example shows how to nest these components so that they all behave
 </RouterView>
 ```
 
-Vue Router has built-in support for [lazily loading components](https://next.router.vuejs.org/guide/advanced/lazy-loading.html) using dynamic imports. These are distinct from async components and currently they will not trigger `<Suspense>`. However, they can still have async components as descendants and those can trigger `<Suspense>` in the usual way.
+Vue Router 使用动态导入对 [懒加载组件](https://next.router.vuejs.org/guide/advanced/lazy-loading.html) 进行了内置支持。这些与异步组件不同，目前他们不会触发 `<Suspense>`。但是，它们仍然可以有异步组件作为后代，这些组件可以照常触发 `<Suspense>`。

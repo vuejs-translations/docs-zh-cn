@@ -248,10 +248,10 @@ export const sidebar = {
       items: [
         { text: '总览', link: '/guide/typescript/overview' },
         {
-          text: 'TS 与 Composition API',
+          text: 'TS 与组合式 API',
           link: '/guide/typescript/composition-api'
         },
-        { text: 'TS 与 Options API', link: '/guide/typescript/options-api' }
+        { text: 'TS 与选项式 API', link: '/guide/typescript/options-api' }
       ]
     },
     {
