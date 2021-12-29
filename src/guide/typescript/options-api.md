@@ -1,12 +1,12 @@
-# TypeScript with Options API
+# TypeScript 与选项式 API {#typescript-with-options-api}
 
-> This page assumes you've already read the overview on [Using Vue with TypeScript](./overview).
+> 这一章假设你已经阅读过了这篇 [搭配 TypeScript 使用 Vue](./overview) 的文档。
 
 :::tip
 While Vue does support TypeScript usage with Options API, it is recommended to use Vue with TypeScript via Composition API as it offers simpler, more efficient and more robust type inference.
 :::
 
-## Typing Component Props
+## Typing Component Props {#typing-component-props}
 
 Type inference for props in Options API requires wrapping the component with `defineComponent()`. With it, Vue is able to infer the types for the props based on the `props` option, taking additional options such as `required: true` and `default` into account:
 
@@ -64,7 +64,7 @@ export default defineComponent({
 })
 ```
 
-### Caveats
+### Caveats {#caveats}
 
 Because of a [design limitation](https://github.com/microsoft/TypeScript/issues/38845) in TypeScript, you have to be careful when using function values for `validator` and `default` prop options - make sure to use arrow functions:
 
@@ -92,7 +92,7 @@ const Component = defineComponent({
 
 This prevents TypeScript from having to infer the type of `this` inside these functions, which, unfortunately, can cause the type inference to fail.
 
-## Typing Component Emits
+## Typing Component Emits {#typing-component-emits}
 
 We can declare the expected payload type for an emitted event using the object syntax of the `emits` option. Also, all non-declared emitted events will throw a type error when called:
 
@@ -118,7 +118,7 @@ export default defineComponent({
 })
 ```
 
-## Typing Computed Properties
+## Typing Computed Properties {#typing-computed-properties}
 
 A computed property infers its type based on its return value:
 
@@ -174,7 +174,7 @@ const Component = defineComponent({
 
 Explicit annotations may also be required in some edge cases where TypeScript fails to infer the type of a computed property due to circular inference loops.
 
-## Typing Event Handlers
+## Typing Event Handlers {#typing-event-handlers}
 
 When dealing with native DOM events, it might be useful to type the argument we pass to the handler correctly. Let's take a look at this example:
 
@@ -207,7 +207,7 @@ export default {
 }
 ```
 
-## Augmenting Global Properties
+## Augmenting Global Properties {#augmenting-global-properties}
 
 Some plugins install globally available properties to all component instances via [`app.config.globalProperties`](/api/application.html#app-config-globalproperties). For example, we may install `this.$http` for data-fetching or `this.$translate` for internationalization. To make this play well with TypeScript, Vue exposes a `ComponentCustomProperties` interface designed to be augmented via [TypeScript module augmentation](https://www.typescriptlang.org/docs/handbook/declaration-merging.html#module-augmentation):
 
@@ -226,13 +226,13 @@ See also:
 
 - [TypeScript unit tests for component type extensions](https://github.com/vuejs/vue-next/blob/master/test-dts/componentTypeExtensions.test-d.tsx)
 
-### Type Augmentation Placement
+### Type Augmentation Placement {#type-augmentation-placement}
 
 We can put this type augmentation in a `.ts` file, or in a project-wide `*.d.ts` file. Either way, make sure it is included in `tsconfig.json`. For library / plugin authors, this file should be specified in the `types` property in `package.json`.
 
 In order to take advantage of module augmentation, you will need to ensure the augmentation is placed in a [TypeScript module](https://www.typescriptlang.org/docs/handbook/modules.html). That is to say, the file needs to contain at least one top-level `import` or `export`, even if it is just `export {}`. If the augmentation is placed outside of a module, it will overwrite the original types rather than augmenting them!
 
-## Augmenting Custom Options
+## Augmenting Custom Options {#augmenting-custom-options}
 
 Some plugins, for example `vue-router`, provides support for custom component options such as `beforeRouteEnter`:
 

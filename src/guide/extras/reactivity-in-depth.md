@@ -111,7 +111,7 @@ const createEffect = (fn) => {
   <!-- <common-codepen-snippet title="直观解释代理与 Vue 的响应性系统" slug="VwmxZXJ" tab="result" theme="light" :height="500" :editable="false" :preview="false" /> -->
 </div>
 
-这么讲似乎有些太快了，而且需要你有一些关于 [Proxy](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy) 的预备知识才能理解！所以让我们慢慢深入。你可以在网上找到很多关于 Proxy 的文章，但你真正需要了解的其实就是 **Proxy 是封装了一个对象的代理对象，并允许您拦截对所代理对象的任何交互。**
+这么讲似乎有些太快了，而且需要你有一些关于 [Proxy](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy) 的预备知识才能理解！所以让我们慢慢深入。你可以在网上找到很多关于 Proxy 的文章，但你真正需要了解的其实就是 **Proxy 是封装了一个对象的代理对象，并允许你拦截对所代理对象的任何交互。**
 
 像这样使用：`new Proxy(target, handler)`
 

@@ -6,7 +6,7 @@ title: 响应式基础
 # 响应式基础 {#reactivity-fundamentals}
 
 :::tip API 参考
-本页和其他很多之后的页面中都分别包含了选项式 API 和组合式 API 的示例代码。现在你选择的是 <span class="options-api">选项式 API</span><span class="composition-api">组合式 API</span>。您可以使用左侧侧边栏顶部的 “API 偏好” 开关在 API 风格之间切换。
+本页和其他很多之后的页面中都分别包含了选项式 API 和组合式 API 的示例代码。现在你选择的是 <span class="options-api">选项式 API</span><span class="composition-api">组合式 API</span>。你可以使用左侧侧边栏顶部的 “API 偏好” 开关在 API 风格之间切换。
 :::
 
 ## 声明响应式状态 {#declaring-reactive-state}

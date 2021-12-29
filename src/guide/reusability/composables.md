@@ -310,7 +310,7 @@ const { qux } = iseFeatureC(baz)
 </script>
 ```
 
-在某种程度上，您可以将这些提取的可组合函数看作是可以相互通信的组件范围内的服务。
+在某种程度上，你可以将这些提取的可组合函数看作是可以相互通信的组件范围内的服务。
 
 ## 在选项式 API 中使用可组合函数 {#using-composables-in-options-api}
 

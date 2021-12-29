@@ -40,8 +40,8 @@ aside: deep
   time: (由 `new Date().toLocaleString()` 生成的时间戳)
 ```
 
-- 如果您贡献提交的目的并不是与官方英文文档同步内容相关，为 `chore` 或其他类型，body 部分可以省略。
-- 如果您的贡献无需提交后经由 CI 验证，需要加上 `[ci skip]` 标识符。
+- 如果你贡献提交的目的并不是与官方英文文档同步内容相关，为 `chore` 或其他类型，body 部分可以省略。
+- 如果你的贡献无需提交后经由 CI 验证，需要加上 `[ci skip]` 标识符。
 
 #### 释义
 
@@ -125,7 +125,7 @@ aside: deep
 
 你可能已经注意到，默认情况下，在两端我们都加上了空格。
 
-**此处的某些规则可能暂时和旧有的 [Vue.js 中文文档的风格](https://github.com/vuejs/cn.vuejs.org/wiki) 不太一致**，如果您曾参与过 Vue 中文文档可能与您的习惯不一，望周知。
+**此处的某些规则可能暂时和旧有的 [Vue.js 中文文档的风格](https://github.com/vuejs/cn.vuejs.org/wiki) 不太一致**，如果你曾参与过 Vue 中文文档可能与你的习惯不一，望周知。
 
 这是为了保证文档视图中不会出现字符靠太近而黏合的问题。
 
@@ -211,7 +211,7 @@ Vitepress 和 Vuepress 中对以上两种写法的渲染视觉效果为：
 | declarative | 声明式 | |
 | imperative | 命令式 | |
 | handler | 处理函数 | |
-| you | 你 (而不用 “您”) | |
+| you | 你 (而不用 “你”) | |
 | computed | 计算属性 | |
 | computed property | 计算属性 | |
 | guard | 守卫 | |

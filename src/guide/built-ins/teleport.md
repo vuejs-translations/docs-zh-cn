@@ -145,7 +145,7 @@ let open = $ref(false)
 你可以将 `<Teleport>` 和 [`<Transition>`](./transition) 结合使用来创建一个带动画的模态框。你可以看看 [这个示例](/examples/#modal)。
 
 :::tip
-`<Teleport>` 挂载时，传送门的 `to` 目标必须是已经存在于 DOM 之中。理想情况下，这应该是整个 Vue 应用程序之外的一个元素。如果目标是由 Vue 呈现的另一个元素，您需要确保在 `<Teleport>` 之前挂载该元素。
+`<Teleport>` 挂载时，传送门的 `to` 目标必须是已经存在于 DOM 之中。理想情况下，这应该是整个 Vue 应用程序之外的一个元素。如果目标是由 Vue 呈现的另一个元素，你需要确保在 `<Teleport>` 之前挂载该元素。
 :::
 
 ## 搭配组件使用 {#using-with-components}

@@ -52,7 +52,7 @@ setTimeout(() => {
 
 ## 生命周期图示 {#lifecycle-diagram}
 
-下面是实例生命周期的图表。您不需要完全理解当前正在进行的所有事情，但随着您学习和构建更多内容，它将是一个有用的参考。
+下面是实例生命周期的图表。你不需要完全理解当前正在进行的所有事情，但随着你学习和构建更多内容，它将是一个有用的参考。
 
 ![Component lifecycle diagram](./images/lifecycle.png)
 

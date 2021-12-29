@@ -4,7 +4,7 @@
 
 这里是即将焕然一新的 vuejs.org。
 
-您也可以点击这里访问 [英文原文文档](https://vue-docs-preview.netlify.app/)，基于 vuejs/docs 的 [next](https://github.com/vuejs/docs/tree/next) 分支。
+你也可以点击这里访问 [英文原文文档](https://vue-docs-preview.netlify.app/)，基于 vuejs/docs 的 [next](https://github.com/vuejs/docs/tree/next) 分支。
 
 ## 如何进行翻译
 
