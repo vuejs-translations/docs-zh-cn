@@ -224,7 +224,7 @@ defineExpose({
 
 当父组件通过模板 ref 获取到了该组件的实例，得到的实例类型为 `{ a: number, b: number }`（ref 都会自动解套，和一般的实例一样）。
 
-See also: [Typing Component Template Refs](/guide/typescript/composition-api.html#typing-component-template-refs) <Badge type="ts" text="TS" />
+你也可以看看 [为组件的模板 ref 标注类型](/guide/typescript/composition-api.html#typing-component-template-refs) <Badge type="ts" text="TS" />
 
 </div>
 <div class="options-api">

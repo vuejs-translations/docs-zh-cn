@@ -122,7 +122,7 @@ export const sidebar = {
       ]
     },
     {
-      text: '概要',
+      text: '基础',
       items: [
         {
           text: '创建一个应用',
@@ -152,7 +152,7 @@ export const sidebar = {
           text: '生命周期',
           link: '/guide/essentials/lifecycle'
         },
-        { text: '监听器', link: '/guide/essentials/watchers' },
+        { text: '侦听器', link: '/guide/essentials/watchers' },
         { text: '模板 ref', link: '/guide/essentials/template-refs' },
         {
           text: '组件基础',

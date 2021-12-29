@@ -58,4 +58,4 @@ setTimeout(() => {
 
 <!-- https://www.figma.com/file/Xw3UeNMOralY6NV7gSjWdS/Vue-Lifecycle -->
 
-Consult the <span class="composition-api">[Lifecycle Hooks API reference](/api/composition-api-lifecycle.html)</span><span class="options-api">[Lifecycle Hooks API reference](/api/options-lifecycle.html)</span> for details on all lifecycle hooks and their respective use cases.
+有关所有生命周期钩子及其各自用例的详细信息，请参考 <span class="composition-api">[生命周期钩子 API 手册](/api/composition-api-lifecycle.html)</span><span class="options-api">[生命周期钩子 API 手册](/api/options-lifecycle.html)</span>。

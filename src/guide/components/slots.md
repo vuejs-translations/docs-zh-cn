@@ -421,7 +421,7 @@ function MyComponent(slots) {
 注意插槽上的 `name` 是由 Vue 保留的，不会作为 props 传递给插槽。因此最终 `headerProps` 的结果是 `{ message: 'hello' }`。
 
 
-### 一个好看的列表示例 {#fancy-list-example}
+### 一个漂亮的列表示例 {#fancy-list-example}
 
 想要了解作用域插槽怎么样使用更好吗？不妨看看这个 `<FancyList>` 组件的例子，它会渲染一个列表，其中会封装一些加载远端数据的逻辑、并提供此数据来做列表的渲染，或者是像分页、无限滚动这样更进阶的功能。然而我们希望它能够灵活处理每一项的外观，并将对每一项样式的控制权留给使用它的父组件。我们期望的用法可能是这样的:
 
@@ -467,7 +467,7 @@ function MyComponent(slots) {
 
 ```vue-html
 <MouseTracker v-slot="{ x, y }">
-  Mosue is at: {{ x }}, {{ y }}
+  鼠标位于：{{ x }}, {{ y }}
 </MouseTracker>
 ```
 

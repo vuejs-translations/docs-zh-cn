@@ -1,3 +1,10 @@
+:root {
+  --vue-docs-cn-scrollbar-bg: #f3f3f3;
+}
+.dark {
+  --vue-docs-cn-scrollbar-bg: #262626;
+}
+
 .VPSidebar {
   overflow-y: hidden !important;
   transition: all 0.3s ease;
@@ -10,7 +17,7 @@
   width: 6px;
 }
 .VPSidebar::-webkit-scrollbar-track {
-  background-color: #f3f3f3;
+  background-color: var(--vue-docs-cn-scrollbar-bg);
   border-radius: 20px;
 }
 .VPSidebar::-webkit-scrollbar-thumb {
