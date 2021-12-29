@@ -262,7 +262,7 @@ data() {
 </div>
 ```
 
-When using `<template v-for>`, the `key` should be placed on the `<template>` container:
+当你使用 `<template v-for>` 时，`key` 应该被放置在这个 `<template>` 容器上：
 
 ```vue-html
 <template v-for="todo in todos" :key="todo.name">
