@@ -465,7 +465,7 @@ W3C 的 WAI-ARIA 为如何构建动态内容和高阶用户界面控件提供了
 
 - _[视觉](https://webaim.org/articles/visual/)_ - 可以为这些用户提供屏幕助读器、屏幕缩放、控制屏幕对比度或盲文显示等帮助。
 - _[听觉](https://webaim.org/articles/auditory/)_ - 可以为这些用户提供视频字幕、文字记录或手语视频。
-- _[运动能力](https://webaim.org/articles/motor/)_ - 可以为这些用户提供一系列 [运动障碍辅助技术](https://webaim.org/articles/motor/assistive) 中：比如语音识别软件、眼球跟踪、单刀开关开关、超大轨迹球鼠标、自适应键盘等等。
+- _[运动能力](https://webaim.org/articles/motor/)_ - 可以为这些用户提供一系列 [运动障碍辅助技术](https://webaim.org/articles/motor/assistive) 中：比如语音识别软件、眼球跟踪、单刀式开关、超大轨迹球鼠标、自适应键盘等等。
 - _[认知能力](https://webaim.org/articles/cognitive/)_ - 可以为这些用户提供补充媒体、更清晰和简单、更结构化的内容。
 
 你可以查看以下来自 WebAim 的链接，更深入地了解这些用户的需求：
