@@ -525,7 +525,7 @@ app.component('save-button', {
 
 <div class="composition-api">
 
-### 响应性转换 <Badge type="warning" text="实验性" /> \*\* {#reactivity-transform}
+### 响应性语法糖 <Badge type="warning" text="实验性" /> \*\* {#reactivity-transform}
 
 必须对 ref 使用 `.value` 是一个因受限于 JavaScript 语言能力约束而带来的缺点。然而通过编译时期自动在合适的位置上添加上 `.value` 来改进开发体验。Vue 提供了一个语法糖，在编译时作相应转换，使得我们可以像这样书写上面的计数器示例：
 

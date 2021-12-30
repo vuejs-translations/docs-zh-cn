@@ -59,7 +59,7 @@ const props = defineProps<Props>()
 
 ### props 默认值 <Badge type="warning" text="实验性" /> {#props-default-values}
 
-当使用基于类型的声明，我们失去了未 props 定义默认值的能力。这可以通过现行的实验性 [响应性转换](/guide/extras/reactivity-transform.html) 来解决：
+当使用基于类型的声明，我们失去了未 props 定义默认值的能力。这可以通过目前实验性的 [响应性语法糖](/guide/extras/reactivity-transform.html#reactive-props-destructure) 来解决：
 
 ```vue
 <script setup lang="ts">

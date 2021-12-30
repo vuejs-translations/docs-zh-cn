@@ -1,18 +1,18 @@
-# Reactivity Transform
+# 响应性语法糖 {#reactivity-transform}
 
-:::warning Experimental Feature
-Reactivity Transform is currently an experimental feature. It is disabled by default and requires [explicit opt-in](#explicit-opt-in). It may also change before being finalized. To stay up-to-date, keep an eye on its [proposal and discussion on GitHub](https://github.com/vuejs/rfcs/discussions/369).
+:::warning 实验性功能
+响应性语法糖目前是一个实验性功能，默认是禁用的，需要 [显式选择使用](#explicit-opt-in)。在最终确定前仍可能发生变化，你可以查看 [GitHub 上的提案与讨论](https://github.com/vuejs/rfcs/discussions/369) 来关注和跟进最新进展。
 :::
 
-:::tip Composition-API-specific
-Reactivity Transform is a Composition-API-specific feature and requires a build step.
+:::tip 组合式 API 特有
+响应性语法糖是组合式 API 特有的功能，并且需要一个构建步骤。
 :::
 
-## Refs vs. Reactive Variables
+## ref vs. 响应式变量 {#refs-vs-reactive-variables}
 
-Ever since the introduction of the Composition API, one of the primary unresolved questions is the use of refs vs. reactive objects. It can be cumbersome to use `.value` everywhere, and it is easy to miss if not using a type system.
+自从引入组合式 API 的概念以来，一个主要的未能解决的问题就是 ref 和响应式对象的使用方式。到处使用 `.value` 无疑是很繁琐的，并且在没有类型系统的帮助时很容易漏掉。
 
-[Vue Reactivity Transform](https://github.com/vuejs/vue-next/tree/master/packages/reactivity-transform) is a compile-time transform that allows us to write code like this:
+[Vue 的响应性语法糖](https://github.com/vuejs/vue-next/tree/master/packages/reactivity-transform) 是一个编译时的转换过程，使我们可以像这样书写代码：
 
 ```vue
 <script setup>
@@ -30,9 +30,9 @@ function increment() {
 </template>
 ```
 
-The `$ref()` method here is a **compile-time macro**: it is not an actual method that will be called at runtime. Instead, the Vue compiler uses it as a hint to treat the resulting `count` variable as a **reactive variable.**
+这里的这个 `$ref()` 方法是一个 **编译时的宏命令**：它不是一个真实的、在运行时会调用的方法。而是用作 Vue 编译器的标记，表明最终的 `count` 变量需要是一个 **响应式变量**。
 
-Reactive variables can be accessed and re-assigned just like normal variables, but these operations are compiled into refs with `.value`. For example, the `<script>` part of the above component is compiled into:
+响应式的变量可以像普通变量那样被访问和重新赋值，但这些操作在编译后都会变为带 `.value` 的 ref。比如上面例子中 `<script>` 部分的代码就被编译成了下面这样：
 
 ```js{5,8}
 import { ref } from 'vue'
@@ -46,7 +46,7 @@ function increment() {
 }
 ```
 
-Every reactivity API that returns refs will have a `$`-prefixed macro equivalent. These APIs include:
+每一个会返回 ref 的响应性 API 都有一个相对应的、以 `$` 为前缀的宏函数。包括以下这些 API：
 
 - [`ref`](/api/reactivity-core.html#ref) -> `$ref`
 - [`computed`](/api/reactivity-core.html#computed) -> `$computed`
@@ -54,7 +54,7 @@ Every reactivity API that returns refs will have a `$`-prefixed macro equivalent
 - [`customRef`](/api/reactivity-advanced.html#customref) -> `$customRef`
 - [`toRef`](/api/reactivity-utilities.html#toref) -> `$toRef`
 
-These macros are globally available and do not need to be imported when Reactivity Transform is enabled, but you can optionally import them from `vue/macros` if you want to be more explicit:
+当响应性语法糖时，这些宏函数都是全局可用的、无需手动导入。但如果你想让它更明显，你也可以选择从 `vue/macros` 中引入它们：
 
 ```js
 import { $ref } from 'vue/macros'
@@ -62,9 +62,9 @@ import { $ref } from 'vue/macros'
 let count = $ref(0)
 ```
 
-## Destructuring with `$()`
+## 通过 `$()` 解构 {#destructuring-with}
 
-It is common for a composition function to return an object of refs, and use destructuring to retrieve these refs. For this purpose, reactivity transform provides the **`$()`** macro:
+我们常常会让一个组合函数返回一个含数个 ref 的对象，然后解构得到这些 ref。对于这种场景，响应性语法糖提供了一个 **`$()`** 宏：
 
 ```js
 import { useMouse } from '@vueuse/core'
@@ -74,7 +74,7 @@ const { x, y } = $(useMouse())
 console.log(x, y)
 ```
 
-Compiled output:
+编译输出为：
 
 ```js
 import { toRef } from 'vue'
@@ -87,13 +87,13 @@ const __temp = useMouse(),
 console.log(x.value, y.value)
 ```
 
-Note that if `x` is already a ref, `toRef(__temp, 'x')` will simply return it as-is and no additional ref will be created. If a destructured value is not a ref (e.g. a function), it will still work - the value will be wrapped into a ref so the rest of the code work as expected.
+请注意如果 `x` 已经是一个 ref，`toRef(__temp, 'x')` 则会简单地返回它本身，而不会再创建新的 ref。如果一个被解构的值不是 ref（例如是一个函数），也仍然可以使用，这个值会被包裹进一个 ref，因此其他代码都会正常工作。
 
-`$()` destructure works on both reactive objects **and** plain objects containing refs.
+对 `$()` 的解构在响应式对象 **和** 包含数个 ref 的对象都可用。
 
-## Convert Existing Refs to Reactive Variables with `$()`
+## 用 `$()` 将现存的 ref 转换为响应式对象 {#convert-existing-refs-to-reactive-variables-with}
 
-In some cases we may have wrapped functions that also return refs. However, the Vue compiler won't be able to know ahead of time that a function is going to return a ref. In such cases, the `$()` macro can also be used to convert any existing refs into reactive variables:
+在某些场景中我们可能已经有了会返回 ref 的函数。然而，Vue 编译器并不能够提前知道该函数会返回一个 ref。那么此时可以使用 `$()` 宏来将现存的 ref 转换为响应式变量。
 
 ```js
 function myCreateRef() {
@@ -103,15 +103,15 @@ function myCreateRef() {
 let count = $(myCreateRef())
 ```
 
-## Reactive Props Destructure
+## 响应式 props 解构 {#reactive-props-destructure}
 
-There are two pain points with the current `defineProps()` usage in `<script setup>`:
+现在的 `<script setup>` 中对 `defineProps` 宏的使用有两个痛点：
 
-1. Similar to `.value`, you need to always access props as `props.x` in order to retain reactivity. This means you cannot destructure `defineProps` because the resulting destructured variables are not reactive and will not update.
+1. 和 `.value` 类似，为了保持响应性，你始终需要以 `props.x` 的方式访问这些 prop。这意味着你不能够通过解构 `defineProps` 因为得到的变量将不是响应式的、也不会更新。
 
-2. When using the [type-only props declaration](https://v3.vuejs.org/api/sfc-script-setup.html#typescript-only-features), there is no easy way to declare default values for the props. We introduced the `withDefaults()` API for this exact purpose, but it's still clunky to use.
+2. 当使用 [基于类型的 props 的声明](https://v3.vuejs.org/api/sfc-script-setup.html#typescript-only-features) 时，无法很方便地声明这些 prop 的默认值。为此我们提供了 `withDefaults()` 这个 API，但使用起来仍然很笨拙。
 
-We can address these issues by applying the same logic for reactive variables destructure to `defineProps`:
+而有了响应性语法糖，我们就也可以在 `defineProps` 时使用响应式变量相同的解构写法了：
 
 ```html
 <script setup lang="ts">
@@ -123,21 +123,21 @@ We can address these issues by applying the same logic for reactive variables de
 
   const {
     msg,
-    // default value just works
+    // 默认值正常可用
     count = 1,
-    // local aliasing also just works
-    // here we are aliasing `props.foo` to `bar`
+    // 解构时命别名也可用
+    // 这里我们就将 `props.foo` 命别名为 `bar`
     foo: bar
   } = defineProps<Props>()
 
   watchEffect(() => {
-    // will log whenever the props change
+    // 会在 props 变化时打印
     console.log(msg, count, bar)
   })
 </script>
 ```
 
-the above will be compiled into the following runtime declaration equivalent:
+上面的代码将被编译成下面这样的运行时声明：
 
 ```js
 export default {
@@ -154,33 +154,33 @@ export default {
 }
 ```
 
-## Retaining Reactivity Across Function Boundaries
+## 保持在函数间的响应性 {#retaining-reactivity-across-function-boundaries}
 
-While reactive variables relieve us from having to use `.value` everywhere, it creates an issue of "reactivity loss" when we pass reactive variables across function boundaries. This can happen in two cases:
+虽然响应式变量使我们可以不再受 `.value` 的困扰，但它也使得我们在函数间传递响应式变量时可能造成 “响应性丢失” 的问题。这可能在以下两种场景中出现：
 
-### Passing into function as argument
+### 以参数形式传入函数 {#passing-into-function-as-argument}
 
-Given a function that expects a ref object as argument, e.g.:
+假设有一个期望接收一个 ref 对象为参数的函数：
 
 ```ts
 function trackChange(x: Ref<number>) {
   watch(x, (x) => {
-    console.log('x changed!')
+    console.log('x 改变了！')
   })
 }
 
 let count = $ref(0)
-trackChange(count) // doesn't work!
+trackChange(count) // 无效！
 ```
 
-The above case will not work as expected because it compiles to:
+上面的例子不会正常工作，因为代码被编译成了这样：
 
 ```ts
 let count = ref(0)
 trackChange(count.value)
 ```
 
-Here `count.value` is passed as a number where `trackChange` expects an actual ref. This can be fixed by wrapping `count` with `$$()` before passing it:
+这里的 `count.value` 是以一个 number 类型值的形式传入，然而 `trackChange` 期望接收的是一个真正的 ref。要解决这个问题，可以在将 `count` 作为参数传入之前，用 `$$()` 包裹：
 
 ```diff
 let count = $ref(0)
@@ -197,20 +197,20 @@ let count = ref(0)
 trackChange(count)
 ```
 
-As we can see, `$$()` is a macro that serves as an **escape hint**: reactive variables inside `$$()` will not get `.value` appended.
+我们可以看到，`$$()` 的效果就像是一个 **转义标识**：`$$()` 中的响应式变量不会追加上 `.value`。
 
-### Returning inside function scope
+### 作为函数返回值 {#returning-inside-function-scope}
 
-Reactivity can also be lost if reactive variables are used directly in a returned expression:
+如果将响应式变量直接放在返回值表达式中回丢失掉响应性：
 
 ```ts
 function useMouse() {
   let x = $ref(0)
   let y = $ref(0)
 
-  // listen to mousemove...
+  // 监听 mousemove 事件
 
-  // doesn't work!
+  // 不起效！
   return {
     x,
     y
@@ -218,7 +218,7 @@ function useMouse() {
 }
 ```
 
-The above return statement compiles to:
+上面的语句将被翻译为：
 
 ```ts
 return {
@@ -227,18 +227,18 @@ return {
 }
 ```
 
-In order to retain reactivity, we should be returning the actual refs, not the current value at return time.
+为了保持响应性，我们需要返回的是真正的 ref，而不是返回时 ref 内的值。
 
-Again, we can use `$$()` to fix this. In this case, `$$()` can be used directly on the returned object - any reference to reactive variables inside the `$$()` call will be retained as reference to their underlying refs:
+我们还是可以使用 `$$()` 来结局。在这个例子中，`$$()` 可以直接用在要返回的对象上， `$$()` 调用时任何对响应式变量的引用都会保留为对相应 ref 的引用：
 
 ```ts
 function useMouse() {
   let x = $ref(0)
   let y = $ref(0)
 
-  // listen to mousemove...
+  // 监听 mousemove 事件
 
-  // fixed
+  // 修改后起效
   return $$({
     x,
     y
@@ -246,9 +246,9 @@ function useMouse() {
 }
 ```
 
-### `$$()` Usage on destructured props
+### 在解构 `$$()` 使用 {#usage-on-destructured-props}
 
-`$$()` works on destructured props since they are reactive variables as well. The compiler will convert it with `toRef` for efficiency:
+`$$()` 可以用在对 props 的结构，因为它们也是响应式的变量。编译器会高效地通过 `toRef` 来做转换：
 
 ```ts
 const { count } = defineProps<{ count: number }>()
@@ -256,7 +256,7 @@ const { count } = defineProps<{ count: number }>()
 passAsRef($$(count))
 ```
 
-compiles to:
+编译结果为：
 
 ```js
 setup(props) {
@@ -265,29 +265,29 @@ setup(props) {
 }
 ```
 
-## TypeScript Integration <Badge type="ts" text="TS" />
+## TypeScript 集成 <Badge type="ts" text="TS" /> {#typescript-integration}
 
-Vue provides typings for these macros (available globally) and all types will work as expected. There are no incompatibilities with standard TypeScript semantics so the syntax would work with all existing tooling.
+Vue 为这些宏函数都提供了类型声明（全局可用）并且类型都会符合你的使用预期。它与标准的 TypeScript 语义没有不兼容之处，因此它的语法可以与所有现有的工具兼容。
 
-This also means the macros can work in any files where valid JS / TS are allowed - not just inside Vue SFCs.
+这也意味着这些宏函数在任何 JS / TS 文件中都是合法的，不是仅能在 Vue SFC 中使用。
 
-Since the macros are available globally, their types need to be explicitly referenced (e.g. in a `env.d.ts` file):
+因为这些宏函数都是全局可用的，它们的类型需要被显式地引用（例如，在 `env.d.ts` 文件中）：
 
 ```ts
 /// <reference types="vue/macros-global" />
 ```
 
-When explicitly importing the macros from `vue/macros`, the type will work without declaring the globals.
+若你是从 `vue/macros` 中显式引入宏函数时，则不需要像这样全局声明了。
 
-## Explicit Opt-in
+## 显式启用 {#explicit-opt-in}
 
-Reactivity Transform is currently disabled by default and requires explicit opt-in. In addition, all of the following setups require `vue@^3.2.25`.
+响应性语法糖目前默认是关闭状态，需要你显式选择启用。此外，接下来的所有配置都需要 `vue@^3.2.25`。
 
-### Vite
+### Vite {#vite}
 
-- Requires `@vitejs/plugin-vue@^2.0.0`
-- Applies to SFCs and js(x)/ts(x) files. A fast usage check is performed on files before applying the transform so there should be no performance cost for files not using the macros.
-- Note `refTransform` is now a plugin root-level option instead of nested as `script.refSugar`, since it affects not just SFCs.
+- 需要 `@vitejs/plugin-vue@^2.0.0`
+- 应用于 SFC 和 js(x)/ts(x) 文件。在执行转换之前，会对文件进行快速的使用检查，因此不使用宏的文件应该不会有性能损失。
+- 注意 `refTransform` 现在是一个插件的顶层选项，而不再是位于 `script.refSugar` 之中了，因为它不仅仅只对 SFC 起效。
 
 ```js
 // vite.config.js
@@ -300,10 +300,10 @@ export default {
 }
 ```
 
-### `vue-cli`
+### `vue-cli` {#vue-cli}
 
-- Currently only affects SFCs
-- requires `vue-loader@^17.0.0`
+- 目前仅对 SFC 起效
+- 需要 `vue-loader@^17.0.0`
 
 ```js
 // vue.config.js
@@ -322,10 +322,10 @@ module.exports = {
 }
 ```
 
-### Plain `webpack` + `vue-loader`
+### 仅用 `webpack` + `vue-loader` {#plain-webpack-vue-loader}
 
-- Currently only affects SFCs
-- requires `vue-loader@^17.0.0`
+- 目前仅对 SFC 起效
+- 需要 `vue-loader@^17.0.0`
 
 ```js
 // webpack.config.js
