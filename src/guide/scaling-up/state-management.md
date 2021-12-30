@@ -1,8 +1,8 @@
-# State Management
+# 状态管理 {#state-management}
 
-## What is State Management?
+## 什么是状态管理？ {#what-is-state-management}
 
-Technically, every Vue component instance already "manages" its own reactive state. Take a simple counter component as an example:
+从技术上讲，每一个 Vue 组件实例都已经在 “管理” 它自己的响应式状态了。我们以一个简单的计数器组件为例：
 
 <div class="composition-api">
 
@@ -10,16 +10,16 @@ Technically, every Vue component instance already "manages" its own reactive sta
 <script setup>
 import { ref } from 'vue'
 
-// state
+// 状态
 const count = ref(0)
 
-// actions
+// 动作
 function increment() {
   count.value++
 }
 </script>
 
-<!-- view -->
+<!-- 视图 -->
 <template>{{ count }}</template>
 ```
 
@@ -29,13 +29,13 @@ function increment() {
 ```vue
 <script>
 export default {
-  // state
+  // 状态
   data() {
     return {
       count: 0
     }
   },
-  // actions
+  // 动作
   methods: {
     increment() {
       this.count++
@@ -44,44 +44,44 @@ export default {
 }
 </script>
 
-<!-- view -->
+<!-- 视图 -->
 <template>{{ count }}</template>
 ```
 
 </div>
 
-It is a self-contained unit with the following parts:
+它是一个独立的单元，由以下几个部分组成:
 
-- The **state**, the source of truth that drives our app;
-- The **view**, a declarative mapping of the **state**;
-- The **actions**, the possible ways the state could change in reaction to user inputs from the **view**.
+- **状态**：驱动整个应用的数据源；
+- **视图**：对 **状态** 的一种声明式映射；
+- **视图**：根据用户在 **视图** 中的输入，状态可能作出相应响应式变更的方式。
 
-This is a simple representation of the concept of "one-way data flow":
+下面是 “单向数据流” 这一概念的简单图示：
 
 <p style="text-align: center">
   <img alt="state flow diagram" src="./images/state-flow.png" width="252px" style="margin: 40px auto">
 </p>
 
-However, the simplicity starts to break down when we have **multiple components that share a common state**:
+然而，当我们有 **多个组件共享一个共同的状态** 时，就没有这么简单了：
 
-1. Multiple views may depend on the same piece of state.
-2. Actions from different views may need to mutate the same piece of state.
+1. 多个视图可能都依赖于同一部分状态。
+2. 不同视图中的动作可能会有冲突地更改同一部分状态。
 
-For case one, a possible workaround is by "lifting" the shared state up to a common ancestor component, and then pass it down as props. However, this quickly gets tedious in component trees with deep hierarchies, leading to another problem known as [Props Drilling](/guide/components/provide-inject.html#props-drilling).
+对于情景 1，一个可行的办法是将共享状态 “提升” 到共同的祖先组件上去，再通过 props 传下来。然而在深层次的组件树结构中这么做的话，很快就会使得代码变得繁琐冗长。这回导致另一个问题：[props 深潜](/guide/components/provide-inject.html#props-drilling)。
 
-For case two, we often find ourselves resorting to solutions such as reaching for direct parent / child instances via template refs, or trying to mutate and synchronize multiple copies of the state via emitted events. Both of these patterns are brittle and quickly lead to unmaintainable code.
+对于情景 2，我们经常发现自己会直接通过模板引用获取父/子实例，或者通过触发的事件尝试改变和同步多个状态的副本。但这些模式的健壮性都较为脆弱，并且很快就会导致不可维护的代码。
 
-A simpler and more straightforward solution is to extract the shared state out of the components, and manage it in a global singleton. With this, our component tree becomes a big "view", and any component can access the state or trigger actions, no matter where they are in the tree!
+一个更简单直接的解决方案是抽取出组件间的共享状态，放在一个全局单例中来管理。这样我们的组件树就变成了一个大的 “视图”，而任何位置上的组件都可以访问其中的状态或触发动作。
 
-## Simple State Management with Reactivity API
+## 用响应性 API 做简单状态管理 {#simple-state-management-with-reactivity-api}
 
 <div class="options-api">
 
-In Options API, reactive data is declared using the `data()` option. Internally, the object returned by `data()` is made reactive via the [`reactive()`](/api/reactivity-core.html#reactive) function, which is also available as a public API.
+在选项式 API 中，响应式数据是用 `data()` 选项声明的。在内部，`data()` 的返回值对象会通过 [`reactive()`](/api/reactivity-core.html#reactive) 这个公开的 API 函数转为响应式。
 
 </div>
 
-If you have a piece of state that should be shared by multiple instances, you can use [`reactive()`](/api/reactivity-core.html#reactive) to create a reactive object, and then import it from multiple components:
+如果你有一部分状态需要在多个组件实例键共享，你可以使用 [`reactive()`](/api/reactivity-core.html#reactive) 来创建一个响应式对象，并在不同组件中导入它：
 
 ```js
 // store.js
@@ -100,7 +100,7 @@ export const store = reactive({
 import { store } from './store.js'
 </script>
 
-<template>From A: {{ store.count }}</template>
+<template>来自 A：{{ store.count }}</template>
 ```
 
 ```vue
@@ -109,7 +109,7 @@ import { store } from './store.js'
 import { store } from './store.js'
 </script>
 
-<template>From B: {{ store.count }}</template>
+<template>来自 B：{{ store.count }}</template>
 ```
 
 </div>
@@ -129,7 +129,7 @@ export default {
 }
 </script>
 
-<template>From A: {{ store.count }}</template>
+<template>从 A 而来：{{ store.count }}</template>
 ```
 
 ```vue
@@ -146,24 +146,24 @@ export default {
 }
 </script>
 
-<template>From B: {{ store.count }}</template>
+<template>从 B 而来：{{ store.count }}</template>
 ```
 
 </div>
 
-Now whenever the `store` object is mutated, both `<ComponentA>` and `<ComponentB>` will update their views automatically - we have a single source of truth now.
+现在每当 `store` 对象被更改时，`<ComponentA>` 与 `<ComponentB>` 都会自动更新它们的视图。现在我们有了单一的数据源。
 
-However, this also means any component importing `store` can mutate it however they want:
+然而，这也意味着任意一个导入了 `store` 的组件都可以随意修改它的状态：
 
 ```vue-html{2}
 <template>
   <button @click="store.count++">
-    From B: {{ store.count }}
+    来自 B：{{ store.count }}
   </button>
 </template>
 ```
 
-While this works in simple cases, global state that can be arbitrarily mutated by any component is not going to be very maintainable for the long run. To ensure the state-mutating logic is centralized like the state itself, it is recommended to define methods on the store with names that express the intention of the actions:
+虽然这在简单的情况下是可行的，但从长远来看，可以被任何组件任意改变的全局状态是不太容易维护的。为了确保改变状态的逻辑像状态本身一样集中，建议在 store 上定义方法，方法的名称应该要能表达出行动的意图：
 
 ```js{6-8}
 // store.js
@@ -180,45 +180,45 @@ export const store = reactive({
 ```vue-html{2}
 <template>
   <button @click="store.increment()">
-    From B: {{ store.count }}
+    来自 B：{{ store.count }}
   </button>
 </template>
 ```
 
 <div class="composition-api">
 
-[Try it in the Playground](https://sfc.vuejs.org/#eyJBcHAudnVlIjoiPHNjcmlwdCBzZXR1cD5cbmltcG9ydCBDb21wb25lbnRBIGZyb20gJy4vQ29tcG9uZW50QS52dWUnXG5pbXBvcnQgQ29tcG9uZW50QiBmcm9tICcuL0NvbXBvbmVudEIudnVlJ1xuPC9zY3JpcHQ+XG5cbjx0ZW1wbGF0ZT5cbiAgPENvbXBvbmVudEEgLz5cbiAgPENvbXBvbmVudEIgLz5cbjwvdGVtcGxhdGU+IiwiaW1wb3J0LW1hcC5qc29uIjoie1xuICBcImltcG9ydHNcIjoge1xuICAgIFwidnVlXCI6IFwiaHR0cHM6Ly9zZmMudnVlanMub3JnL3Z1ZS5ydW50aW1lLmVzbS1icm93c2VyLmpzXCJcbiAgfVxufSIsIkNvbXBvbmVudEEudnVlIjoiPHNjcmlwdCBzZXR1cD5cbmltcG9ydCB7IHN0b3JlIH0gZnJvbSAnLi9zdG9yZS5qcydcbjwvc2NyaXB0PlxuXG48dGVtcGxhdGU+XG4gIDxkaXY+XG4gICAgPGJ1dHRvbiBAY2xpY2s9XCJzdG9yZS5pbmNyZW1lbnQoKVwiPlxuICAgICAgRnJvbSBBOiB7eyBzdG9yZS5jb3VudCB9fVxuICAgIDwvYnV0dG9uPlxuICA8L2Rpdj5cbjwvdGVtcGxhdGU+IiwiQ29tcG9uZW50Qi52dWUiOiI8c2NyaXB0IHNldHVwPlxuaW1wb3J0IHsgc3RvcmUgfSBmcm9tICcuL3N0b3JlLmpzJ1xuPC9zY3JpcHQ+XG5cbjx0ZW1wbGF0ZT5cbiAgPGRpdj5cbiAgICA8YnV0dG9uIEBjbGljaz1cInN0b3JlLmluY3JlbWVudCgpXCI+XG4gICAgICBGcm9tIEI6IHt7IHN0b3JlLmNvdW50IH19XG4gICAgPC9idXR0b24+XG4gIDwvZGl2PlxuPC90ZW1wbGF0ZT4iLCJzdG9yZS5qcyI6ImltcG9ydCB7IHJlYWN0aXZlIH0gZnJvbSAndnVlJ1xuXG5leHBvcnQgY29uc3Qgc3RvcmUgPSByZWFjdGl2ZSh7XG4gIGNvdW50OiAwLFxuICBpbmNyZW1lbnQoKSB7XG4gICAgdGhpcy5jb3VudCsrXG4gIH1cbn0pIn0=)
+[在 Playground 中尝试一下](https://sfc.vuejs.org/#eyJBcHAudnVlIjoiPHNjcmlwdCBzZXR1cD5cbmltcG9ydCBDb21wb25lbnRBIGZyb20gJy4vQ29tcG9uZW50QS52dWUnXG5pbXBvcnQgQ29tcG9uZW50QiBmcm9tICcuL0NvbXBvbmVudEIudnVlJ1xuPC9zY3JpcHQ+XG5cbjx0ZW1wbGF0ZT5cbiAgPENvbXBvbmVudEEgLz5cbiAgPENvbXBvbmVudEIgLz5cbjwvdGVtcGxhdGU+IiwiaW1wb3J0LW1hcC5qc29uIjoie1xuICBcImltcG9ydHNcIjoge1xuICAgIFwidnVlXCI6IFwiaHR0cHM6Ly9zZmMudnVlanMub3JnL3Z1ZS5ydW50aW1lLmVzbS1icm93c2VyLmpzXCJcbiAgfVxufSIsIkNvbXBvbmVudEEudnVlIjoiPHNjcmlwdCBzZXR1cD5cbmltcG9ydCB7IHN0b3JlIH0gZnJvbSAnLi9zdG9yZS5qcydcbjwvc2NyaXB0PlxuXG48dGVtcGxhdGU+XG4gIDxkaXY+XG4gICAgPGJ1dHRvbiBAY2xpY2s9XCJzdG9yZS5pbmNyZW1lbnQoKVwiPlxuICAgICAg5p2l6IeqIEHvvJp7eyBzdG9yZS5jb3VudCB9fVxuICAgIDwvYnV0dG9uPlxuICA8L2Rpdj5cbjwvdGVtcGxhdGU+IiwiQ29tcG9uZW50Qi52dWUiOiI8c2NyaXB0IHNldHVwPlxuaW1wb3J0IHsgc3RvcmUgfSBmcm9tICcuL3N0b3JlLmpzJ1xuPC9zY3JpcHQ+XG5cbjx0ZW1wbGF0ZT5cbiAgPGRpdj5cbiAgICA8YnV0dG9uIEBjbGljaz1cInN0b3JlLmluY3JlbWVudCgpXCI+XG4gICAgICDmnaXoh6ogQu+8mnt7IHN0b3JlLmNvdW50IH19XG4gICAgPC9idXR0b24+XG4gIDwvZGl2PlxuPC90ZW1wbGF0ZT4iLCJzdG9yZS5qcyI6ImltcG9ydCB7IHJlYWN0aXZlIH0gZnJvbSAndnVlJ1xuXG5leHBvcnQgY29uc3Qgc3RvcmUgPSByZWFjdGl2ZSh7XG4gIGNvdW50OiAwLFxuICBpbmNyZW1lbnQoKSB7XG4gICAgdGhpcy5jb3VudCsrXG4gIH1cbn0pIn0=)
 
 </div>
 <div class="options-api">
 
-[Try it in the Playground](https://sfc.vuejs.org/#eyJBcHAudnVlIjoiPHNjcmlwdD5cbmltcG9ydCBDb21wb25lbnRBIGZyb20gJy4vQ29tcG9uZW50QS52dWUnXG5pbXBvcnQgQ29tcG9uZW50QiBmcm9tICcuL0NvbXBvbmVudEIudnVlJ1xuICBcbmV4cG9ydCBkZWZhdWx0IHtcbiAgY29tcG9uZW50czoge1xuICAgIENvbXBvbmVudEEsXG4gICAgQ29tcG9uZW50QlxuICB9XG59XG48L3NjcmlwdD5cblxuPHRlbXBsYXRlPlxuICA8Q29tcG9uZW50QSAvPlxuICA8Q29tcG9uZW50QiAvPlxuPC90ZW1wbGF0ZT4iLCJpbXBvcnQtbWFwLmpzb24iOiJ7XG4gIFwiaW1wb3J0c1wiOiB7XG4gICAgXCJ2dWVcIjogXCJodHRwczovL3NmYy52dWVqcy5vcmcvdnVlLnJ1bnRpbWUuZXNtLWJyb3dzZXIuanNcIlxuICB9XG59IiwiQ29tcG9uZW50QS52dWUiOiI8c2NyaXB0PlxuaW1wb3J0IHsgc3RvcmUgfSBmcm9tICcuL3N0b3JlLmpzJ1xuXG5leHBvcnQgZGVmYXVsdCB7XG4gIGRhdGEoKSB7XG4gICAgcmV0dXJuIHtcbiAgICAgIHN0b3JlXG4gICAgfVxuICB9XG59XG48L3NjcmlwdD5cblxuPHRlbXBsYXRlPlxuICA8ZGl2PlxuICAgIDxidXR0b24gQGNsaWNrPVwic3RvcmUuaW5jcmVtZW50KClcIj5cbiAgICAgIEZyb20gQToge3sgc3RvcmUuY291bnQgfX1cbiAgICA8L2J1dHRvbj5cbiAgPC9kaXY+XG48L3RlbXBsYXRlPiIsIkNvbXBvbmVudEIudnVlIjoiPHNjcmlwdD5cbmltcG9ydCB7IHN0b3JlIH0gZnJvbSAnLi9zdG9yZS5qcydcblxuZXhwb3J0IGRlZmF1bHQge1xuICBkYXRhKCkge1xuICAgIHJldHVybiB7XG4gICAgICBzdG9yZVxuICAgIH1cbiAgfVxufVxuPC9zY3JpcHQ+XG5cbjx0ZW1wbGF0ZT5cbiAgPGRpdj5cbiAgICA8YnV0dG9uIEBjbGljaz1cInN0b3JlLmluY3JlbWVudCgpXCI+XG4gICAgICBGcm9tIEI6IHt7IHN0b3JlLmNvdW50IH19XG4gICAgPC9idXR0b24+XG4gIDwvZGl2PlxuPC90ZW1wbGF0ZT4iLCJzdG9yZS5qcyI6ImltcG9ydCB7IHJlYWN0aXZlIH0gZnJvbSAndnVlJ1xuXG5leHBvcnQgY29uc3Qgc3RvcmUgPSByZWFjdGl2ZSh7XG4gIGNvdW50OiAwLFxuICBpbmNyZW1lbnQoKSB7XG4gICAgdGhpcy5jb3VudCsrXG4gIH1cbn0pIn0=)
+[在 Playground 中尝试一下](https://sfc.vuejs.org/#eyJBcHAudnVlIjoiPHNjcmlwdD5cbmltcG9ydCBDb21wb25lbnRBIGZyb20gJy4vQ29tcG9uZW50QS52dWUnXG5pbXBvcnQgQ29tcG9uZW50QiBmcm9tICcuL0NvbXBvbmVudEIudnVlJ1xuICBcbmV4cG9ydCBkZWZhdWx0IHtcbiAgY29tcG9uZW50czoge1xuICAgIENvbXBvbmVudEEsXG4gICAgQ29tcG9uZW50QlxuICB9XG59XG48L3NjcmlwdD5cblxuPHRlbXBsYXRlPlxuICA8Q29tcG9uZW50QSAvPlxuICA8Q29tcG9uZW50QiAvPlxuPC90ZW1wbGF0ZT4iLCJpbXBvcnQtbWFwLmpzb24iOiJ7XG4gIFwiaW1wb3J0c1wiOiB7XG4gICAgXCJ2dWVcIjogXCJodHRwczovL3NmYy52dWVqcy5vcmcvdnVlLnJ1bnRpbWUuZXNtLWJyb3dzZXIuanNcIlxuICB9XG59IiwiQ29tcG9uZW50QS52dWUiOiI8c2NyaXB0PlxuaW1wb3J0IHsgc3RvcmUgfSBmcm9tICcuL3N0b3JlLmpzJ1xuXG5leHBvcnQgZGVmYXVsdCB7XG4gIGRhdGEoKSB7XG4gICAgcmV0dXJuIHtcbiAgICAgIHN0b3JlXG4gICAgfVxuICB9XG59XG48L3NjcmlwdD5cblxuPHRlbXBsYXRlPlxuICA8ZGl2PlxuICAgIDxidXR0b24gQGNsaWNrPVwic3RvcmUuaW5jcmVtZW50KClcIj5cbiAgICAgIOadpeiHqiBB77yae3sgc3RvcmUuY291bnQgfX1cbiAgICA8L2J1dHRvbj5cbiAgPC9kaXY+XG48L3RlbXBsYXRlPiIsIkNvbXBvbmVudEIudnVlIjoiPHNjcmlwdD5cbmltcG9ydCB7IHN0b3JlIH0gZnJvbSAnLi9zdG9yZS5qcydcblxuZXhwb3J0IGRlZmF1bHQge1xuICBkYXRhKCkge1xuICAgIHJldHVybiB7XG4gICAgICBzdG9yZVxuICAgIH1cbiAgfVxufVxuPC9zY3JpcHQ+XG5cbjx0ZW1wbGF0ZT5cbiAgPGRpdj5cbiAgICA8YnV0dG9uIEBjbGljaz1cInN0b3JlLmluY3JlbWVudCgpXCI+XG4gICAgICDmnaXoh6ogQu+8mnt7IHN0b3JlLmNvdW50IH19XG4gICAgPC9idXR0b24+XG4gIDwvZGl2PlxuPC90ZW1wbGF0ZT4iLCJzdG9yZS5qcyI6ImltcG9ydCB7IHJlYWN0aXZlIH0gZnJvbSAndnVlJ1xuXG5leHBvcnQgY29uc3Qgc3RvcmUgPSByZWFjdGl2ZSh7XG4gIGNvdW50OiAwLFxuICBpbmNyZW1lbnQoKSB7XG4gICAgdGhpcy5jb3VudCsrXG4gIH1cbn0pIn0=)
 
 </div>
 
 :::tip
-Note the click handler uses `store.increment()` with the parenthesis - this is necessary to call the method with the proper `this` context since it's not a component method.
+请注意这里点击的处理函数使用了 `store.increment()`，带上了圆括号作为内联表达式调用，因为它并不是组件的方法，并且必须要以正确的 `this` 上下文来调用。
 :::
 
-Although here we are using a single reactive object as a store, you can also share reactive state created using other [Reactivity APIs](/api/reactivity-core.html) such as `ref()` or `computed()`. The fact that Vue's reactivity system is decoupled from the component model makes it extremely flexible.
+除了我们这里用到的单个响应式对象作为一个 store 之外，你还可以使用其他 [响应性 API](/api/reactivity-core.html) 例如 `ref()` 或是 `computed()`。事实上，Vue的响应性系统是与组件层是解耦的，这使得它非常灵活。
 
-## SSR Considerations
+## SSR 考量 {#ssr-considerations}
 
-If you are building an application that leverages [Server-Side Rendering (SSR)](./ssr), the above pattern can lead to issues due to the store being a singleton shared across multiple requests. This is discussed in [more details](./ssr#cross-request-state-pollution) in the SSR guide.
+如果你正在构建一个需要利用 [服务端渲染（SSR）](./ssr) 的应用程序，由于 store 是跨多个请求共享的单例，上述模式可能会导致问题。这在 SSR 指引那一章节会讨论 [更多细节](./ssr#cross-request-state-pollution)。
 
-## Pinia
+## Pinia {#pinia}
 
-While our hand-rolled state management solution will suffice in simple scenarios, there are many more things to consider in large-scale production applications:
+虽然我们的手动状态管理解决方案在简单的场景中已经足够了，但是在大规模的生产应用中还有很多其他事项需要考虑：
 
-- Stronger conventions for team collaboration
-- Integrating with the Vue DevTools, including timeline, in-component inspection, and time-travel debugging.
-- Hot Module Replacement
-- Server-Side Rendering support
+- 更强的团队协作约定
+- 与 Vue DevTools 集成，包括时间轴、组件内部审查和时间旅行调试。
+- 模块热更新（HMR）
+- 服务端渲染支持
 
-[Pinia](https://pinia.vuejs.org) is a state management library that implements all of the above. It is maintained by the Vue core team, and works with both Vue 2 and Vue 3.
+[Pinia](https://pinia.vuejs.org) 就是一个实现了上述需求的状态管理库，由 Vue 核心团队维护，对 Vue 2 和 Vue 3 都可用。
 
-Existing users may be familiar with [Vuex](https://vuex.vuejs.org/), the previous official state management library for Vue. With Pinia serving the same role in the ecosystem, Vuex is now in maintenance mode. It still works, but will no longer receive new features. It is recommended to use Pinia for new applications.
+现有用户可能对 [Vuex](https://vuex.vuejs.org/) 更熟悉，它是 Vue 之前的官方状态管理库。由于Pinia 在生态系统中能够承担相同的职责且能做得更好，因此 Vuex 现在处于维护模式。它仍然可以工作，但不再接受新的功能。对于新的应用程序，建议使用 
 
-Pinia in fact started as an exploration for how the next iteration of Vuex would look like, incorporating many ideas from core team discussions for Vuex 5. Eventually, we realized that Pinia already implements most of what we wanted in Vuex 5, and decided to make it the new recommendation instead.
+事实上，Pinia 这款产品最初是为了探索 Vuex 的下一个版本，整合了核心团队关于 Vuex 5 的许多想法。最终，我们意识到 Pinia 已经实现了我们想要在 Vuex 5 中提供的大部分内容，因此决定将其作为新的官方推荐。
 
-Compared to Vuex, Pinia provides a simpler API with less ceremony, offers Composition-API-style APIs, and most importantly, has solid type inference support when used with TypeScript.
+相比于 Vuex，Pinia 提供了更简洁直接的 API，并提供了组合式风格的 API，更重要的是，在使用 TypeScript 时它提供了非常好的类型推导。
