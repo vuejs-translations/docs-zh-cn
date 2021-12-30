@@ -234,7 +234,7 @@ export const sidebar = {
           link: '/guide/best-practices/performance'
         },
         {
-          text: '可访问性 A11y',
+          text: '无障碍访问',
           link: '/guide/best-practices/accessibility'
         },
         {

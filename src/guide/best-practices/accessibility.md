@@ -1,16 +1,16 @@
-# Accessibility
+# 无障碍访问 {#accessibility}
 
-Web accessibility (also known as a11y) refers to the practice of creating websites that can be used by anyone — be that a person with a disability, a slow connection, outdated or broken hardware or simply someone in an unfavorable environment. For example, adding subtitles to a video would help both your deaf and hard-of-hearing users and your users who are in a loud environment and can't hear their phone. Similarly, making sure your text isn't too low contrast will help both your low-vision users and your users who are trying to use their phone in bright sunlight.
+Web 无障碍访问（常被简写为 a11y）是指创建任何人都可以使用的网站。对残疾人、低速网络、过期、损坏的硬件条件或者就是用户处于不方便的环境下。举个例子，在视频中添加字幕，既能为聋哑人用户提供帮助，也能使某些身处嘈杂环境中、听不到手机声音的用户也能正常观看视频。同样地，确保你的文字样式没有处于太低的对比度，可以让低视力用户和在明亮的阳光下使用手机的用户正常地浏览网页。
 
-Ready to start but aren’t sure where?
+准备好了，但不确定要从哪里开始？
 
-Checkout the [Planning and managing web accessibility guide](https://www.w3.org/WAI/planning-and-managing/) provided by [World Wide Web Consortium (W3C)](https://www.w3.org/)
+请先阅读由 [万维网联盟（W3C）](https://www.w3.org/) 提供的 [Web 无障碍访问的规划和管理](https://www.w3.org/WAI/planning-and-managing/)。
 
-## Skip link
+## 跳过链接 {#skip-link}
 
-You should add a link at the top of each page that goes directly to the main content area so users can skip content that is repeated on multiple Web pages.
+你应该在每个页面的顶部添加一个直接进入主要内容区域的链接，这样用户就可以跳过在多个网页上重复出现的内容。
 
-Typically this is done on the top of `App.vue` as it will be the first focusable element on all your pages:
+通常这个链接会放在 `App.vue` 的顶部，这样它就会是所有页面上的第一个可聚焦元素：
 
 ```vue-html
 <ul class="skip-links">
@@ -20,7 +20,7 @@ Typically this is done on the top of `App.vue` as it will be the first focusable
 </ul>
 ```
 
-To hide the link unless it is focused, you can add the following style:
+若想在非聚焦状态下隐藏该链接，可以添加以下样式：
 
 ```css
 .skipLink {
@@ -40,7 +40,7 @@ To hide the link unless it is focused, you can add the following style:
 }
 ```
 
-Once a user changes route, bring focus back to the skip link. This can be achieved by calling focus to the `ref` provided below:
+一旦用户改变路由，请将焦点放回到这个跳过链接。通过用如下方式聚焦 `ref` 即可实现：
 
 ```vue
 <script>
@@ -56,66 +56,66 @@ export default {
 
 <!-- <common-codepen-snippet title="Skip to Main" slug="GRrvQJa" :height="350" tab="js,result" theme="light" :preview="false" :editable="false" /> -->
 
-[Read documentation on skip link to main content](https://www.w3.org/WAI/WCAG21/Techniques/general/G1.html)
+点击此链接阅读跳过链接到主要内容的 [文档](https://www.w3.org/WAI/WCAG21/Techniques/general/G1.html)
 
-## Content Structure
+## 内容结构 {#content-structure}
 
-One of the most important pieces of accessibility is making sure that design can support accessible implementation. Design should consider not only color contrast, font selection, text sizing, and language, but also how the content is structured in the application.
+确保设计可以支持易于访问的实现是无障碍访问最重要的部分之一。设计不仅要考虑颜色对比度、字体选择、文本大小和语言，还要考虑应用程序中的内容是如何组织的。
 
-### Headings
+### 标题 {#headings}
 
-Users can navigate an application through headings. Having descriptive headings for every section of your application makes it easier for users to predict the content of each section. When it comes to headings, there are a couple of recommended accessibility practices:
+用户可以通过标题在应用程序中进行导航。为应用程序的每个部分设置描述性标题，这可以让用户更容易地预测每个部分的内容。说到标题，有几个推荐的可访问性实践：
 
-- Nest headings in their ranking order: `<h1>` - `<h6>`
-- Don’t skip headings within a section
-- Use actual heading tags instead of styling text to give the visual appearance of headings
+- 按级别顺序嵌套标题：`<h1>` - `<h6>`
+- 不要在一个章节内跳跃标题的级别
+- 使用实际的标题标记，而不是通过对文本设置样式以提供视觉上的标题
 
-[Read more about headings](https://www.w3.org/TR/UNDERSTANDING-WCAG20/navigation-mechanisms-descriptive.html)
+[阅读更多有关标题的细节](https://www.w3.org/TR/UNDERSTANDING-WCAG20/navigation-mechanisms-descriptive.html)
 
 ```vue-html
 <main role="main" aria-labelledby="main-title">
-  <h1 id="main-title">Main title</h1>
+  <h1 id="main-title">主标题</h1>
   <section aria-labelledby="section-title">
-    <h2 id="section-title"> Section Title </h2>
-    <h3>Section Subtitle</h3>
-    <!-- Content -->
+    <h2 id="section-title"> 二级标题 </h2>
+    <h3>章节小标题</h3>
+    <!-- 内容 -->
   </section>
   <section aria-labelledby="section-title">
-    <h2 id="section-title"> Section Title </h2>
-    <h3>Section Subtitle</h3>
-    <!-- Content -->
-    <h3>Section Subtitle</h3>
-    <!-- Content -->
+    <h2 id="section-title"> 二级标题 </h2>
+    <h3>章节小标题</h3>
+    <!-- 内容 -->
+    <h3>章节小标题</h3>
+    <!-- 内容 -->
   </section>
 </main>
 ```
 
-### Landmarks
+### 地标 {#landmarks}
 
-Landmarks provide programmatic access to sections within an application. Users who rely on assistive technology can navigate to each section of the application and skip over content. You can use [ARIA roles](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles) to help you achieve this.
+地标（landmark）会为应用中的章节提供访问规划。依赖辅助技术的用户可以跳过内容直接导航到应用程序的每个部分。你可以使用 [ARIA role](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles) 帮助你实现这个目标。
 
-| HTML            | ARIA Role            | Landmark Purpose                                                                                                 |
-| --------------- | -------------------- | ---------------------------------------------------------------------------------------------------------------- |
-| header          | role="banner"        | Prime heading: title of the page                                                                                 |
-| nav             | role="navigation"    | Collection of links suitable for use when navigating the document or related documents                           |
-| main            | role="main"          | The main or central content of the document.                                                                     |
-| footer          | role="contentinfo"   | Information about the parent document: footnotes/copyrights/links to privacy statement                           |
-| aside           | role="complementary" | Supports the main content, yet is separated and meaningful on its own content                                    |
-| _Not available_ | role="search"        | This section contains the search functionality for the application                                               |
-| form            | role="form"          | Collection of form-associated elements                                                                           |
-| section         | role="region"        | Content that is relevant and that users will likely want to navigate to. Label must be provided for this element |
+| HTML            | ARIA Role            | 地标目的 |
+| --------------- | -------------------- | -------------- |
+| header          | role="banner"        | 主标题：页面的标题 |
+| nav             | role="navigation"    | 适合用作文档或相关文档导航的链接集合 |
+| main            | role="main"          | 文档的主体或中心内容 |
+| footer          | role="contentinfo"   | 关于父级文档的信息：脚注/版权/隐私声明链接 |
+| aside           | role="complementary" | 用来支持主内容，同时其自身的内容是相对独立且有意义的 |
+| _Not available_ | role="search"        | 该章节包含整个应用的搜索功能 |
+| form            | role="form"          | 表单相关元素的集合 |
+| section         | role="region"        | 若内容之间互相有关联、且用户可能会导航至此处。必须为这类元素提供 label |
 
-:::tip Tip:
-It is recommended to use landmark HTML elements with redundant landmark role attributes in order to maximize compatibility with legacy [browsers that don’t support HTML5 semantic elements](https://caniuse.com/#feat=html5semantic).
+:::tip 提示：
+在使用地标 HTML 元素时，建议加上冗余的地标 role attribute，以最大限度地与传统 [不支持 HTML5 语义元素的浏览器兼容](https://caniuse.com/#feat=html5semantic)。
 :::
 
-[Read more about landmarks](https://www.w3.org/TR/wai-aria-1.2/#landmark_roles)
+[阅读更多有关标题的细节](https://www.w3.org/TR/wai-aria-1.2/#landmark_roles)
 
-## Semantic Forms
+## 语义化表单 {#semantic-forms}
 
-When creating a form, you can use the following elements: `<form>`, `<label>`, `<input>`, `<textarea>`, and `<button>`
+当创建一个表单，你可能使用到以下几个元素：`<form>`、`<label>`、`<input>`、`<textarea>` 和 `<button>`。
 
-Labels are typically placed on top or to the left of the form fields:
+标签通常放置在表格字段的顶部或左侧：
 
 ```vue-html
 <form action="/dataCollectionLocation" method="post" autocomplete="on">
@@ -134,42 +134,42 @@ Labels are typically placed on top or to the left of the form fields:
 
 <!-- <common-codepen-snippet title="Simple Form" slug="dyNzzWZ" :height="368" tab="js,result" theme="light" :preview="false" :editable="false" /> -->
 
-Notice how you can include `autocomplete='on'` on the form element and it will apply to all inputs in your form. You can also set different [values for autocomplete attribute](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/autocomplete) for each input.
+请注意这里我们是如何在表单元素中引入 `autocomplete='on'` 的，它将应用于表单中的所有 input 框。你也可以为每个 input 框都设置不同的 [autocomplete attribute 的值](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/autocomplete)。
 
-### Labels
+### 标签 {#labels}
 
-Provide labels to describe the purpose of all form control; linking `for` and `id`:
+提供标签来描述所有表单控件的用途；使 for 和 id 链接起来：
 
 ```vue-html
-<label for="name">Name</label>
+<label for="name">名字</label>
 <input type="text" name="name" id="name" v-model="name" />
 ```
 
 <!-- <common-codepen-snippet title="Form Label" slug="XWpaaaj" :height="265" tab="js,result" theme="light" :preview="false" :editable="false" /> -->
 
-If you inspect this element in your chrome developer tools and open the Accessibility tab inside the Elements tab, you will see how the input gets its name from the label:
+如果你在 chrome 开发工具中检查这个元素，并打开 Elements 选项卡中的 Accessibility 选项卡，你将看到输入是如何从标签中获取其名称的：
 
-![Chrome Developer Tools showing input accessible name from label](./images/AccessibleLabelChromeDevTools.png)
+![Chrome 开发者工具正在通过标签展示可访问的 input 框的名字](./images/AccessibleLabelChromeDevTools.png)
 
-:::warning Warning:
-Though you might have seen labels wrapping the input fields like this:
+:::warning 警告：
+你可能还见过这样的包裹 input 框的标签：
 
 ```vue-html
 <label>
-  Name:
+  名字：
   <input type="text" name="name" id="name" v-model="name" />
 </label>
 ```
 
-Explicitly setting the labels with a matching id is better supported by assistive technology.
+但我们仍建议你显式地为 input 元素设置 id 相匹配的标签，以更好地实现无障碍访问。
 :::
 
-#### `aria-label`
+#### `aria-label` {#aria-label}
 
-You can also give the input an accessible name with [`aria-label`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/ARIA_Techniques/Using_the_aria-label_attribute).
+你也可以为 input 框配置一个带有 [`aria-label`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/ARIA_Techniques/Using_the_aria-label_attribute) 的可访问名称。
 
 ```vue-html
-<label for="name">Name</label>
+<label for="name">名字</label>
 <input
   type="text"
   name="name"
@@ -181,13 +181,13 @@ You can also give the input an accessible name with [`aria-label`](https://devel
 
 <!-- <common-codepen-snippet title="Form ARIA label" slug="NWdvvYQ" :height="265" tab="js,result" theme="light" :preview="false" :editable="false" /> -->
 
-Feel free to inspect this element in Chrome DevTools to see how the accessible name has changed:
+在 Chrome DevTools 中审查此元素，查看可访问名称是如何更改的：
 
-![Chrome Developer Tools showing input accessible name from aria-label](./images/AccessibleARIAlabelDevTools.png)
+![Chrome 开发者工具正在通过 aria-label 展示可访问的 input 框名字](./images/AccessibleARIAlabelDevTools.png)
 
-#### `aria-labelledby`
+#### `aria-labelledby` {#aria-labelledby}
 
-Using [`aria-labelledby`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/ARIA_Techniques/Using_the_aria-labelledby_attribute) is similar to `aria-label` except it is used if the label text is visible on screen. It is paired to other elements by their `id` and you can link multiple `id`s:
+使用 [`aria-labelledby`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/ARIA_Techniques/Using_the_aria-labelledby_attribute) 类似于 `aria-label`，除非标签文本在屏幕上可见。它通过 `id` 与其他元素配对，你可以链接多个 `id`：
 
 ```vue-html
 <form
@@ -196,28 +196,28 @@ Using [`aria-labelledby`](https://developer.mozilla.org/en-US/docs/Web/Accessibi
   method="post"
   autocomplete="on"
 >
-  <h1 id="billing">Billing</h1>
+  <h1 id="billing">账单</h1>
   <div class="form-item">
-    <label for="name">Name:</label>
+    <label for="name">名字：</label>
     <input
       type="text"
       name="name"
       id="name"
       v-model="name"
-      aria-labelledby="billing name"
+      aria-labelledby="账单名"
     />
   </div>
-  <button type="submit">Submit</button>
+  <button type="submit">提交</button>
 </form>
 ```
 
 <!-- <common-codepen-snippet title="Form ARIA labelledby" slug="MWJvvBe" :height="265" tab="js,result" theme="light" :preview="false" :editable="false" /> -->
 
-![Chrome Developer Tools showing input accessible name from aria-labelledby](./images/AccessibleARIAlabelledbyDevTools.png)
+![Chrome 开发者工具 input accessible name from aria-labelledby](./images/AccessibleARIAlabelledbyDevTools.png)
 
-#### `aria-describedby`
+#### `aria-describedby` {#aria-describedby}
 
-[aria-describedby](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/ARIA_Techniques/Using_the_aria-describedby_attribute) is used the same way as `aria-labelledby` except provides a description with additional information that the user might need. This can be used to describe the criteria for any input:
+[aria-describedby](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/ARIA_Techniques/Using_the_aria-describedby_attribute) 的用法与 `aria-labelledby` 相同，它提供了一条用户可能需要的附加描述信息。这可用于描述任何输入的标准：
 
 ```vue-html
 <form
@@ -226,48 +226,48 @@ Using [`aria-labelledby`](https://developer.mozilla.org/en-US/docs/Web/Accessibi
   method="post"
   autocomplete="on"
 >
-  <h1 id="billing">Billing</h1>
+  <h1 id="billing">账单</h1>
   <div class="form-item">
-    <label for="name">Full Name:</label>
+    <label for="name">全名：</label>
     <input
       type="text"
       name="name"
       id="name"
       v-model="name"
-      aria-labelledby="billing name"
+      aria-labelledby="账单名"
       aria-describedby="nameDescription"
     />
-    <p id="nameDescription">Please provide first and last name.</p>
+    <p id="nameDescription">请提供姓氏和名字。</p>
   </div>
-  <button type="submit">Submit</button>
+  <button type="submit">提交</button>
 </form>
 ```
 
 <!-- <common-codepen-snippet title="Form ARIA describedby" slug="gOgxxQE" :height="265" tab="js,result" theme="light" :preview="false" :editable="false" /> -->
 
-You can see the description by inspecting Chrome DevTools:
+你可以通过使用 Chrome 开发工具来查看说明：
 
-![Chrome Developer Tools showing input accessible name from aria-labelledby and description with aria-describedby](./images/AccessibleARIAdescribedby.png)
+![Chrome 开发者工具正在展示根据 aria-labelledby 可访问到的 input 框名字和根据 aria-describedby 可访问到的描述信息](./images/AccessibleARIAdescribedby.png)
 
-### Placeholder
+### 占位符 {#placeholder}
 
-Avoid using placeholders as they can confuse many users.
+避免使用占位符，因为它们可能会使许多用户感到困惑。
 
-One of the issues with placeholders is that they don't meet the [color contrast criteria](https://www.w3.org/WAI/WCAG21/Understanding/contrast-minimum.html) by default; fixing the color contrast makes the placeholder look like pre-populated data in the input fields. Looking at the following example, you can see that the Last Name placeholder which meets the color contrast criteria looks like pre-populated data:
+占位符的缺陷之一是默认情况下它们不符合 [颜色对比度标准](https://www.w3.org/WAI/WCAG21/Understanding/contrast-minimum.html)；应当修改其颜色，让它看起来像是预先填入 input 框中的数据一样。查看以下示例，可以看到满足颜色对比度条件的姓氏占位符看起来像预填充的数据：
 
 <!-- <common-codepen-snippet title="Form Placeholder" slug="ExZvvMw" :height="265" tab="js,result" theme="light" :preview="false" :editable="false" /> -->
 
-It is best to provide all the information the user needs to fill out forms outside any inputs.
+最好在表单外提供所有用户需要填写输入的信息。
 
-### Instructions
+### 用法说明 {#instructions}
 
-When adding instructions for your input fields, make sure to link it correctly to the input.
-You can provide additional instructions and bind multiple ids inside an [`aria-labelledby`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/ARIA_Techniques/Using_the_aria-labelledby_attribute). This allows for more flexible design.
+添加用法说明时，请确保将其正确链接到目标 input 框。你可以提供附加用法说明并在 [`aria-labelledby`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/ARIA_Techniques/Using_the_aria-labelledby_attribute) 内绑定多个 id。这可以使设计更加灵活。
+
 
 ```vue-html
 <fieldset>
-  <legend>Using aria-labelledby</legend>
-  <label id="date-label" for="date">Current Date:</label>
+  <legend>使用 aria-labelledby</legend>
+  <label id="date-label" for="date">当前日期：</label>
   <input
     type="date"
     name="date"
@@ -278,12 +278,12 @@ You can provide additional instructions and bind multiple ids inside an [`aria-l
 </fieldset>
 ```
 
-Alternatively, you can attach the instructions to the input with [`aria-describedby`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/ARIA_Techniques/Using_the_aria-describedby_attribute):
+或者，你可以通过 [`aria-describedby`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/ARIA_Techniques/Using_the_aria-describedby_attribute) 将用法说明附加到 input 框上。
 
 ```vue-html
 <fieldset>
-  <legend>Using aria-describedby</legend>
-  <label id="dob" for="dob">Date of Birth:</label>
+  <legend>使用 aria-describedby</legend>
+  <label id="dob" for="dob">生日日期：</label>
   <input type="date" name="dob" id="dob" aria-describedby="dob-instructions" />
   <p id="dob-instructions">MM/DD/YYYY</p>
 </fieldset>
@@ -291,23 +291,23 @@ Alternatively, you can attach the instructions to the input with [`aria-describe
 
 <!-- <common-codepen-snippet title="Form Instructions" slug="WNREEqv" :height="265" tab="js,result" theme="light" :preview="false" :editable="false" /> -->
 
-### Hiding Content
+### 隐藏内容 {#hiding-content}
 
-Usually it is not recommended to visually hide labels, even if the input has an accessible name. However, if the functionality of the input can be understood with surrounding content, then we can hide the visual label.
+通常，即使 input 框具有可访问的名称，也不建议在视觉上隐藏标签。但是，如果可以借助周围的内容来理解输入的功能，那么我们也可以隐藏视觉标签。
 
-Let's look at this search field:
+让我们看看这个搜索框：
 
 ```vue-html
 <form role="search">
-  <label for="search" class="hidden-visually">Search: </label>
+  <label for="search" class="hidden-visually">搜索：</label>
   <input type="text" name="search" id="search" v-model="search" />
-  <button type="submit">Search</button>
+  <button type="submit">搜索</button>
 </form>
 ```
 
-We can do this because the search button will help visual users identify the purpose of the input field.
+现在，只要视力情况良好，用户可以就能通过按钮的内容识别出该 input 框的目的。
 
-We can use CSS to visually hide elements but keep them available for assistive technology:
+此时我们可以使用 CSS 从视觉上隐藏元素，同时也不会影响到无障碍访问：
 
 ```css
 .hidden-visually {
@@ -325,45 +325,45 @@ We can use CSS to visually hide elements but keep them available for assistive t
 
 <!-- <common-codepen-snippet title="Form Search" slug="QWdMqWy" :height="265" tab="js,result" theme="light" :preview="false" :editable="false" /> -->
 
-#### `aria-hidden="true"`
+#### `aria-hidden="true"` {#aria-hiddentrue}
 
-Adding `aria-hidden="true"` will hide the element from assistive technology but leave it visually available for other users. Do not use it on focusable elements, purely on decorative, duplicated or offscreen content.
+添加 `aria-hidden="true"` 在无障碍访问时被隐藏，但对其他可视用户仍然是可见的。不要在可聚焦的元素上使用它，请只在装饰性的、重复的的或屏幕外的内容上使用它。
 
 ```vue-html
-<p>This is not hidden from screen readers.</p>
-<p aria-hidden="true">This is hidden from screen readers.</p>
+<p>这里不会在屏幕助读器上被隐藏</p>
+<p aria-hidden="true">这里会在屏幕助读器上被隐藏</p>
 ```
 
-### Buttons
+### 按钮 {#buttons}
 
-When using buttons inside a form, you must set the type to prevent submitting the form.
-You can also use an input to create buttons:
+在表单中使用按钮时，必须设置类型以防止提交表单。
+你也可以使用一个 input 元素来创建按钮：
 
 ```vue-html
 <form action="/dataCollectionLocation" method="post" autocomplete="on">
   <!-- Buttons -->
-  <button type="button">Cancel</button>
-  <button type="submit">Submit</button>
+  <button type="button">取消</button>
+  <button type="submit">提交</button>
 
   <!-- Input buttons -->
-  <input type="button" value="Cancel" />
-  <input type="submit" value="Submit" />
+  <input type="button" value="取消" />
+  <input type="submit" value="提交" />
 </form>
 ```
 
 <!-- <common-codepen-snippet title="Form Buttons" slug="JjEyrYZ" :height="467" tab="js,result" theme="light" :preview="false" :editable="false" /> -->
 
-### Functional Images
+### 带有功能的图片 {#functional-images}
 
-You can use this technique to create functional images.
+你可以使用这种方式来创建一个带有功能的图片。
 
-- Input fields
+- input 框
 
-  - These images will act as a submit type button on forms
+  - 这些图片会像一个类型为 submit 的表单按钮一样
 
   ```vue-html
   <form role="search">
-    <label for="search" class="hidden-visually">Search: </label>
+    <label for="search" class="hidden-visually">搜索：</label>
     <input type="text" name="search" id="search" v-model="search" />
     <input
       type="image"
@@ -374,101 +374,101 @@ You can use this technique to create functional images.
   </form>
   ```
 
-- Icons
+- 图标
 
 ```vue-html
 <form role="search">
-  <label for="searchIcon" class="hidden-visually">Search: </label>
+  <label for="searchIcon" class="hidden-visually">搜索：</label>
   <input type="text" name="searchIcon" id="searchIcon" v-model="searchIcon" />
   <button type="submit">
     <i class="fas fa-search" aria-hidden="true"></i>
-    <span class="hidden-visually">Search</span>
+    <span class="hidden-visually">搜索</span>
   </button>
 </form>
 ```
 
 <!-- <common-codepen-snippet title="Functional Images" slug="jOyLGqM" :height="265" tab="js,result" theme="light" :preview="false" :editable="false" /> -->
 
-## Standards
+## 规范 {#standards}
 
-The World Wide Web Consortium (W3C) Web Accessibility Initiative (WAI) develops web accessibility standards for the different components:
+万维网联盟（W3C）Web 无障碍访问倡议（WAI）为不同的组件制定了 Web 可访问性标准：
 
-- [User Agent Accessibility Guidelines (UAAG)](https://www.w3.org/WAI/standards-guidelines/uaag/)
-  - web browsers and media players, including some aspects of assistive technologies
-- [Authoring Tool Accessibility Guidelines (ATAG)](https://www.w3.org/WAI/standards-guidelines/atag/)
-  - authoring tools
-- [Web Content Accessibility Guidelines (WCAG)](https://www.w3.org/WAI/standards-guidelines/wcag/)
-  - web content - used by developers, authoring tools, and accessibility evaluation tools
+- [用户代理无障碍访问指南（UAAG）](https://www.w3.org/WAI/standards-guidelines/uaag/)
+  - 浏览器和媒体查询，包括一些其他方面的辅助技术
+- [创作工具无障碍访问指南（ATAG）](https://www.w3.org/WAI/standards-guidelines/atag/)
+  - 创作工具
+- [Web 内容无障碍访问指南（WCAG）](https://www.w3.org/WAI/standards-guidelines/wcag/)
+  - 网站内容 - 由开发者、创作工具和无障碍访问评估工具使用。
 
-### Web Content Accessibility Guidelines (WCAG)
+### 网络内容无障碍指南（WCAG）{#web-content-accessibility-guidelines-wcag}
 
-[WCAG 2.1](https://www.w3.org/TR/WCAG21/) extends on [WCAG 2.0](https://www.w3.org/TR/WCAG20/) and allows implementation of new technologies by addressing changes to the web. The W3C encourages use of the most current version of WCAG when developing or updating Web accessibility policies.
+[WCAG 2.1](https://www.w3.org/TR/WCAG21/) 继承自 [WCAG 2.0](https://www.w3.org/TR/WCAG20/) ，接纳 Web 演进过程中的新技术。W3C 鼓励在开发或更新 Web 无障碍访问策略时使用 WCAG 的最新版本。
 
-#### WCAG 2.1 Four Main Guiding Principles (abbreviated as POUR):
+#### WCAG 2.1 2.1 四大指导原则 (缩写 POUR)：{#wcag-21-four-main-guiding-principles-abbreviated-as-pour}
 
-- [Perceivable](https://www.w3.org/TR/WCAG21/#perceivable)
-  - Users must be able to perceive the information being presented
-- [Operable](https://www.w3.org/TR/WCAG21/#operable)
-  - Interface forms, controls, and navigation are operable
-- [Understandable](https://www.w3.org/TR/WCAG21/#understandable)
-  - Information and the operation of user interface must be understandable to all users
-- [Robust](https://www.w3.org/TR/WCAG21/#robust)
-  - Users must be able to access the content as technologies advance
+- [可感知性](https://www.w3.org/TR/WCAG21/#perceivable)
+  - 用户必须能够感知所渲染的信息
+- [可操作性](https://www.w3.org/TR/WCAG21/#operable)
+  - 表单界面，控件和导航是可操作的
+- [可理解性](https://www.w3.org/TR/WCAG21/#understandable)
+  - 信息和用户界面的操作必须为所有用户所理解
+- [健壮性](https://www.w3.org/TR/WCAG21/#robust)
+  - 随着技术的进步，用户必须能够访问内容
 
-#### Web Accessibility Initiative – Accessible Rich Internet Applications (WAI-ARIA)
+#### Web 无障碍倡议 – 无障碍访问丰富的互联网应用程序 (WAI-ARIA) {#web-accessibility-initiative-accessible-rich-internet-applications-wai-aria}
 
-W3C's WAI-ARIA provides guidance on how to build dynamic content and advanced user interface controls.
+W3C 的 WAI-ARIA 为如何构建动态内容和高阶用户界面控件提供了指导。
 
-- [Accessible Rich Internet Applications (WAI-ARIA) 1.2](https://www.w3.org/TR/wai-aria-1.2/)
-- [WAI-ARIA Authoring Practices 1.2](https://www.w3.org/TR/wai-aria-practices-1.2/)
+- [可便捷访问的丰富互联网应用程序 (WAI-ARIA) 1.2](https://www.w3.org/TR/wai-aria-1.2/)
+- [WAI-ARIA 实践 1.2](https://www.w3.org/TR/wai-aria-practices-1.2/)
 
-## Resources
+## 资源 {#resources}
 
-### Documentation
+### 文档 {#documentation}
 
 - [WCAG 2.0](https://www.w3.org/TR/WCAG20/)
 - [WCAG 2.1](https://www.w3.org/TR/WCAG21/)
 - [Accessible Rich Internet Applications (WAI-ARIA) 1.2](https://www.w3.org/TR/wai-aria-1.2/)
 - [WAI-ARIA Authoring Practices 1.2](https://www.w3.org/TR/wai-aria-practices-1.2/)
 
-### Assistive Technologies
+### 辅助技术 {#assistive-technologies}
 
-- Screen Readers
+- 屏幕助读器
   - [NVDA](https://www.nvaccess.org/download/)
   - [VoiceOver](https://www.apple.com/accessibility/mac/vision/)
   - [JAWS](https://www.freedomscientific.com/products/software/jaws/?utm_term=jaws%20screen%20reader&utm_source=adwords&utm_campaign=All+Products&utm_medium=ppc&hsa_tgt=kwd-394361346638&hsa_cam=200218713&hsa_ad=296201131673&hsa_kw=jaws%20screen%20reader&hsa_grp=52663682111&hsa_net=adwords&hsa_mt=e&hsa_src=g&hsa_acc=1684996396&hsa_ver=3&gclid=Cj0KCQjwnv71BRCOARIsAIkxW9HXKQ6kKNQD0q8a_1TXSJXnIuUyb65KJeTWmtS6BH96-5he9dsNq6oaAh6UEALw_wcB)
   - [ChromeVox](https://chrome.google.com/webstore/detail/chromevox-classic-extensi/kgejglhpjiefppelpmljglcjbhoiplfn?hl=en)
-- Zooming Tools
+- 缩放工具
   - [MAGic](https://www.freedomscientific.com/products/software/magic/)
   - [ZoomText](https://www.zoomtext.com/)
   - [Magnifier](https://support.microsoft.com/en-us/help/11542/windows-use-magnifier-to-make-things-easier-to-see)
 
-### Testing
+### 测试 {#testing}
 
-- Automated Tools
+- 自动化相关的工具
   - [Lighthouse](https://chrome.google.com/webstore/detail/lighthouse/blipmdconlkpinefehnmjammfjpmpbjk)
   - [WAVE](https://chrome.google.com/webstore/detail/wave-evaluation-tool/jbbplnpkjmmeebjpijfedlgcdilocofh)
-- Color Tools
+- 颜色相关的工具
   - [WebAim Color Contrast](https://webaim.org/resources/contrastchecker/)
   - [WebAim Link Color Contrast](https://webaim.org/resources/linkcontrastchecker)
-- Other Helpful Tools
+- 其他有用的工具
   - [HeadingMap](https://chrome.google.com/webstore/detail/headingsmap/flbjommegcjonpdmenkdiocclhjacmbi?hl=en…)
   - [Color Oracle](https://colororacle.org)
   - [Focus Indicator](https://chrome.google.com/webstore/detail/focus-indicator/heeoeadndnhebmfebjccbhmccmaoedlf?hl=en-US…)
   - [NerdeFocus](https://chrome.google.com/webstore/detail/nerdefocus/lpfiljldhgjecfepfljnbjnbjfhennpd?hl=en-US…)
 
-### Users
+### 用户 {#users}
 
-The World Health Organization estimates that 15% of the world's population has some form of disability, 2-4% of them severely so. That is an estimated 1 billion people worldwide; making people with disabilities the largest minority group in the world.
+世界卫生组织估计，全世界 15% 的人口患有某种形式的残疾，其中约 2 - 4% 的人严重残疾。估计全世界有 10 亿残疾人，它们是世界上最大的少数群体。
 
-There are a huge range of disabilities, which can be divided roughly into four categories:
+残疾的种类繁多，大致可分为以下四类：
 
-- _[Visual](https://webaim.org/articles/visual/)_ - These users can benefit from the use of screen readers, screen magnification, controlling screen contrast, or braille display.
-- _[Auditory](https://webaim.org/articles/auditory/)_ - These users can benefit from captioning, transcripts or sign language video.
-- _[Motor](https://webaim.org/articles/motor/)_ - These users can benefit from a range of [assistive technologies for motor impairments](https://webaim.org/articles/motor/assistive): voice recognition software, eye tracking, single-switch access, head wand, sip and puff switch, oversized trackball mouse, adaptive keyboard or other assistive technologies.
-- _[Cognitive](https://webaim.org/articles/cognitive/)_ - These users can benefit from supplemental media, structural organization of content, clear and simple writing.
+- _[视觉](https://webaim.org/articles/visual/)_ - 可以为这些用户提供屏幕助读器、屏幕缩放、控制屏幕对比度或盲文显示等帮助。
+- _[听觉](https://webaim.org/articles/auditory/)_ - 可以为这些用户提供视频字幕、文字记录或手语视频。
+- _[运动能力](https://webaim.org/articles/motor/)_ - 可以为这些用户提供一系列 [运动障碍辅助技术](https://webaim.org/articles/motor/assistive) 中：比如语音识别软件、眼球跟踪、单刀开关开关、超大轨迹球鼠标、自适应键盘等等。
+- _[认知能力](https://webaim.org/articles/cognitive/)_ - 可以为这些用户提供补充媒体、更清晰和简单、更结构化的内容。
 
-Check out the following links from WebAim to understand from users:
+你可以查看以下来自 WebAim 的链接，更深入地了解这些用户的需求：
 
-- [Web Accessibility Perspectives: Explore the Impact and Benefits for Everyone](https://www.w3.org/WAI/perspective-videos/)
-- [Stories of Web Users](https://www.w3.org/WAI/people-use-web/user-stories/)
+- [Web 无障碍愿景：探索改变 & 人人受益](https://www.w3.org/WAI/perspective-videos/)
+- [Web 用户的故事](https://www.w3.org/WAI/people-use-web/user-stories/)
