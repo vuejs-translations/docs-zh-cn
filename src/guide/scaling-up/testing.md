@@ -35,7 +35,7 @@ aside: deep
 有一类 Vue 应用中特有的函数被称为 [可组合函数](/guide/reusability/composables.html)，在测试过程中可能需要特殊处理。
 你可以跳转到下方查看 [测试可组合函数](#testing-composables) 了解更多细节。
 
-### 推荐 {#recommendation}
+### 推荐 {#recommendation-3}
 
 - [Vitest](https://vitest.dev/)
 
@@ -84,7 +84,7 @@ Vitest 是一个非常新的项目，仍然在以非常快的速度不断发展�
 
 我们推荐使用 `@testing-library/vue` 作为你应用的, 因为它更匹配整个应用程序的测试优先级。应该仅在你构建更高级别组件、并需要测试内部的 Vue 特有 API 时再使用 `@vue/test-utils`。
 
-### 其他选择 {#other-options}
+### 其他选择 {#other-options-2}
 
 - [Cypress](https://www.cypress.io/) 是一个 E2E 测试解决方案，但也支持 [组件测试](https://docs.cypress.io/guides/component-testing/introduction)，可以在测试组件时在真实浏览器中运行，展示的是真实 DOM 所渲染的界面。
 
@@ -122,7 +122,7 @@ E2E 测试和相应开发过程的主要问题之一是，运行整个套件需�
 
   总的来说，我们认为 Cypress 提供了最完整的 E2E 解决方案，具有信息丰富的图形界面、出色的调试性、内置断言和存根、抗剥落性、并行化和快照等诸多特性。如上所述，它还提供对 [组件测试](https://docs.cypress.io/guides/component-testing/introduction) 的支持。不过，它只支持测试基于 Chromium 的浏览器和 Firefox。
 
-### 其它选项 {#other-options}
+### 其它选项 {#other-options-3}
 
 - [Playwright](https://playwright.dev/) 也是一个非常好的 E2E 测试解决方案，支持测试范围更广的浏览器品类（主要是 WebKit 型的）。查看这篇文章 [《为什么选择 Playwright》](https://playwright.dev/docs/why-playwright) 了解更多细节。
 
