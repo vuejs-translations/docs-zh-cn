@@ -1,6 +1,5 @@
 ---
 aside: deep
-title: 类与样式绑定
 ---
 
 # 类与样式绑定 {#class-and-style-bindings}

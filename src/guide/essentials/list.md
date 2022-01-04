@@ -1,6 +1,3 @@
----
-title: 列表渲染
----
 # 列表渲染 {#list-rendering}
 
 ## `v-for` {#v-for}

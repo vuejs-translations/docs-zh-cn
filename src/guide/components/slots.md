@@ -1,6 +1,5 @@
 ---
 aside: deep
-title: 插槽
 ---
 
 # 插槽 {#slots}

@@ -1,6 +1,3 @@
----
-title: 侦听器
----
 # 侦听器 {#watchers}
 
 ## 基本示例 {#basic-example}

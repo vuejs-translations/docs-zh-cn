@@ -1,7 +1,6 @@
 ---
 aside: deep
 footer: false
-title: 简介
 ---
 
 # 简介 {#introduction}

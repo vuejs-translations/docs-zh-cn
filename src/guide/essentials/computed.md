@@ -1,6 +1,3 @@
----
-title: 计算属性
----
 # 计算属性 {#computed-properties}
 
 ## 基础示例 {#basic-example}

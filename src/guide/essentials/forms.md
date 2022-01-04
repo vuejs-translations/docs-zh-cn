@@ -1,6 +1,5 @@
 ---
 aside: deep
-title: 表单输入绑定
 ---
 
 <script setup>

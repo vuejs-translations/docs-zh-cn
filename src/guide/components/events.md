@@ -1,6 +1,5 @@
 ---
 aside: deep
-title: 组件事件
 ---
 
 # 组件事件 {#component-events}

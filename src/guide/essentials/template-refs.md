@@ -1,6 +1,3 @@
----
-title: 模板 ref
----
 # 模板 ref {#template-refs}
 
 虽然 Vue 的声明性渲染模型为你抽象了大部分对 DOM 的直接操作，但在某些情况下，我们仍然需要直接访问底层 DOM 元素。要实现这一点，我们可以使用特殊的 `ref` attribute：

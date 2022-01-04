@@ -1,6 +1,5 @@
 ---
 aside: deep
-title: 透传 attribute
 ---
 
 # 透传 attribute {#fallthrough-attributes}

@@ -1,6 +1,3 @@
----
-title: 自定义指令
----
 # 自定义指令 {#custom-directives}
 
 <script setup>

@@ -1,6 +1,3 @@
----
-title: 异步组件
----
 # 异步组件 {#async-components}
 
 ## 基础使用 {#basic-usage}

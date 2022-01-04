@@ -1,6 +1,5 @@
 ---
 aside: deep
-title: 事件处理
 ---
 
 # 事件处理 {#event-handling}

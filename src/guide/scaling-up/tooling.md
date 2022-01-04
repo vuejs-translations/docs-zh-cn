@@ -1,6 +1,3 @@
----
-title: 工具链
----
 # 工具链 {#tooling}
 
 ## 在线尝试 {#try-it-online}

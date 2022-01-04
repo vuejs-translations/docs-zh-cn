@@ -1,6 +1,6 @@
 ---
 page: true
-title: Meet the Team
+title: Vue 工作团队
 ---
 
 <script setup>

@@ -1,6 +1,3 @@
----
-title: 组件注册
----
 # 组件注册 {#component-registration}
 
 > 阅读此章节时，我们假设你已经读过 [组件基础](/guide/essentials/component-basics)，若你对组件还完全不了解，请先阅读它。
