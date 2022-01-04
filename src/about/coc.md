@@ -1,45 +1,45 @@
-# Code Of Conduct
+# 行为准则 {#code-of-conduct}
 
-## Our Pledge
+## 我们的承诺 {#our-pledge}
 
-In the interest of fostering an open and welcoming environment, we as contributors and maintainers pledge to making participation in our project and our community a harassment-free experience for everyone, regardless of age, body size, disability, ethnicity, sex characteristics, gender identity and expression, level of experience, education, socio-economic status, nationality, personal appearance, race, religion, political party, or sexual identity and orientation. Note, however, that religion, political party, or other ideological affiliation provide no exemptions for the behavior we outline as unacceptable in this Code of Conduct.
+为了促进一个开放和受欢迎的环境，我们作为贡献者和维护者，我们承诺，无论年龄、体型、残疾、种族、性别特征、性别认同和表达、经验水平、教育、社会经济地位、国籍、个人外表、种族、宗教、政党、或性认同和性取向。然而，请注意，宗教、政党或其他意识形态归属并不能为我们在本行为准则中概述的不可接受的行为提供豁免。
 
-## Our Standards
+## 我们的标准 {#our-standards}
 
-Examples of behavior that contributes to creating a positive environment include:
+有助于创造一个积极环境的行为例子包括:
 
-- Using welcoming and inclusive language
-- Being respectful of differing viewpoints and experiences
-- Gracefully accepting constructive criticism
-- Focusing on what is best for the community
-- Showing empathy towards other community members
+- 使用欢迎性和包容性的语言
+- 尊重不同的观点和经验
+- 优雅地接受建设性的批评
+- 专注于对社区最有利的事情
+- 对其他社区成员表现出同情心
 
-Examples of unacceptable behavior by participants include:
+参与者不可接受的行为的例子包括:
 
-- The use of sexualized language or imagery and unwelcome sexual attention or advances
-- Trolling, insulting/derogatory comments, and personal or political attacks
-- Public or private harassment
-- Publishing others' private information, such as a physical or electronic address, without explicit permission
-- Other conduct which could reasonably be considered inappropriate in a professional setting
+- 言语中有意挑逗或冒犯其他人的性别
+- 嘲弄、侮辱/诽谤性的评论，以及个人或政治攻击
+- 公开或私下的骚扰
+- 未经明确许可，公布他人的私人信息，如现实中的或网络上的地址
+- 其他可以被认为在专业环境中不合适的行为
 
-## Our Responsibilities
+## 我们的责任 {#our-responsibilities}
 
-Project maintainers are responsible for clarifying the standards of acceptable behavior and are expected to take appropriate and fair corrective action in response to any instances of unacceptable behavior.
+项目维护者负责声明行为标准的可接受范围，并对任何不可接受的行为采取适当和公平的纠正措施。
 
-Project maintainers have the right and responsibility to remove, edit, or reject comments, commits, code, wiki edits, issues, and other contributions that are not aligned to this Code of Conduct, or to ban temporarily or permanently any contributor for other behaviors that they deem inappropriate, threatening, offensive, or harmful.
+项目维护者有权利和责任删除、编辑或拒绝不符合本行为准则的评论、提交、代码、维基编辑、问题和其他贡献，或暂时或永久禁止任何贡献者的其他他们认为不适当、威胁性、攻击性或有害的行为。
 
-## Scope
+## 范围 {#scope}
 
-This Code of Conduct applies both within project spaces and in public spaces when an individual is representing the project or its community. Examples of representing a project or community include using an official project e-mail address, posting via an official social media account, or acting as an appointed representative at an online or offline event. Representation of a project may be further defined and clarified by project maintainers.
+本行为准则适用于在项目空间和公共空间中代表项目或其社区的个人。代表项目或社区的例子包括使用正式的项目电子邮件地址、通过正式的社交媒体账户发布信息，或作为指定代表参加线上或线下活动。项目的代表可以由项目维护者进一步定义和宣布。
 
-## Enforcement
+## 裁度 {#enforcement}
 
-Instances of abusive, harassing, or otherwise unacceptable behavior may be reported by contacting the project team at community@vuejs.org. All complaints will be reviewed and investigated and will result in a response that is deemed necessary and appropriate to the circumstances. The project team is obligated to maintain confidentiality with regard to the reporter of an incident. Further details of specific enforcement policies may be posted separately.
+辱骂、骚扰或其他不可接受的行为可通过联系项目组（community@vuejs.org）来报告。所有的投诉都将被审阅和调查，并会视情况据此做出必要的的回应。项目组有义务对事件的报告人进行保密。具体裁度政策的进一步细节可能会单独公布。
 
-Project maintainers who do not follow or enforce the Code of Conduct in good faith may face temporary or permanent repercussions as determined by other members of the project's leadership.
+不遵守或不认真执行行为准则的项目维护者可能会面临项目领导层其他成员决定的临时或永久性影响。
 
-## Attribution
+## 归属 {#attribution}
 
-This Code of Conduct is adapted from the [Contributor Covenant][homepage], version 1.4, available at https://www.contributor-covenant.org/version/1/4/code-of-conduct.html
+本行为准则改编自 [贡献者公约][homepage], 版本 1.4, 可在 https://www.contributor-covenant.org/version/1/4/code-of-conduct.html 进行查阅
 
 [homepage]: https://www.contributor-covenant.org
