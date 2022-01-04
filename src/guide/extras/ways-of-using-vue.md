@@ -1,6 +1,3 @@
----
-title: 使用 Vue 的多种方式
----
 # 使用 Vue 的多种方式 {#ways-of-using-vue}
 
 在 Web 的世界中从来就没有可以适配所有场景、解决所有问题的的银弹。正因如此，Vue 被设计成一个灵活地、可以渐进式集成的框架。根据使用场景的不同需要，相应地有多种不同的方式来使用 Vue，以此平衡技术栈、开发体验和性能表现之间的复杂程度。
@@ -42,7 +39,7 @@ Vue 为服务端将一个 Vue 应用程序渲染成 HTML 字符串提供了第�
 
 服务端渲染在所需数据为静态的前提下，可以使渲染提前完成。这意味着我们可以预先渲染整个应用为 HTML，并将其作为静态文件提供。这增强了站点的性能表现，使部署也变得更容易，因为我们无需根据请求的不同动态地渲染页面。Vue 仍可以通过水化在客户端侧提供交互。这一技术概念通常被称为静态站点生成（SSG），也被称为 [JAMStack](https://jamstack.org/what-is-jamstack/)。
 
-Vue 团队维护了一个静态站点生成器 [VitePress](https://vitepress.vuejs.org/)，你正在阅读的本文档也正是基于它构建的！另外，[NuxtJS](https://v3.nuxtjs.org/) 也支持 SSG。你神志可以在同一个 Nuxt 应用中通过不同的路由提供 SSR 和 SSG。
+Vue 团队维护了一个静态站点生成器 [VitePress](https://vitepress.vuejs.org/)，你正在阅读的本文档也正是基于它构建的！另外，[NuxtJS](https://v3.nuxtjs.org/) 也支持 SSG。你甚至可以在同一个 Nuxt 应用中通过不同的路由提供 SSR 和 SSG。
 
 ## Web 之外... {#beyond-the-web}
 

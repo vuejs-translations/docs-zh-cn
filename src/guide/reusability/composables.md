@@ -364,4 +364,5 @@ Vue 2 的用户可能会对 [混入（mixins）](/api/options-composition.html#m
 
 - [深入了解响应性](/guide/extras/reactivity-in-depth.html)：从更底层的角度理解 Vue 的响应式系统是如何工作的。
 - [状态管理](/guide/scaling-up/state-management.html)：了解管理多个组件间共享状态的模式。
+- [测试可组合函数](/guide/scaling-up/testing.html#testing-composables)：书写可组合函数的单元测试相关的说明。
 - [VueUse](https://vueuse.org/)：一个不断增长的 Vue 可组合函数的集合。它的源代码本身就是一份不错的学习资料。

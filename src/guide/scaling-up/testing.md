@@ -2,7 +2,7 @@
 aside: deep
 ---
 
-# 测试 <Badge text="WIP" /> {#testing}
+# 测试 {#testing}
 
 ## 总览 {#overview}
 
@@ -88,7 +88,7 @@ Vitest 是一个非常新的项目，仍然在以非常快的速度不断发展�
 
 - [Cypress](https://www.cypress.io/) 是一个 E2E 测试解决方案，但也支持 [组件测试](https://docs.cypress.io/guides/component-testing/introduction)，可以在测试组件时在真实浏览器中运行，展示的是真实 DOM 所渲染的界面。
 
-- [Nightwatch v2](https://v2.nightwatchjs.org/) 是另一个 E2E 测试运行器，在 v2 版本中对 Vue 组件测试提供了支持（目前处于 beta 阶段 - [示例项目](https://github.com/nightwatchjs-community/todo-vue)）。
+- [Nightwatch v2](https://v2.nightwatchjs.org/) 是另一个 E2E 测试运行器，在 v2 版本中对 Vue 组件测试提供了支持（Nightwatch v2 版本的 [示例项目](https://github.com/nightwatchjs-community/todo-vue)）。
 
 ## E2E 测试 {#e2e-testing}
 

@@ -200,7 +200,26 @@ export const store = reactive({
 请注意这里点击的处理函数使用了 `store.increment()`，带上了圆括号作为内联表达式调用，因为它并不是组件的方法，并且必须要以正确的 `this` 上下文来调用。
 :::
 
-除了我们这里用到的单个响应式对象作为一个 store 之外，你还可以使用其他 [响应性 API](/api/reactivity-core.html) 例如 `ref()` 或是 `computed()`。事实上，Vue的响应性系统是与组件层是解耦的，这使得它非常灵活。
+除了我们这里用到的单个响应式对象作为一个 store 之外，你还可以使用其他 [响应性 API](/api/reactivity-core.html) 例如 `ref()` 或是 `computed()`，或是甚至通过一个 [可组合函数](/guide/reusability/composables.html) 来返回一个全局状态：
+
+```js
+import { ref } from 'vue'
+
+// 全局状态，创建在模块作用域下
+const globalCount = ref(1)
+
+export function useCount() {
+  // 局部状态，每个组件都会创建
+  const localCount = ref(1)
+
+  return {
+    globalCount,
+    localCount
+  }
+}
+```
+
+事实上，Vue 的响应性系统是与组件层是解耦的，这使得它非常灵活。
 
 ## SSR 考量 {#ssr-considerations}
 

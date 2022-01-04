@@ -1,364 +1,304 @@
 ---
 aside: deep
-title: 深入响应式系统 <Badge text="WIP" />
 ---
 
-# 深入响应式系统 <Badge text="WIP" /> {#reactivity-in-depth}
+<script setup>
+import SpreadSheet from './demos/SpreadSheet.vue'
+</script>
 
-// TODO explain proxies
-// TODO explain refs
-// TODO explain shallow
+# 深入响应式系统 {#reactivity-in-depth}
 
-是时候进行更深入的学习了！Vue 最独特的功能就正是在于它那不容易被注意到的响应式系统。数据模型（Model）都是被代理的 JavaScript 对象。当你对它们进行更改，视图会相应地更新。这使得状态管理更简单易懂、符合直觉，但为了避免一些常见的问题，了解其工作原理是很重要的。在这一章中，我们将会深入探究一些 Vue 底层响应式系统的细节。
+Vue 最有区别性的功能就是其潜藏于底层的响应式系统。组件状态都是响应式的 JavaScript 对象。当更改它们时，视图会随即更新。这让状态管理更加简单直观，但理解它是如何工作的也是很重要的，以避免一些常见的陷阱。在本节中，我们将深入研究 Vue 响应性系统的一些底层细节。
 
 ## 什么是响应性 {#what-is-reactivity}
 
 这个术语最近在编程中经常出现，但人们说它的时候究竟是想表达什么意思呢？响应性是一种可以使我们声明式地处理变化的编程范式。一个常见的典型例子是 Excel 电子表格，它是一个很好的例子。
 
-<video width="550" height="400" controls>
-  <source src="/images/reactivity-spreadsheet.mp4" type="video/mp4">
-  对不起，你的浏览器不支持 video 标签
-</video>
+<SpreadSheet />
 
-如果你在第一个单元格内放置了数字 2、第二个放数字 3，然后使用 SUM 函数，后面的单元格中将会写上所求的和。一切都很好，没有什么意外。但如果你更改了第一个数字，所求的和也会自动地更新。
+这里单元格 A2 中的值是通过公式 `= A0 + A1` 来定义的（你可以在 A2 上点击来查看或编辑该公式），因此最终得到的值为 3。没有任何的惊喜，但你可以试着更改 A0 或 A1，你会注意到 A2 也会随即自动更新。
 
 而 JavaScript 一般不会这样工作。如果我们在 JavaScript 写类似的逻辑：
 
 ```js
-let val1 = 2
-let val2 = 3
-let sum = val1 + val2
+let A0 = 1
+let A1 = 2
+let A2 = A0 + A1
 
-console.log(sum) // 5
+console.log(A2) // 3
 
-val1 = 3
-
-console.log(sum) // 仍然是 5
+A0 = 2
+console.log(A2) // 仍然是 3
 ```
 
-如果我们更改了第一个值，所求的和并没有跟着调整。
+当我们更改 `A0` 后，`A2` 不会自动更新。
 
-所以在 JavaScript 中我们应该怎么做？
-
-概括地来讲，我们必须能够做到下面几件事：
-
-1. **跟踪值的读取**：例如 `val1 + val2` 读取了 `val1` 和 `val2`。
-2. **侦测值的改变**：例如对变量赋值 `val1 = 3`。
-3. **重新运行之前对值的读取过程**：再次运行 `sum = val1 + val2` 来更新 `sum` 的值。
-
-我们不能直接使用前一个例子的代码，但我们稍后会回到这个例子，看看如何调整使它兼容 Vue 的响应性系统。
-
-首先，让我们深入研究一下 Vue 是如何实现上述响应性系统核心需求的。
-
-## 如何确定什么代码正在运行 {#how-vue-knows-what-code-is-running}
-
-为了能够在值更改时运行求和函数，我们需要做的第一件事是将这个计算包装为一个函数：
+那么我们如何在 JavaScript 中做到这一点呢？首先，为了能重新运行计算的代码来更新 `A2`，我们需要将其包裹为一个函数：
 
 ```js
-const updateSum = () => {
-  sum = val1 + val2
+let A2
+
+function update() {
+  A2 = A0 + A1
 }
 ```
 
-但是我们如何让这个函数在 Vue 应用中实现效果呢？
+然后，我们需要定义几个术语：
 
-Vue 会使用一个 *副作用* 来追踪当前是哪一个函数在运行。一个副作用接收一个函数为参数，在函数被调用之前就开始追踪。Vue 在任何时候都知道正在运行的是什么副作用，并且可以随时按需重新运行它。
+- 这个 `update()` 函数会产生一个 **副作用**，或者就简称为 **影响**，因为它会更改程序里的状态。
 
-要更好地理解这个过程，让我们自己先在不依赖 Vue 的情况下简单地实现一些代码，了解这到底是如何工作的。
+- `A0` 和 `A1` 被视为这个影响的 **依赖**，因为它们的值被用来执行这个影响。因此这次影响也可以说是一个它依赖的 **订阅者**。
 
-我们需要的是一个可以包裹求和函数的东西，就像这样：
+我们需要一个魔法函数，能够在 `A0` 或 `A1`（这两个 **依赖**）变化时调用 `update()`（产生 **影响**）。
 
 ```js
-createEffect(() => {
-  sum = val1 + val2
-})
+whenDepsChange(update)
 ```
 
-我们需要 `createEffect` 对求和函数保持追踪。我们或许会实现出下面这样的代码：
+这个 `whenDepsChange()` 函数有如下的任务：
+
+1. 当一个变量被读取时进行追踪。例如我们执行了表达式 `A0 + A1` 的计算，则 `A0` 和 `A1` 都被读取到了。
+
+2. 如果一个变量在当前运行的副作用中被读取了，就将该副作用设为此变量的一个订阅者。例如由于 `A0` 和 `A1` 在 `update()` 执行时被访问到了，则 `update()` 需要在第一次调用之后成为 `A0` 和 `A1` 成为它们的订阅者。
+
+3. 探测一个变量的变化。例如当我们给 `A0` 赋了一个新的值后，应该通知其所有订阅了的副作用重新执行。
+
+## Vue 中的响应性是如何工作的 {#how-reactivity-works-in-vue}
+
+我们无法直接追踪对上述示例中局部变量的读写过程，在原生 JavaScript 中没有提供这样一种机制。**但是**，我们是可以追踪一个 **对象的属性** 进行读和写的。
+
+在 JavaScript 中有两种劫持属性访问的方式：[getter](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/get)/[setters](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/set) 和 [Proxies](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy)。Vue 2 使用 getter/setters 完全由于需支持更旧版本浏览器的限制。而在 Vue 3 中使用了 Proxy 来创建响应式对象，将 getter/setter 用于 ref。下面的伪代码将会说明它们是如何工作的：
+
+```js{4,8,17,21}
+function reactive(obj) {
+  return new Proxy(obj, {
+    get(target, key) {
+      track(target, key)
+      return target[key]
+    },
+    set(target, key, value) {
+      trigger(target, key)
+      target[key] = value
+    }
+  })
+}
+
+function ref(value) {
+  const refObject = {
+    get value() {
+      track(refObject, key)
+      return value
+    },
+    set value(newValue) {
+      trigger(refObject, key)
+      value = newValue
+    }
+  }
+  return refObject
+}
+```
+
+:::tip
+这里和下面的代码片段旨在以最简单的形式解释核心概念，因此省略了许多细节，忽略了边界情况。
+:::
+
+这解释了我们在基础章节部分讨论过的一些事情:
+
+- 当你将一个响应性对象的属性解构为一个局部变量时，响应性就会 “断开连接”，因为对局部变量的访问不再触发get / set 代理捕获。
+
+- 从 `reactive()` 返回的代理尽管行为上表现得像原始对象，但我们通过使用 `===` 运算符还是能够比较出它们的不同。
+
+在 `track()` 内部，我们会检查当前是否有正在运行的副作用。如果有，我们会查找到一个所有追踪了该属性的订阅者，它们存储在一个 Set 中，然后将当前这个副作用添加到该 Set 中。
 
 ```js
-// 维持一个栈，保存的是运行中的副作用
-const runningEffects = []
+// 这会在一个副作用就要运行之前被设置
+// 我们会在后面处理它
+let activeEffect
 
-const createEffect = (fn) => {
-  // 包裹传入的函数成为副作用
-  const effect = () => {
-    runningEffects.push(effect)
-    fn()
-    runningEffects.pop()
+function track(target, key) {
+  if (activeEffect) {
+    const effects = getSubscribersForProperty(target, key)
+    effects.add(activeEffect)
   }
+}
+```
 
-  // 立即自动运行该副作用
+副作用订阅将被存储在一个全局的 `WeakMap<target, Map<key, Set<effect>>>` 数据结构中。如果在第一次追踪时没有找到对相应属性订阅的副作用集合，它将会在这里新建。这就是 `getSubscribersForProperty()` 函数所做的事。为了简化描述，我们跳过了它其中的细节。
+
+在 `trigger()` 之中，我们会再查找到该属性的所有订阅副作用。但这一次我们是去调用它们：
+
+```js
+function trigger(target, key) {
+  const effects = getSubscribersForProperty(target, key)
+  effects.forEach((effect) => effect())
+}
+```
+
+现在让我们回到 `whenDepsChange()` 函数中：
+
+```js
+function whenDepsChange(update) {
+  const effect = () => {
+    activeEffect = effect
+    update()
+    activeEffect = null
+  }
   effect()
 }
 ```
 
-当该副作用被调用后，它会在调用 `fn` 之前，将自己压入栈 `runningEffects` 之中。任何需要知道当前运行的副作用的地方，都可以检查这个栈数组。
+它包裹了原先的 `update` 函数到一个副作用中，并在运行实际的更新之前，将它自己设为当前活跃的副作用。而在更新期间开启的 `track()` 调用，都将能定位到这个当前活跃的副作用。
 
-副作用就像是我们众多关键功能的一个起点。举个例子，组件的渲染过程和计算属性更新都是因为内部使用了副作用。若你发现了任何自动响应了数据变更的过程，你都有充分的理由相信它被包裹在了一个副作用中。
+此时，我们已经创建了一个能自动跟踪其依赖关系的副作用，它会在依赖关系更改时重新运行。我们称其为 **响应式副作用**。
 
-虽然 Vue 的公开 API 没有包含任何方式直接创建一个副作用，但的确也提供了一个 `watchEffect` 函数，和上面说的 `createEffect` 函数表现非常相似。
+Vue 提供了一个 API 来让你创建响应式副作用 [`watchEffect()`](/api/reactivity-core.html#watcheffect)。事实上，你会发现它的使用方式和我们上面示例中说的魔法函数 `whenDepsChange()` 非常相似。我们可以用真正的 Vue API 改写上面的例子：
 
-但是知道什么代码正在运行只解答了谜题的一部分。Vue 如何知道副作用使用什么值，以及它如何知道它们何时发生变化？
+```js
+import { ref, watchEffect } from 'vue'
 
-## Vue 如何追踪变化 {#how-vue-tracks-these-changes}
+const A0 = ref(0)
+const A1 = ref(1)
+const A2 = ref()
 
-我们无法跟踪局部变量的重新赋值，就像我们前面的例子中的那些变量一样，JavaScript 本身并没有提供这样一套机制。但我们能追踪的还有对象属性的变更。
+watchEffect(() => {
+  // 追踪 A0 和 A1
+  A2.value = A0.value + A1.value
+})
 
-当我们从组件的 `data` 函数中返回了一个 JavaScript 对象，Vue 会使用 [Proxy](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy) 将其包裹，配以 `get` 和 `set` 的处理函数，代理在 ES6 中被颁布，并使得 Vue 3 摆脱了早先版本中的一些响应式的局限性。
+// 将触发副作用
+A0.value = 2
+```
 
-<div class="reactivecontent">
-  <!-- <common-codepen-snippet title="直观解释代理与 Vue 的响应性系统" slug="VwmxZXJ" tab="result" theme="light" :height="500" :editable="false" :preview="false" /> -->
+使用一个响应式副作用来更改一个 ref 并不是最优解，事实上使用计算属性会更直观简洁：
+
+```js
+import { ref, computed } from 'vue'
+
+const A0 = ref(0)
+const A1 = ref(1)
+const A2 = computed(() => A0.value + A1.value)
+
+A0.value = 2
+```
+
+在内部，`computed` 会使用响应式副作用来管理失效与重新计算的过程。
+
+那么，常见的响应式副作用的用例是什么呢？自然是更新 DOM！我们可以像下面这样实现一个简单的 “响应式渲染”：
+
+```js
+import { ref, watchEffect } from 'vue'
+
+const count = ref(0)
+
+watchEffect(() => {
+  document.body.innerHTML = `计数：${count.value}`
+})
+
+// 更新 DOM
+count.value++
+```
+
+实际上，这与 Vue 组件保持状态和 DOM 同步的方式非常接近。每个组件实例创建一个响应式副作用来渲染和更新 DOM。当然，Vue 组件使用了比 `innerHTML` 更高效的方式来更新 DOM。这会在 [渲染机制](./rendering-mechanism) 一章中详细介绍。
+
+<div class="options-api">
+
+`ref()`、`computed()` 和 `watchEffect()` 这些 API 都是组合式 API 的一部分，如果你至今只使用过选项式 API，那么你需要知道的是组合式 API 更贴近 Vue 底层的响应式系统。事实上，Vue 3 中的选项式 API 正是基于 组合式 API 建立的。对该组件实例（`this`）所有的属性访问都会触发 getter/setter 的响应式追踪，而像 `watch` 和 `computed` 这样的选项也是在内部调用相应等价的组合式 API。
+
 </div>
 
-这么讲似乎有些太快了，而且需要你有一些关于 [Proxy](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy) 的预备知识才能理解！所以让我们慢慢深入。你可以在网上找到很多关于 Proxy 的文章，但你真正需要了解的其实就是 **Proxy 是封装了一个对象的代理对象，并允许你拦截对所代理对象的任何交互。**
+## 运行时 vs. 编译时响应性 {#runtime-vs-compile-time-reactivity}
 
-像这样使用：`new Proxy(target, handler)`
+Vue 的响应式系统基本是基于运行时的。追踪和触发都是在浏览器中运行时进行的。运行时响应性的优点是，它可以在没有构建步骤的情况下工作，而且边缘情况较少。另一方面，这使得它受到了 JavaScript 语法的制约。
 
-```js
-const dinner = {
-  meal: '鱼香肉丝'
-}
+我们在前面的示例中已经说到了所遇到的一个限制：JavaScript 并没有提供一种方式来拦截对局部变量的读写，因此我们始终只能够以对象属性的形式访问响应式状态，也就因此有了响应式对象和 ref。
 
-const handler = {
-  get(target, property) {
-    console.log('截获到了！')
-    return target[property]
-  }
-}
-
-const proxy = new Proxy(dinner, handler)
-console.log(proxy.meal)
-
-// 截获到了！
-// 鱼香肉丝
-```
-
-我们拦截到了对目标对象属性的读取。这样的处理函数也被叫做 _trap_（捕捉）。有许多不同类型的 trap，每一种都处理不同类型的交互。
-
-我们想做的当然不会只是 `console.log`，我们甚至可以 *不* 返回我们想要的值。这也是 Proxy 非常适合用来构建 API 的原因。
-
-学习使用 Proxy 的第一个挑战是实现 Vue 的 `this` 相关绑定。我们想要所有的方法都被绑定到该 Proxy 对象上，而不是目标对象上，因此我们同样可以劫持它们。相应地，ES6 为我们提供了另一个新功能：`Reflect`，使我们事半功倍地解决这个问题：
-
-```js{7}
-const dinner = {
-  meal: '鱼香肉丝'
-}
-
-const handler = {
-  get(target, property, receiver) {
-    return Reflect.get(...arguments)
-  }
-}
-
-const proxy = new Proxy(dinner, handler)
-console.log(proxy.meal)
-
-// 鱼香肉丝
-```
-
-使用 Proxy 实现响应式系统的第一步就是追踪对属性的读取。我们会在 `get` 处理函数中做这件事，实现一个名为 `track` 的函数，传入的是 `target` 和 `property`：
-
-```js{7}
-const dinner = {
-  meal: '鱼香肉丝'
-}
-
-const handler = {
-  get(target, property, receiver) {
-    track(target, property)
-    return Reflect.get(...arguments)
-  }
-}
-
-const proxy = new Proxy(dinner, handler)
-console.log(proxy.meal)
-
-// 鱼香肉丝
-```
-
-我们并没有在这里将 `track` 函数的实现展示出来。它会检查当前是哪个 *副作用* 在运行，将其与 `target` 和 `property` 一并作记录。Vue 就是这样得知了这个属性是该副作用的一个依赖。
-
-最后，我们需要在属性值改变时重新运行这个副作用。对此在 Proxy 上需要一个 `set` 处理函数：
+我们已经在通过 [响应性语法糖](/guide/extras/reactivity-transform.html) 这一实验性功能去尝试减少冗余代码：
 
 ```js
-const dinner = {
-  meal: '鱼香肉丝'
-}
+let A0 = $ref(0)
+let A1 = $ref(1)
 
-const handler = {
-  get(target, property, receiver) {
-    track(target, property)
-    return Reflect.get(...arguments)
-  },
-  set(target, property, value, receiver) {
-    trigger(target, property)
-    return Reflect.set(...arguments)
-  }
-}
+// 在变量读取时追踪
+const A2 = $computed(() => A0 + A1)
 
-const proxy = new Proxy(dinner, handler)
-console.log(proxy.meal)
-
-// 鱼香肉丝
+// 在变量写入时触发
+A0 = 2
 ```
 
-还记得之前我们罗列的需求列表吗？现在我们有一些 Vue 如何实现这些关键步骤的答案：
-
-1. **跟踪值的读取**：Proxy 的 `get` 处理函数中的 `track` 记录了访问的属性和当前运行的副作用。
-2. **侦测值的改变**：Proxy 调用其 `set` 处理函数 is called on the proxy.
-3. **重新运行之前对值的读取过程**：`trigger` 函数会找出所有依赖此属性的副作用，并重新运行它们。
-
-被代理的对象对用户是不可见的，在这从本质上开启了 Vue 执行依赖追踪和变更通知的能力。值得注意的一点是控制台会对被代理的对象使用不同的输出格式，所以你可能需要安装 [vue-devtools](https://github.com/vuejs/vue-devtools) 开发工具，获得一个更便于调试检查的界面。
-
-如果我们要用一个组件重写原来的例子，可能会这样做：
-
-```js
-const vm = createApp({
-  data() {
-    return {
-      val1: 2,
-      val2: 3
-    }
-  },
-  computed: {
-    sum() {
-      return this.val1 + this.val2
-    }
-  }
-}).mount('#app')
-
-console.log(vm.sum) // 5
-
-vm.val1 = 3
-
-console.log(vm.sum) // 6
-```
-
-`data` 函数被包裹在了一个响应式代理中，存储为了 `this.$data`。属性 `this.val1` 和 `this.val2` 分别是 `this.$data.val1` 和 `this.$data.val2` 的别名，所以它们要通过同一个代理。
-
-Vue 会将 `sum` 函数包裹在一个副作用中。当我们想要访问 `this.sum`，它会运行该副作用重新计算值。包裹 `$data` 的响应式代理会追踪副作用中访问到的属性 `val1` 和 `val2`。
-
-在 Vue 3 中，响应式系统也作为了一个 [独立的包](https://github.com/vuejs/vue-next/tree/master/packages/reactivity) 提供给用户。包裹 `$data` 成一个响应式代理的的函数就是 [`reactive`](/api/reactivity-core.html#reactive)。我们可以直接自行调用，响应式代理不一定非要用在组件中：
-
-```js
-const proxy = reactive({
-  val1: 2,
-  val2: 3
-})
-```
-
-我们会在接下来的几页指引中看到更多由 `reactivity` 包暴露的功能函数，比如我们已经遇到过的 `reactive` 和 `watchEffect`，以及一些使用了其他响应性功能的函数，比如 `computed` 和 `watch`，都无需创建一个组件。
-
-### 被代理对象 {#proxied-objects}
-
-Vue 会在内部追踪所有变为响应式的对象，所以对同一个对象会始终返回相同的代理。
-
-当一个响应式代理访问到一个深层次对象，这个对象 *也会被* 转为一个 Proxy 再返回：
-
-```js{6-7}
-const handler = {
-  get(target, property, receiver) {
-    track(target, property)
-    const value = Reflect.get(...arguments)
-    if (isObject(value)) {
-      // 在响应式代理上嵌套深层次对象
-      return reactive(value)
-    } else {
-      return value
-    }
-  }
-  // ...
-}
-```
-
-### Proxy 和原始值的区分 {#proxy-vs-original-identity}
-
-使用 Proxy 的另一个注意事项是：代理对象和原始对象是不相等的，即无法通过 `===` 来比较，举个例子：
-
-```js
-const obj = {}
-const wrapped = new Proxy(obj, handlers)
-
-console.log(obj === wrapped) // false
-```
-
-其他依赖于严格相等的比较都会受到影响，比如 `.includes()` 或是 `.indexOf()`。
-
-最佳实践是不要使用原始对象的引用，始终使用响应式的版本：
-
-```js
-const obj = reactive({
-  count: 0
-}) // 不要引用原对象
-```
-
-这确保了相等比较和响应性都符合预期。
-
-注意 Vue 不会对基础类型的值（比如数字值或字符串）使用 Proxy，你仍然可以使用 `===` 直接比较这些值：
-
-```js
-const obj = reactive({
-  count: 0
-})
-
-console.log(obj.count === 0) // true
-```
-
-### 保持响应性 {#retaining-reactivity}
-
-当我们只想取用一个很大的响应式对象上的一小部分属性时，可能会想到使用解构来获取想要的属性。然而被解构的属性会丢失与代理对象的响应性连接。
-
-```js
-const state = reactive({
-  count: 0
-  // ... 有非常多的属性
-})
-
-// `count` 一旦被解构就不是响应式的了
-// 因为此时只是个 number 型的值
-const { count } = state
-```
-
-你可以根据一个响应式对象上的属性值，通过  [`toRef()`](/api/reactivity-utilities.html#toref) 创建一个 ref：
-
-```js
-import { toRef } from 'vue'
-
-const count = toRef(state, 'count')
-
-state.count++
-console.log(count.value) // 1
-```
-
-## 渲染如何响应变化 {#how-rendering-reacts-to-changes}
-
-组件的模板会被编译为一个 [`render`](/guide/extras/render-function.html) 函数。这个 `render` 函数会创建 [VNode](/guide/extras/render-function.html#the-virtual-dom-tree)，描述了组件需要被如何渲染。这杯包裹在一个副作用中，使 Vue 对运行时访问到的这些值进行追踪。
-
-一个 `render` 函数从概念上和 `computed` 属性非常相似。Vue 并不会追踪究竟是如何使用依赖的，它只知道它们在渲染函数运行时的某个时间点被使用。如果发生了任何其他属性的次生更改，将会再次触发副作用、再运行一次，重新运行 `render` 函数来生成新的 VNode。然后对 DOM 进行必要的更改。
-
-<div class="reactivecontent">
-  <!-- <common-codepen-snippet title="Second Reactivity with Proxies in Vue 3 Explainer" slug="wvgqyJK" tab="result" theme="light" :height="500" :editable="false" :preview="false" /> -->
-</div>
+这个代码段会被编译成没有该转换时的样子，即自动地位所有变量引用处添加上 `.value`。有了响应性语法糖，Vue 的响应式系统更加如虎添翼。
 
 ## 响应性调试 {#reactivity-debugging}
 
-Vue 的响应性系统自动地追踪了依赖，但某些场景中，我们可能想要知道究竟追踪了什么，或者是什么造成了组件重渲染。
+Vue 的响应性系统可以自动跟踪依赖关系，但在某些情况下，我们可能希望确切地知道正在跟踪什么，或者是什么导致了组件重新呈现。
 
 ### 组件调试钩子 {#component-debugging-hooks}
 
-// TODO `renderTracked` and `renderTriggered`
+我们可以在一个组件渲染时调试查看哪些依赖正在被使用，以及使用 <span class="options-api">`renderTracked`</span><span class="composition-api">`onRenderTracked`</span> 和 <span class="options-api">`renderTriggered`</span><span class="composition-api">`onRenderTriggered`</span> 生命周期钩子来确定哪个依赖正在触发更新。这些钩子都会收到一个调试事件，其中包含了所需依赖的信息。推荐在回调中放置一个 `debugger` 语句，使你可以在开发者工具中交互式地查看依赖：
 
 <div class="composition-api">
 
-### 计算属性调试 \*\* {#computed-debugging}
+```vue
+<script setup>
+import { onRenderTracked, onRenderTriggered } from 'vue'
+
+onRenderTracked((event) => {
+  debugger
+})
+
+onRenderTriggered((event) => {
+  debugger
+})
+</script>
+```
+
+</div>
+<div class="options-api">
+
+```js
+export default {
+  renderTracked(event) {
+    debugger
+  },
+  renderTriggered(event) {
+    debugger
+  }
+}
+```
+
+</div>
+
+:::tip
+组件调试钩子仅会在开发模式下工作
+:::
+
+调试事件对象有如下的类型定义：
+
+<span id="debugger-event"></span>
+
+```ts
+type DebuggerEvent = {
+  effect: ReactiveEffect
+  target: object
+  type:
+    | TrackOpTypes /* 'get' | 'has' | 'iterate' */
+    | TriggerOpTypes /* 'set' | 'add' | 'delete' | 'clear' */
+  key: any
+  newValue?: any
+  oldValue?: any
+  oldTarget?: Map<any, any> | Set<any>
+}
+```
+
+### 计算属性调试 {#computed-debugging}
+
+<!-- TODO options API equivalent -->
 
 我们可以向 `computed()` 传入第二个参数，是一个包含了 `onTrack` 和 `onTrigger` 两个回调函数的对象：
 
 - `onTrack` 将在响应属性或引用作为依赖项被跟踪时被调用。
 - `onTrigger` 将在侦听器回调被依赖项的变更触发时被调用。
 
-这两个回调都会收到一个调试器事件，包含了所需的依赖相关信息。推荐在这些回调中放置一个 `debugger` 语句以便在开发工具中交互式地检查依赖：
+这两个回调都会作为组件组件调试的钩子，接受 [相同格式](#debugger-event) 的调试事件：
 
 ```js
 const plusOne = computed(() => count.value + 1, {
@@ -383,7 +323,9 @@ count.value++
 计算属性的 `onTrack` 和 `onTrigger` 选项仅会在开发模式下工作。
 :::
 
-### 侦听器调试 \*\* {#watcher-debugging}
+### 侦听器调试 {#watcher-debugging}
+
+<!-- TODO options API equivalent -->
 
 和 `computed()` 类似，侦听器也支持 `onTrack` 和 `onTrigger` 选项：
 
@@ -411,46 +353,66 @@ watchEffect(callback, {
 侦听器的 `onTrack` 和 `onTrigger` 选项仅会在开发模式下工作。
 :::
 
-## 副作用失效 \*\* {#side-effect-invalidation} {#side-effect-invalidation}
+## 与其他状态系统集成 {#integration-with-external-state-systems}
 
-某些情况下，副作用会是异步的函数，并需要当其失效时被清理（例如：状态在副作用完成前就改变了）。副作用函数中可以使用一个 `onInvalidate` 函数来注册失效时的回调。失效回调应该在以下时机被调用：<!-- TODO: 需要校对此小节 -->
+Vue 的响应性系统是通过深度转换纯 JavaScript 对象到响应式代理来实现的。这种深度转换可以是不必要的，或者在集成其他外部状态管理系统时甚至是我们不想要的。（例如，一个外部的解决方案也用了 Proxy）。
 
-- 副作用可能重新运行时
-- 监视器被停止时（例如：当 `watchEffect` 在 `setup()` 或生命周期钩子中使用且组件卸载后）
+将 Vue 的响应性系统与外部状态管理方案集成的总体意见是：将外部状态放在一个 [`shallowRef`](/api/reactivity-advanced.html#shallowref) 中。一个浅层的 ref 中只有它的 `.value` 属性本身被访问时才是有响应性的，而不关心它内部的值。当外部状态改变时，替换此 ref 的 `.value` 才会触发更新。
 
-```js
-watchEffect((onInvalidate) => {
-  const token = performAsyncOperation(id.value)
-  onInvalidate(() => {
-    // id 已经改变，或者监视器已经停止
-    // 使以前挂起的异步操作无效
-    token.cancel()
-  })
-})
-```
+### 不可变数据 {#immutable-data}
 
-我们通过传入的函数注册失效回调，而不是从回调函数返回它，是因为返回值对异步错误处理很重要。在执行数据请求时，副作用函数一般都是异步的：
+如果你正在实现一个撤销/重做的功能，你可能想要对用户编辑时应用的状态进行快照记录。然而，如果状态树很大的话，Vue 的可变响应性系统没法很好地处理这种情况，因为在每次更新时都序列化整个状态对象对 CPU 和内存开销来说都是非常昂贵的。
+
+[不可变数据结构](https://en.wikipedia.org/wiki/Persistent_data_structure) 通过永不更改状态对象来解决这个问题。 与 Vue 不同的是，它会创建一个新对象，保留旧的对象未发生改变的一部分。在 JavaScript 中有多种不同的方式来使用不可变数据，但我们推荐使用 [Immer](https://immerjs.github.io/immer/) 搭配 Vue，因为它使你可以在保持原有直观、可变的语法的同时，使用不可变数据。
+
+我们可以通过一个简单的可组合函数来集成 Immer：
 
 ```js
-const data = ref(null)
-watchEffect(async (onInvalidate) => {
-  onInvalidate(() => {
-    /* ... */
-  }) // 我们在 Promise 完成前注册清理函数
-  data.value = await fetchData(props.id)
-})
+import produce from "immer"
+import { shallowRef } from 'vue'
+
+export function useImmer(baseState) {
+  const state = shallowRef(baseState)
+
+  return {
+    state,
+    update(updater) {
+      state.value = produce(state.value, updater)
+    }
+  }
+}
 ```
 
-一个异步函数会隐式返回一个 Promise，但清理函数需要在 Promise 完成前立即注册。另外，Vue 也依赖这个返回的 Promise 来自动地处理 Promise 链上潜在的错误。
+[在 Playground 中尝试一下](https://sfc.vuejs.org/#eyJBcHAudnVlIjoiPHNjcmlwdCBzZXR1cD5cbmltcG9ydCB7IHVzZUltbWVyIH0gZnJvbSAnLi9pbW1lci5qcydcbiAgXG5jb25zdCB7IHN0YXRlOiBpdGVtcywgdXBkYXRlIH0gPSB1c2VJbW1lcihbXG4gIHtcbiAgICAgdGl0bGU6IFwiTGVhcm4gVnVlXCIsXG4gICAgIGRvbmU6IHRydWVcbiAgfSxcbiAge1xuICAgICB0aXRsZTogXCJVc2UgVnVlIHdpdGggSW1tZXJcIixcbiAgICAgZG9uZTogZmFsc2VcbiAgfVxuXSlcblxuZnVuY3Rpb24gdG9nZ2xlSXRlbShpbmRleCkge1xuICB1cGRhdGUoaXRlbXMgPT4ge1xuICAgIGl0ZW1zW2luZGV4XS5kb25lID0gIWl0ZW1zW2luZGV4XS5kb25lXG4gIH0pXG59XG48L3NjcmlwdD5cblxuPHRlbXBsYXRlPlxuICA8dWw+XG4gICAgPGxpIHYtZm9yPVwiKHsgdGl0bGUsIGRvbmUgfSwgaW5kZXgpIGluIGl0ZW1zXCJcbiAgICAgICAgOmNsYXNzPVwieyBkb25lIH1cIlxuICAgICAgICBAY2xpY2s9XCJ0b2dnbGVJdGVtKGluZGV4KVwiPlxuICAgICAgICB7eyB0aXRsZSB9fVxuICAgIDwvbGk+XG4gIDwvdWw+XG48L3RlbXBsYXRlPlxuXG48c3R5bGU+XG4uZG9uZSB7XG4gIHRleHQtZGVjb3JhdGlvbjogbGluZS10aHJvdWdoO1xufVxuPC9zdHlsZT4iLCJpbXBvcnQtbWFwLmpzb24iOiJ7XG4gIFwiaW1wb3J0c1wiOiB7XG4gICAgXCJ2dWVcIjogXCJodHRwczovL3NmYy52dWVqcy5vcmcvdnVlLnJ1bnRpbWUuZXNtLWJyb3dzZXIuanNcIixcbiAgICBcImltbWVyXCI6IFwiaHR0cHM6Ly91bnBrZy5jb20vaW1tZXJAOS4wLjcvZGlzdC9pbW1lci5lc20uanM/bW9kdWxlXCJcbiAgfVxufSIsImltbWVyLmpzIjoiaW1wb3J0IHByb2R1Y2UgZnJvbSBcImltbWVyXCJcbmltcG9ydCB7IHNoYWxsb3dSZWYgfSBmcm9tICd2dWUnXG5cbmV4cG9ydCBmdW5jdGlvbiB1c2VJbW1lcihiYXNlU3RhdGUpIHtcbiBcdCBjb25zdCBzdGF0ZSA9IHNoYWxsb3dSZWYoYmFzZVN0YXRlKVxuICAgXG4gICByZXR1cm4ge1xuICAgICBzdGF0ZSxcbiAgICAgdXBkYXRlKHVwZGF0ZXIpIHtcbiAgICAgICBzdGF0ZS52YWx1ZSA9IHByb2R1Y2Uoc3RhdGUudmFsdWUsIHVwZGF0ZXIpXG4gICAgIH1cbiAgIH1cbn1cbiJ9)
 
-</div>
+### 状态机 {#state-machines}
 
-## Integration with External State Systems
+[状态机](https://en.wikipedia.org/wiki/Finite-state_machine) 是一种数据模型，用于描述应用程序可能处于的所有可能状态，以及从一种状态转换到另一种状态的所有可能方式。虽然对于简单的组件来说，这可能有些小题大做了，但它的确可以使得复杂的状态流更加健壮和易于管理。
 
-### State Machines
+JavaScript 中一个最受欢迎的状态机实现方案就是 [XState](https://xstate.js.org/)。这里是集成它的一个例子：
 
-// TODO `useMachine()` example
+```js
+import { createMachine, interpret } from 'xstate'
+import { shallowRef } from 'vue'
 
-### RxJS
+export function useMachine(options) {
+  const machine = createMachine(options)
+  const state = shallowRef(machine.initialState)
+  const service = interpret(machine)
+  	.onTransition(newState => state.value = newState)
+    .start()
 
-The [VueUse](https://vueuse.org/) library provides the [`@vueuse/rxjs`](https://vueuse.org/rxjs/readme.html) add-on for connecting RxJS streams with Vue's reactivity system.
+  return {
+    state,
+    send(event) {
+      service.send(event)
+    }
+  }
+}
+```
+
+[在 Playground 中尝试一下](https://sfc.vuejs.org/#eyJBcHAudnVlIjoiPHNjcmlwdCBzZXR1cD5cbmltcG9ydCB7IHVzZU1hY2hpbmUgfSBmcm9tICcuL21hY2hpbmUuanMnXG4gIFxuY29uc3QgeyBzdGF0ZSwgc2VuZCB9ID0gdXNlTWFjaGluZSh7XG4gIGlkOiAndG9nZ2xlJyxcbiAgaW5pdGlhbDogJ2luYWN0aXZlJyxcbiAgc3RhdGVzOiB7XG4gICAgaW5hY3RpdmU6IHsgb246IHsgVE9HR0xFOiAnYWN0aXZlJyB9IH0sXG4gICAgYWN0aXZlOiB7IG9uOiB7IFRPR0dMRTogJ2luYWN0aXZlJyB9IH1cbiAgfVxufSlcbjwvc2NyaXB0PlxuXG48dGVtcGxhdGU+XG4gIDxidXR0b24gQGNsaWNrPVwic2VuZCgnVE9HR0xFJylcIj5cbiAgICB7eyBzdGF0ZS5tYXRjaGVzKFwiaW5hY3RpdmVcIikgPyBcIk9mZlwiIDogXCJPblwiIH19XG4gIDwvYnV0dG9uPlxuPC90ZW1wbGF0ZT4iLCJpbXBvcnQtbWFwLmpzb24iOiJ7XG4gIFwiaW1wb3J0c1wiOiB7XG4gICAgXCJ2dWVcIjogXCJodHRwczovL3NmYy52dWVqcy5vcmcvdnVlLnJ1bnRpbWUuZXNtLWJyb3dzZXIuanNcIixcbiAgICBcInhzdGF0ZVwiOiBcImh0dHBzOi8vdW5wa2cuY29tL3hzdGF0ZUA0LjI3LjAvZXMvaW5kZXguanM/bW9kdWxlXCJcbiAgfVxufSIsIm1hY2hpbmUuanMiOiJpbXBvcnQgeyBjcmVhdGVNYWNoaW5lLCBpbnRlcnByZXQgfSBmcm9tICd4c3RhdGUnXG5pbXBvcnQgeyBzaGFsbG93UmVmIH0gZnJvbSAndnVlJ1xuXG5leHBvcnQgZnVuY3Rpb24gdXNlTWFjaGluZShvcHRpb25zKSB7XG4gIGNvbnN0IG1hY2hpbmUgPSBjcmVhdGVNYWNoaW5lKG9wdGlvbnMpXG4gIGNvbnN0IHN0YXRlID0gc2hhbGxvd1JlZihtYWNoaW5lLmluaXRpYWxTdGF0ZSlcbiAgY29uc3Qgc2VydmljZSA9IGludGVycHJldChtYWNoaW5lKVxuICBcdC5vblRyYW5zaXRpb24obmV3U3RhdGUgPT4gc3RhdGUudmFsdWUgPSBuZXdTdGF0ZSlcbiAgICAuc3RhcnQoKVxuICByZXR1cm4ge1xuICAgIHN0YXRlLFxuICAgIHNlbmQoZXZlbnQpIHtcbiAgICAgIHNlcnZpY2Uuc2VuZChldmVudClcbiAgICB9XG4gIH1cbn0ifQ==)
+
+### RxJS {#rxjs}
+
+[RxJS](https://rxjs.dev/) 是否有一个用于处理异步事件流的库。[VueUse](https://vueuse.org/) 库提供了 [`@vueuse/rxjs`](https://vueuse.org/rxjs/readme.html) 扩展来支持连接 RxJS 流与 Vue 的响应性系统。
