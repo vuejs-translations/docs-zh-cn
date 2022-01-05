@@ -607,9 +607,9 @@ export default defineConfig({
     reactivityTransform: true,
     template: {
       compilerOptions: {
-        directiveTransforms: {
-          focus: () => ({ props: [] })
-        }
+        // directiveTransforms: {
+        //   focus: () => ({ props: [] })
+        // }
       }
     }
   }

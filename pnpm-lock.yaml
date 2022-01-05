@@ -11,6 +11,7 @@ specifiers:
   gray-matter: ^4.0.3
   gsap: ^3.9.0
   lodash: ^4.17.21
+  patch-vue-directive-ssr: ^0.0.1
   vitepress: ^0.20.10
   vue: ^3.2.25
 
@@ -27,6 +28,7 @@ devDependencies:
   chalk: 4.1.2
   gray-matter: 4.0.3
   lodash: 4.17.21
+  patch-vue-directive-ssr: 0.0.1
 
 packages:
 
@@ -573,7 +575,7 @@ packages:
     dev: true
 
   /fsevents/2.3.2:
-    resolution: {integrity: sha1-ilJveLj99GI7cJ4Ll1xSwkwC/Ro=}
+    resolution: {integrity: sha512-xiqMQR4xAeHTuB9uWm+fFRcIOgKBMiOBP+eXiyT7jsgVCq1bkVygt00oASowB7EdtpOHaaPgKt812P9ab+DDKA==}
     engines: {node: ^8.16.0 || ^10.6.0 || >=11.0.0}
     os: [darwin]
     requiresBuild: true
@@ -657,6 +659,11 @@ packages:
   /normalize.css/8.0.1:
     resolution: {integrity: sha512-qizSNPO93t1YUuUhP22btGOo3chcvDFqFaj2TRybP0DMxkHOCTYwp3n34fel4a31ORXy4m1Xq0Gyqpb5m33qIg==}
     dev: false
+
+  /patch-vue-directive-ssr/0.0.1:
+    resolution: {integrity: sha512-n84llktHah+EXUGo+RvmTJcAQJQVW0kHHHiJ34ZSLijzhHi32zCMjCc5VAFv4jmdC91bpaYGPk0cDW1D8hQ3GQ==}
+    requiresBuild: true
+    dev: true
 
   /path-parse/1.0.7:
     resolution: {integrity: sha512-LDJzPVEEEPR+y48z93A0Ed0yXb8pAByGWo/k5YYdYgpY2/2EsOsksJrq7lOHxryrVOn1ejG6oAp8ahvOIQD8sw==}
