@@ -2,89 +2,88 @@
 aside: deep
 ---
 
-# Performance
+# 性能 {#performance}
 
-## Overview
+## 概述 {#overview}
 
-Vue is designed to be performant for most common use cases without much need for manual optimizations. However, there are always challenging scenarios where extra fine-tuning is needed. In this section, we will discuss what you should pay attention to when it comes to performance in a Vue application.
+Vue 的设计对于大多数常见的使用情况来说都是性能优秀的，不需要太多的手动优化。然而，总有一些具有挑战性的场景需要进行额外的细微调整。在本节中，我们将讨论当涉及到 Vue 应用程序的性能时，你应该注意什么。
 
-First, let's discuss the two major aspects of web performance:
+首先，让我们讨论一下网络性能的两个主要方面：
 
-- **Page Load Performance**: how fast the application shows content and becomes interactive on the initial visit. This is usually measured using web vital metrics like [Largest Contentful Paint (LCP)](https://web.dev/lcp/) and [First Input Delay](https://web.dev/fid/).
+- **页面加载性能**：应用展示出内容与首次访问时变为可交互的速度。这通常是使用网络的重要指标来衡量，如最大的 [最大内容绘制（LCP）](https://web.dev/lcp/) 和 [首次输入延迟]。https://web.dev/fid/)。
 
-- **Update Performance**: how fast the application updates in response to user input. For example, how fast a list updates when the user types in a search box, or how fast the page switches when the user clicks a navigation link in a Single-Page Application (SPA).
+- **更新性能**：应用响应用户输入更新的速度。举个例子，当用户在一个搜索框中输入时列表的更新速度，或者用户在一个单页面应用（SPA）中点击链接跳转页面时的切换速度。
 
-While it would be ideal to maximize both, different frontend architectures tend to affect how easy it is to attain desired performance in these aspects. In addition, the type of application you are building greatly influences what you should prioritize in terms of performance. Therefore, the first step of ensuring optimal performance is picking the right architecture for the type of application you are building:
+虽然最理想的情况是将两者都最大化，但是不同的前端架构往往会影响到在这些方面是否能达到更理想的性能。此外，你所构建的应用程序的类型极大地影响了你在性能方面应该优先考虑的问题。因此，确保最佳性能的第一步是为你的应用类型挑选合适的架构：
 
-- Consult [Ways of Using Vue](/guide/extras/ways-of-using-vue.html) to see how you can leverage Vue in different ways.
+- 查看 [使用 Vue 的多种方式](/guide/extras/ways-of-using-vue.html) 这一章看看如何用不同的方式围绕 Vue 组织架构。
 
-- Jason Miller discusses the types of web applications and their respective ideal implementation / delivery in [Application Holotypes](https://jasonformat.com/application-holotypes/).
+- Jason Miller 在 [应用标本](https://jasonformat.com/application-holotypes/) 一文中讨论了 Web 应用的类型以及它们各自的理想的实现/交付方式。
 
-## Profiling Options
+## 分析选项 {#profiling-options}
 
-To improve performance, we need to first know how to measure it. There are a number of great tools that can help in this regard:
+为了提高性能，我们首先需要知道如何衡量它。在这方面，有一些很棒的工具可以提供帮助：
 
-For profiling load performance of production deployments:
+用于生产部署的负载性能分析：
 
 - [PageSpeed Insights](https://pagespeed.web.dev/)
 - [WebPageTest](https://www.webpagetest.org/)
 
-For profiling performance during local development:
+用于本地开发期间的性能分析：
 
-- [Chrome DevTools Performance Panel](https://developer.chrome.com/docs/devtools/evaluate-performance/)
-  - [`app.config.performance`](/api/application.html#app-config-performance) enables Vue-specific performance markers in Chrome DevTools' performance timeline.
-- [Vue DevTools Extension](/guide/scaling-up/tooling.html#browser-devtools) also provides a performance profiling feature.
+- [Chrome 开发者工具 “性能” 面板](https://developer.chrome.com/docs/devtools/evaluate-performance/)
+  - [`app.config.performance`](/api/application.html#app-config-performance) 将会开启 Vue 特有的性能标记，标记在 Chrome 开发者工具的性能时间线上。
+- [Vue 开发者扩展](/guide/scaling-up/tooling.html#browser-devtools) 也提供了性能分析的功能。
 
-## Page Load Optimizations
+## 页面加载优化 {#page-load-optimizations}
 
-### Bundle Size and Tree-shaking
+### 包体积与 Tree-shaking 优化 {#bundle-size-and-tree-shaking}
 
-One of the most effective ways to improve page load performance is shipping smaller JavaScript bundles. Here are a few ways to reduce bundle size when using Vue:
+一个最有效的提升页面加载速度的方法就是压缩 JavaScript 打包产物的体积。当使用 Vue 时有下面一些办法来减小打包产物体积：
 
-- Use a build step if possible.
+- 尽可能地采用构建步骤
 
-  - Many of Vue's APIs are ["tree-shakable"](https://developer.mozilla.org/en-US/docs/Glossary/Tree_shaking) if bundled via a modern build tool. For example, if you don't use the built-in `<Transition>` component, it won't be included in the final production bundle. Tree-shaking can also remove other unused modules in your source code.
+  - 如果使用的是相对线代的打包工具，许多 Vue 的 API 都是可以被 ["tree-shake"](https://developer.mozilla.org/en-US/docs/Glossary/Tree_shaking) 的。举个例子，如果你根本没有使用到内置的 `<Transition>` 组件，它将不会被打包进入最终的产物里。Tree-shaking 也可以移除你源代码中其他未使用到的模块。
 
-  - When using a build step, templates are pre-compiled so we don't need to ship the Vue compiler to the browser. This saves **14kb** min+gzipped JavaScript and avoids the runtime compilation cost.
+  - 当使用了构建步骤时，模板会被预编译，因此我们无须在浏览器中载入 Vue 编译器。这在同样最小化加上 gzip 优化下会相对缩小 **14kb** 并避免运行时的编译开销。
 
-- If you are using Vue primarily for progressive enhancement and prefer to avoid a build step, consider using [petite-vue](https://github.com/vuejs/petite-vue) (only **6kb**) instead.
+- 如果你基本上是以渐进式集成的模式使用 Vue，并选择避免使用构建步骤，请考虑使用 [petite-vue](https://github.com/vuejs/petite-vue) （只有 **6kb**）来代替。
 
-### Code Splitting
+### 代码拆分 {#code-splitting}
 
-Code splitting stands for the build tool splitting the application bundle into multiple smaller chunks which can then be loaded on demand or in parallel. With proper code splitting, features required at page load can be downloaded immediately, with additional chunks being lazy loaded only when needed, thus improving performance.
+代码拆分是指构建工具将应用程序包拆分为多个较小的块，然后可以按需或并行加载。通过适当的代码拆分，页面加载时需要的功能可以立即下载，而额外的块只在需要时才加载，从而提高性能。
 
-Bundlers like Rollup (which Vite is based upon) or webpack can automatically create split chunks by detecting the ESM dynamic import syntax:
+像 Rollup（Vite 就是基于它之上开发的）或者 Webpack 这样的打包器可以通过探测 ESM 动态导入的语法来自动拆分代码块：
 
 ```js
-// lazy.js and its dependencies will be split into a separate chunk
-// and only loaded when `loadLazy()` is called.
+// lazy.js 及其依赖会被拆分到一个单独的块中
+// 并只在 `loadLazy()` 调用时才加载
 function loadLazy() {
   return import('./lazy.js')
 }
 ```
 
-Lazy loading is best used on features that are not immediately needed after initial page load. In Vue applications, this is typically used in combination with Vue's [Async Component](/guide/components/async.html) feature to create split chunks for component trees:
+懒加载对于页面初次加载时的优化帮助极大，它帮助应用暂时略过了那些不是立即需要的功能。在 Vue 应用中，这常常与 Vue 的 [异步组件](/guide/components/async.html) 搭配使用，为组件树创建分离的代码块：
 
 ```js
 import { defineAsyncComponent } from 'vue'
-
-// a separate chunk is created for Foo.vue and its dependencies.
-// it is only fetched on demand when the async component is
-// rendered on the page.
+// 会为 Foo.vue 及其依赖创建单独的一个块
+// 它只会按需加载
+//（即该异步组件在页面中被渲染时）
 const Foo = defineAsyncComponent(() => import('./Foo.vue'))
 ```
 
-If using client-side routing via Vue Router, it is strongly recommended to use async components as route components. See [Lazy Loading Routes](https://next.router.vuejs.org/guide/advanced/lazy-loading.html) for more details.
+如果在客户端侧通过 Vue Router 构建了路由，那么强烈建议将路由组件改写为异步组件形式。查看 [懒加载路由](https://next.router.vuejs.org/guide/advanced/lazy-loading.html) 获取更多细节。
 
-### SSR / SSG
+### SSR / SSG {#ssr-ssg}
 
-Pure client-side rendering suffers from slow time-to-content. This can be mitigated with Server-Side Rendering (SSR) or Static Site Generation (SSG). Check out the [SSR Guide](/guide/scaling-up/ssr.html) for more details.
+纯粹的客户端渲染存在内容到达时间缓慢的问题。这可以通过采用服务端渲染（SSR）或者静态站点生成（SSG）来进行优化。你可以查看 [SSR 指引](/guide/scaling-up/ssr.html) 了解更多细节。
 
-## Update Optimizations
+## 更新优化 {#update-optimizations}
 
-### Props Stability
+### props 稳定性 {#props-stability}
 
-In Vue, a child component only updates when at least one of its received props has changed. Consider the following example:
+在 Vue 之中，一个子组件只会在其至少一个 props 改变时才会更新。我们来思考以下示例：
 
 ```vue-html
 <ListItem
@@ -93,9 +92,9 @@ In Vue, a child component only updates when at least one of its received props h
   :active-id="activeId" />
 ```
 
-Inside the `<ListItem>` component, it uses its `id` and `activeId` props to determine whether it is the currently active item. While this works, the problem is that whenever `activeId` changes, **every** `<ListItem>` in the list has to update!
+在 `<ListItem>` 组件中，它使用了 `id` 和 `activeId` 两个 props 来确定它是否是当前活跃的那一项。虽然这是可行的，但问题是每当 `activeId` 更新时，列表中的 **每一个** `<ListItem>` 都会跟着更新！
 
-Ideally, only the items whose active status changed should update. We can achieve that by moving the active status computation into the parent, and make `<ListItem>` directly accept an `active` prop instead:
+理想情况下，只有活跃状态发生改变的项才应该更新。我们可以将活跃状态比对的逻辑移入父组件来实现这一点，然后让 `<ListItem>` 改为接收一个 `active` prop：
 
 ```vue-html
 <ListItem
@@ -104,50 +103,47 @@ Ideally, only the items whose active status changed should update. We can achiev
   :active="item.id === activeId" />
 ```
 
-Now, for most components the `active` prop will remain the same when `activeId` changes, so they no longer need to update. In general, the idea is keeping the props passed to child components as stable as possible.
+现在，对与大多数的组件来说，`activeId` 改变时，它们的 `active` prop 都会保持不变, 因此它们无需再更新。总而言之，核心要义就是尽量保持传给子组件的 props 稳定。
 
-### `v-once`
+### `v-once` {#v-once}
 
-`v-once` is a built-in directive that can be used to render content that relies on runtime data but never needs to update. The entire sub tree it is used on will be skipped for all future updates. Consult its [API reference](/api/built-in-directives.html#v-once) for more details.
+`v-once` 是一个内置的指令，可以用来渲染依赖运行时数据但无需再更新的内容。它的整个子树都会在未来的更新中被跳过。查看它的 [API 参考手册](/api/built-in-directives.html#v-once) 可以了解更多细节。
 
-### `v-memo`
+### `v-memo` {#v-memo}
 
-`v-memo` is a built-in directive that can be used to conditionally skip the update of large sub trees or `v-for` lists. Consult its [API reference](/api/built-in-directives.html#v-memo) for more details.
+`v-memo` 是一个内置指令，可以用来有条件地跳过某些大型子树或者 `v-for` 列表的更新。查看它的 [API 参考手册](/api/built-in-directives.html#v-memo) 可以了解更多细节。
 
-## General Optimizations
+## 总体优化 {#general-optimizations}
 
-> The following tips affect both page load and update performance.
+> 以下提示会同时影响页面加载和更新性能。
+### Virtualize Large Lists {#virtualize-large-lists}
 
-### Virtualize Large Lists
+所有的前端应用中最常见的性能问题就是渲染大型列表。无论一个框架性能有多好，渲染成千上万个列表项 **都会** 变得很慢，因为浏览器需要处理大量的 DOM 节点。
 
-One of the most common performance issues in all frontend applications is rendering large lists. No matter how performant a framework is, rendering a list with thousands of items **will** be slow due to the sheer amount of DOM nodes that the browser needs to handle.
+但是，我们并不需要立刻渲染出全部的列表。在大多数场景中，用户的屏幕尺寸只会展示这个巨大列表中的一小部分。我们可以通过 **列表虚拟化** 来提升性能，这项技术使我们只需要渲染用户视口中能看到的部分。
 
-However, we don't necessarily have to render all these nodes upfront. In most cases, the user's screen size can display only a small subset of our large list. We can greatly improve the performance with **list virtualization**, the technique of only rendering the items that are currently in or close to the viewport in a large list.
-
-Implementing list virtualization isn't easy, luckily there are existing community libraries that you can directly use:
+要实现列表虚拟化并不简单，幸运的是，你可以直接使用现有的社区库：
 
 - [vue-virtual-scroller](https://github.com/Akryum/vue-virtual-scroller)
 - [vue-virtual-scroll-grid](https://github.com/rocwang/vue-virtual-scroll-grid)
 
-### Reduce Reactivity Overhead for Large Immutable Structures
+### 减少大型不可变结构的响应性开销 {#reduce-reactivity-overhead-for-large-immutable-structures}
 
-Vue's reactivity system is deep by default. While this makes state management intuitive, it does create a certain level of overhead when the data size is large, because every property access triggers proxy traps that performs dependency tracking. This typically becomes noticeable when dealing with large arrays of deeply nested objects, where a single render needs to access 100,000+ properties, so it should only affect very specific use cases.
+Vue 的响应性系统默认是深度的。虽然这让状态管理变得更直观，但在数据变大时它也的确创造了不小的性能负担，因为每个属性访问都将触发代理的依赖追踪。试想一下当一次渲染需要访问 100,000+ 属性的时候，这个开销在处理大型数组或层级很深的对象时变得无法忽略，因此，我们应该控制它只影响非常具体的使用情况。
 
-Vue does provide an escape hatch to opt-out of deep reactivity by using [`shallowRef()`](/api/reactivity-advanced.html#shallowref) and [`shallowReactive()`](/api/reactivity-advanced.html#shallowreactive). Shallow APIs create state that is reactive only at the root level, and exposes all nested objects untouched. This keeps nested property access fast, with the trade-off being that we must now treat all nested objects as immutable, and updates can only be triggered by replacing the root state:
+Vue 确实也为此提供了一种解决方案，通过使用 [`shallowRef()`](/api/reactivity-advanced.html#shallowref) 和 [`shallowReactive()`](/api/reactivity-advanced.html#shallowreactive) 来选择退出深度响应。浅层式 API 创建的状态只在其顶层是响应式的，并原封不动地显示所有下面层级的对象。这使得对深层级属性的访问变得更快，但代价是，我们现在必须将所有深层级对象视为不可变的，并且只能通过替换整个根状态来触发更新：
 
 ```js
 const shallowArray = shallowRef([
-  /* big list of deep objects */
+  /* 巨大的列表，里面包含深层的对象 */
 ])
-
-// this won't trigger updates...
+// 这不会触发更新...
 shallowArray.value.push(newObject)
-// this does:
+// 这才会触发更新
 shallowArray.value = [...shallowArr.value, newObject]
-
-// this won't trigger update...
+// 这不会触发更新...
 shallowArray.value[0].foo = 1
-// this does:
+// 这才会触发更新
 shallowArray.value = [
   {
     ...shallowArray.value[0],
@@ -157,8 +153,8 @@ shallowArray.value = [
 ]
 ```
 
-### Avoid Unnecessary Component Abstractions
+### 避免不必要的组件抽象 {#avoid-unnecessary-component-abstractions}
 
-Sometimes we may create [renderless components](/guide/components/slots.html#renderless-components) or higher-order components (i.e. components that render other components with extra props) for better abstraction or code organization. While there is nothing wrong with this, do keep in mind that component instances are much more expensive than plain DOM nodes, and creating too many of them due to abstraction patterns will incur performance costs.
+有些时候我们会去创建 [无渲染组件](/guide/components/slots.html#renderless-components) 或高阶组件（用来渲染具有额外 props 的其他组件) 来实现更好的抽象或代码组织。虽然这并没有什么问题，但请记住，组件实例比普通 DOM 节点要昂贵得多，而且为了逻辑抽象创建太多组件实例将会导致性能损失。
 
-Note that reducing only a few instances won't have noticeable effect, so don't sweat it if the component is rendered only a few times in the app. The best scenario to consider this optimization is again in large lists. Imagine a list of 100 items where each item component contains many child components. Removing one unnecessary component abstraction here could result in a reduction of hundreds of component instances.
+请注意，只减少几个实例不会有明显的效果，所以如果该组件在应用程序中只渲染了几次，就不用担心了。考虑这种优化的最佳场景还是在大型列表中。想象一下一个有 100 项的列表，每项的组件都包含许多子组件。在这里去掉一个不必要的组件抽象，可能会减少数百个组件实例的无谓性能消耗。

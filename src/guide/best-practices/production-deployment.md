@@ -1,53 +1,51 @@
-# Production Deployment
+# 生产环境部署 {#production-deployment}
 
-## Development vs. Production
+## 开发环境 vs. 生产环境 {#development-vs-production}
 
-During development, Vue provides a number of features to improve the development experience:
+在开发过程中，Vue 提供了许多功能来帮助提升开发体验：
 
-- Warning for common errors and pitfalls
-- Props / events validation
-- Reactivity debugging hooks
-- Devtools integration
+- 对常见错误和陷阱的警告
+- props / 事件校验
+- 响应性调试钩子
+- 开发工具集成
 
-However, these features become useless in production. Some of the warning checks can also incur a small amount of performance overhead. When deploying to production, we should drop all the unused, development-only code branches for smaller payload size and better performance.
+然而，这些功能在生产中并没有作用。一些警告检查也会产生少量的性能开销。当部署到生产中时，我们应该跳过所有未使用的、仅供开发的代码分支，以获得更小的载荷体积和更好的性能。
 
-## Without Build Tools
+## 不使用构建工具 {#without-build-tools}
 
-If you are using Vue without a build tool by loading it from a CDN or self-hosted script, make sure to use the production build (dist files that end in `.prod.js`) when deploying to production. Production builds are pre-minified with all development-only code branches removed.
+如果你没有使用任何构建工具，而是从 CDN 或其他源中加载而获取 Vue，请确保在部署时使用的是生产环境版本（以 `.prod.js` 结尾的发行文件）。生产环境版本会被最小化，并移除掉了所有仅供开发环境使用的代码分支
 
-- If using global build (accessing via the `Vue` global): use `vue.global.prod.js`.
-- If using ESM build (accessing via native ESM imports): use `vue.esm-browser.prod.js`.
+- 如果需要是全局变量版本（通过 `Vue` 全局变量访问）：请使用 `vue.global.prod.js`。
+- 如果需要 ESM 版本（通过原生 ESM 导入访问）：请使用 `vue.esm-browser.prod.js`。
 
-Consult the [dist file guide](https://github.com/vuejs/vue-next/tree/master/packages/vue#which-dist-file-to-use) for more details.
+更多细节请参考 [发行文件指南](https://github.com/vuejs/vue-next/tree/master/packages/vue#which-dist-file-to-use)。
 
-## With Build Tools
+## 使用构建工具 {#with-build-tools}
 
-Projects scaffolded via `create-vue` (based on Vite) or Vue CLI (based on webpack) are pre-configured for production builds.
+通过 `create-vue` 搭建的项目（基于 Vite）或者 Vue CLI（基于 Vue CLI）都会为生产环境发布作预配置。
 
-If using a custom setup, make sure that:
+如果使用了自定义的构建，请确保：
 
-1. `vue` resolves to `vue.runtime.esm-bundler.js`.
-2. The [compile time feature flags](https://github.com/vuejs/vue-next/tree/master/packages/vue#bundler-build-feature-flags) are properly configured.
-3. <code>process.env<wbr>.NODE_ENV</code> is replaced with `"production"` during build.
+1. `vue` 被解析为 `vue.runtime.esm-bundler.js`。
+2. [编译时功能标记](https://github.com/vuejs/vue-next/tree/master/packages/vue#bundler-build-feature-flags) 已被正确配置。
+3. <code>process.env<wbr>.NODE_ENV</code> 会在构建时被替换为 `"production"`。
 
-Additional references:
+其他参考：
 
-- [Vite production build guide](https://vitejs.dev/guide/build.html)
-- [Vite deployment guide](https://vitejs.dev/guide/static-deploy.html)
-- [Vue CLI deployment guide](https://cli.vuejs.org/guide/deployment.html)
+- [Vite 生产环境指南](https://vitejs.dev/guide/build.html)
+- [Vite 部署指南](https://vitejs.dev/guide/static-deploy.html)
+- [Vue CLI 部署指南](https://cli.vuejs.org/guide/deployment.html)
 
-## Tracking Runtime Errors
+## 追踪运行时错误 {#tracking-runtime-errors}
 
-The [app-level error handler](/api/application.html#app-config-errorhandler) can be used to report errors to tracking services:
+[应用级错误处理](/api/application.html#app-config-errorhandler) 可以用来向追踪服务报告错误：
 
 ```js
 import { createApp } from 'vue'
-
 const app = createApp(...)
-
 app.config.errorHandler = (err, instance, info) => {
-  // report error to tracking services
+  // 向追踪服务报告错误
 }
 ```
 
-Services such as [Sentry](https://docs.sentry.io/platforms/javascript/guides/vue/) and [Bugsnag](https://docs.bugsnag.com/platforms/javascript/vue/) also provide official integrations for Vue.
+像 [Sentry](https://docs.sentry.io/platforms/javascript/guides/vue/) 和 [Bugsnag](https://docs.bugsnag.com/platforms/javascript/vue/) 这样的服务也为 Vue 提供官方集成。

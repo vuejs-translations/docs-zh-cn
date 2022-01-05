@@ -5,19 +5,18 @@ import Colors from './demos/Colors.vue'
 import AnimateWatcher from './demos/AnimateWatcher.vue'
 </script>
 
-# Animation Techniques
+# 动画技巧 {#animation-techniques}
 
-Vue provides the [`<Transition>`](/guide/built-ins/transition.html) and [`<TransitionGroup>`](/guide/built-ins/transition-group.html) components for handling enter / leave and list transitions. However, there are many other ways of using animations on the web, even in a Vue application. Here we will discuss a few additional techniques.
+Vue 提供了 [`<Transition>`](/guide/built-ins/transition.html) 和 [`<TransitionGroup>`](/guide/built-ins/transition-group.html) 组件来处理进入、离开或是列表的过渡。但是在网页上制作动画的方式非常多，即使是在一个 Vue 应用中。这里我们会探讨一些别的技巧。
 
-## Class-based Animations
+## 基于 CSS 类的动画 {#class-based-animations}
 
-For elements that are not entering / leaving the DOM, we can trigger animations by dynamically adding a CSS class:
+对于那些不是正在进入或离开 DOM 的元素，我们可以通过给它们动态添加 CSS 类来触发动画：
 
 <div class="composition-api">
 
 ```js
 const notActivated = ref(false)
-
 function warnNotActivated() {
   notActivated.value = true
   setTimeout(() => {
@@ -51,8 +50,8 @@ export default {
 
 ```vue-html
 <div :class="{ shake: notActivated }">
-  <button @click="warnNotActivated">Click me</button>
-  <span v-if="notActivated">This feature is not activated.</span>
+  <button @click="warnNotActivated">点击此处</button>
+  <span v-if="notActivated">此功能未激活。</span>
 </div>
 ```
 
@@ -61,24 +60,20 @@ export default {
   animation: shake 0.82s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
   transform: translate3d(0, 0, 0);
 }
-
 @keyframes shake {
   10%,
   90% {
     transform: translate3d(-1px, 0, 0);
   }
-
   20%,
   80% {
     transform: translate3d(2px, 0, 0);
   }
-
   30%,
   50%,
   70% {
     transform: translate3d(-4px, 0, 0);
   }
-
   40%,
   60% {
     transform: translate3d(4px, 0, 0);
@@ -88,15 +83,14 @@ export default {
 
 <NotActivated />
 
-## State-driven Animations
+## 状态驱动的动画 {#state-driven-animations}
 
-Some transition effects can be applied by interpolating values, for instance by binding a style to an element while an interaction occurs. Take this example for instance:
+某些过渡效果可以通过插值来应用，例如，通过在交互发生时将样式绑定到元素。看看下面这个示例：
 
 <div class="composition-api">
 
 ```js
 const x = ref(0)
-
 function onMousemove(e) {
   x.value = e.clientX
 }
@@ -128,7 +122,7 @@ export default {
   :style="{ backgroundColor: `hsl(${x}, 80%, 50%)` }"
   class="movearea"
 >
-  <p>Move your mouse across this div...</p>
+  <p>移动鼠标穿过这个 div...</p>
   <p>x: {{ x }}</p>
 </div>
 ```
@@ -141,25 +135,23 @@ export default {
 
 <Colors />
 
-In addition to color, you can also use style bindings to animate transform, width, or height. You can even animate SVG paths using spring physics - after all, they are all attribute data bindings:
+除了颜色外，你还可以使用样式绑定动画转换、宽度或高度。你甚至可以通过运用弹簧物理学为 SVG 添加动画，毕竟它们也只是 attribute 的数据绑定：
 
 <ElasticHeader />
 
-## Animating with Watchers
+## 带侦听器的动画 {#animating-with-watchers}
 
-With some creativity, we can use watchers to animate anything based on some numerical state. For example we can animate the number itself:
+在一些动画创意里，我们可以根据一些数字状态，使用侦听器将任何东西做成动画。例如，我们可以将数字本身变成动画：
 
 <div class="composition-api">
 
 ```js
 import { ref, reactive, watch } from 'vue'
 import gsap from 'gsap'
-
 const number = ref(0)
 const tweened = reactive({
   number: 0
 })
-
 watch(number, (n) => {
   gsap.to(tweened, { duration: 0.5, number: Number(n) || 0 })
 })
@@ -170,7 +162,6 @@ watch(number, (n) => {
 
 ```js
 import gsap from 'gsap'
-
 export default {
   data() {
     return {
@@ -189,7 +180,7 @@ export default {
 </div>
 
 ```vue-html
-Type a number: <input v-model.number="number" />
+输入一个数字：<input v-model.number="number" />
 <p>{{ tweened.number.toFixed(0) }}</p>
 ```
 
