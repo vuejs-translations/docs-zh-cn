@@ -2,288 +2,192 @@
 aside: deep
 ---
 
-# Server-Side Rendering (SSR)
+# 服务端渲染（SSR） {#server-side-rendering-ssr}
 
-## Overview
+## 总览 {#overview}
 
-### What is SSR?
+### 什么是 SSR？ {#what-is-ssr}
 
-Vue.js is a framework for building client-side applications. By default, Vue components produce and manipulate DOM in the browser as output. However, it is also possible to render the same components into HTML strings on the server, send them directly to the browser, and finally "hydrate" the static markup into a fully interactive app on the client.
+Vue.js 是一个用于构建客户端应用程序的框架。默认情况下，Vue 组件的功能是在浏览器中产生和操作 DOM。但是我们也可以将该组件在服务端渲染成 HTML 字符串后直接返回给浏览器，最后再并将静态标记 “水化” 为可交互的客户端应用。
 
-A server-rendered Vue.js app can also be considered "isomorphic" or "universal", in the sense that the majority of your app's code runs on both the server **and** the client.
+一个由服务端渲染的 Vue.js 应用可以被认为是 "同构" 或者 "通用" 的，因为应用程序的大部分代码都可以在 **服务端** 和 **客户端** 上运行。
 
-### Why SSR?
+### 为什么要用 SSR? {#why-ssr}
 
-Compared to a client-side Single-Page Application (SPA), the advantage of SSR primarily lies in:
+与传统 SPA (单页应用程序 (Single-Page Application)) 相比，服务器端渲染 (SSR) 的优势主要在于：
 
-- **Faster time-to-content**: this is more prominent on slow internet or slow devices. Server-rendered markup doesn't need to wait until all JavaScript has been downloaded and executed to be displayed, so your user will see a fully-rendered page sooner. In addition, data fetching is done on the server-side for the initial visit, which likely has a faster connection to your database than the client. This generally results in improved [Core Web Vitals](https://web.dev/vitals/) metrics, better user experience, and can be critical for applications where time-to-content is directly associated with conversion rate.
+- **更快的内容到达时间**: 更快的内容到达时间（time-to-content），特别是对于缓慢的网络情况或运行缓慢的设备。无需等待所有的 JavaScript 都完成下载并执行，才显示服务器渲染的标记，所以你的用户将会更快速地看到完整渲染的页面。通常可以达到更好的 [Web 应用核心指标](https://web.dev/vitals/)、产生更好的用户体验，并且对于那些 “内容到达时间（time-to-content）与转化率直接相关” 的应用程序而言，服务器端渲染（SSR）至关重要。
 
-- **Unified mental model**: you get to use the same language and the same declarative, component-oriented mental model for developing your entire app, instead of jumping back and forth between a backend templating system and a frontend framework.
+- **更统一的心智模型**：在开发整个应用程序时，你可以使用相同的语言和相同的声明式、面向组件的心理模型，而不需要在后端模板系统和前端框架之间来回切换。
 
-- **Better SEO**: the search engine crawlers will directly see the fully rendered page.
+- **更好的 SEO**: 由于搜索引擎爬虫抓取工具可以直接查看完全渲染的页面。
 
   :::tip
-  As of now, Google and Bing can index synchronous JavaScript applications just fine. Synchronous being the key word there. If your app starts with a loading spinner, then fetches content via Ajax, the crawler will not wait for you to finish. This means if you have content fetched asynchronously on pages where SEO is important, SSR might be necessary.
+  请注意，截至目前，Google 和 Bing 可以很好对同步 JavaScript 应用程序进行索引。在这里，同步是关键。如果你的应用程序初始展示 loading 菊花图，然后通过 Ajax 获取内容，抓取工具并不会等待异步完成后再行抓取页面内容。也就是说，如果 SEO 对你的站点至关重要，而你的页面又是异步获取内容，则你可能需要服务器端渲染(SSR)解决此问题。
   :::
 
-There are also some trade-offs to consider when using SSR:
+使用服务器端渲染 (SSR) 时还需要有一些权衡之处：
 
-- Development constraints. Browser-specific code can only be used inside certain lifecycle hooks; some external libraries may need special treatment to be able to run in a server-rendered app.
+- 开发时需注意限制条件。仅供浏览器使用的代码，只能在某些生命周期钩子函数中使用；一些外部扩展库可能需要特殊处理，才能在服务器渲染应用程序中运行。
 
-- More involved build setup and deployment requirements. Unlike a fully static SPA that can be deployed on any static file server, a server-rendered app requires an environment where a Node.js server can run.
+- 涉及构建设置和部署的更多要求。与可以部署在任何静态文件服务器上的完全静态 SPA 不同，服务器渲染应用程序，需要处于 Node.js 服务器运行环境。
 
-- More server-side load. Rendering a full app in Node.js is going to be more CPU-intensive than just serving static files, so if you expect high traffic, be prepared for corresponding server load and wisely employ caching strategies.
+- 更高的服务器端负载。在 Node.js 中渲染完整的应用程序，显然会比仅仅提供静态文件的服务器更加占用 CPU 资源，因此如果你预期在高流量环境下使用，请准备充足的服务器负载，并采用更合理的缓存策略。
 
-Before using SSR for your app, the first question you should ask is whether you actually need it. It mostly depends on how important time-to-content is for your app. For example, if you are building an internal dashboard where an extra few hundred milliseconds on initial load doesn't matter that much, SSR would be an overkill. However, in cases where time-to-content is absolutely critical, SSR can help you achieve the best possible initial load performance.
+在对你的应用程序使用 SSR 之前，你应该问的第一个问题是：你是否真的需要它。这主要取决于内容到达时间对应用程序的重要程度。例如，如果你正在构建一个内部系统的仪表盘，初始加载时的额外几百毫秒并不重要，这种情况下去使用 SSR 将是一个小题大作之举。然而，如果对内容到达时间的要求是你应用中最关键的指标，那么 SSR 可以帮助你实现最优的初始加载性能。
 
-### SSR vs. SSG
+### SSR vs. SSG {#ssr-vs-ssg}
 
-**Static Site Generation (SSG)**, also referred to as pre-rendering, is another popular technique for building fast websites. If the data needed to server-render a page is the same for every user, then instead of rendering the page every time a request comes in, we can render it only once, ahead of time, during the build process. Pre-rendered pages are generated and served as static HTML files.
+**静态站点生成 (SSG)**，也被称为预渲染，是另一种流行的快速构建网站的技术。如果服务器渲染页面所需的数据对于每个用户来说都是相同的，那么我们可以只渲染一次，而不是每次出现请求时都呈现页面，提前在构建过程中。预构建的页面被生成并作为静态 HTML 文件提供。
 
-SSG retains the same performance characteristics of SSR apps: it provides great time-to-content performance. At the same time, it is cheaper and easier to deploy than SSR apps because the output is static HTML and assets. The keyword here is **static**: SSG can only be applied to pages consuming static data, i.e. data that is known at build time and does not change between deploys. Every time the data changes, a new deployment is needed.
+SSG 保持了和 SSR 应用相同的性能表现：它提供了更短的内容到达耗时。同时它也更容易比一般的 SSR 应用更容易部署，因为其输出的都是静态资源与 HTML。关键是这个 **静态**：SSG 仅可以用于页面为静态数据的场合，即数据在构建期间就已经完全获取到了，并在部署时不会再变化。每次数据变化时，都需要重新部署。
 
-If you're only investigating SSR to improve the SEO of a handful of marketing pages (e.g. `/`, `/about`, `/contact`, etc), then you probably want SSG instead of SSR. SSG is also great for content-based websites such as documentation sites or blogs. In fact, this website you are reading right now is statically generated using [VitePress](https://vitepress.vuejs.org/), a Vue-powered static site generator.
+如果你只是想要使用 SSR 来提升一些销售页面的 SEO（例如 `/`、`/about` 和 `/contact` 等），那么你应该考虑采用 SSG 代替 SSR。SSG 也非常适合构建基于内容的网站，比如文档或者博客。事实上，你现在正在阅读的这篇文档就是使用 [VitePress](https://vitepress.vuejs.org/) 所生成的，这是一个由 Vue 驱动的静态站点生成器。
 
-## Basic Tutorial
+## 基本使用 {#basic-usage}
 
-### Rendering an App
+### 渲染一个应用 {#rendering-an-app}
 
-Let's take a look at the most bare-bone example of Vue SSR in action.
+Vue 的服务端渲染 API 都被暴露在 `vue/server-renderer` 之下。
 
-1. Create a new directory and `cd` into it
-2. Run `npm init -y`
-3. Add `"type": "module"` in `package.json` so that Node.js runs in [ES modules mode](https://nodejs.org/api/esm.html#modules-ecmascript-modules).
-4. Run `npm install vue`
-5. Create an `example.js` file:
+让我们看看一个 Vue SSR 最基本骨架的实战示例。首先，创建一个新的文件夹，并在其中运行 `npm install vue`。接着，创建一个 `example.mjs` 文件：
 
 ```js
-// this runs in Node.js on the server.
+// example.mjs
+// 这会用 Node.js 运行在服务器上
 import { createSSRApp } from 'vue'
-// Vue's server-rendering API is exposed under `vue/server-renderer`.
 import { renderToString } from 'vue/server-renderer'
-
 const app = createSSRApp({
-  data: () => ({ count: 1 }),
-  template: `<button @click="count++">{{ count }}</button>`
+  data: () => ({ msg: 'hello' }),
+  template: `<div>{{ msg }}</div>`
 })
-
-renderToString(app).then((html) => {
+;(async () => {
+  const html = await renderToString(app)
   console.log(html)
-})
+})()
 ```
 
-Then run:
+接着运行：
 
 ```sh
-> node example.js
+> node example.mjs
 ```
 
-It should print the following to the command line:
+...将会打印出下面的内容：
 
-```
-<button>1</button>
-```
-
-[`renderToString()`](/api/ssr.html#rendertostring) takes a Vue app instance and returns a Promise that resolves to the rendered HTML of the app. It is also possible to perform streaming render using [Node.js Stream API](https://nodejs.org/api/stream.html) or [Web Streams API](https://developer.mozilla.org/en-US/docs/Web/API/Streams_API). Check out the [SSR API Reference](/api/ssr.html) for full details.
-
-We can then move the Vue SSR code into a server request handler, which wraps the application markup with the full page HTML. We will be using [`express`](https://expressjs.com/) for the next steps:
-
-- Run `npm install express`
-- Create the following `server.js` file:
-
-```js
-import express from 'express'
-import { createSSRApp } from 'vue'
-import { renderToString } from 'vue/server-renderer'
-
-const server = express()
-
-server.get('/', (req, res) => {
-  const app = createSSRApp({
-    data: () => ({ count: 1 }),
-    template: `<button @click="count++">{{ count }}</button>`
-  })
-
-  renderToString(app).then((html) => {
-    res.send(`
-    <!DOCTYPE html>
-    <html>
-      <head>
-        <title>Vue SSR Example</title>
-      </head>
-      <body>
-        <div id="app">${html}</div>
-      </body>
-    </html>
-    `)
-  })
-})
-
-server.listen(3000, () => {
-  console.log('ready')
-})
+```html
+<div>hello</div>
 ```
 
-Finally, run `node server.js` and visit `http://localhost:3000`. You should see the page working with the button.
+[`renderToString()`](/api/ssr.html#rendertostring) 接收一个 Vue 应用实例为参数，会返回一个 Promise，完成时得到该应用渲染完成的 HTML。当然你也可以使用 [Node.js Stream API](https://nodejs.org/api/stream.html) 或者 [Web Streams API](https://developer.mozilla.org/en-US/docs/Web/API/Streams_API) 来执行流式渲染。查看 [SSR API 参考](/api/ssr.html) 获取完整的相关细节。
 
-[Try it on StackBlitz](https://stackblitz.com/edit/vue-ssr-example-basic?file=index.js)
+### 客户端水合 {#client-hydration}
 
-### Client Hydration
+在真实的 SSR 应用中，服务端渲染出的标记基本上都会是以下面这样的方式内嵌于 HTML 页面中：
 
-If you click the button, you'll notice the number doesn't change. The HTML is completely static on the client since we are not loading Vue in the browser.
+```html{6}
+<!DOCTYPE html>
+<html>
+  <head>...</head>
+  <body>
+    <div id="app">
+      <div>hello</div> <!-- 服务端渲染出的内容 -->
+    </div>
+  </body>
+</html>
+```
 
-To make the client-side app interactive, Vue needs to perform the **hydration** step. During hydration, it creates the same Vue application that was run on the server, matches each component to the DOM nodes it should control, and attaches DOM event listeners.
+在客户端侧，Vue 需要执行 **水合** 这一步骤。它会创建与服务端相同的 Vue 应用，将每个组件匹配到它应该控制的 DOM 节点，并附加事件监听器，使应用变得可以交互。
 
-To mount an app in hydration mode, we need to use [`createSSRApp()`](/api/application.html#createssrapp) instead of `createApp()`:
+和只有客户端的应用唯一不同的地方就是我们需要使用 [`createSSRApp()`](/api/application.html#createssrapp) 而不是 `createApp()`：
 
 ```js{2}
-// this runs in the browser.
+// 这运行在浏览器中
 import { createSSRApp } from 'vue'
-
 const app = createSSRApp({
-  // ...same app as on server
+  // ...和服务端完全一致的组件实例
 })
-
-// mounting an SSR app on the client assumes
-// the HTML was pre-rendered and will perform
-// hydration instead of mounting new DOM nodes.
+// 挂载一个 SSR 应用在客户端，假设
+// HTML 已经被预渲染，并会执行
+// 水合过程，而不是挂载新的 DOM 节点
 app.mount('#app')
 ```
 
-### Code Structure
+## 高阶解决方案 {#higher-level-solutions}
 
-Notice how we need to reuse the same app implementation as on the server. This is where we need to start thinking about code structure in an SSR app - how do we share the same application code between the server and the client?
+虽然到目前为止的例子都比较简单，但满足生产环境需求的 SSR 应用程序是全栈项目，涉及到的东西远不止 Vue 的 API。我们将需要：
 
-Here we will demonstrate the most bare-bones setup. First, let's split the app creation logic into a dedicated file, `app.js`:
-
-```js
-// app.js (shared between server and client)
-import { createSSRApp } from 'vue'
-
-export function createApp() {
-  return createSSRApp({
-    data: () => ({ count: 1 }),
-    template: `<div @click="count++">{{ count }}</div>`
-  })
-}
-```
-
-This file and its dependencies are shared between the server and the client - we call them **universal code**. There are a number of things you need to pay attention to when writing universal code, as we will [discuss below](#writing-ssr-friendly-code).
-
-Our client entry imports the universal code, creates the app, and performs the mount:
-
-```js
-// client.js
-import { createApp } from './app.js'
-
-createApp().mount('#app')
-```
-
-And the server uses the same app creation logic in the request handler:
-
-```js{2,5}
-// server.js (irrelevant code omitted)
-import { createApp } from './app.js'
-
-server.get('/', (req, res) => {
-  const app = createApp()
-  renderToString(app).then(html => {
-    // ...
-  })
-})
-```
-
-In addition, in order to load the client files in the browser, we also need to:
-
-1. Serve client files by adding `server.use(express.static('.'))` in `server.js`.
-2. Load the client entry by adding `<script type="module" src="/client.js"></script>` to the HTML shell.
-3. Support usage like `import * from 'vue'` in the browser by adding an [Import Map](https://github.com/WICG/import-maps) to the HTML shell.
-
-[Try the completed example on StackBlitz](https://stackblitz.com/edit/vue-ssr-example?file=index.js). The button is now interactive!
-
-## Higher Level Solutions
-
-Moving from the example to a production-ready SSR app involves a lot more. We will need to:
-
-- Support Vue SFCs and other build step requirements. In fact, we will need to coordinate two builds for the same app: once for the client, and once for the server.
+- 构建两次应用程序：一次用于客户端，另一次用于服务器。
 
   :::tip
-  Vue components are compiled differently when used for SSR - templates are compiled into string concatenations instead of Virtual DOM render functions for more efficient rendering performance.
+  Vue 组件在用于 SSR 时的编译方式是不同的，模板被编译成字符串，而不是虚拟 DOM 渲染函数，以获得更高效的渲染性能。
   :::
 
-- In the server request handler, render the HTML with the correct client-side asset links and optimal resource hints. We may also need to switch between SSR and SSG mode, or even mix both in the same app.
+- 在服务器的请求处理程序中，需要用正确的外壳标记来渲染 HTML 页面，包括客户端资源的 `<link>` 和资源标记。我们可能还需要在 SSR 和 SSG 模式之间作选择，甚至在同一个应用中混合使用这两种模式。
 
-- Manage routing, data fetching, and state management stores in a universal manner.
+- 以通用方式管理路由、数据获取和状态管理存储。
 
-A complete implementation would be quite complex and depends on the build toolchain you have chosen to work with. Therefore, we highly recommend going with a higher-level, opinionated solution that abstracts away the complexity for you. Below we will introduce a few recommended SSR solutions in the Vue ecosystem.
+这是相当高级别的，且高度依赖于你所选择的内置工具链的工作。因此，我们强烈建议采用更高阶的、相对独立的解决方案，为你抽象出复杂的东西。下面我们将介绍 Vue 生态系统中几个推荐的 SSR 解决方案。
 
-### Nuxt
+### Nuxt {#nuxt}
 
-[Nuxt](https://v3.nuxtjs.org/) is a higher-level framework built on top of the Vue ecosystem which provides a streamlined development experience for writing universal Vue applications. Better yet, you can also use it as a static site generator! We highly recommend giving it a try.
+[Nuxt](https://v3.nuxtjs.org/) 是一个高阶框架，构建于 Vue 生态系统之上，这为编写通用 Vue 应用程序提供了一种更简洁高效的开发体验。此外更好的是，你也可以用它来做静态站点生成！我们强烈建议你试一试它。
 
-### Quasar
+### Quasar {#quasar}
 
-[Quasar](https://quasar.dev) is a complete Vue-based solution that allows you to target SPA, SSR, PWA, mobile app, desktop app, and browser extension all using one codebase. It not only handles the build setup, but also provides a full collection of Material Design compliant UI components.
+[Quasar](https://quasar.dev) 是一个完全基于 Vue 的解决方案，使你可以构建目标为 SPA、SSR、PWA、移动端、桌面端和浏览器插件的应用，而只需要一套代码。它不仅只提供了一套构建步骤，还提供了一整套 Material Design 的组件库。
 
-### Vite SSR
+### Vite SSR {#vite-ssr}
 
-Vite provides built-in [support for Vue server-side rendering](https://vitejs.dev/guide/ssr.html), but it is intentionally low-level. If you wish to go directly with Vite, check out [vite-plugin-ssr](https://vite-plugin-ssr.com/), a community plugin that abstracts away many challenging details for you.
+Vite 提供了内置的 [对 Vue 服务端渲染](https://vitejs.dev/guide/ssr.html) 的支持，但更加偏底层。如果你想要直接使用 Vite，请查看 [vite-plugin-ssr](https://vite-plugin-ssr.com/)，这是一个社区插件，为你抽象出了许多具有复杂的细节。
 
-You can also find an example Vue + Vite SSR project using manual setup [here](https://github.com/vitejs/vite/tree/main/packages/playground/ssr-vue), which can serve as a base to build upon. Note this is only recommended if you are experienced with SSR / build tools and really want to have complete control over the higher-level architecture.
+你也可以在 [这里](https://github.com/vitejs/vite/tree/main/packages/playground/ssr-vue) 查看一个 Vue + Vite SSR 项目示例，这可以作为一个项目的起点。请注意，只有当您有使用过 SSR / 构建工具的经验，并且真正想要对更高级别的体系结构进行完全控制时，才建议您这样做。
 
-## Writing SSR-friendly Code
+## 书写 SSR 友好的代码 {#writing-ssr-friendly-code}
 
-Regardless of your build setup or higher-level framework choice, there are some principles that apply in all Vue SSR applications.
+无论你的构建设置或高层框架选择如何，有一些原则适用于所有 Vue SSR 应用程序。
 
-### Reactivity on the Server
+### 服务端的响应性 {#reactivity-on-the-server}
 
-During SSR, each request URL maps to a desired state of our application. There is no user interaction and no DOM updates, so reactivity is unnecessary on the server. By default, reactivity is disabled during SSR for better performance.
+在 SSR 期间，每一个请求 URL 都会映射到我们应用中的一个期望状态。没有用户交互和 DOM 更新，因此响应性在服务端是不需要的。为了更好的性能，默认情况下响应性在 SSR 期间是禁用的。
 
-### Component Lifecycle Hooks
+### 组件生命周期钩子 {#component-lifecycle-hooks}
 
-Since there are no dynamic updates, lifecycle hooks such as <span class="options-api">`mounted`</span><span class="composition-api">`onMounted`</span> or <span class="options-api">`updated`</span><span class="composition-api">`onUpdated`</span> will **NOT** be called during SSR and will only be executed on the client.<span class="options-api"> The only hooks that are called during SSR are `beforeCreate` and `created`</span>
+因为没有任何动态更新，像 <span class="options-api">`mounted`</span><span class="composition-api">`onMounted`</span> 或者 <span class="options-api">`updated`</span><span class="composition-api">`onUpdated`</span> 这样的生命周期钩子 **不会** 被在 SSR 期间调用，并只会在客户端侧运行。<span class="options-api"> 只有 `beforeCreate` 和 `created`</span> 这两个钩子会在 SSR 期间被调用。
 
-You should avoid code that produces side effects that need cleanup in <span class="options-api">`beforeCreate` and `created`</span><span class="composition-api">`setup()` or the root scope of `<script setup>`</span>. An example of such side effects is setting up timers with `setInterval`. In client-side only code we may setup a timer and then tear it down in <span class="options-api">`beforeUnmount`</span><span class="composition-api">`onBeforeUnmount`</span> or <span class="options-api">`unmounted`</span><span class="composition-api">`onUnmounted`</span>. However, because the unmount hooks will never be called during SSR, the timers will stay around forever. To avoid this, move your side-effect code into <span class="options-api">`mounted`</span><span class="composition-api">`onMounted`</span> instead.
+你应该避免在代码中产生需要在 <span class="options-api">`beforeCreate` 和 `created`</span><span class="composition-api">`setup()` 或 `<script setup>` 顶层级</span> 中清理的副作用。这类副作用的常见例子是使用 `setInterval` 设置的一个定时器，在仅供客户端的代码中我们可能会设置一个定时器并在 <span class="options-api">`beforeUnmount`</span><span class="composition-api">`onBeforeUnmount`</span> 或 <span class="options-api">`unmounted`</span><span class="composition-api">`onUnmounted`</span> 中卸载。但是由于卸载钩子不会在 SSR 期间调用，所以这个定时器会永远循环。为避免这种情况，请将含这类副作用的代码改为放到 <span class="options-api">`mounted`</span><span class="composition-api">`onMounted`</span> 中。
 
-### Access to Platform-Specific APIs
+### 访问平台特有 API {#access-to-platform-specific-apis}
 
-Universal code cannot assume access to platform-specific APIs, so if your code directly uses browser-only globals like `window` or `document`, they will throw errors when executed in Node.js, and vice-versa.
+通用代码不能假设可以访问特定于平台的 API，因此如果你的代码直接使用了浏览器专供的全局变量，比如 `window` 或 `document`，会在 Node.js 执行它们时抛出错误。
 
-For tasks shared between server and client but use different platform APIs, it's recommended to wrap the platform-specific implementations inside a universal API, or use libraries that do this for you. For example, you can use [`node-fetch`](https://github.com/node-fetch/node-fetch) to use the same fetch API on both server and client.
+对于服务器和客户端之间共享的任务，但使用了不同的平台 API，建议将特定平台的实现封装在一个通用的 API 中，或者使用能为你做这件事的库。例如你可以使用 [`node-fetch`](https://github.com/node-fetch/node-fetch) 在服务端和客户端使用相同的 fetch API。
 
-For browser-only APIs, the common approach is to lazily access them inside client-only lifecycle hooks such as <span class="options-api">`mounted`</span><span class="composition-api">`onMounted`</span>.
+对于仅供浏览器的 API，通常的方法是在仅客户端生命周期钩子中惰性地访问它们，例如 <span class="options-api">`mounted`</span><span class="composition-api">`onMounted`</span>。
 
-Note that if a 3rd party library is not written with universal usage in mind, it could be tricky to integrate it into an server-rendered app. You _might_ be able to get it working by mocking some of the globals, but it would be hacky and may interfere with the environment detection code of other libraries.
+请注意，如果一个第三方库编写时没有考虑到普遍的使用。将它集成到一个 SSR 应用程序中可能会很棘手。你或许可以通过模仿一些全局变量来让它工作，但这可能会很麻烦，并且可能会干扰其他库的环境检测代码。
 
-### Cross-Request State Pollution
+### 跨请求状态污染 {#cross-request-state-pollution}
 
-In the State Management chapter, we introduced a [simple state management pattern using Reactivity APIs](state-management.html#simple-state-management-with-reactivity-api). In an SSR context, this pattern requires some additional adjustments.
+在状态管理一章中，我们介绍了一种 [使用响应性 API 的简单状态管理模式](state-management.html#simple-state-management-with-reactivity-api)。而在 SSR 环境中，这种模式需要一些额外的调整。
 
-The pattern declares shared state in a JavaScript module's root scope. This makes them **singletons** - i.e. there is only once instance of the reactive object throughout the entire lifecycle of our application. This works as expected in a pure client-side Vue application, since the modules in our application are initialized fresh for each browser page visit.
+该模式将以 **单例模式** 共享状态声明。这意味着在我们应用程序的整个生命周期中，只有一个响应式对象的实例。这在纯客户端的 Vue 应用中是可以的，因为我们的应用代码在每个浏览器页面访问时都是全新初始化的。
 
-However, in an SSR context, the application modules are typically initialized only once on the server, when the server boots up. The same module instances will be reused across multiple server requests, and so will our singleton state objects. If we mutate the shared singleton state with data specific to one user, it can be accidentally leaked to a request from another user. We call this **cross-request state pollution.**
+然而，在 SSR 环境下，应用程序代码即在服务器启动时通常只在初始化一次。在这种情况下，我们应用程序中的状态管理单例将在服务器处理的多个请求中被共享。如果我们用一个用户的特定数据对共享的 store 单例进行更改，它可能会意外地泄露给另一个用户的请求。我们把这称为 **跨请求的状态污染**。
 
-We can technically re-initialize all the JavaScript modules on each request, just like we do in browsers. However, initializing JavaScript modules can be costly, so this would significantly affect server performance.
+为了解决这个问题，我们需要在每个请求中创建一个新的应用程序和共享对象的实例。然后，我们使用 [应用级的供给](/guide/components/provide-inject.html#app-level-provide) 来提供共享状态，并将其注入给需要它的组件中，而不是直接在我们的组件中将其导入。
 
-The recommended solution is to create a new instance of the entire application - including the router and global stores - on each request:
+像 Pinia 这样的状态管理库在设计时就考虑到了这一点。请参考 [Pinia 的 SSR指南](https://pinia.vuejs.org/ssr/) 以了解更多细节。
 
-```js
+### 水合不匹配 {#hydration-mismatch}
 
-```
-
-create a fresh instance of the application and the shared object on each request. Then, instead of directly importing it in our components, we provide the shared state using [app-level provide](/guide/components/provide-inject.html#app-level-provide) and inject it in components that need it.
-
-State Management libraries like Pinia are designed with this in mind. Consult [Pinia's SSR guide](https://pinia.vuejs.org/ssr/) for more details.
-
-### Hydration Mismatch
-
-If the DOM structure of the pre-rendered HTML does not match the expected output of the client-side app, there will be a hydration mismatch error. In most cases, this is caused by browser's native HTML parsing behavior trying to correct invalid structures in the HTML string. For example, a common gotcha is that [`<div>` cannot be placed inside `<p>`](https://stackoverflow.com/questions/8397852/why-cant-the-p-tag-contain-a-div-tag-inside-it):
+如果预渲染的 DOM 结构不符合客户端侧的期望，那么就是出现水合不匹配错误。在大多数场景中，这是由于浏览器的原生 HTML 解析行为试图纠正 HTML 字符串中的无效结构造成的。举个例子，一个问题就是 [`<div>` 无法被放置在 `<p>` 中](https://stackoverflow.com/questions/8397852/why-cant-the-p-tag-contain-a-div-tag-inside-it):
 
 ```html
 <p><div>hi</div></p>
 ```
 
-If we produce this in our server-rendered HTML, the browser will terminate the first `<p>` when `<div>` is encountered and parse it into the following DOM structure:
+如果我们在服务器渲染的 HTML 中产生这样的代码，当遇到 `<div>` 时，浏览器将终止第一个 `<p>`，并将其解析为以下 DOM 结构：
 
 ```html
 <p></p>
@@ -291,27 +195,26 @@ If we produce this in our server-rendered HTML, the browser will terminate the f
 <p></p>
 ```
 
-When Vue encounters a hydration mismatch, it will attempt to automatically recover and adjust the pre-rendered DOM to match the client side state. This will lead to some rendering performance loss due to incorrect nodes being discarded and new nodes being mounted, but in most cases, the app should continue to work as expected. That said, it is still best to eliminate hydration mismatches during development.
+当 Vue 遇到水合不匹配时，它将尝试自动恢复并调整预渲染的 DOM 以匹配客户端的状态。这将导致一些渲染性能的损失，因为不正确的节点被丢弃，新的节点被加载，但在大多数情况下，应用程序应该会继续按预期工作。也就是说，最好还是在开发过程中消除水化不匹配。
 
-### Custom Directives
+### 自定义指令 {#custom-directives}
 
-Since most custom directives involve direct DOM manipulation, they are ignored during SSR.
+因为大多数的自定义指令都包含了对 DOM 的直接操作，所以它们会在 SSR 时被忽略。
 
-You can provide a transform function to implement the server-side rendering logic for a custom directive. The function should be passed under the `directiveTransforms` option to `@vue/compiler-dom`.
+你可以为自定义指令提供一个转换函数来实现服务端渲染的逻辑。这个函数应该会被作为 `directiveTransforms` 下的一个选项传给 `@vue/compiler-dom`。
 
-Example Vite config that provides an empty stub for a custom `v-focus` directive:
+这里是自定义的 `v-focus` 指令在 Vite 配置文件中提供一个存根的示例：
 
 ```js
 import vue from '@vitejs/plugin-vue'
-
 export default {
   plugins: [
     vue({
       template: {
         compilerOptions: {
           directiveTransforms: {
-            // an empty array indicates that v-focus
-            // does not add any rendered attributes to the element.
+            // 使用了一个空数组，表明 v-focus
+            // 不对元素添加任何渲染好的 attribute
             focus: () => ({ props: [] })
           }
         }
@@ -321,8 +224,8 @@ export default {
 }
 ```
 
-Writing a proper directive transform requires TypeScript proficiency and knowledge of Vue's compiler API. We plan to add documentation for the compiler API in the future, but for now, you will need to consult the [source code](https://github.com/vuejs/vue-next/blob/master/packages/compiler-core/src/transform.ts#L53-L63) to learn more about it.
+要编写一个正确的指令转换函数需要你熟练掌握 TypeScript 并对 Vue 的编译器 API 有了解。我们计划在未来为编译器 API 也添加文档支持，而现在，你只能通过阅读 [源代码](https://github.com/vuejs/vue-next/blob/master/packages/compiler-core/src/transform.ts#L53-L63) 了解更多。
 
 :::tip
-Currently, the SSR compiler will throw an error if a server-side transform is not found for a custom directive. This behavior will be adjusted to a warning in the future.
+目前，如果没有为自定义指令找到服务器端转换，SSR 编译器将抛出错误。此行为将在未来调整为警告。
 :::
