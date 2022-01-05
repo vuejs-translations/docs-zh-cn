@@ -86,7 +86,7 @@ const nav = [
     items: [
       {
         items: [
-          { text: '翻译说明', link: '/about/translation' },
+          // { text: '翻译说明', link: '/about/translation' },
           { text: 'FAQ', link: '/about/faq' },
           { text: '团队', link: '/about/team' },
           { text: 'Releases', link: '/about/releases' },
