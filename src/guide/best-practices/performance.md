@@ -116,7 +116,7 @@ const Foo = defineAsyncComponent(() => import('./Foo.vue'))
 ## 总体优化 {#general-optimizations}
 
 > 以下提示会同时影响页面加载和更新性能。
-### Virtualize Large Lists {#virtualize-large-lists}
+### 大型虚拟列表 {#virtualize-large-lists}
 
 所有的前端应用中最常见的性能问题就是渲染大型列表。无论一个框架性能有多好，渲染成千上万个列表项 **都会** 变得很慢，因为浏览器需要处理大量的 DOM 节点。
 
