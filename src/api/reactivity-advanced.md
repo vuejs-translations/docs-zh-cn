@@ -25,7 +25,7 @@ interface EffectScope {
 }
 ```
 
-**Example:**
+**示例：**
 
 ```js
 const scope = effectScope()

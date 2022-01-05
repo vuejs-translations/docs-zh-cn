@@ -4,11 +4,11 @@
 
 ## `<component>`
 
-- **Props:**
+- **props：**
 
   - `is` - `string | Component`
 
-- **Usage:**
+- **用途：**
 
   A "meta component" for rendering dynamic components. The actual component to render is determined by the `is` prop. An `is` prop as a string could be either an HTML tag name or a Component name.
 
@@ -48,18 +48,18 @@
 
   Registration is not required if you pass the component itself to `is` rather than its name.
 
-- **See also:** [Dynamic Components](/guide/essentials/component-basics.html#dynamic-components)
+- **其他相关：** [Dynamic Components](/guide/essentials/component-basics.html#dynamic-components)
 
 ## `<slot>`
 
-- **Props:**
+- **props：**
 
   - `name` - `string`, Used for named slot.
 
-- **Usage:**
+- **用途：**
 
   `<slot>` serve as content distribution outlets in component templates. `<slot>` itself will be replaced.
 
   For detailed usage, see the guide section linked below.
 
-- **See also:** [Content Distribution with Slots](/guide/essentials/component-basics.html#content-distribution-with-slots)
+- **其他相关：** [Content Distribution with Slots](/guide/essentials/component-basics.html#content-distribution-with-slots)

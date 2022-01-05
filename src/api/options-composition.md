@@ -2,12 +2,12 @@
 
 ## provide
 
-- **Type:**
+- **类型：**
 
   - **provide:** `Object | () => Object`
   - **inject:** `Array<string> | { [key: string]: string | Symbol | Object }`
 
-- **Details:**
+- **详细介绍：**
 
   This pair of options are used together to allow an ancestor component to serve as a dependency injector for all its descendants, regardless of how deep the component hierarchy is, as long as they are in the same parent chain. If you are familiar with React, this is very similar to React's `context` feature.
 
@@ -24,7 +24,7 @@
 
   > Note: the `provide` and `inject` bindings are NOT reactive. This is intentional. However, if you pass down a reactive object, properties on that object do remain reactive.
 
-- **Example:**
+- **示例：**
 
   ```js
   // parent component providing 'foo'
@@ -128,7 +128,7 @@
   }
   ```
 
-- **See also:** [Provide / Inject](/guide/components/provide-inject.html)
+- **其他相关：** [Provide / Inject](/guide/components/provide-inject.html)
 
 ## inject
 
@@ -136,9 +136,9 @@
 
 ## mixins
 
-- **Type:** `Array<Object>`
+- **类型：** `Array<Object>`
 
-- **Details:**
+- **详细介绍：**
 
   The `mixins` option accepts an array of mixin objects. These mixin objects can contain instance options like normal instance objects, and they will be merged against the eventual options using the certain option merging logic. For example, if your mixin contains a `created` hook and the component itself also has one, both functions will be called.
 
@@ -148,7 +148,7 @@
   In Vue 2, mixins were the primary mechanism for creating reusable chunks of component logic. While mixins continue to be supported in Vue 3, [Composition API](/guide/reusability/composables.html) is now the preferred approach for code reuse between components.
   :::
 
-- **Example:**
+- **示例：**
 
   ```js
   const mixin = {
@@ -170,9 +170,9 @@
 
 ## extends
 
-- **Type:** `Object`
+- **类型：** `Object`
 
-- **Details:**
+- **详细介绍：**
 
   Allows one component to extend another, inheriting its component options.
 
@@ -182,7 +182,7 @@
 
   As with `mixins`, any options will be merged using the relevant merge strategy.
 
-- **Example:**
+- **示例：**
 
   ```js
   const CompA = { ... }

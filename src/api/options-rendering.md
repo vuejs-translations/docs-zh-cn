@@ -2,9 +2,9 @@
 
 ## template
 
-- **Type:** `string`
+- **类型：** `string`
 
-- **Details:**
+- **详细介绍：**
 
   A string template to be used as the markup for the component instance. The template will **replace** the `innerHTML` of mounted element. Any existing markup inside the mounted element will be ignored, unless content distribution slots are present in the template.
 
@@ -18,18 +18,18 @@
   If render function is present in the Vue option, the template will be ignored.
   :::
 
-- **See also:**
+- **其他相关：**
   - [Content Distribution with Slots](/guide/essentials/component-basics.html#content-distribution-with-slots)
 
 ## render
 
-- **Type:** `Function`
+- **类型：** `Function`
 
-- **Details:**
+- **详细介绍：**
 
   An alternative to string templates allowing you to leverage the full programmatic power of JavaScript.
 
-- **Usage:**
+- **用途：**
 
   ```vue-html
   <div id="app" class="demo">
@@ -63,4 +63,4 @@
   The `render` function has priority over the render function compiled from `template` option or in-DOM HTML template of the mounting element
   :::
 
-- **See also:** [Render Functions](/guide/extras/render-function.html)
+- **其他相关：** [Render Functions](/guide/extras/render-function.html)

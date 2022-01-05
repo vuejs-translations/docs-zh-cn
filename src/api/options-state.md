@@ -2,9 +2,9 @@
 
 ## data
 
-- **Type:** `Function`
+- **类型：** `Function`
 
-- **Details:**
+- **详细介绍：**
 
   The function that returns a data object for the component instance. In `data`, we don't recommend to observe objects with their own stateful behavior like browser API objects and prototype properties. A good idea would be to have here just a plain object that represents component data.
 
@@ -14,7 +14,7 @@
 
   Properties that start with `_` or `$` will **not** be proxied on the component instance because they may conflict with Vue's internal properties and API methods. You will have to access them as `vm.$data._property`.
 
-- **Example:**
+- **示例：**
 
   ```js
   // direct instance creation
@@ -36,13 +36,13 @@
   data: vm => ({ a: vm.myProp })
   ```
 
-- **See also:** [Reactivity in Depth](/guide/extras/reactivity-in-depth.html)
+- **其他相关：** [Reactivity in Depth](/guide/extras/reactivity-in-depth.html)
 
 ## props
 
-- **Type:** `Array<string> | Object`
+- **类型：** `Array<string> | Object`
 
-- **Details:**
+- **详细介绍：**
 
   A list/hash of attributes that are exposed to accept data from the parent component. It has an Array-based simple syntax and an alternative Object-based syntax that allows advanced configurations such as type checking, custom validation and default values.
 
@@ -56,7 +56,7 @@
   - `validator`: `Function`
     Custom validator function that takes the prop value as the sole argument. In a non-production environment, a console warning will be thrown if this function returns a falsy value (i.e. the validation fails). You can read more about prop validation [here](/guide/components/props.html#prop-validation).
 
-- **Example:**
+- **示例：**
 
   ```js
   const app = createApp({})
@@ -84,13 +84,13 @@
   })
   ```
 
-- **See also:** [Props](/guide/components/props.html)
+- **其他相关：** [Props](/guide/components/props.html)
 
 ## computed
 
-- **Type:** `{ [key: string]: Function | { get: Function, set: Function } }`
+- **类型：** `{ [key: string]: Function | { get: Function, set: Function } }`
 
-- **Details:**
+- **详细介绍：**
 
   Computed properties to be mixed into the component instance. All getters and setters have their `this` context automatically bound to the component instance.
 
@@ -104,7 +104,7 @@
 
   Computed properties are cached, and only re-computed on reactive dependency changes. Note that if a certain dependency is out of the instance's scope (i.e. not reactive), the computed property will **not** be updated.
 
-- **Example:**
+- **示例：**
 
   ```js
   const app = createApp({
@@ -135,13 +135,13 @@
   console.log(vm.aDouble) // => 4
   ```
 
-- **See also:** [Computed Properties](/guide/essentials/computed.html)
+- **其他相关：** [Computed Properties](/guide/essentials/computed.html)
 
 ## methods
 
-- **Type:** `{ [key: string]: Function }`
+- **类型：** `{ [key: string]: Function }`
 
-- **Details:**
+- **详细介绍：**
 
   Methods to be mixed into the component instance. You can access these methods directly on the VM instance, or use them in directive expressions. All methods will have their `this` context automatically bound to the component instance.
 
@@ -149,7 +149,7 @@
   Note that **you should not use an arrow function to define a method** (e.g. `plus: () => this.a++`). The reason is arrow functions bind the parent context, so `this` will not be the component instance as you expect and `this.a` will be undefined.
   :::
 
-- **Example:**
+- **示例：**
 
   ```js
   const app = createApp({
@@ -169,17 +169,17 @@
   console.log(vm.a) // => 2
   ```
 
-- **See also:** [Event Handling](/guide/essentials/event-handling.html)
+- **其他相关：** [Event Handling](/guide/essentials/event-handling.html)
 
 ## watch
 
-- **Type:** `{ [key: string]: string | Function | Object | Array}`
+- **类型：** `{ [key: string]: string | Function | Object | Array}`
 
-- **Details:**
+- **详细介绍：**
 
   An object where keys are reactive properties to watch — examples include [data](/api/options-state.html#data-2) or [computed](/api/options-state.html#computed) properties — and values are the corresponding callbacks. The value can also be a string of a method name, or an Object that contains additional options. The component instance will call `$watch()` for each entry in the object at instantiation. See [$watch](/api/component-instance.html#watch) for more information about the `deep`, `immediate` and `flush` options.
 
-- **Example:**
+- **示例：**
 
   ```js
   const app = createApp({
@@ -252,19 +252,19 @@
   Note that _you should not use an arrow function to define a watcher_ (e.g. `searchQuery: newValue => this.updateAutocomplete(newValue)`). The reason is arrow functions bind the parent context, so `this` will not be the component instance as you expect and `this.updateAutocomplete` will be undefined.
   :::
 
-- **See also:** [Watchers](/guide/essentials/computed.html#watchers)
+- **其他相关：** [Watchers](/guide/essentials/computed.html#watchers)
 
 ## emits
 
-- **Type:** `Array<string> | Object`
+- **类型：** `Array<string> | Object`
 
-- **Details:**
+- **详细介绍：**
 
   A list/hash of custom events that can be emitted from the component. It has an array-based simple syntax and an alternative Object-based syntax that allows to configure an event validation.
 
   In Object-based syntax, the value of each property can either be `null` or a validator function. The validation function will receive the additional arguments passed to the `$emit` call. For example, if `this.$emit('foo', 1)` is called, the corresponding validator for `foo` will receive the argument `1`. The validator function should return a boolean to indicate whether the event arguments are valid.
 
-- **Usage:**
+- **用途：**
 
   ```js
   const app = createApp({})
@@ -300,4 +300,4 @@
   Events listed in the `emits` option **will not** be inherited by the root element of the component and also will be excluded from the `$attrs` property.
   :::
 
-* **See also:** [Attribute Inheritance](/guide/components/attrs.html#attribute-inheritance)
+* **其他相关：** [Attribute Inheritance](/guide/components/attrs.html#attribute-inheritance)

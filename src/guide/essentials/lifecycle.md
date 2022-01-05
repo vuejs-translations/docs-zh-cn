@@ -51,7 +51,7 @@ setTimeout(() => {
 
 下面是实例生命周期的图表。你不需要完全理解当前正在进行的所有事情，但随着你学习和构建更多内容，它将是一个有用的参考。
 
-![Component lifecycle diagram](./images/lifecycle.png)
+![组件生命周期图示](./images/lifecycle.png)
 
 <!-- https://www.figma.com/file/Xw3UeNMOralY6NV7gSjWdS/Vue-Lifecycle -->
 

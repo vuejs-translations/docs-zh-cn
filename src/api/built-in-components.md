@@ -16,7 +16,7 @@ const { Transition, TransitionGroup, KeepAlive, Teleport, Suspense } = Vue
 
 ## `<Transition>`
 
-- **Props:**
+- **props：**
 
   - `name` - `string` Used to automatically generate transition CSS class names. e.g. `name: 'fade'` will auto expand to `.fade-enter`, `.fade-enter-active`, etc.
   - `appear` - `boolean`, Whether to apply transition on initial render. Defaults to `false`.
@@ -35,7 +35,7 @@ const { Transition, TransitionGroup, KeepAlive, Teleport, Suspense } = Vue
   - `leave-active-class` - `string`
   - `appear-active-class` - `string`
 
-- **Events:**
+- **事件：**
 
   - `before-enter`
   - `before-leave`
@@ -49,7 +49,7 @@ const { Transition, TransitionGroup, KeepAlive, Teleport, Suspense } = Vue
   - `leave-cancelled` (`v-show` only)
   - `appear-cancelled`
 
-- **Usage:**
+- **用途：**
 
   `<transition>` serve as transition effects for **single** element/component. The `<transition>` only applies the transition behavior to the wrapped content inside; it doesn't render an extra DOM element, or show up in the inspected component hierarchy.
 
@@ -86,21 +86,21 @@ const { Transition, TransitionGroup, KeepAlive, Teleport, Suspense } = Vue
   app.mount('#transition-demo')
   ```
 
-- **See also:** [`<Transition>` Guide](/guide/built-ins/transition.html)
+- **其他相关：** [`<Transition>` Guide](/guide/built-ins/transition.html)
 
 ## `<TransitionGroup>`
 
-- **Props:**
+- **props：**
 
   - `tag` - `string`, if not defined, renders without a root element.
   - `move-class` - overwrite CSS class applied during moving transition.
   - exposes the same props as `<transition>` except `mode`.
 
-- **Events:**
+- **事件：**
 
   - exposes the same events as `<transition>`.
 
-- **Usage:**
+- **用途：**
 
   `<transition-group>` provides transition effects for **multiple** elements/components. By default it doesn't render a wrapper DOM element, but one can be defined via the `tag` attribute.
 
@@ -116,17 +116,17 @@ const { Transition, TransitionGroup, KeepAlive, Teleport, Suspense } = Vue
   </transition-group>
   ```
 
-- **See also:** [`<TransitionGroup>` Guide](/guide/built-ins/transition-group.html)
+- **其他相关：** [`<TransitionGroup>` Guide](/guide/built-ins/transition-group.html)
 
 ## `<KeepAlive>`
 
-- **Props:**
+- **props：**
 
   - `include` - `string | RegExp | Array`. Only components with matching names will be cached.
   - `exclude` - `string | RegExp | Array`. Any component with a matching name will not be cached.
   - `max` - `number | string`. The maximum number of component instances to cache.
 
-- **Usage:**
+- **用途：**
 
   When wrapped around a dynamic component, `<keep-alive>` caches the inactive component instances without destroying them. Similar to `<transition>`, `<keep-alive>` is an abstract component: it doesn't render a DOM element itself, and doesn't show up in the component parent chain.
 
@@ -193,11 +193,11 @@ const { Transition, TransitionGroup, KeepAlive, Teleport, Suspense } = Vue
   `<keep-alive>` does not work with functional components because they do not have instances to be cached.
   :::
 
-- **See also:** [`<KeepAlive/>`](/guide/built-ins/keep-alive.html)
+- **其他相关：** [`<KeepAlive/>`](/guide/built-ins/keep-alive.html)
 
 ## `<Teleport>`
 
-- **Props:**
+- **props：**
 
   - `to` - `string`. Required prop, has to be a valid query selector, or an HTMLElement (if used in a browser environment). Specifies a target element where `<teleport>` content will be moved
 
@@ -222,7 +222,7 @@ const { Transition, TransitionGroup, KeepAlive, Teleport, Suspense } = Vue
 
   Notice that this will move the actual DOM nodes instead of being destroyed and recreated, and it will keep any component instances alive as well. All stateful HTML elements (i.e. a playing video) will keep their state.
 
-- **See also:** [Teleport component](/guide/built-ins/teleport.html#teleport)
+- **其他相关：** [Teleport component](/guide/built-ins/teleport.html#teleport)
 
 ## `<Suspense>`
 

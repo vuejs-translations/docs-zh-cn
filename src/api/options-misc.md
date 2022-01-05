@@ -2,13 +2,13 @@
 
 ## directives
 
-- **Type:** `Object`
+- **类型：** `Object`
 
-- **Details:**
+- **详细介绍：**
 
   A hash of directives to be made available to the component instance.
 
-- **Usage:**
+- **用途：**
 
   ```js
   const app = createApp({})
@@ -25,17 +25,17 @@
   })
   ```
 
-- **See also:** [Custom Directives](/guide/reusability/custom-directives.html)
+- **其他相关：** [Custom Directives](/guide/reusability/custom-directives.html)
 
 ## components
 
-- **Type:** `Object`
+- **类型：** `Object`
 
-- **Details:**
+- **详细介绍：**
 
   A hash of components to be made available to the component instance.
 
-- **Usage:**
+- **用途：**
 
   ```js
   const Foo = {
@@ -50,13 +50,13 @@
   })
   ```
 
-- **See also:** [Components](/guide/essentials/component-basics.html)
+- **其他相关：** [Components](/guide/essentials/component-basics.html)
 
 ## name
 
-- **Type:** `string`
+- **类型：** `string`
 
-- **Details:**
+- **详细介绍：**
 
   Allow the component to recursively invoke itself in its template. Note that when a component is registered globally with [`app.component`](/api/application.html#app-component), the global ID is automatically set as its name.
 
@@ -64,15 +64,15 @@
 
 ## inheritAttrs
 
-- **Type:** `boolean`
+- **类型：** `boolean`
 
-- **Default:** `true`
+- **默认值：** `true`
 
-- **Details:**
+- **详细介绍：**
 
   By default, parent scope attribute bindings that are not recognized as props will "fallthrough". This means that when we have a single-root component, these bindings will be applied to the root element of the child component as normal HTML attributes. When authoring a component that wraps a target element or another component, this may not always be the desired behavior. By setting `inheritAttrs` to `false`, this default behavior can be disabled. The attributes are available via the `$attrs` instance property and can be explicitly bound to a non-root element using `v-bind`.
 
-- **Usage:**
+- **用途：**
 
   ```js
   app.component('base-input', {
@@ -92,17 +92,17 @@
   })
   ```
 
-- **See also:** [Disabling Attribute Inheritance](/guide/components/attrs.html#disabling-attribute-inheritance)
+- **其他相关：** [Disabling Attribute Inheritance](/guide/components/attrs.html#disabling-attribute-inheritance)
 
 ## compilerOptions <Badge text="3.1+" />
 
-- **Type:** `Object`
+- **类型：** `Object`
 
-- **Details:**
+- **详细介绍：**
 
   This is the component-level equivalent of the [app-level `compilerOptions` config](/api/application.html#app-config-compileroptions).
 
-- **Usage:**
+- **用途：**
 
   ```js
   const Foo = {

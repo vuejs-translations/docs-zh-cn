@@ -57,6 +57,7 @@ function parsePageHeaders(link: string) {
         .slice(2)
         .replace(/<Badge.*/, '')
         .replace(/`([^`]+)`/g, '$1')
+        .replace(/\{#([a-zA-Z0-9]+)\}/g, '') // hidden anchor tag
         .trim()
     )
   }
