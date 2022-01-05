@@ -2,17 +2,17 @@
 aside: deep
 ---
 
-# Rendering Mechanism
+# 渲染机制 {#rendering-mechanism}
 
-How does Vue take a template and turn it into actual DOM nodes? How does Vue update those DOM nodes efficiently? We will attempt to shed some light on these questions here by diving into Vue's internal rendering mechanism.
+Vue 是如何将一份模板转换为真实的 DOM 节点的呢？又是如何高效地更新 DOM 节点的呢？我们接下来就将尝试通过深入研究 Vue 的内部渲染机制来解释这些问题。
 
-## Virtual DOM
+## 虚拟 DOM {#virtual-dom}
 
-You have probably heard about the term virtual DOM, which Vue's rendering system is based upon.
+你可能已经听说过虚拟 DOM 的概念了，Vue 的渲染系统正是基于这个概念构建的。
 
-The virtual DOM (VDOM) is a programming concept where an ideal, or “virtual”, representation of a UI is kept in memory and synced with the “real” DOM. The concept is pioneered by [React](https://reactjs.org/), and has been adapted in many other frameworks with different implementations, including Vue.
+虚拟 DOM（VDOM）是一种编程概念，意为将将目标所需的 UI 通过数据结构 “虚拟” 地表示出来，保存在内存中，并与真实的 DOM 保持同步。这个概念是由 [React](https://reactjs.org/) 率先开拓，随后在各个不同的框架中都有不同的实现，当然也包括 Vue。
 
-Virtual DOM is more of a pattern than a specific technology, so there is no one canonical implementation. We can illustrate the idea using a simple example:
+与其说虚拟 DOM 是一种具体的技术，不如说是一种模式。所以没有一个标准的实现。我们可以用一个简单的例子来说明：
 
 ```js
 const vnode = {
@@ -21,87 +21,87 @@ const vnode = {
     id: 'hello'
   },
   children: [
-    /* more vnodes */
+    /* 更多 vnode */
   ]
 }
 ```
 
-Here `vnode` is plain JavaScript object (a "virtual node") representing a `<div>` element. It contains all the information that we need to create the actual element. It also contains more children vnodes, which makes it the root of a virtual DOM tree.
+这里所说的 `vnode` 即一个纯 JavaScript 的对象（一个 “虚拟节点”），它代表着一个 `<div>` 元素。它包含我们创建实际元素所需的所有信息。它还包含更多的子节点，这使它成为虚拟 DOM 树的根节点。
 
-A runtime renderer can walk a virtual DOM tree and construct a real DOM tree from it. This process is called **mount**.
+一个运行时渲染器将会遍历整个虚拟 DOM 树，并据此构建真实的 DOM 树。这个过程被称为 **挂载（mount）**。
 
-If we have two copies of virtual DOM trees, the renderer can also walk and compare the two trees, figuring out the differences, and apply those changes to the actual DOM. This process is called **patch**, also known as "diffing" or "reconciliation".
+如果我们有两份虚拟 DOM 树，渲染器将会有比较地遍历它们，找出它们之间的区别，并应用这其中的变化到真实的 DOM 上。这个过程被称为 **修补（patch）**，又被称为 “比较差异（diffing）” 或 “协调（reconciliation）”。
 
-The main benefits of virtual DOM is that it gives the developer the ability to programmatically create, inspect and compose desired UI structures in a declarative way, while leaving the direct DOM manipulation to the renderer.
+虚拟 DOM 带来的主要收益是它赋予了开发者编程式地、声明式地创建、审查和组合所需 UI 结构的能力，而把直接与 DOM 相关的操作交给了渲染器。
 
-## Render Pipeline
+## 渲染管线 {#render-pipeline}
 
-At the high level, this is what happens when a Vue component is mounted:
+以更高层面的视角看，Vue 组件挂载后发生了如下这几件事：
 
-1. **Compile**: Vue templates are compiled into **render functions**: functions that return vritual DOM trees. This step can be done either ahead-of-time via a build step, or on-the-fly by using the runtime compiler.
+1. **编译**：Vue 模板被编译为了 **渲染函数**：即用来返回虚拟 DOM 树的函数。这一步骤可以通过构建步骤提前完成，也可以通过使用运行时编译器即时完成。
 
-2. **Mount**: The runtime renderer invokes the render functions, walks the returned virtual DOM tree, and create actual DOM nodes based on it. This step is performed as a [reactive effect](./reactivity-in-depth) so it keeps track of all reactive dependencies that were used.
+2. **挂载**：运行时渲染器调用渲染函数，遍历返回的虚拟 DOM 树，并基于它创建实际的 DOM 节点。这一步会作为 [响应式副作用](./reactivity-in-depth) 执行，因此它会追踪其中所用到的所有响应式依赖。
 
-3. **Patch**: When a dependency used during mount changes, the effect re-runs. This time, a new, updated Virtual DOM tree is created. The runtime renderer walks the new tree, compares it with the old one, and apply necessary updates to the actual DOM. This process is also known as "diffing" or "reconciliation".
+3. **修补**：当一个依赖发生变化后，副作用会重新运行。这时候会创建一个更新后虚拟 DOM 树，运行时渲染器遍历这棵新树，将它与旧树相比，然后将必要的更新应用到真实 DOM 上去。这个过程又被称为 “比较差异（diffing）” 或 “协调（reconciliation）”。
 
 ![render pipeline](./images/render-pipeline.png)
 
-## Template vs. Render Functions
+## 模板 vs. 渲染函数 {#template-vs-render-functions}
 
-Vue templates are compiled into virtual DOM render functions. Vue also provides APIs that allow us to skip the template compilation step and directly author render functions. Render functions are more flexible compared to templates when dealing with highly dynamic logic, because you can work with vnodes using the full power of JavaScript.
+Vue 模板会被预编译成虚拟 DOM 渲染函数。Vue 也提供了 API 使我们可以不使用模板编译，直接手写渲染函数。在处理高度动态的逻辑时，渲染函数相比于模板更加灵活，因为你可以完全地使用 JavaScript 来构造你想要的 vnode。
 
-So why does Vue recommend templates by default? There are a number of reasons:
+那么为什么 Vue 默认推荐使用模板呢？有以下几点原因：
 
-1. Templates are closer to actual HTML. This makes it easier to reuse existing HTML snippets, apply a11y best practices, style with CSS, and for designers to understand and modify.
+1. 模板更贴近实际的 HTML。这使得我们能够更方便地重用一些已有的 HTML 代码段，能够带来更好的可访问性体验、能更方便地使用 CSS 应用样式，并且更容易使设计师理解和修改。
 
-2. Templates are easier to statically analyze due to its more deterministic syntax. This allows Vue's template compiler to apply many compile-time optimizations to improve the performance of virtual DOM (which we will discuss below).
+2. 由于其确定的语法，更容易对模板做静态分析。这使得 Vue 的模板编译器能够应用许多编译时优化来提升虚拟 DOM 的性能表现（下面我们将展开讨论）。
 
-In practice, templates are sufficient for most use cases in applications. Render functions are typically only used in reusable components that need to deal with highly dynamic rendering logic. Render function usage is discussed in more details in [Render Function & JSX](./render-function).
+在实践中，模板对大多数的应用场景都是够用且高效的。渲染函数一般置会在你构建可重用的组件、且有非常动态地渲染逻辑时才会用到。想了解渲染函数的更多使用细节可以去到 [渲染函数 & JSX](./render-function) 章节继续阅读。
 
-## Compiler-Informed Virtual DOM
+## 带编译时信息的虚拟 DOM {#compiler-informed-virtual-dom}
 
-The virtual DOM implementation in React and most other virtual-DOM implementations are purely runtime: the reconciliation algorithm cannot make any assumptions about the incoming virtual DOM tree, so it has to fully traverse the tree and diff the props of every vnode in order to ensure correctness. In addition, even if a part of the tree never changes, new vnodes are always created for them on each re-render, resulting in unnecessary memory pressure. This is one of the most criticized aspect of virtual DOM: the somewhat brute-force reconciliation process sacrifices efficiency in return for declarativeness and correctness.
+虚拟 DOM 在 React 和大多数其他实现中都是跑在运行时的：协调算法无法预知新的虚拟 DOM 树会是怎样，因此它总是需要遍历整棵树、比较每个 vnode 上 props 的区别来确保正确性。另外，即使一棵树的某个部分完全没有改变，也还是会在每次重渲染时创建新的 vnode，带来了完全不必要的内存压力。这也是虚拟 DOM 最受诟病的地方之一：虽然换取来了声明性和正确性。但这样有些粗莽的调和过程牺牲了效率。
 
-But it doesn't have to be that way. In Vue, the framework controls both the compiler and the runtime. This allows us to implement many compile-time optimizations that only a tightly-coupled renderer can take advantage of. The compiler can statically analyze the template and leave hints in the generated code so that the runtime can take shortcuts whenever possible. At the same time, we still preserve the capability for the user to drop down to the render function layer for more direct control in edge cases. We call this hybrid approach **Compiler-Informed Virtual DOM**.
+但实际上我们并不需要这样。在 Vue 中，框架同时控制着编译器和运行时。这时的我们可以实现许多编译时的优化给我们紧密耦合的模板渲染器。编译器可以静态分析模板并在生成的代码中留下标记，使得运行时在某些情况下可以走捷径。与此同时，我们仍旧保留了边界情况时用户想要使用底层渲染函数的能力。我们称这种混合解决方案为 **带编译时信息的虚拟 DOM**。
 
-Below, we will discuss a few major optimizations done by the Vue template compiler to improve virtual DOM's runtime performance.
+下面，我们将讨论一些 Vue 编译器用来提高虚拟 DOM 运行时性能的主要优化：
 
-### Static Hoisting
+### 静态提升 {#static-hoisting}
 
-Quite often there will be parts in a template that do not contain any dynamic bindings:
+在模板中常常有部分内容是不带任何动态绑定的：
 
 ```vue-html{2-3}
 <div>
-  <div>foo</div> <!-- hoisted -->
-  <div>bar</div> <!-- hoisted -->
+  <div>foo</div> <!-- 需提升 -->
+  <div>bar</div> <!-- 需提升 -->
   <div>{{ dynamic }}</div>
 </div>
 ```
 
-[Inspect in Template Explorer](https://vue-next-template-explorer.netlify.app/#eyJzcmMiOiI8ZGl2PlxuICA8ZGl2PmZvbzwvZGl2PlxuICA8ZGl2PmJhcjwvZGl2PlxuICA8ZGl2Pnt7IGR5bmFtaWMgfX08L2Rpdj5cbjwvZGl2PiIsInNzciI6ZmFsc2UsIm9wdGlvbnMiOnsiaG9pc3RTdGF0aWMiOnRydWV9fQ==)
+[在模板编译预览中查看](https://vue-next-template-explorer.netlify.app/#eyJzcmMiOiI8ZGl2PlxuICA8ZGl2PmZvbzwvZGl2PlxuICA8ZGl2PmJhcjwvZGl2PlxuICA8ZGl2Pnt7IGR5bmFtaWMgfX08L2Rpdj5cbjwvZGl2PiIsInNzciI6ZmFsc2UsIm9wdGlvbnMiOnsiaG9pc3RTdGF0aWMiOnRydWV9fQ==)
 
-The `foo` and `bar` divs are static - re-creating vnodes and diffing them on each re-render is unnecessary. The Vue compiler automatically hoists their vnode creation calls out of the render function, and reuse the same vnodes on every render. The renderer is also able to completely skips diffing them when it notices the old vnode and the new vnode are the same one.
+`foo` 和 `bar` 这两个 div 是完全静态的，没有必要在重新渲染时再次创建和比对它们。Vue 编译器自动地会提升这部分 vnode 创建函数到这个模板的渲染函数之外，并在每次渲染时都使用这份相同的 vnode，渲染器直到新旧 vnode 在这部分是完全相同的，所以会完全跳过对它们的差异比对。
 
-In addition, when there are enough consecutive static elements, they will be condensed into a single "static vnode" that contains the plain HTML string for all these nodes ([Example](https://vue-next-template-explorer.netlify.app/#eyJzcmMiOiI8ZGl2PlxuICA8ZGl2IGNsYXNzPVwiZm9vXCI+Zm9vPC9kaXY+XG4gIDxkaXYgY2xhc3M9XCJmb29cIj5mb288L2Rpdj5cbiAgPGRpdiBjbGFzcz1cImZvb1wiPmZvbzwvZGl2PlxuICA8ZGl2IGNsYXNzPVwiZm9vXCI+Zm9vPC9kaXY+XG4gIDxkaXYgY2xhc3M9XCJmb29cIj5mb288L2Rpdj5cbiAgPGRpdj57eyBkeW5hbWljIH19PC9kaXY+XG48L2Rpdj4iLCJzc3IiOmZhbHNlLCJvcHRpb25zIjp7ImhvaXN0U3RhdGljIjp0cnVlfX0=)). These static vnodes are mounted by directly setting `innerHTML`. They also cache their corresponding DOM nodes on initial mount - if the same piece of content is reused elsewhere in the app, new DOM nodes are created using native `cloneNode()`, which is extremely efficient.
+此外，当有足够多连续的静态元素时，它们还会再被压缩为一个 “静态 vnode”，其中包含的是这些节点相应的纯 HTML字符串。（[示例](https://vue-next-template-explorer.netlify.app/#eyJzcmMiOiI8ZGl2PlxuICA8ZGl2IGNsYXNzPVwiZm9vXCI+Zm9vPC9kaXY+XG4gIDxkaXYgY2xhc3M9XCJmb29cIj5mb288L2Rpdj5cbiAgPGRpdiBjbGFzcz1cImZvb1wiPmZvbzwvZGl2PlxuICA8ZGl2IGNsYXNzPVwiZm9vXCI+Zm9vPC9kaXY+XG4gIDxkaXYgY2xhc3M9XCJmb29cIj5mb288L2Rpdj5cbiAgPGRpdj57eyBkeW5hbWljIH19PC9kaXY+XG48L2Rpdj4iLCJzc3IiOmZhbHNlLCJvcHRpb25zIjp7ImhvaXN0U3RhdGljIjp0cnVlfX0=))。这些景泰街店会直接通过 `innerHTML` 来设置。同时还会在初次渲染后缓存相应的 DOM 节点。如果这部分内容在应用中其他地方被重用，那么将会使用原生的 `cloneNode()` 方法来克隆新的 DOM 节点，这会非常高效。
 
-### Patch Flags
+### 修补标记 Flags {#patch-flags}
 
-For a single element with dynamic bindings, we can also infer a lot of information from it at compile time:
+对于单个有动态绑定的元素来说，我们可以在编译时推断出大量信息：
 
 ```vue-html
-<!-- class binding only -->
+<!-- 仅含 class 绑定 -->
 <div :class="{ active }"></div>
 
-<!-- id binding only -->
+<!-- 仅含 id 绑定 -->
 <input :id="id" :value="value">
 
-<!-- text children only -->
+<!-- 仅含文本子节点 -->
 <div>{{ dynamic }}</div>
 ```
 
-[Inspect in Template Explorer](https://template-explorer.vuejs.org/#eyJzcmMiOiI8ZGl2IDpjbGFzcz1cInsgYWN0aXZlIH1cIj48L2Rpdj5cblxuPGlucHV0IDppZD1cImlkXCIgOnZhbHVlPVwidmFsdWVcIj5cblxuPGRpdj57eyBkeW5hbWljIH19PC9kaXY+Iiwib3B0aW9ucyI6e319)
+[在模板编译预览中查看](https://template-explorer.vuejs.org/#eyJzcmMiOiI8ZGl2IDpjbGFzcz1cInsgYWN0aXZlIH1cIj48L2Rpdj5cblxuPGlucHV0IDppZD1cImlkXCIgOnZhbHVlPVwidmFsdWVcIj5cblxuPGRpdj57eyBkeW5hbWljIH19PC9kaXY+Iiwib3B0aW9ucyI6e319)
 
-When generating the render function code for these elements, Vue encodes the type of update each of them needs directly in the vnode creation call:
+在为这些元素生成渲染函数时，Vue 在 vnode 创建调用中直接编码了每个元素所需的更新类型：
 
 ```js{3}
 createElementVNode("div", {
@@ -109,17 +109,17 @@ createElementVNode("div", {
 }, null, 2 /* CLASS */)
 ```
 
-The last argument `2` is a [patch flag](https://github.com/vuejs/vue-next/blob/master/packages/shared/src/patchFlags.ts). An element can have multiple patch flags, which will be merged into a single number. The runtime renderer can then check against the flags using [bitwise operations](https://en.wikipedia.org/wiki/Bitwise_operation) to determine whether it needs to do certain work:
+最后这个参数 `2` 就是一个 [修补标记（patch flag）](https://github.com/vuejs/vue-next/blob/master/packages/shared/src/patchFlags.ts)。一个元素可以有多个修补标记，会被合并到一个数字。运行时渲染器也将会使用 [位运算](https://en.wikipedia.org/wiki/Bitwise_operation) 来检查这些标记，确定相应的更新操作：
 
 ```js
 if (vnode.patchFlag & PatchFlags.CLASS /* 2 */) {
-  // update the element's class
+  // 更新节点的 CSS 类
 }
 ```
 
-Bitwise checks are extremely fast. With the patch flags, Vue is able to do the least amount of work necessary when updating elements with dynamic bindings.
+位运算检查是非常快的。通过这样的修补标记，Vue 能够在使用动态绑定更新元素时做最少的操作。
 
-Vue also encodes the type of children a vnode has - for example, the template root is a fragment with three child elements, and we know for sure that their order will never change, so this information can also be provided to the runtime as a patch flag:
+Vue 也为一个 vnode 的子节点标记了类型。举个例子，模板根节点如果是一个有三个子元素的片段（fragment），我们可以确定其顺序是永远不变的，所以这部分信息就可以提供给运行时作为一个修补标记。
 
 ```js{4}
 export function render() {
@@ -129,11 +129,11 @@ export function render() {
 }
 ```
 
-The runtime can thus completely skip children order reconciliation for the root fragment.
+运行时会完全跳过对这个根片段中子元素顺序的重新协调过程。
 
-### Tree Flattening
+### 树结构打平 {#tree-flattening}
 
-Taking another look at the generated code from the previous example, you'll notice the root of the returned virtual DOM tree is created using a special `createElementBlock()` call:
+再来看看上面这个例子中生成的代码，你会发现所返回的虚拟 DOM 树是经一个特殊的 `createElementBlock()` 调用创建的：
 
 ```js{2}
 export function render() {
@@ -143,47 +143,47 @@ export function render() {
 }
 ```
 
-Conceptually, a "block" is a part of the template that has stable inner structure. In this case, the entire template has a single block because it does not contain any structural directives like `v-if` and `v-for`.
+这里我们引入一个概念 “区块”，内部结构时稳定的一个部分可被称之为一个区块。在这个用例中，整个模板只有一个区块，因为这里没有用到任何结构性指令（比如 `v-if` 或者 `v-for`）。
 
-Each block tracks its descendent nodes (not just direct children) that has patch flags. For example:
+每一个块都会追踪其所有带修补标记的后代节点（不只是直接子节点），举个例子：
 
 ```vue-html{3,5}
 <div> <!-- root block -->
-  <div>...</div>         <!-- not tracked -->
-  <div :id="id"></div>   <!-- tracked -->
-  <div>                  <!-- not tracked -->
-    <div>{{ bar }}</div> <!-- tracked -->
+  <div>...</div>         <!-- 不会追踪 -->
+  <div :id="id"></div>   <!-- 要追踪 -->
+  <div>                  <!-- 不会追踪 -->
+    <div>{{ bar }}</div> <!-- 要追踪 -->
   </div>
 </div>
 ```
 
-The result is a flattened array that contains only the dynamic descendent nodes:
+编译的结果会被打平为一个数组，仅包含所有动态的后代节点：
 
 ```
 div (block root)
-- div with :id binding
-- div with {{ bar }} binding
+- div 带有 :id 绑定
+- div 带有 {{ bar }} 绑定
 ```
 
-When this component needs to re-render, it only needs to traverse the flattened tree instead of the full tree. This is called **Tree Flattening**, and it greatly reduces the amount of nodes that need to be traversed during virtual DOM reconciliation. Any static parts of the template are effectively skipped.
+当这个组件需要重渲染时，只需要遍历这个打平的树而非整棵树。这也就是我们所说的 **树状结构打平**，这大大减少了我们在虚拟 DOM 协调时需要遍历的节点数量。模板中任何的静态部分都会被高效地略过。
 
-`v-if` and `v-for` directives will create new block nodes:
+`v-if` 和 `v-for` 指令会创建新的区块节点：
 
 ```vue-html
-<div> <!-- root block -->
+<div> <!-- 根区块 -->
   <div>
-    <div v-if> <!-- if block -->
+    <div v-if> <!-- if 区块 -->
       ...
     <div>
   </div>
 </div>
 ```
 
-A child block is tracked inside the parent block's dynamic children array. This retains a stable structure for their parent block.
+一个子区块会在父区块的动态子节点数组中被追踪，这为他们的父区块保留了一个稳定的结构。
 
-### Impact on SSR Hydration
+### 对 SSR 水合的影响 {#impact-on-ssr-hydration}
 
-Both patch flags and tree flattening also greatly improve Vue's [SSR Hydration](/guide/scaling-up/ssr.html#client-hydration) performance:
+修补标记和树结构打平都大大提升了 Vue [SSR 水合](/guide/scaling-up/ssr.html#client-hydration) 的性能表现：
 
-- Single element hydration can take fast paths based on corresponding vnode's patch flag.
-- Only block nodes and their dynamic children need to be traversed during hydration, effectively achieving partial hydration at the template level.
+- 单个元素的水合可以基于相应 vnode 的修补标记走更快的捷径。
+- 在水合时只有区块节点和其动态子节点需要被遍历，这在模板层面上实现更高效的分部水合。
