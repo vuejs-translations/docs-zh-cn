@@ -210,7 +210,7 @@ Vitepress 和 Vuepress 中对以上两种写法的渲染视觉效果为：
 | declarative | 声明式 | |
 | imperative | 命令式 | |
 | handler | 处理函数 | |
-| you | 你 (而不用 “你”) | |
+| you | 你 (而不用 “您”) | |
 | computed | 计算属性 | |
 | computed property | 计算属性 | |
 | guard | 守卫 | |
