@@ -8,7 +8,7 @@
 
 ## 如何进行翻译
 
-进行翻译之前，请确保你已经完成了 [翻译说明](https://vue-new-docs-cn.netlify.app/about/translation.html) 的阅读。
+进行翻译之前，请确保你已经完成了 [翻译说明](https://staging-cn.vuejs.org/about/translation.html) 的阅读。
 
 本站基于 [VitePress](https://github.com/vuejs/vitepress) 和 [@vue/theme](https://github.com/vuejs/vue-theme) 建立。网站内容以 Markdown 格式书写，位于 `src` 文件夹中。
 
