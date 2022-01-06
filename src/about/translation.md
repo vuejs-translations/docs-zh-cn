@@ -26,7 +26,7 @@ aside: deep
 
 ### 提交规范
 
-可以查看 [这次提交](https://github.com/vitejs/docs-cn/commit/5ddceb357850ff4b9c270d0b601741df538e6b7b) 的 commit message 作为示例，或参考 [这个网站](https://www.conventionalcommits.org/) 了解提交信息的既定书写格式：
+可以参考 [这个网站](https://www.conventionalcommits.org/) 了解提交信息的既定书写格式：
 
 ```text
 <type>(<scope>): <subject>
@@ -36,12 +36,13 @@ aside: deep
 |
 +-------> 目的: chore, docs, feat, fix, refactor, style, 或 test。<scope> 为可选项。
 
+// 以下是 body 部分，这部分是可选的：
   hash: (对应到官方英文文档的某次更新 commit hash)
   time: (由 `new Date().toLocaleString()` 生成的时间戳)
 ```
 
 - 如果你贡献提交的目的并不是与官方英文文档同步内容相关，为 `chore` 或其他类型，body 部分可以省略。
-- 如果你的贡献无需提交后经由 CI 验证，需要加上 `[ci skip]` 标识符。
+- body 部分的信息只是为了在特定情况下方便溯源。
 
 #### 释义
 
@@ -96,8 +97,6 @@ aside: deep
 
 - 英文单词和标点符号之间没有空格
   `这里是一句中文，something 又是英文`
-
-这时英文前无需
 
 #### 链接、斜体、粗体与行内代码等
 
@@ -160,7 +159,7 @@ Vitepress 和 Vuepress 中对以上两种写法的渲染视觉效果为：
 
 这是一个*斜体*尝试 <!-- 前后无空格 -->
 
-这是一个 _斜体_ 尝试 <!-- 前后有空格 -->
+这是一个 *斜体* 尝试 <!-- 前后有空格 -->
 ```
 
 下面是效果，不带空格的情况看上去中文字体的笔画之间会接在一起，变得很拥挤，观感较差。
