@@ -1,12 +1,4 @@
-<<<<<<< HEAD
----
-aside: deep
----
-
 # 事件处理 {#event-handling}
-=======
-# Event Handling
->>>>>>> 3510979bfb31f87ff5ffcfe3e1c37774238da0a5
 
 ## 监听事件 {#listening-to-events}
 

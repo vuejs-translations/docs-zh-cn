@@ -47,11 +47,11 @@ Vue 的设计对于大多数常见的使用情况来说都是性能优秀的，�
 
   - 当使用了构建步骤时，模板会被预编译，因此我们无须在浏览器中载入 Vue 编译器。这在同样最小化加上 gzip 优化下会相对缩小 **14kb** 并避免运行时的编译开销。
 
-- Be cautious of size when introducing new dependencies! In real world applications, bloated bundles are most often a result of introducing heavy dependencies without realizing it.
+- 在引入新的依赖项时要小心包体积膨胀！在现实的应用中，包体积膨胀通常因为无意识地引入了过重的依赖导致的。
 
-  - If using a build step, prefer dependencies that offer ES module formats and are tree-shaking-friendly. For example, prefer `lodash-es` over `lodash`.
+  - 如果使用了构建步骤，应当尽量选择提供 ES 模块格式的依赖，它们对 tree-shaking 更友好。举个例子，选择 `lodash-es` 比 `lodash` 更好。
 
-  - Check a dependency's size and evaluate whether it is worth the functionality it provides. Note if the dependency is tree-shaking-friendly, the actual size increase will depend on the APIs you actually import from it. Tools like [bundle.js.org](https://bundle.js.org/) can be used for quick checks, but measuring with your actual build setup will always be the most accurate.
+  - 查看依赖的体积，并评估与其所提供的功能之间的性价比。如果依赖对 tree-shaking 友好，实际增加的体积大小将取决于你从它之中导入的 API。像 [bundle.js.org](https://bundle.js.org/) 这样的工具可以用来做快速的检查，但是根据实际的构建设置来评估总是最准确的。
 
 - 如果你基本上是以渐进式集成的模式使用 Vue，并选择避免使用构建步骤，请考虑使用 [petite-vue](https://github.com/vuejs/petite-vue) （只有 **6kb**）来代替。
 

@@ -543,8 +543,8 @@ export default defineConfigWithTheme<Config>({
     ],
 
     editLink: {
-      repo: 'vuejs/docs#next',
-      text: 'Edit this page on GitHub'
+      repo: 'vuejs-translations/docs-zh-cn',
+      text: '在 GitHub 上编辑此页'
     },
 
     footer: {
