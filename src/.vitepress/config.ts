@@ -1,23 +1,20 @@
 import fs from 'fs'
 import path from 'path'
-import { defineConfig } from 'vitepress'
+import { defineConfigWithTheme } from 'vitepress'
 import baseConfig from '@vue/theme/config'
 import { headerPlugin } from './headerMdPlugin'
+import type { Config } from '@vue/theme'
 
 const nav = [
   {
     text: '文档',
     activeMatch: `^/(guide|style-guide|cookbook|examples)/`,
     items: [
-      {
-        items: [
-          { text: '指引', link: '/guide/introduction' },
-          { text: '教程', link: '/tutorial/' },
-          { text: '范例', link: '/examples/' },
-          { text: '快速开始', link: '/guide/quick-start' },
-          { text: '风格指南', link: '/style-guide/' }
-        ]
-      }
+      { text: '指引', link: '/guide/introduction' },
+      { text: '教程', link: '/tutorial/' },
+      { text: '范例', link: '/examples/' },
+      { text: '快速开始', link: '/guide/quick-start' },
+      { text: '风格指南', link: '/style-guide/' }
     ]
   },
   {
@@ -84,22 +81,17 @@ const nav = [
     text: '关于',
     activeMatch: `^/about/`,
     items: [
+      { text: 'FAQ', link: '/about/faq' },
+      { text: '团队', link: '/about/team' },
+      { text: 'Releases', link: '/about/releases' },
       {
-        items: [
-          // { text: '翻译说明', link: '/about/translation' },
-          { text: 'FAQ', link: '/about/faq' },
-          { text: '团队', link: '/about/team' },
-          { text: 'Releases', link: '/about/releases' },
-          {
-            text: '贡献指南',
-            link: '/about/contribution-guide'
-          },
-          { text: '行为准则', link: '/about/coc' },
-          {
-            text: '纪录片 · The Documentary',
-            link: 'https://www.youtube.com/watch?v=OrxmtDw4pVI'
-          }
-        ]
+        text: '贡献指南',
+        link: '/about/contribution-guide'
+      },
+      { text: '行为准则', link: '/about/coc' },
+      {
+        text: '纪录片 · The Documentary',
+        link: 'https://www.youtube.com/watch?v=OrxmtDw4pVI'
       }
     ]
   },
@@ -146,7 +138,10 @@ export const sidebar = {
           link: '/guide/essentials/conditional'
         },
         { text: '列表渲染', link: '/guide/essentials/list' },
-        { text: '事件处理', link: '/guide/essentials/event-handling' },
+        {
+          text: '事件处理',
+          link: '/guide/essentials/event-handling'
+        },
         { text: '表单输入绑定', link: '/guide/essentials/forms' },
         {
           text: '生命周期',
@@ -199,7 +194,10 @@ export const sidebar = {
       text: '内置组件',
       items: [
         { text: 'Transition', link: '/guide/built-ins/transition' },
-        { text: 'TransitionGroup', link: '/guide/built-ins/transition-group' },
+        {
+          text: 'TransitionGroup',
+          link: '/guide/built-ins/transition-group'
+        },
         { text: 'KeepAlive', link: '/guide/built-ins/keep-alive' },
         { text: 'Teleport', link: '/guide/built-ins/teleport' },
         { text: 'Suspense', link: '/guide/built-ins/suspense' }
@@ -251,7 +249,10 @@ export const sidebar = {
           text: 'TS 与组合式 API',
           link: '/guide/typescript/composition-api'
         },
-        { text: 'TS 与选项式 API', link: '/guide/typescript/options-api' }
+        {
+          text: 'TS 与选项式 API',
+          link: '/guide/typescript/options-api'
+        }
       ]
     },
     {
@@ -363,6 +364,10 @@ export const sidebar = {
       items: [
         { text: '指令', link: '/api/built-in-directives' },
         { text: '组件', link: '/api/built-in-components' },
+        {
+          text: '特殊元素',
+          link: '/api/built-in-special-elements'
+        },
         {
           text: '特殊 Attributes',
           link: '/api/built-in-special-attributes'
@@ -488,25 +493,10 @@ export const sidebar = {
         }
       ]
     }
-  ],
-  '/tutorial/': [
-    {
-      text: '教程',
-      items: [
-        {
-          text: '1. 添加数据',
-          link: '/tutorial/#step-1'
-        },
-        {
-          text: '2. 双向绑定',
-          link: '/tutorial/#step-2'
-        }
-      ]
-    }
   ]
 }
 
-export default defineConfig({
+export default defineConfigWithTheme<Config>({
   extends: baseConfig,
 
   lang: 'zh-CN',
@@ -515,7 +505,11 @@ export default defineConfig({
 
   head: [
     ['meta', { name: 'twitter:site', content: '@vuejs' }],
-    ['meta', { name: 'twitter:card', content: 'summary_large_image' }],
+    ['meta', { name: 'twitter:card', content: 'summary' }],
+    [
+      'meta',
+      { name: 'twitter:image', content: 'https://vuejs.org/images/logo.png' }
+    ],
     [
       'script',
       {},
@@ -526,15 +520,9 @@ export default defineConfig({
     ]
   ],
 
-  markdown: {
-    config(md) {
-      md.use(headerPlugin)
-    },
-  },
-
   themeConfig: {
-    logo: '/logo.svg',
-    repo: 'vuejs/docs',
+    nav,
+    sidebar,
 
     algolia: {
       indexName: 'vuejs-v3',
@@ -554,15 +542,23 @@ export default defineConfig({
       { icon: 'discord', link: 'https://discord.com/invite/HBherRA' }
     ],
 
-    nav,
-    sidebar,
+    editLink: {
+      repo: 'vuejs/docs#next',
+      text: 'Edit this page on GitHub'
+    },
 
     footer: {
       license: {
         text: 'MIT License',
         link: 'https://opensource.org/licenses/MIT'
       },
-      copyright: 'Copyright © 2014-2021 Evan You'
+      copyright: `Copyright © 2014-${new Date().getFullYear()} Evan You`
+    }
+  },
+
+  markdown: {
+    config(md) {
+      md.use(headerPlugin)
     }
   },
 
@@ -571,6 +567,7 @@ export default defineConfig({
       __VUE_OPTIONS_API__: false
     },
     optimizeDeps: {
+      include: ['gsap', 'dynamics.js'],
       exclude: ['@vue/repl']
     },
     // @ts-ignore

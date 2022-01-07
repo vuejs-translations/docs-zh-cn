@@ -1,7 +1,3 @@
----
-aside: deep
----
-
 # 供给 / 注入 {#provide-inject}
 
 > 阅读此章节时，我们假设你已经读过 [组件基础](/guide/essentials/component-basics)，若你对组件还完全不了解，请先阅读它。
@@ -99,7 +95,7 @@ export default {
 
 </div>
 
-### 应用级供给 {#app-level-provide}
+## 应用级供给 {#app-level-provide}
 
 除了供给一个组件的数据，我们还可以在整个应用层面做供给：
 

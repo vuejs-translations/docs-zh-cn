@@ -1,5 +1,4 @@
 ---
-aside: deep
 footer: false
 ---
 
@@ -209,7 +208,7 @@ onMounted(() => {
 
 <div class="vt-box-container next-steps">
   <a class="vt-box" href="/guide/quick-start.html">
-    <p class="next-steps-link">继续跟随指引</p>
+    <p class="next-steps-link">继续阅读指引</p>
     <p class="next-steps-caption">想要阅读深入的指南，通过更完整的细节介绍框架的核心概念。</p>
   </a>
   <a class="vt-box" href="/tutorial/">

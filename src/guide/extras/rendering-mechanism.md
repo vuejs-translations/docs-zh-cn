@@ -186,4 +186,5 @@ div (block root)
 修补标记和树结构打平都大大提升了 Vue [SSR 水合](/guide/scaling-up/ssr.html#client-hydration) 的性能表现：
 
 - 单个元素的水合可以基于相应 vnode 的修补标记走更快的捷径。
+
 - 在水合时只有区块节点和其动态子节点需要被遍历，这在模板层面上实现更高效的分部水合。

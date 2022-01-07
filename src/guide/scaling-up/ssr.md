@@ -175,7 +175,23 @@ Vite 提供了内置的 [对 Vue 服务端渲染](https://vitejs.dev/guide/ssr.h
 
 然而，在 SSR 环境下，应用程序代码即在服务器启动时通常只在初始化一次。在这种情况下，我们应用程序中的状态管理单例将在服务器处理的多个请求中被共享。如果我们用一个用户的特定数据对共享的 store 单例进行更改，它可能会意外地泄露给另一个用户的请求。我们把这称为 **跨请求的状态污染**。
 
-为了解决这个问题，我们需要在每个请求中创建一个新的应用程序和共享对象的实例。然后，我们使用 [应用级的供给](/guide/components/provide-inject.html#app-level-provide) 来提供共享状态，并将其注入给需要它的组件中，而不是直接在我们的组件中将其导入。
+推荐的解决方案是在每个请求中创建一个新的应用程序和共享对象的实例。然后，我们使用 [应用级的供给](/guide/components/provide-inject.html#app-level-provide) 来提供共享状态，并将其注入给需要它的组件中，而不是直接在我们的组件中将其导入：
+
+```js
+// app.js （在服务端和客户端间共享）
+import { createSSRApp } from 'vue'
+import { createStore } from './store.js'
+
+export function createApp() {
+  const app = createSSRApp(/* ... */)
+  // 对每个请求都创建新的 store 实例
+  const store = createStore(/* ... */)
+  // 应用级别的 store 供给
+  app.provide('store', store)
+  // 也为水合时暴露出 store
+  return { app, store }
+}
+```
 
 像 Pinia 这样的状态管理库在设计时就考虑到了这一点。请参考 [Pinia 的 SSR指南](https://pinia.vuejs.org/ssr/) 以了解更多细节。
 

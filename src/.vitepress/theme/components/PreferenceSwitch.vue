@@ -14,19 +14,19 @@ const show = computed(() => /^\/(guide|tutorial|examples)\//.test(route.path))
 const showSFC = computed(() => !/^\/guide/.test(route.path))
 const isOpen = ref(
   typeof localStorage !== 'undefined' &&
-  !localStorage.getItem(preferCompositionKey)
+    !localStorage.getItem(preferCompositionKey)
 )
 
 const toggleOpen = () => {
   isOpen.value = !isOpen.value
 }
 
-const removeOutline = (e) => {
-  e.target.classList.add('no-outline')
+const removeOutline = (e: Event) => {
+  ;(e.target as HTMLElement).classList.add('no-outline')
 }
 
-const restoreOutline = (e) => {
-  e.target.classList.remove('no-outline')
+const restoreOutline = (e: Event) => {
+  ;(e.target as HTMLElement).classList.remove('no-outline')
 }
 
 const toggleCompositionAPI = useToggleFn(
@@ -43,7 +43,7 @@ function useToggleFn(
   className: string
 ) {
   if (typeof localStorage === 'undefined') {
-    return () => { }
+    return () => {}
   }
   const classList = document.documentElement.classList
   return (value = !state.value) => {
@@ -89,7 +89,8 @@ function useToggleFn(
           title="About API 风格偏好"
           href="/guide/introduction.html#api-styles"
           @click="closeSideBar"
-        >?</a>
+          >?</a
+        >
       </div>
       <div class="switch-container" v-if="showSFC">
         <label class="no-sfc-label" @click="toggleSFC(false)">HTML</label>
@@ -104,7 +105,8 @@ function useToggleFn(
           title="About SFC"
           href="/guide/scaling-up/sfc.html"
           @click="closeSideBar"
-        >?</a>
+          >?</a
+        >
       </div>
     </div>
   </div>
@@ -114,12 +116,13 @@ function useToggleFn(
 .preference-switch {
   font-size: 12px;
   border-bottom: 1px solid var(--vt-c-divider-light);
-  transition: border-color 0.5s;
+  transition: border-color 0.5s, background-color .5s ease;
   margin-bottom: 20px;
   position: sticky;
-  top: 0;
+  top: -0.5px;
   background-color: var(--vt-c-bg);
   padding-top: 10px;
+  z-index: 10;
 }
 
 .toggle {
@@ -241,7 +244,7 @@ function useToggleFn(
 .tip .options-api,
 .tip .composition-api {
   color: var(--vt-c-text-code);
-  transition: color 0.5s;
+  /* transition: color 0.5s; */
   font-weight: 600;
 }
 </style>

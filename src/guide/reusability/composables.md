@@ -1,7 +1,3 @@
----
-aside: deep
----
-
 # 可组合函数 {#composables}
 
 <script setup>

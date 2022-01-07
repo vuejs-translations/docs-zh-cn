@@ -1,7 +1,3 @@
----
-aside: deep
----
-
 # 测试 {#testing}
 
 ## 总览 {#overview}

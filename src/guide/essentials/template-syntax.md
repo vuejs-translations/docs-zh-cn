@@ -195,7 +195,7 @@ data() {
 <a v-on:click="doSomething"> ... </a>
 
 <!-- 缩写 -->
-<a @click="url"> ... </a>
+<a @click="doSomething"> ... </a>
 ```
 
 这里的参数是要监听的事件名称：`click`。`v-on` 是含有缩写的少部分缩写之一，缩写字符为 `@`。我们之后也会讨论关于事件处理的更多细节。
