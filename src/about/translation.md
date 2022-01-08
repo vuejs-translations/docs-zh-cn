@@ -155,7 +155,7 @@ Vitepress 和 Vuepress 中对以上两种写法的渲染视觉效果为：
 同样这类情况还包括 Markdown 中的斜体字：
 
 ```markdown
-这是一个*斜体*尝试 <!-- Vitepress 和 Vuepress 中无效！  -->
+这是一个_斜体_尝试 <!-- Vitepress 和 Vuepress 中无效！  -->
 
 这是一个*斜体*尝试 <!-- 前后无空格 -->
 
