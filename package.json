@@ -3,7 +3,8 @@
     "dev": "vitepress dev src",
     "build": "node ./scripts/build.js",
     "serve": "vitepress serve src",
-    "clean": "rm -rf src/.vitepress/dist"
+    "clean": "rm -rf src/.vitepress/dist",
+    "sync": "node scripts/sync.js"
   },
   "dependencies": {
     "@vue/repl": "^0.4.9",
@@ -19,7 +20,9 @@
     "chalk": "^4.1.2",
     "gray-matter": "^4.0.3",
     "lodash": "^4.17.21",
-    "patch-vue-directive-ssr": "^0.0.1"
+    "open": "^8.4.0",
+    "patch-vue-directive-ssr": "^0.0.1",
+    "simple-git": "^2.48.0"
   },
   "pnpm": {
     "packageExtensions": {
