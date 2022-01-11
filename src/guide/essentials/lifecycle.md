@@ -45,6 +45,8 @@ setTimeout(() => {
 }, 100)
 ```
 
+请注意，这并不意味着对 `onMounted` 的调用必须放在 `setup()` 或 `<script setup>` 内的词法环境下。`onMounted()` 也可以在一个外部函数中调用，只要调用栈是同步的，且最终起源自 `setup()`。
+
 </div>
 
 ## 生命周期图示 {#lifecycle-diagram}

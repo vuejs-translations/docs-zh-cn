@@ -63,4 +63,8 @@
   The `render` function has priority over the render function compiled from `template` option or in-DOM HTML template of the mounting element
   :::
 
-- **其他相关：** [Render Functions](/guide/extras/render-function.html)
+- **See also:** [Render Functions](/guide/extras/render-function.html)
+
+## compilerOptions
+
+- **See also:** [app.config.compilerOptions](/api/application.html#app-config-compileroptions)

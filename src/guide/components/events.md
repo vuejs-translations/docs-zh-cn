@@ -135,7 +135,18 @@ const emit = defineEmits({
 </script>
 ```
 
-你也可以看看这一章了解 [如何为组件所抛出事件标注类型](/guide/typescript/composition-api.html#typing-component-emits)。 <Badge type="ts" text="TS" />
+如果你正在搭配 `<script setup>` 使用 TypeScript，也可以使用纯类型标记来声明所抛出的事件类型：
+
+```vue
+<script setup lang="ts">
+const emit = defineEmits<{
+  (e: 'change', id: number): void
+  (e: 'update', value: string): void
+}>()
+</script>
+```
+
+更多细节：[如何为组件所抛出事件标注类型](/guide/typescript/composition-api.html#typing-component-emits) <Badge type="ts" text="TS" />
 
 </div>
 <div class="options-api">

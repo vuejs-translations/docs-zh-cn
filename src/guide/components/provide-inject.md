@@ -107,7 +107,7 @@ const app = createApp({})
 app.provide(/* 注入名 */ 'message', /* 值 */ 'hello!')
 ```
 
-应用级的供给在应用的所有组件中都可以注入。
+应用级的供给在应用的所有组件中都可以注入。这在你编写 [插件](/guide/reusability/plugins.html) 时会特别有用，因为插件一般都不会使用组件形式来供给值。
 
 ## 注入 {#inject}
 

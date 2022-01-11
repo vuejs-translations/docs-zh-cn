@@ -210,6 +210,45 @@ export default {
 
 </div>
 
+### DOM 更新时机 {#dom-update-timing}
+
+当你更改响应式状态后，DOM 会自动地更新。然而，你得注意 DOM 的更新并不是同步的。相反，Vue 会将它们推入更新循环的 “下个 tick” 执行以确保无论改变了多少个状态，每个需要更新的组件都只更新一次。
+
+若要等待一个状态改变后的 DOM 更新完成，你可以使用 [nextTick()](/api/general.html#nexttick) 这个全局 API：
+
+<div class="composition-api">
+
+```js
+import { nextTick } from 'vue'
+
+function increment() {
+  count.value++
+  nextTick(() => {
+    // 访问更新后的 DOM
+  })
+}
+```
+
+</div>
+<div class="options-api">
+
+```js
+import { nextTick } from 'vue'
+
+export default {
+  methods: {
+    increment() {
+      this.count++
+      nextTick(() => {
+        // access updated DOM
+      })
+    }
+  }
+}
+```
+
+</div>
+
 ### 深层响应性 {#deep-reactivity}
 
 在 Vue 中，状态都是默认深层响应式的。这意味着即使在更改深层次的对象或数组，你的改动也能被检测到。
@@ -472,52 +511,44 @@ console.log(map.get('count').value)
 
 <div class="options-api">
 
-### 防抖与节流 \* {#debouncing-and-throttling}
+### 有状态方法 \* {#stateful-methods}
 
-Vue 自身并不内置防抖和节流的支持但是可以借助一些如 [Lodash](https://lodash.com/) 之类的库来实现。
-
-在组件只使用一次的情况中，防抖可以直接在 `methods` 中应用：
+在某些情况下，我们可能需要动态地创建一个方法函数，比如创建一个预置防抖的事件处理器：
 
 ```js
 import { debounce } from 'lodash-es'
 
-createApp({
+export default {
   methods: {
     // 使用 Lodash 的防抖函数
     click: debounce(function () {
       // ... 对点击的响应 ...
     }, 500)
   }
-}).mount('#app')
+}
 ```
 
-:::tip 注意
-如果你正在使用 [无构建配置](/guide/quick-start.html#without-build-tools)，请在你的导入映射表中添加：`"lodash-es": "https://cdn.jsdelivr.net/npm/lodash-es/+esm"`
-:::
+不过这种方法对于被重用的组件来说是有问题的，因为这个预置防抖的函数是 **有状态的**：它在运行时维护着一个内部状态。如果多个组件实例都共享这同一个预置防抖的函数，那么它们之间将会互相影响。
 
-然而，这种方法对于可重用组件可能存在问题，因为它们将共享相同的防抖函数。为了使组件实例之间彼此相互独立，我们可以添加防抖函数到 `created` 生命周期钩子中：
+要保持每个组件实例的防抖函数都彼此独立，我们可以改为在 `created` 生命周期钩子中创建这个预置防抖的函数：
 
 ```js
-app.component('save-button', {
+export default {
   created() {
-    // 使用 Lodash 的防抖函数
+    // 每个实例都有了自己的预置防抖的处理函数
     this.debouncedClick = _.debounce(this.click, 500)
   },
   unmounted() {
-    // 在移除组件时取消计时器
+    // 最好是在组件卸载时
+    // 清除掉防抖计时器
     this.debouncedClick.cancel()
   },
   methods: {
     click() {
       // ... 对点击的响应 ...
     }
-  },
-  template: `
-    <button @click="debouncedClick">
-      Save
-    </button>
-  `
-})
+  }
+}
 ```
 
 </div>

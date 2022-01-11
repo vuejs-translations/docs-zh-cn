@@ -322,12 +322,12 @@ export const sidebar = {
           link: '/api/reactivity-core'
         },
         {
-          text: '响应式: 进阶',
-          link: '/api/reactivity-advanced'
-        },
-        {
           text: '响应式: 工具',
           link: '/api/reactivity-utilities'
+        },
+        {
+          text: '响应式: 进阶',
+          link: '/api/reactivity-advanced'
         },
         {
           text: '生命周期钩子',
@@ -379,7 +379,7 @@ export const sidebar = {
       items: [
         { text: '语法定义', link: '/api/sfc-spec' },
         { text: '<script setup>', link: '/api/sfc-script-setup' },
-        { text: '<style> 功能', link: '/api/sfc-style' }
+        { text: 'CSS 功能', link: '/api/sfc-css-features' }
       ]
     },
     {
@@ -525,9 +525,12 @@ export default defineConfigWithTheme<Config>({
     sidebar,
 
     algolia: {
-      indexName: 'vuejs-v3',
-      appId: 'BH4D9OD16A',
-      apiKey: 'bc6e8acb44ed4179c30d0a45d6140d3f'
+      indexName: 'vuejs',
+      appId: 'ML0LEBN7FQ',
+      apiKey: 'f49cbd92a74532cc55cfbffa5e5a7d01',
+      searchParameters: {
+        facetFilters: ['version:v3']
+      }
     },
 
     carbonAds: {

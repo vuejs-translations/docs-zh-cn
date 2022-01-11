@@ -83,6 +83,56 @@ import SwitchComponent from './keep-alive-demos/SwitchComponent.vue'
 </KeepAlive>
 ```
 
+## 缓存实例的生命周期 {#lifecycle-of-cached-instance}
+
+当一个组件实例从 DOM 上移除但因为被 `<KeepAlive>` 缓存而仍作为组件树的一部分时，它将变为 **不活跃** 状态而不是被卸载。当一个组件实例作为缓存树的一部分插入到 DOM 中时，它就是被重新 **恢复活跃** 了。
+
+<div class="composition-api">
+
+一个持续存在的组件可以通过 [`onActivated()`](/api/composition-api-lifecycle.html#onactivated) 和 [`onDeactivated()`](/api/composition-api-lifecycle.html#ondeactivated) 注册相应的两个状态的生命周期钩子：
+
+```vue
+<script setup>
+import { onActivated, onDeactivated } from 'vue'
+
+onActivated(() => {
+  // 在首次挂载、
+  // 以及每次从缓存中重新被插入回 DOM 的时候调用
+})
+
+onDeactivated(() => {
+  // 在从 DOM 上移除、进入缓存
+  // 以及组件卸载时调用
+})
+</script>
+```
+
+</div>
+<div class="options-api">
+
+一个持续存在的组件可以通过 [`activated`](/api/options-lifecycle.html#activated) 和 [`deactovated`](/api/options-lifecycle.html#deactivated) 选项来注册相应的两个状态的生命周期钩子：
+
+```js
+export default {
+  activated() {
+    // 在首次挂载、
+    // 以及每次从缓存中重新被插入回 DOM 的时候调用
+  },
+  deactivated() {
+    // 在从 DOM 上移除、进入缓存
+    // 以及组件卸载时调用
+  }
+}
+```
+
+</div>
+
+请注意：
+
+- <span class="composition-api">`onActivated`</span><span class="options-api">`activated`</span> 在组件挂载时也会调用，并且 <span class="composition-api">`onDectivated`</span><span class="options-api">`deactivated`</span> 在组件卸载时也会调用。
+
+- 这两个钩子不仅适用于 `<KeepAlive>` 缓存的根组件，也适用于缓存树中的后代组件。
+
 ---
 
 **相关内容**
