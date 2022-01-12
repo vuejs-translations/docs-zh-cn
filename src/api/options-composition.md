@@ -136,7 +136,9 @@
 
 ## mixins
 
-- **类型：** `Array<Object>`
+An array of option objects to be mixed into the current component.
+
+- **Type:** `Array<Object>`
 
 - **详细介绍：**
 
