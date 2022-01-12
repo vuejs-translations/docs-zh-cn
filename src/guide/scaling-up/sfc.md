@@ -36,7 +36,7 @@ export default {
 - 使用熟悉的 HTML、CSS 和 JavaScript 语法编写模块化的组件
 - [罗列本身就强耦合的逻辑关注点](#what-about-separation-of-concerns)
 - 预编译模板
-- [组件级隔离的 CSS](/api/sfc-style)
+- [组件级隔离的 CSS](/api/sfc-css-features)
 - [在使用组合式 API 时语法更简单](/api/sfc-script-setup)
 - 通过交叉分析模板和逻辑代码能进行更多编译时优化
 - [更好的 IDE 支持](/guide/scaling-up/tooling.html#ide-support)，提供自动补全和对模板中表达式的类型检查
