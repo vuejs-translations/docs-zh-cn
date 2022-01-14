@@ -25,27 +25,13 @@
     "simple-git": "^2.48.0"
   },
   "pnpm": {
-    "packageExtensions": {
-      "@algolia/autocomplete-preset-algolia": {
-        "peerDependenciesMeta": {
-          "@algolia/client-search": {
-            "optional": true
-          }
-        }
-      },
-      "@docsearch/react": {
-        "peerDependenciesMeta": {
-          "react": {
-            "optional": true
-          },
-          "react-dom": {
-            "optional": true
-          },
-          "@types/react": {
-            "optional": true
-          }
-        }
-      }
+    "peerDependencyRules": {
+      "ignoreMissing": [
+        "@algolia/client-search",
+        "react",
+        "react-dom",
+        "@types/react"
+      ]
     }
   }
 }
