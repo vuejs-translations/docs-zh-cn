@@ -508,7 +508,10 @@ export default defineConfigWithTheme<Config>({
     ['meta', { name: 'twitter:card', content: 'summary' }],
     [
       'meta',
-      { name: 'twitter:image', content: 'https://vuejs.org/images/logo.png' }
+      {
+        name: 'twitter:image',
+        content: 'https://vuejs.org/images/logo.png'
+      }
     ],
     [
       'script',
@@ -589,9 +592,13 @@ export default defineConfigWithTheme<Config>({
       chunkSizeWarningLimit: Infinity,
       rollupOptions: {
         output: {
+          chunkFileNames: 'assets/chunks/[name].[hash].js',
           manualChunks(id, ctx) {
             if (id.includes('gsap')) {
               return 'gsap'
+            }
+            if (id.includes('dynamics.js')) {
+              return 'dynamics'
             }
             return moveToVendor(id, ctx)
           }
