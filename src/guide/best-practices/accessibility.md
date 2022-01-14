@@ -392,7 +392,7 @@ export default {
 
 ## 规范 {#standards}
 
-万维网联盟 (W3C)Web 无障碍访问倡议 (WAI) 为不同的组件制定了 Web 可访问性标准：
+万维网联盟 (W3C) Web 无障碍访问倡议 (WAI) 为不同的组件制定了 Web 可访问性标准：
 
 - [用户代理无障碍访问指南 (UAAG)](https://www.w3.org/WAI/standards-guidelines/uaag/)
   - 浏览器和媒体查询，包括一些其他方面的辅助技术
