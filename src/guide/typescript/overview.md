@@ -69,6 +69,7 @@ Vue 本身就是用 TypeScript 编写的，对 TypeScript 提供第一优先级�
 2. 输入 `built`，然后选择 "Extensions: Show Built-in Extensions".
 3. 在插件搜索框内输入 `typescript` (不要删除 `@builtin` 前缀).
 4. 点击 "TypeScript and JavaScript Language Features" 右下角的小齿轮, 然后选择 "Disable (Workspace)".
+5. 重新加载工作空间。托管模式将会在你打开一个 Vue 或者 TS 文件时自动启用。
 
 <img src="./images/takeover-mode.png" width="590" height="426" style="margin:0px auto;border-radius:8px">
 
