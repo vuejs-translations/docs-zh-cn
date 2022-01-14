@@ -414,7 +414,7 @@ export default {
 - [可理解性](https://www.w3.org/TR/WCAG21/#understandable)
   - 信息和用户界面的操作必须为所有用户所理解
 - [健壮性](https://www.w3.org/TR/WCAG21/#robust)
-  - 随着技术的进步，用户能够借助辅助设备访问内容
+  - 随着技术的进步，用户必须能够访问内容
 
 #### Web 无障碍倡议 – 无障碍访问丰富的互联网应用程序 (WAI-ARIA) {#web-accessibility-initiative-accessible-rich-internet-applications-wai-aria}
 
