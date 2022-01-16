@@ -1,7 +1,6 @@
 # TypeScript 与组合式 API {#typescript-with-composition-api}
 
-
-> 这一章假设你已经阅读过了这篇 [搭配 TypeScript 使用 Vue](./overview) 的文档。
+> 这一章假设你已经阅读了位于[搭配 TypeScript 使用 Vue](./overview) 的概览。
 
 ## 为组件 props 标注类型 {#typing-component-props}
 
@@ -177,7 +176,7 @@ import { reactive } from 'vue'
 const book = reactive({ title: 'Vue 3 指引' })
 ```
 
-要显式地标注一个 `reactive` 属性的类型，我们可以使用接口：
+要显式地标注一个 `reactive` property 的类型，我们可以使用接口：
 
 ```ts
 import { reactive } from 'vue'
@@ -206,7 +205,7 @@ let count = ref(0)
 // 推导得到的类型：ComputedRef<number>
 const double = computed(() => count.value * 2)
 
-// => TS 错误：属性 'split' 在类型 'number' 上不存在
+// => TS Error: Property 'split' does not exist on type 'number'
 const result = double.value.split('')
 ```
 
@@ -235,7 +234,7 @@ function handleChange(event) {
 </template>
 ```
 
-没有类型标注时，这个 `event` 参数会隐式定为类型 `any`。这也会在 `tsconfig.json` 中配置了 `"strict": true` 或 `"noImplicitAny": true` 时报出一个 TS 错误。因此，建议显式地为事件处理器的参数标注类型。此外，你可能需要显式地强制转换 `event` 上的属性：
+没有类型标注时，这个 `event` 参数会隐式定为类型 `any`。这也会在 `tsconfig.json` 中配置了 `"strict": true` 或 `"noImplicitAny": true` 时报出一个 TS 错误。因此，建议显式地为事件处理器的参数标注类型。此外，你可能需要显式地强制转换 `event` 上的 property：
 
 ```ts
 function handleChange(event: Event) {
