@@ -163,11 +163,11 @@ export const sidebar = {
           link: '/guide/components/registration'
         },
         { text: 'Props', link: '/guide/components/props' },
-        { text: '透传 Attributes', link: '/guide/components/attrs' },
         { text: '事件', link: '/guide/components/events' },
+        { text: '透传 Attributes', link: '/guide/components/attrs' },
         { text: '插槽', link: '/guide/components/slots' },
         {
-          text: '供给 / 注入',
+          text: '依赖注入',
           link: '/guide/components/provide-inject'
         },
         {

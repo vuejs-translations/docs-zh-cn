@@ -46,6 +46,8 @@ const vnode = {
 
 ![render pipeline](./images/render-pipeline.png)
 
+<!-- https://www.figma.com/file/elViLsnxGJ9lsQVsuhwqxM/Rendering-Mechanism -->
+
 ## 模板 vs. 渲染函数 {#template-vs-render-functions}
 
 Vue 模板会被预编译成虚拟 DOM 渲染函数。Vue 也提供了 API 使我们可以不使用模板编译，直接手写渲染函数。在处理高度动态的逻辑时，渲染函数相比于模板更加灵活，因为你可以完全地使用 JavaScript 来构造你想要的 vnode。

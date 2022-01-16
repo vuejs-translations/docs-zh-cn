@@ -2,7 +2,9 @@
 
 <script setup>
 const vFocus = {
-  mounted: el => el.focus()
+  mounted: el => {
+    el.focus()
+  }
 }
 </script>
 
@@ -137,6 +139,7 @@ const myDir = {
 - `el`：指令绑定到的元素。这可以用于直接操作 DOM。
 
 - `binding`：一个对象，包含以下属性
+
   - `value`：传递给指令的值。例如 `v-my-directive="1 + 1"` 之中，值就是 `2`。
   - `oldValue`：之前的值，仅在 `beforeUpdate` 和 `updated` 中可用。无论值是否更改，它都可用。
   - `arg`：传递给指令的参数，例如 `v-my-directive:foo` 之中，参数就是 `"foo"`。

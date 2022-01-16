@@ -1,16 +1,16 @@
-# 供给 / 注入 {#provide-inject}
+# 依赖注入 {#provide-inject}
 
 > 阅读此章节时，我们假设你已经读过 [组件基础](/guide/essentials/component-basics)，若你对组件还完全不了解，请先阅读它。
 
-## Props 深潜 {#props-drilling}
+## Prop Drilling
 
 通常情况下，当我们需要从父组件向子组件传递数据时，会使用 props。想象一下这样的结构：有一些多层级嵌套的组件，形成了一颗巨大的组件树，而某个深层的子组件需要一个较远的祖先组件中的部分内容。在这种情况下，如果使用 props 则必须将其沿着组件链逐级传递下去，这会非常麻烦：
 
-![Props 深潜过程的图示](./images/props-drilling.png)
+![Prop drilling 过程的图示](./images/prop-drilling.png)
 
-<!-- https://www.figma.com/file/yNDTtReM2xVgjcGVRzChss/props-drilling -->
+<!-- https://www.figma.com/file/yNDTtReM2xVgjcGVRzChss/prop-drilling -->
 
-这里的 `<Footer>` 组件可能其实根本不关心这些 props，但它仍然需要定义并将它们传递下去使得 `<DeepChild>` 能访问到这些 props，如果组件链路非常长，可能会影响到更多这条路上的组件。这一过程被称为 “props 深潜”，这似乎不太好解决。
+这里的 `<Footer>` 组件可能其实根本不关心这些 props，但它仍然需要定义并将它们传递下去使得 `<DeepChild>` 能访问到这些 props，如果组件链路非常长，可能会影响到更多这条路上的组件。这一过程被称为 “prop drilling”，这似乎不太好解决。
 
 为解决这一问题，可以使用 `provide` 和 `inject`。（译者注：在本章及后续章节中，**”供给“** 将成为对应 Provide 的一个专有概念）一个父组件相对于其所有的后代组件，会作为 **依赖供给者**。任何后代的组件树，无论层级有多深，都可以 **注入** 由父组件供给给整条链路的依赖。
 
@@ -18,7 +18,7 @@
 
 <!-- https://www.figma.com/file/PbTJ9oXis5KUawEOWdy2cE/provide-inject -->
 
-## 供给 {#provide}
+## Provide (供给) {#provide}
 
 <div class="composition-api">
 
@@ -95,7 +95,7 @@ export default {
 
 </div>
 
-## 应用级供给 {#app-level-provide}
+## 应用层 Provide {#app-level-provide}
 
 除了供给一个组件的数据，我们还可以在整个应用层面做供给：
 
@@ -109,7 +109,7 @@ app.provide(/* 注入名 */ 'message', /* 值 */ 'hello!')
 
 应用级的供给在应用的所有组件中都可以注入。这在你编写 [插件](/guide/reusability/plugins.html) 时会特别有用，因为插件一般都不会使用组件形式来供给值。
 
-## 注入 {#inject}
+## Inject (注入) {#inject}
 
 <div class="composition-api">
 
@@ -225,7 +225,8 @@ export default {
       default: 'default value'
     },
     user: {
-      // 确保对非基础类型的数据使用工厂函数！
+      // 对于非基础类型数据，如果创建开销比较大，或是需要确保每个组件实例
+      // 需要独立数据的，请使用工厂函数
       default: () => ({ name: 'John' })
     }
   }
@@ -291,6 +292,8 @@ provide('read-only-count', readonly(count))
 为保证注入方和供给端的响应性链接，我们需要使用 [computed()](/api/reactivity-core.html#computed) 函数提供一个计算属性：
 
 ```js{10}
+import { computed } from 'vue'
+
 export default {
   data() {
     return {
@@ -334,8 +337,8 @@ export const myInjectionKey = Symbol()
 import { provide } from 'vue'
 import { myInjectionKey } from './keys.js'
 
-provide(myInjectionKey, { /* 
-  要供给的数据 
+provide(myInjectionKey, { /*
+  要供给的数据
 */ });
 ```
 
@@ -360,8 +363,8 @@ import { myInjectionKey } from './keys.js'
 export default {
   provide() {
     return {
-      [myInjectionKey]: { 
-        /* 要供给的数据 */ 
+      [myInjectionKey]: {
+        /* 要供给的数据 */
       }
     }
   }
