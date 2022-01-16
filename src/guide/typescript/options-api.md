@@ -1,6 +1,6 @@
 # TypeScript 与选项式 API {#typescript-with-options-api}
 
-> 这一章假设你已经阅读过了这篇 [搭配 TypeScript 使用 Vue](./overview) 的文档。
+> 这一章假设你已经阅读了位于[搭配 TypeScript 使用 Vue](./overview) 的概览。
 
 :::tip
 虽然 Vue 的确支持在选项式 API 中使用 TypeScript，但还是推荐通过 TypeScript 与组合式 API 来使用 Vue，因为它提供了更简单、更高效和更可靠的类型推导。
