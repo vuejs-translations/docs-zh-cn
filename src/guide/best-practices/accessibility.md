@@ -150,7 +150,7 @@ export default {
 
 如果你在 chrome 开发工具中检查这个元素，并打开 Elements 选项卡中的 Accessibility 选项卡，你将看到输入是如何从标签中获取其名称的：
 
-![Chrome 开发者工具正在通过标签展示可访问的 input 框的名字](./images/AccessibleLabelChromeDevTools.png)
+![Chrome 开发者工具正在通过标签展示无障碍访问的 input 框的名字](./images/AccessibleLabelChromeDevTools.png)
 
 :::warning 警告：
 你可能还见过这样的包裹 input 框的标签：
@@ -167,7 +167,7 @@ export default {
 
 #### `aria-label` {#aria-label}
 
-你也可以为 input 框配置一个带有 [`aria-label`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/ARIA_Techniques/Using_the_aria-label_attribute) 的可访问名称。
+你也可以为 input 框配置一个带有 [`aria-label`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/ARIA_Techniques/Using_the_aria-label_attribute) 的无障碍访问名。
 
 ```vue-html
 <label for="name">名字</label>
@@ -184,7 +184,7 @@ export default {
 
 在 Chrome DevTools 中审查此元素，查看无障碍名称是如何更改的：
 
-![Chrome 开发者工具正在通过 aria-label 展示可访问的 input 框名字](./images/AccessibleARIAlabelDevTools.png)
+![Chrome 开发者工具正在通过 aria-label 展示无障碍访问的 input 框名字](./images/AccessibleARIAlabelDevTools.png)
 
 #### `aria-labelledby` {#aria-labelledby}
 
@@ -197,24 +197,24 @@ export default {
   method="post"
   autocomplete="on"
 >
-  <h1 id="billing">账单</h1>
+  <h1 id="billing">Billing</h1>
   <div class="form-item">
-    <label for="name">名字：</label>
+    <label for="name">Name:</label>
     <input
       type="text"
       name="name"
       id="name"
       v-model="name"
-      aria-labelledby="账单名"
+      aria-labelledby="billing name"
     />
   </div>
-  <button type="submit">提交</button>
+  <button type="submit">Submit</button>
 </form>
 ```
 
 <!-- <common-codepen-snippet title="Form ARIA labelledby" slug="MWJvvBe" :height="265" tab="js,result" theme="light" :preview="false" :editable="false" /> -->
 
-![Chrome 开发者工具 input accessible name from aria-labelledby](./images/AccessibleARIAlabelledbyDevTools.png)
+![Chrome 开发者工具通过 aria-labelledby 展示 input 的无障碍访问名称](./images/AccessibleARIAlabelledbyDevTools.png)
 
 #### `aria-describedby` {#aria-describedby}
 
@@ -227,20 +227,20 @@ export default {
   method="post"
   autocomplete="on"
 >
-  <h1 id="billing">账单</h1>
+  <h1 id="billing">Billing</h1>
   <div class="form-item">
-    <label for="name">全名：</label>
+    <label for="name">Full Name:</label>
     <input
       type="text"
       name="name"
       id="name"
       v-model="name"
-      aria-labelledby="账单名"
+      aria-labelledby="billing name"
       aria-describedby="nameDescription"
     />
-    <p id="nameDescription">请提供姓氏和名字。</p>
+    <p id="nameDescription">Please provide first and last name.</p>
   </div>
-  <button type="submit">提交</button>
+  <button type="submit">Submit</button>
 </form>
 ```
 
@@ -248,7 +248,7 @@ export default {
 
 你可以通过使用 Chrome 开发工具来查看说明：
 
-![Chrome 开发者工具正在展示根据 aria-labelledby 可访问到的 input 框名字和根据 aria-describedby 可访问到的描述信息](./images/AccessibleARIAdescribedby.png)
+![Chrome 开发者工具正在根据 aria-labelledby 和 aria-describedby 展示 input 的无障碍访问名和无障碍访问描述信息](./images/AccessibleARIAdescribedby.png)
 
 ### 占位符 {#placeholder}
 
@@ -343,12 +343,12 @@ export default {
 ```vue-html
 <form action="/dataCollectionLocation" method="post" autocomplete="on">
   <!-- Buttons -->
-  <button type="button">取消</button>
-  <button type="submit">提交</button>
+  <button type="button">Cancel</button>
+  <button type="submit">Submit</button>
 
   <!-- Input buttons -->
-  <input type="button" value="取消" />
-  <input type="submit" value="提交" />
+  <input type="button" value="Cancel" />
+  <input type="submit" value="Submit" />
 </form>
 ```
 
@@ -392,7 +392,7 @@ export default {
 
 ## 规范 {#standards}
 
-万维网联盟 (W3C) Web 无障碍访问倡议 (WAI) 为不同的组件制定了 Web 可访问性标准：
+万维网联盟 (W3C) Web 无障碍访问倡议 (WAI) 为不同的组件制定了 Web 无障碍性标准：
 
 - [用户代理无障碍访问指南 (UAAG)](https://www.w3.org/WAI/standards-guidelines/uaag/)
   - 浏览器和媒体查询，包括一些其他方面的辅助技术
@@ -460,7 +460,7 @@ W3C 的 WAI-ARIA 为如何构建动态内容和高阶用户界面控件提供了
 
 ### 用户 {#users}
 
-世界卫生组织估计，全世界 15% 的人口患有某种形式的残疾，其中约 2 - 4% 的人严重残疾。估计全世界有 10 亿残疾人，它们是世界上最大的少数群体。
+世界卫生组织估计，全世界 15% 的人口患有某种形式的残疾，其中约 2 - 4% 的人严重残疾。估计全世界有 10 亿残障人士，它们是世界上最大的少数群体。
 
 残疾的种类繁多，大致可分为以下四类：
 
