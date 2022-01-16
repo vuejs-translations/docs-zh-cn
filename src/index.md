@@ -33,15 +33,15 @@ import NewsLetter from './.vitepress/theme/components/NewsLetter.vue'
 
 <section id="highlights" class="vt-box-container">
   <div class="vt-box">
-    <h3>易学易用</h3>
+    <h2>易学易用</h2>
     <p>基于标准 HTML、CSS 和 JavaScript 构建，拥有直观的 API 和世界一流的文档。</p>
   </div>
   <div class="vt-box">
-    <h3>性能出色</h3>
+    <h2>性能出色</h2>
     <p>经过编译器优化、完全响应式的渲染系统，几乎不需要手动优化。</p>
   </div>
   <div class="vt-box">
-    <h3>功能丰富</h3>
+    <h2>功能丰富</h2>
     <p>拥有丰富的、可渐进式集成的生态系统，可以根据规模在仅使用一个库和使用整套框架间切换自如。</p>
   </div>
 </section>
@@ -181,7 +181,7 @@ html:not(.dark) .accent, .dark .tagline {
   color: var(--vt-c-text-2);
 }
 
-#highlights h3 {
+#highlights h2 {
   font-weight: 600;
   font-size: 20px;
   letter-spacing: -0.4px;
