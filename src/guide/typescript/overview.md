@@ -6,7 +6,7 @@ aside: deep
 
 像 TypeScript 这样的一个类型系统可以通过编译时期的静态分析检测出大部分的常见错误。这将减少生产环境中发生运行时错误的概率，并使得我们能够更自信地在大型项目中重构代码。TypeScript 也通过基于类型的自动补全为开发者带来了良好的开发体验。
 
-Vue 本身就是用 TypeScript 编写的，对 TypeScript 提供第一优先级支持。所有的 Vue 官方库的包中都提供了类型定义文件，开箱即用。
+Vue 本身就是用 TypeScript 编写的，对 TypeScript 提供第一优先级支持。所有的 Vue 官方库都提供了类型定义文件，开箱即用。
 
 ## 项目启动 {#project-setup}
 
@@ -16,40 +16,44 @@ Vue 本身就是用 TypeScript 编写的，对 TypeScript 提供第一优先级�
 
 在基于 Vite 的配置中，开发服务器和打包器将只会对 TypeScript 文件执行语法转译，而不会执行任何类型检查，这保证了 Vite 开发服务器在使用 TypeScript 时也能始终保持飞快的速度。
 
-- 在开发阶段，我们推荐你依赖一个好的 [IDE 配置](#ide-support) 来获取即时的类型错误反馈。
+- 在开发阶段，我们推荐你依赖一个好的 [IDE 配置](#ide-support)来获取即时的类型错误反馈。
 
-- 如果你正在使用 SFC，可以使用 [`vue-tsc`](https://github.com/johnsoncodehk/volar/tree/master/packages/vue-tsc) 这个命令行工具作类型检查和类型定义文件生成。`vue-tsc` 是对 `tsc` 这个命令行工具的一个封装。它基本和 `tsc` 工作方式一致，除了 TypeScript 文件之外添加了对 Vue 文件的支持。
+- 如果你正在使用 SFC，可以使用 [`vue-tsc`](https://github.com/johnsoncodehk/volar/tree/master/packages/vue-tsc) 这个工具来进行命令行类型检查和类型定义文件生成。`vue-tsc` 是对 `tsc` (TypeScript 自身的命令行接口)的一个封装。除了在支持 TypeScript 文件的基础上额外添加了对 Vue 文件的支持，它的工作方式基本和 `tsc` 一致。
 
-- `vue-tsc` 目前还不支持 watch 模式，但这在计划之中。于此通知，如果你想要类型检查成为你 dev 命令的一部分，你可以看看 [vite-plugin-checker](https://github.com/fi3ework/vite-plugin-checker)。
+- `vue-tsc` 目前还不支持 watch 模式，但这已经在计划之中。与此同时，如果你想要类型检查成为 dev 命令的一部分，可以看看 [vite-plugin-checker](https://github.com/fi3ework/vite-plugin-checker)。
 
-- Vue CLI 也提供了 TypeScript 的支持，但是已经不推荐了。查看 [下方的说明](#note-on-vue-cli-and-ts-loader) 了解详情。
+- Vue CLI 也提供了对 TypeScript 的支持，但是已经不推荐了。查看[下方的说明](#note-on-vue-cli-and-ts-loader)了解详情。
 
 ### IDE 支持 {#ide-support}
 
-- 强烈推荐 [Visual Studio Code](https://code.visualstudio.com/)（VSCode），因为它对 TypeScript 有着开箱即用且丰富完善的支持。
+- 强烈推荐 [Visual Studio Code](https://code.visualstudio.com/) (VSCode)，因为它对 TypeScript 有着很好的内置支持。
 
-- [Volar](https://marketplace.visualstudio.com/items?itemName=johnsoncodehk.volar) 是我们的官方 VSCode 扩展，提供了 Vue SFC 中的 TypeScript 支持，还伴随一些其他非常棒的特性。
+  - [Volar](https://marketplace.visualstudio.com/items?itemName=johnsoncodehk.volar) 是官方的 VSCode 扩展，提供了 Vue SFC 中的 TypeScript 支持，还伴随着一些其他非常棒的特性。
 
-  :::tip
-  Volar 替代了 [Vetur](https://marketplace.visualstudio.com/items?itemName=octref.vetur)，那是我们之前为 Vue 2 提供的官方 VSCode 扩展。如果你已经安装了 Vetur，请在 Vue 3 项目中禁用。
-  :::
+    :::tip
+    Volar 替代了 [Vetur](https://marketplace.visualstudio.com/items?itemName=octref.vetur)，那是我们之前为 Vue 2 提供的官方 VSCode 扩展。如果你已经安装了 Vetur，请确保在 Vue 3 项目中将它禁用。
+    :::
 
-- [WebStorm](https://www.jetbrains.com/webstorm/) 也对 TypeScript 和 Vue 提供了开箱即用的支持。
+  - 同时也需要 [TypeScript Vue 插件](https://marketplace.visualstudio.com/items?itemName=johnsoncodehk.vscode-typescript-vue-plugin)以支持在 TS 文件中导入 `*.vue`。
+
+- [WebStorm](https://www.jetbrains.com/webstorm/) 也对 TypeScript 和 Vue 提供了内置的支持。
 
 ### 配置 `tsconfig.json` {#configuring-tsconfigjson}
 
-通过 `create-vue` 搭建的项目包含了一份 [预配置好的 `tsconfig.json`](https://github.com/vuejs/create-vue/blob/main/template/config/typescript/tsconfig.json) 文件。包含以下需要注意的选项：
+通过 `create-vue` 搭建的项目包含了预配置好的 `tsconfig.json` 文件。其基础配置抽象在了 [`@vue/tsconfig`](https://github.com/vuejs/tsconfig) 中。在项目中，我们使用[项目引用](https://www.typescriptlang.org/docs/handbook/project-references.html)来确保运行在不同环境(如应用 vs. 测试)中的代码的类型正确。
 
-- [`compilerOptions.isolatedModules`](https://www.typescriptlang.org/tsconfig#isolatedModules) 被设置为了 `true`，因为 Vite 用 [esbuild](https://esbuild.github.io/) 来对 TypeScript 作转译，并受限于单文件转译的限制。
+当手动配置 `tsconfig.json` 时，请注意以下选项：
 
-- 如果你正在使用选项式 API，需要设置 [`compilerOptions.strict`](https://www.typescriptlang.org/tsconfig#strict) 为 `true`（或者至少开启 [`compilerOptions.noImplicitThis`](https://www.typescriptlang.org/tsconfig#noImplicitThis)，它是 `strict` 模式的一部分），才可以获得对组件选项中 `this` 的类型检查。否则 `this` 会被认为是 `any`。
+- [`compilerOptions.isolatedModules`](https://www.typescriptlang.org/tsconfig#isolatedModules) 被设置为了 `true`，因为 Vite 使用 [esbuild](https://esbuild.github.io/) 来转译 TypeScript，并受限于单文件转译的限制。
 
-- 如果你在你的构建工具中配置了路径解析别名，例如 `@/*` 这个别名酒杯默认配置在了 `create-vue` 搭建的项目中，你需要同时通过 [`compilerOptions.paths`](https://www.typescriptlang.org/tsconfig#paths) 选项再为 TypeScript 配置一遍。
+- 如果你正在使用选项式 API，需要将 [`compilerOptions.strict`](https://www.typescriptlang.org/tsconfig#strict) 设置为 `true` (或者至少开启 [`compilerOptions.noImplicitThis`](https://www.typescriptlang.org/tsconfig#noImplicitThis)，它是 `strict` 模式的一部分)，才可以获得对组件选项中 `this` 的类型检查。否则 `this` 会被认为是 `any`。
 
-同时你也可以看看：
+- 如果你在构建工具中配置了路径解析别名，例如 `@/*` 这个别名被默认配置在了 `create-vue` 项目中，你需要通过 [`compilerOptions.paths`](https://www.typescriptlang.org/tsconfig#paths) 选项为 TypeScript 再配置一遍。
+
+参考：
 
 - [官方 TypeScript 编译选项文档](https://www.typescriptlang.org/docs/handbook/compiler-options.html)
-- [esbuild TypeScript 编译约定](https://esbuild.github.io/content-types/#typescript-caveats)
+- [esbuild TypeScript 编译注意事项](https://esbuild.github.io/content-types/#typescript-caveats)
 
 ### 托管模式 {#takeover-mode}
 
