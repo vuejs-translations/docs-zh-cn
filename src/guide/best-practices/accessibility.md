@@ -56,7 +56,7 @@ export default {
 
 <!-- <common-codepen-snippet title="Skip to Main" slug="GRrvQJa" :height="350" tab="js,result" theme="light" :preview="false" :editable="false" /> -->
 
-点击此链接阅读跳过链接到主要内容的[文档](https://www.w3.org/WAI/WCAG21/Techniques/general/G1.html)
+[阅读关于跳过链接到主要内容的文档](https://www.w3.org/WAI/WCAG21/Techniques/general/G1.html)
 
 ## 内容结构 {#content-structure}
 
