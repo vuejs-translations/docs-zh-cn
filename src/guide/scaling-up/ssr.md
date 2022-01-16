@@ -215,33 +215,19 @@ export function createApp() {
 
 ### 自定义指令 {#custom-directives}
 
-因为大多数的自定义指令都包含了对 DOM 的直接操作，所以它们会在 SSR 时被忽略。
-
-你可以为自定义指令提供一个转换函数来实现服务端渲染的逻辑。这个函数应该会被作为 `directiveTransforms` 下的一个选项传给 `@vue/compiler-dom`。
-
-这里是自定义的 `v-focus` 指令在 Vite 配置文件中提供一个存根的示例：
+因为大多数的自定义指令都包含了对 DOM 的直接操作，所以它们会在 SSR 时被忽略。但如果你想要自己控制一个自定义指令在 SSR 时应该如何被渲染（即应该在原上添加哪些 attribute），你可以使用 `getSSRProps` 指令钩子：
 
 ```js
-import vue from '@vitejs/plugin-vue'
-export default {
-  plugins: [
-    vue({
-      template: {
-        compilerOptions: {
-          directiveTransforms: {
-            // 使用了一个空数组，表明 v-focus
-            // 不对元素添加任何渲染好的 attribute
-            focus: () => ({ props: [] })
-          }
-        }
-      }
-    })
-  ]
+const myDirective = {
+  mounted(el) {
+    el.id = 'foo'
+  },
+  getSSRProps(binding, vnode) {
+    // the hook the directive binding and the element vnode as arguments.
+    // return props to be added to the vnode.
+    return {
+      id: 'foo'
+    }
+  }
 }
 ```
-
-要编写一个正确的指令转换函数需要你熟练掌握 TypeScript 并对 Vue 的编译器 API 有了解。我们计划在未来为编译器 API 也添加文档支持，而现在，你只能通过阅读 [源代码](https://github.com/vuejs/vue-next/blob/master/packages/compiler-core/src/transform.ts#L53-L63) 了解更多。
-
-:::tip
-目前，如果没有为自定义指令找到服务器端转换，SSR 编译器将抛出错误。此行为将在未来调整为警告。
-:::
