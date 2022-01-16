@@ -118,6 +118,7 @@ let open = $ref(false)
 </script>
 
 <div class="demo">
+<<<<<<< HEAD
   <button @click="open = true">打开模态框</button>
   <Teleport to="body">
     <div v-if="open" class="demo modal-demo">
@@ -125,6 +126,17 @@ let open = $ref(false)
       <button @click="open = false">关闭</button>
     </div>
   </Teleport>
+=======
+  <button @click="open = true">Open Modal</button>
+  <ClientOnly>
+    <Teleport to="body">
+      <div v-if="open" class="demo modal-demo">
+        <p style="margin-bottom:20px">Hello from the modal!</p>
+        <button @click="open = false">Close</button>
+      </div>
+    </Teleport>
+  </ClientOnly>
+>>>>>>> 6c1d70a (fix teleport hydration mismatch)
 </div>
 
 <style>
@@ -195,3 +207,4 @@ let open = $ref(false)
 **相关内容**
 
 - [`<Teleport>` API 参考](/api/built-in-components.html#teleport)
+- [在 SSR 中处理 Teleports](/api/ssr.html#handling-teleports)
