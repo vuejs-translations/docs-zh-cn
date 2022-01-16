@@ -59,36 +59,31 @@ Vue 本身就是用 TypeScript 编写的，对 TypeScript 提供第一优先级�
 
 > 这一章节仅对 VSCode + Volar 有效。
 
-要让 Vue SFC 和 TypeScript 一起工作，Volar 单独创建了一个 TypeScript 语言服务实例，用来对 Vue 作一些特定支持，并在 Vue SFC 中使用。这个默认行为的确能够工作，但有两个缺陷：
+要让 Vue SFC 和 TypeScript 一起工作，Volar 单独创建了一个 TypeScript 语言服务实例用来对 Vue 作一些特定支持，并在 Vue SFC 中使用。同时，普通的 TS 文件仍然由 VSCode 内置的 TS 语言服务处理，这就是为什么我们需要 [TypeScript Vue Plugin](https://marketplace.visualstudio.com/items?itemName=johnsoncodehk.vscode-typescript-vue-plugin) 来支持在 TS 文件中导入 Vue SFC。这个默认设置是可行的，但是对于每个项目来说，我们都要运行两个 TS 语言服务实例：一个来自 Volar，一个来自 VSCode 的内置服务。这有点低效，并且在大型项目中可能会导致性能问题。
 
-1. 对每一个项目我们都同时运行了两套 TS 语言服务实例，这并不是特别高效。
+Volar 提供了一个叫做“托管模式”的功能来提高性能。在托管模式下，Volar 将使用单一的 TS 语言服务实例同时为 Vue 和 TS 文件提供支持。
 
-2. 纯 TypeScript 文件值仍只能使用内置 TS 语言服务，而对 Vue SFC 相关内容一无所知。因此我们必须对 `*.vue` 模块做如下的 shim 操作：
+要启用托管模式，你需要通过以下步骤在**你的项目的工作区**禁用 VSCode 内置的 TS 语言服务：
 
-   ```ts
-   // 在一个 d.ts 类型定义文件中
-   declare module '*.vue' {
-     import { DefineComponent } from 'vue'
-     const component: DefineComponent<{}, {}, any>
-     export default component
-   }
-   ```
+1. 在你的项目工作区，用 `Ctrl + Shift + P` 调出命令盘 (macOS：`Cmd + Shift + P`)。
+2. 输入 `built`，选择“Extensions: Show Built-in Extensions”。
+3. 在扩展搜索框中输入 `typescript` (不要去掉 `@builtin` 前缀)。
+4. 点击“TypeScript and JavaScript Language Features”的小齿轮图标，并选择“Disable (Workspace)”。
+5. 重新加载工作区。当你打开一个 Vue 或 TS 文件时，托管模式将被启用。
 
-Volar 提供了一个叫做 “托管模式” 的功能，用来解决这个问题。在托管模式中，Volar 同时对 Vue 和 TS 文件提供支持，只使用一套 TS 语言服务实例。所以我们无需再做上面的 shim 操作。
-
-要开启托管模式，你需要在项目的工作空间中禁用 VSCode 的内置 TypeScript 语言服务。查看这些 [指引](https://github.com/johnsoncodehk/volar/discussions/471#discussioncomment-1361669) 获取更多相关设置细节。
+<img src="./images/takeover-mode.png" width="590" height="426" style="margin:0px auto;border-radius:8px">
 
 ### 对 Vue CLI 和 `ts-loader` 的说明 {#note-on-vue-cli-and-ts-loader}
 
-在像 Vue CLI 这样基于 Webpack 搭建的项目中，一般是在模块转换的管道中执行类型检查，例如使用 `ts-loader`。然而这并不是一个简洁的解决方案，因为类型系统需要了解整个模块关系才能执行类型检查。单个模块的转换步骤并不适合该任务。这导致了下面的问题：
+在像 Vue CLI 这样的基于 Webpack 搭建的项目中，一般是在模块转换的管道中执行类型检查，例如使用 `ts-loader`。然而这并不是一个简洁的解决方案，因为类型系统需要了解整个模块关系才能执行类型检查。单个模块的转换步骤并不适合该任务。这导致了下面的问题：
 
-- `ts-loader` 只可以对转换后的代码执行类型检查，这和我们在 IDE 中看到的或 `vue-tsc` 中得到的可以映射回源代码的错误可能并不一致。
+- `ts-loader` 只能对转换后的代码执行类型检查，这和我们在 IDE 或 `vue-tsc` 中看到的可以映射回源代码的错误并不一致。
 
-- 类型检查可能很慢。当它和代码转换在相同的线程/进程中执行时，它会显著影响整个应用程序的构建速度。
+- 类型检查可能会很慢。当它和代码转换在相同的线程/进程中执行时，它会显著影响整个应用程序的构建速度。
 
-- 我们已经在 IDE 中通过单独的进程运行着类型检查了，因此这降低开发体验的一步并没有带来足够的收益。
+- 我们已经在 IDE 中通过单独的进程运行着类型检查了，因此这一步降低了开发体验但没有带来足够的收益。
 
-如果你正通过 Vue CLI 使用 Vue 3 和 TypeScript，我们强烈建议你迁移到 Vite，我们也在开发为 CLI 提供仅执行 TS 语法转译的选项，让你可以也切换为使用 `vue-tsc`。
+如果你正通过 Vue CLI 使用 Vue 3 和 TypeScript，我们强烈建议你迁移到 Vite。我们也在为 CLI 开发仅执行 TS 语法转译的选项，以允许你切换至 `vue-tsc` 来执行类型检查。
 
 ## 常见使用说明 {#general-usage-notes}
 
@@ -100,7 +95,7 @@ Volar 提供了一个叫做 “托管模式” 的功能，用来解决这个问
 import { defineComponent } from 'vue'
 
 export default defineComponent({
-  // 启用类型推导
+  // 启用了类型推导
   props: {
     name: String,
     msg: { type: String, required: true }
@@ -118,13 +113,13 @@ export default defineComponent({
 })
 ```
 
-当没有使用 `<script setup>` 但也在使用组合式 API、向 `setup()` 中传参时，`defineComponent()` 也支持对 props 的推导：
+当没有结合 `<script setup>` 使用组合式 API 时，`defineComponent()` 也支持对传递给 `setup()` 的 prop 的推导：
 
 ```ts
 import { defineComponent } from 'vue'
 
 export default defineComponent({
-  // 启用类型推导
+  // 启用了类型推导
   props: {
     message: String
   },
@@ -134,10 +129,10 @@ export default defineComponent({
 })
 ```
 
-你也可以看看 [对 `defineComponent` 的类型测试代码](https://github.com/vuejs/vue-next/blob/master/test-dts/defineComponent.test-d.tsx)。
+参考：[对 `defineComponent` 的类型测试](https://github.com/vuejs/vue-next/blob/master/test-dts/defineComponent.test-d.tsx)。
 
 :::tip
-`defineComponent()` 也支持对纯 JavaScript 编写的组件进行类型推断。
+`defineComponent()` 也支持对纯 JavaScript 编写的组件进行类型推导。
 :::
 
 ### 在单文件组件中的用法 {#usage-in-single-file-components}
@@ -167,7 +162,7 @@ export default defineComponent({
 
 ```vue
 <script setup lang="ts">
-// 启用 TypeScript
+// 启用了 TypeScript
 import { ref } from 'vue'
 
 const count = ref(1)
@@ -181,7 +176,7 @@ const count = ref(1)
 
 ### 模板中的 TypeScript {#typescript-in-templates}
 
-在使用 `<script lang="ts">` 或 `<script setup lang="ts">` 后，`<template>` 在绑定表达式时也支持 TypeScript，这在需要在模板表达式中执行类型转换的情况下非常有用。
+在使用了 `<script lang="ts">` 或 `<script setup lang="ts">` 后，`<template>` 在绑定表达式中也支持 TypeScript。这对需要在模板表达式中执行类型转换的情况下非常有用。
 
 这里有一个假想的例子：
 
@@ -191,7 +186,7 @@ let x: string | number = 1
 </script>
 
 <template>
-  <!-- 发生错误，因为 x 可能为 string -->
+  <!-- 出错，因为 x 可能是字符串 -->
   {{ x.toFixed(2) }}
 </template>
 ```
@@ -212,7 +207,7 @@ let x: string | number = 1
 如果正在使用 Vue CLI 或基于 Webpack 的配置，支持模板内表达式的 TypeScript 需要 `vue-loader@^16.8.0`。
 :::
 
-## 不同 API 风格的使用指南 {#api-specific-recipes}
+## 特定 API 的使用指南 {#api-specific-recipes}
 
 - [TS 与组合式 API](./composition-api)
 - [TS 与选项式 API](./options-api)
