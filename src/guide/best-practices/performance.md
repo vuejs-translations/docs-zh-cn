@@ -37,6 +37,8 @@ Vue 的设计对于大多数常见的使用情况来说都是性能优秀的，�
 
 ## 页面加载优化 {#page-load-optimizations}
 
+页面加载优化有许多跟框架无关的方面 - 这份 [web.dev 指南](https://web.dev/fast/) 提供了一个全面的总结。这里，我们将主要关注和 Vue 本身相关的技巧。
+
 ### 包体积与 Tree-shaking 优化 {#bundle-size-and-tree-shaking}
 
 一个最有效的提升页面加载速度的方法就是压缩 JavaScript 打包产物的体积。当使用 Vue 时有下面一些办法来减小打包产物体积：
