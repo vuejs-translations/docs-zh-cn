@@ -27,7 +27,6 @@ createApp({
   <button @click="count++">
     点击了 {{ count }} 次
   </button>
-  <button @click="count = 0">重置</button>
 </div>
 ```
 
@@ -42,7 +41,6 @@ const count = ref(0)
   <button @click="count++">
     点击了 {{ count }} 次
   </button>
-  <button @click="count = 0">重置</button>
 </div>
 
 上面的示例展示了两个 Vue 的核心功能：
