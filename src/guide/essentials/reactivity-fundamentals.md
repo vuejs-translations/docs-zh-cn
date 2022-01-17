@@ -5,14 +5,14 @@ aside: deep
 # 响应式基础 {#reactivity-fundamentals}
 
 :::tip API 参考
-本页和其他很多之后的页面中都分别包含了选项式 API 和组合式 API 的示例代码。现在你选择的是 <span class="options-api">选项式 API</span><span class="composition-api">组合式 API</span>。你可以使用左侧侧边栏顶部的 “API 偏好” 开关在 API 风格之间切换。
+本页和后面很多页面中都分别包含了选项式 API 和组合式 API 的示例代码。现在你选择的是 <span class="options-api">选项式 API</span><span class="composition-api">组合式 API</span>。你可以使用左侧侧边栏顶部的 “API 风格偏好” 开关在 API 风格之间切换。
 :::
 
 ## 声明响应式状态 {#declaring-reactive-state}
 
 <div class="options-api">
 
-选用选项式 API 时，会用 `data` 选项来定义组件的响应式状态。此选项的值应为返回一个对象的函数。Vue 将会在创建新组件实例的时候调用此函数，并将其包裹、转换为响应式。此对象以 `$data` 的形式存储在组件实例上。为了方便，任何此对象的顶层属性也都会直接暴露到组件实例上（也即方法和生命周期钩子中的 `this`）。
+选用选项式 API 时，会用 `data` 选项来声明组件的响应式状态。此选项的值应为返回一个对象的函数。Vue 将在创建新组件实例的时候调用此函数，并将函数返回的对象封装到其响应式系统中。此对象的任何顶层属性都被代理到组件实例上（即方法和生命周期钩子中的 `this`）。
 
 ```js{2-6}
 export default {
@@ -35,7 +35,7 @@ export default {
 
 [在 Playground 中尝试一下](https://sfc.vuejs.org/#eyJBcHAudnVlIjoiPHNjcmlwdD5cbmV4cG9ydCBkZWZhdWx0IHtcbiAgZGF0YSgpIHtcbiAgICByZXR1cm4ge1xuICAgICAgY291bnQ6IDFcbiAgICB9XG4gIH0sXG5cbiAgLy8gYG1vdW50ZWRgIGlzIGEgbGlmZWN5Y2xlIGhvb2sgd2hpY2ggd2Ugd2lsbCBleHBsYWluIGxhdGVyXG4gIG1vdW50ZWQoKSB7XG4gICAgLy8gYHRoaXNgIHJlZmVycyB0byB0aGUgY29tcG9uZW50IGluc3RhbmNlLlxuICAgIGNvbnNvbGUubG9nKHRoaXMuY291bnQpIC8vID0+IDFcblxuICAgIC8vIGRhdGEgY2FuIGJlIG11dGF0ZWQgYXMgd2VsbFxuICAgIHRoaXMuY291bnQgPSAyXG4gIH1cbn1cbjwvc2NyaXB0PlxuXG48dGVtcGxhdGU+XG4gIENvdW50IGlzOiB7eyBjb3VudCB9fVxuPC90ZW1wbGF0ZT4iLCJpbXBvcnQtbWFwLmpzb24iOiJ7XG4gIFwiaW1wb3J0c1wiOiB7XG4gICAgXCJ2dWVcIjogXCJodHRwczovL3NmYy52dWVqcy5vcmcvdnVlLnJ1bnRpbWUuZXNtLWJyb3dzZXIuanNcIlxuICB9XG59In0=)
 
-这些实例上的属性仅在首次创建时被添加，因此你需要确保它们都出现在 `data` 函数返回的对象上。若所需的值还未准备好，在必要时也可以使用 `null`、`undefined` 或者其他一些占位的值。
+这些实例上的属性仅在实例首次创建时被添加，因此你需要确保它们都出现在 `data` 函数返回的对象上。若所需的值还未准备好，在必要时也可以使用 `null`、`undefined` 或者其他一些占位的值。
 
 也可以不在 `data` 上定义，直接向组件实例添加新属性。但这个属性将无法触发响应式更新。
 
@@ -43,7 +43,7 @@ Vue 在组件实例上暴露其内置 API 一般使用 `$` 作为前缀。同时
 
 ### 响应式代理 vs. 原始值 \* {#reactive-proxy-vs-original}
 
-在 Vue 3 中，得益于 [JavaScript Proxy（代理）](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy) 的能力，数据是响应式的。从 Vue 2 而来的用户可能需要注意下面这样的边界情况：
+在 Vue 3 中，数据是基于 [JavaScript Proxy（代理）](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Proxy) 实现响应式的。使用过 Vue 2 的用户可能需要注意下面这样的边界情况：
 
 ```js
 export default {
@@ -61,13 +61,13 @@ export default {
 }
 ```
 
-当你在赋值后再访问 `this.someObject`，此值已经是原来的 `original` 的一个响应式代理。**和 Vue 2 不同，原始的 `newObject` 不会变为响应式：确保始终通过 `this.` 来访问响应式状态。**
+当你在赋值后再访问 `this.someObject`，此值已经是原来的 `original` 的一个响应式代理。**这与 Vue 2 中原始的 `newObject` 不会变为响应式完全不同：请确保始终通过 `this` 来访问响应式状态。**
 
 </div>
 
 <div class="composition-api">
 
-我们可以使用 [`reactive()`](/api/reactivity-core.html#reactive) 方法创建一个响应式对象：
+我们可以使用 [`reactive()`](/api/reactivity-core.html#reactive) 函数创建一个响应式对象或数组：
 
 ```js
 import { reactive } from 'vue'
@@ -75,7 +75,7 @@ import { reactive } from 'vue'
 const state = reactive({ count: 0 })
 ```
 
-响应式对象其实是 [JavaScript Proxy](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy)，行为表现与一般对象并无二致。不同之处在于 Vue 能够跟踪对响应式对象属性的访问与更改操作。如果你对这其中的细节感到好奇，我们在 [深入响应式系统](/guide/extras/reactivity-in-depth.html) 一章中会进行解释，但我们推荐你先读完这里的主要指引。
+响应式对象其实是 [JavaScript Proxy](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy)，其行为表现与一般对象相似。不同之处在于 Vue 能够跟踪对响应式对象属性的访问与更改操作。如果你对这其中的细节感到好奇，我们在 [深入响应式系统](/guide/extras/reactivity-in-depth.html) 一章中会进行解释，但我们推荐你先读完这里的主要指引。
 
 你也可以看看：[为响应式对象标注类型](/guide/typescript/composition-api.html#typing-reactive)。 <Badge type="ts" text="TS" />
 
@@ -101,7 +101,7 @@ export default {
 <div>{{ state.count }}</div>
 ```
 
-相似地，我们也可以在这个作用域下定义更改响应式状态的函数，并作为一个方法与 state 一道被暴露出去：
+相似地，我们也可以在这个作用域下定义可更改响应式状态的函数，并作为一个方法与 state 一起暴露出去：
 
 ```js{7-9,14}
 import { reactive } from 'vue'
@@ -133,7 +133,7 @@ export default {
 
 ### `<script setup>` \*\*
 
-在 `setup()` 函数中手动暴露状态和方法非常繁琐。好消息是，你可以通过使用构建工具来简化该操作。当使用单文件组件（SFC）时，我们可以使用 `<script setup>` 来简化大量样板代码。
+在 `setup()` 函数中手动暴露状态和方法可能非常繁琐。幸运的是，你可以通过使用构建工具来简化该操作。当使用单文件组件（SFC）时，我们可以使用 `<script setup>` 来简化大量样板代码。
 
 ```vue
 <script setup>
@@ -155,9 +155,9 @@ function increment() {
 
 [在 Playground 尝试一下](https://sfc.vuejs.org/#eyJBcHAudnVlIjoiPHNjcmlwdCBzZXR1cD5cbmltcG9ydCB7IHJlYWN0aXZlIH0gZnJvbSAndnVlJ1xuXG5jb25zdCBzdGF0ZSA9IHJlYWN0aXZlKHsgY291bnQ6IDAgfSlcblxuZnVuY3Rpb24gaW5jcmVtZW50KCkge1xuICBzdGF0ZS5jb3VudCsrXG59XG48L3NjcmlwdD5cblxuPHRlbXBsYXRlPlxuICA8YnV0dG9uIEBjbGljaz1cImluY3JlbWVudFwiPlxuICAgIHt7IHN0YXRlLmNvdW50IH19XG4gIDwvYnV0dG9uPlxuPC90ZW1wbGF0ZT4iLCJpbXBvcnQtbWFwLmpzb24iOiJ7XG4gIFwiaW1wb3J0c1wiOiB7XG4gICAgXCJ2dWVcIjogXCJodHRwczovL3NmYy52dWVqcy5vcmcvdnVlLnJ1bnRpbWUuZXNtLWJyb3dzZXIuanNcIlxuICB9XG59In0=)
 
-`<script setup>` 内的顶层的导入和变量声明都将在相应组件的模板上自动生效。
+在 `<script setup>` 内，顶层的导入和变量声明都将在该组件模板上自动生效。
 
-> 接下来的指引中，我们基本上都会在组合式 API 示例中使用单文件组件 + `<script setup>` 的语法，因为大多数 Vue 开发者都会这样使用。
+> 在指引的后续章节中，我们基本上都会在组合式 API 示例中使用单文件组件 + `<script setup>` 的语法，因为大多数 Vue 开发者都会这样使用。
 
 </div>
 
@@ -165,7 +165,7 @@ function increment() {
 
 ## 声明方法 \* {#declaring-methods}
 
-要为组件添加方法，我们需要用到 `methods` 选项。它应是一个对象，包含所有方法：
+要为组件添加方法，我们需要用到 `methods` 选项。它应该是一个包含所有方法的对象：
 
 ```js{7-11}
 export default {
@@ -192,13 +192,13 @@ Vue 自动为 `methods` 中的方法绑定了永远指向组件实例的 `this`�
 export default {
   methods: {
     increment: () => {
-      // BAD: no `this` access here!
+      // 反例：无法访问此处的 `this`!
     }
   }
 }
 ```
 
-和其他组件实例上的属性一样，方法也可以在木板上被访问。在模板中它们常常被用作事件监听器：
+和组件实例上的其他属性一样，方法也可以在模板上被访问。在模板中它们常常被用作事件监听器：
 
 ```vue-html
 <button @click="increment">{{ count }}</button>
@@ -212,7 +212,7 @@ export default {
 
 ### DOM 更新时机 {#dom-update-timing}
 
-当你更改响应式状态后，DOM 会自动地更新。然而，你得注意 DOM 的更新并不是同步的。相反，Vue 会将它们推入更新循环的 “下个 tick” 执行以确保无论改变了多少个状态，每个需要更新的组件都只更新一次。
+当你更改响应式状态后，DOM 也会自动更新。然而，你得注意 DOM 的更新并不是同步的。相反，无论你改变了多少个状态，Vue 都会将它们推入更新循环的 “下个 tick” 执行以确保每个需要更新的组件都只会更新一次。
 
 若要等待一个状态改变后的 DOM 更新完成，你可以使用 [nextTick()](/api/general.html#nexttick) 这个全局 API：
 
@@ -240,7 +240,7 @@ export default {
     increment() {
       this.count++
       nextTick(() => {
-        // access updated DOM
+        // 访问更新后的 DOM
       })
     }
   }
@@ -296,7 +296,7 @@ function mutateDeeply() {
 
 </div>
 
-也可以创建一个 [浅层 ref](/api/reactivity-advanced.html#shallowref) 和 [浅层响应式对象](/api/reactivity-advanced.html#shallowreactive)。它们仅在顶层具有响应性，一般仅在某些特殊场景中需要。
+你也可以直接创建一个[浅层响应式对象](/api/reactivity-advanced.html#shallowreactive)。它们仅在顶层具有响应性，一般仅在某些特殊场景中需要。
 
 <div class="composition-api">
 
@@ -314,7 +314,7 @@ console.log(proxy === raw) // false
 
 只有代理是响应式的，更改原始的对象不会触发更新。因此，使用 Vue 的响应式系统的最佳实践是 **仅使用代理作为状态**。
 
-为保证访问代理的一致性，对同一个对象调用 `reactive()` 会总是返回同样的dialing，而对代理调用 `reactive()` 则会返回它自己：
+为保证访问代理的一致性，对同一个对象调用 `reactive()` 会总是返回同样的代理，而对代理调用 `reactive()` 则会返回它自己：
 
 ```js
 // 在同一个对象上调用 reactive() 会返回相同的代理
@@ -324,7 +324,7 @@ console.log(reactive(raw) === proxy) // true
 console.log(reactive(proxy) === proxy) // true
 ```
 
-这个规则对深层级的对象也适用。依靠深层响应性，响应式对象内的深层级对象依然是代理：
+这个规则对嵌套对象也适用。依靠深层响应性，响应式对象内的嵌套对象依然是代理：
 
 ```js
 const proxy = reactive({})
@@ -339,7 +339,7 @@ console.log(proxy.nested === raw) // false
 
 `reactive()` API 有两条限制：
 
-1. 仅对对象类型有效（对象、数组和 `Map`、`Set` 这样的[集合类型](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects#keyed_collections)），而对 `string`、`number` 和 `boolean` 这样的 [基础类型](https://developer.mozilla.org/en-US/docs/Glossary/Primitive) 无效。
+1. 仅对对象类型有效（对象、数组和 `Map`、`Set` 这样的[集合类型](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects#%E4%BD%BF%E7%94%A8%E9%94%AE%E7%9A%84%E9%9B%86%E5%90%88%E5%AF%B9%E8%B1%A1)），而对 `string`、`number` 和 `boolean` 这样的 [基础类型](https://developer.mozilla.org/zh-CN/docs/Glossary/Primitive) 无效。
 
 2. 因为 Vue 的响应式系统是通过属性访问进行追踪的，因此我们必须始终保持对该响应式对象的引用。这意味着我们不可以随意地 “替换” 一个响应式对象：
 
@@ -376,7 +376,7 @@ import { ref } from 'vue'
 const count = ref(0)
 ```
 
-`ref()` 从参数中获取到值，将其包裹为一个带 `.value` 属性的对象：
+`ref()` 从参数中获取到值，将其包装为一个带 `.value` 属性的对象：
 
 ```js
 const count = ref(0)
@@ -420,9 +420,9 @@ const { foo, bar } = obj
 
 一言以蔽之，`ref()` 使我们能创造一种对任何值的 "引用" 并能够不丢失响应性地随意传递。这个功能非常重要，因为它经常用于将逻辑提取到 [组合函数](/guide/reusability/composables.html) 中。
 
-### ref 在模板中的解套 \*\* {#ref-unwrapping-in-templates}
+### ref 在模板中的解包 \*\* {#ref-unwrapping-in-templates}
 
-当 ref 被暴露给模板、在渲染上下文中被访问时，它们会自动地 “解套” 所以无需使用 `.value`。这里我们再次使用了之前的计数器示例，并使用了 `ref()`。
+当 refs 在模板中作为顶层属性被访问时，它们会被自动“解包”，所以不需要使用  `.value`。下面是之前的计数器例子，用 `ref()` 代替。
 
 ```vue{13}
 <script setup>
@@ -444,31 +444,31 @@ function increment() {
 
 [在 Playground 尝试一下](https://sfc.vuejs.org/#eyJBcHAudnVlIjoiPHNjcmlwdCBzZXR1cD5cbmltcG9ydCB7IHJlZiB9IGZyb20gJ3Z1ZSdcblxuY29uc3QgY291bnQgPSByZWYoMClcblxuZnVuY3Rpb24gaW5jcmVtZW50KCkge1xuICBjb3VudC52YWx1ZSsrXG59XG48L3NjcmlwdD5cblxuPHRlbXBsYXRlPlxuICA8YnV0dG9uIEBjbGljaz1cImluY3JlbWVudFwiPnt7IGNvdW50IH19PC9idXR0b24+XG48L3RlbXBsYXRlPiIsImltcG9ydC1tYXAuanNvbiI6IntcbiAgXCJpbXBvcnRzXCI6IHtcbiAgICBcInZ1ZVwiOiBcImh0dHBzOi8vc2ZjLnZ1ZWpzLm9yZy92dWUucnVudGltZS5lc20tYnJvd3Nlci5qc1wiXG4gIH1cbn0ifQ==)
 
-请注意，解套过程仅作用于顶层属性，访问深层级的 ref 则不会解套：
+请注意，解包过程仅作用于顶层属性，访问深层级的 ref 则不会解包：
 
 ```js
 const object = { foo: ref(1) }
 ```
 
 ```vue-html
-{{ object.foo }} <!-- does NOT get unwrapped -->
+{{ object.foo }} <!-- 无法自动解包 -->
 ```
 
-We can fix that by making `foo` a top-level property:
+我们可以通过让 `foo` 成为顶级属性来解决这个问题：
 
 ```js
 const { foo } = object
 ```
 
 ```vue-html
-{{ foo }} <!-- properly unwrapped -->
+{{ foo }} <!-- 自动解包 -->
 ```
 
-Now `foo` will be wrapped as expected.
+现在 `foo` 将被包装成预期的样子。
 
-### ref 在响应式对象中的解套 \*\* {#ref-unwrapping-in-reactive-objects}
+### ref 在响应式对象中的解包 \*\* {#ref-unwrapping-in-reactive-objects}
 
-当一个 `ref` 作为一个响应式对象的属性被访问或更改时，它会自动解套因此会表现得和一般的属性一样：
+当一个 `ref` 作为一个响应式对象的属性被访问或更改时，它会自动解包，因此会表现得和一般的属性一样：
 
 ```js
 const count = ref(0)
@@ -493,9 +493,9 @@ console.log(state.count) // 2
 console.log(count.value) // 1
 ```
 
-ref 只有在一个响应式对象之内时才会发生解套。当起作为 [浅层响应式对象](/api/reactivity-advanced.html#shallowreactive) 的属性被访问时不会解套。
+只有当嵌套在一个深层反应式对象内时，才会发生 ref 解包。当起作为 [浅层响应式对象](/api/reactivity-advanced.html#shallowreactive) 的属性被访问时不会解套。
 
-另外，当从数组或 `Map` 这样的原生集合类型访问 ref 时，不会进行解套。
+另外，当从数组或 `Map` 这样的原生集合类型访问 ref 时，也不会进行解包。
 
 ```js
 const books = reactive([ref('Vue 3 Guide')])
@@ -557,7 +557,7 @@ export default {
 
 ### 响应性语法糖 <Badge type="warning" text="实验性" /> \*\* {#reactivity-transform}
 
-必须对 ref 使用 `.value` 是一个因受限于 JavaScript 语言能力约束而带来的缺点。然而通过编译时期自动在合适的位置上添加上 `.value` 来改进开发体验。Vue 提供了一个语法糖，在编译时作相应转换，使得我们可以像这样书写上面的计数器示例：
+不得不对 ref 使用 `.value` 是一个受限于 JavaScript 语言限制的缺点。不过在编译期间，自动在合适的位置上添加上 `.value` 可以改进开发体验。Vue 提供了一个语法糖，可以在编译时作相应转换，使得我们可以像这样书写上面的计数器示例：
 
 ```vue
 <script setup>
@@ -574,6 +574,6 @@ function increment() {
 </template>
 ```
 
-你可以在 [Reactivity Transform](/guide/extras/reactivity-transform.html) 这个专门的章节了解更多细节。请注意它仍处于实验性阶段，在最终提案落地前仍可能发生改动。
+你可以在 [Reactivity Transform](/guide/extras/reactivity-transform.html) 章节中了解更多细节。请注意它仍处于实验性阶段，在最终提案落地前仍可能发生改动。
 
 </div>
