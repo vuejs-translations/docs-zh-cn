@@ -111,7 +111,7 @@ createElementVNode("div", {
 }, null, 2 /* CLASS */)
 ```
 
-最后这个参数 `2` 就是一个 [修补标记（patch flag）](https://github.com/vuejs/vue-next/blob/master/packages/shared/src/patchFlags.ts)。一个元素可以有多个修补标记，会被合并到一个数字。运行时渲染器也将会使用 [位运算](https://en.wikipedia.org/wiki/Bitwise_operation) 来检查这些标记，确定相应的更新操作：
+最后这个参数 `2` 就是一个 [修补标记（patch flag）](https://github.com/vuejs/core/blob/main/packages/shared/src/patchFlags.ts)。一个元素可以有多个修补标记，会被合并到一个数字。运行时渲染器也将会使用 [位运算](https://en.wikipedia.org/wiki/Bitwise_operation) 来检查这些标记，确定相应的更新操作：
 
 ```js
 if (vnode.patchFlag & PatchFlags.CLASS /* 2 */) {

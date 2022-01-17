@@ -129,7 +129,7 @@ export default defineComponent({
 })
 ```
 
-你也可以看看 [对 `defineComponent` 的类型测试代码](https://github.com/vuejs/vue-next/blob/master/test-dts/defineComponent.test-d.tsx)。
+你也可以看看 [对 `defineComponent` 的类型测试代码](https://github.com/vuejs/core/blob/main/test-dts/defineComponent.test-d.tsx)。
 
 :::tip
 `defineComponent()` 也支持对纯 JavaScript 编写的组件进行类型推断。

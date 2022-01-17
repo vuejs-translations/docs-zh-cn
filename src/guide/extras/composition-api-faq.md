@@ -82,7 +82,7 @@ onMounted(() => {
 
 ### 更好的类型推导 {#better-type-inference}
 
-近几年来，越来越多的开发者开始使用 [TypeScript](https://www.typescriptlang.org/) 书写更健壮可靠的代码，TypeScript 还提供了非常好的 IDE 开发支持。然而选项式 API 是在 2013 年创建的，那时并没有想到需要进行类型推导。因此我们做了一些 [荒谬复杂的类型体操](https://github.com/vuejs/vue-next/blob/44b95276f5c086e1d88fa3c686a5f39eb5bb7821/packages/runtime-core/src/componentPublicInstance.ts#L132-L165) 来实现对选项式 API 的类型推导。但尽管做了这么多的努力，选项式 API 的类型推导仍然无法适配混入和依赖注入。
+近几年来，越来越多的开发者开始使用 [TypeScript](https://www.typescriptlang.org/) 书写更健壮可靠的代码，TypeScript 还提供了非常好的 IDE 开发支持。然而选项式 API 是在 2013 年创建的，那时并没有想到需要进行类型推导。因此我们做了一些 [荒谬复杂的类型体操](https://github.com/vuejs/core/blob/44b95276f5c086e1d88fa3c686a5f39eb5bb7821/packages/runtime-core/src/componentPublicInstance.ts#L132-L165) 来实现对选项式 API 的类型推导。但尽管做了这么多的努力，选项式 API 的类型推导仍然无法适配混入和依赖注入。
 
 这使一些想要搭配 TS 使用 Vue 的用户才用了由 `vue-class-component` 提供的 Class API。然而，基于 Class 的 API 非常依赖 ES 装饰器，在 Vue 2019 年开发完成后，它仍是一个仅处于 stage 2 的语言功能。我们认为将这样一种不稳定的方案作为官方 API 的一种实现形式风险过高，在那之后装饰器提案还进行了一些较大的变动，在书写这篇文档时仍未到达 stage 3。另外，基于 Class 的 API 和选项式 API 在逻辑复用和代码组织方面有相同的限制。
 
@@ -98,7 +98,7 @@ onMounted(() => {
 
 对于有状态的逻辑来说，的确如此。当使用组合式 API 时，只需要用到一小部分选项：`props`，`emits`，`name` 和 `inheritAttrs`。如果使用 `<script setup>`，那么 `inheritAttrs` 应该是唯一一个需要用额外的 `<script>` 块书写的选项了。
 
-如果你在代码中只使用了组合式 API（以及上述必需的选项），得益于 [编译时标记](https://github.com/vuejs/vue-next/tree/master/packages/vue#bundler-build-feature-flags) 你可以减小生产包大概几 kb 左右的体积，因为丢掉了 Vue 之中关于选项式 API 的所有代码。注意这也会影响你依赖中的 Vue 组件。
+如果你在代码中只使用了组合式 API（以及上述必需的选项），得益于 [编译时标记](https://github.com/vuejs/core/tree/main/packages/vue#bundler-build-feature-flags) 你可以减小生产包大概几 kb 左右的体积，因为丢掉了 Vue 之中关于选项式 API 的所有代码。注意这也会影响你依赖中的 Vue 组件。
 
 ### 可以同时使用两种 API 吗？ {#can-i-use-both-apis-together}
 
@@ -128,7 +128,7 @@ React Hooks 在组件每次更新时都会重新调用。这就产生了一些�
 
 - 在默认情况下，传递给子组件的事件处理函数会导致子组件进行不必要的更新。子组件默认更新，并需要显式的调用 `useCallback` 作优化。这几乎是必需的，因此同样需要正确的依赖数组。忽视这一点会导致默认情况下对应用程序进行过度渲染，并可能在不知不觉中导致性能问题。
 
-- 要解决变量闭包导致的问题，再结合并发功能，使得很难推理出一段钩子代码是什么时候运行的，并且很不好处理需要横跨多个渲染（通过 `useRef`）的可变状态。 
+- 要解决变量闭包导致的问题，再结合并发功能，使得很难推理出一段钩子代码是什么时候运行的，并且很不好处理需要横跨多个渲染（通过 `useRef`）的可变状态。
 
 相比起来，Vue 的组合式 API：
 

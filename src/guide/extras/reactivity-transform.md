@@ -12,7 +12,7 @@
 
 自从引入组合式 API 的概念以来，一个主要的未能解决的问题就是 ref 和响应式对象的使用方式。到处使用 `.value` 无疑是很繁琐的，并且在没有类型系统的帮助时很容易漏掉。
 
-[Vue 的响应性语法糖](https://github.com/vuejs/vue-next/tree/master/packages/reactivity-transform) 是一个编译时的转换过程，使我们可以像这样书写代码：
+[Vue 的响应性语法糖](https://github.com/vuejs/core/tree/main/packages/reactivity-transform) 是一个编译时的转换过程，使我们可以像这样书写代码：
 
 ```vue
 <script setup>

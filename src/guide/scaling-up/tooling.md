@@ -121,7 +121,7 @@ Vue 团队维护着 [eslint-plugin-vue](https://github.com/vuejs/eslint-plugin-v
 
 ### `@vue/compiler-sfc` {#vuecompiler-sfc}
 
-- [文档](https://github.com/vuejs/vue-next/tree/master/packages/compiler-sfc)
+- [文档](https://github.com/vuejs/core/tree/main/packages/compiler-sfc)
 
 这个包是 Vue 核心 monorepo 的一部分，并始终和 `vue` 主包版本号保持一致。它已经成为 `vue` 主包的一个依赖并代理到了 `vue/compiler-sfc` 目录下，因此你无需单独安装它。
 
