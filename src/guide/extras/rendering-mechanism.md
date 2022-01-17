@@ -1,5 +1,5 @@
 ---
-aside: deep
+outline: deep
 ---
 
 # 渲染机制 {#rendering-mechanism}

@@ -96,7 +96,7 @@ export default {
 
 <div class="options-api">
 
-See also: [Typing Component Props](/guide/typescript/options-api.html#typing-component-props) <Badge type="ts" text="TS" />
+See also: [Typing Component Props](/guide/typescript/options-api.html#typing-component-props) <sup class="vt-badge ts">TS</sup>
 
 </div>
 
@@ -113,7 +113,7 @@ defineProps<{
 </script>
 ```
 
-查看这一章获取更多 [组件 props 类型标注](/guide/typescript/composition-api.html#typing-component-props) 的相关细节。<Badge type="ts" text="TS" />
+查看这一章获取更多 [组件 props 类型标注](/guide/typescript/composition-api.html#typing-component-props) 的相关细节。<sup class="vt-badge ts">TS</sup>
 
 </div>
 

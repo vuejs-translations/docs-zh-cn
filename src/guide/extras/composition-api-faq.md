@@ -1,5 +1,5 @@
 ---
-aside: deep
+outline: deep
 ---
 
 # 组合式 API FAQ {#composition-api-faq}

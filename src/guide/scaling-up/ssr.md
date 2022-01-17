@@ -1,5 +1,5 @@
 ---
-aside: deep
+outline: deep
 ---
 
 # 服务端渲染（SSR） {#server-side-rendering-ssr}

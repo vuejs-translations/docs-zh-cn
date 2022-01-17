@@ -1,5 +1,5 @@
 ---
-aside: deep
+outline: deep
 ---
 
 # 搭配 TypeScript 使用 Vue {#using-vue-with-typescript}

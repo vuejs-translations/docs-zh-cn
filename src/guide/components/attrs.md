@@ -1,5 +1,5 @@
 ---
-aside: deep
+outline: deep
 ---
 
 # 透传 attribute {#fallthrough-attributes}
