@@ -49,7 +49,7 @@ const nav = [
       {
         text: '帮助',
         items: [
-          { text: '聊天室', link: 'https://discord.com/invite/HBherRA' },
+          { text: 'Discord 聊天室', link: 'https://discord.com/invite/HBherRA' },
           { text: '论坛', link: 'https://forum.vuejs.org/' },
           { text: 'DEV Community', link: 'https://dev.to/t/vue' }
         ]
@@ -84,10 +84,10 @@ const nav = [
     items: [
       { text: 'FAQ', link: '/about/faq' },
       { text: '团队', link: '/about/team' },
-      { text: 'Releases', link: '/about/releases' },
+      { text: '版本信息', link: '/about/releases' },
       {
-        text: '贡献指南',
-        link: '/about/contribution-guide'
+        text: '社区指南',
+        link: '/about/community-guide'
       },
       { text: '行为准则', link: '/about/coc' },
       {
