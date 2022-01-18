@@ -448,4 +448,4 @@ export default {
 
 > 如果你还不熟悉 Vue 的组件，那么现在可以跳过这个部分。
 
-HTML 的内置输入类型并不总是满足你的需求。幸运的是，Vue 组件允许你构建具有完全自定义行为的可重用输入。这些输入也可以使用 `v-model`！要了解更多关于此的内容，请在组件指引中阅读 [自定义输入](./component-basics.html#using-v-model-on-components)。
+HTML 的内置输入类型并不总是满足你的需求。幸运的是，Vue 组件允许你构建具有完全自定义行为的可重用输入。这些输入也可以使用 `v-model`！要了解更多关于此的内容，请在组件指引中阅读 [配合 `v-model` 使用](/guide/components/events.html#usage-with-v-model)。
