@@ -4,6 +4,11 @@ footer: false
 
 # 简介 {#introduction}
 
+:::info 你正在阅读的是 Vue 3 的文档！
+- Vue 2 中文文档已被迁移至 [v2.cn.vuejs.org](https://v2.cn.vuejs.org/)。
+- 想从 Vue 2 升级? 请参考 [迁移指南](https://v3-migration.vuejs.org/)。
+  :::
+
 ## 什么是 Vue? {#what-is-vue}
 
 Vue (发音为 /vjuː/, 类似 **view**) 是一款用于构建用户界面的 JavaScript 框架。基于标准 HTML、CSS 和 JavaScript 构建，并提供了一套声明式的、组件化的编程模型，帮助你高效的开发用户界面，无论任务是简单还是复杂。
@@ -57,7 +62,7 @@ const count = ref(0)
 
 Vue 是一个框架和生态，功能覆盖了大部分前端开发常见的需求。但 Web 世界又是十分多样化的，我们在 Web 上构建的东西可能在形式和规模上有很大不同。考虑到这一点，Vue 被设计成具有灵活性和可逐步集成的特点。根据你的需求场景，Vue 可以按不同的方式使用。
 
-- 增强后端呈现的HTML，无需构建步骤
+- 增强后端呈现的 HTML，无需构建步骤
 - 在任何页面中嵌入 Web Components
 - 单页应用 (SPA)
 - 全栈 / 服务端渲染 (SSR)
@@ -86,9 +91,7 @@ export default {
 </script>
 
 <template>
-  <button @click="count++">
-    Count is: {{ count }}
-  </button>
+  <button @click="count++">Count is: {{ count }}</button>
 </template>
 
 <style scoped>
@@ -168,9 +171,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <button @click="increment">
-    Count is: {{ count }}
-  </button>
+  <button @click="increment">Count is: {{ count }}</button>
 </template>
 ```
 

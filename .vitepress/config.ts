@@ -15,7 +15,11 @@ const nav = [
       { text: '教程', link: '/tutorial/' },
       { text: '范例', link: '/examples/' },
       { text: '快速开始', link: '/guide/quick-start' },
-      { text: '风格指南', link: '/style-guide/' }
+      { text: '风格指南', link: '/style-guide/' },
+      {
+        text: '从 Vue 2 迁移',
+        link: 'https://v3-migration.vuejs.org/'
+      }
     ]
   },
   {
@@ -38,12 +42,19 @@ const nav = [
           { text: '主题', link: '/ecosystem/themes' },
           { text: '工作', link: 'https://vuejobs.com/?ref=vuejs' },
           { text: 'T-Shirt 商店', link: 'https://vue.threadless.com/' }
-          // { text: '视频课程', link: '/ecosystem/video-courses' },
-          // TODO should start a separate branch for Vue 3?
-          // {
-          //   text: 'Awesome Vue',
-          //   link: 'https://github.com/vuejs/awesome-vue'
-          // }
+        ]
+      },
+      {
+        text: '视频教程',
+        items: [
+          {
+            text: 'Vue Mastery',
+            link: 'https://www.vuemastery.com/courses/'
+          },
+          {
+            text: 'Vue School',
+            link: 'https://vueschool.io/?friend=vuejs&utm_source=Vuejs.org&utm_medium=Link&utm_content=Navbar%20Dropdown'
+          }
         ]
       },
       {
