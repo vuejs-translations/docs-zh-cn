@@ -2,7 +2,7 @@
 
 ## 基础示例 {#basic-example}
 
-模板中的表达式虽然方便，但也只能用来做简单的操作。如果在模板中写太多逻辑，会让使其变得复杂，难以维护。比如我们有这样一个对象，其中有一个层级较深的数组：
+模板中的表达式虽然方便，但也只能用来做简单的操作。如果在模板中写太多逻辑，会让使其变得复杂，难以维护。比如我们有这样一个对象，其中有一个嵌套的数组：
 
 <div class="options-api">
 
@@ -46,9 +46,9 @@ const author = reactive({
 <span>{{ author.books.length > 0 ? 'Yes' : 'No' }}</span>
 ```
 
-现在这样的模板已经看起来有些复杂了。我们必须认真看好一会儿才能明白它依赖于 `author.books` 做计算。更重要的是，如果这样的计算在模板中不只一次，我们可能不想写重复的代码。
+这里的模板看起来有些复杂。我们必须认真看好一会儿才能明白它依赖于 `author.books` 做计算。更重要的是，如果这样的计算在模板中不只一次，我们可能不想写重复的代码。
 
-因此我们推荐使用 **计算属性** 描述依赖响应式状态的复杂逻辑。这是重构后的示例：
+因此我们推荐使用 **计算属性** 来描述依赖响应式状态的复杂逻辑。这是重构后的示例：
 
 <div class="options-api">
 
@@ -89,7 +89,7 @@ export default {
 
 在模板中使用计算属性和一般的属性并无二致。Vue 会意识到 `this.publishedBooksMessage` 依赖于 `this.author.books`，所以当 `this.author.books` 改变时，任何绑定 `vm.publishedBooksMessage` 都将同时更新。
 
-See also: [Typing Computed Properties](/guide/typescript/options-api.html#typing-computed) <Badge type="ts" text="TS" />
+也可参考: [为计算属性标记类型](/guide/typescript/options-api.html#typing-computed) <Badge type="ts" text="TS" />
 
 </div>
 
@@ -122,11 +122,11 @@ const publishedBooksMessage = computed(() => {
 
 [在 Playground 尝试一下](https://sfc.vuejs.org/#eyJBcHAudnVlIjoiPHNjcmlwdCBzZXR1cD5cbmltcG9ydCB7IHJlYWN0aXZlLCBjb21wdXRlZCB9IGZyb20gJ3Z1ZSdcblxuY29uc3QgYXV0aG9yID0gcmVhY3RpdmUoe1xuICBuYW1lOiAnSm9obiBEb2UnLFxuICBib29rczogW1xuICAgICdWdWUgMiAtIEFkdmFuY2VkIEd1aWRlJyxcbiAgICAnVnVlIDMgLSBCYXNpYyBHdWlkZScsXG4gICAgJ1Z1ZSA0IC0gVGhlIE15c3RlcnknXG4gIF1cbn0pXG5cbi8vIGEgY29tcHV0ZWQgcmVmXG5jb25zdCBwdWJsaXNoZWRCb29rc01lc3NhZ2UgPSBjb21wdXRlZCgoKSA9PiB7XG4gIHJldHVybiBhdXRob3IuYm9va3MubGVuZ3RoID4gMCA/ICdZZXMnIDogJ05vJ1xufSlcbjwvc2NyaXB0PlxuXG48dGVtcGxhdGU+XG4gIDxwPkhhcyBwdWJsaXNoZWQgYm9va3M6PC9wPlxuICA8c3Bhbj57eyBwdWJsaXNoZWRCb29rc01lc3NhZ2UgfX08L3NwYW4+XG48L3RlbXBsYXRlPiIsImltcG9ydC1tYXAuanNvbiI6IntcbiAgXCJpbXBvcnRzXCI6IHtcbiAgICBcInZ1ZVwiOiBcImh0dHBzOi8vc2ZjLnZ1ZWpzLm9yZy92dWUucnVudGltZS5lc20tYnJvd3Nlci5qc1wiXG4gIH1cbn0ifQ==)
 
-我们在这里定义了一个计算属性 `publishedBooksMessage`。`computed()` 方法期望接收一个函数，返回值为一个 **计算 ref**。和其他一般的 ref 类似，你可以通过 `publishedBooksMessage.value` 访问到计算结果。计算 ref 也会在模板中自动解套因此在模板的表达式中无需 `.value`。
+我们在这里定义了一个计算属性 `publishedBooksMessage`。`computed()` 方法期望接收一个 getter 函数，返回值为一个 **计算 ref**。和其他一般的 ref 类似，你可以通过 `publishedBooksMessage.value` 访问到计算结果。计算 ref 也会在模板中自动解包因此在模板的表达式中无需 `.value`。
 
-一个计算属性会自动跟踪响应式依赖。Vue 会意识到 `this.publishedBooksMessage` 依赖于 `this.author.books`，所以当 `this.author.books` 改变时，任何绑定 `vm.publishedBooksMessage` 都将同时更新。
+一个计算属性会自动追踪响应式依赖。Vue 会意识到 `this.publishedBooksMessage` 依赖于 `this.author.books`，所以当 `this.author.books` 改变时，任何绑定 `vm.publishedBooksMessage` 都将同时更新。
 
-See also: [Typing Computed](/guide/typescript/composition-api.html#typing-computed) <Badge type="ts" text="TS" />
+也可参考: [为计算属性标注类型](/guide/typescript/composition-api.html#typing-computed) <Badge type="ts" text="TS" />
 
 </div>
 
