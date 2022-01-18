@@ -49,7 +49,10 @@ const nav = [
       {
         text: '帮助',
         items: [
-          { text: 'Discord 聊天室', link: 'https://discord.com/invite/HBherRA' },
+          {
+            text: 'Discord 聊天室',
+            link: 'https://discord.com/invite/HBherRA'
+          },
           { text: '论坛', link: 'https://forum.vuejs.org/' },
           { text: 'DEV Community', link: 'https://dev.to/t/vue' }
         ]
@@ -75,7 +78,7 @@ const nav = [
       {
         text: 'English',
         link: 'https://vue-docs-preview.netlify.app/'
-      },
+      }
     ]
   },
   {
