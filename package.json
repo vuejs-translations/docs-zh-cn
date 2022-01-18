@@ -1,9 +1,9 @@
 {
   "scripts": {
-    "dev": "vitepress dev src",
-    "build": "node ./scripts/build.js",
-    "serve": "vitepress serve src",
-    "clean": "rm -rf src/.vitepress/dist",
+    "dev": "vitepress",
+    "build": "vitepress build",
+    "serve": "vitepress serve",
+    "clean": "rm -rf .vitepress/dist",
     "sync": "node scripts/sync.js"
   },
   "dependencies": {
