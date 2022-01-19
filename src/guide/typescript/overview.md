@@ -1,5 +1,5 @@
 ---
-aside: deep
+outline: deep
 ---
 
 # 搭配 TypeScript 使用 Vue {#using-vue-with-typescript}
@@ -36,13 +36,15 @@ Vue 本身就是用 TypeScript 编写的，对 TypeScript 提供第一优先级�
 
   - 同时也需要 [TypeScript Vue 插件](https://marketplace.visualstudio.com/items?itemName=johnsoncodehk.vscode-typescript-vue-plugin)以支持在 TS 文件中导入 `*.vue`。
 
+- [TypeScript Vue Plugin](https://marketplace.visualstudio.com/items?itemName=johnsoncodehk.vscode-typescript-vue-plugin) 用于支持在 TS 中 import `*.vue` 文件。
+
 - [WebStorm](https://www.jetbrains.com/webstorm/) 也对 TypeScript 和 Vue 提供了内置的支持。
 
 ### 配置 `tsconfig.json` {#configuring-tsconfigjson}
 
-通过 `create-vue` 搭建的项目包含了预配置好的 `tsconfig.json` 文件。其基础配置抽象在了 [`@vue/tsconfig`](https://github.com/vuejs/tsconfig) 中。在项目中，我们使用[项目引用](https://www.typescriptlang.org/docs/handbook/project-references.html)来确保运行在不同环境(如应用 vs. 测试)中的代码的类型正确。
+通过 `create-vue` 搭建的项目包含了预配置好的 `tsconfig.json`。 底层共享的配置封装在 [`@vue/tsconfig`](https://github.com/vuejs/tsconfig) 这个包当中。在项目内我们使用了 TS 的 [Project References](https://www.typescriptlang.org/docs/handbook/project-references.html) 功能来确保运行在不同环境下的代码能够获得正确的环境类型 (比如应用代码 vs. 测试代码)。
 
-当手动配置 `tsconfig.json` 时，请注意以下选项：
+如果你需要手动配置 `tsconfig.json` , 有以下需要注意的选项：
 
 - [`compilerOptions.isolatedModules`](https://www.typescriptlang.org/tsconfig#isolatedModules) 被设置为了 `true`，因为 Vite 使用 [esbuild](https://esbuild.github.io/) 来转译 TypeScript，并受限于单文件转译的限制。
 
@@ -57,19 +59,19 @@ Vue 本身就是用 TypeScript 编写的，对 TypeScript 提供第一优先级�
 
 ### 托管模式 {#takeover-mode}
 
-> 这一章节仅对 VSCode + Volar 有效。
+> 这一章节仅针对 VSCode + Volar。
 
-要让 Vue SFC 和 TypeScript 一起工作，Volar 单独创建了一个 TypeScript 语言服务实例用来对 Vue 作一些特定支持，并在 Vue SFC 中使用。同时，普通的 TS 文件仍然由 VSCode 内置的 TS 语言服务处理，这就是为什么我们需要 [TypeScript Vue Plugin](https://marketplace.visualstudio.com/items?itemName=johnsoncodehk.vscode-typescript-vue-plugin) 来支持在 TS 文件中导入 Vue SFC。这个默认设置是可行的，但是对于每个项目来说，我们都要运行两个 TS 语言服务实例：一个来自 Volar，一个来自 VSCode 的内置服务。这有点低效，并且在大型项目中可能会导致性能问题。
+为了在 Vue SFC 中支持 TypeScript，Volar 需要额外创建一个 TS 语言服务实例专门用于针对 SFC 的类型检查。同时，普通的 `.ts` 文件则依然由 VSCode 内置的 TS 语言服务来处理。这也是为什么我们需要安装 [TypeScript Vue Plugin](https://marketplace.visualstudio.com/items?itemName=johnsoncodehk.vscode-typescript-vue-plugin) 来支持在 TS 中引入 `*.vue` 文件。这套默认行为的确能够工作，但在每个项目里我们都需要同时运行两个语言服务实例：一个来自 Volar，一个来自 VSCode 的内置服务。这在大型项目里可能会带来一些性能问题。
 
-Volar 提供了一个叫做“托管模式”的功能来提高性能。在托管模式下，Volar 将使用单一的 TS 语言服务实例同时为 Vue 和 TS 文件提供支持。
+为了解决这个问题，Volar 提供了一个叫做 “托管模式” 的功能。在托管模式下，Volar 可以使用一套 TS 语言服务实例同时对 Vue 和 TS 文件提供支持。
 
-要启用托管模式，你需要通过以下步骤在**你的项目的工作区**禁用 VSCode 内置的 TS 语言服务：
+要开启托管模式，你需要执行以下步骤来在项目的工作空间中禁用 VSCode 的内置 TS 语言服务：
 
-1. 在你的项目工作区，用 `Ctrl + Shift + P` 调出命令盘 (macOS：`Cmd + Shift + P`)。
-2. 输入 `built`，选择“Extensions: Show Built-in Extensions”。
-3. 在扩展搜索框中输入 `typescript` (不要去掉 `@builtin` 前缀)。
-4. 点击“TypeScript and JavaScript Language Features”的小齿轮图标，并选择“Disable (Workspace)”。
-5. 重新加载工作区。当你打开一个 Vue 或 TS 文件时，托管模式将被启用。
+1. 在当前项目的工作空间下, 用 `Ctrl + Shift + P` (macOS: `Cmd + Shift + P`) 唤起命令面板。
+2. 输入 `built`，然后选择 "Extensions: Show Built-in Extensions".
+3. 在插件搜索框内输入 `typescript` (不要删除 `@builtin` 前缀).
+4. 点击 "TypeScript and JavaScript Language Features" 右下角的小齿轮, 然后选择 "Disable (Workspace)".
+5. 重新加载工作空间。托管模式将会在你打开一个 Vue 或者 TS 文件时自动启用。
 
 <img src="./images/takeover-mode.png" width="590" height="426" style="margin:0px auto;border-radius:8px">
 
@@ -129,7 +131,7 @@ export default defineComponent({
 })
 ```
 
-参考：[对 `defineComponent` 的类型测试](https://github.com/vuejs/vue-next/blob/master/test-dts/defineComponent.test-d.tsx)。
+参考：[对 `defineComponent` 的类型测试](https://github.com/vuejs/core/blob/main/test-dts/defineComponent.test-d.tsx)。
 
 :::tip
 `defineComponent()` 也支持对纯 JavaScript 编写的组件进行类型推导。

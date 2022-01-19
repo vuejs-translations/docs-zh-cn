@@ -18,7 +18,7 @@
 - 如果需要是全局变量版本（通过 `Vue` 全局变量访问）：请使用 `vue.global.prod.js`。
 - 如果需要 ESM 版本（通过原生 ESM 导入访问）：请使用 `vue.esm-browser.prod.js`。
 
-更多细节请参考 [发行文件指南](https://github.com/vuejs/vue-next/tree/master/packages/vue#which-dist-file-to-use)。
+更多细节请参考 [发行文件指南](https://github.com/vuejs/core/tree/main/packages/vue#which-dist-file-to-use)。
 
 ## 使用构建工具 {#with-build-tools}
 
@@ -27,7 +27,7 @@
 如果使用了自定义的构建，请确保：
 
 1. `vue` 被解析为 `vue.runtime.esm-bundler.js`。
-2. [编译时功能标记](https://github.com/vuejs/vue-next/tree/master/packages/vue#bundler-build-feature-flags) 已被正确配置。
+2. [编译时功能标记](https://github.com/vuejs/core/tree/main/packages/vue#bundler-build-feature-flags) 已被正确配置。
 3. <code>process.env<wbr>.NODE_ENV</code> 会在构建时被替换为 `"production"`。
 
 其他参考：
