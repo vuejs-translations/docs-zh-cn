@@ -1,5 +1,5 @@
 ---
-aside: deep
+outline: deep
 ---
 
 # 透传 attribute {#fallthrough-attributes}
@@ -67,7 +67,7 @@ aside: deep
 
 请注意：
 
-1. 直传的 attribute 不会包含 `<MyButton>` 上声明过的 props，换句话说，声明过的 props 被 `<MyButton>` “消费” 了。
+1. 直传的 attribute 不会包含 `<MyButton>` 上声明过的 props 或是针对 `emits` 声明事件的 `v-on` 侦听函数，换句话说，声明过的 props 和侦听函数被 `<MyButton>` “消费” 了。
 
 2. 直传的 attribute 若符合声明，也可以作为 props 传入 `<BaseButton>`。
 
@@ -103,6 +103,12 @@ export default {
 ```
 
 这个 `$attrs` 对象包含了除组件的 `props` 和 `emits` 属性外的所有其他 attribute，例如 `class`，`style`，`v-on` 监听器等等。
+
+一些额外的注意点：
+
+- 跟 props 不同的是，透传 attributes 在 JS 中会保留其原本的大小写格式。比如一个名为 `foo-bar` 的 attribute 需要用 `$attrs['foo-bar']` 这样的形式来获取。
+
+- 一个 `v-on` 侦听函数，比如 `@click`，会在对象上以 `$attrs.onClick` 的形式暴露。
 
 现在我们要再次使用一下 [之前小节](#attribute-inheritance) 中的 `<MyButton>` 组件例子。有时候我们可能为了样式，需要在 `<button>` 元素外包裹一层 `<div>`：
 
@@ -150,7 +156,7 @@ export default {
 
 <div class="composition-api">
 
-你可以在 `<script setup>` 中使用 `useAttrs()` API 来访问一个组件的所有透传 attribute：
+如果需要，你可以在 `<script setup>` 中使用 `useAttrs()` API 来访问一个组件的所有透传 attribute：
 
 ```vue
 <script setup>
@@ -171,11 +177,13 @@ export default {
 }
 ```
 
+Note that although the `attrs` object here always reflect the latest fallthrough attributes, it isn't reactive (for performance reasons). You cannot use watchers to observe its changes. If you need reactivity, use a prop. Alternatively, you can use `onUpdated()` to perform side effects with latest `attrs` on each update.
+
 </div>
 
 <div class="options-api">
 
-你可以通过 `$attrs` 这个实例属性来访问组件的所有透传 attribute：
+如果需要，你可以通过 `$attrs` 这个实例属性来访问组件的所有透传 attribute：
 
 ```js
 export default {

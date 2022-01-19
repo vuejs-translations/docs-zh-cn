@@ -52,7 +52,7 @@ SFC 是 Vue 框架提供的一个功能，并且在下列场景中都是官方�
 
 ## SFC 是如何工作的 {#how-it-works}
 
-Vue SFC 是一个框架指定的文件格式，因此必须交由 [@vue/compiler-sfc](https://github.com/vuejs/vue-next/tree/master/packages/compiler-sfc) 编译为标准的 JavaScript 和 CSS，一个编译后的 SFC 是一个标准的 JavaScript（ES）模块，这也意味着通过适当的构建配置，你可以像导入其他 ES 模块一样导入 SFC：
+Vue SFC 是一个框架指定的文件格式，因此必须交由 [@vue/compiler-sfc](https://github.com/vuejs/core/tree/main/packages/compiler-sfc) 编译为标准的 JavaScript 和 CSS，一个编译后的 SFC 是一个标准的 JavaScript（ES）模块，这也意味着通过适当的构建配置，你可以像导入其他 ES 模块一样导入 SFC：
 
 ```js
 import MyComponent from './MyComponent.vue'

@@ -96,7 +96,7 @@ export default {
 
 <div class="options-api">
 
-See also: [Typing Component Props](/guide/typescript/options-api.html#typing-component-props) <Badge type="ts" text="TS" />
+See also: [Typing Component Props](/guide/typescript/options-api.html#typing-component-props) <sup class="vt-badge ts">TS</sup>
 
 </div>
 
@@ -113,7 +113,7 @@ defineProps<{
 </script>
 ```
 
-查看这一章获取更多 [组件 props 类型标注](/guide/typescript/composition-api.html#typing-component-props) 的相关细节。<Badge type="ts" text="TS" />
+查看这一章获取更多 [组件 props 类型标注](/guide/typescript/composition-api.html#typing-component-props) 的相关细节。<sup class="vt-badge ts">TS</sup>
 
 </div>
 
@@ -448,9 +448,10 @@ export default {
     // 对象类型的默认值
     propE: {
       type: Object,
-      // 一个返回默认对象/数组值
-      // 的工厂函数
-      default(props) {
+      // 对象或者数组应当用工厂函数返回。
+      // 工厂函数会收到组件所接收的原始 props
+      // 作为参数
+      default(rawProps) {
         // default 函数接收传入的原始 props 作为参数
         return { message: 'hello' }
       }
@@ -539,3 +540,38 @@ export default {
 </div>
 
 这会校验 `author` prop 的值是否是由 `new Person` 创建的。
+
+## Boolean 类型转换 {#boolean-casting}
+
+为了更贴近原生 boolean attributes 的行为，声明为 `Boolean` 类型的 props 有特别的类型转换规则。以带有如下声明的 `<MyComponent>` 组件为例：
+
+<div class="composition-api">
+
+```js
+defineProps({
+  disabled: Boolean
+})
+```
+
+</div>
+<div class="options-api">
+
+```js
+export default {
+  props: {
+    disabled: Boolean
+  }
+}
+```
+
+</div>
+
+该组件可以被这样使用：
+
+```vue-html
+<!-- equivalent of passing :disabled="true" -->
+<MyComponent disabled />
+
+<!-- equivalent of passing :disabled="false" -->
+<MyComponent />
+```

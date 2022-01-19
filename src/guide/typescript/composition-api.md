@@ -57,7 +57,7 @@ const props = defineProps<Props>()
 这个同一个文件的限制在未来的版本中可以被移除。
 :::
 
-### prop 默认值 <Badge type="warning" text="实验性" /> {#props-default-values}
+### prop 默认值 <sup class="vt-badge warning">experimental</sup> {#props-default-values}
 
 当使用基于类型的声明时，我们失去了对 prop 定义默认值的能力。这可以通过目前实验性的[响应性语法糖](/guide/extras/reactivity-transform.html#reactive-props-destructure)来解决：
 
