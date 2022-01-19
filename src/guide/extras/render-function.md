@@ -2,17 +2,17 @@
 outline: deep
 ---
 
-# Render Functions & JSX
+# 渲染函数 & JSX
 
-Vue recommends using templates to build applications in the vast majority of cases. However, there are situations where we need the full programmatic power of JavaScript. That's where we can use the **render function**.
+Vue推荐在绝大多数情况下使用模板语法来搭建HTML。然而在某些使用场景下，我们真的需要用到JavaScript完全的编程能力。这时**渲染函数**就派上用场了。
 
-> If you are new to the concept of virtual DOM and render functions, make sure to read the [Rendering Mechanism](/guide/extras/rendering-mechanism.html) chapter first.
+> 如果你还不熟悉虚拟DOM和渲染函数的概念的话，推荐先阅读 [渲染机制](/guide/extras/rendering-mechanism.html) 。
 
-## Basic Usage
+## 基本用法
 
-### Creating Vnodes
+### 创建 Vnodes
 
-Vue provides an `h()` function for creating vnodes:
+Vue 提供了一个 `h()` 函数用于创建 vnodes:
 
 ```js
 import { h } from 'vue'
@@ -26,9 +26,9 @@ const vnode = h(
 )
 ```
 
-`h()` is short for **hyperscript** - which means "JavaScript that produces HTML (hypertext markup language)". This name is inherited from conventions shared by many virtual DOM implementations. A more descriptive name could be `createVnode()`, but a shorter name helps when you have to call this function many times in a render function.
+`h()` 是 **hyperscript** 的简称 - 意思是 "能生成 HTML (超文本标记语言) 的 JavaScript"。这个名字来源于许多虚拟DOM实现时共享的约定。（This name is inherited from conventions shared by many virtual DOM implementations.） 一个更准确的名称应该是 `createVnode()`， 但当你需要多次使用渲染函数时，一个简短的名字能更好地帮到你。
 
-The `h()` function is designed to be very flexible:
+`h()` 函数的使用方式非常的灵活:
 
 ```js
 // all arguments except the type are optional
