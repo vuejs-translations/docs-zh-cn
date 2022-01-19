@@ -34,9 +34,7 @@ Vue 本身就是用 TypeScript 编写的，对 TypeScript 提供第一优先级�
     Volar 替代了 [Vetur](https://marketplace.visualstudio.com/items?itemName=octref.vetur)，那是我们之前为 Vue 2 提供的官方 VSCode 扩展。如果你已经安装了 Vetur，请确保在 Vue 3 项目中将它禁用。
     :::
 
-  - 同时也需要 [TypeScript Vue 插件](https://marketplace.visualstudio.com/items?itemName=johnsoncodehk.vscode-typescript-vue-plugin)以支持在 TS 文件中导入 `*.vue`。
-
-- [TypeScript Vue Plugin](https://marketplace.visualstudio.com/items?itemName=johnsoncodehk.vscode-typescript-vue-plugin) 用于支持在 TS 中 import `*.vue` 文件。
+  - [TypeScript Vue Plugin](https://marketplace.visualstudio.com/items?itemName=johnsoncodehk.vscode-typescript-vue-plugin) 用于支持在 TS 中 import `*.vue` 文件。
 
 - [WebStorm](https://www.jetbrains.com/webstorm/) 也对 TypeScript 和 Vue 提供了内置的支持。
 
