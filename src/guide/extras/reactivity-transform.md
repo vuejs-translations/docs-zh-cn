@@ -188,7 +188,7 @@ let count = $ref(0)
 + trackChange($$(count))
 ```
 
-The above compiles to:
+上面的代码将被编译成:
 
 ```js
 import { ref } from 'vue'
