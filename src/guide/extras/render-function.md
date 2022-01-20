@@ -6,7 +6,7 @@ outline: deep
 
 Vue推荐在绝大多数情况下使用模板语法来搭建HTML。然而在某些使用场景下，我们真的需要用到JavaScript完全的编程能力。这时**渲染函数**就派上用场了。
 
-> 如果你还不熟悉虚拟DOM和渲染函数的概念的话，推荐先阅读 [渲染机制](/guide/extras/rendering-mechanism.html) 。
+> 如果你还不熟悉虚拟DOM和渲染函数的概念的话，推荐先阅读[渲染机制](/guide/extras/rendering-mechanism.html)。
 
 ## 基本用法
 
@@ -28,10 +28,10 @@ const vnode = h(
 
 `h()` 是 **hyperscript** 的简称 - 意思是 "能生成 HTML (超文本标记语言) 的 JavaScript"。这个名字来源于许多虚拟DOM实现时共享的约定。（This name is inherited from conventions shared by many virtual DOM implementations.） 一个更准确的名称应该是 `createVnode()`， 但当你需要多次使用渲染函数时，一个简短的名字能更好地帮到你。
 
-`h()` 函数的使用方式非常的灵活:
+`h()` 函数的使用方式非常的灵活：
 
 ```js
-// all arguments except the type are optional
+// 除了HTML标签必填，之外的参数都是可选的
 h('div')
 h('div', { id: 'foo' })
 
@@ -43,21 +43,21 @@ h('div', { class: 'bar', innerHTML: 'hello' })
 // value support like in templates
 h('div', { class: [foo, { bar }], style: { color: 'red' } })
 
-// event listeners should be passed as onXxx
+// 事件监听器应以 onXxx 的形式书写
 h('div', { onClick: () => {} })
 
-// children can be a string
+// children 可以是一个字符串
 h('div', { id: 'foo' }, 'hello')
 
-// props can be omitted when there are no props
+// 没有 props 时可以省略不写
 h('div', 'hello')
 h('div', [h('span', 'hello')])
 
-// children array can contain mixed vnodes and strings
+// children 数组可以同时包含 vnodes 与字符串
 h('div', ['hello', h('span', 'hello')])
 ```
 
-The resulting vnode has the following shape:
+得到的 vnode 为如下形式：
 
 ```js
 const vnode = h('div', { id: 'foo' }, [])
@@ -68,15 +68,15 @@ vnode.children // []
 vnode.key // null
 ```
 
-:::warning Note
-The full `VNode` interface contains many other internal properties, but it is strongly recommended to avoid relying on any properties other than the ones listed here. This avoids unintended breakage in case the internal properties are changed.
+:::注意事项
+完整的 `VNode` 接口包含其他内部 properties ，但是强烈建议避免使用这些没有在这里列举出的属性。这样能够避免因内部 properties 变更而导致的不兼容性问题。
 :::
 
-### Declaring Render Function
+### 声明渲染函数
 
 <div class="composition-api">
 
-When using templates with Composition API, the return value of the `setup()` hook is used to expose data to the template. When using render functions, however, we can directly return the render function instead:
+当组合式API与模板一起使用时,  `setup()` 钩子的返回值是用于暴露数据给模板. 然而当我们使用渲染函数时，可以直接把渲染函数返回:
 
 ```js
 import { ref, h } from 'vue'
@@ -88,15 +88,15 @@ export default {
   setup(props) {
     const count = ref(1)
 
-    // return the render function
+    // 返回渲染函数
     return () => h('div', props.msg + count.value)
   }
 }
 ```
 
-The render function is declared inside `setup()` so it naturally has access to the props and any reactive state declared in the same scope.
+在 `setup()` 内部声明的渲染函数天生能够访问在同一范围内声明的 props 和许多响应式状态。
 
-In addition to returning a single vnode, you can also return strings or arrays:
+除了返回一个 vnode ，你还可以返回字符串或数组：
 
 ```js
 export default {
@@ -111,7 +111,7 @@ import { h } from 'vue'
 
 export default {
   setup() {
-    // use an array to return multiple root nodes
+    // 使用数组返回多个根节点
     return () => [
       h('div'),
       h('div')
@@ -121,7 +121,7 @@ export default {
 }
 ```
 
-:::tip
+:::小贴士
 Make sure to return a function instead of directly returning values! The `setup()` function is called only once per component, while the returned render function will be called multiple times.
 :::
 
