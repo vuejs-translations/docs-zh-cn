@@ -106,7 +106,7 @@ app.component('TodoDeleteButton', TodoDeleteButton)
 
 ## 多个应用实例 {#multiple-app-instances}
 
-你不必再受限于一个页面只拥有一个应用实例。`createApp` API 允许多个 Vue 应用共存于同一个页面上，它们每一个都是隔离的，有自己的配置和全局资源。
+你不必再受限于一个页面只能拥有一个应用实例。`createApp` API 允许多个 Vue 应用共存于同一个页面上，它们每一个都是隔离的，有自己的配置和全局资源。
 
 ```js
 const app1 = createApp({

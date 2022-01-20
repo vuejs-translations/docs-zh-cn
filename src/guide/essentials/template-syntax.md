@@ -160,7 +160,7 @@ data() {
 
 ### 受限的全局访问 {#restricted-globals-access}
 
-模板中的表达式将被沙盒化，仅能够访问到 [有限的全局对象列表](https://github.com/vuejs/vue-next/blob/master/packages/shared/src/globalsWhitelist.ts#L3)。该列表中通常会暴露内置全局对象，比如 `Math` 和 `Date`。
+模板中的表达式将被沙盒化，仅能够访问到 [有限的全局对象列表](https://github.com/vuejs/core/blob/main/packages/shared/src/globalsWhitelist.ts#L3)。该列表中通常会暴露内置全局对象，比如 `Math` 和 `Date`。
 
 没有显式包含在列表中的全局对象将在模板内表达式中不可访问，例如用户附加在 `window` 上的属性。如果你确定要这样做，也可以自行在 [`app.config.globalProperties`](/api/application.html#app-config-globalproperties) 上显式地添加他们，供所有 Vue 表达式使用。
 
@@ -262,7 +262,7 @@ data() {
 
 之后在讲到 [`v-on`](./event-handling.html#event-modifiers) 和 [`v-model`](./forms.html#modifiers) 的功能时，你将会看到其他修饰符的例子。
 
-最后，在这里你可以直观地看到完整的指令语法：  
+最后，在这里你可以直观地看到完整的指令语法：
 
 ![directive syntax graph](./images/directive.png)
 
