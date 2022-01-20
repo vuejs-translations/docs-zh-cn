@@ -1,5 +1,5 @@
 ---
-aside: deep
+outline: deep
 ---
 
 # 渲染机制 {#rendering-mechanism}
@@ -45,6 +45,8 @@ const vnode = {
 3. **修补**：当一个依赖发生变化后，副作用会重新运行。这时候会创建一个更新后虚拟 DOM 树，运行时渲染器遍历这棵新树，将它与旧树相比，然后将必要的更新应用到真实 DOM 上去。这个过程又被称为 “比较差异（diffing）” 或 “协调（reconciliation）”。
 
 ![render pipeline](./images/render-pipeline.png)
+
+<!-- https://www.figma.com/file/elViLsnxGJ9lsQVsuhwqxM/Rendering-Mechanism -->
 
 ## 模板 vs. 渲染函数 {#template-vs-render-functions}
 
@@ -109,7 +111,7 @@ createElementVNode("div", {
 }, null, 2 /* CLASS */)
 ```
 
-最后这个参数 `2` 就是一个 [修补标记（patch flag）](https://github.com/vuejs/vue-next/blob/master/packages/shared/src/patchFlags.ts)。一个元素可以有多个修补标记，会被合并到一个数字。运行时渲染器也将会使用 [位运算](https://en.wikipedia.org/wiki/Bitwise_operation) 来检查这些标记，确定相应的更新操作：
+最后这个参数 `2` 就是一个 [修补标记（patch flag）](https://github.com/vuejs/core/blob/main/packages/shared/src/patchFlags.ts)。一个元素可以有多个修补标记，会被合并到一个数字。运行时渲染器也将会使用 [位运算](https://en.wikipedia.org/wiki/Bitwise_operation) 来检查这些标记，确定相应的更新操作：
 
 ```js
 if (vnode.patchFlag & PatchFlags.CLASS /* 2 */) {

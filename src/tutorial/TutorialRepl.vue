@@ -8,8 +8,13 @@ import {
   onHashChange
 } from '../examples/utils'
 import '@vue/repl/style.css'
-import PreferenceSwitch from '../.vitepress/theme/components/PreferenceSwitch.vue'
-import { VTFlyout, VTIconChevronLeft, VTIconChevronRight } from '@vue/theme'
+import PreferenceSwitch from '/@theme/components/PreferenceSwitch.vue'
+import {
+  VTFlyout,
+  VTIconChevronLeft,
+  VTIconChevronRight,
+  VTLink
+} from '@vue/theme'
 
 const store = new ReplStore({
   defaultVueRuntimeURL: `https://unpkg.com/vue@${version}/dist/vue.esm-browser.js`
@@ -21,10 +26,12 @@ const preferComposition = inject('prefer-composition') as Ref<boolean>
 const preferSFC = inject('prefer-sfc') as Ref<boolean>
 
 const currentStep = ref('')
-const keys = Object.keys(data)
+const keys = Object.keys(data).sort((a, b) => {
+  return Number(a.replace(/^step-/, '')) - Number(b.replace(/^step-/, ''))
+})
 const totalSteps = keys.length
 
-const titleRE = /<h1.*?>([\w\s-_]+?)<a class="header-anchor/
+const titleRE = /<h1.*?>(.+?)<a class="header-anchor/
 const allSteps = keys.map((key, i) => {
   const desc = data[key]['description.md'] as string
   return {
@@ -57,12 +64,9 @@ const nextStep = computed(() => {
   }
 })
 
-const userEditedState = ref<Record<string, string> | null>(null)
-const buttonText = computed(() =>
-  userEditedState.value ? 'Reset' : 'Show me!'
-)
+const showingHint = ref(false)
 
-function updateExample() {
+function updateExample(scroll = false) {
   let hash = location.hash.slice(1)
   if (!data.hasOwnProperty(hash)) {
     hash = 'step-1'
@@ -70,8 +74,7 @@ function updateExample() {
   }
   currentStep.value = hash
 
-  const content =
-    userEditedState.value && nextStep.value ? data[nextStep.value] : data[hash]
+  const content = showingHint.value ? data[hash]._hint! : data[hash]
 
   store.setFiles(
     preferSFC.value
@@ -80,29 +83,23 @@ function updateExample() {
     preferSFC.value ? 'App.vue' : 'index.html'
   )
 
-  nextTick(() => {
-    instruction.value!.scrollTop = 0
-  })
-}
-
-function toggleResult() {
-  if (userEditedState.value) {
-    store.setFiles(userEditedState.value)
-    userEditedState.value = null
-  } else {
-    userEditedState.value = store.getFiles()
-    updateExample()
+  if (scroll) {
+    nextTick(() => {
+      instruction.value!.scrollTop = 0
+    })
   }
 }
 
-watch([preferComposition, preferSFC], () => {
-  userEditedState.value = null
+function toggleResult() {
+  showingHint.value = !showingHint.value
   updateExample()
-})
+}
+
+watch([preferComposition, preferSFC], () => updateExample())
 
 onHashChange(() => {
-  userEditedState.value = null
-  updateExample()
+  showingHint.value = false
+  updateExample(true)
 })
 
 updateExample()
@@ -112,17 +109,25 @@ updateExample()
   <section class="tutorial">
     <article class="instruction" ref="instruction">
       <PreferenceSwitch />
-      <VTFlyout
-        :button="`${currentStepIndex} / ${totalSteps}`"
-        :items="allSteps"
-      ></VTFlyout>
+      <VTFlyout :button="`${currentStepIndex} / ${totalSteps}`">
+        <VTLink
+          v-for="(step, i) of allSteps"
+          class="vt-menu-link"
+          :class="{ active: i + 1 === currentStepIndex }"
+          :href="step.link"
+          >{{ step.text }}</VTLink
+        >
+      </VTFlyout>
       <div class="vt-doc" v-html="currentDescription"></div>
-      <div class="hint">
-        <button @click="toggleResult">{{ buttonText }}</button>
+      <div class="hint" v-if="data[currentStep]?._hint">
+        <button @click="toggleResult">
+          {{ showingHint ? 'Reset' : 'Show me!' }}
+        </button>
       </div>
       <footer>
         <a v-if="prevStep" :href="`#${prevStep}`"
-          ><VTIconChevronLeft class="vt-link-icon" style="margin: 0" /> Prev</a
+          ><VTIconChevronLeft class="vt-link-icon" style="margin: 0" />
+          Prev</a
         >
         <a class="next-step" v-if="nextStep" :href="`#${nextStep}`"
           >Next <VTIconChevronRight class="vt-link-icon"
@@ -135,6 +140,7 @@ updateExample()
       :showCompileOutput="false"
       :clearConsole="false"
       :showImportMap="false"
+      @keyup="showingHint = false"
     />
   </section>
 </template>
@@ -144,7 +150,13 @@ updateExample()
   display: flex;
   max-width: 1440px;
   margin: 0 auto;
-  --height: calc(100vh - var(--vt-nav-height) - var(--vt-banner-height, 0px));
+  --height: calc(
+    100vh - var(--vt-nav-height) - var(--vt-banner-height, 0px)
+  );
+}
+
+.preference-switch {
+  position: relative;
 }
 
 .instruction {
@@ -167,6 +179,11 @@ updateExample()
   z-index: 9;
   position: absolute;
   right: 20px;
+}
+
+.vt-menu-link.active {
+  font-weight: 500;
+  color: var(--vt-c-brand);
 }
 
 footer {
@@ -221,10 +238,11 @@ button {
   }
 }
 
+:deep(.narrow) {
+  display: none;
+}
+
 @media (max-width: 720px) {
-  .preference-switch {
-    position: relative;
-  }
   .tutorial {
     display: block;
   }
@@ -237,7 +255,15 @@ button {
   }
   .vue-repl {
     width: 100%;
-    height: calc(70vh - var(--vt-nav-height) - var(--vt-banner-height, 0px));
+    height: calc(
+      70vh - var(--vt-nav-height) - var(--vt-banner-height, 0px)
+    );
+  }
+  :deep(.wide) {
+    display: none;
+  }
+  :deep(.narrow) {
+    display: inline;
   }
 }
 </style>

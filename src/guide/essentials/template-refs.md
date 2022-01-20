@@ -56,6 +56,7 @@ export default {
 注意，你只可以 **在组件挂载后** 才能访问 ref。如果你想在模板中的表达式上访问 `$refs.input`，在初次渲染时会是 `null`。这是因为在初次渲染前这个元素还压根不存在呢！
 
 <div class="composition-api">
+
 如果你正试图观察一个模板 ref 的变化，确保考虑到 ref 的值为 `null` 的情况：
 
 ```js
@@ -68,7 +69,7 @@ watchEffect(() => {
 })
 ```
 
-See also: [Typing Template Refs](/guide/typescript/composition-api.html#typing-template-refs) <Badge type="ts" text="TS" />
+See also: [Typing Template Refs](/guide/typescript/composition-api.html#typing-template-refs) <sup class="vt-badge ts">TS</sup>
 
 </div>
 
@@ -221,7 +222,7 @@ defineExpose({
 
 当父组件通过模板 ref 获取到了该组件的实例，得到的实例类型为 `{ a: number, b: number }`（ref 都会自动解套，和一般的实例一样）。
 
-你也可以看看 [为组件的模板 ref 标注类型](/guide/typescript/composition-api.html#typing-component-template-refs) <Badge type="ts" text="TS" />
+你也可以看看 [为组件的模板 ref 标注类型](/guide/typescript/composition-api.html#typing-component-template-refs) <sup class="vt-badge ts">TS</sup>
 
 </div>
 <div class="options-api">

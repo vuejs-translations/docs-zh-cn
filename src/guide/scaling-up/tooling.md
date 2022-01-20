@@ -34,6 +34,11 @@
 
 [Vue CLI](https://cli.vuejs.org/) 是官方提供的基于 Webpack 的 Vue 工具链。它现在处于维护模式，我们建议使用 Vite 开始新的项目，除非你依赖特定的 Webpack 的特性。在大多数情况下，Vite 将提供更优秀的开发体验。
 
+关于从 Vue CLI 迁移到 Vite 的资源：
+
+- [VueSchool.io 的 Vue CLI -> Vite 迁移指南](https://vueschool.io/articles/vuejs-tutorials/how-to-migrate-from-vue-cli-to-vite/)
+- [迁移支持工具 / 插件](https://github.com/vitejs/awesome-vite#vue-cli)
+
 ### 浏览器内模板编译注意事项 {#note-on-in-browser-template-compilation}
 
 当以无构建步骤方式使用 Vue 时，组件模板要么是写在页面的 HTML 中，或者是内联的 JavaScript 字符串。在这些场景中，为了执行动态模板编译，Vue 需要将模板编译器运行在浏览器中。相对的，如果我们使用了构建步骤，由于提前编译了模板，那么就无须再在浏览器中运行了。要减小打包出的客户端代码体积，Vue 提供了 [不同的 "构建版本"](https://unpkg.com/browse/vue@3/dist/) 以适配不同场景下的优化需求。
@@ -121,7 +126,7 @@ Vue 团队维护着 [eslint-plugin-vue](https://github.com/vuejs/eslint-plugin-v
 
 ### `@vue/compiler-sfc` {#vuecompiler-sfc}
 
-- [文档](https://github.com/vuejs/vue-next/tree/master/packages/compiler-sfc)
+- [文档](https://github.com/vuejs/core/tree/main/packages/compiler-sfc)
 
 这个包是 Vue 核心 monorepo 的一部分，并始终和 `vue` 主包版本号保持一致。它已经成为 `vue` 主包的一个依赖并代理到了 `vue/compiler-sfc` 目录下，因此你无需单独安装它。
 

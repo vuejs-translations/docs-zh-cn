@@ -4,6 +4,11 @@ footer: false
 
 # 简介 {#introduction}
 
+:::info 你正在阅读的是 Vue 3 的文档！
+- Vue 2 中文文档已被迁移至 [v2.cn.vuejs.org](https://v2.cn.vuejs.org/)。
+- 想从 Vue 2 升级? 请参考 [迁移指南](https://v3-migration.vuejs.org/)。
+  :::
+
 ## 什么是 Vue? {#what-is-vue}
 
 Vue (发音为 /vjuː/, 类似 **view**) 是一款用于构建用户界面的 JavaScript 框架。它基于标准 HTML、CSS 和 JavaScript 构建，并提供了一套声明式的、组件化的编程模型，帮助你高效地开发用户界面，无论任务是简单还是复杂。
@@ -84,9 +89,7 @@ export default {
 </script>
 
 <template>
-  <button @click="count++">
-    Count is: {{ count }}
-  </button>
+  <button @click="count++">Count is: {{ count }}</button>
 </template>
 
 <style scoped>
@@ -166,9 +169,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <button @click="increment">
-    Count is: {{ count }}
-  </button>
+  <button @click="increment">Count is: {{ count }}</button>
 </template>
 ```
 
@@ -184,11 +185,11 @@ onMounted(() => {
 
 在 [组合式 API FAQ](/guide/extras/composition-api-faq) 章节中，你可以在这两种 API 的风格对比中了解更多组合式 API 所带来的增益。
 
-如何你是使用 Vue 的新手，这里是我们总结的推荐：
+如果你是使用 Vue 的新手，这里是我们总结的推荐：
 
-- 出于学习目的的使用时，我们推荐你采用自己更容易理解的方式。再强调一下，这两种风格的核心概念是通用的。一旦你熟悉了其中一种，另一种也无师自通。
+- 出于学习目的使用时，我们推荐你采用自己更容易理解的方式。再强调一下，这两种风格的核心概念是通用的。一旦你熟悉了其中一种，另一种也无师自通。
 
-- 处于生产目的的使用时
+- 出于生产目的使用时
 
   - 如果你不需要使用构建工具，或者只在低复杂度的场景中使用 Vue，可以采用选项式 API，例如需要渐进式集成的时候。
 

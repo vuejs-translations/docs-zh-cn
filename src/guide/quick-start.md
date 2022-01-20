@@ -145,7 +145,7 @@ export default {
 
 ## 下一步 {#next-steps}
 
-如果你跳过了 [简介](/guide/introduction)，我们强烈推荐你在移步到后续文档前，返回去阅读一下。
+如果你跳过了[简介](/guide/introduction)，我们强烈推荐你在移步到后续文档之前，返回去阅读一下。
 
 <div class="vt-box-container next-steps">
   <a class="vt-box" href="/guide/essentials/application.html">
