@@ -29,7 +29,7 @@ import { VTLink } from '@vue/theme'
           <div class="action">
             <input
               class="button"
-              id="member_submit"  
+              id="member_submit"
               name="member[subscribe]"
               type="submit"
               value="订阅"
@@ -40,15 +40,13 @@ import { VTLink } from '@vue/theme'
 
       <p class="help">
         你可以在以下网址阅读之前的杂志并收听我们的播客。
-        <VTLink class="link" href="https://news.vuejs.org/" no-icon
-          >news.vuejs.org</VTLink
-        >。这里是我们的社交媒体 
-        <VTLink class="link" href="https://twitter.com/vuejs" no-icon
-          >Twitter</VTLink
-        >，或是在这里参与讨论
-        <VTLink class="link" href="https://chat.vuejs.org/" no-icon
-          >Discord</VTLink
-        >.
+        <VTLink
+          class="link"
+          href="https://news.vuejs.org/"
+          no-icon
+          >news.vuejs.org</VTLink>。这里是我们的社交媒体 
+        <VTLink class="link" href="https://twitter.com/vuejs" no-icon>Twitter</VTLink>，或是在这里参与讨论
+        <VTLink class="link" href="https://chat.vuejs.org/" no-icon>Discord</VTLink>.
       </p>
     </div>
   </section>

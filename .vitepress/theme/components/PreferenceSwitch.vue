@@ -91,7 +91,7 @@ function useToggleFn(
         >
         <a
           class="switch-link"
-          title="About API 风格偏好"
+          title="关于 API 风格偏好"
           href="/guide/introduction.html#api-styles"
           @click="closeSideBar"
           >?</a
