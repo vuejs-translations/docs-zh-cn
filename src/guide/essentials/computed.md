@@ -89,7 +89,7 @@ export default {
 
 在模板中使用计算属性和一般的属性并无二致。Vue 会意识到 `this.publishedBooksMessage` 依赖于 `this.author.books`，所以当 `this.author.books` 改变时，任何绑定 `vm.publishedBooksMessage` 都将同时更新。
 
-也可参考: [为计算属性标记类型](/guide/typescript/options-api.html#typing-computed) <Badge type="ts" text="TS" />
+也可参考: [为计算属性标记类型](/guide/typescript/options-api.html#typing-computed) <sup class="vt-badge ts">TS</sup>
 
 </div>
 
@@ -126,7 +126,7 @@ const publishedBooksMessage = computed(() => {
 
 一个计算属性会自动追踪响应式依赖。Vue 会意识到 `this.publishedBooksMessage` 依赖于 `this.author.books`，所以当 `this.author.books` 改变时，任何绑定 `vm.publishedBooksMessage` 都将同时更新。
 
-也可参考: [为计算属性标注类型](/guide/typescript/composition-api.html#typing-computed) <Badge type="ts" text="TS" />
+也可参考: [为计算属性标注类型](/guide/typescript/composition-api.html#typing-computed) <sup class="vt-badge ts">TS</sup>
 
 </div>
 

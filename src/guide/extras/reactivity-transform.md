@@ -12,7 +12,7 @@
 
 自从引入组合式 API 的概念以来，一个主要的未能解决的问题就是 ref 和响应式对象的使用方式。到处使用 `.value` 无疑是很繁琐的，并且在没有类型系统的帮助时很容易漏掉。
 
-[Vue 的响应性语法糖](https://github.com/vuejs/vue-next/tree/master/packages/reactivity-transform) 是一个编译时的转换过程，使我们可以像这样书写代码：
+[Vue 的响应性语法糖](https://github.com/vuejs/core/tree/main/packages/reactivity-transform) 是一个编译时的转换过程，使我们可以像这样书写代码：
 
 ```vue
 <script setup>
@@ -188,7 +188,7 @@ let count = $ref(0)
 + trackChange($$(count))
 ```
 
-The above compiles to:
+上面的代码将被编译成:
 
 ```js
 import { ref } from 'vue'
@@ -265,7 +265,7 @@ setup(props) {
 }
 ```
 
-## TypeScript 集成 <Badge type="ts" text="TS" /> {#typescript-integration}
+## TypeScript 集成 <sup class="vt-badge ts">TS</sup> {#typescript-integration}
 
 Vue 为这些宏函数都提供了类型声明（全局可用）并且类型都会符合你的使用预期。它与标准的 TypeScript 语义没有不兼容之处，因此它的语法可以与所有现有的工具兼容。
 
