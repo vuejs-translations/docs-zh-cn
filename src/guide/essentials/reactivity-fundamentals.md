@@ -116,7 +116,7 @@ export default {
 
     // 不要忘了同时暴露 increment 函数
     return {
-      count,
+      state,
       increment
     }
   }
