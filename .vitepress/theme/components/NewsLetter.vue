@@ -39,7 +39,7 @@ import { VTLink } from '@vue/theme'
       </div>
 
       <p class="help">
-        你可以
+        你可以在
         <VTLink
           class="link"
           href="https://news.vuejs.org/"
