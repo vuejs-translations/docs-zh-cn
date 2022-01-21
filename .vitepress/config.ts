@@ -84,7 +84,7 @@ const nav = [
     items: [
       {
         text: '简体中文',
-        link: 'https://vue-new-docs-cn.netlify.app/'
+        link: 'https://staging-cn.vuejs.org/'
       },
       {
         text: 'English',
