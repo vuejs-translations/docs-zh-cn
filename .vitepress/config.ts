@@ -74,7 +74,7 @@ const nav = [
           { text: '博客', link: 'https://blog.vuejs.org/' },
           { text: 'Twitter', link: 'https://twitter.com/vuejs' },
           { text: '新闻', link: 'https://news.vuejs.org/' },
-          { text: '大事件', link: 'https://events.vuejs.org/' }
+          { text: '活动', link: 'https://events.vuejs.org/' }
         ]
       }
     ]
@@ -84,11 +84,11 @@ const nav = [
     items: [
       {
         text: '简体中文',
-        link: 'https://vue-new-docs-cn.netlify.app/'
+        link: 'https://staging-cn.vuejs.org/'
       },
       {
         text: 'English',
-        link: 'https://vue-docs-preview.netlify.app/'
+        link: 'https://staging.vuejs.org/'
       }
     ]
   },
@@ -98,14 +98,14 @@ const nav = [
     items: [
       { text: 'FAQ', link: '/about/faq' },
       { text: '团队', link: '/about/team' },
-      { text: '版本信息', link: '/about/releases' },
+      { text: '版本发布', link: '/about/releases' },
       {
         text: '社区指南',
         link: '/about/community-guide'
       },
       { text: '行为准则', link: '/about/coc' },
       {
-        text: '纪录片 · The Documentary',
+        text: '纪录片',
         link: 'https://www.youtube.com/watch?v=OrxmtDw4pVI'
       }
     ]
@@ -143,7 +143,10 @@ export const sidebar = {
           text: '响应式基础',
           link: '/guide/essentials/reactivity-fundamentals'
         },
-        { text: '计算属性', link: '/guide/essentials/computed' },
+        {
+          text: '计算属性',
+          link: '/guide/essentials/computed'
+        },
         {
           text: '类与样式绑定',
           link: '/guide/essentials/class-and-style'
@@ -177,9 +180,12 @@ export const sidebar = {
           text: '注册',
           link: '/guide/components/registration'
         },
-        { text: 'Props', link: '/guide/components/props' },
+        { text: 'Prop', link: '/guide/components/props' },
         { text: '事件', link: '/guide/components/events' },
-        { text: '透传 Attributes', link: '/guide/components/attrs' },
+        {
+          text: '透传 Attribute',
+          link: '/guide/components/attrs'
+        },
         { text: '插槽', link: '/guide/components/slots' },
         {
           text: '依赖注入',

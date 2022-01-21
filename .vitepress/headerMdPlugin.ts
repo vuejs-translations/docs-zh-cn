@@ -4,7 +4,12 @@
  * Headers that end with ** are Composition API only
  * This plugin strips the markers and augments the extracted header data,
  * which can be then used by the theme to filter headers.
+ *
+ * TODO: we will likely also need special syntax for preserving the same anchor
+ * links across translations similar to the one at
+ * https://github.com/vitejs/docs-cn/tree/main/.vitepress/markdown-it-custom-anchor
  */
+
 import MarkdownIt from 'markdown-it'
 import { MarkdownRenderer } from 'vitepress'
 
