@@ -88,7 +88,7 @@ const nav = [
       },
       {
         text: 'English',
-        link: 'https://vue-docs-preview.netlify.app/'
+        link: 'https://staging.vuejs.org/'
       }
     ]
   },
@@ -180,10 +180,10 @@ export const sidebar = {
           text: '注册',
           link: '/guide/components/registration'
         },
-        { text: 'Props', link: '/guide/components/props' },
+        { text: 'Prop', link: '/guide/components/props' },
         { text: '事件', link: '/guide/components/events' },
         {
-          text: '透传 Attributes',
+          text: '透传 Attribute',
           link: '/guide/components/attrs'
         },
         { text: '插槽', link: '/guide/components/slots' },
