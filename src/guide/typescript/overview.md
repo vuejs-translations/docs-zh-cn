@@ -4,9 +4,9 @@ outline: deep
 
 # 搭配 TypeScript 使用 Vue {#using-vue-with-typescript}
 
-像 TypeScript 这样的一个类型系统可以通过编译时期的静态分析检测出大部分的常见错误。这将减少生产环境中发生运行时错误的概率，并使得我们能够更自信地在大型项目中重构代码。TypeScript 也通过基于类型的自动补全为开发者带来了良好的开发体验。
+像 TypeScript 这样的类型系统可以在编译时通过静态分析检测出很多常见错误。这减少了生产环境中的运行时错误，也让我们在重构大型项目的时候更有信心。通过 IDE 中基于类型的自动补全，TypeScript 还改善了开发体验和效率。
 
-Vue 本身就是用 TypeScript 编写的，对 TypeScript 提供第一优先级支持。所有的 Vue 官方库都提供了类型定义文件，开箱即用。
+Vue 本身就是用 TypeScript 编写的，并对 TypeScript 提供了头等的支持。所有的 Vue 官方库都提供了类型声明文件，开箱即用。
 
 ## 项目启动 {#project-setup}
 
@@ -18,11 +18,11 @@ Vue 本身就是用 TypeScript 编写的，对 TypeScript 提供第一优先级�
 
 - 在开发阶段，我们推荐你依赖一个好的 [IDE 配置](#ide-support)来获取即时的类型错误反馈。
 
-- 如果你正在使用 SFC，可以使用 [`vue-tsc`](https://github.com/johnsoncodehk/volar/tree/master/packages/vue-tsc) 这个工具来进行命令行类型检查和类型定义文件生成。`vue-tsc` 是对 `tsc` (TypeScript 自身的命令行接口)的一个封装。除了在支持 TypeScript 文件的基础上额外添加了对 Vue 文件的支持，它的工作方式基本和 `tsc` 一致。
+- 对于单文件组件，你可以使用工具 [`vue-tsc`](https://github.com/johnsoncodehk/volar/tree/master/packages/vue-tsc) 在命令行检查类型和生成类型声明文件。`vue-tsc` 是对 TypeScript 自身命令行界面 `tsc` 的一个封装。它的工作方式基本和 `tsc` 一致。除了 TypeScript 文件，它还支持 Vue 的单文件组件。
 
 - `vue-tsc` 目前还不支持 watch 模式，但这已经在计划之中。与此同时，如果你想要类型检查成为 dev 命令的一部分，可以看看 [vite-plugin-checker](https://github.com/fi3ework/vite-plugin-checker)。
 
-- Vue CLI 也提供了对 TypeScript 的支持，但是已经不推荐了。查看[下方的说明](#note-on-vue-cli-and-ts-loader)了解详情。
+- Vue CLI 也提供了对 TypeScript 的支持，但是已经不推荐了。详见[下方的说明](#note-on-vue-cli-and-ts-loader)。
 
 ### IDE 支持 {#ide-support}
 
@@ -40,9 +40,9 @@ Vue 本身就是用 TypeScript 编写的，对 TypeScript 提供第一优先级�
 
 ### 配置 `tsconfig.json` {#configuring-tsconfigjson}
 
-通过 `create-vue` 搭建的项目包含了预配置好的 `tsconfig.json`。 底层共享的配置封装在 [`@vue/tsconfig`](https://github.com/vuejs/tsconfig) 这个包当中。在项目内我们使用了 TS 的 [Project References](https://www.typescriptlang.org/docs/handbook/project-references.html) 功能来确保运行在不同环境下的代码能够获得正确的环境类型 (比如应用代码 vs. 测试代码)。
+通过 `create-vue` 搭建的项目包含了预置的 `tsconfig.json`。其底层配置抽象于 [`@vue/tsconfig`](https://github.com/vuejs/tsconfig) 包中。在项目内我们使用 [Project References](https://www.typescriptlang.org/docs/handbook/project-references.html) 来确保运行在不同环境下的代码的类型正确 (比如应用代码 vs. 测试代码)。
 
-如果你需要手动配置 `tsconfig.json` , 有以下需要注意的选项：
+在手动配置 `tsconfig.json` 时，请留意以下选项：
 
 - [`compilerOptions.isolatedModules`](https://www.typescriptlang.org/tsconfig#isolatedModules) 被设置为了 `true`，因为 Vite 使用 [esbuild](https://esbuild.github.io/) 来转译 TypeScript，并受限于单文件转译的限制。
 
@@ -75,7 +75,7 @@ Vue 本身就是用 TypeScript 编写的，对 TypeScript 提供第一优先级�
 
 ### 对 Vue CLI 和 `ts-loader` 的说明 {#note-on-vue-cli-and-ts-loader}
 
-在像 Vue CLI 这样的基于 Webpack 搭建的项目中，一般是在模块转换的管道中执行类型检查，例如使用 `ts-loader`。然而这并不是一个简洁的解决方案，因为类型系统需要了解整个模块关系才能执行类型检查。单个模块的转换步骤并不适合该任务。这导致了下面的问题：
+在像 Vue CLI 这样的基于 webpack 搭建的项目中，一般是在模块转换的管道中执行类型检查，例如使用 `ts-loader`。然而这并不是一个简洁的解决方案，因为类型系统需要了解整个模块关系才能执行类型检查。单个模块的转换步骤并不适合该任务。这导致了下面的问题：
 
 - `ts-loader` 只能对转换后的代码执行类型检查，这和我们在 IDE 或 `vue-tsc` 中看到的可以映射回源代码的错误并不一致。
 
