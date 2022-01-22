@@ -204,7 +204,7 @@ let x: string | number = 1
 ```
 
 :::tip
-如果正在使用 Vue CLI 或基于 Webpack 的配置，支持模板内表达式的 TypeScript 需要 `vue-loader@^16.8.0`。
+如果正在使用 Vue CLI 或基于 webpack 的配置，支持模板内表达式的 TypeScript 需要 `vue-loader@^16.8.0`。
 :::
 
 ## 特定 API 的使用指南 {#api-specific-recipes}
