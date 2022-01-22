@@ -10,7 +10,7 @@ Vue 本身就是用 TypeScript 编写的，并对 TypeScript 提供了头等的�
 
 ## 项目启动 {#project-setup}
 
-[`create-vue`](https://github.com/vuejs/create-vue) 是官方的项目脚手架工具，提供了多种选项来搭建一个由 [Vite](https://vitejs.dev/) 驱动、基于 TypeScript 的 Vue 项目。
+[`create-vue`](https://github.com/vuejs/create-vue)，即官方的项目脚手架工具，提供了搭建基于 [Vite](https://vitejs.dev/) 且 TypeScript 就绪的 Vue 项目的选项。
 
 ### 总览 {#overview}
 
@@ -28,7 +28,7 @@ Vue 本身就是用 TypeScript 编写的，并对 TypeScript 提供了头等的�
 
 - 强烈推荐 [Visual Studio Code](https://code.visualstudio.com/) (VSCode)，因为它对 TypeScript 有着很好的内置支持。
 
-  - [Volar](https://marketplace.visualstudio.com/items?itemName=johnsoncodehk.volar) 是官方的 VSCode 扩展，提供了 Vue SFC 中的 TypeScript 支持，还伴随着一些其他非常棒的特性。
+  - [Volar](https://marketplace.visualstudio.com/items?itemName=johnsoncodehk.volar) 是官方的 VSCode 扩展，提供了 Vue 单文件组件中的 TypeScript 支持，还伴随着一些其他非常棒的特性。
 
     :::tip
     Volar 替代了 [Vetur](https://marketplace.visualstudio.com/items?itemName=octref.vetur)，那是我们之前为 Vue 2 提供的官方 VSCode 扩展。如果你已经安装了 Vetur，请确保在 Vue 3 项目中将它禁用。
@@ -59,16 +59,16 @@ Vue 本身就是用 TypeScript 编写的，并对 TypeScript 提供了头等的�
 
 > 这一章节仅针对 VSCode + Volar。
 
-为了在 Vue SFC 中支持 TypeScript，Volar 需要额外创建一个 TS 语言服务实例专门用于针对 SFC 的类型检查。同时，普通的 `.ts` 文件则依然由 VSCode 内置的 TS 语言服务来处理。这也是为什么我们需要安装 [TypeScript Vue Plugin](https://marketplace.visualstudio.com/items?itemName=johnsoncodehk.vscode-typescript-vue-plugin) 来支持在 TS 中引入 `*.vue` 文件。这套默认行为的确能够工作，但在每个项目里我们都需要同时运行两个语言服务实例：一个来自 Volar，一个来自 VSCode 的内置服务。这在大型项目里可能会带来一些性能问题。
+为了让 Vue 单文件组件和 TypeScript 一起工作，Volar 创建了一个针对 Vue 的 TS 语言服务实例，将其用于 Vue 单文件组件。同时，普通的 TS 文件依然由 VSCode 内置的 TS 语言服务来处理。这也是为什么我们需要安装 [TypeScript Vue Plugin](https://marketplace.visualstudio.com/items?itemName=johnsoncodehk.vscode-typescript-vue-plugin) 来支持在 TS 文件中引入 Vue 单文件组件。这套默认设置能够工作，但在每个项目里我们都运行了两个语言服务实例：一个来自 Volar，一个来自 VSCode 的内置服务。这在大型项目里可能会带来一些性能问题。
 
-为了解决这个问题，Volar 提供了一个叫做 “托管模式” 的功能。在托管模式下，Volar 可以使用一套 TS 语言服务实例同时对 Vue 和 TS 文件提供支持。
+为了优化性能，Volar 提供了一个叫做“托管模式”的功能。在托管模式下，Volar 使用单个 TS 语言服务实例同时为 Vue 和 TS 文件提供支持。
 
-要开启托管模式，你需要执行以下步骤来在项目的工作空间中禁用 VSCode 的内置 TS 语言服务：
+要开启托管模式，你需要执行以下步骤来**在你的项目的工作空间中**禁用 VSCode 的内置 TS 语言服务：
 
 1. 在当前项目的工作空间下, 用 `Ctrl + Shift + P` (macOS: `Cmd + Shift + P`) 唤起命令面板。
-2. 输入 `built`，然后选择 "Extensions: Show Built-in Extensions".
-3. 在插件搜索框内输入 `typescript` (不要删除 `@builtin` 前缀).
-4. 点击 "TypeScript and JavaScript Language Features" 右下角的小齿轮, 然后选择 "Disable (Workspace)".
+2. 输入 `built`，然后选择“Extensions: Show Built-in Extensions”。
+3. 在插件搜索框内输入 `typescript` (不要删除 `@builtin` 前缀)。
+4. 点击“TypeScript and JavaScript Language Features”右下角的小齿轮，然后选择“Disable (Workspace)”。
 5. 重新加载工作空间。托管模式将会在你打开一个 Vue 或者 TS 文件时自动启用。
 
 <img src="./images/takeover-mode.png" width="590" height="426" style="margin:0px auto;border-radius:8px">
@@ -89,7 +89,7 @@ Vue 本身就是用 TypeScript 编写的，并对 TypeScript 提供了头等的�
 
 ### `defineComponent()` {#definecomponent}
 
-要让 TypeScript 能够正确地推导出组件内选项的类型，我们需要通过 [`defineComponent()`](/api/general.html#definecomponent) 这个全局 API 来定义组件：
+为了让 TypeScript 正确地推导出组件选项内的类型，我们需要通过 [`defineComponent()`](/api/general.html#definecomponent) 这个全局 API 来定义组件：
 
 ```ts
 import { defineComponent } from 'vue'
@@ -137,7 +137,7 @@ export default defineComponent({
 
 ### 在单文件组件中的用法 {#usage-in-single-file-components}
 
-要在 SFC 中使用 TypeScript，需要在 `<script>` 标签上加上 `lang="ts"` 的 attribute。当 `lang="ts"` 存在时，所有的模板内表达式都将享受到更严格的类型检查。
+要在单文件组件中使用 TypeScript，需要在 `<script>` 标签上加上 `lang="ts"` 的 attribute。当 `lang="ts"` 存在时，所有的模板内表达式都将享受到更严格的类型检查。
 
 ```vue
 <script lang="ts">
