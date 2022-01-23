@@ -124,7 +124,7 @@ const publishedBooksMessage = computed(() => {
 
 我们在这里定义了一个计算属性 `publishedBooksMessage`。`computed()` 方法期望接收一个 getter 函数，返回值为一个**计算 ref**。和其他一般的 ref 类似，你可以通过 `publishedBooksMessage.value` 访问计算结果。计算 ref 也会在模板中自动解包，因此在模板表达式中引用时无需添加 `.value`。
 
-Vue 的计算属性会自动追踪响应式依赖。它会检测到 `this.publishedBooksMessage` 依赖于 `this.author.books`，所以当 `this.author.books` 改变时，任何绑定 `vm.publishedBooksMessage` 都会同时更新。
+Vue 的计算属性会自动追踪响应式依赖。它会检测到 `this.publishedBooksMessage` 依赖于 `this.author.books`，所以当 `this.author.books` 改变时，任何依赖于 `vm.publishedBooksMessage` 的绑定都会同时更新。
 
 也可参考: [为计算属性标注类型](/guide/typescript/composition-api.html#typing-computed) <sup class="vt-badge ts">TS</sup>
 
