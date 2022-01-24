@@ -52,7 +52,7 @@ footer: false
 - 要了解构建工具 Vite 更多背后的细节，请查看 [Vite 文档](https://cn.vitejs.dev)。
 - 如果你选择使用 TypeScript，请阅读 [TypeScript 使用指南](typescript/overview.html)。
 
-当你准备将你的应用程序发布到生产环境中时，运行以下命令：
+当你准备将应用发布到生产环境时，请运行：
 
 <div class="language-sh"><pre><code><span class="line"><span style="color:var(--vt-c-green);">&gt; </span><span style="color:#A6ACCD;">npm run build</span></span>
 <span class="line"></span></code></pre></div>
@@ -160,6 +160,6 @@ export default {
   </a>
   <a class="vt-box" href="/examples/">
     <p class="next-steps-link">查看示例</p>
-    <p class="next-steps-caption">快速浏览核心功能和常见的用户界面用例</p>
+    <p class="next-steps-caption">浏览核心功能和常见用户界面的示例。</p>
   </a>
 </div>
