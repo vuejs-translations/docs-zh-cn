@@ -147,11 +147,11 @@ export default {
 
 ## 下一步 {#next-steps}
 
-如果你跳过了 [简介](/guide/introduction)，我们强烈推荐你在移步到后续文档前，返回去阅读一下。
+如果你尚未阅读[简介](/guide/introduction)，我们强烈推荐你在移步到后续文档之前返回去阅读一下。
 
 <div class="vt-box-container next-steps">
   <a class="vt-box" href="/guide/essentials/application.html">
-    <p class="next-steps-link">继续阅读指引</p>
+    <p class="next-steps-link">继续阅读该指南</p>
     <p class="next-steps-caption">该指南会带你了解框架的每个方面的细节。</p>
   </a>
   <a class="vt-box" href="/tutorial/">
