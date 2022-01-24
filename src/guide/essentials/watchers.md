@@ -201,7 +201,7 @@ watch(
 )
 ```
 
-You can, however, force the second case into a deep watcher by explicitly using the `deep` option:
+然而，在上面的例子里，你可以显示地加上 `deep` 选项，强制转成深层侦听器：
 
 ```js
 watch(
