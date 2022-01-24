@@ -21,8 +21,8 @@ Mustaches 标签会被替换为相应组件实例中 `msg` 属性的值。同时
 双大括号将会把数据插值为纯文本，而不是 HTML。若想插入 HTML，你需要使用到 [`v-html` 指令](/api/built-in-directives.html#v-html)：
 
 ```vue-html
-<p>使用文本插值： {{ rawHtml }}</p>
-<p>使用 v-html 指令：<span v-html="rawHtml"></span></p>
+<p>Using text interpolation: {{ rawHtml }}</p>
+<p>Using v-html directive: <span v-html="rawHtml"></span></p>
 ```
 
 <script setup>
@@ -30,8 +30,8 @@ Mustaches 标签会被替换为相应组件实例中 `msg` 属性的值。同时
 </script>
 
 <p class="demo">
-  <p>使用文本插值： {{ rawHtml }}</p>
-  <p>使用 v-html 指令：<span v-html="rawHtml"></span></p>
+  <p>Using text interpolation: {{ rawHtml }}</p>
+  <p>Using v-html directive: <span v-html="rawHtml"></span></p>
 </p>
 
 这里我们遇到了一个新东西。这里看到的 `v-html` attribute 被叫做一个 **指令**。指令由 `v-` 作前缀，表明它们是一些由 Vue 提供的特殊 attribuite。你可能已经猜到了，它的作用就是应用响应式变更来渲染 DOM。这里我们做的事情简单来说就是：在当前组件实例上，将此 span 元素的 innerHTML 与 `rawHtml` 属性保持同步。
@@ -198,7 +198,7 @@ data() {
 <a @click="doSomething"> ... </a>
 ```
 
-这里的参数是要监听的事件名称：`click`。`v-on` 也是少部分含有缩写的指令   之一，缩写字符为 `@`。我们之后也会讨论关于事件处理的更多细节。
+这里的参数是要监听的事件名称：`click`。`v-on` 也是少部分含有缩写的指令之一，缩写字符为 `@`。我们之后也会讨论关于事件处理的更多细节。
 
 ### 动态参数 {#dynamic-arguments}
 
@@ -222,7 +222,7 @@ data() {
 ```vue-html
 <a v-on:[eventName]="doSomething"> ... </a>
 
-<!-- shorthand -->
+<!-- 缩写 -->
 <a @[eventName]="doSomething">
 ```
 
