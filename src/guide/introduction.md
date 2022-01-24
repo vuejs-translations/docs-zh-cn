@@ -13,7 +13,7 @@ footer: false
 
 Vue (发音为 /vjuː/, 类似 **view**) 是一款用于构建用户界面的 JavaScript 框架。它基于标准 HTML、CSS 和 JavaScript 构建，并提供了一套声明式的、组件化的编程模型，帮助你高效地开发用户界面，无论任务是简单还是复杂。
 
-下面是一个最简的 Vue 计数器示例：
+下面是一个最基本的示例：
 
 ```js
 import { createApp } from 'vue'
@@ -75,7 +75,7 @@ Vue 是一个框架和生态，功能覆盖了大部分前端开发常见的需�
 
 ## 单文件组件 {#single-file-components}
 
-在大多数启用了构建工具的 Vue 项目中，我们可以使用一种类似 HTML 格式的文件来书写 Vue 组件，它被称为 **单文件组件**(即以 `*.vue` 为扩展名的文件，英文缩写为 **SFC**)。顾名思义，Vue 的单文件组件会将一个组件的逻辑 (JavaScript)，模板 (HTML) 和样式 (CSS) 封装在同一个文件里。下面我们将用单文件组件的格式重写上面的计数器示例：
+在大多数启用了构建工具的 Vue 项目中，我们可以使用一种类似 HTML 格式的文件来书写 Vue 组件，它被称为 **单文件组件**(也被称为 *.vue 文件，英文缩写为 **SFC**)。顾名思义，Vue 的单文件组件会将一个组件的逻辑 (JavaScript)，模板 (HTML) 和样式 (CSS) 封装在同一个文件里。下面我们将用单文件组件的格式重写上面的计数器示例：
 
 ```vue
 <script>
@@ -207,15 +207,15 @@ onMounted(() => {
 
 <div class="vt-box-container next-steps">
   <a class="vt-box" href="/guide/quick-start.html">
-    <p class="next-steps-link">继续阅读指南</p>
-    <p class="next-steps-caption">想要阅读更深入的指南，通过更完整的细节了解框架的核心概念。</p>
+    <p class="next-steps-link">继续阅读该指南</p>
+    <p class="next-steps-caption">该指南会带你了解框架的每个方面的细节。</p>
   </a>
   <a class="vt-box" href="/tutorial/">
     <p class="next-steps-link">尝试教程</p>
-    <p class="next-steps-caption">适合喜欢动手学习的读者，让我们尝试做些真正有用的东西！</p>
+    <p class="next-steps-caption">适合喜欢边动手边学得读者。</p>
   </a>
   <a class="vt-box" href="/examples/">
     <p class="next-steps-link">查看示例</p>
-    <p class="next-steps-caption">快速浏览核心功能和常见的用户界面用例</p>
+    <p class="next-steps-caption">浏览核心功能和常见用户界面的示例。</p>
   </a>
 </div>
