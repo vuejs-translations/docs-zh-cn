@@ -30,7 +30,7 @@ createApp({
 ```vue-html
 <div id="app">
   <button @click="count++">
-    点击了 {{ count }} 次
+    Count is: {{ count }}
   </button>
 </div>
 ```
@@ -44,7 +44,7 @@ const count = ref(0)
 
 <div class="demo">
   <button @click="count++">
-    点击了 {{ count }} 次
+    Count is: {{ count }}
   </button>
 </div>
 
