@@ -4,6 +4,11 @@ footer: false
 
 # 简介 {#introduction}
 
+:::info 你正在阅读的是 Vue 3 的文档！
+- Vue 2 中文文档已被迁移至 [v2.cn.vuejs.org](https://v2.cn.vuejs.org/)。
+- 想从 Vue 2 升级? 请参考 [迁移指南](https://v3-migration.vuejs.org/)。
+  :::
+
 ## 什么是 Vue? {#what-is-vue}
 
 Vue (发音为 /vjuː/, 类似 **view**) 是一款用于构建用户界面的 JavaScript 框架。基于标准 HTML、CSS 和 JavaScript 构建，并提供了一套声明式的、组件化的编程模型，帮助你高效的开发用户界面，无论任务是简单还是复杂。
@@ -57,14 +62,14 @@ const count = ref(0)
 
 Vue 是一个框架和生态，功能覆盖了大部分前端开发常见的需求。但 Web 世界又是十分多样化的，我们在 Web 上构建的东西可能在形式和规模上有很大不同。考虑到这一点，Vue 被设计成具有灵活性和可逐步集成的特点。根据你的需求场景，Vue 可以按不同的方式使用。
 
-- 增强后端呈现的HTML，无需构建步骤
+- 增强后端呈现的 HTML，无需构建步骤
 - 在任何页面中嵌入 Web Components
 - 单页应用 (SPA)
 - 全栈 / 服务端渲染 (SSR)
 - JAMStack / 静态站点生成 (SSG)
 - 目标为桌面端、移动端、WebGL 甚至是命令行终端
 
-如果你是初学者，觉得这些概念令人生畏，别担心！文档的指引主线只需要基础的 HTML 和 JavaScript 知识，而不需要深入理解上面这些方面的知识，你应该能跟上。
+如果你是初学者，觉得这些概念令人生畏，别担心！文档的指引和教程只需要基础的 HTML 和 JavaScript 知识，而不需要深入理解上面这些方面的知识，你应该能跟上。
 
 如果你是有经验的开发者，对如何以最好的方式在你的项目中引入 Vue，或者是对上述的概念很好奇，我们在 [使用 Vue 的多种方式](/guide/extras/ways-of-using-vue) 中有讨论它们的更多细节。
 
@@ -86,9 +91,7 @@ export default {
 </script>
 
 <template>
-  <button @click="count++">
-    Count is: {{ count }}
-  </button>
+  <button @click="count++">Count is: {{ count }}</button>
 </template>
 
 <style scoped>
@@ -168,9 +171,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <button @click="increment">
-    Count is: {{ count }}
-  </button>
+  <button @click="increment">Count is: {{ count }}</button>
 </template>
 ```
 
@@ -178,7 +179,7 @@ onMounted(() => {
 
 ### 该选哪一个？{#which-one-to-choose}
 
-首先必须要说的是，这两种 API 风格都能够覆盖大部分的应用场景。他们只是同一个系统所提供的两套不同的接口。实际上，选项式 API 也是用组合式 API 实现的！关于 Vue 的基础的概念和知识在它们之间都是通用的。
+首先要说的是，这两种 API 风格都能够覆盖大部分的应用场景。他们只是同一个系统所提供的两套不同的接口。实际上，选项式 API 也是用组合式 API 实现的！关于 Vue 的基础的概念和知识在它们之间都是通用的。
 
 选项式 API 以 “组件实例” 的概念为中心（上述例子中的 `this`），是基于类的心智模型，如果你有面向对象语言的开发经验可能会更熟悉。它同样抽象出了响应式系统的细节，并强制按照选项来组织代码，这对初学者更友好。
 
@@ -186,11 +187,11 @@ onMounted(() => {
 
 在 [组合式 API FAQ](/guide/extras/composition-api-faq) 章节中，你可以在这两种 API 的风格对比中了解更多组合式 API 所带来的增益。
 
-如何你是使用 Vue 的新收，这里是我们总结的推荐：
+如果你是使用 Vue 的新手，这里是我们总结的推荐：
 
-- 出于学习目的的使用时，我们推荐你采用自己更容易理解的方式。再强调一下，这两种风格的核心概念是通用的。一旦你熟悉了其中一种，另一种也无师自通。
+- 出于学习目的使用时，我们推荐你采用自己更容易理解的方式。再强调一下，这两种风格的核心概念是通用的。一旦你熟悉了其中一种，另一种也无师自通。
 
-- 处于生产目的的使用时
+- 出于生产目的使用时
 
   - 如果你不需要使用构建工具，或者只在低复杂度的场景中使用 Vue，可以采用选项式 API，例如需要渐进式集成的时候。
 

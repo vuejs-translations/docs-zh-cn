@@ -119,12 +119,14 @@ let open = $ref(false)
 
 <div class="demo">
   <button @click="open = true">打开模态框</button>
-  <Teleport to="body">
-    <div v-if="open" class="demo modal-demo">
-      <p style="margin-bottom:20px">你好！</p>
-      <button @click="open = false">关闭</button>
-    </div>
-  </Teleport>
+  <ClientOnly>
+    <Teleport to="body">
+      <div v-if="open" class="demo modal-demo">
+        <p style="margin-bottom:20px">你好！</p>
+        <button @click="open = false">关闭</button>
+      </div>
+    </Teleport>
+  </ClientOnly>
 </div>
 
 <style>
@@ -195,3 +197,4 @@ let open = $ref(false)
 **相关内容**
 
 - [`<Teleport>` API 参考](/api/built-in-components.html#teleport)
+- [在 SSR 中处理 Teleports](/api/ssr.html#handling-teleports)
