@@ -220,7 +220,7 @@ function render() {
 const vnode = <div>hello</div>
 ```
 
-在JSX表达式中，使用大括号来嵌入动态值：
+在 JSX 表达式中，使用大括号来嵌入动态值：
 
 ```jsx
 const vnode = <div id={dynamicId}>hello, {userName}</div>
