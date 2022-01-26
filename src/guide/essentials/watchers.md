@@ -2,7 +2,7 @@
 
 ## 基本示例 {#basic-example}
 
-计算属性允许我们声明性地计算派生值。然而，在有些情况下，我们需要对状态的变化展现出犹如有“副作用”一般的反应，例如更改 DOM，或基于某异步操作其他状态。
+计算属性允许我们声明性地计算派生值。然而，在有些情况下，为了应对一些状态的变化，我们需要运行“副作用”，例如更改 DOM，或基于某异步操作其他状态。
 
 <div class="options-api">
 
@@ -48,7 +48,7 @@ export default {
 
 [在 Playground 尝试一下](https://sfc.vuejs.org/#eyJBcHAudnVlIjoiPHNjcmlwdD5cbmV4cG9ydCBkZWZhdWx0IHtcbiAgZGF0YSgpIHtcbiAgICByZXR1cm4ge1xuICAgICAgcXVlc3Rpb246ICcnLFxuICAgICAgYW5zd2VyOiAnUXVlc3Rpb25zIHVzdWFsbHkgY29udGFpbiBhIHF1ZXN0aW9uIG1hcmsuIDstKSdcbiAgICB9XG4gIH0sXG4gIHdhdGNoOiB7XG4gICAgLy8gd2hlbmV2ZXIgcXVlc3Rpb24gY2hhbmdlcywgdGhpcyBmdW5jdGlvbiB3aWxsIHJ1blxuICAgIHF1ZXN0aW9uKG5ld1F1ZXN0aW9uLCBvbGRRdWVzdGlvbikge1xuICAgICAgaWYgKG5ld1F1ZXN0aW9uLmluZGV4T2YoJz8nKSA+IC0xKSB7XG4gICAgICAgIHRoaXMuZ2V0QW5zd2VyKClcbiAgICAgIH1cbiAgICB9XG4gIH0sXG4gIG1ldGhvZHM6IHtcbiAgICBhc3luYyBnZXRBbnN3ZXIoKSB7XG4gICAgICB0aGlzLmFuc3dlciA9ICdUaGlua2luZy4uLidcbiAgICAgIHRyeSB7XG4gICAgICAgIGNvbnN0IHJlcyA9IGF3YWl0IGZldGNoKCdodHRwczovL3llc25vLnd0Zi9hcGknKVxuICAgICAgICB0aGlzLmFuc3dlciA9IChhd2FpdCByZXMuanNvbigpKS5hbnN3ZXJcbiAgICAgIH0gY2F0Y2ggKGUpIHtcbiAgICAgICAgdGhpcy5hbnN3ZXIgPSAnRXJyb3IhIENvdWxkIG5vdCByZWFjaCB0aGUgQVBJLiAnICsgZXJyb3JcbiAgICAgIH1cbiAgICB9XG4gIH1cbn1cbjwvc2NyaXB0PlxuXG48dGVtcGxhdGU+XG4gIDxwPlxuICAgIEFzayBhIHllcy9ubyBxdWVzdGlvbjpcbiAgICA8aW5wdXQgdi1tb2RlbD1cInF1ZXN0aW9uXCIgLz5cbiAgPC9wPlxuICA8cD57eyBhbnN3ZXIgfX08L3A+XG48L3RlbXBsYXRlPiIsImltcG9ydC1tYXAuanNvbiI6IntcbiAgXCJpbXBvcnRzXCI6IHtcbiAgICBcInZ1ZVwiOiBcImh0dHBzOi8vc2ZjLnZ1ZWpzLm9yZy92dWUucnVudGltZS5lc20tYnJvd3Nlci5qc1wiXG4gIH1cbn0ifQ==)
 
-`watch` 选项也支持 also supports a dot-delimited path as the key:
+`watch` 选项也支持把键设置成用点号分隔的路径：
 
 ```js
 export default {
@@ -101,7 +101,7 @@ watch(question, async (newQuestion, oldQuestion) => {
 
 ### 侦听来源类型 {#watch-source-types}
 
-`watch`的第一个参数可以是不同类型的响应式 “源”：它可以是一个 ref（包括计算属性），一个响应式对象，一个函数，或是一个数组表示多个源：
+`watch`的第一个参数可以是不同类型的响应式 “源”：它可以是一个 ref（包括计算属性），一个响应式对象，一个 getter 函数，或是一个数组表示多个源：
 
 ```js
 const x = ref(0)
@@ -112,7 +112,7 @@ watch(x, (newX) => {
   console.log(`x is ${newX}`)
 })
 
-// 函数
+// getter 函数
 watch(
   () => x.value + y.value,
   (sum) => {
@@ -137,10 +137,10 @@ watch(obj.count, (count) => {
 })
 ```
 
-此时你应该传入一个函数：
+此时你应该传入一个 getter 函数：
 
 ```js
-// 提供一个获取函数
+// 提供一个 getter 函数
 watch(
   () => obj.count,
   (count) => {
@@ -294,11 +294,11 @@ watchEffect(async () => {
 
 </div>
 
-## 副作用刷新时机 {#effect-flush-timing}
+## 回调的刷新时机 {#callback-flush-timing}
 
 当你更改了响应式状态，可能同时触发 Vue 组件更新和你定义的侦听器回调。
 
-默认情况下，用户创建的副作用都会在 Vue 组件更新的副作用 **之前** 被调用。这意味着，如果你试图在侦听器回调中访问 DOM, DOM 将是 Vue 执行任何更新之前的状态。
+默认情况下，用户创建的侦听器回调都会在 Vue 组件更新 **之前** 被调用。这意味着，如果你试图在侦听器回调中访问 DOM, DOM 将是 Vue 执行任何更新之前的状态。
 
 如果你想于 Vue 更新之后，在侦听器回调中访问 DOM，你需要指明 `flush: 'post'` 选项：
 
