@@ -179,7 +179,7 @@ const myDir = {
 除了 `el` 外，你应该将这些参数都视为只读的，并一律不更改它们。若你需要在不同的钩子间共享信息，推荐方法是通过元素的 [dataset](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/dataset) attribute。
 :::
 
-## 简化形式 {#function-shorthand} {#function-shorthand}
+## 简化形式 {#function-shorthand}
 
 对于自定义指令来说，`mounted` 和 `updated` 需要相同的行为、又并不关心其他钩子的情况很常见。在这种时候，此时你可以将指令定义成一个下面这样的函数：
 
@@ -194,7 +194,7 @@ app.directive('color', (el, binding) => {
 })
 ```
 
-## 对象字面量 {#object-literals} {#object-literals}
+## 对象字面量 {#object-literals}
 
 如果你的指令需要多个值，你可以向它传递一个 JavaScript 对象字面量。请记住，指令也可以接收任何合法的 JavaScript 表达式。
 
@@ -209,7 +209,7 @@ app.directive('demo', (el, binding) => {
 })
 ```
 
-## 在组件上使用 {#usage-on-components} {#usage-on-components}
+## 在组件上使用 {#usage-on-components}
 
 当在组件上使用自定义指令时，它会始终应用于组件的根节点，和 [透传 attributes](/guide/components/attrs.html) 类似。
 
