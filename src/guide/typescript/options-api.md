@@ -172,7 +172,7 @@ const Component = defineComponent({
 })
 ```
 
-显式的类型标注可能在某些 TypeScript 因循环引用而无法推导类型的边界情况下必须的。
+在某些 TypeScript 因循环引用而无法推导类型的情况下，可能必须进行显式的类型标注。
 
 ## 为事件处理器标注类型 {#typing-event-handlers}
 
