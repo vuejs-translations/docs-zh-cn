@@ -163,7 +163,7 @@ const myDir = {
   arg: 'foo',
   modifiers: { baz: true },
   value: /* `baz` 的值 */,
-  oldValue: /* 上一次更新时`baz` 的值 */
+  oldValue: /* 上一次更新时 `baz` 的值 */
 }
 ```
 
