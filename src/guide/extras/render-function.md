@@ -2,7 +2,7 @@
 outline: deep
 ---
 
-# 渲染函数 & JSX
+# 渲染函数 & JSX {#render-functions-jsx}
 
 Vue推荐在绝大多数情况下使用模板语法来搭建HTML。然而在某些使用场景下，我们真的需要用到JavaScript完全的编程能力。这时**渲染函数**就派上用场了。
 
