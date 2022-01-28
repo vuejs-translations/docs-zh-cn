@@ -72,7 +72,7 @@ vnode.key // null
 完整的 `VNode` 接口包含其他内部 properties ，但是强烈建议避免使用这些没有在这里列举出的属性。这样能够避免因内部 properties 变更而导致的不兼容性问题。
 :::
 
-### 声明渲染函数
+### 声明渲染函数 {#declaring-render-function}
 
 <div class="composition-api">
 
