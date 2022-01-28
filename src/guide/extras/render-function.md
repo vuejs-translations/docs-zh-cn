@@ -443,7 +443,7 @@ function render() {
 
 如果一个组件是用名字注册的，不能直接导入（例如，由一个库全局注册）， 可以使用 [`resolveComponent()`](/api/render-function.html#resolvecomponent) 来解决这个问题。
 
-### 渲染插槽
+### 渲染插槽 {#rendering-slots}
 
 <div class="composition-api">
 
