@@ -583,7 +583,7 @@ export default {
 
 </div>
 
-### `v-model`
+### `v-model` {#v-model}
 
 `v-model` 指令扩展为 `modelValue` 和 `onUpdate:modelValue` 在模板编译过程中，我们必须自己提供这些 props：
 
