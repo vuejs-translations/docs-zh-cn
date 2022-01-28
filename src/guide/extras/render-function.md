@@ -235,7 +235,7 @@ const vnode = <div id={dynamicId}>hello, {userName}</div>
 
 Vue 的类型定义也提供了 TSX 语法的类型推断支持。当使用 TSX 语法时， 确保在 `tsconfig.json` 中配置了 `"jsx": "preserve"` ， 这样的 TypeScript 就能保证 Vue JSX 语法编译过程中的完整性。
 
-## 渲染函数案例
+## 渲染函数案例 {#render-function-recipes}
 
 下面我们提供了几个常见的用等价的渲染函数 / JSX 语法，实现模板功能的案例：
 
