@@ -552,7 +552,7 @@ h(MyComponent, null, {
 
 插槽以函数的形式传递使得它们可以被子组件懒调用。 这能确保它被注册为子组件的依赖关系，而不是父组件。 这使得更新更加准确及有效。
 
-### 内置组件
+### 内置组件 {#built-in-components}
 
 诸如 `<KeepAlive>`, `<Transition>`, `<TransitionGroup>`, `<Teleport>` 和 `<Suspense>` 等[内置组件](/api/built-in-components.html)在渲染函数中必须导入才能使用：
 
