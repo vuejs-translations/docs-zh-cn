@@ -184,7 +184,7 @@ function Hello() {
 
 没错， 这就是一个有效的 Vue 组件！ 参阅 [Functional Components](#functional-components) 来了解更多语法细节。
 
-### Vnodes 必须唯一
+### Vnodes 必须唯一 {#vnodes-must-be-unique}
 
 组件树中的 vnodes 必须是唯一的。下面是错误示范：
 
