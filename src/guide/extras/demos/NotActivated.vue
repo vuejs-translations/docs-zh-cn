@@ -12,9 +12,9 @@ function warnNotActivated() {
 <template>
   <div class="demo">
     <div :class="{ shake: notActivated }">
-      <button @click="warnNotActivated">Click me</button>
+      <button @click="warnNotActivated">点击此处</button>
       <span v-if="notActivated" style="margin-left: 20px"
-        >This feature is not activated!</span
+        >此功能未激活！</span
       >
     </div>
   </div>

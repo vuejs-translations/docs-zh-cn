@@ -51,7 +51,7 @@ export default {
 ```vue-html
 <div :class="{ shake: notActivated }">
   <button @click="warnNotActivated">点击此处</button>
-  <span v-if="notActivated">此功能未激活。</span>
+  <span v-if="notActivated">此功能未激活！</span>
 </div>
 ```
 
