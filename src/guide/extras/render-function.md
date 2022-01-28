@@ -621,7 +621,7 @@ export default {
 
 </div>
 
-### 自定义指令
+### 自定义指令 {#custom-directives}
 
 可以使用 [`withDirectives`](/api/render-function.html#withdirectives) 将自定义指令应用于 VNode：
 
