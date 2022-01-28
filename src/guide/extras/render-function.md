@@ -275,7 +275,7 @@ h('div', [this.ok ? h('div', 'yes') : h('span', 'no')])
 
 </div>
 
-### `v-for`
+### `v-for` {#v-for}
 
 模板：
 
