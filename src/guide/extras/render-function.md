@@ -10,7 +10,7 @@ Vue推荐在绝大多数情况下使用模板语法来搭建HTML。然而在某�
 
 ## 基本用法 {#basic-usage}
 
-### 创建 Vnodes
+### 创建 Vnodes {#creating-vnodes}
 
 Vue 提供了一个 `h()` 函数用于创建 vnodes:
 
