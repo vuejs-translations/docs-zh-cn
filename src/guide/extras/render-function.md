@@ -642,7 +642,7 @@ const vnode = withDirectives(h('div'), [
 
 当一个指令是以名称注册并且不能被直接导入时，可以使用 [`resolveDirective`](/api/render-function.html#resolvedirective) 函数来解决这个问题。
 
-## 函数式组件
+## 函数式组件 {#functional-components}
 
 函数式组件是自身没有任何状态的组件的另一种形式。它们在渲染过程中不会创建组件实例，并跳过常规的组件生命周期。
 
