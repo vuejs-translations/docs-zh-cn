@@ -356,7 +356,7 @@ h(
 </button>
 ```
 
-### 事件修饰符
+### 事件修饰符 {#event-modifiers}
 
 对于 .passive 、.capture 和 .once 事件修饰符，可以使用驼峰写法将他们拼接在事件名后面：
 
