@@ -184,7 +184,7 @@ data() {
 
 当你在一个根组件为单个元素的自定义组件上使用 `class` attribute 时，类列表会被添加到该元素上。已经存在在该元素上的类列表不会被覆盖。
 
-举个例子，如果你生命了一个组件名叫 `my-component`，模板如下：
+举个例子，如果你声明了一个组件名叫 `my-component`，模板如下：
 
 ```vue-html
 <!-- child component template -->
