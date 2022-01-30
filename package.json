@@ -3,6 +3,7 @@
     "dev": "vitepress",
     "build": "vitepress build",
     "serve": "vitepress serve",
+    "zhlint": "zhlint 'src/guide/**/*.md'",
     "clean": "rm -rf .vitepress/dist",
     "sync": "node scripts/sync.js"
   },
