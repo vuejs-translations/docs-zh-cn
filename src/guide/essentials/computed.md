@@ -67,7 +67,7 @@ export default {
     }
   },
   computed: {
-    //一个计算属性的 getter
+    // 一个计算属性的 getter
     publishedBooksMessage() {
       // `this` 指向当前组件实例
       return this.author.books.length > 0 ? 'Yes' : 'No'
