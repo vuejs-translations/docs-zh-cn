@@ -68,7 +68,7 @@ interface Props {
   bar?: number
 }
 
-// 对 defineProps() 的响应性结构
+// 对 defineProps() 的响应性解构
 // 默认值会被编译为等价的运行时选项
 const { foo, bar = 100 } = defineProps<Props>()
 </script>
@@ -234,7 +234,7 @@ function handleChange(event) {
 </template>
 ```
 
-没有类型标注时，这个 `event` 参数会隐式地拥有 `any` 类型。这也会在 `tsconfig.json` 中配置了 `"strict": true` 或 `"noImplicitAny": true` 时报出一个 TS 错误。因此，建议显式地为事件处理器的参数标注类型。此外，你可能需要显式地强制转换 `event` 上的 property：
+没有类型标注时，这个 `event` 参数会隐式地标注为 `any` 类型。这也会在 `tsconfig.json` 中配置了 `"strict": true` 或 `"noImplicitAny": true` 时报出一个 TS 错误。因此，建议显式地为事件处理器的参数标注类型。此外，你可能需要显式地强制转换 `event` 上的 property：
 
 ```ts
 function handleChange(event: Event) {
