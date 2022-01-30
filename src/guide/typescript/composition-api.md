@@ -1,6 +1,6 @@
 # TypeScript 与组合式 API {#typescript-with-composition-api}
 
-> 这一章假设你已经阅读了位于[搭配 TypeScript 使用 Vue](./overview) 的概览。
+> 这一章假设你已经阅读了[搭配 TypeScript 使用 Vue](./overview) 的概览。
 
 ## 为组件的 prop 标注类型 {#typing-component-props}
 
@@ -57,7 +57,7 @@ const props = defineProps<Props>()
 这个同一个文件的限制在未来的版本中可以被移除。
 :::
 
-### prop 默认值 <sup class="vt-badge warning">experimental</sup> {#props-default-values}
+### Prop 默认值 <sup class="vt-badge warning">experimental</sup> {#props-default-values}
 
 当使用基于类型的声明时，我们失去了对 prop 定义默认值的能力。这可以通过目前实验性的[响应性语法糖](/guide/extras/reactivity-transform.html#reactive-props-destructure)来解决：
 
@@ -224,7 +224,7 @@ const double = computed<number>(() => {
 ```vue
 <script setup lang="ts">
 function handleChange(event) {
-  // `event` 隐式地拥有 `any` 类型
+  // `event` 隐式地标注为 `any` 类型
   console.log(event.target.value)
 }
 </script>
