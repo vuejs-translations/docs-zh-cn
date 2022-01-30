@@ -1,12 +1,10 @@
 # Vuejs.org 新版中文文档
 
-这里是即将焕然一新的 vuejs.org。
+这里是即将焕然一新的 cn.vuejs.org。
 
-你也可以点击这里访问 [英文原文文档](https://staging.vuejs.org)，基于 vuejs/docs 的 [main](https://github.com/vuejs/docs/tree/main) 分支。
+你也可以预览对应的英文原文文档 [https://staging.vuejs.org](https://staging.vuejs.org) 及其代码仓库 [vuejs/docs](https://github.com/vuejs/docs)。
 
-## 如何进行翻译
-
-进行翻译之前，请确保你已经完成了 [翻译说明](https://staging-cn.vuejs.org/about/translation.html) 的阅读。
+## 如何在本地编辑和预览该网站
 
 本站基于 [VitePress](https://github.com/vuejs/vitepress) 和 [@vue/theme](https://github.com/vuejs/vue-theme) 建立。网站内容以 Markdown 格式书写，位于 `src` 文件夹中。
 
@@ -16,3 +14,13 @@
 pnpm i
 pnpm run dev
 ```
+
+## 如何参与贡献
+
+目前网站处在集中翻译与校对的阶段，欢迎大家来[这个 issue](https://github.com/vuejs-translations/docs-zh-cn/issues/8) 查阅相关细节。
+
+另外在参与具体的贡献之前，有劳访问我们的 [wiki](https://github.com/vuejs-translations/docs-zh-cn/wiki) 了解相关注意事项。
+
+## 贡献者列表
+
+最新的文档/翻译贡献情况可以参阅 GitHub 提供的 [contributors](https://github.com/vuejs-translations/docs-zh-cn/graphs/contributors) 页面。
