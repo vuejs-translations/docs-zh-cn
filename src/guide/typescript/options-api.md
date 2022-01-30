@@ -183,7 +183,7 @@ const Component = defineComponent({
 export default {
   methods: {
     handleChange(event) {
-      // `event` 隐式地拥有 `any` 类型
+      // `event` 隐式地标注为 `any` 类型
       console.log(event.target.value)
     }
   }
@@ -195,7 +195,7 @@ export default {
 </template>
 ```
 
-没有类型标注时，这个 `event` 参数会隐式地拥有 `any` 类型。这也会在 `tsconfig.json` 中配置了 `"strict": true` 或 `"noImplicitAny": true` 时抛出一个 TS 错误。因此，建议显式地为事件处理器的参数标注类型。此外，你可能需要显式地强制转换 `event` 上的 property：
+没有类型标注时，这个 `event` 参数会隐式地标注为 `any` 类型。这也会在 `tsconfig.json` 中配置了 `"strict": true` 或 `"noImplicitAny": true` 时抛出一个 TS 错误。因此，建议显式地为事件处理器的参数标注类型。此外，你可能需要显式地强制转换 `event` 上的 property：
 
 ```ts
 export default {
@@ -246,7 +246,7 @@ export default defineComponent({
 })
 ```
 
-如果没有确切的类型标注，这个钩子函数的参数会隐式地拥有 `any` 类型。我们可以为 `ComponentCustomOptions` 接口扩充自定义的选项来支持：
+如果没有确切的类型标注，这个钩子函数的参数会隐式地标注为 `any` 类型。我们可以为 `ComponentCustomOptions` 接口扩充自定义的选项来支持：
 
 ```ts
 import { Route } from 'vue-router'
