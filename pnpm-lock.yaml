@@ -15,7 +15,7 @@ specifiers:
   simple-git: ^2.48.0
   vitepress: ^0.21.6
   vue: ^3.2.27
-  zhlint: ^0.5.1
+  zhlint: ^0.5.3
 
 dependencies:
   '@vue/repl': 0.4.9_vue@3.2.27
@@ -34,7 +34,7 @@ devDependencies:
   open: 8.4.0
   patch-vue-directive-ssr: 0.0.1
   simple-git: 2.48.0
-  zhlint: 0.5.1
+  zhlint: 0.5.3
 
 packages:
 
@@ -1190,8 +1190,8 @@ packages:
     engines: {node: '>=0.4'}
     dev: true
 
-  /zhlint/0.5.1:
-    resolution: {integrity: sha512-rnn6wt/7hvIkrGJbG0tY3wKOo/ssjNdMMkc5+xIS+sP1nVmyIxCcasK3hb1xzwV1X2Hs0JDaYIX4Kx44foJjSA==}
+  /zhlint/0.5.3:
+    resolution: {integrity: sha512-avHqvTgKYFXFR4IF2RZXcboKnbcg0yRB3/QBC6xhWLTmGpwCQhmTTfmjANJAqYn9L3i5elRzYPHVqNqyIJv7Eg==}
     hasBin: true
     dependencies:
       chalk: 4.1.2
