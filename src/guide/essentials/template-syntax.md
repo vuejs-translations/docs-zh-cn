@@ -39,12 +39,12 @@ Vue 使用一种基于 HTML 的模板语法，使我们能够声明式地将其�
 `span` 的内容将会被替换为 `rawHtml` property 的值，插值为纯 HTML——数据绑定将会被忽略。注意，你不能使用 `v-html` 来拼接组合模板，因为 Vue 不是一个基于字符串的模板引擎。相反，组件应该作为 UI 重用和组合的基本单元。
 
 :::warning 安全警告
-在网站上动态渲染任意 HTML 是非常危险的，因为这非常容易造成 [XSS 漏洞](https://en.wikipedia.org/wiki/Cross-site_scripting)。请仅在内容安全可信时再使用 `v-html`，并且 **永远不要** 使用用户提供的 HTML 内容。
+在网站上动态渲染任意 HTML 是非常危险的，因为这非常容易造成 [XSS 漏洞](https://en.wikipedia.org/wiki/Cross-site_scripting)。请仅在内容安全可信时再使用 `v-html`，并且**永远不要**使用用户提供的 HTML 内容。
 :::
 
 ## Attribute 绑定 {#attribute-bindings}
 
-Mustaches 不能被用在 HTML attributes 中。相应的，应该使用 [`v-bind` 指令](/api/built-in-directives.html#v-bind)：
+双大括号不能在 HTML attributes 中使用。相应的，应该使用 [`v-bind` 指令](/api/built-in-directives.html#v-bind)：
 
 ```vue-html
 <div v-bind:id="dynamicId"></div>
@@ -74,7 +74,7 @@ Mustaches 不能被用在 HTML attributes 中。相应的，应该使用 [`v-bin
 <button :disabled="isButtonDisabled">Button</button>
 ```
 
-若 `isButtonDisabled` 为 [真值](https://developer.mozilla.org/en-US/docs/Glossary/Truthy) 或一个空字符串（即 `<button disabled="">`）时，元素会包含这个 `disabled` attribute。而当其为假值时 attribute 将被忽略。
+当 `isButtonDisabled` 为[真值](https://developer.mozilla.org/en-US/docs/Glossary/Truthy)或一个空字符串 (即 `<button disabled="">`) 时，元素会包含这个 `disabled` attribute。而当其为假值时 attribute 将被忽略。
 
 ### 动态绑定多个值 {#dynamically-binding-multiple-attributes}
 
@@ -113,7 +113,7 @@ data() {
 
 ## 使用 JavaScript 表达式
 
-至此我们仅仅是在模板中绑定了一些组件中简单的属性。但是 Vue 实际上在数据绑定中也对 JavaScript 表达式有完整的支持：
+至此，我们仅在模板中绑定了一些简单的 property 键。但是 Vue 实际上在所有的数据绑定中都支持完整的 JavaScript 表达式：
 
 ```vue-html
 {{ number + 1 }}
@@ -129,8 +129,8 @@ data() {
 
 在 Vue 模板内，JavaScript 表达式可以被使用在如下场景上：
 
-- 在文本插值中（mustaches）
-- 在任何以 `v-` 开头的指令（包括缩写）绑定的 attribute 中
+- 在文本插值中 (双大括号)
+- 在任何 Vue 指令 (以 `v-` 开头的特殊 attribute) attribute 的值中
 
 ### 仅支持表达式
 
@@ -174,7 +174,7 @@ data() {
 <p v-if="seen">Now you see me</p>
 ```
 
-这里，`v-if` 指令会基于表达式值 `seen` 的真假来移除/插入该 `<p>` 元素。
+这里，`v-if` 指令会基于表达式 `seen` 的值的真假来移除/插入该 `<p>` 元素。
 
 ### 参数 {#arguments}
 
