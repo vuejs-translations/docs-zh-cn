@@ -1,5 +1,5 @@
 ---
-aside: deep
+outline: deep
 ---
 
 # 响应式基础 {#reactivity-fundamentals}
@@ -77,7 +77,7 @@ const state = reactive({ count: 0 })
 
 响应式对象其实是 [JavaScript Proxy](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy)，行为表现与一般对象并无二致。不同之处在于 Vue 能够跟踪对响应式对象属性的访问与更改操作。如果你对这其中的细节感到好奇，我们在 [深入响应式系统](/guide/extras/reactivity-in-depth.html) 一章中会进行解释，但我们推荐你先读完这里的主要指引。
 
-你也可以看看：[为响应式对象标注类型](/guide/typescript/composition-api.html#typing-reactive)。 <Badge type="ts" text="TS" />
+你也可以看看：[为响应式对象标注类型](/guide/typescript/composition-api.html#typing-reactive)。 <sup class="vt-badge ts">TS</sup>
 
 要在组件模板中使用响应式状态，请在 `setup()` 函数中定义并返回。
 
@@ -116,7 +116,7 @@ export default {
 
     // 不要忘了同时暴露 increment 函数
     return {
-      count,
+      state,
       increment
     }
   }
@@ -314,7 +314,7 @@ console.log(proxy === raw) // false
 
 只有代理是响应式的，更改原始的对象不会触发更新。因此，使用 Vue 的响应式系统的最佳实践是 **仅使用代理作为状态**。
 
-为保证访问代理的一致性，对同一个对象调用 `reactive()` 会总是返回同样的dialing，而对代理调用 `reactive()` 则会返回它自己：
+为保证访问代理的一致性，对同一个对象调用 `reactive()` 会总是返回同样的代理，而对代理调用 `reactive()` 则会返回它自己：
 
 ```js
 // 在同一个对象上调用 reactive() 会返回相同的代理
@@ -388,7 +388,7 @@ count.value++
 console.log(count.value) // 1
 ```
 
-你也可以看看：[为 ref 标注类型](/guide/typescript/composition-api.html#typing-ref)。 <Badge type="ts" text="TS" />
+你也可以看看：[为 ref 标注类型](/guide/typescript/composition-api.html#typing-ref)。 <sup class="vt-badge ts">TS</sup>
 
 和响应式对象的属性类似，ref 的 `.value` 属性也是响应式的。同时，当值为对象类型时，会用 `reactive()` 自动转换它的 `.value`。
 
@@ -555,7 +555,7 @@ export default {
 
 <div class="composition-api">
 
-### 响应性语法糖 <Badge type="warning" text="实验性" /> \*\* {#reactivity-transform}
+### 响应性语法糖 <sup class="vt-badge warning">experimental</sup> \*\* {#reactivity-transform}
 
 必须对 ref 使用 `.value` 是一个因受限于 JavaScript 语言能力约束而带来的缺点。然而通过编译时期自动在合适的位置上添加上 `.value` 来改进开发体验。Vue 提供了一个语法糖，在编译时作相应转换，使得我们可以像这样书写上面的计数器示例：
 

@@ -1,5 +1,5 @@
 ---
-aside: deep
+outline: deep
 ---
 
 # 渲染机制 {#rendering-mechanism}
@@ -46,6 +46,8 @@ const vnode = {
 
 ![render pipeline](./images/render-pipeline.png)
 
+<!-- https://www.figma.com/file/elViLsnxGJ9lsQVsuhwqxM/Rendering-Mechanism -->
+
 ## 模板 vs. 渲染函数 {#template-vs-render-functions}
 
 Vue 模板会被预编译成虚拟 DOM 渲染函数。Vue 也提供了 API 使我们可以不使用模板编译，直接手写渲染函数。在处理高度动态的逻辑时，渲染函数相比于模板更加灵活，因为你可以完全地使用 JavaScript 来构造你想要的 vnode。
@@ -80,9 +82,9 @@ Vue 模板会被预编译成虚拟 DOM 渲染函数。Vue 也提供了 API 使�
 
 [在模板编译预览中查看](https://vue-next-template-explorer.netlify.app/#eyJzcmMiOiI8ZGl2PlxuICA8ZGl2PmZvbzwvZGl2PlxuICA8ZGl2PmJhcjwvZGl2PlxuICA8ZGl2Pnt7IGR5bmFtaWMgfX08L2Rpdj5cbjwvZGl2PiIsInNzciI6ZmFsc2UsIm9wdGlvbnMiOnsiaG9pc3RTdGF0aWMiOnRydWV9fQ==)
 
-`foo` 和 `bar` 这两个 div 是完全静态的，没有必要在重新渲染时再次创建和比对它们。Vue 编译器自动地会提升这部分 vnode 创建函数到这个模板的渲染函数之外，并在每次渲染时都使用这份相同的 vnode，渲染器直到新旧 vnode 在这部分是完全相同的，所以会完全跳过对它们的差异比对。
+`foo` 和 `bar` 这两个 div 是完全静态的，没有必要在重新渲染时再次创建和比对它们。Vue 编译器自动地会提升这部分 vnode 创建函数到这个模板的渲染函数之外，并在每次渲染时都使用这份相同的 vnode，渲染器知道新旧 vnode 在这部分是完全相同的，所以会完全跳过对它们的差异比对。
 
-此外，当有足够多连续的静态元素时，它们还会再被压缩为一个 “静态 vnode”，其中包含的是这些节点相应的纯 HTML字符串。（[示例](https://vue-next-template-explorer.netlify.app/#eyJzcmMiOiI8ZGl2PlxuICA8ZGl2IGNsYXNzPVwiZm9vXCI+Zm9vPC9kaXY+XG4gIDxkaXYgY2xhc3M9XCJmb29cIj5mb288L2Rpdj5cbiAgPGRpdiBjbGFzcz1cImZvb1wiPmZvbzwvZGl2PlxuICA8ZGl2IGNsYXNzPVwiZm9vXCI+Zm9vPC9kaXY+XG4gIDxkaXYgY2xhc3M9XCJmb29cIj5mb288L2Rpdj5cbiAgPGRpdj57eyBkeW5hbWljIH19PC9kaXY+XG48L2Rpdj4iLCJzc3IiOmZhbHNlLCJvcHRpb25zIjp7ImhvaXN0U3RhdGljIjp0cnVlfX0=))。这些景泰街店会直接通过 `innerHTML` 来设置。同时还会在初次渲染后缓存相应的 DOM 节点。如果这部分内容在应用中其他地方被重用，那么将会使用原生的 `cloneNode()` 方法来克隆新的 DOM 节点，这会非常高效。
+此外，当有足够多连续的静态元素时，它们还会再被压缩为一个 “静态 vnode”，其中包含的是这些节点相应的纯 HTML字符串。（[示例](https://vue-next-template-explorer.netlify.app/#eyJzcmMiOiI8ZGl2PlxuICA8ZGl2IGNsYXNzPVwiZm9vXCI+Zm9vPC9kaXY+XG4gIDxkaXYgY2xhc3M9XCJmb29cIj5mb288L2Rpdj5cbiAgPGRpdiBjbGFzcz1cImZvb1wiPmZvbzwvZGl2PlxuICA8ZGl2IGNsYXNzPVwiZm9vXCI+Zm9vPC9kaXY+XG4gIDxkaXYgY2xhc3M9XCJmb29cIj5mb288L2Rpdj5cbiAgPGRpdj57eyBkeW5hbWljIH19PC9kaXY+XG48L2Rpdj4iLCJzc3IiOmZhbHNlLCJvcHRpb25zIjp7ImhvaXN0U3RhdGljIjp0cnVlfX0=))。这些静态节点会直接通过 `innerHTML` 来设置。同时还会在初次渲染后缓存相应的 DOM 节点。如果这部分内容在应用中其他地方被重用，那么将会使用原生的 `cloneNode()` 方法来克隆新的 DOM 节点，这会非常高效。
 
 ### 修补标记 Flags {#patch-flags}
 
@@ -109,7 +111,7 @@ createElementVNode("div", {
 }, null, 2 /* CLASS */)
 ```
 
-最后这个参数 `2` 就是一个 [修补标记（patch flag）](https://github.com/vuejs/vue-next/blob/master/packages/shared/src/patchFlags.ts)。一个元素可以有多个修补标记，会被合并到一个数字。运行时渲染器也将会使用 [位运算](https://en.wikipedia.org/wiki/Bitwise_operation) 来检查这些标记，确定相应的更新操作：
+最后这个参数 `2` 就是一个 [修补标记（patch flag）](https://github.com/vuejs/core/blob/main/packages/shared/src/patchFlags.ts)。一个元素可以有多个修补标记，会被合并到一个数字。运行时渲染器也将会使用 [位运算](https://en.wikipedia.org/wiki/Bitwise_operation) 来检查这些标记，确定相应的更新操作：
 
 ```js
 if (vnode.patchFlag & PatchFlags.CLASS /* 2 */) {

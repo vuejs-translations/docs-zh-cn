@@ -2,7 +2,9 @@
 
 <script setup>
 const vFocus = {
-  mounted: el => el.focus()
+  mounted: el => {
+    el.focus()
+  }
 }
 </script>
 
@@ -10,7 +12,7 @@ const vFocus = {
 
 除了 Vue 内置的一系列指令（比如 `v-model` 或 `v-show`）之外，Vue 还允许你注册自定义的指令。
 
-我们已经介绍过了两种 Vue 中重用逻辑的方式：[组件](/guide/essentials/component-basics.html) 和 [可组合函数](./composables)。组件主要关注构建视图区块，而可组合函数关注与有状态的逻辑。自定义指令则主要是封装了可重用的对底层 DOM 访问的逻辑。
+我们已经介绍过了两种 Vue 中重用逻辑的方式：[组件](/guide/essentials/component-basics.html) 和 [可组合函数](./composables)。组件主要关注构建视图区块，而可组合函数关注于有状态的逻辑。自定义指令则主要是封装了可重用的对底层 DOM 访问的逻辑。
 
 一个自定义指令被定义为一个包含类似于组件的生命周期钩子的对象。钩子接收指令绑定到的元素。下面是一个自定义指令的例子，当元素被 Vue 插入到 DOM 中时，会聚焦一个 input 元素：
 
@@ -98,7 +100,7 @@ app.directive('focus', {
 ```
 
 :::tip
-只有当所需功能只能通过直接 DOM 操作来实现时，才应该使用自定义指令。尽可能使用声明式的模板、使用内置指令例如 `v-bind`，因为这更高效、更对服务端渲染友好。
+只有当所需功能只能通过直接 DOM 操作来实现时，才应该使用自定义指令。尽可能使用声明式的模板、使用内置指令例如 `v-bind`，因为这更高效、对服务端渲染更友好。
 :::
 
 ## 指令钩子 {#directive-hooks}
@@ -137,6 +139,7 @@ const myDir = {
 - `el`：指令绑定到的元素。这可以用于直接操作 DOM。
 
 - `binding`：一个对象，包含以下属性
+
   - `value`：传递给指令的值。例如 `v-my-directive="1 + 1"` 之中，值就是 `2`。
   - `oldValue`：之前的值，仅在 `beforeUpdate` 和 `updated` 中可用。无论值是否更改，它都可用。
   - `arg`：传递给指令的参数，例如 `v-my-directive:foo` 之中，参数就是 `"foo"`。
@@ -160,7 +163,7 @@ const myDir = {
   arg: 'foo',
   modifiers: { baz: true },
   value: /* `baz` 的值 */,
-  oldValue: /* 上一次更新后时`baz` 的值 */
+  oldValue: /* 上一次更新时 `baz` 的值 */
 }
 ```
 
@@ -176,7 +179,7 @@ const myDir = {
 除了 `el` 外，你应该将这些参数都视为只读的，并一律不更改它们。若你需要在不同的钩子间共享信息，推荐方法是通过元素的 [dataset](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/dataset) attribute。
 :::
 
-## 简化形式 {#function-shorthand} {#function-shorthand}
+## 简化形式 {#function-shorthand}
 
 对于自定义指令来说，`mounted` 和 `updated` 需要相同的行为、又并不关心其他钩子的情况很常见。在这种时候，此时你可以将指令定义成一个下面这样的函数：
 
@@ -191,7 +194,7 @@ app.directive('color', (el, binding) => {
 })
 ```
 
-## 对象字面量 {#object-literals} {#object-literals}
+## 对象字面量 {#object-literals}
 
 如果你的指令需要多个值，你可以向它传递一个 JavaScript 对象字面量。请记住，指令也可以接收任何合法的 JavaScript 表达式。
 
@@ -206,7 +209,7 @@ app.directive('demo', (el, binding) => {
 })
 ```
 
-## 在组件上使用 {#usage-on-components} {#usage-on-components}
+## 在组件上使用 {#usage-on-components}
 
 当在组件上使用自定义指令时，它会始终应用于组件的根节点，和 [透传 attributes](/guide/components/attrs.html) 类似。
 

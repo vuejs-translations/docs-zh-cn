@@ -26,7 +26,7 @@ jobs:
       - run: pnpm run build
 
       - run: |
-          cd src/.vitepress/dist
+          cd .vitepress/dist
           git init
           git config user.email "yyx990803@gmail.com"
           git config user.name "Evan You"

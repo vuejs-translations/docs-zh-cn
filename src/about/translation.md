@@ -4,9 +4,20 @@ aside: deep
 
 # 翻译说明
 
-这一章是专门提供给 Vue 中文文档的翻译贡献者阅读的，请确保在参与贡献前先阅读完此章节。这里的内容暂时由 [ShenQingchuan](https://github.com/ShenQingchuan) 个人撰写，如果对其中的讨论有其他想法或建议和意见，欢迎在 issue 和 discussion 区进行交流，促进我们改进。
+该中文文档翻译由 [@ShenQingchuan](https://github.com/ShenQingchuan) 个人发起，随后作为 Vue 官方认可的中文翻译仓库，以团队的形式进行官方维护。最新的代码仓库链接是：https://github.com/vuejs-translations/docs-zh-cn
+
+## 翻译须知
+
+请移步至官方仓库的 [wiki 页面](https://github.com/vuejs-translations/docs-zh-cn/wiki/%E7%BF%BB%E8%AF%91%E9%A1%BB%E7%9F%A5)查阅。
+
+## 协作指南
+
+请移步至官方仓库的 [wiki 页面](https://github.com/vuejs-translations/docs-zh-cn/wiki/%E5%8D%8F%E4%BD%9C%E6%8C%87%E5%8D%97)查阅。
 
 > 编写文档是一种换位思考的练习。我们并不是在描述客观现实，那是源代码已经做到了的。我们的工作是帮助塑造用户与 Vue 生态系统之间的关系。
+
+<details>
+<summary>原版翻译说明，仅供备忘和归档</summary>
 
 ## 基本原则
 
@@ -278,3 +289,5 @@ Vitepress 和 Vuepress 中对以上两种写法的渲染视觉效果为：
 但也有需要注意的例外情况：若按上面的方式为一篇文章的所有标题行都生成了标记，但文章中出现了两个相同的标记，比如 “类和 CSS 样式” 章节中的 “绑定对象” 小节，可以为其加上数字标记，保证其在文章中的唯一性。
 
 此外，由于文章的总标题也被加上了锚点标记，导致在开发环境下，浏览器的标签页上会看到标记。但在构建发布时，我们运行了一个脚本，为文档的 frontmatter 中添加了不含标记的 `title`，因此读者将不会看到该标记。
+
+</details>

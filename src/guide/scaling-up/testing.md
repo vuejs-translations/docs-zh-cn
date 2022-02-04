@@ -156,7 +156,7 @@ export default defineConfig({
 
 ```js
 // MyComponent.test.js
-import { render } from '@vue/testing-library'
+import { render } from '@testing-library/vue'
 import MyComponent from './MyComponent.vue'
 
 test('这应该会成功！', () => {
