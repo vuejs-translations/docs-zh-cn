@@ -160,9 +160,9 @@ data() {
 
 ### 受限的全局访问 {#restricted-globals-access}
 
-模板中的表达式将被沙盒化，仅能够访问到 [有限的全局对象列表](https://github.com/vuejs/vue-next/blob/master/packages/shared/src/globalsWhitelist.ts#L3)。该列表中通常会暴露内置全局对象，比如 `Math` 和 `Date`。
+模板中的表达式将被沙盒化，仅能够访问到[有限的全局对象列表](https://github.com/vuejs/vue-next/blob/master/packages/shared/src/globalsWhitelist.ts#L3)。该列表中会暴露常用的内置全局对象，比如 `Math` 和 `Date`。
 
-没有显式包含在列表中的全局对象将在模板内表达式中不可访问，例如用户附加在 `window` 上的属性。如果你确定要这样做，也可以自行在 [`app.config.globalProperties`](/api/application.html#app-config-globalproperties) 上显式地添加他们，供所有 Vue 表达式使用。
+没有显式包含在列表中的全局对象将不能在模板内表达式中访问，例如用户附加在 `window` 上的 property。然而，你也可以自行在 [`app.config.globalProperties`](/api/application.html#app-config-globalproperties) 上显式地添加他们，供所有的 Vue 表达式使用。
 
 ## 指令 {#directives}
 
@@ -187,7 +187,7 @@ data() {
 <a :href="url"> ... </a>
 ```
 
-这里 `href` 就是一个参数，它告诉 `v-bind` 指令绑定表达式值 `url` 到元素的 `href` attribute 上。在缩写中，参数前的一切（例如 `v-bind:`）都会被缩略为一个 `:` 字符。
+这里 `href` 就是一个参数，它告诉 `v-bind` 指令将表达式 `url` 的值绑定到元素的 `href` attribute 上。在缩写中，参数前的一切 (例如 `v-bind:`) 都会被缩略为一个 `:` 字符。
 
 另一个例子是 `v-on` 指令，它将监听 DOM 事件：
 
@@ -207,7 +207,7 @@ data() {
 ```vue-html
 <!--
 注意，参数表达式有一些约束，
-参见下面 “动态参数表达式约束” 一节的解释
+参见下面“动态参数表达式约束”一节的解释
 -->
 <a v-bind:[attributeName]="url"> ... </a>
 
@@ -215,9 +215,9 @@ data() {
 <a :[attributeName]="url"> ... </a>
 ```
 
-这里的 `attributeName` 会作为一个 JavaScript 表达式被动态执行，计算得到的值会被用作最终的参数。举个例子，如果你的组件实例有一个数据属性 `attributeName`，其值为 `"href"`，那么这个绑定就等价于 `v-bind:href`。
+这里的 `attributeName` 会作为一个 JavaScript 表达式被动态执行，计算得到的值会被用作最终的参数。举个例子，如果你的组件实例有一个数据 property `attributeName`，其值为 `"href"`，那么这个绑定就等价于 `v-bind:href`。
 
-相似地，你还可以绑定一个函数到动态的事件名称上：
+相似地，你还可以将一个函数绑定到动态的事件名称上：
 
 ```vue-html
 <a v-on:[eventName]="doSomething"> ... </a>
@@ -241,9 +241,9 @@ data() {
 <a :['foo' + bar]="value"> ... </a>
 ```
 
-如果你需要传入一个复杂的动态参数，我们推荐使用 [计算属性](computed.html) 替换复杂的表达式，也是 Vue 最基础的概念之一，我们很快就会讲到。
+如果你需要传入一个复杂的动态参数，我们推荐使用[计算属性](computed.html)替换复杂的表达式，也是 Vue 最基础的概念之一，我们很快就会讲到。
 
-当使用 DOM 内嵌模板（直接写在 HTML 文件里的模板）时，我们需要避免在名称中使用大写字母，因为浏览器会强制将其转换为小写：
+当使用 DOM 内嵌模板 (直接写在 HTML 文件里的模板) 时，我们需要避免在名称中使用大写字母，因为浏览器会强制将其转换为小写：
 
 ```vue-html
 <a :[someAttr]="value"> ... </a>
