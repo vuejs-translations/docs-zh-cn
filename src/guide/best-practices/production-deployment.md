@@ -2,20 +2,20 @@
 
 ## 开发环境 vs. 生产环境 {#development-vs-production}
 
-在开发过程中，Vue 提供了许多功能来帮助提升开发体验：
+在开发过程中，Vue 提供了许多功能来提升开发体验：
 
-- 对常见错误和陷阱的警告
-- props / 事件校验
+- 对常见错误和隐患的警告
+- props / 事件 校验
 - 响应性调试钩子
 - 开发工具集成
 
-然而，这些功能在生产中并没有作用。一些警告检查也会产生少量的性能开销。当部署到生产中时，我们应该跳过所有未使用的、仅供开发的代码分支，以获得更小的载荷体积和更好的性能。
+然而，这些功能会在生产环境中变得无意义。一些警告检查也会产生少量的性能开销。当部署到生产环境中时，我们应该移除所有未使用的、仅用于开发环境的代码分支，来获得更小的包体积和更好的性能。
 
 ## 不使用构建工具 {#without-build-tools}
 
-如果你没有使用任何构建工具，而是从 CDN 或其他源中加载而获取 Vue，请确保在部署时使用的是生产环境版本（以 `.prod.js` 结尾的发行文件）。生产环境版本会被最小化，并移除掉了所有仅供开发环境使用的代码分支
+如果你没有使用任何构建工具，而是从 CDN 或其他源来加载 Vue，请确保在部署时使用的是生产环境版本（以 `.prod.js` 结尾的发行文件）。生产环境版本会被最小化，并移除掉所有仅用于开发环境使用的代码分支。
 
-- 如果需要是全局变量版本（通过 `Vue` 全局变量访问）：请使用 `vue.global.prod.js`。
+- 如果需要使用全局变量版本（通过 `Vue` 全局变量访问）：请使用 `vue.global.prod.js`。
 - 如果需要 ESM 版本（通过原生 ESM 导入访问）：请使用 `vue.esm-browser.prod.js`。
 
 更多细节请参考 [发行文件指南](https://github.com/vuejs/core/tree/main/packages/vue#which-dist-file-to-use)。
@@ -48,4 +48,4 @@ app.config.errorHandler = (err, instance, info) => {
 }
 ```
 
-像 [Sentry](https://docs.sentry.io/platforms/javascript/guides/vue/) 和 [Bugsnag](https://docs.bugsnag.com/platforms/javascript/vue/) 这样的服务也为 Vue 提供官方集成。
+诸如 [Sentry](https://docs.sentry.io/platforms/javascript/guides/vue/) 和 [Bugsnag](https://docs.bugsnag.com/platforms/javascript/vue/) 等服务也为 Vue 提供了官方集成。
