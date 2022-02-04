@@ -26,7 +26,7 @@ import App from './App.vue'
 const app = createApp(App)
 ```
 
-虽然本指引中的许多示例只需要一个组件，但大多数真实的应用都是由一颗嵌套的、可重用的组件树组成的。例如，待办事项应用程序的组件树可能是这样的：
+虽然本指南中的许多示例只需要一个组件，但大多数真实的应用都是由一颗嵌套的、可重用的组件树组成的。例如，待办事项应用程序的组件树可能是这样的：
 
 ```
 App (root component)
@@ -39,7 +39,7 @@ App (root component)
    └─ TodoStatistics
 ```
 
-我们会在指引的后续章节中讨论如何定义和组合多个组件。在那之前，我们得先关注一个组件内到底发生了什么。
+我们会在指南的后续章节中讨论如何定义和组合多个组件。在那之前，我们得先关注一个组件内到底发生了什么。
 
 ## 挂载应用 {#mounting-the-app}
 
@@ -100,7 +100,7 @@ app.config.errorHandler = (err) => {
 app.component('TodoDeleteButton', TodoDeleteButton)
 ```
 
-这使得 `TodoDeleteButton` 在应用的任何地方都是可用的。我们会在指引的后续章节中讨论关于组件和其他资源的注册。你也可以在 [API 参考](/api/application)中浏览应用实例 API 的完整列表。
+这使得 `TodoDeleteButton` 在应用的任何地方都是可用的。我们会在指南的后续章节中讨论关于组件和其他资源的注册。你也可以在 [API 参考](/api/application)中浏览应用实例 API 的完整列表。
 
 确保在挂载应用实例之前完成所有应用配置！
 
