@@ -2,23 +2,23 @@
 
 Vue 使用一种基于 HTML 的模板语法，使我们能够声明式地将其组件实例的数据绑定到呈现的 DOM 上。所有的 Vue 模板都是语法上合法的 HTML，可以被符合规范的浏览器和 HTML 解析器解析。
 
-Vue 会在底层机制中将模板编译成高度优化的 JavaScript 代码。结合响应式系统，当应用状态变更时，Vue 能够智能地计算出需要重新渲染组件的最小数量，并应用在最少的 DOM 上。
+在底层机制中，Vue 会将模板编译成高度优化的 JavaScript 代码。结合响应式系统，当应用状态变更时，Vue 能够智能地推导出需要重新渲染的组件的最少数量，并应用最少的 DOM 操作。
 
-如果你对虚拟 DOM 概念比较熟悉，并且也喜欢 JavaScript 的原始力量，你也可以 利用 JSX [直接手写渲染函数](/guide/extras/render-function.html) 而不采用模板。但请注意这将不会享受到和模板同等级别的编译时优化。
+如果你对虚拟 DOM 的概念比较熟悉，并且偏向于 JavaScript 的原始力量，你也可以结合可选的 JSX 支持[直接手写渲染函数](/guide/extras/render-function.html)而不采用模板。但请注意，这将不会享受到和模板同等级别的编译时优化。
 
 ## 文本插值 {#text-interpolation}
 
-最基本的数据绑定形式是文本插值，它使用的是 “Mustache” 语法（即双大括号）：
+最基本的数据绑定形式是文本插值，它使用的是“Mustache”语法 (即双大括号)：
 
 ```vue-html
 <span>Message: {{ msg }}</span>
 ```
 
-Mustaches 标签会被替换为相应组件实例中 `msg` 属性的值。同时每次 `msg` 属性更改时它也会同步更新。
+双大括号标签会被替换为相应组件实例中 `msg` property 的值。同时每次 `msg` property 更改时它也会同步更新。
 
 ## 原始 HTML {#raw-html}
 
-双大括号将会把数据插值为纯文本，而不是 HTML。若想插入 HTML，你需要使用到 [`v-html` 指令](/api/built-in-directives.html#v-html)：
+双大括号将会将数据插值为纯文本，而不是 HTML。若想插入 HTML，你需要使用 [`v-html` 指令](/api/built-in-directives.html#v-html)：
 
 ```vue-html
 <p>Using text interpolation: {{ rawHtml }}</p>
@@ -34,9 +34,9 @@ Mustaches 标签会被替换为相应组件实例中 `msg` 属性的值。同时
   <p>Using v-html directive: <span v-html="rawHtml"></span></p>
 </p>
 
-这里我们遇到了一个新东西。这里看到的 `v-html` attribute 被叫做一个 **指令**。指令由 `v-` 作前缀，表明它们是一些由 Vue 提供的特殊 attribuite。你可能已经猜到了，它的作用就是应用响应式变更来渲染 DOM。这里我们做的事情简单来说就是：在当前组件实例上，将此 span 元素的 innerHTML 与 `rawHtml` 属性保持同步。
+这里我们遇到了一个新的概念。这里看到的 `v-html` attribute 被称为一个**指令**。指令由 `v-` 作为前缀，表明它们是一些由 Vue 提供的特殊 attribuite，你可能已经猜到了，它们将为渲染的 DOM 应用特殊的响应式行为。这里我们做的事情简单来说就是：在当前组件实例上，将此 span 元素的 innerHTML 与 `rawHtml` property 保持同步。
 
-`span` 的内容将会被替换为 `rawHtml` 属性的值，插值为纯 HTML，数据绑定将会被忽略。注意，你不能使用 `v-html` 来拼接组合模板，因为 Vue 不是一个基于字符串的模板引擎。相反，组件更应该作为 UI 重用和组合的基本单元。
+`span` 的内容将会被替换为 `rawHtml` property 的值，插值为纯 HTML——数据绑定将会被忽略。注意，你不能使用 `v-html` 来拼接组合模板，因为 Vue 不是一个基于字符串的模板引擎。相反，组件应该作为 UI 重用和组合的基本单元。
 
 :::warning 安全警告
 在网站上动态渲染任意 HTML 是非常危险的，因为这非常容易造成 [XSS 漏洞](https://en.wikipedia.org/wiki/Cross-site_scripting)。请仅在内容安全可信时再使用 `v-html`，并且 **永远不要** 使用用户提供的 HTML 内容。
@@ -50,7 +50,7 @@ Mustaches 不能被用在 HTML attributes 中。相应的，应该使用 [`v-bin
 <div v-bind:id="dynamicId"></div>
 ```
 
-`v-bind` 指令指示 Vue 保留元素的 `id` attribute 并使其值域组件的 `dynamicId` 属性保持一致。如果绑定的值是 `null` 或者 `undefined` 那么该 attribute 将会在渲染的元素上被移除。
+`v-bind` 指令指示 Vue 将元素的 `id` attribute 与组件的 `dynamicId` property 保持一致。如果绑定的值是 `null` 或者 `undefined`，那么该 attribute 将会从渲染的元素上移除。
 
 ### 缩写 {#shorthand}
 
@@ -62,13 +62,13 @@ Mustaches 不能被用在 HTML attributes 中。相应的，应该使用 [`v-bin
 
 开头为 `:` 的 attribute 可能和一般的 HTML attribute 看起来不太一样，但它的确是合法的 attribute 名称字符，并且所有支持 Vue 的浏览器都能正确解析它。此外，他们不会出现在最终渲染的标签中。缩写语法是可选的，但相信在你了解了它更多的用处后，你应该会更喜欢它。
 
-> 接下来的指引中，我们都将在示例中使用缩写语法，因为大多数 Vue 开发者都会这样使用。
+> 接下来的指引中，我们都将在示例中使用缩写语法，因为这是在 Vue 开发者之间最常见的用法。
 
 ### 布尔型 Attribute {#boolean-attributes}
 
-[布尔型 attribute](https://html.spec.whatwg.org/multipage/common-microsyntaxes.html#boolean-attributes) 就那些依据 true/false 值决定是否应该在该元素上存在的 attribute。[`disabled`](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/disabled) 就是一个最常见的例子之一。
+[布尔型 attribute](https://html.spec.whatwg.org/multipage/common-microsyntaxes.html#boolean-attributes) 就那些依据 true/false 值决定是否应该在该元素上存在的 attribute。[`disabled`](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/disabled) 就是最常见的例子之一。
 
-当 attribute 为布尔值时，它们只要存在就意味着 `true`，因此 `v-bind` 也有一点点不同。举个例子：
+`v-bind` 在这种场景下的行为不太一样：
 
 ```vue-html
 <button :disabled="isButtonDisabled">Button</button>
@@ -105,7 +105,7 @@ data() {
 
 </div>
 
-通过不给 `v-bind` 传参，你可以直接将该对象多个属性绑定到整个元素上：
+通过不带参数的 `v-bind`，你可以将它们绑定到单个元素上：
 
 ```vue-html
 <div v-bind="objectOfAttrs"></div>
@@ -134,7 +134,7 @@ data() {
 
 ### 仅支持表达式
 
-每个绑定仅支持 **单一表达式**，所以下面的例子都是 **无效** 的：
+每个绑定仅支持**单一表达式**，所以下面的例子都是**无效**的：
 
 ```vue-html
 <!-- 这是一个语句，而非表达式 -->
@@ -155,7 +155,7 @@ data() {
 ```
 
 :::tip
-绑定在表达式中的方法在组件每次更新时都会被重新调用，因此 **不应该** 产生任何副作用，比如改变数据或触发异步操作。
+绑定在表达式中的方法在组件每次更新时都会被重新调用，因此**不**应该产生任何副作用，比如改变数据或触发异步操作。
 :::
 
 ### 受限的全局访问 {#restricted-globals-access}
@@ -166,9 +166,9 @@ data() {
 
 ## 指令 {#directives}
 
-指令是带有 `v-` 前缀的特殊 attribute。Vue 提供了许多 [内置指令](/api/built-in-directives.html)，包括上面我们介绍到的 `v-bind` 和 `v-html`。
+指令是带有 `v-` 前缀的特殊 attribute。Vue 提供了许多[内置指令](/api/built-in-directives.html)，包括上面我们所介绍的 `v-bind` 和 `v-html`。
 
-指令 attribute 的值期望为一个 JavaScript 表达式（之后要讨论到的 `v-for` 和 `v-on` 将会是例外）。使用指令是为了在其表达式值变化时响应式地对 DOM 应用更新。以 [`v-if`](/api/built-in-directives.html#v-if) 为例：
+指令 attribute 的期望值为一个 JavaScript 表达式 (之后要讨论到的 `v-for` 和 `v-on` 将会是例外)。使用指令是为了在其表达式值变化时响应式地对 DOM 应用更新。以 [`v-if`](/api/built-in-directives.html#v-if) 为例：
 
 ```vue-html
 <p v-if="seen">Now you see me</p>
@@ -178,7 +178,7 @@ data() {
 
 ### 参数 {#arguments}
 
-某些指令会需要一个 “参数”，在指令名后通过一个冒号隔开做标识。例如 `v-bind` 指令被用来响应式的更新一个 HTML attribute：
+某些指令会需要一个“参数”，在指令名后通过一个冒号隔开做标识。例如用 `v-bind` 指令来响应式地更新一个 HTML attribute：
 
 ```vue-html
 <a v-bind:href="url"> ... </a>
