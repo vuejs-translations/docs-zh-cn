@@ -82,11 +82,11 @@ const app = createApp({
 app.mount('#app')
 ```
 
-当根组件没有设置 `template` 选项的值时 ，Vue 将自动使用容器的 `innerHTML` 作为模板。
+当根组件没有设置 `template` 选项时，Vue 将自动使用容器的 `innerHTML` 作为模板。
 
 ## 应用配置 {#app-configurations}
 
-应用实例会暴露一个 `.config` 对象来让我们能够配置一些应用级的选项，例如定义一个应用级的错误处理器，它将捕获所有由子组件上抛而未被处理的错误：
+应用实例会暴露一个 `.config` 对象允许我们配置一些应用级的选项，例如定义一个应用级的错误处理器，它将捕获所有由子组件上抛而未被处理的错误：
 
 ```js
 app.config.errorHandler = (err) => {
@@ -100,13 +100,13 @@ app.config.errorHandler = (err) => {
 app.component('TodoDeleteButton', TodoDeleteButton)
 ```
 
-这使得 `TodoDeleteButton` 在应用的任何地方都是可用的。我们会在指引的后续章节中讨论关于组件和其他资源的注册。你也可以在 [API 参考](/api/application) 中浏览应用实例 API 的完整列表。
+这使得 `TodoDeleteButton` 在应用的任何地方都是可用的。我们会在指引的后续章节中讨论关于组件和其他资源的注册。你也可以在 [API 参考](/api/application)中浏览应用实例 API 的完整列表。
 
 确保在挂载应用实例之前完成所有应用配置！
 
 ## 多个应用实例 {#multiple-app-instances}
 
-你不必再受限于一个页面只能拥有一个应用实例。`createApp` API 允许多个 Vue 应用共存于同一个页面上，它们每一个都是隔离的，有自己的配置和全局资源。
+你不必再受限于一个页面只能拥有一个应用实例。`createApp` API 允许多个 Vue 应用共存于同一个页面上，而且每个应用都拥有自己的用于配置和全局资源的作用域。
 
 ```js
 const app1 = createApp({
