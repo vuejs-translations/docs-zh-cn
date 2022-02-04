@@ -250,7 +250,7 @@ data() {
 ```
 
 上面的例子将会在 DOM 内嵌模板中被转换为 `:[someattr]`。
-如果你的组件有的是 “someAttr” 属性而非 “someattr”，
+如果你的组件拥有 “someAttr” property 而非 “someattr”，
 这段代码将不会工作。
 
 ### 修饰符 {#modifiers}
