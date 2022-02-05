@@ -1,10 +1,10 @@
 # 组件事件 {#component-events}
 
-> 阅读此章节时，我们假设你已经读过 [组件基础](/guide/essentials/component-basics)，若你对组件还完全不了解，请先阅读它。
+> 阅读此章节时，我们假设你已经读过[组件基础](/guide/essentials/component-basics)，若你对组件还完全不了解，请先阅读它。
 
 ## 抛出与监听事件 {#emitting-and-listening-to-events}
 
-一个组件可以在模板的表达式中使用 `$emit` 函数直接抛出自定义事件（例如：在 `v-on` 的事件处理器中）：
+一个组件可以在模板的表达式中使用 `$emit` 函数直接抛出自定义事件 (例如：在 `v-on` 的事件处理器中)：
 
 ```vue-html
 <!-- MyComponent -->
@@ -17,7 +17,7 @@
 
 </div>
 
-父组件可以通过 `v-on`（缩写为 `@`）来监听事件：
+父组件可以通过 `v-on` (缩写为 `@`) 来监听事件：
 
 ```vue-html
 <MyComponent @some-event="callback" />
@@ -29,10 +29,10 @@
 <MyComponent @some-event.once="callback" />
 ```
 
-和组件与 props 一样，事件的名字也会作自动的转换。注意我们抛出的是一个名字是 camelCase 形式的事件，但可以在父组件中使用 kebab-case 形式来监听。和 [props 大小写格式](/guide/components/props.html#prop-name-casing) 一样，我们也推荐在模板中书写监听器时使用 kebab-case 形式。
+和组件与 props 一样，事件的名字也会作自动的转换。注意我们抛出的是一个名字是 camelCase 形式的事件，但可以在父组件中使用 kebab-case 形式来监听。和 [props 大小写格式](/guide/components/props.html#prop-name-casing)一样，我们也推荐在模板中书写监听器时使用 kebab-case 形式。
 
 :::tip
-和原生 DOM 事件不太一样，组件抛出的事件 **不会冒泡**。你只可以监听一个组件的直接子组件中抛出的事件。
+和原生 DOM 事件不太一样，组件抛出的事件**不会冒泡**。你只可以监听一个组件的直接子组件中抛出的事件。
 :::
 
 ## 事件参数 {#event-arguments}
@@ -45,7 +45,7 @@
 </button>
 ```
 
-然后我们在父组件中监听事件，我们可以先简单写一个内联的箭头函数作为监听器，此时可以访问到事件附带的参数:
+然后我们在父组件中监听事件，我们可以先简单写一个内联的箭头函数作为监听器，此时可以访问到事件附带的参数：
 
 ```vue-html
 <MyButton @increase-by="(n) => count += n" />
@@ -86,7 +86,7 @@ function increaseCount(n) {
 
 ## 声明抛出的事件 {#declaring-emitted-events}
 
-组件要抛出的事件可以显式地通过 <span class="composition-api">[`defineEmits()`](/api/sfc-script-setup.html#defineprops-defineemits) 宏</span><span class="options-api">[`emits`](/api/options-state.html#emits) 选项</span> 来声明。
+组件要抛出的事件可以显式地通过 <span class="composition-api">[`defineEmits()`](/api/sfc-script-setup.html#defineprops-defineemits) 宏</span><span class="options-api">[`emits`](/api/options-state.html#emits) 选项</span>来声明。
 
 <div class="composition-api">
 
@@ -162,14 +162,14 @@ export default {
 }
 ```
 
-你也可以看看这一章了解 [如何为组件所抛出事件标注类型](/guide/typescript/options-api.html#typing-component-emits)。 <sup class="vt-badge ts">TS</sup>
+你也可以看看这一章了解[如何为组件所抛出事件标注类型](/guide/typescript/options-api.html#typing-component-emits)。<sup class="vt-badge ts">TS</sup>
 
 </div>
 
-尽管是可选的，我们还是推荐你定义所有要抛出的事件，以此更好地在代码中描述和呈现组件的作用。这也使得 Vue 能更好地将事件和 [透传 attribute](/guide/components/attrs.html#v-on-listener-inheritance) 作出区分。
+尽管是可选的，我们还是推荐你定义所有要抛出的事件，以此更好地在代码中描述和呈现组件的作用。这也使得 Vue 能更好地将事件和[透传 attribute](/guide/components/attrs.html#v-on-listener-inheritance) 作出区分。
 
 :::tip
-如果一个原生事件的名字（例如 `click`）被定义在 `emits` 选项中，则监听器只会监听组件发出的 `click` 事件而不会再响应原生的 `click` 事件。
+如果一个原生事件的名字 (例如 `click`) 被定义在 `emits` 选项中，则监听器只会监听组件发出的 `click` 事件而不会再响应原生的 `click` 事件。
 :::
 
 ## 事件校验 {#events-validation}
@@ -434,7 +434,7 @@ export default {
 
 ### 多个 `v-model` 绑定 {#multiple-v-model-bindings}
 
-通过我们刚才在 [`v-model` 参数] 小节中学到的，利用一个特定的 prop 和一个特定事件，可以在一个组件上创建多个 `v-model` 双向绑定：
+通过我们刚才在 [`v-model` 参数]小节中学到的，利用一个特定的 prop 和一个特定事件，可以在一个组件上创建多个 `v-model` 双向绑定：
 
 每一个 `v-model` 都会同步不同的 prop，而不需要在组件上写更多额外的选项：
 
@@ -507,7 +507,7 @@ export default {
 
 ### 处理 `v-model` 修饰符 {#handling-v-model-modifiers}
 
-当我们在学习输入绑定时，我们知道了 `v-model` 有一些 [内置的修饰符](/guide/essentials/forms.html#modifiers)，例如 `.trim`，`.number` 和 `.lazy`。然而在某些场景下，你可能想要添加自定义的修饰符。
+当我们在学习输入绑定时，我们知道了 `v-model` 有一些[内置的修饰符](/guide/essentials/forms.html#modifiers)，例如 `.trim`，`.number` 和 `.lazy`。然而在某些场景下，你可能想要添加自定义的修饰符。
 
 我们一起来创建一个自定义的修饰符 `capitalize`，它会自动将 `v-model` 绑定输入的字符串值第一个字母转为大写：
 

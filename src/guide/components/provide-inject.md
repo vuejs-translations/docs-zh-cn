@@ -1,6 +1,6 @@
 # 依赖注入 {#provide-inject}
 
-> 阅读此章节时，我们假设你已经读过 [组件基础](/guide/essentials/component-basics)，若你对组件还完全不了解，请先阅读它。
+> 阅读此章节时，我们假设你已经读过[组件基础](/guide/essentials/component-basics)，若你对组件还完全不了解，请先阅读它。
 
 ## Prop Drilling
 
@@ -10,9 +10,9 @@
 
 <!-- https://www.figma.com/file/yNDTtReM2xVgjcGVRzChss/prop-drilling -->
 
-这里的 `<Footer>` 组件可能其实根本不关心这些 props，但它仍然需要定义并将它们传递下去使得 `<DeepChild>` 能访问到这些 props，如果组件链路非常长，可能会影响到更多这条路上的组件。这一过程被称为 “prop drilling”，这似乎不太好解决。
+这里的 `<Footer>` 组件可能其实根本不关心这些 props，但它仍然需要定义并将它们传递下去使得 `<DeepChild>` 能访问到这些 props，如果组件链路非常长，可能会影响到更多这条路上的组件。这一过程被称为“prop drilling”，这似乎不太好解决。
 
-为解决这一问题，可以使用 `provide` 和 `inject`。（译者注：在本章及后续章节中，**”供给“** 将成为对应 Provide 的一个专有概念）一个父组件相对于其所有的后代组件，会作为 **依赖供给者**。任何后代的组件树，无论层级有多深，都可以 **注入** 由父组件供给给整条链路的依赖。
+为解决这一问题，可以使用 `provide` 和 `inject`。(译者注：在本章及后续章节中，**“供给”**将成为对应 Provide 的一个专有概念) 一个父组件相对于其所有的后代组件，会作为**依赖供给者**。任何后代的组件树，无论层级有多深，都可以**注入**由父组件供给给整条链路的依赖。
 
 ![Provide/inject 模式](./images/provide-inject.png)
 
@@ -44,7 +44,7 @@ export default {
 }
 ```
 
-`provide()` 函数接收两个参数。第一个参数被称为 **注入名**，可以是一个字符串或是一个 `Symbol`。后代组件会注入名用来查找期望注入的值。一个组件可以多次调用 `provide()` ，使用不同的注入名，注入不同的依赖值。
+`provide()` 函数接收两个参数。第一个参数被称为**注入名**，可以是一个字符串或是一个 `Symbol`。后代组件会注入名用来查找期望注入的值。一个组件可以多次调用 `provide()`，使用不同的注入名，注入不同的依赖值。
 
 第二个参数是供给的值，值可以是任意类型，包括响应式的状态，比如一个 ref：
 
@@ -73,7 +73,7 @@ export default {
 
 对于 `provide` 对象上的每一个属性，后代组件会用其 key 为注入名查找期望注入的值，属性的值就是要供给的数据。
 
-如果我们需要供给依赖当前组件实例的状态（比如那些由 `data()` 定义的数据属性），那么可以以函数形式使用 `provide`：
+如果我们需要供给依赖当前组件实例的状态 (比如那些由 `data()` 定义的数据属性)，那么可以以函数形式使用 `provide`：
 
 ```js{7-12}
 export default {
@@ -91,7 +91,7 @@ export default {
 }
 ```
 
-然而，请注意这 **不会** 使注入保持响应性。我们会在后续小节中讨论如何 [让注入转变为响应式](#working-with-reactivity)。
+然而，请注意这**不会**使注入保持响应性。我们会在后续小节中讨论如何[让注入转变为响应式](#working-with-reactivity)。
 
 </div>
 
@@ -107,7 +107,7 @@ const app = createApp({})
 app.provide(/* 注入名 */ 'message', /* 值 */ 'hello!')
 ```
 
-应用级的供给在应用的所有组件中都可以注入。这在你编写 [插件](/guide/reusability/plugins.html) 时会特别有用，因为插件一般都不会使用组件形式来供给值。
+应用级的供给在应用的所有组件中都可以注入。这在你编写[插件](/guide/reusability/plugins.html)时会特别有用，因为插件一般都不会使用组件形式来供给值。
 
 ## Inject (注入) {#inject}
 
@@ -123,7 +123,7 @@ const message = inject('message')
 </script>
 ```
 
-如果供给的值是一个 ref，注入进来的就是它本身，而 **不会** 自动解套。这使得被注入的组件保持了和供给者的响应性链接。
+如果供给的值是一个 ref，注入进来的就是它本身，而**不会**自动解套。这使得被注入的组件保持了和供给者的响应性链接。
 
 [带有响应性的供给 + 注入完整示例](https://sfc.vuejs.org/#eyJBcHAudnVlIjoiPHNjcmlwdCBzZXR1cD5cbmltcG9ydCB7IHJlZiwgcHJvdmlkZSB9IGZyb20gJ3Z1ZSdcbmltcG9ydCBDaGlsZCBmcm9tICcuL0NoaWxkLnZ1ZSdcblxuLy8gYnkgcHJvdmlkaW5nIGEgcmVmLCB0aGUgR3JhbmRDaGlsZFxuLy8gY2FuIHJlYWN0IHRvIGNoYW5nZXMgaGFwcGVuaW5nIGhlcmUuXG5jb25zdCBtZXNzYWdlID0gcmVmKCdoZWxsbycpXG5wcm92aWRlKCdtZXNzYWdlJywgbWVzc2FnZSlcbjwvc2NyaXB0PlxuXG48dGVtcGxhdGU+XG4gIDxpbnB1dCB2LW1vZGVsPVwibWVzc2FnZVwiPlxuICA8Q2hpbGQgLz5cbjwvdGVtcGxhdGU+IiwiaW1wb3J0LW1hcC5qc29uIjoie1xuICBcImltcG9ydHNcIjoge1xuICAgIFwidnVlXCI6IFwiaHR0cHM6Ly9zZmMudnVlanMub3JnL3Z1ZS5ydW50aW1lLmVzbS1icm93c2VyLmpzXCJcbiAgfVxufSIsIkNoaWxkLnZ1ZSI6IjxzY3JpcHQgc2V0dXA+XG5pbXBvcnQgR3JhbmRDaGlsZCBmcm9tICcuL0dyYW5kQ2hpbGQudnVlJ1xuPC9zY3JpcHQ+XG5cbjx0ZW1wbGF0ZT5cbiAgPEdyYW5kQ2hpbGQgLz5cbjwvdGVtcGxhdGU+IiwiR3JhbmRDaGlsZC52dWUiOiI8c2NyaXB0IHNldHVwPlxuaW1wb3J0IHsgaW5qZWN0IH0gZnJvbSAndnVlJ1xuXG5jb25zdCBtZXNzYWdlID0gaW5qZWN0KCdtZXNzYWdlJylcbjwvc2NyaXB0PlxuXG48dGVtcGxhdGU+XG4gIDxwPlxuICAgIE1lc3NhZ2UgdG8gZ3JhbmQgY2hpbGQ6IHt7IG1lc3NhZ2UgfX1cbiAgPC9wPlxuPC90ZW1wbGF0ZT4ifQ==)
 
@@ -155,7 +155,7 @@ export default {
 }
 ```
 
-注入会在组件自己的状态 **之前** 被解析，所以你可以在 `data()` 中访问到注入的属性：
+注入会在组件自己的状态**之前**被解析，所以你可以在 `data()` 中访问到注入的属性：
 
 ```js
 export default {
@@ -171,7 +171,7 @@ export default {
 
 [带有响应性的供给 + 注入完整示例](https://sfc.vuejs.org/#eyJBcHAudnVlIjoiPHNjcmlwdD5cbmltcG9ydCBDaGlsZCBmcm9tICcuL0NoaWxkLnZ1ZSdcblxuZXhwb3J0IGRlZmF1bHQge1xuICBjb21wb25lbnRzOiB7IENoaWxkIH0sXG4gIHByb3ZpZGUoKSB7XG4gICAgcmV0dXJuIHtcbiAgICAgIG1lc3NhZ2U6ICdoZWxsbydcbiAgICB9XG4gIH1cbn1cbjwvc2NyaXB0PlxuXG48dGVtcGxhdGU+XG4gIDxDaGlsZCAvPlxuPC90ZW1wbGF0ZT4iLCJpbXBvcnQtbWFwLmpzb24iOiJ7XG4gIFwiaW1wb3J0c1wiOiB7XG4gICAgXCJ2dWVcIjogXCJodHRwczovL3NmYy52dWVqcy5vcmcvdnVlLnJ1bnRpbWUuZXNtLWJyb3dzZXIuanNcIlxuICB9XG59IiwiQ2hpbGQudnVlIjoiPHNjcmlwdD5cbmltcG9ydCBHcmFuZENoaWxkIGZyb20gJy4vR3JhbmRDaGlsZC52dWUnXG5cbmV4cG9ydCBkZWZhdWx0IHtcbiAgY29tcG9uZW50czoge1xuICAgIEdyYW5kQ2hpbGRcbiAgfVxufVxuPC9zY3JpcHQ+XG5cbjx0ZW1wbGF0ZT5cbiAgPEdyYW5kQ2hpbGQgLz5cbjwvdGVtcGxhdGU+IiwiR3JhbmRDaGlsZC52dWUiOiI8c2NyaXB0PlxuZXhwb3J0IGRlZmF1bHQge1xuICBpbmplY3Q6IFsnbWVzc2FnZSddXG59XG48L3NjcmlwdD5cblxuPHRlbXBsYXRlPlxuICA8cD5cbiAgICBNZXNzYWdlIHRvIGdyYW5kIGNoaWxkOiB7eyBtZXNzYWdlIH19XG4gIDwvcD5cbjwvdGVtcGxhdGU+In0=)
 
-### 注入的别名 * {#injection-aliasing}
+### 注入的别名* {#injection-aliasing}
 
 当以数组形式使用 `inject`，注入的属性会以同名的 key 暴露到组件实例上。在上面的例子中，供给的属性名为 `"message"`，注入成了 `this.message`。访问属性的名字和注入名是相同的：<!--这里英文原文的 local 指代的就是访问 this.message 属性这一当前组件的局部状态，所以直接使用了 “访问属性的名字” 是为意译 -->
 
@@ -239,9 +239,11 @@ export default {
 
 <div class="composition-api">
 
-When using reactive provide / inject values, **it is recommended to keep any mutations to reactive state inside of the _provider_ whenever possible**. This ensures that the provided state and its possible mutations are co-located in the same component, making it easier to maintain in the future.
+<!-- TODO: translation -->
 
-There may be times where we need to update the data from a injector component. In such cases, we recommend providing a method that is responsible for mutating the state:
+When using reactive provide / inject values，**it is recommended to keep any mutations to reactive state inside of the _provider_ whenever possible**。This ensures that the provided state and its possible mutations are co-located in the same component，making it easier to maintain in the future。
+
+There may be times where we need to update the data from a injector component。In such cases，we recommend providing a method that is responsible for mutating the state：
 
 ```vue{7-9,13}
 <!-- inside provider component -->
@@ -274,7 +276,7 @@ const { location, updateLocation } = inject('location')
 </template>
 ```
 
-Finally, you can wrap the provided value with [`readonly()`](/api/reactivity-core.html#readonly) if you want to ensure that the data passed through `provide` cannot be mutated by the injected component.
+Finally，you can wrap the provided value with [`readonly()`](/api/reactivity-core.html#readonly) if you want to ensure that the data passed through `provide` cannot be mutated by the injected component。
 
 ```vue
 <script setup>
@@ -289,7 +291,7 @@ provide('read-only-count', readonly(count))
 
 <div class="options-api">
 
-为保证注入方和供给端的响应性链接，我们需要使用 [computed()](/api/reactivity-core.html#computed) 函数提供一个计算属性：
+为保证注入方和供给端的响应性链接，我们需要使用 [computed ()](/api/reactivity-core.html#computed) 函数提供一个计算属性：
 
 ```js{10}
 import { computed } from 'vue'
@@ -311,7 +313,7 @@ export default {
 
 [带有响应性的供给 + 注入完整示例](https://sfc.vuejs.org/#eyJBcHAudnVlIjoiPHNjcmlwdD5cbmltcG9ydCBDaGlsZCBmcm9tICcuL0NoaWxkLnZ1ZSdcbmltcG9ydCB7IGNvbXB1dGVkIH0gZnJvbSAndnVlJ1xuXG5leHBvcnQgZGVmYXVsdCB7XG4gIGNvbXBvbmVudHM6IHsgQ2hpbGQgfSxcbiAgZGF0YSgpIHtcbiAgICByZXR1cm4ge1xuICAgICAgbWVzc2FnZTogJ2hlbGxvJ1xuICAgIH1cbiAgfSxcbiAgcHJvdmlkZSgpIHtcbiAgICByZXR1cm4ge1xuICAgICAgbWVzc2FnZTogY29tcHV0ZWQoKCkgPT4gdGhpcy5tZXNzYWdlKVxuICAgIH1cbiAgfVxufVxuPC9zY3JpcHQ+XG5cbjx0ZW1wbGF0ZT5cbiAgPGlucHV0IHYtbW9kZWw9XCJtZXNzYWdlXCI+XG4gIDxDaGlsZCAvPlxuPC90ZW1wbGF0ZT4iLCJpbXBvcnQtbWFwLmpzb24iOiJ7XG4gIFwiaW1wb3J0c1wiOiB7XG4gICAgXCJ2dWVcIjogXCJodHRwczovL3NmYy52dWVqcy5vcmcvdnVlLnJ1bnRpbWUuZXNtLWJyb3dzZXIuanNcIlxuICB9XG59IiwiQ2hpbGQudnVlIjoiPHNjcmlwdD5cbmltcG9ydCBHcmFuZENoaWxkIGZyb20gJy4vR3JhbmRDaGlsZC52dWUnXG5cbmV4cG9ydCBkZWZhdWx0IHtcbiAgY29tcG9uZW50czoge1xuICAgIEdyYW5kQ2hpbGRcbiAgfVxufVxuPC9zY3JpcHQ+XG5cbjx0ZW1wbGF0ZT5cbiAgPEdyYW5kQ2hpbGQgLz5cbjwvdGVtcGxhdGU+IiwiR3JhbmRDaGlsZC52dWUiOiI8c2NyaXB0PlxuZXhwb3J0IGRlZmF1bHQge1xuICBpbmplY3Q6IFsnbWVzc2FnZSddXG59XG48L3NjcmlwdD5cblxuPHRlbXBsYXRlPlxuICA8cD5cbiAgICBNZXNzYWdlIHRvIGdyYW5kIGNoaWxkOiB7eyBtZXNzYWdlIH19XG4gIDwvcD5cbjwvdGVtcGxhdGU+In0=)
 
-`computed()` 函数常用于组合式 API 风格的组件中，但它同样还可以用于补充选项式 API 风格的某些用例。你可以通过阅读 [响应式系统基础](/guide/essentials/reactivity-fundamentals.html) 和 [计算属性](/guide/essentials/computed.html) 两个章节了解更多组合式的 API 风格。
+`computed()` 函数常用于组合式 API 风格的组件中，但它同样还可以用于补充选项式 API 风格的某些用例。你可以通过阅读[响应式系统基础](/guide/essentials/reactivity-fundamentals.html)和[计算属性](/guide/essentials/computed.html)两个章节了解更多组合式的 API 风格。
 
 :::warning 临时配置要求
 上面的用例需要设置 `app.config.unwrapInjectedRef = true` 以保证注入会自动解套这个计算属性。这将会在 Vue 3.3 后成为一个默认行为，而我们暂时在此告知此项配置以避免后续升级对代码的破坏性。在 3.3 后就不需要这样做了。
@@ -350,7 +352,7 @@ import { myInjectionKey } from './keys.js'
 const injected = inject(myInjectionKey)
 ```
 
-See also: [Typing Provide / Inject](/guide/typescript/composition-api.html#typing-provide-inject) <sup class="vt-badge ts">TS</sup>
+See also：[Typing Provide / Inject](/guide/typescript/composition-api.html#typing-provide-inject) <sup class="vt-badge ts">TS</sup>
 
 </div>
 

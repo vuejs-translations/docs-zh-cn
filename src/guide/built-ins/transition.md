@@ -8,7 +8,7 @@ import BetweenElements from './transition-demos/BetweenElements.vue'
 import BetweenComponents from './transition-demos/BetweenComponents.vue'
 </script>
 
-# Transition · 过渡 {#transition}
+# Transition·过渡 {#transition}
 
 Vue 提供了两个内置组件，可以帮助你制作基于状态变化的过渡和动画：
 
@@ -16,7 +16,7 @@ Vue 提供了两个内置组件，可以帮助你制作基于状态变化的过�
 
 - `<TransitionGroup>` 会在一个元素或组件被插入到 `v-for` 列表中，或是被移动或从其中移除时应用动画。我们将在下一章节中深入展开介绍它。
 
-除了这两个组件，我们也可以通过其他技术手段来应用动画，比如切换 CSS 类或用状态绑定样式来驱动动画。这些其他的方法会在 [动画技巧](/guide/extras/animation.html) 章节中展开介绍到。
+除了这两个组件，我们也可以通过其他技术手段来应用动画，比如切换 CSS 类或用状态绑定样式来驱动动画。这些其他的方法会在[动画技巧](/guide/extras/animation.html)章节中展开介绍到。
 
 ## `<Transition>` 组件 {#the-transition-component}
 
@@ -67,7 +67,7 @@ Vue 提供了两个内置组件，可以帮助你制作基于状态变化的过�
 
 当一个 `<Transition>` 组件中的元素被插入或移除时，会发生下面这些事情：
 
-1. Vue 会自动检测目标元素是否应用了 CSS 过渡或动画。如果是，则一些 [CSS 过渡类](#transition-classes) 会在适当的时机被添加和移除。
+1. Vue 会自动检测目标元素是否应用了 CSS 过渡或动画。如果是，则一些 [CSS 过渡类](#transition-classes)会在适当的时机被添加和移除。
 
 2. 如果有作为监听器的 [JavaScript 钩子](#javascript-hooks)，这些钩子函数会在适当时机被调用。
 
@@ -87,13 +87,13 @@ Vue 提供了两个内置组件，可以帮助你制作基于状态变化的过�
 
 2. `v-enter-active`：进入动画的生效状态，应用于整个进入动画阶段。这个 CSS 类在元素被插入之前被添加，在过渡/动画完成之后移除。这个类可以用来定义进入动画的持续时间、延迟与速度曲线类型。
 
-3. `v-enter-to`：进入动画的结束状态。这个 CSS 类在元素插入完成后的下一帧被添加（也就是 `v-enter-from` 被移除的同时），在过渡/动画完成之后移除。
+3. `v-enter-to`：进入动画的结束状态。这个 CSS 类在元素插入完成后的下一帧被添加 (也就是 `v-enter-from` 被移除的同时)，在过渡/动画完成之后移除。
 
 4. `v-leave-from`：离开动画的起始状态，在离开过渡效果被触发时立即添加，在一帧后被移除。
 
 5. `v-leave-active`：离开动画的生效状态，应用于整个离开动画阶段。在离开过渡效果被触发时立即添加，在过渡/动画完成之后移除。这个类可以用来定义离开动画的持续时间、延迟与速度曲线类型。
 
-6. `v-leave-to`：离开动画的结束状态。这个 CSS 类在一个离开动画被触发后的下一帧被添加（也就是 `v-leave-from` 被移除的同时），在过渡/动画完成之后移除。
+6. `v-leave-to`：离开动画的结束状态。这个 CSS 类在一个离开动画被触发后的下一帧被添加 (也就是 `v-leave-from` 被移除的同时)，在过渡/动画完成之后移除。
 
 `v-enter-active` 和 `v-leave-active` 给了我们为进入和离开动画指定不同速度曲线的能力，我们在下面的小节中将看到一个示例。
 
@@ -107,7 +107,7 @@ Vue 提供了两个内置组件，可以帮助你制作基于状态变化的过�
 </Transition>
 ```
 
-对于一个有名字的过渡，它的过渡相关 CSS 类会以其名字而不是 `v` 作为前缀。举个例子，上面被应用的 CSS 类将会是`fade-enter-active` 而不是 `v-enter-active`。这个 “fade” 过渡的 CSS 类将会是这样：
+对于一个有名字的过渡，它的过渡相关 CSS 类会以其名字而不是 `v` 作为前缀。举个例子，上面被应用的 CSS 类将会是 `fade-enter-active` 而不是 `v-enter-active`。这个“fade”过渡的 CSS 类将会是这样：
 
 ```css
 .fade-enter-active,
@@ -123,7 +123,7 @@ Vue 提供了两个内置组件，可以帮助你制作基于状态变化的过�
 
 ### CSS 的 transition {#css-transitions}
 
-`<Transition>` 一般都会搭配 [原生 CSS 过渡](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Transitions/Using_CSS_transitions) 一起使用，正如你在上面的例子中所看到的那样。这个 `transition` CSS 属性是一个简写形式，使我们可以一次定义一个过渡的各个方面，包括需要执行动画的属性、持续时间和 [速度曲线](https://developer.mozilla.org/en-US/docs/Web/CSS/easing-function)。
+`<Transition>` 一般都会搭配[原生 CSS 过渡](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Transitions/Using_CSS_transitions)一起使用，正如你在上面的例子中所看到的那样。这个 `transition` CSS 属性是一个简写形式，使我们可以一次定义一个过渡的各个方面，包括需要执行动画的属性、持续时间和[速度曲线](https://developer.mozilla.org/en-US/docs/Web/CSS/easing-function)。
 
 下面是一个更高级的例子，使用不同的持续时间和速度曲线来过渡多个属性：
 
@@ -168,7 +168,7 @@ Vue 提供了两个内置组件，可以帮助你制作基于状态变化的过�
 
 ### CSS 的 animation {#css-animations}
 
-[原生 CSS 动画](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Animations/Using_CSS_animations) 和 CSS trasition 的应用方式基本上是相同的，只有一点不同，那就是 `*-enter-from` 不是在元素插入后立即移除，而是在一个 `animationend` 事件触发时被移除。
+[原生 CSS 动画](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Animations/Using_CSS_animations)和 CSS trasition 的应用方式基本上是相同的，只有一点不同，那就是 `*-enter-from` 不是在元素插入后立即移除，而是在一个 `animationend` 事件触发时被移除。
 
 对于大多数的 CSS 动画，我们可以简单地在 `*-enter-active` 和 `*-leave-active` 类下面声明它们。下面是一个示例：
 
@@ -295,9 +295,9 @@ Vue 需要附加事件侦听器，以便知道过渡何时结束。可以是 `tr
 }
 ```
 
-然而，这会带来一个小问题。默认情况下，`<Transition>` 组件会通过监听过渡根元素上的 **第一个** `transitionend` 或者 `animationend` 事件来尝试自动判断过渡何时结束。而在深层级的过渡中，期望的行为应该是等待所有内部元素的过渡完成。
+然而，这会带来一个小问题。默认情况下，`<Transition>` 组件会通过监听过渡根元素上的**第一个** `transitionend` 或者 `animationend` 事件来尝试自动判断过渡何时结束。而在深层级的过渡中，期望的行为应该是等待所有内部元素的过渡完成。
 
-在这种情况下，你可以通过向 `<Transition>` 组件传入 `duration` prop 来显式指定的过渡持续时间（以毫秒为单位）。总持续时间应该匹配延迟加上内部元素的过渡持续时间：
+在这种情况下，你可以通过向 `<Transition>` 组件传入 `duration` prop 来显式指定的过渡持续时间 (以毫秒为单位)。总持续时间应该匹配延迟加上内部元素的过渡持续时间：
 
 ```vue-html
 <Transition :duration="550">...</Transition>
@@ -443,7 +443,7 @@ export default {
 
 在有了 `:css="false"` 后，我们就全权自己负责控制什么时候过渡结束了。这种情况下对于 `@enter` 和 `@leave` 钩子来说，回调函数 `done` 就是必须的。否则，钩子将被同步调用，过渡将立即完成。
 
-这里是使用 [GreenSock 库](https://greensock.com/) 执行动画的一个示例，你也可以使用任何你想要的库，比如 [Anime.js](https://animejs.com/) 或者 [Motion One](https://motion.dev/)。
+这里是使用 [GreenSock 库](https://greensock.com/)执行动画的一个示例，你也可以使用任何你想要的库，比如 [Anime.js](https://animejs.com/) 或者 [Motion One](https://motion.dev/)。
 
 <JsHooks />
 
@@ -507,7 +507,7 @@ export default {
 
 ## 元素间过渡 {#transition-between-elements}
 
-除了通过 `v-if` / `v-show` 切换一个元素，我们也可以通过  `v-if` / `v-else` / `v-else-if` 在几个组件间进行切换过：
+除了通过 `v-if` / `v-show` 切换一个元素，我们也可以通过 `v-if` / `v-else` / `v-else-if` 在几个组件间进行切换过：
 
 ```vue-html
 <Transition>
@@ -525,7 +525,7 @@ export default {
 
 在之前的例子中，进入和离开的元素都是在同时开始动画的，并且我们必须将它们设为 `position: absolute` 以避免二者同时存在时出现的布局问题。
 
-然而，在某些场景中这可能不是个好的方案，或者并不能符合行为预期。我们可能想要先执行离开动画，然后在其完成 **之后** 再执行元素的进入动画。手动编排这样的动画是非常复杂的，好在我们可以通过向 `<Transition>` 传入一个 `mode` prop 来实现这个行为：
+然而，在某些场景中这可能不是个好的方案，或者并不能符合行为预期。我们可能想要先执行离开动画，然后在其完成**之后**再执行元素的进入动画。手动编排这样的动画是非常复杂的，好在我们可以通过向 `<Transition>` 传入一个 `mode` prop 来实现这个行为：
 
 ```vue-html
 <Transition mode="out-in">
@@ -541,7 +541,7 @@ export default {
 
 ## 组件间过渡 {#transition-between-components}
 
-`<Transition>` 也可以用在 [动态组件](/guide/essentials/component-basics.html#dynamic-components) 之间：
+`<Transition>` 也可以用在[动态组件](/guide/essentials/component-basics.html#dynamic-components)之间：
 
 ```vue-html
 <Transition name="fade" mode="out-in">
@@ -564,7 +564,7 @@ export default {
 
 ## 动态过渡 {#dynamic-transitions}
 
-`<Transition>` 的 props（比如 `name`）也可以是动态的！这让我们可以根据状态变化动态地应用不同类型的过渡：
+`<Transition>` 的 props (比如 `name`) 也可以是动态的！这让我们可以根据状态变化动态地应用不同类型的过渡：
 
 ```vue-html
 <Transition :name="transitionName">
@@ -574,7 +574,7 @@ export default {
 
 当你使用 Vue 的过渡类约定规则定义了 CSS 过渡/动画，并想在它们之间切换时，这可能很有用。
 
-你也可以根据你的组件的当前状态在 JavaScript 过渡钩子中应用不同的行为。在此篇的最后，我们可以得出结论，创建动态过渡的终极方式是创建 [可重用的过渡组件](#reusable-transitions)，这些组件接受 prop 来改变过渡的性质。现在在编写动画时，就只有你想不到，没有做不到的了。
+你也可以根据你的组件的当前状态在 JavaScript 过渡钩子中应用不同的行为。在此篇的最后，我们可以得出结论，创建动态过渡的终极方式是创建[可重用的过渡组件](#reusable-transitions)，这些组件接受 prop 来改变过渡的性质。现在在编写动画时，就只有你想不到，没有做不到的了。
 
 ---
 

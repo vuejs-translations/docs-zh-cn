@@ -577,3 +577,5 @@ function increment() {
 你可以在 [Reactivity Transform](/guide/extras/reactivity-transform.html) 这个专门的章节了解更多细节。请注意它仍处于实验性阶段，在最终提案落地前仍可能发生改动。
 
 </div>
+
+<!-- zhlint disabled -->

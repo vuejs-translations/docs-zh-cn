@@ -15,7 +15,7 @@ const awesome = ref(true)
 
 ## `v-else` {#v-else}
 
-也可以使用 `v-else` 为 `v-if` 添加一个 “else 区块”。
+也可以使用 `v-else` 为 `v-if` 添加一个“else 区块”。
 
 ```vue-html
 <button @click="awesome = !awesome">切换</button>
@@ -45,7 +45,7 @@ const awesome = ref(true)
 
 ### `v-else-if` {#v-else-if}
 
-顾名思义，`v-else-if` 提供的是相应于 `v-if` 的 “else if 区块”。它可以连续多次：
+顾名思义，`v-else-if` 提供的是相应于 `v-if` 的“else if 区块”。它可以连续多次：
 
 ```vue-html
 <div v-if="type === 'A'">
@@ -92,9 +92,9 @@ const awesome = ref(true)
 
 ## `v-if` vs `v-show` {#v-if-vs-v-show}
 
-`v-if` 是 “真实的” 按条件渲染，因为它确保了条件区块内的事件监听器和子组件都会在切换时被销毁与重建。
+`v-if` 是“真实的”按条件渲染，因为它确保了条件区块内的事件监听器和子组件都会在切换时被销毁与重建。
 
-`v-if` 是 **懒加载** 的：如果在初次渲染时条件值为 false，则不会做任何事。条件区块会直到条件首次变为 true 时才渲染。
+`v-if` 是**懒加载**的：如果在初次渲染时条件值为 false，则不会做任何事。条件区块会直到条件首次变为 true 时才渲染。
 
 相比之下，`v-show` 简单许多，元素无论一开始条件如何，始终会被渲染，仅作 CSS 类的切换。
 
@@ -103,7 +103,7 @@ const awesome = ref(true)
 ## `v-if` 和 `v-for` {#v-if-with-v-for}
 
 ::: warning 警告
-同时使用 `v-if` 和 `v-for` 是 **不推荐的**，因为这样二者的优先级不明显。请看 [风格指南](/style-guide/#avoid-v-if-with-v-for-essential) 查看更多信息。
+同时使用 `v-if` 和 `v-for` 是**不推荐的**，因为这样二者的优先级不明显。请看[风格指南](/style-guide/#avoid-v-if-with-v-for-essential)查看更多信息。
 :::
 
-当 `v-if` 和 `v-for` 同时存在于一个元素上的时候，`v-if` 会首先被执行。查看 [列表渲染指引](list#v-for-with-v-if) 获取更多细节。
+当 `v-if` 和 `v-for` 同时存在于一个元素上的时候，`v-if` 会首先被执行。查看[列表渲染指引](list#v-for-with-v-if)获取更多细节。

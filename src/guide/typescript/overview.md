@@ -65,8 +65,8 @@ Vue 本身就是用 TypeScript 编写的，并对 TypeScript 提供了头等的�
 
 要开启托管模式，你需要执行以下步骤来**在你的项目的工作空间中**禁用 VSCode 的内置 TS 语言服务：
 
-1. 在当前项目的工作空间下, 用 `Ctrl + Shift + P` (macOS: `Cmd + Shift + P`) 唤起命令面板。
-2. 输入 `built`，然后选择“Extensions: Show Built-in Extensions”。
+1. 在当前项目的工作空间下，用 `Ctrl + Shift + P` (macOS：`Cmd + Shift + P`) 唤起命令面板。
+2. 输入 `built`，然后选择“Extensions：Show Built-in Extensions”。
 3. 在插件搜索框内输入 `typescript` (不要删除 `@builtin` 前缀)。
 4. 点击“TypeScript and JavaScript Language Features”右下角的小齿轮，然后选择“Disable (Workspace)”。
 5. 重新加载工作空间。托管模式将会在你打开一个 Vue 或者 TS 文件时自动启用。
