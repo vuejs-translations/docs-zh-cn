@@ -178,7 +178,7 @@ export default {
   <label for="demo-mike">Mike</label>
 </div>
 
-In this case，the `checkedNames` array will always contain the values from the currently checked boxes。
+In this case, the `checkedNames` array will always contain the values from the currently checked boxes.
 
 <div class="composition-api">
 
@@ -297,7 +297,7 @@ In this case，the `checkedNames` array will always contain the values from the 
 
 </div>
 
-Select options can be dynamically rendered with `v-for`：
+Select options can be dynamically rendered with `v-for`:
 
 <div class="composition-api">
 

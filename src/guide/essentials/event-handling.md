@@ -246,7 +246,7 @@ methods: {
 使用修饰符时需要注意调用的顺序，因为据此生成的相关代码也会是同样的顺序。因此使用 `@click.prevent.self` 会阻止元素内的**所有点击**而 `@click.self.prevent` 则只会阻止对元素本身的点击。
 :::
 
-The `.capture`，`.once`，and `.passive` modifiers mirror the [options of the native `addEventListener` method](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener#Parameters)：
+The `.capture`, `.once`, and `.passive` modifiers mirror the [options of the native `addEventListener` method](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener#Parameters):
 
 ```vue-html
 <!-- 添加事件监听器时，使用 capture（捕获）模式 -->

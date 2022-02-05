@@ -30,9 +30,9 @@ Vue 本身就是用 TypeScript 编写的，并对 TypeScript 提供了头等的�
 
   - [Volar](https://marketplace.visualstudio.com/items?itemName=johnsoncodehk.volar) 是官方的 VSCode 扩展，提供了 Vue 单文件组件中的 TypeScript 支持，还伴随着一些其他非常棒的特性。
 
-    ：::tip
+    :::tip
     Volar 替代了 [Vetur](https://marketplace.visualstudio.com/items?itemName=octref.vetur)，那是我们之前为 Vue 2 提供的官方 VSCode 扩展。如果你已经安装了 Vetur，请确保在 Vue 3 项目中将它禁用。
-    ：:：
+    :::
 
   - [TypeScript Vue Plugin](https://marketplace.visualstudio.com/items?itemName=johnsoncodehk.vscode-typescript-vue-plugin) 用于支持在 TS 中 import `*.vue` 文件。
 

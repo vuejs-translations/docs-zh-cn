@@ -20,7 +20,7 @@ footer: false
 
 - 熟悉命令行
 - 已安装 [Node.js](https://nodejs.org/)
-  ：:：
+:::
 
 为了在机器上创建一个启用构建工具的 Vue 项目，请在命令行中运行下面的指令 (不要带上 `>` 符号)：
 
@@ -113,7 +113,7 @@ footer: false
 
 你可以在映射表中添加其他的依赖——但请务必确保你使用的是该库的 ES 模块版本。
 
-：::tip 不要用在生产环境
+:::tip 不要用在生产环境
 基于导入映射表的配置仅用于学习——如果你想在生产环境不通过构建工具使用 Vue，请务必阅读[生产环境部署指南](/guide/best-practices/production-deployment.html#without-build-tools)。
 :::
 

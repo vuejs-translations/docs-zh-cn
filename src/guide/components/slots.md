@@ -232,7 +232,7 @@ Vue 组件的插槽机制是受到了[原生 Web Component `<slot>` 元素](http
 </BaseLayout>
 ```
 
-When a component accepts both default slot and named slots，all top-level non- `<template>` nodes are implciitly treated as content for default slot。So the above can also be written as：
+When a component accepts both default slot and named slots, all top-level non-`<template>` nodes are implciitly treated as content for default slot. So the above can also be written as:
 
 ```vue-html
 <BaseLayout>
@@ -250,7 +250,7 @@ When a component accepts both default slot and named slots，all top-level non- 
 </BaseLayout>
 ```
 
-Now everything inside the `<template>` elements will be passed to the corresponding slots。The final rendered HTML will be：
+Now everything inside the `<template>` elements will be passed to the corresponding slots. The final rendered HTML will be:
 
 ```html
 <div class="container">

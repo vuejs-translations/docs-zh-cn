@@ -4,10 +4,10 @@ footer: false
 
 # 简介 {#introduction}
 
-：::info 你正在阅读的是 Vue 3 的文档！
+:::info 你正在阅读的是 Vue 3 的文档！
 - Vue 2 中文文档已被迁移至 [v2.cn.vuejs.org](https://v2.cn.vuejs.org/)。
 - 想从 Vue 2 升级？请参考[迁移指南](https://v3-migration.vuejs.org/)。
-  ：:：
+:::
 
 ## 什么是 Vue？ {#what-is-vue}
 
