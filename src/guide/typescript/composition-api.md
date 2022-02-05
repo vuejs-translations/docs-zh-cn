@@ -110,7 +110,7 @@ const emit = defineEmits<{
 </script>
 ```
 
-这个类型参数应该是一个带[调用签名](https://www.typescriptlang.org/docs/handbook/2/functions.html#call-signatures) 的类型字面量。这个类型字面量的类型就是返回的 `emit` 函数的类型。我们可以看到，基于类型的声明使我们可以对所触发事件的类型进行更细粒度的控制。
+这个类型参数应该是一个带[调用签名](https://www.typescriptlang.org/docs/handbook/2/functions.html#call-signatures)的类型字面量。这个类型字面量的类型就是返回的 `emit` 函数的类型。我们可以看到，基于类型的声明使我们可以对所触发事件的类型进行更细粒度的控制。
 
 若没有使用 `<script setup>`，`defineComponent()` 也可以根据 `emits` 选项推导暴露在 setup 上下文中的 `emit` 函数的类型：
 
@@ -245,7 +245,7 @@ function handleChange(event: Event) {
 ## 为 provide/inject 标注类型 {#typing-provide-inject}
 
 provide 和 inject 通常会在不同的组件中运行。要正确地为注入的值标记类型，
-Vue 提供了一个 `InjectionKey` 接口，它是一个继承自 `Symbol` 的泛型类型，可以用来在提供者和消费者之间同步注入值的类型:
+Vue 提供了一个 `InjectionKey` 接口，它是一个继承自 `Symbol` 的泛型类型，可以用来在提供者和消费者之间同步注入值的类型：
 
 ```ts
 import { provide, inject, InjectionKey } from 'vue'
@@ -334,4 +334,4 @@ const openModal = () => {
 </script>
 ```
 
-注意，如果你想在 TypeScript 文件而不是在 Vue SFC 中使用这种技巧，需要开启 Volar 的 [托管模式](./overview.html#takeover-mode)。
+注意，如果你想在 TypeScript 文件而不是在 Vue SFC 中使用这种技巧，需要开启 Volar 的[托管模式](./overview.html#takeover-mode)。

@@ -49,3 +49,5 @@ app.config.errorHandler = (err, instance, info) => {
 ```
 
 诸如 [Sentry](https://docs.sentry.io/platforms/javascript/guides/vue/) 和 [Bugsnag](https://docs.bugsnag.com/platforms/javascript/vue/) 等服务也为 Vue 提供了官方集成。
+
+<!-- zhlint disabled -->

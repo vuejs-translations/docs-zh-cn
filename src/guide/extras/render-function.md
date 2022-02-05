@@ -683,3 +683,5 @@ MyComponent.emits = ['click']
 If the `props` option is not specified, then the `props` object passed to the function will contain all attributes, the same as `attrs`. The prop names will not be normalized to camelCase unless the `props` option is specified.
 
 Functional components can be registered and consumed just like normal components. If you pass a function as the first argument to `h()`, it will be treated as a functional component.
+
+<!-- zhlint disabled -->

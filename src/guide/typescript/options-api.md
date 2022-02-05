@@ -265,3 +265,5 @@ declare module 'vue' {
 你也可以看看：
 
 - [对组件类型扩展的 TypeScript 单元测试](https://github.com/vuejs/core/blob/main/test-dts/componentTypeExtensions.test-d.tsx)
+
+<!-- zhlint disabled -->
