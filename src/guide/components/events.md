@@ -146,7 +146,7 @@ const emit = defineEmits<{
 </script>
 ```
 
-更多细节：[如何为组件所抛出事件标注类型 ](/guide/typescript/composition-api.html#typing-component-emits) <sup class="vt-badge ts">TS</sup>
+更多细节：[如何为组件所抛出事件标注类型](/guide/typescript/composition-api.html#typing-component-emits) <sup class="vt-badge ts">TS</sup>
 
 </div>
 <div class="options-api">
