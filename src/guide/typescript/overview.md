@@ -30,9 +30,9 @@ Vue 本身就是用 TypeScript 编写的，并对 TypeScript 提供了头等的�
 
   - [Volar](https://marketplace.visualstudio.com/items?itemName=johnsoncodehk.volar) 是官方的 VSCode 扩展，提供了 Vue 单文件组件中的 TypeScript 支持，还伴随着一些其他非常棒的特性。
 
-    :::tip
+    ：::tip
     Volar 替代了 [Vetur](https://marketplace.visualstudio.com/items?itemName=octref.vetur)，那是我们之前为 Vue 2 提供的官方 VSCode 扩展。如果你已经安装了 Vetur，请确保在 Vue 3 项目中将它禁用。
-    :::
+    ：:：
 
   - [TypeScript Vue Plugin](https://marketplace.visualstudio.com/items?itemName=johnsoncodehk.vscode-typescript-vue-plugin) 用于支持在 TS 中 import `*.vue` 文件。
 
@@ -65,8 +65,8 @@ Vue 本身就是用 TypeScript 编写的，并对 TypeScript 提供了头等的�
 
 要开启托管模式，你需要执行以下步骤来**在你的项目的工作空间中**禁用 VSCode 的内置 TS 语言服务：
 
-1. 在当前项目的工作空间下, 用 `Ctrl + Shift + P` (macOS: `Cmd + Shift + P`) 唤起命令面板。
-2. 输入 `built`，然后选择“Extensions: Show Built-in Extensions”。
+1. 在当前项目的工作空间下，用 `Ctrl + Shift + P` (macOS：`Cmd + Shift + P`) 唤起命令面板。
+2. 输入 `built`，然后选择“Extensions：Show Built-in Extensions”。
 3. 在插件搜索框内输入 `typescript` (不要删除 `@builtin` 前缀)。
 4. 点击“TypeScript and JavaScript Language Features”右下角的小齿轮，然后选择“Disable (Workspace)”。
 5. 重新加载工作空间。托管模式将会在你打开一个 Vue 或者 TS 文件时自动启用。

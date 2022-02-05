@@ -10,9 +10,9 @@ const vFocus = {
 
 ## 介绍 {#introduce}
 
-除了 Vue 内置的一系列指令（比如 `v-model` 或 `v-show`）之外，Vue 还允许你注册自定义的指令。
+除了 Vue 内置的一系列指令 (比如 `v-model` 或 `v-show`) 之外，Vue 还允许你注册自定义的指令。
 
-我们已经介绍过了两种 Vue 中重用逻辑的方式：[组件](/guide/essentials/component-basics.html) 和 [可组合函数](./composables)。组件主要关注构建视图区块，而可组合函数关注于有状态的逻辑。自定义指令则主要是封装了可重用的对底层 DOM 访问的逻辑。
+我们已经介绍过了两种 Vue 中重用逻辑的方式：[组件](/guide/essentials/component-basics.html)和[可组合函数](./composables)。组件主要关注构建视图区块，而可组合函数关注于有状态的逻辑。自定义指令则主要是封装了可重用的对底层 DOM 访问的逻辑。
 
 一个自定义指令被定义为一个包含类似于组件的生命周期钩子的对象。钩子接收指令绑定到的元素。下面是一个自定义指令的例子，当元素被 Vue 插入到 DOM 中时，会聚焦一个 input 元素：
 
@@ -105,7 +105,7 @@ app.directive('focus', {
 
 ## 指令钩子 {#directive-hooks}
 
-一个指令的定义对象可以提供几种钩子函数（都是可选的）：
+一个指令的定义对象可以提供几种钩子函数 (都是可选的)：
 
 ```js
 const myDir = {
@@ -211,7 +211,7 @@ app.directive('demo', (el, binding) => {
 
 ## 在组件上使用 {#usage-on-components}
 
-当在组件上使用自定义指令时，它会始终应用于组件的根节点，和 [透传 attributes](/guide/components/attrs.html) 类似。
+当在组件上使用自定义指令时，它会始终应用于组件的根节点，和[透传 attributes](/guide/components/attrs.html) 类似。
 
 ```vue-html
 <MyComponent v-demo="test" />
@@ -225,4 +225,4 @@ app.directive('demo', (el, binding) => {
 </div>
 ```
 
-如果组件可能含有多个根节点，指令不会起效、被忽略，还会抛出一个警告。和 attribute 不同，指令不可以通过 `v-bind="$attrs"` 来传递给一个不同的元素。总而言之，**不推荐** 在组件上使用自定义指令。
+如果组件可能含有多个根节点，指令不会起效、被忽略，还会抛出一个警告。和 attribute 不同，指令不可以通过 `v-bind="$attrs"` 来传递给一个不同的元素。总而言之，**不推荐**在组件上使用自定义指令。

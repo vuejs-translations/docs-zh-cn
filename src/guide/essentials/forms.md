@@ -36,7 +36,7 @@ const multiSelected = ref([])
 - `<select>` 使用的 `value` 作为 prop，`change` 作为事件：
 
 ::: tip 注意
-`v-model` 会忽略任何表单元素上初始的 `value`, `checked` 或 `selected` attributes。它将始终将当前绑定的 JavaScript 状态视为数据的正确来源。你应该在 JavaScript 侧声明该初始值，使用<span class="options-api"> `data` 选项</span><span class="composition-api">响应式系统的 API</span>.
+`v-model` 会忽略任何表单元素上初始的 `value`，`checked` 或 `selected` attributes。它将始终将当前绑定的 JavaScript 状态视为数据的正确来源。你应该在 JavaScript 侧声明该初始值，使用<span class="options-api"> `data` 选项</span><span class="composition-api">响应式系统的 API</span>。
 :::
 
 ## 基本用法 {#basic-usage}
@@ -66,7 +66,7 @@ const multiSelected = ref([])
 
 <span id="vmodel-ime-tip"></span>
 ::: tip 注意
-对于需要使用 [IME](https://en.wikipedia.org/wiki/Input_method) 的语言（中文，日文和韩文等），你会发现 `v-model` 不会在 IME 输入的组合状态时触发更新。如果你的确想在此时也触发更新，请使用 `input` 事件监听器和 `value` 绑定值而不要使用 `v-model`。
+对于需要使用 [IME](https://en.wikipedia.org/wiki/Input_method) 的语言 (中文，日文和韩文等)，你会发现 `v-model` 不会在 IME 输入的组合状态时触发更新。如果你的确想在此时也触发更新，请使用 `input` 事件监听器和 `value` 绑定值而不要使用 `v-model`。
 :::
 
 ### 多行文本 {#multiline-text}
@@ -129,7 +129,7 @@ const multiSelected = ref([])
 
 </div>
 
-我们还可以将多个复选框绑定到同一个数组或 [集合](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set) 的值：
+我们还可以将多个复选框绑定到同一个数组或[集合](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set)的值：
 
 <div class="composition-api">
 
@@ -178,7 +178,7 @@ export default {
   <label for="demo-mike">Mike</label>
 </div>
 
-In this case, the `checkedNames` array will always contain the values from the currently checked boxes.
+In this case，the `checkedNames` array will always contain the values from the currently checked boxes。
 
 <div class="composition-api">
 
@@ -261,10 +261,10 @@ In this case, the `checkedNames` array will always contain the values from the c
 </div>
 
 :::tip 注意
-如果 `v-model` 表达式的初始值不匹配任何一个选择项，`<select>` 元素会渲染成一个 “未选择” 的状态。在iOS上，这将导致用户无法选择第一项，因为 iOS 在这种情况下不会触发一个 change 事件。因此，我们建议提供一个空值的禁用选项，如上面的例子所示。
+如果 `v-model` 表达式的初始值不匹配任何一个选择项，`<select>` 元素会渲染成一个“未选择”的状态。在 iOS 上，这将导致用户无法选择第一项，因为 iOS 在这种情况下不会触发一个 change 事件。因此，我们建议提供一个空值的禁用选项，如上面的例子所示。
 :::
 
-多选（值绑定到一个数组）：
+多选 (值绑定到一个数组)：
 
 ```vue-html
 <div>选择的是：{{ selected }}</div>
@@ -297,7 +297,7 @@ In this case, the `checkedNames` array will always contain the values from the c
 
 </div>
 
-Select options can be dynamically rendered with `v-for`:
+Select options can be dynamically rendered with `v-for`：
 
 <div class="composition-api">
 
@@ -354,7 +354,7 @@ export default {
 
 ## 值绑定 {#value-bindings}
 
-对于单选按钮，复选框和选择器选项，`v-model` 绑定的值通常是静态的字符串（或者对复选框是布尔值）：
+对于单选按钮，复选框和选择器选项，`v-model` 绑定的值通常是静态的字符串 (或者对复选框是布尔值)：
 
 ```vue-html
 <!-- `picked` 在被选择时是字符串 "a" -->
@@ -392,7 +392,7 @@ export default {
 ```
 
 :::tip 提示
-`true-value` 和 `false-value` attributes 不会影响 `value` attribute，因为浏览器在表单提交时，并不会包含未选择的复选框。为了保证这两个值（例如：“yes” 和 “no”）的其中之一被表单提交，请使用单选按钮作为替代。
+`true-value` 和 `false-value` attributes 不会影响 `value` attribute，因为浏览器在表单提交时，并不会包含未选择的复选框。为了保证这两个值 (例如：“yes”和“no”) 的其中之一被表单提交，请使用单选按钮作为替代。
 :::
 
 ### 单选按钮 {#radio-2}
@@ -419,7 +419,7 @@ export default {
 
 ### `.lazy`
 
-默认情况下，`v-model` 会在每次 `input` 事件后更新数据（[IME composition 阶段的状态](#vmodel-ime-tip) 例外）。你可以添加 `lazy` 修饰符来改为在每次 `change` 事件后更新数据：
+默认情况下，`v-model` 会在每次 `input` 事件后更新数据 ([IME composition 阶段的状态](#vmodel-ime-tip)例外)。你可以添加 `lazy` 修饰符来改为在每次 `change` 事件后更新数据：
 
 ```vue-html
 <!-- 在 "change" 事件后同步更新而不是 "input" -->
@@ -448,4 +448,4 @@ export default {
 
 > 如果你还不熟悉 Vue 的组件，那么现在可以跳过这个部分。
 
-HTML 的内置输入类型并不总是满足你的需求。幸运的是，Vue 组件允许你构建具有完全自定义行为的可重用输入。这些输入也可以使用 `v-model`！要了解更多关于此的内容，请在组件指引中阅读 [配合 `v-model` 使用](/guide/components/events.html#usage-with-v-model)。
+HTML 的内置输入类型并不总是满足你的需求。幸运的是，Vue 组件允许你构建具有完全自定义行为的可重用输入。这些输入也可以使用 `v-model`！要了解更多关于此的内容，请在组件指引中阅读[配合 `v-model` 使用](/guide/components/events.html#usage-with-v-model)。

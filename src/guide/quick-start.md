@@ -8,7 +8,7 @@ footer: false
 
 ## 采用构建工具 {#with-build-tools}
 
-构建工具让我们能使用 Vue [单文件组件](/guide/scaling-up/sfc)(SFC)。Vue 官方的构建流程是基于 [Vite](https://vitejs.dev) 的，一个现代、轻量、极速的构建工具。
+构建工具让我们能使用 Vue [单文件组件](/guide/scaling-up/sfc) (SFC)。Vue 官方的构建流程是基于 [Vite](https://vitejs.dev) 的，一个现代、轻量、极速的构建工具。
 
 ### 线上构建 {#online}
 
@@ -20,9 +20,9 @@ footer: false
 
 - 熟悉命令行
 - 已安装 [Node.js](https://nodejs.org/)
-  :::
+  ：:：
 
-为了在机器上创建一个启用构建工具的 Vue 项目，请在命令行中运行下面的指令（不要带上 `>` 符号）：
+为了在机器上创建一个启用构建工具的 Vue 项目，请在命令行中运行下面的指令 (不要带上 `>` 符号)：
 
 <div class="language-sh"><pre><code><span class="line"><span style="color:var(--vt-c-green);">&gt;</span> <span style="color:#A6ACCD;">npm init vue@latest</span></span></code></pre></div>
 
@@ -47,7 +47,7 @@ footer: false
 
 你现在应该已经运行起来了你的第一个 Vue 项目！下面是一些补充提示：
 
-- 推荐的 IDE 配置是 [Visual Studio Code](https://code.visualstudio.com/) + [Volar 扩展](https://marketplace.visualstudio.com/items?itemName=johnsoncodehk.volar)，选用 [WebStorm](https://www.jetbrains.com/webstorm/) 也是可以的。
+- 推荐的 IDE 配置是 [Visual Studio Code](https://code.visualstudio.com/)+ [Volar 扩展](https://marketplace.visualstudio.com/items?itemName=johnsoncodehk.volar)，选用 [WebStorm](https://www.jetbrains.com/webstorm/) 也是可以的。
 - 更多工具细节，包括与后端框架的整合，我们会在[工具链指引](/guide/scaling-up/tooling.html)进行讨论。
 - 要了解构建工具 Vite 更多背后的细节，请查看 [Vite 文档](https://cn.vitejs.dev)。
 - 如果你选择使用 TypeScript，请阅读 [TypeScript 使用指南](typescript/overview.html)。
@@ -59,7 +59,7 @@ footer: false
 
 此命令会在 `./dist` 文件夹中为你的应用创建一个生产环境的构建版本。关于将应用上线生产环境的更多内容，请阅读[生产环境部署指南](/guide/best-practices/production-deployment.html)。
 
-[下一步 >](#next-steps)
+[下一步>](#next-steps)
 
 ## 不使用构建工具 {#without-build-tools}
 
@@ -113,7 +113,7 @@ footer: false
 
 你可以在映射表中添加其他的依赖——但请务必确保你使用的是该库的 ES 模块版本。
 
-:::tip 不要用在生产环境
+：::tip 不要用在生产环境
 基于导入映射表的配置仅用于学习——如果你想在生产环境不通过构建工具使用 Vue，请务必阅读[生产环境部署指南](/guide/best-practices/production-deployment.html#without-build-tools)。
 :::
 
