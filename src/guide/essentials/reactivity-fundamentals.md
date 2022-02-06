@@ -116,7 +116,7 @@ export default {
 
     // 不要忘了同时暴露 increment 函数
     return {
-      count,
+      state,
       increment
     }
   }
@@ -314,7 +314,7 @@ console.log(proxy === raw) // false
 
 只有代理是响应式的，更改原始的对象不会触发更新。因此，使用 Vue 的响应式系统的最佳实践是 **仅使用代理作为状态**。
 
-为保证访问代理的一致性，对同一个对象调用 `reactive()` 会总是返回同样的dialing，而对代理调用 `reactive()` 则会返回它自己：
+为保证访问代理的一致性，对同一个对象调用 `reactive()` 会总是返回同样的代理，而对代理调用 `reactive()` 则会返回它自己：
 
 ```js
 // 在同一个对象上调用 reactive() 会返回相同的代理
@@ -577,3 +577,5 @@ function increment() {
 你可以在 [Reactivity Transform](/guide/extras/reactivity-transform.html) 这个专门的章节了解更多细节。请注意它仍处于实验性阶段，在最终提案落地前仍可能发生改动。
 
 </div>
+
+<!-- zhlint disabled -->

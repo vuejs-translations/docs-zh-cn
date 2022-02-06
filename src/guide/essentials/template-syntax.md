@@ -267,3 +267,5 @@ data() {
 ![directive syntax graph](./images/directive.png)
 
 <!-- https://www.figma.com/file/BGWUknIrtY9HOmbmad0vFr/Directive -->
+
+<!-- zhlint disabled -->
