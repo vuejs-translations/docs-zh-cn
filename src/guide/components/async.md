@@ -9,7 +9,7 @@ import { defineAsyncComponent } from 'vue'
 
 const AsyncComp = defineAsyncComponent(() => {
   return new Promise((resolve, reject) => {
-    // ...从服务区获取组件
+    // ...从服务器获取组件
     resolve(/* 获取到的组件 */)
   })
 })
