@@ -10,7 +10,7 @@ Vue 是如何将一份模板转换为真实的 DOM 节点的呢？又是如何�
 
 你可能已经听说过虚拟 DOM 的概念了，Vue 的渲染系统正是基于这个概念构建的。
 
-虚拟 DOM（VDOM）是一种编程概念，意为将将目标所需的 UI 通过数据结构 “虚拟” 地表示出来，保存在内存中，并与真实的 DOM 保持同步。这个概念是由 [React](https://reactjs.org/) 率先开拓，随后在各个不同的框架中都有不同的实现，当然也包括 Vue。
+虚拟 DOM(VDOM) 是一种编程概念，意为将将目标所需的 UI 通过数据结构“虚拟”地表示出来，保存在内存中，并与真实的 DOM 保持同步。这个概念是由 [React](https://reactjs.org/) 率先开拓，随后在各个不同的框架中都有不同的实现，当然也包括 Vue。
 
 与其说虚拟 DOM 是一种具体的技术，不如说是一种模式。所以没有一个标准的实现。我们可以用一个简单的例子来说明：
 
@@ -26,11 +26,11 @@ const vnode = {
 }
 ```
 
-这里所说的 `vnode` 即一个纯 JavaScript 的对象（一个 “虚拟节点”），它代表着一个 `<div>` 元素。它包含我们创建实际元素所需的所有信息。它还包含更多的子节点，这使它成为虚拟 DOM 树的根节点。
+这里所说的 `vnode` 即一个纯 JavaScript 的对象 (一个“虚拟节点”)，它代表着一个 `<div>` 元素。它包含我们创建实际元素所需的所有信息。它还包含更多的子节点，这使它成为虚拟 DOM 树的根节点。
 
-一个运行时渲染器将会遍历整个虚拟 DOM 树，并据此构建真实的 DOM 树。这个过程被称为 **挂载（mount）**。
+一个运行时渲染器将会遍历整个虚拟 DOM 树，并据此构建真实的 DOM 树。这个过程被称为**挂载 (mount)**。
 
-如果我们有两份虚拟 DOM 树，渲染器将会有比较地遍历它们，找出它们之间的区别，并应用这其中的变化到真实的 DOM 上。这个过程被称为 **修补（patch）**，又被称为 “比较差异（diffing）” 或 “协调（reconciliation）”。
+如果我们有两份虚拟 DOM 树，渲染器将会有比较地遍历它们，找出它们之间的区别，并应用这其中的变化到真实的 DOM 上。这个过程被称为**修补 (patch)**，又被称为“比较差异 (diffing)”或“协调 (reconciliation)”。
 
 虚拟 DOM 带来的主要收益是它赋予了开发者编程式地、声明式地创建、审查和组合所需 UI 结构的能力，而把直接与 DOM 相关的操作交给了渲染器。
 
@@ -38,11 +38,11 @@ const vnode = {
 
 以更高层面的视角看，Vue 组件挂载后发生了如下这几件事：
 
-1. **编译**：Vue 模板被编译为了 **渲染函数**：即用来返回虚拟 DOM 树的函数。这一步骤可以通过构建步骤提前完成，也可以通过使用运行时编译器即时完成。
+1. **编译**：Vue 模板被编译为了**渲染函数**：即用来返回虚拟 DOM 树的函数。这一步骤可以通过构建步骤提前完成，也可以通过使用运行时编译器即时完成。
 
-2. **挂载**：运行时渲染器调用渲染函数，遍历返回的虚拟 DOM 树，并基于它创建实际的 DOM 节点。这一步会作为 [响应式副作用](./reactivity-in-depth) 执行，因此它会追踪其中所用到的所有响应式依赖。
+2. **挂载**：运行时渲染器调用渲染函数，遍历返回的虚拟 DOM 树，并基于它创建实际的 DOM 节点。这一步会作为[响应式副作用](./reactivity-in-depth)执行，因此它会追踪其中所用到的所有响应式依赖。
 
-3. **修补**：当一个依赖发生变化后，副作用会重新运行。这时候会创建一个更新后虚拟 DOM 树，运行时渲染器遍历这棵新树，将它与旧树相比，然后将必要的更新应用到真实 DOM 上去。这个过程又被称为 “比较差异（diffing）” 或 “协调（reconciliation）”。
+3. **修补**：当一个依赖发生变化后，副作用会重新运行。这时候会创建一个更新后虚拟 DOM 树，运行时渲染器遍历这棵新树，将它与旧树相比，然后将必要的更新应用到真实 DOM 上去。这个过程又被称为“比较差异 (diffing)”或“协调 (reconciliation)”。
 
 ![render pipeline](./images/render-pipeline.png)
 
@@ -56,15 +56,15 @@ Vue 模板会被预编译成虚拟 DOM 渲染函数。Vue 也提供了 API 使�
 
 1. 模板更贴近实际的 HTML。这使得我们能够更方便地重用一些已有的 HTML 代码段，能够带来更好的可访问性体验、能更方便地使用 CSS 应用样式，并且更容易使设计师理解和修改。
 
-2. 由于其确定的语法，更容易对模板做静态分析。这使得 Vue 的模板编译器能够应用许多编译时优化来提升虚拟 DOM 的性能表现（下面我们将展开讨论）。
+2. 由于其确定的语法，更容易对模板做静态分析。这使得 Vue 的模板编译器能够应用许多编译时优化来提升虚拟 DOM 的性能表现 (下面我们将展开讨论)。
 
-在实践中，模板对大多数的应用场景都是够用且高效的。渲染函数一般置会在你构建可重用的组件、且有非常动态地渲染逻辑时才会用到。想了解渲染函数的更多使用细节可以去到 [渲染函数 & JSX](./render-function) 章节继续阅读。
+在实践中，模板对大多数的应用场景都是够用且高效的。渲染函数一般置会在你构建可重用的组件、且有非常动态地渲染逻辑时才会用到。想了解渲染函数的更多使用细节可以去到[渲染函数 & JSX](./render-function) 章节继续阅读。
 
 ## 带编译时信息的虚拟 DOM {#compiler-informed-virtual-dom}
 
 虚拟 DOM 在 React 和大多数其他实现中都是跑在运行时的：协调算法无法预知新的虚拟 DOM 树会是怎样，因此它总是需要遍历整棵树、比较每个 vnode 上 props 的区别来确保正确性。另外，即使一棵树的某个部分完全没有改变，也还是会在每次重渲染时创建新的 vnode，带来了完全不必要的内存压力。这也是虚拟 DOM 最受诟病的地方之一：虽然换取来了声明性和正确性。但这样有些粗莽的调和过程牺牲了效率。
 
-但实际上我们并不需要这样。在 Vue 中，框架同时控制着编译器和运行时。这时的我们可以实现许多编译时的优化给我们紧密耦合的模板渲染器。编译器可以静态分析模板并在生成的代码中留下标记，使得运行时在某些情况下可以走捷径。与此同时，我们仍旧保留了边界情况时用户想要使用底层渲染函数的能力。我们称这种混合解决方案为 **带编译时信息的虚拟 DOM**。
+但实际上我们并不需要这样。在 Vue 中，框架同时控制着编译器和运行时。这时的我们可以实现许多编译时的优化给我们紧密耦合的模板渲染器。编译器可以静态分析模板并在生成的代码中留下标记，使得运行时在某些情况下可以走捷径。与此同时，我们仍旧保留了边界情况时用户想要使用底层渲染函数的能力。我们称这种混合解决方案为**带编译时信息的虚拟 DOM**。
 
 下面，我们将讨论一些 Vue 编译器用来提高虚拟 DOM 运行时性能的主要优化：
 
@@ -82,9 +82,9 @@ Vue 模板会被预编译成虚拟 DOM 渲染函数。Vue 也提供了 API 使�
 
 [在模板编译预览中查看](https://vue-next-template-explorer.netlify.app/#eyJzcmMiOiI8ZGl2PlxuICA8ZGl2PmZvbzwvZGl2PlxuICA8ZGl2PmJhcjwvZGl2PlxuICA8ZGl2Pnt7IGR5bmFtaWMgfX08L2Rpdj5cbjwvZGl2PiIsInNzciI6ZmFsc2UsIm9wdGlvbnMiOnsiaG9pc3RTdGF0aWMiOnRydWV9fQ==)
 
-`foo` 和 `bar` 这两个 div 是完全静态的，没有必要在重新渲染时再次创建和比对它们。Vue 编译器自动地会提升这部分 vnode 创建函数到这个模板的渲染函数之外，并在每次渲染时都使用这份相同的 vnode，渲染器直到新旧 vnode 在这部分是完全相同的，所以会完全跳过对它们的差异比对。
+`foo` 和 `bar` 这两个 div 是完全静态的，没有必要在重新渲染时再次创建和比对它们。Vue 编译器自动地会提升这部分 vnode 创建函数到这个模板的渲染函数之外，并在每次渲染时都使用这份相同的 vnode，渲染器知道新旧 vnode 在这部分是完全相同的，所以会完全跳过对它们的差异比对。
 
-此外，当有足够多连续的静态元素时，它们还会再被压缩为一个 “静态 vnode”，其中包含的是这些节点相应的纯 HTML字符串。（[示例](https://vue-next-template-explorer.netlify.app/#eyJzcmMiOiI8ZGl2PlxuICA8ZGl2IGNsYXNzPVwiZm9vXCI+Zm9vPC9kaXY+XG4gIDxkaXYgY2xhc3M9XCJmb29cIj5mb288L2Rpdj5cbiAgPGRpdiBjbGFzcz1cImZvb1wiPmZvbzwvZGl2PlxuICA8ZGl2IGNsYXNzPVwiZm9vXCI+Zm9vPC9kaXY+XG4gIDxkaXYgY2xhc3M9XCJmb29cIj5mb288L2Rpdj5cbiAgPGRpdj57eyBkeW5hbWljIH19PC9kaXY+XG48L2Rpdj4iLCJzc3IiOmZhbHNlLCJvcHRpb25zIjp7ImhvaXN0U3RhdGljIjp0cnVlfX0=))。这些景泰街店会直接通过 `innerHTML` 来设置。同时还会在初次渲染后缓存相应的 DOM 节点。如果这部分内容在应用中其他地方被重用，那么将会使用原生的 `cloneNode()` 方法来克隆新的 DOM 节点，这会非常高效。
+此外，当有足够多连续的静态元素时，它们还会再被压缩为一个“静态 vnode”，其中包含的是这些节点相应的纯 HTML 字符串。([示例](https://vue-next-template-explorer.netlify.app/#eyJzcmMiOiI8ZGl2PlxuICA8ZGl2IGNsYXNzPVwiZm9vXCI+Zm9vPC9kaXY+XG4gIDxkaXYgY2xhc3M9XCJmb29cIj5mb288L2Rpdj5cbiAgPGRpdiBjbGFzcz1cImZvb1wiPmZvbzwvZGl2PlxuICA8ZGl2IGNsYXNzPVwiZm9vXCI+Zm9vPC9kaXY+XG4gIDxkaXYgY2xhc3M9XCJmb29cIj5mb288L2Rpdj5cbiAgPGRpdj57eyBkeW5hbWljIH19PC9kaXY+XG48L2Rpdj4iLCJzc3IiOmZhbHNlLCJvcHRpb25zIjp7ImhvaXN0U3RhdGljIjp0cnVlfX0=))。这些静态节点会直接通过 `innerHTML` 来设置。同时还会在初次渲染后缓存相应的 DOM 节点。如果这部分内容在应用中其他地方被重用，那么将会使用原生的 `cloneNode()` 方法来克隆新的 DOM 节点，这会非常高效。
 
 ### 修补标记 Flags {#patch-flags}
 
@@ -111,7 +111,7 @@ createElementVNode("div", {
 }, null, 2 /* CLASS */)
 ```
 
-最后这个参数 `2` 就是一个 [修补标记（patch flag）](https://github.com/vuejs/core/blob/main/packages/shared/src/patchFlags.ts)。一个元素可以有多个修补标记，会被合并到一个数字。运行时渲染器也将会使用 [位运算](https://en.wikipedia.org/wiki/Bitwise_operation) 来检查这些标记，确定相应的更新操作：
+最后这个参数 `2` 就是一个[修补标记 (patch flag)](https://github.com/vuejs/core/blob/main/packages/shared/src/patchFlags.ts)。一个元素可以有多个修补标记，会被合并到一个数字。运行时渲染器也将会使用[位运算](https://en.wikipedia.org/wiki/Bitwise_operation)来检查这些标记，确定相应的更新操作：
 
 ```js
 if (vnode.patchFlag & PatchFlags.CLASS /* 2 */) {
@@ -121,7 +121,7 @@ if (vnode.patchFlag & PatchFlags.CLASS /* 2 */) {
 
 位运算检查是非常快的。通过这样的修补标记，Vue 能够在使用动态绑定更新元素时做最少的操作。
 
-Vue 也为一个 vnode 的子节点标记了类型。举个例子，模板根节点如果是一个有三个子元素的片段（fragment），我们可以确定其顺序是永远不变的，所以这部分信息就可以提供给运行时作为一个修补标记。
+Vue 也为一个 vnode 的子节点标记了类型。举个例子，模板根节点如果是一个有三个子元素的片段 (fragment)，我们可以确定其顺序是永远不变的，所以这部分信息就可以提供给运行时作为一个修补标记。
 
 ```js{4}
 export function render() {
@@ -145,9 +145,9 @@ export function render() {
 }
 ```
 
-这里我们引入一个概念 “区块”，内部结构时稳定的一个部分可被称之为一个区块。在这个用例中，整个模板只有一个区块，因为这里没有用到任何结构性指令（比如 `v-if` 或者 `v-for`）。
+这里我们引入一个概念“区块”，内部结构时稳定的一个部分可被称之为一个区块。在这个用例中，整个模板只有一个区块，因为这里没有用到任何结构性指令 (比如 `v-if` 或者 `v-for`)。
 
-每一个块都会追踪其所有带修补标记的后代节点（不只是直接子节点），举个例子：
+每一个块都会追踪其所有带修补标记的后代节点 (不只是直接子节点)，举个例子：
 
 ```vue-html{3,5}
 <div> <!-- root block -->
@@ -167,7 +167,7 @@ div (block root)
 - div 带有 {{ bar }} 绑定
 ```
 
-当这个组件需要重渲染时，只需要遍历这个打平的树而非整棵树。这也就是我们所说的 **树状结构打平**，这大大减少了我们在虚拟 DOM 协调时需要遍历的节点数量。模板中任何的静态部分都会被高效地略过。
+当这个组件需要重渲染时，只需要遍历这个打平的树而非整棵树。这也就是我们所说的**树状结构打平**，这大大减少了我们在虚拟 DOM 协调时需要遍历的节点数量。模板中任何的静态部分都会被高效地略过。
 
 `v-if` 和 `v-for` 指令会创建新的区块节点：
 
@@ -185,7 +185,7 @@ div (block root)
 
 ### 对 SSR 水合的影响 {#impact-on-ssr-hydration}
 
-修补标记和树结构打平都大大提升了 Vue [SSR 水合](/guide/scaling-up/ssr.html#client-hydration) 的性能表现：
+修补标记和树结构打平都大大提升了 Vue [SSR 水合](/guide/scaling-up/ssr.html#client-hydration)的性能表现：
 
 - 单个元素的水合可以基于相应 vnode 的修补标记走更快的捷径。
 
