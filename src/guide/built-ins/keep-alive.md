@@ -8,7 +8,7 @@ import SwitchComponent from './keep-alive-demos/SwitchComponent.vue'
 
 ## 基本使用 {#basic-usage}
 
-在之前的组件基础章节中，我们已经介绍了 [动态组件](/guide/essentials/component-basics.html#dynamic-components) 的用法，即使用特殊的 `<component>` 元素：
+在之前的组件基础章节中，我们已经介绍了[动态组件](/guide/essentials/component-basics.html#dynamic-components)的用法，即使用特殊的 `<component>` 元素：
 
 ```vue-html
 <component :is="activeComponent" />
@@ -47,7 +47,7 @@ import SwitchComponent from './keep-alive-demos/SwitchComponent.vue'
 </div>
 
 :::tip
-当你在 [DOM 模板](/guide/essentials/component-basics.html#dom-template-parsing-caveats) 中使用时，请在使用时将该组件名写为 `<keep-alive>`。
+当你在 [DOM 模板](/guide/essentials/component-basics.html#dom-template-parsing-caveats)中使用时，请在使用时将该组件名写为 `<keep-alive>`。
 :::
 
 ## 包含 / 排除 {#include-exclude}
@@ -71,7 +71,7 @@ import SwitchComponent from './keep-alive-demos/SwitchComponent.vue'
 </KeepAlive>
 ```
 
-匹配的根据是组件的  [`name`](/api/options-misc.html#name) 选项，所以要想通过 `KeepAlive` 有条件地缓存的组件必须显式声明一个 `name` 选项。
+匹配的根据是组件的 [`name`](/api/options-misc.html#name) 选项，所以要想通过 `KeepAlive` 有条件地缓存的组件必须显式声明一个 `name` 选项。
 
 ## 最大缓存实例 {#max-cached-instances}
 
@@ -85,7 +85,7 @@ import SwitchComponent from './keep-alive-demos/SwitchComponent.vue'
 
 ## 缓存实例的生命周期 {#lifecycle-of-cached-instance}
 
-当一个组件实例从 DOM 上移除但因为被 `<KeepAlive>` 缓存而仍作为组件树的一部分时，它将变为 **不活跃** 状态而不是被卸载。当一个组件实例作为缓存树的一部分插入到 DOM 中时，它就是被重新 **恢复活跃** 了。
+当一个组件实例从 DOM 上移除但因为被 `<KeepAlive>` 缓存而仍作为组件树的一部分时，它将变为**不活跃**状态而不是被卸载。当一个组件实例作为缓存树的一部分插入到 DOM 中时，它就是被重新**恢复活跃**了。
 
 <div class="composition-api">
 

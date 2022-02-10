@@ -6,12 +6,12 @@ footer: false
 
 :::info 你正在阅读的是 Vue 3 的文档！
 - Vue 2 中文文档已被迁移至 [v2.cn.vuejs.org](https://v2.cn.vuejs.org/)。
-- 想从 Vue 2 升级? 请参考 [迁移指南](https://v3-migration.vuejs.org/)。
-  :::
+- 想从 Vue 2 升级？请参考[迁移指南](https://v3-migration.vuejs.org/)。
+:::
 
-## 什么是 Vue? {#what-is-vue}
+## 什么是 Vue？ {#what-is-vue}
 
-Vue (发音为 /vjuː/, 类似 **view**) 是一款用于构建用户界面的 JavaScript 框架。它基于标准 HTML、CSS 和 JavaScript 构建，并提供了一套声明式的、组件化的编程模型，帮助你高效地开发用户界面，无论任务是简单还是复杂。
+Vue (发音为 /vjuː/，类似 **view**) 是一款用于构建用户界面的 JavaScript 框架。它基于标准 HTML、CSS 和 JavaScript 构建，并提供了一套声明式的、组件化的编程模型，帮助你高效地开发用户界面，无论任务是简单还是复杂。
 
 下面是一个最基本的示例：
 
@@ -50,9 +50,9 @@ const count = ref(0)
 
 上面的示例展示了两个 Vue 的核心功能：
 
-- **声明式渲染**: Vue 通过自己的模板语法扩展了标准 HTML，使得我们可以声明式地描述基于 JavaScript 状态输出的 HTML。
+- **声明式渲染**：Vue 通过自己的模板语法扩展了标准 HTML，使得我们可以声明式地描述基于 JavaScript 状态输出的 HTML。
 
-- **响应性**: Vue 会自动跟踪 JavaScript 状态变化并在改变发生时响应式地更新 DOM。
+- **响应性**：Vue 会自动跟踪 JavaScript 状态变化并在改变发生时响应式地更新 DOM。
 
 你可能已经有了些疑问——别担心。我们会在接下来的文档中覆盖到每一个细节。现在，请继续阅读，这会让你对 Vue 所提供的功能有一个宏观的认知。
 
@@ -75,7 +75,7 @@ Vue 是一个框架和生态，功能覆盖了大部分前端开发常见的需�
 
 ## 单文件组件 {#single-file-components}
 
-在大多数启用了构建工具的 Vue 项目中，我们可以使用一种类似 HTML 格式的文件来书写 Vue 组件，它被称为 **单文件组件**(也被称为 `*.vue` 文件，英文缩写为 **SFC**)。顾名思义，Vue 的单文件组件会将一个组件的逻辑 (JavaScript)，模板 (HTML) 和样式 (CSS) 封装在同一个文件里。下面我们将用单文件组件的格式重写上面的计数器示例：
+在大多数启用了构建工具的 Vue 项目中，我们可以使用一种类似 HTML 格式的文件来书写 Vue 组件，它被称为**单文件组件** (也被称为 `*.vue` 文件，英文缩写为 **SFC**)。顾名思义，Vue 的单文件组件会将一个组件的逻辑 (JavaScript)，模板 (HTML) 和样式 (CSS) 封装在同一个文件里。下面我们将用单文件组件的格式重写上面的计数器示例：
 
 ```vue
 <script>
@@ -103,7 +103,7 @@ button {
 
 ## API 风格 {#api-styles}
 
-Vue 的组件可以按两种不同的风格书写：**选项式 API** 和 **组合式 API**。
+Vue 的组件可以按两种不同的风格书写：**选项式 API** 和**组合式 API**。
 
 ### 选项式 API {#options-api}
 

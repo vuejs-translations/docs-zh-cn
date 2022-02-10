@@ -276,7 +276,7 @@ watchEffect(async () => {
 })
 ```
 
-上面这个例子中，回调会立即执行一次。在执行期间，它会自动追踪 `question.value` 作为依赖（近似于计算属性）。每当 `question.value` 变化时，回调将会再次执行。
+上面这个例子中，回调会立即执行一次。在执行期间，它会自动追踪 `url.value` 作为依赖（近似于计算属性）。每当 `url.value` 变化时，回调将会再次执行。
 
 你可以查看这个使用 `watchEffect` 的 [这个例子](/examples/#fetching-data)，了解如何在运行时做响应式数据请求。
 
@@ -422,3 +422,5 @@ watchEffect(() => {
 ```
 
 </div>
+
+<!-- zhlint disabled -->

@@ -9,7 +9,7 @@ import { defineAsyncComponent } from 'vue'
 
 const AsyncComp = defineAsyncComponent(() => {
   return new Promise((resolve, reject) => {
-    // ...从服务区获取组件
+    // ...从服务器获取组件
     resolve(/* 获取到的组件 */)
   })
 })
@@ -18,7 +18,7 @@ const AsyncComp = defineAsyncComponent(() => {
 
 如你所见，此方法接收一个返回 Promise 的加载函数。这个 Promise 的 `resolve` 回调方法应该在从服务器获得组件定义时调用。我们也可以在调用 `reject(reason)` 表明加载失败。
 
-[ES 模块动态导入](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import#dynamic_imports) 也会返回一个 Promise，所以多数情况下我们会将其和 `defineAsyncComponent` 搭配使用，类似 Vite 和 Webpack 这样的构建工具也支持这种语法，因此我们也可以用它来导入 Vue 单文件组件：
+[ES 模块动态导入](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import#dynamic_imports)也会返回一个 Promise，所以多数情况下我们会将其和 `defineAsyncComponent` 搭配使用，类似 Vite 和 Webpack 这样的构建工具也支持这种语法，因此我们也可以用它来导入 Vue 单文件组件：
 
 ```js
 import { defineAsyncComponent } from 'vue'
@@ -32,7 +32,7 @@ const AsyncComp = defineAsyncComponent(() =>
 
 <div class="options-api">
 
-你也可以在 [局部注册组件](/guide/components/registration.html#local-registration) 时使用 `defineAsyncComponent`：
+你也可以在[局部注册组件](/guide/components/registration.html#local-registration)时使用 `defineAsyncComponent`：
 
 ```js
 import { defineAsyncComponent } from 'vue'

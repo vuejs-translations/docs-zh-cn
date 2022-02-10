@@ -198,7 +198,7 @@ export default {
 }
 ```
 
-和其他组件实例上的属性一样，方法也可以在木板上被访问。在模板中它们常常被用作事件监听器：
+和其他组件实例上的属性一样，方法也可以在模板上被访问。在模板中它们常常被用作事件监听器：
 
 ```vue-html
 <button @click="increment">{{ count }}</button>
@@ -577,3 +577,5 @@ function increment() {
 你可以在 [Reactivity Transform](/guide/extras/reactivity-transform.html) 这个专门的章节了解更多细节。请注意它仍处于实验性阶段，在最终提案落地前仍可能发生改动。
 
 </div>
+
+<!-- zhlint disabled -->
