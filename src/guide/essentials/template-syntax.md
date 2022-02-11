@@ -63,7 +63,7 @@ Mustaches 不能被用在 HTML attributes 中。相应的，应该使用 [`v-bin
 开头为 `:` 的 attribute 可能和一般的 HTML attribute 看起来不太一样，但它的确是合法的 attribute 名称字符，并且所有支持 Vue 的浏览器都能正确解析它。此外，他们不会出现在最终渲染的标签中。缩写语法是可选的，但相信学了之后，你应该会更喜欢它。
 
 > 接下来的指引中，我们都将在示例中使用缩写语法，因为大多数 Vue 开发者都会这样使用。
-
+  
 ### 布尔值 Attribute {#boolean-attributes}
 
 [布尔型 attribute](https://html.spec.whatwg.org/multipage/common-microsyntaxes.html#boolean-attributes) 指出了在一个元素上该 attribute 是否应该存在。[`disabled`](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/disabled) 就是一个最常见的例子。

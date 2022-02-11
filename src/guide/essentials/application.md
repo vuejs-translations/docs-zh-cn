@@ -2,7 +2,7 @@
 
 ## 应用实例 {#the-app-instance}
 
-每个 Vue 应用都是通过 [`createApp`](/api/application#createapp) 函数创建一个新的 **应用实例**：
+每个 Vue 应用都是通过 [`createApp`](/api/application#createapp) 函数创建一个新的 **应用实例**： 
 
 ```js
 import { createApp } from 'vue'
