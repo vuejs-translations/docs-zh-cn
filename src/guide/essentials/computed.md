@@ -87,7 +87,7 @@ export default {
 
 更改此应用的 `data` 中 `books` 数组的值后，可以看到 `publishedBooksMessage` 也会随之改变。
 
-在模板中使用计算属性的方式和一般的 property 并无二致。Vue 会检测到 `this.publishedBooksMessage` 依赖于 `this.author.books`，所以当 `this.author.books` 改变时，任何依赖于 `vm.publishedBooksMessage` 的绑定都将同时更新。
+在模板中使用计算属性的方式和一般的 property 并无二致。Vue 会检测到 `this.publishedBooksMessage` 依赖于 `this.author.books`，所以当 `this.author.books` 改变时，任何依赖于 `this.publishedBooksMessage` 的绑定都将同时更新。
 
 也可参考：[为计算属性标记类型 ](/guide/typescript/options-api.html#typing-computed) <sup class="vt-badge ts">TS</sup>
 
