@@ -177,7 +177,7 @@ export default {
 }
 ```
 
-Note that although the `attrs` object here always reflect the latest fallthrough attributes，it isn't reactive (for performance reasons)。You cannot use watchers to observe its changes。If you need reactivity，use a prop。Alternatively，you can use `onUpdated()` to perform side effects with latest `attrs` on each update。
+需要注意的是，这里的 `attrs` 对象同样总是映射到最新的透传属性，它并不是响应式的 (为了性能考虑)。你不能使用侦听器去直接监听它的变化。如果你需要响应性，可以使用 prop。或者你也可以使用 `onUpdated()` 钩子去执行副作用，这样就可以在每次更新时获取到最新的 `attrs`。
 
 </div>
 
