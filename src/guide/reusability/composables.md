@@ -6,20 +6,20 @@ const { x, y } = useMouse()
 </script>
 
 :::tip
-这一章假设你已经对组合式 API 有了一个基本的了解。如果你只学习过选项式 API，你可以通过侧边栏左上角的切换按钮将 API 风格切换为组合式 API，然后重新阅读 [响应性基础](/guide/essentials/reactivity-fundamentals.html) 和 [生命周期钩子](/guide/essentials/lifecycle.html) 两个章节。
+这一章假设你已经对组合式 API 有了一个基本的了解。如果你只学习过选项式 API，你可以通过侧边栏左上角的切换按钮将 API 风格切换为组合式 API，然后重新阅读[响应性基础](/guide/essentials/reactivity-fundamentals.html)和[生命周期钩子](/guide/essentials/lifecycle.html)两个章节。
 :::
 
-## 什么是一个 "可组合函数"? {#what-is-a-composable}
+## 什么是一个“可组合函数”？ {#what-is-a-composable}
 
-在 Vue 应用的概念中，一个 “可组合函数” 是一个利用组合式 API 来封装可重用 **有状态逻辑** 的函数。
+在 Vue 应用的概念中，一个“可组合函数”是一个利用组合式 API 来封装可重用**有状态逻辑**的函数。
 
-当构建前端应用时，我们常常需要重用一些任务逻辑。举个例子，我们需要在很多地方格式化时间，为此我们抽取出了一个可重用的函数。这个格式化函数封装了 **无状态的逻辑**：取得一些输入值然后立刻返回所期望的输出。有许多这样的封装了无状态逻辑的库，比如 [lodash](https://lodash.com/) 和 [date-fns](https://date-fns.org/) 等，你可能已经听说过它们了。
+当构建前端应用时，我们常常需要重用一些任务逻辑。举个例子，我们需要在很多地方格式化时间，为此我们抽取出了一个可重用的函数。这个格式化函数封装了**无状态的逻辑**：取得一些输入值然后立刻返回所期望的输出。有许多这样的封装了无状态逻辑的库，比如 [lodash](https://lodash.com/) 和 [date-fns](https://date-fns.org/) 等，你可能已经听说过它们了。
 
 相比之下，有状态逻辑中需要管理随时可能发生变化的状态。一个简单的例子是跟踪当前鼠标在页面中的位置。在真实应用中，它也可以是更复杂的逻辑，如触摸手势或与数据库的连接状态。
 
 ## 鼠标跟踪器示例 {#mouse-tracker-example}
 
-如果我们要直接在组件中使用组合式 API 实现鼠标跟踪功能，它会是这样的:
+如果我们要直接在组件中使用组合式 API 实现鼠标跟踪功能，它会是这样的：
 
 ```vue
 <script setup>
@@ -40,7 +40,7 @@ onUnmounted(() => window.removeEventListener('mousemove', update))
 <template>鼠标位置：{{ x }}, {{ y }}</template>
 ```
 
-但是，如果我们想在多个组件中重用相同的逻辑呢？我们可以将逻辑提取到一个外部文件中，作为一个可组合函数:
+但是，如果我们想在多个组件中重用相同的逻辑呢？我们可以将逻辑提取到一个外部文件中，作为一个可组合函数：
 
 ```js
 // mouse.js
@@ -68,7 +68,7 @@ export function useMouse() {
 }
 ```
 
-下面是它在组件中使用的方式:
+下面是它在组件中使用的方式：
 
 ```vue
 <script setup>
@@ -86,9 +86,9 @@ const { x, y } = useMouse()
 
 [在 Playground 中尝试一下](https://sfc.vuejs.org/#eyJBcHAudnVlIjoiPHNjcmlwdCBzZXR1cD5cbmltcG9ydCB7IHVzZU1vdXNlIH0gZnJvbSAnLi9tb3VzZS5qcydcblxuY29uc3QgeyB4LCB5IH0gPSB1c2VNb3VzZSgpXG48L3NjcmlwdD5cblxuPHRlbXBsYXRlPlxuICBNb3VzZSBwb3NpdGlvbiBpcyBhdDoge3sgeCB9fSwge3sgeSB9fVxuPC90ZW1wbGF0ZT4iLCJpbXBvcnQtbWFwLmpzb24iOiJ7XG4gIFwiaW1wb3J0c1wiOiB7XG4gICAgXCJ2dWVcIjogXCJodHRwczovL3NmYy52dWVqcy5vcmcvdnVlLnJ1bnRpbWUuZXNtLWJyb3dzZXIuanNcIlxuICB9XG59IiwibW91c2UuanMiOiJpbXBvcnQgeyByZWYsIG9uTW91bnRlZCwgb25Vbm1vdW50ZWQgfSBmcm9tICd2dWUnXG5cbmV4cG9ydCBmdW5jdGlvbiB1c2VNb3VzZSgpIHtcbiAgY29uc3QgeCA9IHJlZigwKVxuICBjb25zdCB5ID0gcmVmKDApXG5cbiAgZnVuY3Rpb24gdXBkYXRlKGV2ZW50KSB7XG4gICAgeC52YWx1ZSA9IGV2ZW50LnBhZ2VYXG4gICAgeS52YWx1ZSA9IGV2ZW50LnBhZ2VZXG4gIH1cblxuICBvbk1vdW50ZWQoKCkgPT4gd2luZG93LmFkZEV2ZW50TGlzdGVuZXIoJ21vdXNlbW92ZScsIHVwZGF0ZSkpXG4gIG9uVW5tb3VudGVkKCgpID0+IHdpbmRvdy5yZW1vdmVFdmVudExpc3RlbmVyKCdtb3VzZW1vdmUnLCB1cGRhdGUpKVxuXG4gIHJldHVybiB7IHgsIHkgfVxufSJ9)
 
-正如我们所看到的，核心逻辑保持完全相同，我们只需要将其移动到一个外部函数中，将要暴露的状态返回即可。和在组件中一样，你也可以在可组合函数中使用 [组合式 API 函数](/api/#composition-api)，现在任意组件中都可以使用 `useMouse()` 的功能了。
+正如我们所看到的，核心逻辑保持完全相同，我们只需要将其移动到一个外部函数中，将要暴露的状态返回即可。和在组件中一样，你也可以在可组合函数中使用[组合式 API 函数](/api/#composition-api)，现在任意组件中都可以使用 `useMouse()` 的功能了。
 
-最酷也最有趣的一点是，你还可以将多个可组合函数进行嵌套：一个可组合函数可以调用一个或多个其他的可组合函数。这使得我们可以通过组合多个较小的函数、独立的单元来实现复杂的逻辑，这与我们使用组件来组合一整个大型应用类似。实际上，这也正是我们打算命名这套 API 模式 为组合式 API 的原因。
+最酷也最有趣的一点是，你还可以将多个可组合函数进行嵌套：一个可组合函数可以调用一个或多个其他的可组合函数。这使得我们可以通过组合多个较小的函数、独立的单元来实现复杂的逻辑，这与我们使用组件来组合一整个大型应用类似。实际上，这也正是我们打算命名这套 API 模式为组合式 API 的原因。
 
 举个例子，我们可以将添加和清除 DOM 事件监听器的逻辑放入一个可组合函数中：
 
@@ -104,7 +104,7 @@ export function useEventListener(target, event, callback) {
 }
 ```
 
-And now our `useMouse()` can be simplified to:
+And now our `useMouse()` can be simplified to：
 
 ```js{3,9-12}
 // mouse.js
@@ -125,7 +125,7 @@ export function useMouse() {
 ```
 
 :::tip
-每一个调用 `useMouse()` 的组件实例会创建其独有的 `x`、`y` 状态拷贝，因此他们不会互相影响。如果你想要在组件之间共享状态，请阅读 [状态管理](/guide/scaling-up/state-management.html) 这一章。
+每一个调用 `useMouse()` 的组件实例会创建其独有的 `x`、`y` 状态拷贝，因此他们不会互相影响。如果你想要在组件之间共享状态，请阅读[状态管理](/guide/scaling-up/state-management.html)这一章。
 :::
 
 ## 异步状态示例 {#async-state-example}
@@ -220,13 +220,13 @@ export function useFetch(url) {
 
 这个版本的 `useFetch()` 现在同时可以接收静态的 URL 字符串和 URL 字符串的 ref。当它通过 [`isRef()`](/api/reactivity-utilities.html#isref) 检测到 URL 是一个 ref 时，它会通过 [`watchEffect()`](/api/reactivity-core.html#watcheffect) 启动一个响应式的副作用。该副作用会立刻运行一次，然后跟踪 URL ref 的变化，将其作为此过程的依赖。一旦 URL ref 变化了，数据就会被重置并重新发起请求。
 
-这里是一个 [升级版的 `useFetch()`](https://sfc.vuejs.org/#eyJBcHAudnVlIjoiPHNjcmlwdCBzZXR1cD5cbmltcG9ydCB7IHJlZiwgY29tcHV0ZWQgfSBmcm9tICd2dWUnXG5pbXBvcnQgeyB1c2VGZXRjaCB9IGZyb20gJy4vdXNlRmV0Y2guanMnXG5cbmNvbnN0IGJhc2VVcmwgPSAnaHR0cHM6Ly9qc29ucGxhY2Vob2xkZXIudHlwaWNvZGUuY29tL3RvZG9zLydcbmNvbnN0IGlkID0gcmVmKCcxJylcbmNvbnN0IHVybCA9IGNvbXB1dGVkKCgpID0+IGJhc2VVcmwgKyBpZC52YWx1ZSlcblxuY29uc3QgeyBkYXRhLCBlcnJvciwgcmV0cnkgfSA9IHVzZUZldGNoKHVybClcbjwvc2NyaXB0PlxuXG48dGVtcGxhdGU+XG4gIExvYWQgcG9zdCBpZDpcbiAgPGJ1dHRvbiB2LWZvcj1cImkgaW4gNVwiIEBjbGljaz1cImlkID0gaVwiPnt7IGkgfX08L2J1dHRvbj5cblxuXHQ8ZGl2IHYtaWY9XCJlcnJvclwiPlxuICAgIDxwPk9vcHMhIEVycm9yIGVuY291bnRlcmVkOiB7eyBlcnJvci5tZXNzYWdlIH19PC9wPlxuICAgIDxidXR0b24gQGNsaWNrPVwicmV0cnlcIj5SZXRyeTwvYnV0dG9uPlxuICA8L2Rpdj5cbiAgPGRpdiB2LWVsc2UtaWY9XCJkYXRhXCI+RGF0YSBsb2FkZWQ6IDxwcmU+e3sgZGF0YSB9fTwvcHJlPjwvZGl2PlxuICA8ZGl2IHYtZWxzZT5Mb2FkaW5nLi4uPC9kaXY+XG48L3RlbXBsYXRlPiIsImltcG9ydC1tYXAuanNvbiI6IntcbiAgXCJpbXBvcnRzXCI6IHtcbiAgICBcInZ1ZVwiOiBcImh0dHBzOi8vc2ZjLnZ1ZWpzLm9yZy92dWUucnVudGltZS5lc20tYnJvd3Nlci5qc1wiXG4gIH1cbn0iLCJ1c2VGZXRjaC5qcyI6ImltcG9ydCB7IHJlZiwgaXNSZWYsIHVucmVmLCB3YXRjaEVmZmVjdCB9IGZyb20gJ3Z1ZSdcblxuZXhwb3J0IGZ1bmN0aW9uIHVzZUZldGNoKHVybCkge1xuICBjb25zdCBkYXRhID0gcmVmKG51bGwpXG4gIGNvbnN0IGVycm9yID0gcmVmKG51bGwpXG5cbiAgYXN5bmMgZnVuY3Rpb24gZG9GZXRjaCgpIHtcbiAgICAvLyByZXNldCBzdGF0ZSBiZWZvcmUgZmV0Y2hpbmcuLlxuICAgIGRhdGEudmFsdWUgPSBudWxsXG4gICAgZXJyb3IudmFsdWUgPSBudWxsXG4gICAgXG4gICAgLy8gcmVzb2x2ZSB0aGUgdXJsIHZhbHVlIHN5bmNocm9ub3VzbHkgc28gaXQncyB0cmFja2VkIGFzIGFcbiAgICAvLyBkZXBlbmRlbmN5IGJ5IHdhdGNoRWZmZWN0KClcbiAgICBjb25zdCB1cmxWYWx1ZSA9IHVucmVmKHVybClcbiAgICBcbiAgICB0cnkge1xuICAgICAgLy8gYXJ0aWZpY2lhbCBkZWxheSAvIHJhbmRvbSBlcnJvclxuICBcdCAgYXdhaXQgdGltZW91dCgpXG4gIFx0ICAvLyB1bnJlZigpIHdpbGwgcmV0dXJuIHRoZSByZWYgdmFsdWUgaWYgaXQncyBhIHJlZlxuXHQgICAgLy8gb3RoZXJ3aXNlIHRoZSB2YWx1ZSB3aWxsIGJlIHJldHVybmVkIGFzLWlzXG4gICAgXHRjb25zdCByZXMgPSBhd2FpdCBmZXRjaCh1cmxWYWx1ZSlcblx0ICAgIGRhdGEudmFsdWUgPSBhd2FpdCByZXMuanNvbigpXG4gICAgfSBjYXRjaCAoZSkge1xuICAgICAgZXJyb3IudmFsdWUgPSBlXG4gICAgfVxuICB9XG5cbiAgaWYgKGlzUmVmKHVybCkpIHtcbiAgICAvLyBzZXR1cCByZWFjdGl2ZSByZS1mZXRjaCBpZiBpbnB1dCBVUkwgaXMgYSByZWZcbiAgICB3YXRjaEVmZmVjdChkb0ZldGNoKVxuICB9IGVsc2Uge1xuICAgIC8vIG90aGVyd2lzZSwganVzdCBmZXRjaCBvbmNlXG4gICAgZG9GZXRjaCgpXG4gIH1cblxuICByZXR1cm4geyBkYXRhLCBlcnJvciwgcmV0cnk6IGRvRmV0Y2ggfVxufVxuXG4vLyBhcnRpZmljaWFsIGRlbGF5XG5mdW5jdGlvbiB0aW1lb3V0KCkge1xuICByZXR1cm4gbmV3IFByb21pc2UoKHJlc29sdmUsIHJlamVjdCkgPT4ge1xuICAgIHNldFRpbWVvdXQoKCkgPT4ge1xuICAgICAgaWYgKE1hdGgucmFuZG9tKCkgPiAwLjMpIHtcbiAgICAgICAgcmVzb2x2ZSgpXG4gICAgICB9IGVsc2Uge1xuICAgICAgICByZWplY3QobmV3IEVycm9yKCdSYW5kb20gRXJyb3InKSlcbiAgICAgIH1cbiAgICB9LCAzMDApXG4gIH0pXG59In0=)，出于演示目的，人为地设置了一个延迟和随机误差。
+这里是一个[升级版的 `useFetch()`](https://sfc.vuejs.org/#eyJBcHAudnVlIjoiPHNjcmlwdCBzZXR1cD5cbmltcG9ydCB7IHJlZiwgY29tcHV0ZWQgfSBmcm9tICd2dWUnXG5pbXBvcnQgeyB1c2VGZXRjaCB9IGZyb20gJy4vdXNlRmV0Y2guanMnXG5cbmNvbnN0IGJhc2VVcmwgPSAnaHR0cHM6Ly9qc29ucGxhY2Vob2xkZXIudHlwaWNvZGUuY29tL3RvZG9zLydcbmNvbnN0IGlkID0gcmVmKCcxJylcbmNvbnN0IHVybCA9IGNvbXB1dGVkKCgpID0+IGJhc2VVcmwgKyBpZC52YWx1ZSlcblxuY29uc3QgeyBkYXRhLCBlcnJvciwgcmV0cnkgfSA9IHVzZUZldGNoKHVybClcbjwvc2NyaXB0PlxuXG48dGVtcGxhdGU+XG4gIExvYWQgcG9zdCBpZDpcbiAgPGJ1dHRvbiB2LWZvcj1cImkgaW4gNVwiIEBjbGljaz1cImlkID0gaVwiPnt7IGkgfX08L2J1dHRvbj5cblxuXHQ8ZGl2IHYtaWY9XCJlcnJvclwiPlxuICAgIDxwPk9vcHMhIEVycm9yIGVuY291bnRlcmVkOiB7eyBlcnJvci5tZXNzYWdlIH19PC9wPlxuICAgIDxidXR0b24gQGNsaWNrPVwicmV0cnlcIj5SZXRyeTwvYnV0dG9uPlxuICA8L2Rpdj5cbiAgPGRpdiB2LWVsc2UtaWY9XCJkYXRhXCI+RGF0YSBsb2FkZWQ6IDxwcmU+e3sgZGF0YSB9fTwvcHJlPjwvZGl2PlxuICA8ZGl2IHYtZWxzZT5Mb2FkaW5nLi4uPC9kaXY+XG48L3RlbXBsYXRlPiIsImltcG9ydC1tYXAuanNvbiI6IntcbiAgXCJpbXBvcnRzXCI6IHtcbiAgICBcInZ1ZVwiOiBcImh0dHBzOi8vc2ZjLnZ1ZWpzLm9yZy92dWUucnVudGltZS5lc20tYnJvd3Nlci5qc1wiXG4gIH1cbn0iLCJ1c2VGZXRjaC5qcyI6ImltcG9ydCB7IHJlZiwgaXNSZWYsIHVucmVmLCB3YXRjaEVmZmVjdCB9IGZyb20gJ3Z1ZSdcblxuZXhwb3J0IGZ1bmN0aW9uIHVzZUZldGNoKHVybCkge1xuICBjb25zdCBkYXRhID0gcmVmKG51bGwpXG4gIGNvbnN0IGVycm9yID0gcmVmKG51bGwpXG5cbiAgYXN5bmMgZnVuY3Rpb24gZG9GZXRjaCgpIHtcbiAgICAvLyByZXNldCBzdGF0ZSBiZWZvcmUgZmV0Y2hpbmcuLlxuICAgIGRhdGEudmFsdWUgPSBudWxsXG4gICAgZXJyb3IudmFsdWUgPSBudWxsXG4gICAgXG4gICAgLy8gcmVzb2x2ZSB0aGUgdXJsIHZhbHVlIHN5bmNocm9ub3VzbHkgc28gaXQncyB0cmFja2VkIGFzIGFcbiAgICAvLyBkZXBlbmRlbmN5IGJ5IHdhdGNoRWZmZWN0KClcbiAgICBjb25zdCB1cmxWYWx1ZSA9IHVucmVmKHVybClcbiAgICBcbiAgICB0cnkge1xuICAgICAgLy8gYXJ0aWZpY2lhbCBkZWxheSAvIHJhbmRvbSBlcnJvclxuICBcdCAgYXdhaXQgdGltZW91dCgpXG4gIFx0ICAvLyB1bnJlZigpIHdpbGwgcmV0dXJuIHRoZSByZWYgdmFsdWUgaWYgaXQncyBhIHJlZlxuXHQgICAgLy8gb3RoZXJ3aXNlIHRoZSB2YWx1ZSB3aWxsIGJlIHJldHVybmVkIGFzLWlzXG4gICAgXHRjb25zdCByZXMgPSBhd2FpdCBmZXRjaCh1cmxWYWx1ZSlcblx0ICAgIGRhdGEudmFsdWUgPSBhd2FpdCByZXMuanNvbigpXG4gICAgfSBjYXRjaCAoZSkge1xuICAgICAgZXJyb3IudmFsdWUgPSBlXG4gICAgfVxuICB9XG5cbiAgaWYgKGlzUmVmKHVybCkpIHtcbiAgICAvLyBzZXR1cCByZWFjdGl2ZSByZS1mZXRjaCBpZiBpbnB1dCBVUkwgaXMgYSByZWZcbiAgICB3YXRjaEVmZmVjdChkb0ZldGNoKVxuICB9IGVsc2Uge1xuICAgIC8vIG90aGVyd2lzZSwganVzdCBmZXRjaCBvbmNlXG4gICAgZG9GZXRjaCgpXG4gIH1cblxuICByZXR1cm4geyBkYXRhLCBlcnJvciwgcmV0cnk6IGRvRmV0Y2ggfVxufVxuXG4vLyBhcnRpZmljaWFsIGRlbGF5XG5mdW5jdGlvbiB0aW1lb3V0KCkge1xuICByZXR1cm4gbmV3IFByb21pc2UoKHJlc29sdmUsIHJlamVjdCkgPT4ge1xuICAgIHNldFRpbWVvdXQoKCkgPT4ge1xuICAgICAgaWYgKE1hdGgucmFuZG9tKCkgPiAwLjMpIHtcbiAgICAgICAgcmVzb2x2ZSgpXG4gICAgICB9IGVsc2Uge1xuICAgICAgICByZWplY3QobmV3IEVycm9yKCdSYW5kb20gRXJyb3InKSlcbiAgICAgIH1cbiAgICB9LCAzMDApXG4gIH0pXG59In0=)，出于演示目的，人为地设置了一个延迟和随机误差。
 
 ## 约定和最佳实践 {#conventions-and-best-practices}
 
 ### 命名 {#naming}
 
-约定将可组合函数命名为以 “use” 开头的函数。
+约定将可组合函数命名为以“use”开头的函数。
 
 ### 输入参数 {#input-arguments}
 
@@ -242,11 +242,11 @@ function useFeature(maybeRef) {
 }
 ```
 
-如果你的可组合函数期望使用一个 ref 为参数启动一个 `watchEffect()`，请确保使用 `watch()` 显式地监听此 ref ，或者在副作用回调中调用 `unref()` 以保证其被追踪为依赖。
+如果你的可组合函数期望使用一个 ref 为参数启动一个 `watchEffect()`，请确保使用 `watch()` 显式地监听此 ref，或者在副作用回调中调用 `unref()` 以保证其被追踪为依赖。
 
 ### 返回值 {#return-values}
 
-你可能已经注意到了，我们一直在可组合函数中使用 `ref()` 而不是 `reactive()`。约定推荐始终从可组合函数中返回一个包含 ref 的对象，这样在对象解构时可以 [保持响应性](/guide/extras/reactivity-in-depth.html#retaining-reactivity)：
+你可能已经注意到了，我们一直在可组合函数中使用 `ref()` 而不是 `reactive()`。约定推荐始终从可组合函数中返回一个包含 ref 的对象，这样在对象解构时可以[保持响应性](/guide/extras/reactivity-in-depth.html#retaining-reactivity)：
 
 ```js
 // x 和 y 是两个 ref
@@ -269,15 +269,15 @@ console.log(mouse.x)
 
 ### 副作用 {#side-effects}
 
-在可组合函数中的确可以执行副作用（例如：添加 DOM 事件监听器或者请求数据），但请注意以下规则：
+在可组合函数中的确可以执行副作用 (例如：添加 DOM 事件监听器或者请求数据)，但请注意以下规则：
 
-- 如果你在一个应用程序中使用了 [服务器端渲染](/guide/scaling-up/ssr.html)（SSR），请确保在后置加载的声明钩子上执行 DOM 相关的副作用，例如： `onMounted()`。这些钩子仅会在浏览器中使用，因此可以确保能访问到 DOM。
+- 如果你在一个应用程序中使用了[服务器端渲染](/guide/scaling-up/ssr.html) (SSR)，请确保在后置加载的声明钩子上执行 DOM 相关的副作用，例如：`onMounted()`。这些钩子仅会在浏览器中使用，因此可以确保能访问到 DOM。
 
-- 确保在 `onUnmounted()` 时清理副作用。举个例子，如果一个可组合函数设置了一个事件监听器，它就应该在 `onUnmounted()` 中被移除（就像我们在 `useMouse()` 示例中看到的一样）。当然也可以使用一个可组合函数来自动帮你做这些事，例如之前的 `useEventListener()` 示例。
+- 确保在 `onUnmounted()` 时清理副作用。举个例子，如果一个可组合函数设置了一个事件监听器，它就应该在 `onUnmounted()` 中被移除 (就像我们在 `useMouse()` 示例中看到的一样)。当然也可以使用一个可组合函数来自动帮你做这些事，例如之前的 `useEventListener()` 示例。
 
 ### 使用限制 {#usage-restrictions}
 
-可组合函数应该在 `<script setup>` 或 `setup()` 钩子中始终被 **同步地** 调用。在某些场景下，你可能也需要在生命周期钩子（比如 `onMounted()`）中使用。
+可组合函数应该在 `<script setup>` 或 `setup()` 钩子中始终被**同步地**调用。在某些场景下，你可能也需要在生命周期钩子 (比如 `onMounted()`) 中使用。
 
 这些是 Vue 能够确定当前活动组件实例的上下文。对活动组件实例的访问是必要的，所以：
 
@@ -301,7 +301,7 @@ import { useFeatureC } from './featureC.js'
 
 const { foo, bar } = useFeatureA()
 const { baz } = useFeatureB(foo)
-const { qux } = iseFeatureC(baz)
+const { qux } = useFeatureC(baz)
 </script>
 ```
 
@@ -333,7 +333,7 @@ export default {
 
 ### vs. 混入 {#vs-mixins}
 
-Vue 2 的用户可能会对 [混入（mixins）](/api/options-composition.html#mixins) 选项比较属性，它使得我们可以抽取组件逻辑到可重用的单元。然而混入有两个短板：
+Vue 2 的用户可能会对[混入 (mixins)](/api/options-composition.html#mixins) 选项比较属性，它使得我们可以抽取组件逻辑到可重用的单元。然而混入有两个短板：
 
 1. **不清晰的属性来源**：当使用了多个混入时，无法清晰得知某个组件实例是来自哪个混入，使我们很难追溯其实现和理解组件的行为。这也是我们推荐在可组合函数中使用 ref + 解构模式的原因：这样可以使属性来源在消费者组件中更清晰易懂。
 
@@ -345,7 +345,7 @@ Vue 2 的用户可能会对 [混入（mixins）](/api/options-composition.html#m
 
 ### vs. 无渲染组件 {#vs-renderless-components}
 
-在组件插槽一章中，我们讨论过了基于作用域插槽的 [无渲染组件](/guide/components/slots.html#renderless-components)。我们甚至用它实现了一样的鼠标追踪器示例。
+在组件插槽一章中，我们讨论过了基于作用域插槽的[无渲染组件](/guide/components/slots.html#renderless-components)。我们甚至用它实现了一样的鼠标追踪器示例。
 
 可组合函数相对于无渲染组件的主要优势是：可组合函数不会产生额外的组件实例开销。当在整个应用程序中使用时，由无渲染组件创建的额外组件实例所带来的性能消耗是无法忽略的。
 
@@ -353,7 +353,7 @@ Vue 2 的用户可能会对 [混入（mixins）](/api/options-composition.html#m
 
 ### vs. React Hooks {#vs-react-hooks}
 
-如果你有过开发 React 的经验，你可能注意到可组合函数和自定义 React hooks 非常类似。组合式 API 一部分灵感也正来自于 React hooks，Vue 的可组合函数也的确在逻辑组合方面和 React hooks 类似。然而，Vue 的可组合函数是基于 Vue 细粒度的响应式系统，这和 React hooks 的执行模型有本质上的不同。关于此中细节的更多讨论请参见 [组合式 API FAQ](/guide/extras/composition-api-faq#comparison-with-react-hooks).
+如果你有过开发 React 的经验，你可能注意到可组合函数和自定义 React hooks 非常类似。组合式 API 一部分灵感也正来自于 React hooks，Vue 的可组合函数也的确在逻辑组合方面和 React hooks 类似。然而，Vue 的可组合函数是基于 Vue 细粒度的响应式系统，这和 React hooks 的执行模型有本质上的不同。关于此中细节的更多讨论请参见[组合式 API FAQ](/guide/extras/composition-api-faq#comparison-with-react-hooks)。
 
 ## 延伸阅读 {#further-reading}
 

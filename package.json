@@ -1,18 +1,19 @@
 {
   "scripts": {
-    "dev": "vitepress dev src",
-    "build": "node ./scripts/build.js",
-    "serve": "vitepress serve src",
-    "clean": "rm -rf src/.vitepress/dist",
+    "dev": "vitepress",
+    "build": "vitepress build",
+    "serve": "vitepress serve",
+    "zhlint": "zhlint 'src/guide/**/*.md'",
+    "clean": "rm -rf .vitepress/dist",
     "sync": "node scripts/sync.js"
   },
   "dependencies": {
     "@vue/repl": "^0.4.9",
-    "@vue/theme": "^0.1.36",
+    "@vue/theme": "^0.1.42",
     "dynamics.js": "^1.1.5",
     "gsap": "^3.9.0",
-    "vitepress": "^0.21.4",
-    "vue": "^3.2.26"
+    "vitepress": "^0.21.6",
+    "vue": "^3.2.27"
   },
   "devDependencies": {
     "@types/markdown-it": "^12.2.3",
@@ -22,30 +23,17 @@
     "lodash": "^4.17.21",
     "open": "^8.4.0",
     "patch-vue-directive-ssr": "^0.0.1",
-    "simple-git": "^2.48.0"
+    "simple-git": "^2.48.0",
+    "zhlint": "^0.5.3"
   },
   "pnpm": {
-    "packageExtensions": {
-      "@algolia/autocomplete-preset-algolia": {
-        "peerDependenciesMeta": {
-          "@algolia/client-search": {
-            "optional": true
-          }
-        }
-      },
-      "@docsearch/react": {
-        "peerDependenciesMeta": {
-          "react": {
-            "optional": true
-          },
-          "react-dom": {
-            "optional": true
-          },
-          "@types/react": {
-            "optional": true
-          }
-        }
-      }
+    "peerDependencyRules": {
+      "ignoreMissing": [
+        "@algolia/client-search",
+        "react",
+        "react-dom",
+        "@types/react"
+      ]
     }
   }
 }

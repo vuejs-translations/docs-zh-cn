@@ -156,7 +156,7 @@ export default defineConfig({
 
 ```js
 // MyComponent.test.js
-import { render } from '@vue/testing-library'
+import { render } from '@testing-library/vue'
 import MyComponent from './MyComponent.vue'
 
 test('这应该会成功！', () => {
@@ -272,3 +272,5 @@ TODO more testing recipes can be added in the future e.g.
 - How to set up CI via GitHub actions
 - How to do mocking in component testing
 -->
+
+<!-- zhlint disabled -->

@@ -2,13 +2,13 @@
 
 ## 监听事件 {#listening-to-events}
 
-你可以使用 `v-on` 指令（简写为 `@`）来监听 DOM 事件和触发 JavaScript 代码运行。用法可以是 `v-on:click="methodName"` 或简写为  `@click="handler"`。
+你可以使用 `v-on` 指令 (简写为 `@`) 来监听 DOM 事件和触发 JavaScript 代码运行。用法可以是 `v-on:click="methodName"` 或简写为 `@click="handler"`。
 
 事件处理器的值应该是下面两种其中之一：
 
-1. **内联事件处理器：** 事件被触发时执行的内联 JavaScript 语句（与原生的 `onclick` attribute 类似）。
+1. **内联事件处理器：**事件被触发时执行的内联 JavaScript 语句 (与原生的 `onclick` attribute 类似)。
 
-2. **用方法作为事件处理器：** 一个组件的属性名、或对某个方法的访问（比如 `@click="some.method"`）。
+2. **用方法作为事件处理器：**一个组件的属性名、或对某个方法的访问 (比如 `@click="some.method"`)。
 
 ## 内联事件处理器 {#inline-handlers}
 
@@ -112,12 +112,12 @@ methods: {
 
 <div class="composition-api">
 
-你也可以看看 [为组件事件处理器标注类型](/guide/typescript/composition-api.html#typing-event-handlers) 这一章了解更多。<Badge type="ts" text="TS" />
+你也可以看看[为组件事件处理器标注类型](/guide/typescript/composition-api.html#typing-event-handlers)这一章了解更多。<sup class="vt-badge ts">TS</sup>
 
 </div>
 <div class="options-api">
 
-你也可以看看 [为组件事件处理器标注类型](/guide/typescript/options-api.html#typing-event-handlers) 这一章了解更多。<Badge type="ts" text="TS" />
+你也可以看看[为组件事件处理器标注类型](/guide/typescript/options-api.html#typing-event-handlers)这一章了解更多。<sup class="vt-badge ts">TS</sup>
 
 </div>
 
@@ -215,7 +215,7 @@ methods: {
 
 在处理事件时调用 `event.preventDefault()` 或 `event.stopPropagation()` 是非常常见的。尽管我们确实可以直接在方法内调用，但如果方法能更专注于数据逻辑而不用去处理 DOM 事件的细节会更好。
 
-为解决这一问题，Vue 为 `v-on` 提供了 **事件修饰符**。回想一下，修饰符是用点表示的指令后缀。
+为解决这一问题，Vue 为 `v-on` 提供了**事件修饰符**。回想一下，修饰符是用点表示的指令后缀。
 
 - `.stop`
 - `.prevent`
@@ -243,7 +243,7 @@ methods: {
 ```
 
 ::: tip
-使用修饰符时需要注意调用的顺序，因为据此生成的相关代码也会是同样的顺序。因此使用 `@click.prevent.self` 会阻止元素内的 **所有点击** 而 `@click.self.prevent` 则只会阻止对元素本身的点击。
+使用修饰符时需要注意调用的顺序，因为据此生成的相关代码也会是同样的顺序。因此使用 `@click.prevent.self` 会阻止元素内的**所有点击**而 `@click.self.prevent` 则只会阻止对元素本身的点击。
 :::
 
 The `.capture`, `.once`, and `.passive` modifiers mirror the [options of the native `addEventListener` method](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener#Parameters):
@@ -262,10 +262,10 @@ The `.capture`, `.once`, and `.passive` modifiers mirror the [options of the nat
 <div @scroll.passive="onScroll">...</div>
 ```
 
-`.passive` 修饰符一般用于触摸事件的监听器，可以用来 [提升移动端设备上的性能表现](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener#improving_scrolling_performance_with_passive_listeners)。
+`.passive` 修饰符一般用于触摸事件的监听器，可以用来[提升移动端设备上的性能表现](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener#improving_scrolling_performance_with_passive_listeners)。
 
 ::: tip
-请勿同时使用 `.passive` 和 `.prevent`，因为 `.prevent` 会被忽略并且你的浏览器可能会抛出警告。请记住，`.passive` 是向浏览器表明你 _不想_ 阻止事件的默认行为。并且如果你这样做，可能在浏览器中收到一个警告。
+请勿同时使用 `.passive` 和 `.prevent`，因为 `.prevent` 会被忽略并且你的浏览器可能会抛出警告。请记住，`.passive` 是向浏览器表明你_不想_阻止事件的默认行为。并且如果你这样做，可能在浏览器中收到一个警告。
 :::
 
 ## 按键修饰符 {#key-modifiers}
@@ -291,7 +291,7 @@ Vue 为一些常用的按键提供了别名：
 
 - `.enter`
 - `.tab`
-- `.delete`（捕获 "Delete" 和 "Backspace" 两个按键）
+- `.delete` (捕获“Delete”和“Backspace”两个按键)
 - `.esc`
 - `.space`
 - `.up`
@@ -309,7 +309,7 @@ Vue 为一些常用的按键提供了别名：
 - `.meta`
 
 ::: tip 注意
-在 Macintosh 电脑上，meta 按键是 Command 键（⌘）。在 Windows 键盘上，meta 键是 Windows 键（⊞）。在 Sun 微机系统键盘上，meta 是钻石键（◆）。在某些键盘上，特别是 MIT 和 Lisp 机器的键盘及其后代版本的键盘，如 Knight 键盘，space-cadet 键盘，meta 都被标记为 “meta”。在 Symbolics 键盘上，meta 也被标识为 “META” 为 “Meta”。
+在 Macintosh 电脑上，meta 按键是 Command 键 (⌘)。在 Windows 键盘上，meta 键是 Windows 键 (⊞)。在 Sun 微机系统键盘上，meta 是钻石键 (◆)。在某些键盘上，特别是 MIT 和 Lisp 机器的键盘及其后代版本的键盘，如 Knight 键盘，space-cadet 键盘，meta 都被标记为“meta”。在 Symbolics 键盘上，meta 也被标识为“META”为“Meta”。
 :::
 
 举个例子：

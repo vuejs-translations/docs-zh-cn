@@ -1,5 +1,5 @@
 ---
-aside: deep
+outline: deep
 ---
 
 # Render Functions & JSX
@@ -38,6 +38,13 @@ h('div', { id: 'foo' })
 // both attributes and properties can be used in props
 // Vue automatically picks the right way to assign it
 h('div', { class: 'bar', innerHTML: 'hello' })
+
+// class and style have the same object / array
+// value support like in templates
+h('div', { class: [foo, { bar }], style: { color: 'red' } })
+
+// event listeners should be passed as onXxx
+h('div', { onClick: () => {} })
 
 // children can be a string
 h('div', { id: 'foo' }, 'hello')
@@ -196,7 +203,8 @@ If you really want to duplicate the same element/component many times, you can d
 
 ```js
 function render() {
-  return h('div',
+  return h(
+    'div',
     Array.from({ length: 20 }).map(() => {
       return h('p', 'hi')
     })
@@ -675,3 +683,5 @@ MyComponent.emits = ['click']
 If the `props` option is not specified, then the `props` object passed to the function will contain all attributes, the same as `attrs`. The prop names will not be normalized to camelCase unless the `props` option is specified.
 
 Functional components can be registered and consumed just like normal components. If you pass a function as the first argument to `h()`, it will be treated as a functional component.
+
+<!-- zhlint disabled -->

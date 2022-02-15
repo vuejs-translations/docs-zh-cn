@@ -6,7 +6,7 @@
 <input ref="input">
 ```
 
-`ref` 是一个特殊的 attribute ，和 `v-for` 章节中提到的 `key` 类似。它允许我们在一个特定的 DOM 元素或子组件实例被挂载后，获得对它的直接引用。这可能很有用，比如说在组件挂载时编程式地聚焦到一个 input 元素上，或在一个元素上初始化一个第三方库。
+`ref` 是一个特殊的 attribute，和 `v-for` 章节中提到的 `key` 类似。它允许我们在一个特定的 DOM 元素或子组件实例被挂载后，获得对它的直接引用。这可能很有用，比如说在组件挂载时编程式地聚焦到一个 input 元素上，或在一个元素上初始化一个第三方库。
 
 ## 访问模板 ref {#accessing-the-refs}
 
@@ -53,9 +53,10 @@ export default {
 
 </div>
 
-注意，你只可以 **在组件挂载后** 才能访问 ref。如果你想在模板中的表达式上访问 `$refs.input`，在初次渲染时会是 `null`。这是因为在初次渲染前这个元素还压根不存在呢！
+注意，你只可以**在组件挂载后**才能访问 ref。如果你想在模板中的表达式上访问 `$refs.input`，在初次渲染时会是 `null`。这是因为在初次渲染前这个元素还压根不存在呢！
 
 <div class="composition-api">
+
 如果你正试图观察一个模板 ref 的变化，确保考虑到 ref 的值为 `null` 的情况：
 
 ```js
@@ -68,7 +69,7 @@ watchEffect(() => {
 })
 ```
 
-See also: [Typing Template Refs](/guide/typescript/composition-api.html#typing-template-refs) <Badge type="ts" text="TS" />
+See also：[Typing Template Refs](/guide/typescript/composition-api.html#typing-template-refs) <sup class="vt-badge ts">TS</sup>
 
 </div>
 
@@ -138,7 +139,7 @@ export default {
 
 </div>
 
-应该注意的是，ref 数组 **不能** 保证与源数组相同的顺序。
+应该注意的是，ref 数组**不能**保证与源数组相同的顺序。
 
 ## 函数型 ref {#function-refs}
 
@@ -148,11 +149,11 @@ export default {
 <input :ref="(el) => { /* assign el to a property or ref */ }">
 ```
 
-如果你正在使用一个动态的 `:ref` 绑定，我们也可以传一个函数。当元素卸载时，这个 `el`参数会是 `null`。你当然也可以使用一个方法而不是内联函数。
+如果你正在使用一个动态的 `:ref` 绑定，我们也可以传一个函数。当元素卸载时，这个 `el` 参数会是 `null`。你当然也可以使用一个方法而不是内联函数。
 
 ## 组件上的 ref {#ref-on-component}
 
-> 这一小节假设你已了解 [组件](/guide/essentials/component-basics) 的相关知识，或者你也可以先跳过这里，之后再回来看。
+> 这一小节假设你已了解[组件](/guide/essentials/component-basics)的相关知识，或者你也可以先跳过这里，之后再回来看。
 
 `ref` 也可以被用在一个子组件上。此时 ref 中引用的是组件实例：
 
@@ -199,11 +200,11 @@ export default {
 
 </div>
 
-如果一个子组件使用的是选项式 API<span class="composition-api"> 或没有使用 `<script setup>`</span>，被引用的组件实例和该子组件的 `this` 完全一致，这意味着父组件对子组件的每一个属性和方法都有完全的访问权。这使得这使得在父组件和子组件之间创建紧密耦合的实现细节变得很容易，当然也因此，应该只在绝对需要时才使用组件引用。大多数情况下，你应该首先使用标准的 props 和 emit 接口来实现父子组件交互。
+如果一个子组件使用的是选项式 API <span class="composition-api"> 或没有使用 `<script setup>`</span>，被引用的组件实例和该子组件的 `this` 完全一致，这意味着父组件对子组件的每一个属性和方法都有完全的访问权。这使得这使得在父组件和子组件之间创建紧密耦合的实现细节变得很容易，当然也因此，应该只在绝对需要时才使用组件引用。大多数情况下，你应该首先使用标准的 props 和 emit 接口来实现父子组件交互。
 
 <div class="composition-api">
 
-有一个例外的情况，使用了 `<script setup>` 的组件时 **默认私有** 的：一个父组件无法访问到一个使用了 `<script setup>` 的子组件中的任何东西，除非子组件在其中通过 `defineExpose` 宏显式暴露：
+有一个例外的情况，使用了 `<script setup>` 的组件时**默认私有**的：一个父组件无法访问到一个使用了 `<script setup>` 的子组件中的任何东西，除非子组件在其中通过 `defineExpose` 宏显式暴露：
 
 ```vue
 <script setup>
@@ -219,9 +220,9 @@ defineExpose({
 </script>
 ```
 
-当父组件通过模板 ref 获取到了该组件的实例，得到的实例类型为 `{ a: number, b: number }`（ref 都会自动解套，和一般的实例一样）。
+当父组件通过模板 ref 获取到了该组件的实例，得到的实例类型为 `{ a: number, b: number }` (ref 都会自动解套，和一般的实例一样)。
 
-你也可以看看 [为组件的模板 ref 标注类型](/guide/typescript/composition-api.html#typing-component-template-refs) <Badge type="ts" text="TS" />
+你也可以看看[为组件的模板 ref 标注类型 ](/guide/typescript/composition-api.html#typing-component-template-refs) <sup class="vt-badge ts">TS</sup>
 
 </div>
 <div class="options-api">

@@ -14,7 +14,7 @@ app.use(myPlugin, {
 })
 ```
 
-它可以是一个拥有 `install()` 方法的对象，或者就简单地只是一个函数，它自己就是安装函数。安装函数接收 [应用实例](/api/application.html) 和可选传入的额外选项：
+它可以是一个拥有 `install()` 方法的对象，或者就简单地只是一个函数，它自己就是安装函数。安装函数接收[应用实例](/api/application.html)和可选传入的额外选项：
 
 ```js
 const myPlugin = {
@@ -28,15 +28,15 @@ const myPlugin = {
 
 1. 通过 [`app.component()`](/api/application.html#app-component) 和 [`app.directive()`](/api/application.html#app-directive) 注册一到多个全局组件或自定义指令。
 
-2. 通过 [`app.provide()`](/api/application.html#app-provide) 使一个资源 [可被注入](/guide/components/provide-inject.html) 进整个应用。
+2. 通过 [`app.provide()`](/api/application.html#app-provide) 使一个资源[可被注入](/guide/components/provide-inject.html)进整个应用。
 
 3. 向 [`app.config.globalProperties`](/api/application.html#app-config-globalproperties) 中添加一些全局实例属性或方法
 
-4. 一个可能上述三种都包含了的功能库（例如 [vue-router](https://github.com/vuejs/vue-router-next)）。
+4. 一个可能上述三种都包含了的功能库 (例如 [vue-router](https://github.com/vuejs/vue-router-next))。
 
 ## 编写一个插件 {#writing-a-plugin}
 
-为了更好地理解如何构建 Vue.js 插件，我们可以试着做一个简单的 `i18n`（[国际化（Internationalization）](https://en.wikipedia.org/wiki/Internationalization_and_localization) 的缩写) 插件来学习。
+为了更好地理解如何构建 Vue.js 插件，我们可以试着做一个简单的 `i18n` ([国际化 (Internationalization)](https://en.wikipedia.org/wiki/Internationalization_and_localization) 的缩写) 插件来学习。
 
 让我们从设置插件对象开始。建议在一个单独的文件中创建并导出它，以保证更好的管理逻辑，如下所示：
 
@@ -85,7 +85,7 @@ app.use(i18nPlugin, {
 <h1>{{ $translate('greetings.hello') }}</h1>
 ```
 
-See also: [Augmenting Global Properties](/guide/typescript/options-api.html#augmenting-global-properties) <Badge type="ts" text="TS" />
+See also：[Augmenting Global Properties](/guide/typescript/options-api.html#augmenting-global-properties) <sup class="vt-badge ts">TS</sup>
 
 :::tip
 请谨慎使用全局属性，如果在整个应用程序中使用不同插件注入的太多全局属性，很容易令开发者困惑。

@@ -1,14 +1,14 @@
 ---
-aside: deep
+outline: deep
 ---
 
 # 透传 attribute {#fallthrough-attributes}
 
-> 阅读此章节时，我们假设你已经读过 [组件基础](/guide/essentials/component-basics)，若你对组件还完全不了解，请先阅读它。
+> 阅读此章节时，我们假设你已经读过[组件基础](/guide/essentials/component-basics)，若你对组件还完全不了解，请先阅读它。
 
 ## Attribute 继承 {#attribute-inheritance}
 
-“透传 attribute” 的意思是 attribute 或者被传递给一个组件的 `v-on` 事件监听器，但并没有显式地声明在所接收组件的 [props](./props) 或 [emits](./events.html#defining-custom-events) 上。最常见的例子就是 `class`、`style` 和 `id`。
+“透传 attribute”的意思是 attribute 或者被传递给一个组件的 `v-on` 事件监听器，但并没有显式地声明在所接收组件的 [props](./props) 或 [emits](./events.html#defining-custom-events) 上。最常见的例子就是 `class`、`style` 和 `id`。
 
 当一个组件以单个元素为根作渲染时，透传的 attribute 会自动添加到根元素的 attribute 中。举个例子，下面这个 `<MyButton>` 组件有这样的模板：
 
@@ -67,13 +67,13 @@ aside: deep
 
 请注意：
 
-1. 直传的 attribute 不会包含 `<MyButton>` 上声明过的 props，换句话说，声明过的 props 被 `<MyButton>` “消费” 了。
+1. 直传的 attribute 不会包含 `<MyButton>` 上声明过的 props 或是针对 `emits` 声明事件的 `v-on` 侦听函数，换句话说，声明过的 props 和侦听函数被 `<MyButton>`“消费”了。
 
 2. 直传的 attribute 若符合声明，也可以作为 props 传入 `<BaseButton>`。
 
 ## 禁用 Attribute 继承 {#disabling-attribute-inheritance}
 
-如果你 **不想要** 一个组件自动地继承 attribute，你可以在组件选项中设置 `inheritAttrs: false`。
+如果你**不想要**一个组件自动地继承 attribute，你可以在组件选项中设置 `inheritAttrs: false`。
 
 <div class="composition-api">
 
@@ -104,7 +104,13 @@ export default {
 
 这个 `$attrs` 对象包含了除组件的 `props` 和 `emits` 属性外的所有其他 attribute，例如 `class`，`style`，`v-on` 监听器等等。
 
-现在我们要再次使用一下 [之前小节](#attribute-inheritance) 中的 `<MyButton>` 组件例子。有时候我们可能为了样式，需要在 `<button>` 元素外包裹一层 `<div>`：
+一些额外的注意点：
+
+- 跟 props 不同的是，透传 attributes 在 JS 中会保留其原本的大小写格式。比如一个名为 `foo-bar` 的 attribute 需要用 `$attrs['foo-bar']` 这样的形式来获取。
+
+- 一个 `v-on` 侦听函数，比如 `@click`，会在对象上以 `$attrs.onClick` 的形式暴露。
+
+现在我们要再次使用一下[之前小节](#attribute-inheritance)中的 `<MyButton>` 组件例子。有时候我们可能为了样式，需要在 `<button>` 元素外包裹一层 `<div>`：
 
 ```vue-html
 <div class="btn-wrapper">
@@ -120,7 +126,7 @@ export default {
 </div>
 ```
 
-请记住 [没有参数的 `v-bind`](/guide/essentials/template-syntax.html#dynamically-binding-multiple-attributes) 会将一个对象的所有属性都作为 attribute 应用到目标元素上。
+请记住[没有参数的 `v-bind`](/guide/essentials/template-syntax.html#dynamically-binding-multiple-attributes) 会将一个对象的所有属性都作为 attribute 应用到目标元素上。
 
 ## 多根节点的 Attribute 继承 {#attribute-inheritance-on-multiple-root-nodes}
 
@@ -146,11 +152,11 @@ export default {
 <footer>...</footer>
 ```
 
-## 在 JavaScript 中 访问透传 Attributes {#accessing-fallthrough-attributes-in-javascript}
+## 在 JavaScript 中访问透传 Attributes {#accessing-fallthrough-attributes-in-javascript}
 
 <div class="composition-api">
 
-你可以在 `<script setup>` 中使用 `useAttrs()` API 来访问一个组件的所有透传 attribute：
+如果需要，你可以在 `<script setup>` 中使用 `useAttrs()` API 来访问一个组件的所有透传 attribute：
 
 ```vue
 <script setup>
@@ -171,11 +177,13 @@ export default {
 }
 ```
 
+需要注意的是，虽然这里的 `attrs` 对象总是反映为最新的透传 attribute，但它并不是响应式的 (考虑到性能因素)。你不能通过侦听器去监听它的变化。如果你需要响应性，可以使用 prop。或者你也可以使用 `onUpdated()` 以在每次更新时结合最新的 `attrs` 执行副作用。
+
 </div>
 
 <div class="options-api">
 
-你可以通过 `$attrs` 这个实例属性来访问组件的所有透传 attribute：
+如果需要，你可以通过 `$attrs` 这个实例属性来访问组件的所有透传 attribute：
 
 ```js
 export default {

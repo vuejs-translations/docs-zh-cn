@@ -1,5 +1,5 @@
 ---
-aside: deep
+outline: deep
 ---
 
 # 响应式基础 {#reactivity-fundamentals}
@@ -77,7 +77,7 @@ const state = reactive({ count: 0 })
 
 响应式对象其实是 [JavaScript Proxy](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy)，其行为表现与一般对象相似。不同之处在于 Vue 能够跟踪对响应式对象属性的访问与更改操作。如果你对这其中的细节感到好奇，我们在 [深入响应式系统](/guide/extras/reactivity-in-depth.html) 一章中会进行解释，但我们推荐你先读完这里的主要指引。
 
-你也可以看看：[为响应式对象标注类型](/guide/typescript/composition-api.html#typing-reactive)。 <Badge type="ts" text="TS" />
+你也可以看看：[为响应式对象标注类型](/guide/typescript/composition-api.html#typing-reactive)。 <sup class="vt-badge ts">TS</sup>
 
 要在组件模板中使用响应式状态，请在 `setup()` 函数中定义并返回。
 
@@ -116,7 +116,7 @@ export default {
 
     // 不要忘了同时暴露 increment 函数
     return {
-      count,
+      state,
       increment
     }
   }
@@ -388,7 +388,7 @@ count.value++
 console.log(count.value) // 1
 ```
 
-你也可以看看：[为 ref 标注类型](/guide/typescript/composition-api.html#typing-ref)。 <Badge type="ts" text="TS" />
+你也可以看看：[为 ref 标注类型](/guide/typescript/composition-api.html#typing-ref)。 <sup class="vt-badge ts">TS</sup>
 
 和响应式对象的属性类似，ref 的 `.value` 属性也是响应式的。同时，当值为对象类型时，会用 `reactive()` 自动转换它的 `.value`。
 
@@ -555,7 +555,7 @@ export default {
 
 <div class="composition-api">
 
-### 响应性语法糖 <Badge type="warning" text="实验性" /> \*\* {#reactivity-transform}
+### 响应性语法糖 <sup class="vt-badge warning">experimental</sup> \*\* {#reactivity-transform}
 
 不得不对 ref 使用 `.value` 是一个受限于 JavaScript 语言限制的缺点。不过在编译期间，自动在合适的位置上添加上 `.value` 可以改进开发体验。Vue 提供了一个语法糖，可以在编译时作相应转换，使得我们可以像这样书写上面的计数器示例：
 
@@ -577,3 +577,5 @@ function increment() {
 你可以在 [Reactivity Transform](/guide/extras/reactivity-transform.html) 章节中了解更多细节。请注意它仍处于实验性阶段，在最终提案落地前仍可能发生改动。
 
 </div>
+
+<!-- zhlint disabled -->
