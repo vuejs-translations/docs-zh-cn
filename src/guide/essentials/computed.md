@@ -2,7 +2,7 @@
 
 ## 基础示例 {#basic-example}
 
-模板中的表达式虽然方便，但也只能用来做简单的操作。如果在模板中写太多逻辑，会让使其变得复杂，难以维护。比如说，我们有这样一个包含嵌套数组的对象：
+模板中的表达式虽然方便，但也只能用来做简单的操作。如果在模板中写太多逻辑，会让使其变得臃肿，难以维护。比如说，我们有这样一个包含嵌套数组的对象：
 
 <div class="options-api">
 
@@ -87,7 +87,7 @@ export default {
 
 更改此应用的 `data` 中 `books` 数组的值后，可以看到 `publishedBooksMessage` 也会随之改变。
 
-在模板中使用计算属性的方式和一般的 property 并无二致。Vue 会检测到 `this.publishedBooksMessage` 依赖于 `this.author.books`，所以当 `this.author.books` 改变时，任何依赖于 `vm.publishedBooksMessage` 的绑定都将同时更新。
+在模板中使用计算属性的方式和一般的 property 并无二致。Vue 会检测到 `this.publishedBooksMessage` 依赖于 `this.author.books`，所以当 `this.author.books` 改变时，任何依赖于 `this.publishedBooksMessage` 的绑定都将同时更新。
 
 也可参考：[为计算属性标记类型 ](/guide/typescript/options-api.html#typing-computed) <sup class="vt-badge ts">TS</sup>
 
@@ -124,7 +124,7 @@ const publishedBooksMessage = computed(() => {
 
 我们在这里定义了一个计算属性 `publishedBooksMessage`。`computed()` 方法期望接收一个 getter 函数，返回值为一个**计算属性 ref**。和其他一般的 ref 类似，你可以通过 `publishedBooksMessage.value` 访问计算结果。计算属性 ref 也会在模板中自动解包，因此在模板表达式中引用时无需添加 `.value`。
 
-Vue 的计算属性会自动追踪响应式依赖。它会检测到 `this.publishedBooksMessage` 依赖于 `this.author.books`，所以当 `this.author.books` 改变时，任何依赖于 `vm.publishedBooksMessage` 的绑定都会同时更新。
+Vue 的计算属性会自动追踪响应式依赖。它会检测到 `publishedBooksMessage` 依赖于 `author.books`，所以当 `author.books` 改变时，任何依赖于 `publishedBooksMessage` 的绑定都会同时更新。
 
 也可参考：[为计算属性标注类型 ](/guide/typescript/composition-api.html#typing-computed) <sup class="vt-badge ts">TS</sup>
 
@@ -162,7 +162,7 @@ function calculateBooksMessage() {
 
 </div>
 
-若我们将同样的函数定义为一个方法而不是计算属性，两种方式在结果上确实是完全相同的，然而，不同之处在于**计算属性值会基于其响应式依赖被缓存**。一个计算属性仅会在其响应式依赖更新时才重新计算。这意味着只要 `author.books` 不改变，计算属性就不会重新计算结果。
+若我们将同样的函数定义为一个方法而不是计算属性，两种方式在结果上确实是完全相同的，然而，不同之处在于**计算属性值会基于其响应式依赖被缓存**。一个计算属性仅会在其响应式依赖更新时才重新计算。这意味着只要 `author.books` 不改变，无论多少次访问 `publishedBooksMessage` 都会立即返回先前的计算结果，而不用重复执行 getter 函数。
 
 这也意味着下面的计算属性永远不会更新，因为 `Date.now()` 并不是一个响应式依赖：
 
@@ -186,9 +186,9 @@ const now = computed(() => Date.now())
 
 </div>
 
-相比之下，方法**总是**会在重渲染发生时运行函数。
+相比之下，方法调用**总是**会在重渲染发生时再次执行函数。
 
-为什么需要缓存呢？想象一下我们有一个非常昂贵的计算属性 `list`，需要循环一个巨大的数组并做许多计算逻辑，并且可能也有其他计算属性依赖于 `list`。没有缓存的话，我们会重复执行非常多次 `list` 的计算函数，然而这实际上没有必要！如果你确定不需要缓存，那么也可以使用方法。
+为什么需要缓存呢？想象一下我们有一个非常耗性能的计算属性 `list`，需要循环一个巨大的数组并做许多计算逻辑，并且可能也有其他计算属性依赖于 `list`。没有缓存的话，我们会重复执行非常多次 `list` 的计算函数，然而这实际上没有必要！如果你确定不需要缓存，那么也可以使用方法调用。
 
 ## 可写计算属性 {#writable-computed}
 
@@ -213,7 +213,7 @@ export default {
       // setter
       set(newValue) {
         // 注意：我们这里使用的是解构赋值语法
-        ;[this.firstName, this.lastName] = newValue.split(' ')
+        [this.firstName, this.lastName] = newValue.split(' ')
       }
     }
   }
@@ -241,13 +241,13 @@ const fullName = computed({
   // setter
   set(newValue) {
     // 注意：我们这里使用的是解构赋值语法
-    ;[firstName.value, lastName.value] = newValue.split(' ')
+    [firstName.value, lastName.value] = newValue.split(' ')
   }
 })
 </script>
 ```
 
-现在当你再运行 `this.fullName = 'John Doe'` 时，setter 会被调用而 `this.firstName` 和 `this.lastName` 会随之更新。
+现在当你再运行 `fullName.value = 'John Doe'` 时，setter 会被调用而 `firstName` 和 `lastName` 会随之更新。
 
 </div>
 
