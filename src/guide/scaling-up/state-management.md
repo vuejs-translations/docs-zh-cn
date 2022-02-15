@@ -100,7 +100,7 @@ export const store = reactive({
 import { store } from './store.js'
 </script>
 
-<template>来自 A：{{ store.count }}</template>
+<template>From A: {{ store.count }}</template>
 ```
 
 ```vue
@@ -109,7 +109,7 @@ import { store } from './store.js'
 import { store } from './store.js'
 </script>
 
-<template>来自 B：{{ store.count }}</template>
+<template>From B: {{ store.count }}</template>
 ```
 
 </div>
@@ -129,7 +129,7 @@ export default {
 }
 </script>
 
-<template>从 A 而来：{{ store.count }}</template>
+<template>From A: {{ store.count }}</template>
 ```
 
 ```vue
@@ -146,7 +146,7 @@ export default {
 }
 </script>
 
-<template>从 B 而来：{{ store.count }}</template>
+<template>From B: {{ store.count }}</template>
 ```
 
 </div>
@@ -158,7 +158,7 @@ export default {
 ```vue-html{2}
 <template>
   <button @click="store.count++">
-    来自 B：{{ store.count }}
+    From B: {{ store.count }}
   </button>
 </template>
 ```
@@ -180,7 +180,7 @@ export const store = reactive({
 ```vue-html{2}
 <template>
   <button @click="store.increment()">
-    来自 B：{{ store.count }}
+    From B: {{ store.count }}
   </button>
 </template>
 ```
@@ -219,7 +219,7 @@ export function useCount() {
 }
 ```
 
-事实上，Vue 的响应性系统是与组件层是解耦的，这使得它非常灵活。
+事实上，Vue 的响应性系统与组件层是解耦的，这使得它非常灵活。
 
 ## SSR 考量 {#ssr-considerations}
 
