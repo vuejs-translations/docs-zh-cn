@@ -132,8 +132,8 @@ export default {
 
 1. PascalCase 是合法的 JavaScript 标识符。这使得在 JavaScript 中导入和注册组件都很容易，同时 IDE 也能提供较好的的自动补全。
 
-2. `<PascalCase />` 在模板中更明显地表明了这是一个 Vue 组件，而不是原生 HTML 元素。同时也将 Vue 组件和自定义组件区分开来 (web components)。
+2. `<PascalCase />` 在模板中更明显地表明了这是一个 Vue 组件，而不是原生 HTML 元素。同时也能够将 Vue 组件和自定义元素 (web components) 区分开来。
 
 在单文件组件和内联字符串模板中，我们都推荐这样做。但是，PascalCase 的标签名在 DOM 模板中是不可用的，详情参见 [DOM 模板解析注意事项](/guide/essentials/component-basics.html#dom-template-parsing-caveats)。
 
-幸运的是，Vue 支持将使用 kebab-case 的标签解析为使用 PascalCase 注册的组件。这意味着一个以 `MyComponent` 为名注册的组件，在模板中既可以使用 `<MyComponent>` 也可以使用 `<my-component>`。因此不管模板来源是什么，我们的 JavaScript 代码都始终只有一套。
+幸运的是，Vue 支持将使用 kebab-case 的标签解析为使用 PascalCase 注册的组件。这意味着一个以 `MyComponent` 为名注册的组件，在模板中可以通过 `<MyComponent>` 或 `<my-component>` 引用。这允许我们在不同来源的模板中始终使用同一份 JavaScript 组件注册代码。
