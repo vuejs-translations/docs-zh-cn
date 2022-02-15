@@ -247,7 +247,7 @@ const fullName = computed({
 </script>
 ```
 
-现在当你再运行 `fullName = 'John Doe'` 时，setter 会被调用而 `firstName` 和 `lastName` 会随之更新。
+现在当你再运行 `fullName.value = 'John Doe'` 时，setter 会被调用而 `firstName` 和 `lastName` 会随之更新。
 
 </div>
 
