@@ -8,7 +8,7 @@
 
 本站基于 [VitePress](https://github.com/vuejs/vitepress) 和 [@vue/theme](https://github.com/vuejs/vue-theme) 建立。网站内容以 Markdown 格式书写，位于 `src` 文件夹中。
 
-确保[node](https://nodejs.org/en/) 版本在16及以上和使用 [pnpm](https://pnpm.io/) 作为包管理工具：
+确保 [Node.js](https://nodejs.org/en/) 版本 >= 16 以及使用 [pnpm](https://pnpm.io/) 作为包管理工具：
 
 ```sh
 pnpm i
