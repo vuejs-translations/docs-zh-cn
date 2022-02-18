@@ -239,12 +239,12 @@ export default {
 
 <div class="composition-api">
 
-当使用响应式`provide`注入值时，**建议在创建`provide`的时候提供响应式的状态和更改状态的方法**。 这样可以确保`provide`的状态和变更操作都在同一个组件内，使其更容易维护。
+当使用响应式 `provide` 注入值时，**建议在创建 `provide` 的时候提供响应式的状态和更改状态的方法**。 这样可以确保 `provide` 的状态和变更操作都在同一个组件内，使其更容易维护。
 
-有的时候，我们可能需要在`injector`组件中更改数据。在这种情况下，我们推荐在`provider`组件内提供一个更改数据方法：
+有的时候，我们可能需要在 `injector` 组件中更改数据。在这种情况下，我们推荐在 `provider` 组件内提供一个更改数据方法：
 
 ```vue{7-9,13}
-<!-- 在provider组件内 -->
+<!-- 在 provider 组件内 -->
 <script setup>
 import { provide, ref } from 'vue'
 
@@ -262,7 +262,7 @@ provide('location', {
 ```
 
 ```vue{5}
-<!-- 在injector组件 -->
+<!-- 在 injector 组件 -->
 <script setup>
 import { inject } from 'vue'
 
@@ -274,7 +274,7 @@ const { location, updateLocation } = inject('location')
 </template>
 ```
 
-最后，如果你想确保从`provide`传过来的数据不能被`injector`的组件更改，你可以使用[`readonly()`](/api/reactivity-core.html#readonly) 来包装提供的值。
+最后，如果你想确保从 `provide` 传过来的数据不能被 `injector` 的组件更改，你可以使用[`readonly()`](/api/reactivity-core.html#readonly) 来包装提供的值。
 
 ```vue
 <script setup>
