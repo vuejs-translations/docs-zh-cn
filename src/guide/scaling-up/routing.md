@@ -4,13 +4,13 @@
 
 <!-- TODO update links -->
 
-对于大多数的单页面应用，都推荐使用官方支持的[路由库](https://github.com/vuejs/vue-router-next)。要了解更多细节，请查看 vue-router 的[文档](https://next.router.vuejs.org/)。
+对于大多数的单页面应用，都推荐使用官方支持的[路由库](https://github.com/vuejs/vue-router-next)。对于更多细节，请查阅 vue-router 的[文档](https://next.router.vuejs.org/)。
 
 ## 从头开始实现一个简单的路由 {#simple-routing-from-scratch}
 
-如果你只需要一个简单的页面路由，而不想为此引入一整个路由库，你可以通过[动态组件](/guide/essentials/component-basics.html#dynamic-components)的方式，监听浏览器 [`hashchange` 事件](https://developer.mozilla.org/en-US/docs/Web/API/Window/hashchange_event)或是使用 [History API](https://developer.mozilla.org/en-US/docs/Web/API/History) 来更新当前组件。
+如果你只需要一个简单的页面路由，而不想为此引入一整个路由库，你可以通过[动态组件](/guide/essentials/component-basics.html#dynamic-components)的方式，监听浏览器 [`hashchange` 事件](https://developer.mozilla.org/en-US/docs/Web/API/Window/hashchange_event)或使用 [History API](https://developer.mozilla.org/en-US/docs/Web/API/History) 来更新当前组件。
 
-你可以看看这个具备了基本骨架的示例：
+下面是一个简单的例子：
 
 <div class="composition-api">
 
