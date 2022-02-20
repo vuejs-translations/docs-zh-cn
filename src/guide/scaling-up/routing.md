@@ -4,7 +4,7 @@
 
 <!-- TODO update links -->
 
-对于大多数的单页面应用，都推荐使用官方支持的[路由库](https://github.com/vuejs/vue-router-next)。对于更多细节，请查阅 vue-router 的[文档](https://next.router.vuejs.org/)。
+对于大多数的单页面应用，都推荐使用官方支持的[路由库](https://github.com/vuejs/vue-router-next)。要了解更多细节，请查看 vue-router 的[文档](https://next.router.vuejs.org/)。
 
 ## 从头开始实现一个简单的路由 {#simple-routing-from-scratch}
 
