@@ -12,7 +12,7 @@ outline: deep
 
 <div class="options-api">
 
-选用选项式 API 时，会用 `data` 选项来声明组件的响应式状态。此选项的值应为返回一个对象的函数。Vue 将在创建新组件实例的时候调用此函数，并将函数返回的对象封装到其响应式系统中。此对象的任何顶层属性都被代理到组件实例上（即方法和生命周期钩子中的 `this`）。
+选用选项式 API 时，会用 `data` 选项来声明组件的响应式状态。此选项的值应为返回一个对象的函数。Vue 将在创建新组件实例的时候调用此函数，并将函数返回的对象封装到其响应式系统中。此对象的任何顶层 property 都被代理到组件实例 (即方法和生命周期钩子中的 `this`) 上。
 
 ```js{2-6}
 export default {
@@ -35,11 +35,11 @@ export default {
 
 [在 Playground 中尝试一下](https://sfc.vuejs.org/#eyJBcHAudnVlIjoiPHNjcmlwdD5cbmV4cG9ydCBkZWZhdWx0IHtcbiAgZGF0YSgpIHtcbiAgICByZXR1cm4ge1xuICAgICAgY291bnQ6IDFcbiAgICB9XG4gIH0sXG5cbiAgLy8gYG1vdW50ZWRgIGlzIGEgbGlmZWN5Y2xlIGhvb2sgd2hpY2ggd2Ugd2lsbCBleHBsYWluIGxhdGVyXG4gIG1vdW50ZWQoKSB7XG4gICAgLy8gYHRoaXNgIHJlZmVycyB0byB0aGUgY29tcG9uZW50IGluc3RhbmNlLlxuICAgIGNvbnNvbGUubG9nKHRoaXMuY291bnQpIC8vID0+IDFcblxuICAgIC8vIGRhdGEgY2FuIGJlIG11dGF0ZWQgYXMgd2VsbFxuICAgIHRoaXMuY291bnQgPSAyXG4gIH1cbn1cbjwvc2NyaXB0PlxuXG48dGVtcGxhdGU+XG4gIENvdW50IGlzOiB7eyBjb3VudCB9fVxuPC90ZW1wbGF0ZT4iLCJpbXBvcnQtbWFwLmpzb24iOiJ7XG4gIFwiaW1wb3J0c1wiOiB7XG4gICAgXCJ2dWVcIjogXCJodHRwczovL3NmYy52dWVqcy5vcmcvdnVlLnJ1bnRpbWUuZXNtLWJyb3dzZXIuanNcIlxuICB9XG59In0=)
 
-这些实例上的属性仅在实例首次创建时被添加，因此你需要确保它们都出现在 `data` 函数返回的对象上。若所需的值还未准备好，在必要时也可以使用 `null`、`undefined` 或者其他一些占位的值。
+这些实例上的 property 仅在实例首次创建时被添加，因此你需要确保它们都出现在 `data` 函数返回的对象上。若所需的值还未准备好，在必要时也可以使用 `null`、`undefined` 或者其他一些值占位。
 
 也可以不在 `data` 上定义，直接向组件实例添加新属性。但这个属性将无法触发响应式更新。
 
-Vue 在组件实例上暴露其内置 API 一般使用 `$` 作为前缀。同时也在内部属性上使用 `_` 前缀。你应该避免使用顶层 `data` 上任何以这些字符作前缀的属性。
+Vue 在组件实例上暴露的内置 API 使用 `$` 作为前缀。它同时也为内部 property 保留 `_` 前缀。你应该避免在顶层 `data` 上使用任何以这些字符作前缀的 property。
 
 ### 响应式代理 vs. 原始值 \* {#reactive-proxy-vs-original}
 
@@ -155,7 +155,7 @@ function increment() {
 
 [在 Playground 尝试一下](https://sfc.vuejs.org/#eyJBcHAudnVlIjoiPHNjcmlwdCBzZXR1cD5cbmltcG9ydCB7IHJlYWN0aXZlIH0gZnJvbSAndnVlJ1xuXG5jb25zdCBzdGF0ZSA9IHJlYWN0aXZlKHsgY291bnQ6IDAgfSlcblxuZnVuY3Rpb24gaW5jcmVtZW50KCkge1xuICBzdGF0ZS5jb3VudCsrXG59XG48L3NjcmlwdD5cblxuPHRlbXBsYXRlPlxuICA8YnV0dG9uIEBjbGljaz1cImluY3JlbWVudFwiPlxuICAgIHt7IHN0YXRlLmNvdW50IH19XG4gIDwvYnV0dG9uPlxuPC90ZW1wbGF0ZT4iLCJpbXBvcnQtbWFwLmpzb24iOiJ7XG4gIFwiaW1wb3J0c1wiOiB7XG4gICAgXCJ2dWVcIjogXCJodHRwczovL3NmYy52dWVqcy5vcmcvdnVlLnJ1bnRpbWUuZXNtLWJyb3dzZXIuanNcIlxuICB9XG59In0=)
 
-在 `<script setup>` 内，顶层的导入和变量声明都将在该组件模板上自动生效。
+`<script setup>` 中的顶层的导入和变量声明都将自动地在该组件的模板上可用。
 
 > 在指引的后续章节中，我们基本上都会在组合式 API 示例中使用单文件组件 + `<script setup>` 的语法，因为大多数 Vue 开发者都会这样使用。
 
@@ -198,7 +198,7 @@ export default {
 }
 ```
 
-和组件实例上的其他属性一样，方法也可以在模板上被访问。在模板中它们常常被用作事件监听器：
+和组件实例上的其他 property 一样，方法也可以在模板上被访问。在模板中它们常常被用作事件监听器：
 
 ```vue-html
 <button @click="increment">{{ count }}</button>
@@ -422,7 +422,7 @@ const { foo, bar } = obj
 
 ### ref 在模板中的解包 \*\* {#ref-unwrapping-in-templates}
 
-当 refs 在模板中作为顶层属性被访问时，它们会被自动“解包”，所以不需要使用  `.value`。下面是之前的计数器例子，用 `ref()` 代替。
+当 ref 在模板中作为顶层 property 被访问时，它们会被自动“解包”，所以不需要使用  `.value`。下面是之前的计数器例子，用 `ref()` 代替：
 
 ```vue{13}
 <script setup>
@@ -444,7 +444,7 @@ function increment() {
 
 [在 Playground 尝试一下](https://sfc.vuejs.org/#eyJBcHAudnVlIjoiPHNjcmlwdCBzZXR1cD5cbmltcG9ydCB7IHJlZiB9IGZyb20gJ3Z1ZSdcblxuY29uc3QgY291bnQgPSByZWYoMClcblxuZnVuY3Rpb24gaW5jcmVtZW50KCkge1xuICBjb3VudC52YWx1ZSsrXG59XG48L3NjcmlwdD5cblxuPHRlbXBsYXRlPlxuICA8YnV0dG9uIEBjbGljaz1cImluY3JlbWVudFwiPnt7IGNvdW50IH19PC9idXR0b24+XG48L3RlbXBsYXRlPiIsImltcG9ydC1tYXAuanNvbiI6IntcbiAgXCJpbXBvcnRzXCI6IHtcbiAgICBcInZ1ZVwiOiBcImh0dHBzOi8vc2ZjLnZ1ZWpzLm9yZy92dWUucnVudGltZS5lc20tYnJvd3Nlci5qc1wiXG4gIH1cbn0ifQ==)
 
-请注意，解包过程仅作用于顶层属性，访问深层级的 ref 则不会解包：
+请注意，解包过程仅作用于顶层 property，访问深层级的 ref 则不会解包：
 
 ```js
 const object = { foo: ref(1) }
@@ -454,7 +454,7 @@ const object = { foo: ref(1) }
 {{ object.foo }} <!-- 无法自动解包 -->
 ```
 
-我们可以通过让 `foo` 成为顶级属性来解决这个问题：
+我们可以通过让 `foo` 成为顶层 property 来解决这个问题：
 
 ```js
 const { foo } = object
@@ -468,7 +468,7 @@ const { foo } = object
 
 ### ref 在响应式对象中的解包 \*\* {#ref-unwrapping-in-reactive-objects}
 
-当一个 `ref` 作为一个响应式对象的属性被访问或更改时，它会自动解包，因此会表现得和一般的属性一样：
+当一个 `ref` 作为一个响应式对象的 property 被访问或更改时，它会自动解包，因此会表现得和一般的 property 一样：
 
 ```js
 const count = ref(0)
