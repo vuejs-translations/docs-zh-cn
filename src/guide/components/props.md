@@ -4,11 +4,11 @@ aside: deep
 
 # Props {#props}
 
-> 阅读此章节时，我们假设你已经读过 [组件基础](/guide/essentials/component-basics)，若你对组件还完全不了解，请先阅读它。
+> 阅读此章节时，我们假设你已经读过[组件基础](/guide/essentials/component-basics)，若你对组件还完全不了解，请先阅读它。
 
 ## Props 声明 {#props-declaration}
 
-组件需要显式声明 props，这样 Vue 才能知道外部传入的哪些是 props，哪些是透传 attribute（下一章中我们会讨论到它）。
+组件需要显式声明 props，这样 Vue 才能知道外部传入的哪些是 props，哪些是透传 attribute (下一章中我们会讨论到它)。
 
 <div class="composition-api">
 
@@ -40,7 +40,7 @@ export default {
 
 <div class="options-api">
 
-Props are declared using the [`props`](/api/options-state.html#props) option:
+Props are declared using the [`props`](/api/options-state.html#props) option：
 
 ```js
 export default {
@@ -92,11 +92,11 @@ export default {
 
 对于以对象形式声明中的每个属性，key 是 prop 的名称，而值应该是预期类型的构造函数。
 
-这不仅使你的组件自文档化，还同样在其他开发者使用到你的组件但传入了错误类型的 prop 时抛出警告。我们还会在下面的 [prop 校验](#prop-validation) 小节中继续讨论关于这个的更多细节。
+这不仅使你的组件自文档化，还同样在其他开发者使用到你的组件但传入了错误类型的 prop 时抛出警告。我们还会在下面的 [prop 校验](#prop-validation)小节中继续讨论关于这个的更多细节。
 
 <div class="options-api">
 
-See also: [Typing Component Props](/guide/typescript/options-api.html#typing-component-props) <sup class="vt-badge ts">TS</sup>
+See also：[Typing Component Props](/guide/typescript/options-api.html#typing-component-props) <sup class="vt-badge ts">TS</sup>
 
 </div>
 
@@ -113,7 +113,7 @@ defineProps<{
 </script>
 ```
 
-查看这一章获取更多 [组件 props 类型标注](/guide/typescript/composition-api.html#typing-component-props) 的相关细节。<sup class="vt-badge ts">TS</sup>
+查看这一章获取更多[组件 props 类型标注](/guide/typescript/composition-api.html#typing-component-props)的相关细节。<sup class="vt-badge ts">TS</sup>
 
 </div>
 
@@ -148,7 +148,7 @@ export default {
 <span>{{ greetingMessage }}</span>
 ```
 
-从技术上来讲，你也可以在向子组件传递 props 时使用 camelCase 形式。（使用 [DOM 模板](/guide/essentials/component-basics.html#dom-template-parsing-caveats) 时例外）而实际上为了和 HTML attribute 对齐，都会将其转为 kebab-case 形式：
+从技术上来讲，你也可以在向子组件传递 props 时使用 camelCase 形式。(使用 [DOM 模板](/guide/essentials/component-basics.html#dom-template-parsing-caveats)时例外) 而实际上为了和 HTML attribute 对齐，都会将其转为 kebab-case 形式：
 
 ```vue-html
 <MyComponent greeting-message="hello" />
@@ -176,7 +176,7 @@ export default {
 
 ### 传递不同的值类型 {#passing-different-value-types}
 
-在上述的两个例子中，我们只传入了字符串值，但实际上 _任何_ 类型的值都可以作为一个 prop。
+在上述的两个例子中，我们只传入了字符串值，但实际上_任何_类型的值都可以作为一个 prop。
 
 #### Number {#number}
 
@@ -232,7 +232,7 @@ export default {
 
 ### 使用一个对象绑定多个 prop {#binding-multiple-properties-using-an-object}
 
-如果你想要将一个对象的所有属性都当作 prop 传入，你可以使用 [没有参数的 `v-bind`](/guide/essentials/template-syntax.html#dynamically-binding-multiple-attributes)，即只是 `v-bind` 而非 `:prop-name`。例如，这里有一个 `post` 对象：
+如果你想要将一个对象的所有属性都当作 prop 传入，你可以使用[没有参数的 `v-bind`](/guide/essentials/template-syntax.html#dynamically-binding-multiple-attributes)，即只是 `v-bind` 而非 `:prop-name`。例如，这里有一个 `post` 对象：
 
 <div class="options-api">
 
@@ -275,9 +275,9 @@ const post = {
 
 ## 单向数据流 {#one-way-data-flow}
 
-所有的 prop 都遵循着 **单向绑定** 原则，prop 因父组件的更新而变化，自然地将新的状态向下流往子组件，而不会逆向传递。这避免了子组件意外修改了父组件的状态，不然应用的数据流就会变得难以理解了。
+所有的 prop 都遵循着**单向绑定**原则，prop 因父组件的更新而变化，自然地将新的状态向下流往子组件，而不会逆向传递。这避免了子组件意外修改了父组件的状态，不然应用的数据流就会变得难以理解了。
 
-另外，每次父组件更新后，所有的子组件中的 props 都会被更新到最新值，这意味着你 **不应该** 在子组件中去更改一个 prop。若你这么做了，Vue 会在控制台上向你抛出警告：
+另外，每次父组件更新后，所有的子组件中的 props 都会被更新到最新值，这意味着你**不应该**在子组件中去更改一个 prop。若你这么做了，Vue 会在控制台上向你抛出警告：
 
 <div class="composition-api">
 
@@ -305,7 +305,7 @@ export default {
 
 想要更改 prop 通常都符合以下两种场景：
 
-1. **prop 被用于传入初始值；而子组件想在之后将其作为一个局部数据属性。** 在这种情况下，最好是新定义一个局部数据属性，从 props 上取初始值即可：
+1. **prop 被用于传入初始值；而子组件想在之后将其作为一个局部数据属性。**在这种情况下，最好是新定义一个局部数据属性，从 props 上取初始值即可：
 
    <div class="composition-api">
 
@@ -365,15 +365,15 @@ export default {
 
 ### 更改对象 / 数组类型的 prop {#mutating-object-array-props}
 
-当对象或数组作为 prop 被传入时，虽然子组件无法更改 prop 绑定，但仍然 **可以** 更改对象或数组内部的值。这是因为 JavaScript 的对象和数组是按引用传递，而对 Vue 来说，阻止这样的改变不但非常昂贵，也不合理。
+当对象或数组作为 prop 被传入时，虽然子组件无法更改 prop 绑定，但仍然**可以**更改对象或数组内部的值。这是因为 JavaScript 的对象和数组是按引用传递，而对 Vue 来说，阻止这样的改变不但非常昂贵，也不合理。
 
-这种更改的主要缺陷是它允许了子组件以某种不明显的方式影响了父组件的状态，可能会使数据流在将来变得更难以推理。按照最佳实践来讲，你应该避免这样的更改，除非父子组件在设计上耦合得非常紧密。在大多数的用例场景中，子组件都应该 [抛出一个事件](/guide/components/events.html) 来通知父组件做出改变。
+这种更改的主要缺陷是它允许了子组件以某种不明显的方式影响了父组件的状态，可能会使数据流在将来变得更难以推理。按照最佳实践来讲，你应该避免这样的更改，除非父子组件在设计上耦合得非常紧密。在大多数的用例场景中，子组件都应该[抛出一个事件](/guide/components/events.html)来通知父组件做出改变。
 
 ## Prop 校验 {#prop-validation}
 
 组件可以更细致地指定对其 props 的需求，比如你上面看到的类型限制，如果并没有指定要求，Vue 会在浏览器的 JavaScript 控制台中抛出警告来提醒你。这在开发为其他人提供的组件时非常有用。
 
-要描述对 prop 的校验，你可以向 <span class="composition-api">`defineProps()` 宏</span><span class="options-api">`props` 选项</span> 提供一个带有 prop 校验的对象，而不是一个字符串数组，例如：
+要描述对 prop 的校验，你可以向 <span class="composition-api">`defineProps()` 宏</span><span class="options-api">`props` 选项</span>提供一个带有 prop 校验的对象，而不是一个字符串数组，例如：
 
 <div class="composition-api">
 
@@ -422,7 +422,7 @@ defineProps({
 ```
 
 :::tip
-`defineProps()` 宏中的参数 **不可以访问 `<script setup>` 中定义的其他变量**，因为在编译时整个表达式都会被移到外部的函数中。
+`defineProps()` 宏中的参数**不可以访问 `<script setup>` 中定义的其他变量**，因为在编译时整个表达式都会被移到外部的函数中。
 :::
 
 </div>
@@ -477,17 +477,17 @@ export default {
 
 </div>
 
-当 prop 的校验失败后，Vue 会抛出一个控制台警告（在开发模式下）。
+当 prop 的校验失败后，Vue 会抛出一个控制台警告 (在开发模式下)。
 
 <div class="composition-api">
 
-如果使用了 [基于类型的 prop 声明](/api/sfc-script-setup.html#typescript-only-features)，Vue 会尽最大努力在运行时按照 prop 的类型标注进行编译。举个例子，`defineProps<{ msg: string }>` 会被编译为 `{ msg: { type: String, required: true }}`。
+如果使用了[基于类型的 prop 声明](/api/sfc-script-setup.html#typescript-only-features)，Vue 会尽最大努力在运行时按照 prop 的类型标注进行编译。举个例子，`defineProps<{ msg: string }>` 会被编译为 `{ msg: { type: String, required: true }}`。
 
 </div>
 <div class="options-api">
 
 ::: tip 注意
-注意 prop 的校验是在组件实例被创建 **之前**，所以实例的属性（比如 `data`、`computed` 等）将在 `default` 或 `validator` 函数中不可用。
+注意 prop 的校验是在组件实例被创建**之前**，所以实例的属性 (比如 `data`、`computed` 等) 将在 `default` 或 `validator` 函数中不可用。
 :::
 
 </div>

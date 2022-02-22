@@ -1,8 +1,12 @@
 {
+  "engines": {
+    "node": ">= 16"
+  },
   "scripts": {
     "dev": "vitepress",
     "build": "vitepress build",
     "serve": "vitepress serve",
+    "zhlint": "zhlint 'src/guide/**/*.md'",
     "clean": "rm -rf .vitepress/dist",
     "sync": "node scripts/sync.js"
   },
@@ -22,7 +26,8 @@
     "lodash": "^4.17.21",
     "open": "^8.4.0",
     "patch-vue-directive-ssr": "^0.0.1",
-    "simple-git": "^2.48.0"
+    "simple-git": "^2.48.0",
+    "zhlint": "^0.5.3"
   },
   "pnpm": {
     "peerDependencyRules": {

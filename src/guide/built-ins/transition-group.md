@@ -4,7 +4,7 @@ import ListMove from './transition-demos/ListMove.vue'
 import ListStagger from './transition-demos/ListStagger.vue'
 </script>
 
-# TransitionGroup · 过渡组 {#transitiongroup}
+# TransitionGroup·过渡组 {#transitiongroup}
 
 `<TransitionGroup>` 是一个内置组件，设计用于呈现一个列表中的元素或组件的插入、移除和顺序改变的动画效果。
 
@@ -14,14 +14,14 @@ import ListStagger from './transition-demos/ListStagger.vue'
 
 - 默认情况下，它不会渲染一个包裹元素。但你可以通过传入 `tag` prop 来指定一个元素作为包裹元素来渲染。
 
-- [过渡模式](./transition.html#transition-modes) 在这里不可用，因为我们不再是在互斥的元素之间进行切换。
+- [过渡模式](./transition.html#transition-modes)在这里不可用，因为我们不再是在互斥的元素之间进行切换。
 
-- 其中的元素 **总是必须** 有一个独一无二的 `key` attribute。
+- 其中的元素**总是必须**有一个独一无二的 `key` attribute。
 
-- CSS 过渡类会被应用在其中的每一个元素上，**而不是** 这个组的容器上。
+- CSS 过渡类会被应用在其中的每一个元素上，**而不是**这个组的容器上。
 
 :::tip
-当你是在 [DOM 模板](/guide/essentials/component-basics.html#dom-template-parsing-caveats) 中使用时，组件名需要写为 `<transition-group>`。
+当你是在 [DOM 模板](/guide/essentials/component-basics.html#dom-template-parsing-caveats)中使用时，组件名需要写为 `<transition-group>`。
 :::
 
 ## 进入 / 离开过渡 {#enter-leave-transitions}
@@ -52,7 +52,7 @@ import ListStagger from './transition-demos/ListStagger.vue'
 
 ## 移动过渡 {#move-transitions}
 
-上面的示例有一些明显的缺陷：当某一项被插入或移除时，它周围的元素会立即发生 “跳跃” 而不是平稳地移动。我们可以通过添加一些额外的 CSS 规则来解决这个问题：
+上面的示例有一些明显的缺陷：当某一项被插入或移除时，它周围的元素会立即发生“跳跃”而不是平稳地移动。我们可以通过添加一些额外的 CSS 规则来解决这个问题：
 
 ```css{1,13-17}
 .list-move, /* 对移动中的元素应用的过渡 */

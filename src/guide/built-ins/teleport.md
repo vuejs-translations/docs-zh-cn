@@ -1,6 +1,6 @@
-# Teleport · 传送门 {#teleport}
+# Teleport·传送门 {#teleport}
 
-`<Teleport>` 是一个内置组件，使我们可以将一个组件的一部分模板 “传送” 到该组件的 DOM 层次结构之外的 DOM 节点中。
+`<Teleport>` 是一个内置组件，使我们可以将一个组件的一部分模板“传送”到该组件的 DOM 层次结构之外的 DOM 节点中。
 
 ## 基本使用 {#basic-usage}
 
@@ -96,7 +96,7 @@ export default {
 
 - 这个模态框的 `z-index` 被包含它的元素所制约。如果有其他元素与 `<div class="outer">` 重叠并有更高的 `z-index`，则它会覆盖住我们的模态框。
 
-`<Teleport>` 提供了一个更简洁的方式来解决此类问题，使我们无需考虑那么多层 DOM 结构的问题。让我们用`<Teleport>` 改写一下 `<MyModal>`：
+`<Teleport>` 提供了一个更简洁的方式来解决此类问题，使我们无需考虑那么多层 DOM 结构的问题。让我们用 `<Teleport>` 改写一下 `<MyModal>`：
 
 ```vue-html{3,8}
 <button @click="open = true">打开模态框</button>
@@ -109,7 +109,7 @@ export default {
 </Teleport>
 ```
 
-为 `<Teleport>` 指定的目标 `to` 期望接收一个 CSS 选择器字符串或者一个真实的 DOM 节点。这里我们其实就是让 Vue 去 “**传送** 这部分模板片段 **到 `body`** 标签下”。
+为 `<Teleport>` 指定的目标 `to` 期望接收一个 CSS 选择器字符串或者一个真实的 DOM 节点。这里我们其实就是让 Vue 去“**传送**这部分模板片段**到 `body`** 标签下”。
 
 你可以点击下面这个按钮，然后通过浏览器的开发者工具，在 `<body>` 标签下找到模态框元素：
 
@@ -144,7 +144,7 @@ let open = $ref(false)
 }
 </style>
 
-你可以将 `<Teleport>` 和 [`<Transition>`](./transition) 结合使用来创建一个带动画的模态框。你可以看看 [这个示例](/examples/#modal)。
+你可以将 `<Teleport>` 和 [`<Transition>`](./transition) 结合使用来创建一个带动画的模态框。你可以看看[这个示例](/examples/#modal)。
 
 :::tip
 `<Teleport>` 挂载时，传送门的 `to` 目标必须是已经存在于 DOM 之中。理想情况下，这应该是整个 Vue 应用程序之外的一个元素。如果目标是由 Vue 呈现的另一个元素，你需要确保在 `<Teleport>` 之前挂载该元素。
