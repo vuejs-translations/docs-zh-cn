@@ -2,11 +2,11 @@
 
 ## 基本示例 {#basic-example}
 
-计算属性允许我们声明性地计算派生值。然而，在有些情况下，为了应对一些状态的变化，我们需要运行些“副作用”：例如更改 DOM，或者根据异步操作的结果，去修改另一处的状态。
+计算属性允许我们声明性地计算推导值。然而，在有些情况下，为了应对一些状态的变化，我们需要运行些“副作用”：例如更改 DOM，或者根据异步操作的结果，去修改另一处的状态。
 
 <div class="options-api">
 
-在选项式 API 中，我们可以使用 [`watch` 选项](/api/options-state.html#watch)，每当响应式属性发生变化时，触发回调函数。
+在选项式 API 中，我们可以使用 [`watch` 选项](/api/options-state.html#watch)在每次响应式 property 发生变化时触发一个函数。
 
 ```js
 export default {
@@ -65,7 +65,7 @@ export default {
 
 <div class="composition-api">
 
-在组合式 API 中，我们可以使用 [`watch` 函数](/api/reactivity-core.html#watch)。每当响应式状态发生变化，都会触发回调函数：
+在组合式 API 中，我们可以使用 [`watch` 函数](/api/reactivity-core.html#watch)在每次响应式状态发生变化时触发回调函数：
 
 ```vue
 <script setup>
@@ -101,7 +101,7 @@ watch(question, async (newQuestion, oldQuestion) => {
 
 ### 侦听来源类型 {#watch-source-types}
 
-`watch`的第一个参数是响应 “源”，可以是不同类型：它可以是一个 ref（包括计算属性），一个响应式对象，一个 getter 函数，或是多个响应源组成的数组：
+`watch` 的第一个参数可以是不同形式的“来源”：它可以是一个 ref (包括计算属性)、一个响应式对象、一个 getter 函数、或多个来源组成的数组：
 
 ```js
 const x = ref(0)
@@ -126,7 +126,7 @@ watch([x, () => y.value], ([newX, newY]) => {
 })
 ```
 
-注意，你不能侦听响应式对象的属性，例如:
+注意，你不能侦听响应式对象的 property，例如:
 
 ```js
 const obj = reactive({ count: 0 })
@@ -155,7 +155,7 @@ watch(
 
 <div class="options-api">
 
-`watch` 默认是浅层的：被侦听的属性，仅在被赋新值时，才会触发回调函数；而内层的属性变化不会触发。如果想侦听到对象内所有的层级，那么你要用深层侦听器：
+`watch` 默认是浅层的：被侦听的 property，仅在被赋新值时，才会触发回调函数——而嵌套 property 的变化不会触发。如果想侦听所有嵌套的变更，你需要深层侦听器：
 
 ```js
 export default {
@@ -176,7 +176,7 @@ export default {
 
 <div class="composition-api">
 
-直接给 `watch()` 传入一个响应式对象，会隐式地创建一个深层侦听器，在每个层级更改时都会触发回调：
+直接给 `watch()` 传入一个响应式对象，会隐式地创建一个深层侦听器——该回调函数在所有嵌套的变更时都会被触发：
 
 ```js
 const obj = reactive({ count: 0 })
@@ -226,7 +226,7 @@ watch(
 
 `watch` 默认是懒侦听的：仅在侦听源变化时，才会执行回调。但在某些场景中，我们希望在创建侦听器时，立即执行一遍回调，或者说要积极地执行回调。举个例子，我们想请求一些初始数据，然后在相关状态更改时重新请求数据。
 
-我们可以用一个对象来声明侦听器，这个对象有 `handler` 方法和 `immediate: true` 选项，这样便能强制回调函数积极地执行:
+我们可以用一个对象来声明侦听器，这个对象有 `handler` 方法和 `immediate: true` 选项，这样便能强制回调函数立即执行：
 
 ```js
 export default {
@@ -278,10 +278,10 @@ watchEffect(async () => {
 
 这个例子中，回调会立即运行。在执行期间，它会自动追踪 `url.value` 作为依赖（近似于计算属性）。每当 `url.value` 变化，回调会再次执行。
 
-你可以上手体验 [这个例子](/examples/#fetching-data)，它用了 `watchEffect`，还涉及如何做响应式的数据请求。
+你可以上手体验[这个例子](/examples/#fetching-data)，它用了 `watchEffect`，还涉及如何做响应式的数据请求。
 
 :::tip
-`watchEffect` 仅会在其 **同步** 执行期间，才追踪依赖。否则，若用了一个异步回调，只有在第一个 `await` 正常工作前，访问到的属性才会被追踪，成为依赖。
+`watchEffect` 仅会在其**同步**执行期间，才追踪依赖。在使用异步回调时，只有在第一个 `await` 正常工作前访问到的 property 才会被追踪。
 :::
 
 ### `watch` vs. `watchEffect` {#watch-vs-watcheffect}
