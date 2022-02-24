@@ -12,22 +12,17 @@ Vue 推荐在绝大多数情况下使用模板语法来搭建 HTML。然而在�
 
 ### 创建 Vnodes {#creating-vnodes}
 
-Vue 提供了一个 `h()` 函数用于创建 vnodes:
+Vue 提供了一个 `h()` 函数用于创建 vnodes：
 
 ```js
-import {
-    h
-} from 'vue'
+import { h } from 'vue'
 
 const vnode = h(
-    'div', // type
-    {
-        id: 'foo',
-        class: 'bar'
-    }, // props
-    [
-        /* children */
-    ]
+  'div', // type
+  { id: 'foo', class: 'bar' }, // props
+  [
+    /* children */
+  ]
 )
 ```
 
@@ -38,36 +33,21 @@ const vnode = h(
 ```js
 // 除了HTML标签必填，之外的参数都是可选的
 h('div')
-h('div', {
-    id: 'foo'
-})
+h('div', { id: 'foo' })
 
 // attributes 和 properties 都能 props 中书写
 // Vue 会自动给它们分配到正确的位置
-h('div', {
-    class: 'bar',
-    innerHTML: 'hello'
-})
+h('div', { class: 'bar', innerHTML: 'hello' })
 
-// 类与样式可以像在模板中一样用数组或对象的形式书写
-h('div', {
-    class: [foo, {
-        bar
-    }],
-    style: {
-        color: 'red'
-    }
-})
+// 类与样式可以像在模板中一样
+// 用数组或对象的形式书写
+h('div', { class: [foo, { bar }], style: { color: 'red' } })
 
 // 事件监听器应以 onXxx 的形式书写
-h('div', {
-    onClick: () => {}
-})
+h('div', { onClick: () => {} })
 
 // children 可以是一个字符串
-h('div', {
-    id: 'foo'
-}, 'hello')
+h('div', { id: 'foo' }, 'hello')
 
 // 没有 props 时可以省略不写
 h('div', 'hello')
@@ -80,9 +60,7 @@ h('div', ['hello', h('span', 'hello')])
 得到的 vnode 为如下形式：
 
 ```js
-const vnode = h('div', {
-    id: 'foo'
-}, [])
+const vnode = h('div', { id: 'foo' }, [])
 
 vnode.type // 'div'
 vnode.props // { id: 'foo' }
@@ -98,24 +76,21 @@ vnode.key // null
 
 <div class="composition-api">
 
-当组合式 API 与模板一起使用时, `setup()` 钩子的返回值是用于暴露数据给模板. 然而当我们使用渲染函数时，可以直接把渲染函数返回:
+当组合式 API 与模板一起使用时, `setup()` 钩子的返回值是用于暴露数据给模板。 然而当我们使用渲染函数时，可以直接把渲染函数返回：
 
 ```js
-import {
-    ref,
-    h
-} from 'vue'
+import { ref, h } from 'vue'
 
 export default {
-    props: {
-        /* ... */
-    },
-    setup(props) {
-        const count = ref(1)
+  props: {
+    /* ... */
+  },
+  setup(props) {
+    const count = ref(1)
 
-        // 返回渲染函数
-        return () => h('div', props.msg + count.value)
-    }
+    // 返回渲染函数
+    return () => h('div', props.msg + count.value)
+  }
 }
 ```
 
@@ -125,26 +100,24 @@ export default {
 
 ```js
 export default {
-    setup() {
-        return () => 'hello world!'
-    }
+  setup() {
+    return () => 'hello world!'
+  }
 }
 ```
 
 ```js
-import {
-    h
-} from 'vue'
+import { h } from 'vue'
 
 export default {
-    setup() {
-        // 使用数组返回多个根节点
-        return () => [
-            h('div'),
-            h('div')
-            h('div')
-        ]
-    }
+  setup() {
+    // 使用数组返回多个根节点
+    return () => [
+      h('div'),
+      h('div')
+      h('div')
+    ]
+  }
 }
 ```
 
@@ -158,19 +131,17 @@ export default {
 我们可以使用 `render` 选项来声明渲染函数：
 
 ```js
-import {
-    h
-} from 'vue'
+import { h } from 'vue'
 
 export default {
-    data() {
-        return {
-            msg: 'hello'
-        }
-    },
-    render() {
-        return h('div', this.msg)
+  data() {
+    return {
+      msg: 'hello'
     }
+  },
+  render() {
+    return h('div', this.msg)
+  }
 }
 ```
 
@@ -180,26 +151,24 @@ export default {
 
 ```js
 export default {
-    render() {
-        return 'hello world!'
-    }
+  render() {
+    return 'hello world!'
+  }
 }
 ```
 
 ```js
-import {
-    h
-} from 'vue'
+import { h } from 'vue'
 
 export default {
-    render() {
-        // 用数组来返回多个根节点
-        return [
-            h('div'),
-            h('div')
-            h('div')
-        ]
-    }
+  render() {
+    // 用数组来返回多个根节点
+    return [
+      h('div'),
+      h('div')
+      h('div')
+    ]
+  }
 }
 ```
 
@@ -209,11 +178,11 @@ export default {
 
 ```js
 function Hello() {
-    return 'hello world!'
+  return 'hello world!'
 }
 ```
 
-没错， 这就是一个有效的 Vue 组件！ 参阅 [Functional Components](#functional-components) 来了解更多语法细节。
+没错， 这就是一个有效的 Vue 组件！ 参阅 [函数式组件](#functional-components) 来了解更多语法细节。
 
 ### Vnodes 必须唯一 {#vnodes-must-be-unique}
 
@@ -221,12 +190,12 @@ function Hello() {
 
 ```js
 function render() {
-    const p = h('p', 'hi')
-    return h('div', [
-        // 啊哦，重复的 vnodes 是无效的
-        p,
-        p
-    ])
+  const p = h('p', 'hi')
+  return h('div', [
+    // 啊哦，重复的 vnodes 是无效的
+    p,
+    p
+  ])
 }
 ```
 
@@ -234,14 +203,12 @@ function render() {
 
 ```js
 function render() {
-    return h(
-        'div',
-        Array.from({
-            length: 20
-        }).map(() => {
-            return h('p', 'hi')
-        })
-    )
+  return h(
+    'div',
+    Array.from({ length: 20 }).map(() => {
+      return h('p', 'hi')
+    })
+  )
 }
 ```
 
@@ -263,8 +230,8 @@ const vnode = <div id={dynamicId}>hello, {userName}</div>
 
 虽然最早是由 React 引入， 但实际上 JSX 语法并没有定义运行时语义，并且能被编译成成各种不同的输出形式。 如果你之前使用过 JSX 语法, 那么请注意 **Vue 的 JSX 编译方式与 React 中 JSX 的编译方式不同**，因此你不能在 Vue 应用中使用 React 的 JSX 编译。 与 React JSX 语法的一些明显区别包括：
 
-* 可以使用 HTML attributes 比如 `class` 和 `for` 作为 props - 不需要使用 `className` 或 `htmlFor`。
-* 传递子元素给组件（比如 slots）的[方式不同](#passing-slots).
+- 可以使用 HTML attributes 比如 `class` 和 `for` 作为 props - 不需要使用 `className` 或 `htmlFor`。
+- 传递子元素给组件（比如 slots）的[方式不同](#passing-slots)。
 
 Vue 的类型定义也提供了 TSX 语法的类型推断支持。当使用 TSX 语法时， 确保在 `tsconfig.json` 中配置了 `"jsx": "preserve"` ， 这样的 TypeScript 就能保证 Vue JSX 语法编译过程中的完整性。
 
@@ -281,7 +248,6 @@ Vue 的类型定义也提供了 TSX 语法的类型推断支持。当使用 TSX 
   <div v-if="ok">yes</div>
   <span v-else>no</span>
 </div>
-
 ```
 
 等价于使用如下渲染函数 / JSX 语法：
@@ -316,12 +282,9 @@ h('div', [this.ok ? h('div', 'yes') : h('span', 'no')])
 ```vue-html
 <ul>
   <li v-for="{ id, text } in items" :key="id">
-
     {{ text }}
-
   </li>
 </ul>
-
 ```
 
 等价于使用如下渲染函数 / JSX 语法：
@@ -350,15 +313,10 @@ h(
 
 ```js
 h(
-    'ul',
-    this.items.map(({
-        id,
-        text
-    }) => {
-        return h('li', {
-            key: id
-        }, text)
-    })
+  'ul',
+  this.items.map(({ id, text }) => {
+    return h('li', { key: id }, text)
+  })
 )
 ```
 
@@ -378,12 +336,13 @@ h(
 
 ```js
 h(
-    'button', {
-        onClick(event) {
-            /* ... */
-        }
-    },
-    'click me'
+  'button',
+  {
+    onClick(event) {
+      /* ... */
+    }
+  },
+  'click me'
 )
 ```
 
@@ -399,21 +358,21 @@ h(
 
 ### 事件修饰符 {#event-modifiers}
 
-对于 .passive 、.capture 和 .once 事件修饰符，可以使用驼峰写法将他们拼接在事件名后面：
+对于 `.passive` 、`.capture` 和 `.once` 事件修饰符，可以使用驼峰写法将他们拼接在事件名后面：
 
 实例：
 
 ```js
 h('input', {
-    onClickCapture() {
-        /* listener in capture mode */
-    },
-    onKeyupOnce() {
-        /* triggers only once */
-    },
-    onMouseoverOnceCapture() {
-        /* once + capture */
-    }
+  onClickCapture() {
+    /* 捕捉模式中的监听器 */
+  },
+  onKeyupOnce() {
+    /* 只触发一次 */
+  },
+  onMouseoverOnceCapture() {
+    /* 单次 + 捕捉 */
+  }
 })
 ```
 
@@ -428,12 +387,10 @@ h('input', {
 可以使用 `withModifiers` 来处理其他的事件和按键修饰符：
 
 ```js
-import {
-    withModifiers
-} from 'vue'
+import { withModifiers } from 'vue'
 
 h('div', {
-    onClick: withModifiers(() => {}, ['self'])
+  onClick: withModifiers(() => {}, ['self'])
 })
 ```
 
@@ -450,7 +407,7 @@ import Foo from './Foo.vue'
 import Bar from './Bar.jsx'
 
 function render() {
-    return h('div', [h(Foo), h(Bar)])
+  return h('div', [h(Foo), h(Bar)])
 }
 ```
 
@@ -490,39 +447,37 @@ function render() {
 
 <div class="composition-api">
 
-在渲染函数中， 插槽可以通过 `setup()` 的上下文来访问。 每个 `slots` 对象中的插槽都是一个 **返回 vnodes 数组的函数**:
+在渲染函数中， 插槽可以通过 `setup()` 的上下文来访问。 每个 `slots` 对象中的插槽都是一个 **返回 vnodes 数组的函数**：
 
 ```js
 export default {
-    props: ['message'],
-    setup(props, {
-        slots
-    }) {
-        return () => [
-            // default slot:
-            // <div><slot /></div>
-            h('div', slots.default())
+  props: ['message'],
+  setup(props, { slots }) {
+    return () => [
+      // 默认插槽：
+      // <div><slot /></div>
+      h('div', slots.default())
 
-            // named slot:
-            // <div><slot name="footer" :text="message" /></div>
-            h(
-                'div',
-                slots.footer({
-                    text: props.message
-                })
-            )
-        ]
-    }
+      // 具名插槽：
+      // <div><slot name="footer" :text="message" /></div>
+      h(
+        'div',
+        slots.footer({
+          text: props.message
+        })
+      )
+    ]
+  }
 }
 ```
 
 等价 JSX 语法：
 
 ```jsx
-// default
+// 默认插槽
 <div>{slots.default()}</div>
 
-// named
+// 具名插槽
 <div>{slots.footer({ text: props.message })}</div>
 ```
 
@@ -533,21 +488,21 @@ export default {
 
 ```js
 export default {
-    props: ['message'],
-    render() {
-        return [
-            // <div><slot /></div>
-            h('div', this.$slots.default())
+  props: ['message'],
+  render() {
+    return [
+      // <div><slot /></div>
+      h('div', this.$slots.default())
 
-            // <div><slot name="footer" :text="message" /></div>
-            h(
-                'div',
-                this.$slots.footer({
-                    text: this.message
-                })
-            )
-        ]
-    }
+      // <div><slot name="footer" :text="message" /></div>
+      h(
+        'div',
+        this.$slots.footer({
+          text: this.message
+        })
+      )
+    ]
+  }
 }
 ```
 
@@ -584,10 +539,10 @@ h(MyComponent, null, {
 等价 JSX 语法：
 
 ```jsx
-// default
+// 默认插槽
 <MyComponent>{() => 'hello'}</MyComponent>
 
-// named
+// 具名插槽
 <MyComponent>{{
   default: () => 'default slot',
   foo: () => <div>foo</div>,
@@ -604,20 +559,12 @@ h(MyComponent, null, {
 <div class="composition-api">
 
 ```js
-import {
-    h,
-    KeepAlive,
-    Teleport,
-    Transition,
-    TransitionGroup
-} from Vue
+import { h, KeepAlive, Teleport, Transition, TransitionGroup } from Vue
 
 export default {
-    setup() {
-        return () => h(Transition, {
-            mode: 'out-in'
-        }, /* ... */ )
-    }
+  setup () {
+    return () => h(Transition, { mode: 'out-in' }, /* ... */)
+  }
 }
 ```
 
@@ -625,20 +572,12 @@ export default {
 <div class="options-api">
 
 ```js
-import {
-    h,
-    KeepAlive,
-    Teleport,
-    Transition,
-    TransitionGroup
-} from Vue
+import { h, KeepAlive, Teleport, Transition, TransitionGroup } from Vue
 
 export default {
-    render() {
-        return h(Transition, {
-            mode: 'out-in'
-        }, /* ... */ )
-    }
+  render () {
+    return h(Transition, { mode: 'out-in' }, /* ... */)
+  }
 }
 ```
 
@@ -652,17 +591,15 @@ export default {
 
 ```js
 export default {
-    props: ['modelValue'],
-    emits: ['update:modelValue'],
-    setup(props, {
-        emit
-    }) {
-        return () =>
-            h(SomeComponent, {
-                modelValue: modelValue,
-                'onUpdate:modelValue': (value) => emit('update:modelValue', value)
-            })
-    }
+  props: ['modelValue'],
+  emits: ['update:modelValue'],
+  setup(props, { emit }) {
+    return () =>
+      h(SomeComponent, {
+        modelValue: modelValue,
+        'onUpdate:modelValue': (value) => emit('update:modelValue', value)
+      })
+  }
 }
 ```
 
@@ -671,14 +608,14 @@ export default {
 
 ```js
 export default {
-    props: ['modelValue'],
-    emits: ['update:modelValue'],
-    render() {
-        return h(SomeComponent, {
-            modelValue: this.modelValue,
-            'onUpdate:modelValue': (value) => this.$emit('update:modelValue', value)
-        })
-    }
+  props: ['modelValue'],
+  emits: ['update:modelValue'],
+  render() {
+    return h(SomeComponent, {
+      modelValue: this.modelValue,
+      'onUpdate:modelValue': (value) => this.$emit('update:modelValue', value)
+    })
+  }
 }
 ```
 
@@ -689,26 +626,17 @@ export default {
 可以使用 [`withDirectives`](/api/render-function.html#withdirectives) 将自定义指令应用于 VNode：
 
 ```js
-import {
-    h,
-    withDirectives
-} from Vue
+import { h, withDirectives } from Vue
 
 // 自定义指令
 const pin = {
-    mounted() {
-        /* ... */
-    },
-    updated() {
-        /* ... */
-    }
+  mounted() { /* ... */ },
+  updated() { /* ... */ }
 }
 
 // <div v-pin:top.animate="200"></div>
 const vnode = withDirectives(h('div'), [
-    [pin, 200, 'top', {
-        animate: true
-    }]
+  [pin, 200, 'top', { animate: true }]
 ])
 ```
 
@@ -722,15 +650,11 @@ const vnode = withDirectives(h('div'), [
 
 <div class="composition-api">
 
-函数式组件的签名与 `setup()` 钩子相同:
+函数式组件的签名与 `setup()` 钩子相同：
 
 ```js
-function MyComponent(props, {
-    slots,
-    emit,
-    attrs
-}) {
-    // ...
+function MyComponent(props, { slots, emit, attrs }) {
+  // ...
 }
 ```
 
@@ -741,7 +665,7 @@ function MyComponent(props, {
 
 ```js
 function MyComponent(props, context) {
-    // ...
+  // ...
 }
 ```
 
