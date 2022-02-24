@@ -95,7 +95,7 @@ export default defineComponent({
 
 ## 为组件的 emit 标注类型 {#typing-component-emits}
 
-在 `<script setup>` 中，可以通过基于类型的声明或运行时声明让 `emit` 函数类型化：
+在 `<script setup>` 中，`emit` 函数的类型标注可以通过运行时声明或类型声明进行：
 
 ```vue
 <script setup lang="ts">
