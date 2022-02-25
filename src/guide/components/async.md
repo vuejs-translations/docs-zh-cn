@@ -66,7 +66,7 @@ const AsyncComp = defineAsyncComponent({
   // 加载失败后展示的组件
   errorComponent: ErrorComponent,
   // 如果提供了一个 timeout 时间限制，并超时了
-  // 也会显示这里配置报错组件，默认值是：Infinity
+  // 也会显示这里配置的报错组件，默认值是：Infinity
   timeout: 3000
 })
 ```
