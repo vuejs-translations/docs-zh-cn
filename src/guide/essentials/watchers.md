@@ -2,22 +2,22 @@
 
 ## 基本示例 {#basic-example}
 
-计算属性允许我们声明性地计算派生值。然而，在有些情况下，我们需要对状态的变化展现出犹如有 "副作用" 一般的反应，例如更改 DOM，或基于某异步操作其他状态。
+计算属性允许我们声明性地计算推导值。然而，在有些情况下，为了应对一些状态的变化，我们需要运行些“副作用”：例如更改 DOM，或者根据异步操作的结果，去修改另一处的状态。
 
 <div class="options-api">
 
-在选项式 API 中，我们可以使用 [`watch` 选项](/api/options-state.html#watch)，每当一个反应式属性发生变化时触发一个函数。
+在选项式 API 中，我们可以使用 [`watch` 选项](/api/options-state.html#watch)在每次响应式 property 发生变化时触发一个函数。
 
 ```js
 export default {
   data() {
     return {
       question: '',
-      answer: '问句通常都会带一个问号。;-)'
+      answer: 'Questions usually contain a question mark. ;-)'
     }
   },
   watch: {
-    // 只要问题发生变化，这个函数就会运行
+    // whenever question changes, this function will run
     question(newQuestion, oldQuestion) {
       if (newQuestion.indexOf('?') > -1) {
         this.getAnswer()
@@ -26,12 +26,12 @@ export default {
   },
   methods: {
     async getAnswer() {
-      this.answer = '思考中...'
+      this.answer = 'Thinking...'
       try {
         const res = await fetch('https://yesno.wtf/api')
         this.answer = (await res.json()).answer
-      } catch (e) {
-        this.answer = '出错了！无法访问该 API。' + error
+      } catch (error) {
+        this.answer = 'Error! Could not reach the API. ' + error
       }
     }
   }
@@ -40,7 +40,7 @@ export default {
 
 ```vue-html
 <p>
-  提一个 Yes/No 的问题：
+  Ask a yes/no question:
   <input v-model="question" />
 </p>
 <p>{{ answer }}</p>
@@ -48,12 +48,12 @@ export default {
 
 [在 Playground 尝试一下](https://sfc.vuejs.org/#eyJBcHAudnVlIjoiPHNjcmlwdD5cbmV4cG9ydCBkZWZhdWx0IHtcbiAgZGF0YSgpIHtcbiAgICByZXR1cm4ge1xuICAgICAgcXVlc3Rpb246ICcnLFxuICAgICAgYW5zd2VyOiAnUXVlc3Rpb25zIHVzdWFsbHkgY29udGFpbiBhIHF1ZXN0aW9uIG1hcmsuIDstKSdcbiAgICB9XG4gIH0sXG4gIHdhdGNoOiB7XG4gICAgLy8gd2hlbmV2ZXIgcXVlc3Rpb24gY2hhbmdlcywgdGhpcyBmdW5jdGlvbiB3aWxsIHJ1blxuICAgIHF1ZXN0aW9uKG5ld1F1ZXN0aW9uLCBvbGRRdWVzdGlvbikge1xuICAgICAgaWYgKG5ld1F1ZXN0aW9uLmluZGV4T2YoJz8nKSA+IC0xKSB7XG4gICAgICAgIHRoaXMuZ2V0QW5zd2VyKClcbiAgICAgIH1cbiAgICB9XG4gIH0sXG4gIG1ldGhvZHM6IHtcbiAgICBhc3luYyBnZXRBbnN3ZXIoKSB7XG4gICAgICB0aGlzLmFuc3dlciA9ICdUaGlua2luZy4uLidcbiAgICAgIHRyeSB7XG4gICAgICAgIGNvbnN0IHJlcyA9IGF3YWl0IGZldGNoKCdodHRwczovL3llc25vLnd0Zi9hcGknKVxuICAgICAgICB0aGlzLmFuc3dlciA9IChhd2FpdCByZXMuanNvbigpKS5hbnN3ZXJcbiAgICAgIH0gY2F0Y2ggKGUpIHtcbiAgICAgICAgdGhpcy5hbnN3ZXIgPSAnRXJyb3IhIENvdWxkIG5vdCByZWFjaCB0aGUgQVBJLiAnICsgZXJyb3JcbiAgICAgIH1cbiAgICB9XG4gIH1cbn1cbjwvc2NyaXB0PlxuXG48dGVtcGxhdGU+XG4gIDxwPlxuICAgIEFzayBhIHllcy9ubyBxdWVzdGlvbjpcbiAgICA8aW5wdXQgdi1tb2RlbD1cInF1ZXN0aW9uXCIgLz5cbiAgPC9wPlxuICA8cD57eyBhbnN3ZXIgfX08L3A+XG48L3RlbXBsYXRlPiIsImltcG9ydC1tYXAuanNvbiI6IntcbiAgXCJpbXBvcnRzXCI6IHtcbiAgICBcInZ1ZVwiOiBcImh0dHBzOi8vc2ZjLnZ1ZWpzLm9yZy92dWUucnVudGltZS5lc20tYnJvd3Nlci5qc1wiXG4gIH1cbn0ifQ==)
 
-`watch` 选项也支持 also supports a dot-delimited path as the key:
+`watch` 选项也支持把键设置成用点号分隔的路径：
 
 ```js
 export default {
   watch: {
-    // 注意：只能是简单的路径，不支持表达式
+    // 注意：只能是简单的路径，不支持表达式。
     'some.nested.key'(newValue) {
       // ...
     }
@@ -65,24 +65,24 @@ export default {
 
 <div class="composition-api">
 
-在组合式 API 中，我们可以使用 [`watch` 方法](/api/reactivity-core.html#watch) 让每次响应式状态变化时都触发一个回调函数执行：
+在组合式 API 中，我们可以使用 [`watch` 函数](/api/reactivity-core.html#watch)在每次响应式状态发生变化时触发回调函数：
 
 ```vue
 <script setup>
 import { ref, watch } from 'vue'
 
 const question = ref('')
-const answer = ref('问句通常都会带一个问号。;-)')
+const answer = ref('Questions usually contain a question mark. ;-)')
 
-// 直接侦听一个 ref
+// 可以直接侦听一个 ref
 watch(question, async (newQuestion, oldQuestion) => {
   if (newQuestion.indexOf('?') > -1) {
-    answer.value = '思考中...'
+    answer.value = 'Thinking...'
     try {
       const res = await fetch('https://yesno.wtf/api')
       answer.value = (await res.json()).answer
-    } catch (e) {
-      answer.value = '出错了！无法访问该 API。' + error
+    } catch (error) {
+      answer.value = 'Error! Could not reach the API. ' + error
     }
   }
 })
@@ -90,7 +90,7 @@ watch(question, async (newQuestion, oldQuestion) => {
 
 <template>
   <p>
-    提一个 Yes/No 的问题：
+    Ask a yes/no question:
     <input v-model="question" />
   </p>
   <p>{{ answer }}</p>
@@ -101,7 +101,7 @@ watch(question, async (newQuestion, oldQuestion) => {
 
 ### 侦听来源类型 {#watch-source-types}
 
-`watch`的第一个参数可以是不同类型的响应式 “源”：它可以是一个 ref（包括计算属性），一个响应式对象，一个函数，或是一个数组表示多个源：
+`watch` 的第一个参数可以是不同形式的“来源”：它可以是一个 ref (包括计算属性)、一个响应式对象、一个 getter 函数、或多个来源组成的数组：
 
 ```js
 const x = ref(0)
@@ -112,7 +112,7 @@ watch(x, (newX) => {
   console.log(`x is ${newX}`)
 })
 
-// 函数
+// getter 函数
 watch(
   () => x.value + y.value,
   (sum) => {
@@ -120,13 +120,13 @@ watch(
   }
 )
 
-// 多个源的数组
+// 多个来源组成的数组
 watch([x, () => y.value], ([newX, newY]) => {
   console.log(`x is ${newX} and y is ${newY}`)
 })
 ```
 
-注意，你不能像这样观察一个响应式对象的属性:
+注意，你不能侦听响应式对象的 property，例如:
 
 ```js
 const obj = reactive({ count: 0 })
@@ -137,10 +137,10 @@ watch(obj.count, (count) => {
 })
 ```
 
-此时你应该传入一个函数：
+而是用 getter 函数：
 
 ```js
-// 提供一个获取函数
+// 提供一个 getter 函数
 watch(
   () => obj.count,
   (count) => {
@@ -155,16 +155,16 @@ watch(
 
 <div class="options-api">
 
-`watch` 默认是浅层的：回调函数仅在被侦听的属性被新的值赋值时才执行，而内层的属性变化则不会触发。如果你想要对象内所有层级的更改都触发该回调，那么你需要使用一个深层侦听器：
+`watch` 默认是浅层的：被侦听的 property，仅在被赋新值时，才会触发回调函数——而嵌套 property 的变化不会触发。如果想侦听所有嵌套的变更，你需要深层侦听器：
 
 ```js
 export default {
   watch: {
     someObject: {
       handler(newValue, oldValue) {
-        // 注意：在深层次变更中，
-        // 只要对象本身没有被替换，
-        // 那么`newValue` 这里和 `oldValue` 就是相同的
+        // 注意：在嵌套的变更中，
+        // 只要没有替换对象本身，
+        // 那么这里的 `newValue` 和 `oldValue` 相同
       },
       deep: true
     }
@@ -176,13 +176,13 @@ export default {
 
 <div class="composition-api">
 
-当你直接对一个响应式对象调用 `watch()`，会隐式地创建一个深层侦听器，回调会在每个层级更改时都被触发：
+直接给 `watch()` 传入一个响应式对象，会隐式地创建一个深层侦听器——该回调函数在所有嵌套的变更时都会被触发：
 
 ```js
 const obj = reactive({ count: 0 })
 
 watch(obj, (newValue, oldValue) => {
-  // 在深层次属性更改时触发
+  // 在嵌套的 property 变更时触发
   // 注意：`newValue` 此处和 `oldValue` 是相等的
   // 因为它们是同一个对象！
 })
@@ -190,7 +190,7 @@ watch(obj, (newValue, oldValue) => {
 obj.count++
 ```
 
-这应该与返回响应式对象的函数有所区别，在后一种情况下，只有在函数返回不同的对象时才会触发回调：
+这不同于返回响应式对象的 getter 函数：只有在 getter 函数返回不同的对象时，才会触发回调：
 
 ```js
 watch(
@@ -201,7 +201,7 @@ watch(
 )
 ```
 
-You can, however, force the second case into a deep watcher by explicitly using the `deep` option:
+然而，在上面的例子里，你可以显示地加上 `deep` 选项，强制转成深层侦听器：
 
 ```js
 watch(
@@ -217,16 +217,16 @@ watch(
 </div>
 
 :::warning 谨慎使用
-深度观察需要遍历被观察对象中的所有深层属性，该操作当用于大型数据结构时可能会很昂贵。因此请只在必要时才使用它，并且要注意其性能影响。
+深度侦听需要遍历被侦听对象中的所有嵌套的 property，当用于大型数据结构时，开销很大。因此请只在必要时才使用它，并且要留意性能。
 :::
 
 <div class="options-api">
 
 ## 积极侦听 {#eager-watchers}
 
-`watch` 默认是懒侦听的：仅在侦听源发生更改时才会被调用。但在某些场景中，我们希望该回调函数以积极态运行，举个例子，首先需要请求一些初始数据，之后再在相关状态变化后重新获取。
+`watch` 默认是懒侦听的：仅在侦听源变化时，才会执行回调。但在某些场景中，我们希望在创建侦听器时，立即执行一遍回调，或者说要积极地执行回调。举个例子，我们想请求一些初始数据，然后在相关状态更改时重新请求数据。
 
-我们可以通过使用一个带有 `handler` 函数和 `immediate: true` 选项的对象来声明监视器的回调函数，从而强制它立即执行:
+我们可以用一个对象来声明侦听器，这个对象有 `handler` 方法和 `immediate: true` 选项，这样便能强制回调函数立即执行：
 
 ```js
 export default {
@@ -250,7 +250,7 @@ export default {
 
 ## `watchEffect()` \*\*
 
-`watch()` 是懒执行的：回调函数只有在侦听的源更改时才会调用。但某些场景下我们可能希望回调函数能呈积极态调用。举个例子，我们可能会请求一些初始数据，然后在相应状态改变时重新请求。我们可以这样来写：
+`watch()` 是懒执行的：仅在侦听源变化时，才会执行回调。但在某些场景中，我们希望在创建侦听器时，立即执行一遍回调，或者说要积极地执行回调。举个例子，我们想请求一些初始数据，然后在相关状态更改时重新请求数据。我们可以这样写：
 
 ```js
 const url = ref('https://...')
@@ -267,7 +267,7 @@ fetchData()
 watch(url, fetchData)
 ```
 
-这可以通过 [`watchEffect` 方法](/api/reactivity-core.html#watcheffect) 来简化，`watchEffect()` 使我们可以立即执行一次该副作用，并自动追踪依赖。上面的例子可以重写为：
+这段代码还可以用 [`watchEffect` 函数](/api/reactivity-core.html#watcheffect) 来简化。`watchEffect()` 会立即执行一遍回调函数，如果这时函数产生了副作用，Vue 会自动追踪副作用的依赖关系，自动分析出响应源。上面的例子可以重写为：
 
 ```js
 watchEffect(async () => {
@@ -276,31 +276,31 @@ watchEffect(async () => {
 })
 ```
 
-上面这个例子中，回调会立即执行一次。在执行期间，它会自动追踪 `url.value` 作为依赖（近似于计算属性）。每当 `url.value` 变化时，回调将会再次执行。
+这个例子中，回调会立即执行。在执行期间，它会自动追踪 `url.value` 作为依赖（近似于计算属性）。每当 `url.value` 变化时，回调会再次执行。
 
-你可以查看这个使用 `watchEffect` 的 [这个例子](/examples/#fetching-data)，了解如何在运行时做响应式数据请求。
+你可以上手体验[这个例子](/examples/#fetching-data)，它用了 `watchEffect`，还涉及如何做响应式的数据请求。
 
 :::tip
-`watchEffect` 仅会在其 **同步** 执行期间追踪依赖。当使用一个异步回调时，只有在第一次 `await` 前被访问的属性会被追踪为依赖。
+`watchEffect` 仅会在其**同步**执行期间，才追踪依赖。在使用异步回调时，只有在第一个 `await` 正常工作前访问到的 property 才会被追踪。
 :::
 
 ### `watch` vs. `watchEffect` {#watch-vs-watcheffect}
 
-`watch` 和 `watchEffect` 都给我们提供了创建副作用的能力。它们之间的主要区别是追踪响应式依赖的方式：
+`watch` 和 `watchEffect` 都能响应式地执行有副作用的回调。它们之间的主要区别是追踪响应式依赖的方式：
 
-- `watch` 只跟踪明确监视的源。它不会跟踪任何在回调中访问到的东西。另外，回调仅会在源确实改变了才会被触发，`watch` 将依赖追踪和副作用区分开，这让我们对如何触发回调有更多的控制权。
+- `watch` 只追踪明确侦听的源。它不会追踪任何在回调中访问到的东西。另外，仅在响应源确实改变时才会触发回调。`watch` 会避免在发生副作用时追踪依赖，因此，我们能更加精确地控制回调函数的触发时机。
 
-- 而 `watchEffect` 则将依赖追踪和副作用耦合，会自动追踪其同步执行过程中访问到的所有响应式属性。这更方便，一般来说代码也会更简洁，但其响应性依赖关系则不那么显式。
+- `watchEffect`，则会在副作用发生期间追踪依赖。它会在同步执行过程中，自动追踪所有能访问到的响应式 property。这更方便，而且代码往往更简洁，但其响应性依赖关系不那么明确。
 
 </div>
 
-## 副作用刷新时机 {#effect-flush-timing}
+## 回调的刷新时机 {#callback-flush-timing}
 
-当你更改了响应式状态，可能同时触发 Vue 组件更新和你定义的监视器回调。
+当你更改了响应式状态，它可能会同时触发 Vue 组件更新和侦听器回调。
 
-默认情况下，用户创建的副作用都会在 Vue 组件更新的副作用 **之前** 被调用。这意味着，如果你试图在监视器回调中访问 DOM, DOM 将是 Vue 执行任何更新之前的状态。
+默认情况下，用户创建的侦听器回调，都会在 Vue 组件更新**之前**被调用。这意味着你在侦听器回调中访问的 DOM 将是被 Vue 更新之前的状态。
 
-如果你想于 Vue 更新之后，在侦听器回调中访问 DOM，你需要指明 `flush: 'post'` 选项：
+如果想在侦听器回调中能访问被 Vue 更新**之后**的DOM，你需要指明 `flush: 'post'` 选项：
 
 <div class="options-api">
 
@@ -330,7 +330,7 @@ watchEffect(callback, {
 })
 ```
 
-后置刷新的 `watchEffect()` 也有一个更便捷的别名 `watchPostEffect()`：
+后置刷新的 `watchEffect()` 有个更方便的别名 `watchPostEffect()`：
 
 ```js
 import { watchPostEffect } from 'vue'
@@ -344,9 +344,9 @@ watchPostEffect(() => {
 
 <div class="options-api">
 
-## `this.$watch()` \* {#watch}
+## `this.$watch()` \* {#this-watch}
 
-我们也可以使用组件实例的 [`$watch()` 方法](/api/component-instance.html#watch) 来命令式地创建一个侦听器：
+我们也可以使用组件实例的 [`$watch()` 方法](/api/component-instance.html#watch)来命令式地创建一个侦听器：
 
 ```js
 export default {
@@ -358,7 +358,7 @@ export default {
 }
 ```
 
-当你需要有条件地设置一个监视器，或者只侦听响应用户交互的内容时，这会很有用。它还使你可以提前停止侦听器。
+如果要在特定条件下设置一个侦听器，或者只侦听响应用户交互的内容，这方法很有用。它还允许你提前停止该侦听器。
 
 </div>
 
@@ -366,9 +366,9 @@ export default {
 
 <div class="options-api">
 
-由 `watch` 选项和 `$watch()` 实例方法声明的侦听器会在宿主组件卸载时自动停止，因此大多数场景下你无需关心要怎么操作来停止它。
+用 `watch` 选项或者 `$watch()` 实例方法声明的侦听器，会在宿主组件卸载时自动停止。因此，在大多数场景下，你无需关心怎么停止它。
 
-在少数情况下，若你的确需要在组件卸载前停止一个侦听器，`$watch()` API 会返回一个能这样做的函数：
+在少数情况下，你的确需要在组件卸载之前就停止一个侦听器，这时可以调用 `$watch()` API 返回的函数：
 
 ```js
 const unwatch = this.$watch('foo', callback)
@@ -381,15 +381,15 @@ unwatch()
 
 <div class="composition-api">
 
-在 `setup()` 或 `<script setup>` 同步声明的侦听器会和宿主组件绑，也会在组件卸载时自动停止，在大多数场景下你无需关心要怎么操作来停止它。
+在 `setup()` 或 `<script setup>` 中用同步语句创建的侦听器，会自动绑定到宿主组件实例上，并且会在宿主组件卸载时自动停止。因此，在大多数情况下，你无需关心怎么停止一个侦听器。
 
-一个关键点是，侦听器必须是被 **同步** 创建的：如果侦听器是在异步回调中被创建的，它将不会绑定当前组件为宿主，并且必须手动停止以防内存泄漏，如下方这个例子所示：
+一个关键点是，侦听器必须用**同步**语句创建：如果用异步回调创建一个侦听器，那么它不会绑定到当前组件上，你必须手动停止它，以防内存泄漏。如下方这个例子：
 
 ```vue
 <script setup>
 import { watchEffect } from 'vue'
 
-// 这个副作用会在组件卸载时自动停止
+// 它会自动停止
 watchEffect(() => {})
 
 // ...这个则不会！
@@ -399,7 +399,7 @@ setTimeout(() => {
 </script>
 ```
 
-要手动停止一个侦听器，请使用返回的处理函数。`watch` 和 `watchEffect` 都是这样：
+要手动停止一个侦听器，请调用 `watch` 或 `watchEffect` 返回的函数：
 
 ```js
 const unwatch = watchEffect(() => {})
@@ -408,7 +408,7 @@ const unwatch = watchEffect(() => {})
 unwatch()
 ```
 
-注意，需要异步创建监视器的情况应该很少，并且应该尽可能首选同步创建。如果需要等待一些异步数据，可以将侦听逻辑设置为有条件的：
+注意，需要异步创建侦听器的情况很少，请尽可能选择同步创建。如果需要等待一些异步数据，你可以使用条件式的侦听逻辑：
 
 ```js
 // 需要异步请求得到的数据

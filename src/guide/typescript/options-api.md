@@ -258,7 +258,7 @@ declare module 'vue' {
 }
 ```
 
-现在这个 `beforeRouterEnter` 选项会被准确地类型化。注意这只是一个例子——像 `vue-router` 这种类型完备的库应该在它们自己的类型定义中自动执行这些扩充。
+现在这个 `beforeRouterEnter` 选项会被准确地标注类型。注意这只是一个例子——像 `vue-router` 这种类型完备的库应该在它们自己的类型定义中自动执行这些扩充。
 
 这种类型扩充和全局 property 扩充受到[相同的限制](#type-augmentation-placement)。
 
