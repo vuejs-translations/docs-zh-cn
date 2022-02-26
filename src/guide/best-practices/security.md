@@ -2,7 +2,7 @@
 
 ## 报告漏洞 {#reporting-vulnerabilities}
 
-当一个漏洞被上报时，它会立刻成为我们的最优先关注事件，会有全职的贡献者暂时搁置其他所有任务来解决这个问题。要向我们汇报漏洞，请发送邮件到 [security@vuejs.org](mailto:security@vuejs.org)。
+当一个漏洞被上报时，它会立刻成为我们最优先关注的事件，会有全职的贡献者暂时搁置其他所有任务来解决这个问题。要向我们汇报漏洞，请发送邮件到 [security@vuejs.org](mailto:security@vuejs.org)。
 
 虽然很少发现新的漏洞，但我们还建议始终使用最新版本的 Vue 及其官方配套库，以确保您的应用程序尽可能地安全。
 
