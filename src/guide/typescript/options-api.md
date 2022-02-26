@@ -1,20 +1,20 @@
 # TypeScript 与选项式 API {#typescript-with-options-api}
 
-> 这一章假设你已经阅读过了这篇 [搭配 TypeScript 使用 Vue](./overview) 的文档。
+> 这一章假设你已经阅读了[搭配 TypeScript 使用 Vue](./overview) 的概览。
 
 :::tip
-虽然 Vue 的确支持在选项式 API 中使用 TypeScript，但还是推荐你搭配 TypeScript 和组合式 API 来使用 Vue，因为它提供了更简单、高效和更可靠的类型推导。
+虽然 Vue 的确支持在选项式 API 中使用 TypeScript，但还是推荐通过 TypeScript 与组合式 API 来使用 Vue，因为它提供了更简单、更高效和更可靠的类型推导。
 :::
 
-## 为组件 props 标注类型 {#typing-component-props}
+## 为组件的 prop 标注类型 {#typing-component-props}
 
-选项式 API 中对 props 的类型推导需要用 `defineComponent()` 来包裹组件。有了它，Vue 才可以通过 `props` 来推断出 props 的类型，另外还有一些其他的选项，比如 `required: true` 和 `default`：
+选项式 API 中对 prop 的类型推导需要用 `defineComponent()` 来包裹组件。有了它，Vue 才可以通过 `props` 以及一些额外的选项，比如 `required: true` 和 `default` 来推导出 prop 的类型：
 
 ```ts
 import { defineComponent } from 'vue'
 
 export default defineComponent({
-  // 启用类型推导
+  // 启用了类型推导
   props: {
     name: String,
     id: [Number, String],
@@ -30,9 +30,9 @@ export default defineComponent({
 })
 ```
 
-然而，这种运行时 props 选项仅支持使用构造函数来作为一个 prop 的类型，而没有办法指定多层级对象或函数签名之类的复杂类型。
+然而，这种运行时 `props` 选项仅支持使用构造函数来作为一个 prop 的类型——没有办法指定多层级对象或函数签名之类的复杂类型。
 
-要标记更复杂的 props 类型，我们可以使用 `PropType` 这个工具类型。
+我们可以使用 `PropType` 这个工具类型来标记更复杂的 prop 类型：
 
 ```ts
 import { defineComponent, PropType } from 'vue'
@@ -46,27 +46,27 @@ interface Book {
 export default defineComponent({
   props: {
     book: {
-      // 比 `Object` 提供更确定的类型
+      // 提供相对 `Object` 更确定的类型
       type: Object as PropType<Book>,
       required: true
     },
-    // 也可以标记函数类型
+    // 也可以标记函数
     callback: Function as PropType<(id: number) => void>
   },
   mounted() {
     this.book.title // string
     this.book.year // number
 
-    // TS 错误：类型为 'string' 的参数无法
-    // 赋值给类型为 'number' 的参数
+    // TS Error: argument of type 'string' is not
+    // assignable to parameter of type 'number'
     this.callback?.('123')
   }
 })
 ```
 
-### 约定 {#caveats}
+### 注意事项 {#caveats}
 
-因为一个 TypeScript 的 [设计限制](https://github.com/microsoft/TypeScript/issues/38845)，你在使用函数作为 prop 的 `validator` 和 `default` 选项值时需要格外小心，确保使用箭头函数：
+因为一个 TypeScript 的 [设计限制](https://github.com/microsoft/TypeScript/issues/38845)，你在使用函数作为 prop 的 `validator` 和 `default` 选项值时需要格外小心——确保使用箭头函数：
 
 ```ts
 import { defineComponent, PropType } from 'vue'
@@ -92,9 +92,9 @@ const Component = defineComponent({
 
 这会防止 Typescript 将 `this` 根据函数内的环境作出不符合我们期望的类型推导。
 
-## 为组件的 emits 标注类型 {#typing-component-emits}
+## 为组件的 emit 标注类型 {#typing-component-emits}
 
-我们可以使用对象值作为 `emits` 选项的值，为所触发的事件声明期望的载荷内容类型。并且触发到所有未声明的事件时都会抛出一个类型错误：
+我们可以为使用了对象语法作为 `emits` 选项所触发的事件声明期望的载荷内容类型。并且，所有未声明的事件调用时都会抛出一个类型错误：
 
 ```ts
 import { defineComponent } from 'vue'
@@ -120,7 +120,7 @@ export default defineComponent({
 
 ## 为计算属性标记类型 {#typing-computed-properties}
 
-一个计算属性可以根据其返回值来推导得出类型：
+一个计算属性根据其返回值来推导其类型：
 
 ```ts
 import { defineComponent } from 'vue'
@@ -142,7 +142,7 @@ export default defineComponent({
 })
 ```
 
-在某些场景中，你可能想要显式的标记出计算属性的类型以确保实现是正确的：
+在某些场景中，你可能想要显式地标记出计算属性的类型以确保其实现是正确的：
 
 ```ts
 import { defineComponent } from 'vue'
@@ -154,12 +154,12 @@ const Component = defineComponent({
     }
   },
   computed: {
-    // 显式标注出返回值类型作为此计算属性类型
+    // 显式标注返回类型
     greeting(): string {
       return this.message + '!'
     },
 
-    // 标注一个可写的计算属性的类型
+    // 标注一个可写的计算属性
     greetingUppercased: {
       get(): string {
         return this.greeting.toUpperCase()
@@ -172,7 +172,7 @@ const Component = defineComponent({
 })
 ```
 
-显式的类型标注可能在某些 TypeScript 无法推导类型的循环引用的边界情况下是必须指定的。
+在某些 TypeScript 因循环引用而无法推导类型的情况下，可能必须进行显式的类型标注。
 
 ## 为事件处理器标注类型 {#typing-event-handlers}
 
@@ -183,7 +183,7 @@ const Component = defineComponent({
 export default {
   methods: {
     handleChange(event) {
-      // `event` 隐式定位 `any` 类型
+      // `event` 隐式地标注为 `any` 类型
       console.log(event.target.value)
     }
   }
@@ -195,7 +195,7 @@ export default {
 </template>
 ```
 
-没有类型标注时，这个 `event` 参数会隐式定为类型 `any`。这也会在 `tsconfig.json` 中配置了 `"strict": true` 或 `"noImplicitAny": true` 时报出一个 TS 错误。因此，建议显式地为事件处理器的参数标注类型。此外，你可能需要显式地强制转换 `event` 上的属性：
+没有类型标注时，这个 `event` 参数会隐式地标注为 `any` 类型。这也会在 `tsconfig.json` 中配置了 `"strict": true` 或 `"noImplicitAny": true` 时抛出一个 TS 错误。因此，建议显式地为事件处理器的参数标注类型。此外，你可能需要显式地强制转换 `event` 上的 property：
 
 ```ts
 export default {
@@ -207,9 +207,9 @@ export default {
 }
 ```
 
-## 扩充全局属性 {#augmenting-global-properties}
+## 扩充全局 property {#augmenting-global-properties}
 
-某些插件通过 [`app.config.globalProperties`](/api/application.html#app-config-globalproperties) 为所有组件都全局安装了一些属性。举个例子，我们可能为了请求数据 安装了 `this.$http`，或者为了国际化翻译安装了 `this.$translate`。为了使 TypeScript 更好地支持这个行为，Vue 暴露了一个 `ComponentCustomProperties` 接口，它被设计成通过 [TypeScript 模块扩充](https://www.typescriptlang.org/docs/handbook/declaration-merging.html#module-augmentation) 来进行属性扩充：
+某些插件通过 [`app.config.globalProperties`](/api/application.html#app-config-globalproperties) 为所有组件都安装了全局可用的 property。举个例子，我们可能为了请求数据而安装了 `this.$http`，或者为了国际化而安装了 `this.$translate`。为了使 TypeScript 更好地支持这个行为，Vue 暴露了一个被设计为可以通过 [TypeScript 模块扩充](https://www.typescriptlang.org/docs/handbook/declaration-merging.html#module-augmentation)来扩充的 `ComponentCustomProperties` 接口：
 
 ```ts
 import axios from 'axios'
@@ -222,15 +222,15 @@ declare module 'vue' {
 }
 ```
 
-你也可以看看：
+参考：
 
 - [对组件类型扩展的 TypeScript 单元测试](https://github.com/vuejs/core/blob/main/test-dts/componentTypeExtensions.test-d.tsx)
 
 ### 类型扩充的位置 {#type-augmentation-placement}
 
-我们可以将这些类型扩充放在一个 `.ts` 文件或一个以整个项目为范围的 `*.d.ts` 文件中。无论哪一种，你都需要在 `tsconfig.json` 中将其引入。对于库或插件作者，这个文件应该在 `package.json` 的 `type` 属性中被列出。
+我们可以将这些类型扩充放在一个 `.ts` 文件，或是一个以整个项目为范围的 `*.d.ts` 文件中。无论哪一种，确保在 `tsconfig.json` 中将其引入。对于库或插件作者，这个文件应该在 `package.json` 的 `type` property 中被列出。
 
-In order to take advantage of module augmentation, you will need to ensure the augmentation is placed in a [TypeScript module](https://www.typescriptlang.org/docs/handbook/modules.html). That is to say, the file needs to contain at least one top-level `import` or `export`, even if it is just `export {}`. If the augmentation is placed outside of a module, it will overwrite the original types rather than augmenting them!
+为了利用模块扩充的优势，你需要确保将扩充的模块放在 [TypeScript 模块](https://www.typescriptlang.org/docs/handbook/modules.html) 中。 也就是说，该文件需要包含至少一个顶级的 `import` 或 `export`，即使它只是 `export {}`。如果扩充被放在模块之外，它将覆盖原始类型，而不是扩充!
 
 ## 扩充自定义选项 {#augmenting-custom-options}
 
@@ -246,7 +246,7 @@ export default defineComponent({
 })
 ```
 
-没有确切的类型标注，这个钩子函数的参数会隐式定为 `any` 类型。我们可以为 `ComponentCustomOptions` 接口扩充自定义的选项来支持：
+如果没有确切的类型标注，这个钩子函数的参数会隐式地标注为 `any` 类型。我们可以为 `ComponentCustomOptions` 接口扩充自定义的选项来支持：
 
 ```ts
 import { Route } from 'vue-router'
@@ -258,11 +258,11 @@ declare module 'vue' {
 }
 ```
 
-现在这个 `beforeRouterEnter` 选项会被准确地类型化。注意这只是一个例子，像 `vue-router` 这样类型完备的库应该在它们自己的类型定义中自动执行这些扩充。
+现在这个 `beforeRouterEnter` 选项会被准确地标注类型。注意这只是一个例子——像 `vue-router` 这种类型完备的库应该在它们自己的类型定义中自动执行这些扩充。
 
-这种类型扩充和全局属性扩充受到 [相同的限制](#type-augmentation-placement)。
+这种类型扩充和全局 property 扩充受到[相同的限制](#type-augmentation-placement)。
 
-你也可以看看：
+参考：
 
 - [对组件类型扩展的 TypeScript 单元测试](https://github.com/vuejs/core/blob/main/test-dts/componentTypeExtensions.test-d.tsx)
 

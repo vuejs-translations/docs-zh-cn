@@ -208,7 +208,7 @@ customElements.define('my-example', ExampleElement)
 ```js
 import { defineCustomElement } from 'vue'
 import Foo from './MyFoo.ce.vue'
-import Bar from './MyBar.ce.bar'
+import Bar from './MyBar.ce.vue'
 
 const MyFoo = defineCustomElement(Foo)
 const MyBar = defineCustomElement(Bar)

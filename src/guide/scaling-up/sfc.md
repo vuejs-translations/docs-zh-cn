@@ -2,7 +2,7 @@
 
 ## 介绍 {#introduction}
 
-Vue 的单文件组件 (即 `*.vue` 文件，简称 **SFC**) 是一种特殊的文件格式，使我们能够将一个 Vue 组件的模板、逻辑与样式**封装到一起**。下面是一个单文件组件的示例：
+Vue 的单文件组件 (即 `*.vue` 文件，简称 **SFC**) 是一种特殊的文件格式，使我们能够将一个 Vue 组件的模板、逻辑与样式封装在单个文件中。下面是一个单文件组件的示例：
 
 ```vue
 <script>
@@ -48,7 +48,7 @@ SFC 是 Vue 框架提供的一个功能，并且在下列场景中都是官方�
 - 静态站点生成 (SSG)
 - 大型的前端项目，若使用构建步骤可以获得更好的开发体验 (DX)
 
-当然，我们也意识到有些场景下使用 SFC 有些过犹不及。因此 Vue 同样也可以在无构建步骤的情况下以纯 JavaScript 方式使用。如果你正希望通过简单的交互来增强静态 HTML，你可以看看 [petite-vue](https://github.com/vuejs/petite-vue)，它是一个 5kb 左右、预优化过的 Vue 子集，更适合渐进式集成的需求。
+当然，我们也意识到有些场景下使用 SFC 有些过犹不及。因此 Vue 同样也可以在无构建步骤的情况下以纯 JavaScript 方式使用。如果你正希望通过简单的交互来增强静态 HTML，你可以看看 [petite-vue](https://github.com/vuejs/petite-vue)，它是一个 6kb 左右、预优化过的 Vue 子集，更适合渐进式集成的需求。
 
 ## SFC 是如何工作的 {#how-it-works}
 
@@ -68,7 +68,7 @@ SFC 中的 `<style>` 标签一般会在开发时注入成原生的 `<style>` 标
 
 你可以在 [Vue SFC Playground](https://sfc.vuejs.org/) 中实际使用一下单文件组件，同时可以看到它们最终被编译后的样子。
 
-在实际项目中，我们一般会使用集成了 SFC 编译器的构建工具，比如 [Vite](https://vitejs.dev/) 或者 [Vue CLI](http://cli.vuejs.org/) (基于 [Webpack](https://webpack.js.org/))，Vue 官方也提供了脚手架工具来帮助你尽可能快速地上手开发 SFC。查看 [SFC Tooling](/guide/scaling-up/tooling) 一章获取更多细节。
+在实际项目中，我们一般会使用集成了 SFC 编译器的构建工具，比如 [Vite](https://vitejs.dev/) 或者 [Vue CLI](http://cli.vuejs.org/) (基于 [webpack](https://webpack.js.org/))，Vue 官方也提供了脚手架工具来帮助你尽可能快速地上手开发 SFC。查看 [SFC 工具链](/guide/scaling-up/tooling) 一章获取更多细节。
 
 ## 如何看待关注点分离？ {#what-about-separation-of-concerns}
 

@@ -84,7 +84,7 @@ onMounted(() => {
 
 近几年来，越来越多的开发者开始使用 [TypeScript](https://www.typescriptlang.org/) 书写更健壮可靠的代码，TypeScript 还提供了非常好的 IDE 开发支持。然而选项式 API 是在 2013 年创建的，那时并没有想到需要进行类型推导。因此我们做了一些[荒谬复杂的类型体操](https://github.com/vuejs/core/blob/44b95276f5c086e1d88fa3c686a5f39eb5bb7821/packages/runtime-core/src/componentPublicInstance.ts#L132-L165)来实现对选项式 API 的类型推导。但尽管做了这么多的努力，选项式 API 的类型推导仍然无法适配混入和依赖注入。
 
-这使一些想要搭配 TS 使用 Vue 的用户才用了由 `vue-class-component` 提供的 Class API。然而，基于 Class 的 API 非常依赖 ES 装饰器，在 Vue 2019 年开发完成后，它仍是一个仅处于 stage 2 的语言功能。我们认为将这样一种不稳定的方案作为官方 API 的一种实现形式风险过高，在那之后装饰器提案还进行了一些较大的变动，在书写这篇文档时仍未到达 stage 3。另外，基于 Class 的 API 和选项式 API 在逻辑复用和代码组织方面有相同的限制。
+因此，很多想要搭配 TS 使用 Vue 的开发者采用了由 `vue-class-component` 提供的 Class API。然而，基于 Class 的 API 非常依赖 ES 装饰器，在 Vue 2019 年开发完成后，它仍是一个仅处于 stage 2 的语言功能。我们认为将这样一种不稳定的方案作为官方 API 的一种实现形式风险过高，在那之后装饰器提案还进行了一些较大的变动，在书写这篇文档时仍未到达 stage 3。另外，基于 Class 的 API 和选项式 API 在逻辑复用和代码组织方面有相同的限制。
 
 相比之下，组合式 API 主要利用基本的变量和函数，它们本身就是类型友好的。用组合式 API 重写的代码可以享受到完整的类型推导，不需要书写太多类型标注。大多数时候，用 TypeScript 书写的组合式 API 代码和用 JavaScript 写都差不太多！这也同样让许多纯 JavaScript 用户能从 IDE 中享受到部分类型推导功能。
 
