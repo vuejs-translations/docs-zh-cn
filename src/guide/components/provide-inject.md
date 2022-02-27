@@ -239,7 +239,7 @@ export default {
 
 <div class="composition-api">
 
-当使用响应式 `provide` 注入值时，**建议在创建 `provide` 的时候提供响应式的状态和更改状态的方法**。 这样可以确保 `provide` 的状态和变更操作都在同一个组件内，使其更容易维护。
+当使用响应式 `provide`/`inject` 值时，**建议尽可能将任何对反应式状态的变更都保持在 *provider* 内部**。 这样可以确保 `provide` 的状态和变更操作都在同一个组件内，使其更容易维护。
 
 有的时候，我们可能需要在 `injector` 组件中更改数据。在这种情况下，我们推荐在 `provider` 组件内提供一个更改数据方法：
 
@@ -274,7 +274,7 @@ const { location, updateLocation } = inject('location')
 </template>
 ```
 
-最后，如果你想确保从 `provide` 传过来的数据不能被 `injector` 的组件更改，你可以使用[`readonly()`](/api/reactivity-core.html#readonly) 来包装提供的值。
+最后，如果你想确保从 `provide` 传过来的数据不能被 `injector` 的组件更改，你可以使用[`readonly()`](/api/reactivity-core.html#readonly) 来包裹提供的值。
 
 ```vue
 <script setup>
@@ -350,7 +350,7 @@ import { myInjectionKey } from './keys.js'
 const injected = inject(myInjectionKey)
 ```
 
-你也可以看看：[为 Provide / Inject 标注类型](/guide/typescript/composition-api.html#typing-provide-inject) <sup class="vt-badge ts">TS</sup>
+请查看：[为 Provide / Inject 标注类型](/guide/typescript/composition-api.html#typing-provide-inject) <sup class="vt-badge ts">TS</sup>
 
 </div>
 
