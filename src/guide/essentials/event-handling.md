@@ -2,13 +2,13 @@
 
 ## 监听事件 {#listening-to-events}
 
-你可以使用 `v-on` 指令 (简写为 `@`) 来监听 DOM 事件和运行 JavaScript 代码。用法： `v-on:click="methodName"` 或 `@click="handler"` 。
+你可以使用 `v-on` 指令 (简写为 `@`) 来监听 DOM 事件和运行 JavaScript 代码。用法：`v-on:click="methodName"` 或 `@click="handler"`。
 
 事件处理器的值可以是：
 
-1. **内联事件处理器：** 事件被触发时执行的内联 JavaScript 语句 (与 `onclick` 类似) 。
+1. **内联事件处理器：**事件被触发时执行的内联 JavaScript 语句 (与 `onclick` 类似) 。
 
-2. **方法事件处理器：** 一个组件的属性名、或对某个方法的访问。
+2. **方法事件处理器：**一个组件的属性名、或对某个方法的访问。
 
 ## 内联事件处理器 {#inline-handlers}
 
