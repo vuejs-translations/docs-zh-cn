@@ -37,7 +37,7 @@ onMounted(() => window.addEventListener('mousemove', update))
 onUnmounted(() => window.removeEventListener('mousemove', update))
 </script>
 
-<template>鼠标位置：{{ x }}, {{ y }}</template>
+<template>Mouse position is at: {{ x }}, {{ y }}</template>
 ```
 
 但是，如果我们想在多个组件中复用这个相同的逻辑呢？我们可以把这个逻辑以一个可组合函数的形式提取到外部文件中：
@@ -46,7 +46,7 @@ onUnmounted(() => window.removeEventListener('mousemove', update))
 // mouse.js
 import { ref, onMounted, onUnmounted } from 'vue'
 
-// 按照惯例，可组合函数名以 “use” 开头
+// 按照惯例，可组合函数名以“use”开头
 export function useMouse() {
   // 被可组合函数封装和管理的状态
   const x = ref(0)
@@ -58,12 +58,12 @@ export function useMouse() {
     y.value = event.pageY
   }
 
-  // 一个可组合函数也可以 “挂靠” 宿主组件的生命周期
+  // 一个可组合函数也可以挂靠在所属组件的生命周期上
   // 来启动和卸载副作用
   onMounted(() => window.addEventListener('mousemove', update))
   onUnmounted(() => window.removeEventListener('mousemove', update))
 
-  // 将所管理的状态作为返回值
+  // 通过返回值暴露所管理的状态
   return { x, y }
 }
 ```
@@ -77,11 +77,11 @@ import { useMouse } from './mouse.js'
 const { x, y } = useMouse()
 </script>
 
-<template>鼠标位置：{{ x }}, {{ y }}</template>
+<template>Mouse position is at: {{ x }}, {{ y }}</template>
 ```
 
 <div class="demo">
-  鼠标位置：{{ x }}, {{ y }}
+  Mouse position is at: {{ x }}, {{ y }}
 </div>
 
 [在 Playground 中尝试一下](https://sfc.vuejs.org/#eyJBcHAudnVlIjoiPHNjcmlwdCBzZXR1cD5cbmltcG9ydCB7IHVzZU1vdXNlIH0gZnJvbSAnLi9tb3VzZS5qcydcblxuY29uc3QgeyB4LCB5IH0gPSB1c2VNb3VzZSgpXG48L3NjcmlwdD5cblxuPHRlbXBsYXRlPlxuICBNb3VzZSBwb3NpdGlvbiBpcyBhdDoge3sgeCB9fSwge3sgeSB9fVxuPC90ZW1wbGF0ZT4iLCJpbXBvcnQtbWFwLmpzb24iOiJ7XG4gIFwiaW1wb3J0c1wiOiB7XG4gICAgXCJ2dWVcIjogXCJodHRwczovL3NmYy52dWVqcy5vcmcvdnVlLnJ1bnRpbWUuZXNtLWJyb3dzZXIuanNcIlxuICB9XG59IiwibW91c2UuanMiOiJpbXBvcnQgeyByZWYsIG9uTW91bnRlZCwgb25Vbm1vdW50ZWQgfSBmcm9tICd2dWUnXG5cbmV4cG9ydCBmdW5jdGlvbiB1c2VNb3VzZSgpIHtcbiAgY29uc3QgeCA9IHJlZigwKVxuICBjb25zdCB5ID0gcmVmKDApXG5cbiAgZnVuY3Rpb24gdXBkYXRlKGV2ZW50KSB7XG4gICAgeC52YWx1ZSA9IGV2ZW50LnBhZ2VYXG4gICAgeS52YWx1ZSA9IGV2ZW50LnBhZ2VZXG4gIH1cblxuICBvbk1vdW50ZWQoKCkgPT4gd2luZG93LmFkZEV2ZW50TGlzdGVuZXIoJ21vdXNlbW92ZScsIHVwZGF0ZSkpXG4gIG9uVW5tb3VudGVkKCgpID0+IHdpbmRvdy5yZW1vdmVFdmVudExpc3RlbmVyKCdtb3VzZW1vdmUnLCB1cGRhdGUpKVxuXG4gIHJldHVybiB7IHgsIHkgfVxufSJ9)
@@ -98,7 +98,7 @@ import { onMounted, onUnmounted } from 'vue'
 
 export function useEventListener(target, event, callback) {
   // 如果你想的话，
-  // 也可以用字符串形式的 CSS选择器来寻找目标 DOM 元素
+  // 也可以用字符串形式的 CSS 选择器来寻找目标 DOM 元素
   onMounted(() => target.addEventListener(event, callback))
   onUnmounted(() => target.removeEventListener(event, callback))
 }
@@ -146,12 +146,12 @@ fetch('...')
 </script>
 
 <template>
-  <div v-if="error">糟糕！出错了：{{ error.message }}</div>
+  <div v-if="error">Oops! Error encountered: {{ error.message }}</div>
   <div v-else-if="data">
-    加载完成：
+    Data loaded:
     <pre>{{ data }}</pre>
   </div>
-  <div v-else>加载中...</div>
+  <div v-else>Loading...</div>
 </template>
 ```
 
@@ -174,7 +174,7 @@ export function useFetch(url) {
 }
 ```
 
-现在在我们的组件中，我们可以这样做：
+现在我们在组件里只需要：
 
 ```vue
 <script setup>
@@ -264,7 +264,7 @@ console.log(mouse.x)
 ```
 
 ```vue-html
-鼠标位置：{{ mouse.x }}, {{ mouse.y }}
+Mouse position is at: {{ mouse.x }}, {{ mouse.y }}
 ```
 
 ### 副作用 {#side-effects}
