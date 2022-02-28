@@ -4,9 +4,9 @@ outline: deep
 
 # 渲染函数 & JSX {#render-functions-jsx}
 
-Vue 推荐在绝大多数情况下使用模板语法来搭建 HTML。然而在某些使用场景下，我们真的需要用到 JavaScript 完全的编程能力。这时**渲染函数**就派上用场了。
+在绝大多数情况下，Vue 推荐使用模板语法来搭建 HTML。然而在某些使用场景下，我们真的需要用到 JavaScript 完全的编程能力。这时**渲染函数**就派上用场了。
 
-> 如果你还不熟悉虚拟DOM和渲染函数的概念的话，推荐先阅读[渲染机制](/guide/extras/rendering-mechanism.html)。
+> 如果你还不熟悉虚拟 DOM 和渲染函数的概念的话，请确保先阅读[渲染机制](/guide/extras/rendering-mechanism.html)章节。
 
 ## 基本用法 {#basic-usage}
 
@@ -26,17 +26,17 @@ const vnode = h(
 )
 ```
 
-`h()` 是 **hyperscript** 的简称 - 意思是 "能生成 HTML (超文本标记语言) 的 JavaScript"。这个名字来源于许多虚拟 DOM 实现时共享的约定。 一个更准确的名称应该是 `createVnode()` ， 但当你需要多次使用渲染函数时，一个简短的名字能更好地帮到你。
+`h()` 是 **hyperscript** 的简称——意思是 "能生成 HTML (超文本标记语言) 的 JavaScript"。这个名字来源于许多虚拟 DOM 实现时共享的约定。 一个更准确的名称应该是 `createVnode()` ， 但当你需要多次使用渲染函数时，一个简短的名字能更好地帮到你。
 
 `h()` 函数的使用方式非常的灵活：
 
 ```js
-// 除了HTML标签必填，之外的参数都是可选的
+// 除了类型必填以外，其它的参数都是可选的
 h('div')
 h('div', { id: 'foo' })
 
-// attributes 和 properties 都能 props 中书写
-// Vue 会自动给它们分配到正确的位置
+// attribute 和 property 都能在 prop 中书写
+// Vue 会自动将它们分配到正确的位置
 h('div', { class: 'bar', innerHTML: 'hello' })
 
 // 类与样式可以像在模板中一样
@@ -68,8 +68,8 @@ vnode.children // []
 vnode.key // null
 ```
 
-::: 注意事项
-完整的 `VNode` 接口包含其他内部 properties ，但是强烈建议避免使用这些没有在这里列举出的属性。这样能够避免因内部 properties 变更而导致的不兼容性问题。
+::: warning 注意事项
+完整的 `VNode` 接口包含其他内部 property ，但是强烈建议避免使用这些没有在这里列举出的 property。这样能够避免因内部 property 变更而导致的不兼容性问题。
 :::
 
 ### 声明渲染函数 {#declaring-render-function}
@@ -121,7 +121,7 @@ export default {
 }
 ```
 
-::: 小贴士
+::: tip
 请确保返回的是一个函数而不是一个值！ `setup()` 函数在每个组件中只会被调用一次，而返回的渲染函数将会被调用多次。
 :::
 
@@ -528,7 +528,7 @@ h(MyComponent, () => 'hello')
 
 // 具名插槽
 // 注意 `null` 是必需的
-// 被当成 props 的插槽对象
+// 以避免 slot 对象被当成 prop 处理
 h(MyComponent, null, {
     default: () => 'default slot',
     foo: () => h('div', 'foo'),
