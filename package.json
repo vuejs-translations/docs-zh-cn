@@ -6,9 +6,17 @@
     "dev": "vitepress",
     "build": "vitepress build",
     "serve": "vitepress serve",
+    "lint": "pnpm zhlint",
+    "commit": "commit",
+    "fmt:c": "prettier -cu **/*.md",
+    "fmt:w": "prettier -wu **/*.md",
     "zhlint": "zhlint 'src/guide/**/*.md'",
     "clean": "rm -rf .vitepress/dist",
-    "sync": "node scripts/sync.js"
+    "sync": "node scripts/sync.js",
+    "postinstall": "pnpm husky install"
+  },
+  "lint-staged": {
+    "*": "echo # pnpm fmt:c && pnpm zhlint"
   },
   "dependencies": {
     "@vue/repl": "^0.4.9",
@@ -19,14 +27,21 @@
     "vue": "^3.2.27"
   },
   "devDependencies": {
+    "@commitlint/cli": "^16.2.1",
+    "@commitlint/config-conventional": "^16.2.1",
+    "@commitlint/prompt-cli": "^16.2.1",
     "@types/markdown-it": "^12.2.3",
     "@types/node": "^16.9.1",
     "chalk": "^4.1.2",
     "gray-matter": "^4.0.3",
+    "husky": "^7.0.4",
+    "lint-staged": "^12.3.4",
     "lodash": "^4.17.21",
     "open": "^8.4.0",
     "patch-vue-directive-ssr": "^0.0.1",
+    "prettier": "^2.5.1",
     "simple-git": "^2.48.0",
+    "standard-version": "^9.3.2",
     "zhlint": "^0.5.3"
   },
   "pnpm": {
