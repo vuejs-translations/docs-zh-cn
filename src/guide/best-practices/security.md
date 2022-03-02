@@ -2,13 +2,13 @@
 
 ## 报告漏洞 {#reporting-vulnerabilities}
 
-当一个漏洞被上报时，它会立刻成为我们最优先关注的事件，会有全职的贡献者暂时搁置其他所有任务来解决这个问题。要向我们汇报漏洞，请发送邮件到 [security@vuejs.org](mailto:security@vuejs.org)。
+当一个漏洞被上报时，它会立刻成为我们最关心的问题，会有全职的贡献者暂时搁置其他所有任务来解决这个问题。如需报告漏洞，请发送电子邮件至 [security@vuejs.org](mailto:security@vuejs.org)。
 
-虽然很少发现新的漏洞，但我们还建议始终使用最新版本的 Vue 及其官方配套库，以确保您的应用程序尽可能地安全。
+虽然很少发现新的漏洞，但我们仍建议始终使用最新版本的 Vue 及其官方配套库，以确保你的应用尽可能地安全。
 
-## 规则 No.1：不要使用无法信赖的模板 {#rule-no1-never-use-non-trusted-templates}
+## 首要规则：不要使用无法信赖的模板 {#rule-no1-never-use-non-trusted-templates}
 
-使用 Vue 的最基本安全规则就是不要将**无法信赖的内容作为你的组件模板**。否则就等同于允许在应用程序中任意执行 JavaScript！更糟糕的是，如果在服务器端呈现期间执行代码，可能会导致服务器被破坏。举个例子：
+使用 Vue 时最基本的安全规则就是**不要将无法信赖的内容作为你的组件模板**。否则就等同于允许在应用程序中任意执行 JavaScript！更糟糕的是，如果在服务器端呈现期间执行代码，可能会导致服务器被破坏。举个例子：
 
 ```js
 Vue.createApp({
@@ -18,7 +18,7 @@ Vue.createApp({
 
 Vue 模板会被编译成 JavaScript，而模板内的表达式将作为渲染过程的一部分被执行。尽管这些表达式是在特定的渲染环境进行执行的，但由于全局执行环境潜在的复杂性，Vue 作为一个开发框架，要完全避免潜在的恶意代码执行而不产生不切实际的性能开销是不现实的。完全避免这类问题的最直接的方法是确保你的 Vue 模板的内容始终是可信的，并且完全由你控制。
 
-## Vue 能为你提供的保护措施 {#what-vue-does-to-protect-you}
+## Vue 为你提供的保护措施 {#what-vue-does-to-protect-you}
 
 ### HTML 内容 {#html-content}
 
@@ -28,7 +28,7 @@ Vue 模板会被编译成 JavaScript，而模板内的表达式将作为渲染�
 <h1>{{ userProvidedString }}</h1>
 ```
 
-如果 `userProvidedString` 之中包含：
+如果 `userProvidedString` 包含了：
 
 ```js
 '<script>alert("hi")</script>'
@@ -40,11 +40,11 @@ Vue 模板会被编译成 JavaScript，而模板内的表达式将作为渲染�
 &lt;script&gt;alert(&quot;hi&quot;)&lt;/script&gt;
 ```
 
-为了避免脚本注入。这个转义过程是使用 `textContent` 这样的浏览器原生 API 完成的，因此，只有在浏览器本身存在漏洞的情况下，才有可能存在漏洞。
+因此避免了脚本注入。这种转义是使用 `textContent` 这样的浏览器原生 API 完成的，所以只有当浏览器本身存在漏洞时，才会存在漏洞。
 
 ### Attribute 绑定 {#attribute-bindings}
 
-同样地，动态 attribute 的绑定也会被自动转义。这意味着在这个模板中。
+同样地，动态 attribute 的绑定也会被自动转义。这意味着在这个模板中：
 
 ```vue-html
 <h1 :title="userProvidedString">
@@ -58,7 +58,7 @@ Vue 模板会被编译成 JavaScript，而模板内的表达式将作为渲染�
 '" onclick="alert(\'hi\')'
 ```
 
-那么他将被转义为下面这样的 HTML：
+那么它将被转义为如下的 HTML：
 
 ```vue-html
 &quot; onclick=&quot;alert('hi')
