@@ -196,7 +196,7 @@ obj.count++
 watch(
   () => state.someObject,
   () => {
-    // 仅当 state.activeObject 被替换时触发
+    // 仅当 state.someObject 被替换时触发
   }
 )
 ```
