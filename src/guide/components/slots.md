@@ -10,7 +10,7 @@
 
 ```vue-html{2}
 <FancyButton>
-  点击这里 <!-- 插槽内容 -->
+  Click me! <!-- 插槽内容 -->
 </FancyButton>
 ```
 
@@ -28,11 +28,11 @@
 
 <!-- https://www.figma.com/file/LjKTYVL97Ck6TEmBbstavX/slot -->
 
-最终渲染出的 DOM 结果是这样：
+最终渲染出的 DOM 是这样：
 
 ```html
 <button class="fancy-btn">
-  点击这里
+  Click me!
 </button>
 ```
 
@@ -49,11 +49,11 @@
 
 `<FancyButton>` 通过插槽承担了渲染 `<button>` 这个外壳 (以及想要的样式)，而内部的内容由父元素提供。
 
-若你想换一种方式理解插槽，那么不妨和 JavaScript 的函数作个比较：
+通过和下面 JavaScript 的函数作对比，以便以另一种方式来理解插槽：
 
 ```js
 // 父元素传入插槽内容
-FancyButton('点击此处')
+FancyButton('Click me!')
 
 // FancyButton 在自己的模板中渲染插槽内容
 function FancyButton(slotContent) {
@@ -65,11 +65,11 @@ function FancyButton(slotContent) {
 }
 ```
 
-插槽内容不仅仅局限于文本。它也可以是任意合法的模板内容，例如我们可以传入一些元素，甚至是组件：
+插槽内容不仅仅局限于 text 元素。它也可以是任意合法的模板内容，例如我们可以传入多个元素，甚至是组件：
 
 ```vue-html
 <FancyButton>
-  <span style="color:red">试试点击这里！</span>
+  <span style="color:red">Click me!</span>
   <AwesomeIcon name="plus" />
 </FancyButton>
 ```
@@ -85,9 +85,9 @@ function FancyButton(slotContent) {
 
 </div>
 
-当有了插槽之后，`<FancyButton>` 组件变得更灵活，也更容易复用。我们现在可以在不同的地方使用它，传入不同的内容，但都具有相同的外部样式。
+使用插槽后，`<FancyButton>` 组件的扩展性、可复用性都增强了。现在可以在不同位置给其传入不同插槽使其各自渲染不同内容，同时还保证都具有相同的外部样式。
 
-Vue 组件的插槽机制是受到了[原生 Web Component `<slot>` 元素](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/slot)的启发，但也作出了一些功能的拓展，我们后面就会看到。
+Vue 组件的插槽机制是受[原生 Web Component `<slot>` 元素](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/slot)的启发而诞生，同时还做了一些功能拓展，这些拓展的功能我们后面会学习到。
 
 ## 渲染作用域 {#render-scope}
 
