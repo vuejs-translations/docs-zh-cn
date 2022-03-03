@@ -64,7 +64,7 @@ Vue 模板会被编译成 JavaScript，而模板内的表达式将作为渲染�
 &quot; onclick=&quot;alert('hi')
 ```
 
-从而防止在 `title` 属性解析时，注入任意的 HTML。这种转义是使用 `setAttribute` 这样的浏览器原生 API 完成的，所以只有当浏览器本身存在漏洞时，才会存在漏洞。
+从而防止在 `title` attribute 解析时，注入任意的 HTML。这种转义是使用 `setAttribute` 这样的浏览器原生 API 完成的，所以只有当浏览器本身存在漏洞时，才会存在漏洞。
 
 ## 潜在的危险 {#potential-dangers}
 
