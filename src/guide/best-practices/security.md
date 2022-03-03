@@ -8,7 +8,7 @@
 
 ## 首要规则：不要使用无法信赖的模板 {#rule-no1-never-use-non-trusted-templates}
 
-使用 Vue 时最基本的安全规则就是**不要将无法信赖的内容作为你的组件模板**。否则就等同于允许在应用程序中任意执行 JavaScript！更糟糕的是，如果在服务器端呈现期间执行代码，可能会导致服务器被破坏。举个例子：
+使用 Vue 时最基本的安全规则就是**不要将无法信赖的内容作为你的组件模板**。使用无法信赖的模板相当于允许任意的 JavaScript 在你的应用中执行。更糟糕的是，如果在服务端渲染时执行了这些代码，可能会导致服务器被攻击。举个例子：
 
 ```js
 Vue.createApp({
@@ -16,9 +16,9 @@ Vue.createApp({
 }).mount('#app')
 ```
 
-Vue 模板会被编译成 JavaScript，而模板内的表达式将作为渲染过程的一部分被执行。尽管这些表达式是在特定的渲染环境进行执行的，但由于全局执行环境潜在的复杂性，Vue 作为一个开发框架，要完全避免潜在的恶意代码执行而不产生不切实际的性能开销是不现实的。完全避免这类问题的最直接的方法是确保你的 Vue 模板的内容始终是可信的，并且完全由你控制。
+Vue 模板会被编译成 JavaScript，而模板内的表达式将作为渲染过程的一部分被执行。尽管这些表达式在特定的渲染环境中执行，但由于全局执行环境的复杂性，Vue 作为一个开发框架，要完全避免潜在的恶意代码执行而不产生不切实际的性能开销是不现实的。避免这类问题最直接的方法是确保你的 Vue 模板始终是可信的，并且完全由你控制。
 
-## Vue 为你提供的保护措施 {#what-vue-does-to-protect-you}
+## Vue 如何保护你 {#what-vue-does-to-protect-you}
 
 ### HTML 内容 {#html-content}
 
@@ -40,7 +40,7 @@ Vue 模板会被编译成 JavaScript，而模板内的表达式将作为渲染�
 &lt;script&gt;alert(&quot;hi&quot;)&lt;/script&gt;
 ```
 
-因此避免了脚本注入。这种转义是使用 `textContent` 这样的浏览器原生 API 完成的，所以只有当浏览器本身存在漏洞时，才会存在漏洞。
+从而防止脚本注入。这种转义是使用 `textContent` 这样的浏览器原生 API 完成的，所以只有当浏览器本身存在漏洞时，才会存在漏洞。
 
 ### Attribute 绑定 {#attribute-bindings}
 
@@ -64,7 +64,7 @@ Vue 模板会被编译成 JavaScript，而模板内的表达式将作为渲染�
 &quot; onclick=&quot;alert('hi')
 ```
 
-从而防止结束 `title` 属性的解析，注入新的、任意的 HTML。这种转义是使用 `setAttribute` 这样的浏览器原生 API 完成的，所以只有当浏览器本身存在漏洞时，才会存在漏洞。
+从而防止在 `title` 属性解析时，注入任意的 HTML。这种转义是使用 `setAttribute` 这样的浏览器原生 API 完成的，所以只有当浏览器本身存在漏洞时，才会存在漏洞。
 
 ## 潜在的危险 {#potential-dangers}
 
@@ -169,19 +169,19 @@ Vue 模板会被编译成 JavaScript，而模板内的表达式将作为渲染�
 
 ## 最佳实践 {#best-practices}
 
-最基本的规则就是只要你允许未经无害化处理的、用户提供的内容被执行 (无论是 HTML、JavaScript 还是 CSS)，你就可能面临攻击。无论是使用 Vue 还是其他框架，甚至是不用框架时，道理都是一样的。
+最基本的规则就是只要你允许执行未经无害化处理的、用户提供的内容 (无论是 HTML、JavaScript 还是 CSS)，你就可能面临攻击。无论是使用 Vue、其他框架，或是不使用框架，道理都是一样的。
 
 除了上面为处理[潜在危险](#potential-dangers)提供的建议，我们也建议你熟读下面这些资源：
 
 - [HTML5 安全手册](https://html5sec.org/)
 - [OWASP 的跨站脚本攻击 (XSS) 防护手册](https://cheatsheetseries.owasp.org/cheatsheets/Cross_Site_Scripting_Prevention_Cheat_Sheet.html)
 
-接着你可以利用所学到的知识，来审查你的依赖关系的源代码，看看是否有潜在的危险，防止它们中的任何一个以第三方组件或其他方式影响 DOM 渲染的内容。
+接着你可以利用学到的知识，来审查依赖项的源代码，看看是否有潜在的危险，防止它们中的任何一个以第三方组件或其他方式影响 DOM 渲染的内容。
 
 ## 后端协调 {#backend-coordination}
 
-像跨站请求伪造 (CSRF/XSRF) 这样的 HTTP 安全漏洞和跨站脚本引入 (XSSI)，一般是位于后端的问题，因此不是 Vue 所主要关心的内容。但是，与你的后端团队保持沟通，了解如何与他们提供的 API 进行最好的协作，例如最好在提交表单时附带上 CSRF 令牌。
+类似跨站请求伪造 (CSRF/XSRF) 和跨站脚本引入 (XSSI) 这样的 HTTP 安全漏洞，主要由后端负责处理，因此不是 Vue 应该考虑的问题。但是，你应该与后端团队保持沟通，了解如何更好地与后端 API 进行交互，例如在提交表单时携带 CSRF 令牌。
 
 ## 服务端渲染 (SSR) {#server-side-rendering-ssr}
 
-在使用 SSR 时还有一些其他的安全注意事项，因此请确保遵循我们的 [SSR 文档](/guide/scaling-up/ssr.html)中给出的最佳实践来避免产生漏洞。
+在使用 SSR 时还有一些其他的安全注意事项，因此请确保遵循我们的 [SSR 文档](/guide/scaling-up/ssr.html)给出的最佳实践来避免产生漏洞。
