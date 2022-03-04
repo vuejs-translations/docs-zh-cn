@@ -81,12 +81,12 @@ function increaseCount(n) {
 </div>
 
 :::tip
-所有传入 `$emit()` 的额外参数都会被直接传向监听器。举个例子，`$emit('foo', 1, 2, 3)` 触发后，监听器函数将会收到三个参数值。
+所有传入 `$emit()` 的额外参数都会被直接传向监听器。举个例子，`$emit('foo', 1, 2, 3)` 触发后，监听器函数将会收到这三个参数值。
 :::
 
-## 声明抛出的事件 {#declaring-emitted-events}
+## 声明触发的事件 {#declaring-emitted-events}
 
-组件要抛出的事件可以显式地通过 <span class="composition-api">[`defineEmits()`](/api/sfc-script-setup.html#defineprops-defineemits) 宏</span><span class="options-api">[`emits`](/api/options-state.html#emits) 选项</span>来声明。
+组件要触发的事件可以显式地通过 <span class="composition-api">[`defineEmits()`](/api/sfc-script-setup.html#defineprops-defineemits) 宏</span><span class="options-api">[`emits`](/api/options-state.html#emits) 选项</span>来声明。
 
 <div class="composition-api">
 
@@ -96,7 +96,7 @@ const emit = defineEmits(['inFocus', 'submit'])
 </script>
 ```
 
-返回的 `emit` 函数可以用来在 JavaScript 代码中抛出事件。
+返回的 `emit` 函数可以用来在 JavaScript 代码中触发事件。
 
 如果你没有使用 `<script setup>`，则事件需要通过 [`emits`](/api/options-state.html#emits) 选项来定义，`emit` 函数也被暴露在 `setup()` 的上下文对象上：
 
@@ -120,7 +120,7 @@ export default {
 
 </div>
 
-这个 `emits` 选项同样支持以一个对象作为值，可以用来描述对要抛出事件的验证过程：
+这个 `emits` 选项还支持对象语法，它允许我们对触发事件的参数进行验证：
 
 <div class="composition-api">
 
@@ -135,7 +135,7 @@ const emit = defineEmits({
 </script>
 ```
 
-如果你正在搭配 `<script setup>` 使用 TypeScript，也可以使用纯类型标记来声明所抛出的事件类型：
+如果你正在搭配 `<script setup>` 使用 TypeScript，也可以使用纯类型标注来声明触发的事件：
 
 ```vue
 <script setup lang="ts">
@@ -146,7 +146,7 @@ const emit = defineEmits<{
 </script>
 ```
 
-更多细节：[如何为组件所抛出事件标注类型](/guide/typescript/composition-api.html#typing-component-emits) <sup class="vt-badge ts">TS</sup>
+更多细节：[如何为组件的事件标注类型](/guide/typescript/composition-api.html#typing-component-emits) <sup class="vt-badge ts">TS</sup>
 
 </div>
 <div class="options-api">
