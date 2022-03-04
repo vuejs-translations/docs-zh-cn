@@ -2,13 +2,13 @@
 
 > 阅读此章节时，我们假设你已经读过[组件基础](/guide/essentials/component-basics)，若你对组件还完全不了解，请先阅读它。
 
-## 抛出与监听事件 {#emitting-and-listening-to-events}
+## 触发与监听事件 {#emitting-and-listening-to-events}
 
-一个组件可以在模板的表达式中使用 `$emit` 函数直接抛出自定义事件 (例如：在 `v-on` 的事件处理器中)：
+在组件的模板表达式中，可以直接使用 `$emit` 函数触发自定义事件 (例如：在 `v-on` 的处理函数中)：
 
 ```vue-html
 <!-- MyComponent -->
-<button @click="$emit('someEvent')">点击这里抛出事件</button>
+<button @click="$emit('someEvent')">click me</button>
 ```
 
 <div class="options-api">
@@ -23,16 +23,16 @@
 <MyComponent @some-event="callback" />
 ```
 
-`.once` 修饰符在组件的事件监听器上同样也是支持的：
+同样，组件的事件监听器也支持`.once` 修饰符：
 
 ```vue-html
 <MyComponent @some-event.once="callback" />
 ```
 
-和组件与 props 一样，事件的名字也会作自动的转换。注意我们抛出的是一个名字是 camelCase 形式的事件，但可以在父组件中使用 kebab-case 形式来监听。和 [props 大小写格式](/guide/components/props.html#prop-name-casing)一样，我们也推荐在模板中书写监听器时使用 kebab-case 形式。
+像组件与 props 一样，事件的名字也提供了自动的转换。请注意，我们触发了一个以 camelCase 形式命名的事件，但在父组件中可以使用 kebab-case 形式来监听。与 [props 大小写格式](/guide/components/props.html#prop-name-casing)一样，在模板中我们也推荐使用 kebab-case 形式来编写监听器。
 
 :::tip
-和原生 DOM 事件不太一样，组件抛出的事件**不会冒泡**。你只可以监听一个组件的直接子组件中抛出的事件。
+和原生 DOM 事件不太一样，组件触发的事件**不会冒泡**。你只能监听直接子组件触发的事件。
 :::
 
 ## 事件参数 {#event-arguments}
@@ -156,7 +156,7 @@ export default {
   emits: {
     submit(payload) {
       // 通过返回值为 `true` 还是为 `false` 来判断
-    // 验证是否通过
+      // 验证是否通过
     }
   }
 }
