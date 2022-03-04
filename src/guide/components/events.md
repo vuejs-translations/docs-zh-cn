@@ -261,7 +261,7 @@ export default {
 为了使组件能像这样工作，内部的 `<input>` 组件必须：
 
 - 绑定 `value` attribute 到 `modelValue` prop
-- 输入新的值时在 `input` 元素上抛出 `update:modelValue` 事件
+- 输入新的值时在 `input` 元素上触发 `update:modelValue` 事件
 
 这里是相应的代码：
 
@@ -321,7 +321,7 @@ defineEmits(['update:modelValue'])
 
 </div>
 
-另一种在组件内实现 `v-model` 的方式是使用一个可写的 `computed` 计算属性，给出 getter 和 setter。`get` 方法需返回 `modelValue` 属性而 `set` 方法需抛出相应的事件：
+另一种在组件内实现 `v-model` 的方式是使用一个可写的 `computed` property ，给出 getter 和 setter。`get` 方法需返回 `modelValue` property 而 `set` 方法需触发相应的事件：
 
 <div class="options-api">
 
