@@ -37,7 +37,7 @@
 
 ## 事件参数 {#event-arguments}
 
-有时候我们会需要在抛出事件时附带一个特定的值。举个例子，我们想要 `<BlogPost>` 组件来管理文本会缩放得多大。在这个场景下，我们可以给 `$emit` 提供一个值作为额外的参数：
+有时候我们会需要在触发事件时附带一个特定的值。举个例子，我们想要 `<BlogPost>` 组件来管理文本会缩放得多大。在这个场景下，我们可以给 `$emit` 提供一个值作为额外的参数：
 
 ```vue-html
 <button @click="$emit('increaseBy', 1)">
@@ -51,13 +51,13 @@
 <MyButton @increase-by="(n) => count += n" />
 ```
 
-或者用一个方法来作为事件处理器：
+或者用一个方法来作为事件处理函数：
 
 ```vue-html
 <MyButton @increase-by="increaseCount" />
 ```
 
-可以从方法的第一个参数上取到这个值：
+然后，可以从方法的第一个参数上取到这个值：
 
 <div class="options-api">
 
@@ -81,7 +81,7 @@ function increaseCount(n) {
 </div>
 
 :::tip
-所有传入 `$emit()` 的额外参数都会被直接传向监听器。举个例子，由 `$emit('foo', 1, 2, 3)` 抛出后，监听器函数也会收到这三个参数值。
+所有传入 `$emit()` 的额外参数都会被直接传向监听器。举个例子，`$emit('foo', 1, 2, 3)` 触发后，监听器函数将会收到三个参数值。
 :::
 
 ## 声明抛出的事件 {#declaring-emitted-events}
