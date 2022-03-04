@@ -162,21 +162,21 @@ export default {
 }
 ```
 
-你也可以看看这一章了解[如何为组件所抛出事件标注类型](/guide/typescript/options-api.html#typing-component-emits)。<sup class="vt-badge ts">TS</sup>
+你也可以看看这一章了解[如何为组件的事件标注类型](/guide/typescript/options-api.html#typing-component-emits)。<sup class="vt-badge ts">TS</sup>
 
 </div>
 
-尽管是可选的，我们还是推荐你定义所有要抛出的事件，以此更好地在代码中描述和呈现组件的作用。这也使得 Vue 能更好地将事件和[透传 attribute](/guide/components/attrs.html#v-on-listener-inheritance) 作出区分。
+尽管是可选的，我们还是推荐你定义所有要触发的事件，以此更好地在代码中描述和呈现组件的作用。这也使得 Vue 能更好地将事件和[透传 attribute](/guide/components/attrs.html#v-on-listener-inheritance) 作出区分。
 
 :::tip
-如果一个原生事件的名字 (例如 `click`) 被定义在 `emits` 选项中，则监听器只会监听组件发出的 `click` 事件而不会再响应原生的 `click` 事件。
+如果一个原生事件的名字 (例如 `click`) 被定义在 `emits` 选项中，则监听器只会监听组件触发的 `click` 事件而不会再响应原生的 `click` 事件。
 :::
 
 ## 事件校验 {#events-validation}
 
-和对 prop 添加类型校验的方式类似，所有抛出的事件也可以使用对象形式来描述。
+和对 prop 添加类型校验的方式类似，所有触发的事件也可以使用对象形式来描述。
 
-要为事件添加校验，那么事件可以被赋值为一个函数，接受的参数就是抛出事件时传入的内容，返回一个布尔值来表明事件是否合法。
+要为事件添加校验，那么事件可以被赋值为一个函数，接受的参数就是触发事件时传入的内容，返回一个布尔值来表明事件是否合法。
 
 <div class="composition-api">
 
