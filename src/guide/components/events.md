@@ -29,7 +29,7 @@
 <MyComponent @some-event.once="callback" />
 ```
 
-像组件与 props 一样，事件的名字也提供了自动的转换。请注意，我们触发了一个以 camelCase 形式命名的事件，但在父组件中可以使用 kebab-case 形式来监听。与 [props 大小写格式](/guide/components/props.html#prop-name-casing)一样，在模板中我们也推荐使用 kebab-case 形式来编写监听器。
+像组件与 prop 一样，事件的名字也提供了自动的转换。请注意，我们触发了一个以 camelCase 形式命名的事件，但在父组件中可以使用 kebab-case 形式来监听。与 [prop 大小写格式](/guide/components/props.html#prop-name-casing)一样，在模板中我们也推荐使用 kebab-case 形式来编写监听器。
 
 :::tip
 和原生 DOM 事件不太一样，组件触发的事件**不会冒泡**。你只能监听直接子组件触发的事件。
