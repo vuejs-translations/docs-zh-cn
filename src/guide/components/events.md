@@ -2,13 +2,13 @@
 
 > 阅读此章节时，我们假设你已经读过[组件基础](/guide/essentials/component-basics)，若你对组件还完全不了解，请先阅读它。
 
-## 抛出与监听事件 {#emitting-and-listening-to-events}
+## 触发与监听事件 {#emitting-and-listening-to-events}
 
-一个组件可以在模板的表达式中使用 `$emit` 函数直接抛出自定义事件 (例如：在 `v-on` 的事件处理器中)：
+在组件的模板表达式中，可以直接使用 `$emit` 函数触发自定义事件 (例如：在 `v-on` 的处理函数中)：
 
 ```vue-html
 <!-- MyComponent -->
-<button @click="$emit('someEvent')">点击这里抛出事件</button>
+<button @click="$emit('someEvent')">click me</button>
 ```
 
 <div class="options-api">
@@ -23,21 +23,21 @@
 <MyComponent @some-event="callback" />
 ```
 
-`.once` 修饰符在组件的事件监听器上同样也是支持的：
+同样，组件的事件监听器也支持`.once` 修饰符：
 
 ```vue-html
 <MyComponent @some-event.once="callback" />
 ```
 
-和组件与 props 一样，事件的名字也会作自动的转换。注意我们抛出的是一个名字是 camelCase 形式的事件，但可以在父组件中使用 kebab-case 形式来监听。和 [props 大小写格式](/guide/components/props.html#prop-name-casing)一样，我们也推荐在模板中书写监听器时使用 kebab-case 形式。
+像组件与 prop 一样，事件的名字也提供了自动的转换。请注意，我们触发了一个以 camelCase 形式命名的事件，但在父组件中可以使用 kebab-case 形式来监听。与 [prop 大小写格式](/guide/components/props.html#prop-name-casing)一样，在模板中我们也推荐使用 kebab-case 形式来编写监听器。
 
 :::tip
-和原生 DOM 事件不太一样，组件抛出的事件**不会冒泡**。你只可以监听一个组件的直接子组件中抛出的事件。
+和原生 DOM 事件不太一样，组件触发的事件**不会冒泡**。你只能监听直接子组件触发的事件。
 :::
 
 ## 事件参数 {#event-arguments}
 
-有时候我们会需要在抛出事件时附带一个特定的值。举个例子，我们想要 `<BlogPost>` 组件来管理文本会缩放得多大。在这个场景下，我们可以给 `$emit` 提供一个值作为额外的参数：
+有时候我们会需要在触发事件时附带一个特定的值。举个例子，我们想要 `<BlogPost>` 组件来管理文本会缩放得多大。在这个场景下，我们可以给 `$emit` 提供一个值作为额外的参数：
 
 ```vue-html
 <button @click="$emit('increaseBy', 1)">
@@ -51,13 +51,13 @@
 <MyButton @increase-by="(n) => count += n" />
 ```
 
-或者用一个方法来作为事件处理器：
+或者用一个方法来作为事件处理函数：
 
 ```vue-html
 <MyButton @increase-by="increaseCount" />
 ```
 
-可以从方法的第一个参数上取到这个值：
+然后，可以从方法的第一个参数上取到这个值：
 
 <div class="options-api">
 
@@ -81,12 +81,12 @@ function increaseCount(n) {
 </div>
 
 :::tip
-所有传入 `$emit()` 的额外参数都会被直接传向监听器。举个例子，由 `$emit('foo', 1, 2, 3)` 抛出后，监听器函数也会收到这三个参数值。
+所有传入 `$emit()` 的额外参数都会被直接传向监听器。举个例子，`$emit('foo', 1, 2, 3)` 触发后，监听器函数将会收到这三个参数值。
 :::
 
-## 声明抛出的事件 {#declaring-emitted-events}
+## 声明触发的事件 {#declaring-emitted-events}
 
-组件要抛出的事件可以显式地通过 <span class="composition-api">[`defineEmits()`](/api/sfc-script-setup.html#defineprops-defineemits) 宏</span><span class="options-api">[`emits`](/api/options-state.html#emits) 选项</span>来声明。
+组件要触发的事件可以显式地通过 <span class="composition-api">[`defineEmits()`](/api/sfc-script-setup.html#defineprops-defineemits) 宏</span><span class="options-api">[`emits`](/api/options-state.html#emits) 选项</span>来声明。
 
 <div class="composition-api">
 
@@ -96,7 +96,7 @@ const emit = defineEmits(['inFocus', 'submit'])
 </script>
 ```
 
-返回的 `emit` 函数可以用来在 JavaScript 代码中抛出事件。
+返回的 `emit` 函数可以用来在 JavaScript 代码中触发事件。
 
 如果你没有使用 `<script setup>`，则事件需要通过 [`emits`](/api/options-state.html#emits) 选项来定义，`emit` 函数也被暴露在 `setup()` 的上下文对象上：
 
@@ -120,7 +120,7 @@ export default {
 
 </div>
 
-这个 `emits` 选项同样支持以一个对象作为值，可以用来描述对要抛出事件的验证过程：
+这个 `emits` 选项还支持对象语法，它允许我们对触发事件的参数进行验证：
 
 <div class="composition-api">
 
@@ -135,7 +135,7 @@ const emit = defineEmits({
 </script>
 ```
 
-如果你正在搭配 `<script setup>` 使用 TypeScript，也可以使用纯类型标记来声明所抛出的事件类型：
+如果你正在搭配 `<script setup>` 使用 TypeScript，也可以使用纯类型标注来声明触发的事件：
 
 ```vue
 <script setup lang="ts">
@@ -146,7 +146,7 @@ const emit = defineEmits<{
 </script>
 ```
 
-更多细节：[如何为组件所抛出事件标注类型](/guide/typescript/composition-api.html#typing-component-emits) <sup class="vt-badge ts">TS</sup>
+更多细节：[如何为组件的事件标注类型](/guide/typescript/composition-api.html#typing-component-emits) <sup class="vt-badge ts">TS</sup>
 
 </div>
 <div class="options-api">
@@ -156,27 +156,27 @@ export default {
   emits: {
     submit(payload) {
       // 通过返回值为 `true` 还是为 `false` 来判断
-    // 验证是否通过
+      // 验证是否通过
     }
   }
 }
 ```
 
-你也可以看看这一章了解[如何为组件所抛出事件标注类型](/guide/typescript/options-api.html#typing-component-emits)。<sup class="vt-badge ts">TS</sup>
+你也可以看看这一章了解[如何为组件的事件标注类型](/guide/typescript/options-api.html#typing-component-emits)。<sup class="vt-badge ts">TS</sup>
 
 </div>
 
-尽管是可选的，我们还是推荐你定义所有要抛出的事件，以此更好地在代码中描述和呈现组件的作用。这也使得 Vue 能更好地将事件和[透传 attribute](/guide/components/attrs.html#v-on-listener-inheritance) 作出区分。
+尽管是可选的，我们还是推荐你定义所有要触发的事件，以此更好地在代码中描述和呈现组件的作用。这也使得 Vue 能更好地将事件和[透传 attribute](/guide/components/attrs.html#v-on-listener-inheritance) 作出区分。
 
 :::tip
-如果一个原生事件的名字 (例如 `click`) 被定义在 `emits` 选项中，则监听器只会监听组件发出的 `click` 事件而不会再响应原生的 `click` 事件。
+如果一个原生事件的名字 (例如 `click`) 被定义在 `emits` 选项中，则监听器只会监听组件触发的 `click` 事件而不会再响应原生的 `click` 事件。
 :::
 
 ## 事件校验 {#events-validation}
 
-和对 prop 添加类型校验的方式类似，所有抛出的事件也可以使用对象形式来描述。
+和对 prop 添加类型校验的方式类似，所有触发的事件也可以使用对象形式来描述。
 
-要为事件添加校验，那么事件可以被赋值为一个函数，接受的参数就是抛出事件时传入的内容，返回一个布尔值来表明事件是否合法。
+要为事件添加校验，那么事件可以被赋值为一个函数，接受的参数就是触发事件时传入的内容，返回一个布尔值来表明事件是否合法。
 
 <div class="composition-api">
 
@@ -261,7 +261,7 @@ export default {
 为了使组件能像这样工作，内部的 `<input>` 组件必须：
 
 - 绑定 `value` attribute 到 `modelValue` prop
-- 输入新的值时在 `input` 元素上抛出 `update:modelValue` 事件
+- 输入新的值时在 `input` 元素上触发 `update:modelValue` 事件
 
 这里是相应的代码：
 
@@ -321,7 +321,7 @@ defineEmits(['update:modelValue'])
 
 </div>
 
-另一种在组件内实现 `v-model` 的方式是使用一个可写的 `computed` 计算属性，给出 getter 和 setter。`get` 方法需返回 `modelValue` 属性而 `set` 方法需抛出相应的事件：
+另一种在组件内实现 `v-model` 的方式是使用一个可写的 `computed` property ，给出 getter 和 setter。`get` 方法需返回 `modelValue` property 而 `set` 方法需触发相应的事件：
 
 <div class="options-api">
 
@@ -385,7 +385,7 @@ const value = computed({
 <MyComponent v-model:title="bookTitle" />
 ```
 
-在这个例子中，子组件应该有一个 `title` prop、并在变更时向父组件发射 `update:title` 事件：
+在这个例子中，子组件应该有一个 `title` prop，并在变更时向父组件发射 `update:title` 事件：
 
 <div class="composition-api">
 
