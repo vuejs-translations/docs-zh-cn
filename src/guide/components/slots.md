@@ -18,7 +18,7 @@
 
 ```vue-html{2}
 <button class="fancy-btn">
-  <slot></slot> <!-- slot outlet -->
+  <slot></slot> <!-- 插槽插口 -->
 </button>
 ```
 
@@ -47,7 +47,7 @@
 
 </div>
 
-`<FancyButton>` 通过插槽承担了渲染 `<button>` 这个外壳 (以及想要的样式)，而内部的内容由父元素提供。
+`<FancyButton>` 通过插槽承担了渲染 `<button>` 这个外壳 (以及相应的样式)，而内部的内容由父元素提供。
 
 通过和下面 JavaScript 的函数作对比，以便以另一种方式来理解插槽：
 
@@ -65,7 +65,7 @@ function FancyButton(slotContent) {
 }
 ```
 
-插槽内容不仅仅局限于 text 元素。它也可以是任意合法的模板内容，例如我们可以传入多个元素，甚至是组件：
+不是仅有 text 元素可用作插槽内容。插槽内容也可以是任意合法的模板内容，例如我们可以传入多个元素，甚至是组件：
 
 ```vue-html
 <FancyButton>
@@ -85,13 +85,13 @@ function FancyButton(slotContent) {
 
 </div>
 
-使用插槽后，`<FancyButton>` 组件的扩展性、可复用性都增强了。现在可以在不同位置给其传入不同插槽使其各自渲染不同内容，同时还保证都具有相同的外部样式。
+使用插槽后，`<FancyButton>` 组件的扩展性、可复用性都增强了。现在可以在不同位置给其传入不同插槽内容使其各自渲染不同内容，同时还保证都具有相同的外部样式。
 
 Vue 组件的插槽机制是受[原生 Web Component `<slot>` 元素](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/slot)的启发而诞生，同时还做了一些功能拓展，这些拓展的功能我们后面会学习到。
 
 ## 渲染作用域 {#render-scope}
 
-插槽内容可以访问到父组件的数据，因为插槽内容本身也是在父组件模板的一部分。举个例子：
+插槽内容可以访问到父组件的数据，因为插槽内容本身也是父组件模板的一部分。举个例子：
 
 ```vue-html
 <span>{{ message }}</span>
@@ -106,7 +106,7 @@ Vue 组件的插槽机制是受[原生 Web Component `<slot>` 元素](https://de
 
 ## 默认内容 {#fallback-content}
 
-我们也经常会遇到外部没有提供任何内容的情况，此时可能会为插槽提供一个默认的内容来渲染。比如在 `<SubmitButton>` 组件中：
+我们也经常会遇到外部没有提供任何内容的情况，此时为插槽提供一个默认的内容来渲染就很有必要。比如在 `<SubmitButton>` 组件中：
 
 ```vue-html
 <button type="submit">
@@ -114,38 +114,38 @@ Vue 组件的插槽机制是受[原生 Web Component `<slot>` 元素](https://de
 </button>
 ```
 
-如果外部没有提供任何插槽内容，我们可能想在 `<button>` 中渲染“提交”这两个字。要让这两个字成为默认内容，需要写在 `<slot>` 标签之间：
+如果外部没有提供任何插槽内容，我们可能想在 `<button>` 中渲染“Submit”这个单词。要让其成为默认内容，需要将其写在 `<slot>` 标签之间：
 
 ```vue-html{3}
 <button type="submit">
   <slot>
-    提交 <!-- 默认内容 -->
+    Submit <!-- 默认内容 -->
   </slot>
 </button>
 ```
 
-当我们在父组件中使用 `<submit-button>` 但不提供任何插槽内容：
+当我们在父组件中使用 `<SubmitButton>` 但不提供任何插槽内容：
 
 ```vue-html
 <SubmitButton />
 ```
 
-那么将渲染出下面这样的 DOM 结构，包含默认的“提交”二字：
+那么将渲染出下面这样的 DOM 结构，包含默认的“Submit”单词：
 
 ```html
-<button type="submit">提交</button>
+<button type="submit">Submit</button>
 ```
 
 但如果我们提供了别的内容给插槽：
 
 ```vue-html
-<SubmitButton>保存</SubmitButton>
+<SubmitButton>Save</SubmitButton>
 ```
 
-那么渲染的 DOM 中会选择使用提供的插槽内容：
+那么渲染的 DOM 会是提供的插槽内容：
 
 ```html
-<button type="submit">保存</button>
+<button type="submit">Save</button>
 ```
 
 <div class="composition-api">
@@ -213,26 +213,7 @@ Vue 组件的插槽机制是受[原生 Web Component `<slot>` 元素](https://de
 
 <!-- https://www.figma.com/file/2BhP8gVZevttBu9oUmUUyz/named-slot -->
 
-下面我们给出完整的、向 `<BaseLayout>` 传递内容的代码，指令均使用的是缩写形式：
-
-```vue-html
-<BaseLayout>
-  <template #header>
-    <h1>这里是一个页面标题</h1>
-  </template>
-
-  <template #default>
-    <p>一个文章内容的段落</p>
-    <p>另一个段落</p>
-  </template>
-
-  <template #footer>
-    <p>这里有一些联系方式</p>
-  </template>
-</BaseLayout>
-```
-
-When a component accepts both default slot and named slots, all top-level non-`<template>` nodes are implciitly treated as content for default slot. So the above can also be written as:
+下面我们给出完整的、向 `<BaseLayout>` 传递插槽内容的代码，指令均使用的是缩写形式：
 
 ```vue-html
 <BaseLayout>
@@ -240,7 +221,26 @@ When a component accepts both default slot and named slots, all top-level non-`<
     <h1>Here might be a page title</h1>
   </template>
 
-  <!-- implicit default slot -->
+  <template #default>
+    <p>A paragraph for the main content.</p>
+    <p>And another one.</p>
+  </template>
+
+  <template #footer>
+    <p>Here's some contact info</p>
+  </template>
+</BaseLayout>
+```
+
+当同时使用默认插槽和具名插槽向组件传入插槽内容时，父级模板内顶层非 `<template>` 元素会被隐士地看做默认插槽。因此上面代码可以改写为：
+
+```vue-html
+<BaseLayout>
+  <template #header>
+    <h1>Here might be a page title</h1>
+  </template>
+
+  <!-- 隐士默认插槽 -->
   <p>A paragraph for the main content.</p>
   <p>And another one.</p>
 
@@ -250,19 +250,19 @@ When a component accepts both default slot and named slots, all top-level non-`<
 </BaseLayout>
 ```
 
-Now everything inside the `<template>` elements will be passed to the corresponding slots. The final rendered HTML will be:
+现在所有 `<template>` 元素都传入了各自对应的槽位，最渲染出来的 HTML 如下：
 
 ```html
 <div class="container">
   <header>
-    <h1>这里是一个页面标题</h1>
+    <h1>Here might be a page title</h1>
   </header>
   <main>
-    <p>一个文章内容的段落</p>
-    <p>另一个段落</p>
+    <p>A paragraph for the main content.</p>
+    <p>And another one.</p>
   </main>
   <footer>
-    <p>这里有一些联系方式</p>
+    <p>Here's some contact info</p>
   </footer>
 </div>
 ```
@@ -278,7 +278,7 @@ Now everything inside the `<template>` elements will be passed to the correspond
 
 </div>
 
-我们还是用 JavaScript 函数的作类比来理解：
+我们还是用 JavaScript 函数作类比来理解：
 
 ```js
 // 传入不同的内容给不同名字的插槽
