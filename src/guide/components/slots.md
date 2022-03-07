@@ -232,7 +232,7 @@ Vue 组件的插槽机制是受[原生 Web Component `<slot>` 元素](https://de
 </BaseLayout>
 ```
 
-当同时使用默认插槽和具名插槽向组件传入插槽内容时，父级模板内顶层非 `<template>` 元素会被隐士地看做默认插槽。因此上面代码可以改写为：
+当同时使用默认插槽和具名插槽向组件传入插槽内容时，父级元素内顶层的非 `<template>` 元素会被隐士地看做默认插槽。因此上面代码可以改写为：
 
 ```vue-html
 <BaseLayout>
@@ -250,7 +250,7 @@ Vue 组件的插槽机制是受[原生 Web Component `<slot>` 元素](https://de
 </BaseLayout>
 ```
 
-现在所有 `<template>` 元素都传入了各自对应的槽位，最渲染出来的 HTML 如下：
+现在所有 `<template>` 元素都传入了各自对应的插口，最渲染出来的 HTML 如下：
 
 ```html
 <div class="container">
@@ -323,9 +323,9 @@ function BaseLayout(slots) {
 
 在上面的[渲染作用域](#render-scope)中我们讨论到，插槽的内容无法访问到子组件的状态。
 
-然而在某些场景下插槽的内容可能想要同时利用父组件域内和子组件域内的数据。要做到这一点，我们需要让子组件将一部分数据在渲染时提供给插槽。
+然而在某些场景下插槽的内容可能想要同时使用父组件域内和子组件域内的数据。要做到这一点，我们需要一种方法来让子组件在渲染时将一部分数据提供给插槽。
 
-而我们确实也有办法这么做！我们可以像对组件传递 props 那样，向一个插槽的插口上传递 attribute：
+我们也确实有办法这么做！我们可以像对组件传递 props 那样，向一个插槽的插口上传递 attribute：
 
 ```vue-html
 <!-- <MyComponent> 的模板 -->
@@ -334,7 +334,7 @@ function BaseLayout(slots) {
 </div>
 ```
 
-当需要接收插槽 props 时，一般的默认插槽和具名插槽的使用方式有了一些小小的区别。下面我们将会展示是怎样的不同，首先是一个默认插槽，通过子组件标签上的 `v-slot` 指令，直接接收到了一个插槽 props 对象：
+当需要接收插槽 props 时，默认插槽和具名插槽的使用方式有一些小区别。下面我们将先展示默认插槽如何接受 props，通过子组件标签上的 `v-slot` 指令，直接接收到了一个插槽 props 对象：
 
 ```vue-html
 <MyComonent v-slot="slotProps">
@@ -355,7 +355,7 @@ function BaseLayout(slots) {
 
 子组件传入插槽的 props 作为了 `v-slot` 指令的值，可以在插槽内的表达式中访问。
 
-你可以将作用于插槽类比为一个传入子组件的函数。子组件会将相应的 props 作为参数传给它：
+你可以将作用域插槽类比为一个传入子组件的函数。子组件会将相应的 props 作为参数去调用它：
 
 ```js
 MyComponent({
@@ -376,9 +376,9 @@ function MyComponent(slots) {
 }
 ```
 
-实际上，这已经和作用域插槽的最终的代码编译结果、以及手动地调用[渲染函数](/guide/extras/render-function.html)的方式非常类似了。
+实际上，这已经和作用域插槽的最终代码编译结果、以及手动编写[渲染函数](/guide/extras/render-function.html)时使用作用域插槽的方式非常类似了。
 
-`v-slot="slotProps"` 可以类比这里的函数签名，和函数的参数类似，我们也可以在 `v-slot` 使用：
+`v-slot="slotProps"` 可以类比这里的函数签名，和函数的参数类似，我们也可以在 `v-slot` 中使用解构：
 
 
 ```vue-html
