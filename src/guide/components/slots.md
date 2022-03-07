@@ -232,25 +232,25 @@ Vue 组件的插槽机制是受到了[原生 Web Component `<slot>` 元素](http
 </BaseLayout>
 ```
 
-When a component accepts both default slot and named slots, all top-level non-`<template>` nodes are implciitly treated as content for default slot. So the above can also be written as:
+当一个组件同时接收默认插槽和具名插槽时，所有位于顶级的非 `<template>` 节点都被隐式地视为默认插槽的内容。所以上面也可以写成：
 
 ```vue-html
 <BaseLayout>
   <template #header>
-    <h1>Here might be a page title</h1>
+    <h1>这里是一个页面标题</h1>
   </template>
 
-  <!-- implicit default slot -->
-  <p>A paragraph for the main content.</p>
-  <p>And another one.</p>
+  <!-- 隐式的默认插槽 -->
+  <p>一个文章内容的段落</p>
+  <p>另一个段落</p>
 
   <template #footer>
-    <p>Here's some contact info</p>
+    <p>这里有一些联系方式</p>
   </template>
 </BaseLayout>
 ```
 
-Now everything inside the `<template>` elements will be passed to the corresponding slots. The final rendered HTML will be:
+现在 `<template>` 元素中的所有内容都将被传递到相应的插槽。最终渲染出的 HTML 如下：
 
 ```html
 <div class="container">
