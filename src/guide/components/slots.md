@@ -232,7 +232,7 @@ Vue 组件的插槽机制是受[原生 Web Component `<slot>` 元素](https://de
 </BaseLayout>
 ```
 
-当同时使用默认插槽和具名插槽向组件传入插槽内容时，父级元素内顶层的非 `<template>` 元素会被隐式地看做默认插槽。因此上面代码可以改写为：
+当一个组件同时接收默认插槽和具名插槽时，所有位于顶级的非 `<template>` 节点都被隐式地视为默认插槽的内容。所以上面也可以写成：
 
 ```vue-html
 <BaseLayout>
@@ -240,7 +240,7 @@ Vue 组件的插槽机制是受[原生 Web Component `<slot>` 元素](https://de
     <h1>Here might be a page title</h1>
   </template>
 
-  <!-- 隐式默认插槽 -->
+  <!-- 隐式的默认插槽 -->
   <p>A paragraph for the main content.</p>
   <p>And another one.</p>
 
@@ -250,7 +250,7 @@ Vue 组件的插槽机制是受[原生 Web Component `<slot>` 元素](https://de
 </BaseLayout>
 ```
 
-现在所有 `<template>` 元素都传入了各自对应的插口，最渲染出来的 HTML 如下：
+现在 `<template>` 元素中的所有内容都将被传递到相应的插槽。最终渲染出的 HTML 如下：
 
 ```html
 <div class="container">
