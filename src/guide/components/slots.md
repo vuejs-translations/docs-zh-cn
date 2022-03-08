@@ -237,15 +237,15 @@ Vue 组件的插槽机制是受到了[原生 Web Component `<slot>` 元素](http
 ```vue-html
 <BaseLayout>
   <template #header>
-    <h1>这里是一个页面标题</h1>
+    <h1>Here might be a page title</h1>
   </template>
 
   <!-- 隐式的默认插槽 -->
-  <p>一个文章内容的段落</p>
-  <p>另一个段落</p>
+  <p>A paragraph for the main content.</p>
+  <p>And another one.</p>
 
   <template #footer>
-    <p>这里有一些联系方式</p>
+    <p>Here's some contact info</p>
   </template>
 </BaseLayout>
 ```
