@@ -76,7 +76,7 @@ interface Book {
   year?: number
 }
 
-const Component = defineComponent({
+export default defineComponent({
   props: {
     bookA: {
       type: Object as PropType<Book>,
@@ -147,7 +147,7 @@ export default defineComponent({
 ```ts
 import { defineComponent } from 'vue'
 
-const Component = defineComponent({
+export default defineComponent({
   data() {
     return {
       message: 'Hello!'
@@ -180,14 +180,16 @@ const Component = defineComponent({
 
 ```vue
 <script lang="ts">
-export default {
+import { defineComponent } from 'vue'
+
+export default defineComponent({
   methods: {
     handleChange(event) {
       // `event` 隐式地标注为 `any` 类型
       console.log(event.target.value)
     }
   }
-}
+})
 </script>
 
 <template>
@@ -198,13 +200,15 @@ export default {
 没有类型标注时，这个 `event` 参数会隐式地标注为 `any` 类型。这也会在 `tsconfig.json` 中配置了 `"strict": true` 或 `"noImplicitAny": true` 时抛出一个 TS 错误。因此，建议显式地为事件处理器的参数标注类型。此外，你可能需要显式地强制转换 `event` 上的 property：
 
 ```ts
-export default {
+import { defineComponent } from 'vue'
+
+export default defineComponent({
   methods: {
     handleChange(event: Event) {
       console.log((event.target as HTMLInputElement).value)
     }
   }
-}
+})
 ```
 
 ## 扩充全局 property {#augmenting-global-properties}
@@ -253,7 +257,7 @@ import { Route } from 'vue-router'
 
 declare module 'vue' {
   interface ComponentCustomOptions {
-    beforeRouteEnter?(to: any, from: any, next: () => void): void
+    beforeRouteEnter?(to: Route, from: Route, next: () => void): void
   }
 }
 ```

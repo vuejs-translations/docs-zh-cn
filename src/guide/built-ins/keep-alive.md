@@ -71,7 +71,7 @@ import SwitchComponent from './keep-alive-demos/SwitchComponent.vue'
 </KeepAlive>
 ```
 
-匹配的根据是组件的 [`name`](/api/options-misc.html#name) 选项，所以要想通过 `KeepAlive` 有条件地缓存的组件必须显式声明一个 `name` 选项。
+sname`](/api/options-misc.html#name) 选项，所以要想通过 `KeepAlive` 有条件地缓存的组件必须显式声明一个 `name` 选项。
 
 ## 最大缓存实例 {#max-cached-instances}
 

@@ -44,80 +44,168 @@ SSG 保持了和 SSR 应用相同的性能表现：它提供了更短的内容�
 
 如果你只是想要使用 SSR 来提升一些销售页面的 SEO (例如 `/`、`/about` 和 `/contact` 等)，那么你应该考虑采用 SSG 代替 SSR。SSG 也非常适合构建基于内容的网站，比如文档或者博客。事实上，你现在正在阅读的这篇文档就是使用 [VitePress](https://vitepress.vuejs.org/) 所生成的，这是一个由 Vue 驱动的静态站点生成器。
 
-## 基本使用 {#basic-usage}
+## 基本教程 {#basic-tutorial}
 
 ### 渲染一个应用 {#rendering-an-app}
 
-Vue 的服务端渲染 API 都被暴露在 `vue/server-renderer` 之下。
+让我们看看一个 Vue SSR 最基本骨架的实战示例。
 
-让我们看看一个 Vue SSR 最基本骨架的实战示例。首先，创建一个新的文件夹，并在其中运行 `npm install vue`。接着，创建一个 `example.mjs` 文件：
+1. 创建一个新目录并 `cd` 进入其中
+2. 运行 `npm init -y`
+3. 添加 `"type": "module"` 到 `package.json` 中，这样 Node.js 就会以 ESM 模式运行。
+4. 运行 `npm install vue`
+5. 创建一个 `example.js` 文件：
 
 ```js
-// example.mjs
 // 这会用 Node.js 运行在服务器上
 import { createSSRApp } from 'vue'
+// Vue 的服务端渲染 API 都暴露在 `vue/server-renderer` 之下
 import { renderToString } from 'vue/server-renderer'
+
 const app = createSSRApp({
-  data: () => ({ msg: 'hello' }),
-  template: `<div>{{ msg }}</div>`
+  data: () => ({ count: 1 }),
+  template: `<button @click="count++">{{ count }}</button>`
 })
-;(async () => {
-  const html = await renderToString(app)
+
+renderToString(app).then((html) => {
   console.log(html)
-})()
+})
 ```
 
 接着运行：
 
 ```sh
-> node example.mjs
+> node example.js
 ```
 
 ...将会打印出下面的内容：
 
 ```html
-<div>hello</div>
+<button>1</button>
 ```
 
 [`renderToString()`](/api/ssr.html#rendertostring) 接收一个 Vue 应用实例为参数，会返回一个 Promise，完成时得到该应用渲染完成的 HTML。当然你也可以使用 [Node.js Stream API](https://nodejs.org/api/stream.html) 或者 [Web Streams API](https://developer.mozilla.org/en-US/docs/Web/API/Streams_API) 来执行流式渲染。查看 [SSR API 参考](/api/ssr.html)获取完整的相关细节。
 
-### 客户端水合 {#client-hydration}
+然后我们可以将 Vue SSR 代码移到服务器请求处理器中，它将应用程序的标记与整个页面的HTML包裹起来。我们将在下一步中使用 [`express`](https://expressjs.com/)：
 
-在真实的 SSR 应用中，服务端渲染出的标记基本上都会是以下面这样的方式内嵌于 HTML 页面中：
+- 运行 `npm install express`
+- 创建下面这样的 `server.js` 文件：
 
-```html{6}
-<!DOCTYPE html>
-<html>
-  <head>...</head>
-  <body>
-    <div id="app">
-      <div>hello</div> <!-- 服务端渲染出的内容 -->
-    </div>
-  </body>
-</html>
+```js
+import express from 'express'
+import { createSSRApp } from 'vue'
+import { renderToString } from 'vue/server-renderer'
+
+const server = express()
+
+server.get('/', (req, res) => {
+  const app = createSSRApp({
+    data: () => ({ count: 1 }),
+    template: `<button @click="count++">{{ count }}</button>`
+  })
+
+  renderToString(app).then((html) => {
+    res.send(`
+    <!DOCTYPE html>
+    <html>
+      <head>
+        <title>Vue SSR Example</title>
+      </head>
+      <body>
+        <div id="app">${html}</div>
+      </body>
+    </html>
+    `)
+  })
+})
+
+server.listen(3000, () => {
+  console.log('ready')
+})
 ```
 
-在客户端侧，Vue 需要执行**水合**这一步骤。它会创建与服务端相同的 Vue 应用，将每个组件匹配到它应该控制的 DOM 节点，并附加事件监听器，使应用变得可以交互。
+最后，运行 `node server.js` 并访问 `http://localhost:3000`。你将最终能看到页面上按钮可以正常工作了。
 
-和只有客户端的应用唯一不同的地方就是我们需要使用 [`createSSRApp()`](/api/application.html#createssrapp) 而不是 `createApp()`：
+[在 StackBlitz 上尝试一下](https://stackblitz.com/fork/vue-ssr-example-basic?file=index.js)
+
+### 客户端激活 {#client-hydration}
+
+如果你点击这个按钮，你会发现数字并没有变化。这是由于我们没有在浏览器中加载 Vue，所以 HTML 在客户端是完全静态的。
+
+要让客户端应用重新恢复可交互，Vue 需要执行一步 **激活** 操作。在激活期间，它将创建与服务器上运行的相同的 Vue 应用程序，将每个组件与它应该控制的 DOM 节点相匹配，并附加了 DOM 事件监听器。
+
+要按激活模式挂载一个应用，我们需要使用 [`createSSRApp()`](/api/application.html#createssrapp) 而不是 `createApp()`：
 
 ```js{2}
 // 这运行在浏览器中
 import { createSSRApp } from 'vue'
+
 const app = createSSRApp({
-  // ...和服务端完全一致的组件实例
+  // ...和服务器上相同的应用配置
 })
-// 挂载一个 SSR 应用在客户端，假设
-// HTML 已经被预渲染，并会执行
-// 水合过程，而不是挂载新的 DOM 节点
+
+// 在客户端挂载 SSR 应用程序时，
+// 假定 HTML 是预先渲染的，
+// 并将执行激活而不是安装新的 DOM 节点。
 app.mount('#app')
 ```
 
-## 高阶解决方案 {#higher-level-solutions}
+### 代码结构 {#code-structure}
 
-虽然到目前为止的例子都比较简单，但满足生产环境需求的 SSR 应用程序是全栈项目，涉及到的东西远不止 Vue 的 API。我们将需要：
+你可能注意到了这里需要重复使用与服务器上相同的应用实现。因此需要开始考虑如何改善 SSR 应用的代码结构——我们如何在服务器和客户端之间共享相同的应用代码？
 
-- 构建两次应用程序：一次用于客户端，另一次用于服务器。
+这里将演示最原始的设置。首先，让我们把应用程序的创建逻辑分成一个专门的文件 `app.js`：
+
+```js
+// app.js（服务器和客户端之间共享）
+import { createSSRApp } from 'vue'
+
+export function createApp() {
+  return createSSRApp({
+    data: () => ({ count: 1 }),
+    template: `<div @click="count++">{{ count }}</div>`
+  })
+}
+```
+
+该文件及其依赖项在服务器和客户端之间共享——我们称它们为 **通用代码**。编写通用代码时需要注意许多事项，我们将[在下面讨论](#writing-ssr-friendly-code)。
+
+我们在客户端入口导入通用代码，创建应用程序并执行挂载：
+
+```js
+// client.js
+import { createApp } from './app.js'
+
+createApp().mount('#app')
+```
+
+服务器在请求处理函数中使用相同的应用创建逻辑：
+
+```js{2,5}
+// server.js (irrelevant code omitted)
+import { createApp } from './app.js'
+
+server.get('/', (req, res) => {
+  const app = createApp()
+  renderToString(app).then(html => {
+    // ...
+  })
+})
+```
+
+此外，为了在浏览器中加载客户端文件，我们还需要：
+
+1. 在 `server.js` 中添加 `server.use(express.static('.'))` 来托管客户端文件。
+2. 将 `<script type="module" src="/client.js"></script>` 添加到 HTML 外壳以加载客户端入口文件。
+3. 通过在 HTML 外壳中添加 [Import Map](https://github.com/WICG/import-maps) 以支持在浏览器中使用 `import * from 'vue'`。
+
+[在 StackBlitz 上尝试完整的示例](https://stackblitz.com/fork/vue-ssr-example?file=index.js)。按钮现在可以交互了！
+
+## 更高阶解决方案 {#higher-level-solutions}
+
+从上面的例子到一个生产就绪的 SSR 应用还需要很多工作。我们将需要：
+
+- 支持 Vue SFC 且满足其他构建步骤要求。事实上，我们需要为同一个应用协调两个构建过程：一个用于客户端，一个用于服务器。
 
   :::tip
   Vue 组件在用于 SSR 时的编译方式是不同的，模板被编译成字符串，而不是虚拟 DOM 渲染函数，以获得更高效的渲染性能。
@@ -165,15 +253,17 @@ Vite 提供了内置的[对 Vue 服务端渲染](https://vitejs.dev/guide/ssr.ht
 
 对于仅供浏览器的 API，通常的方法是在仅客户端生命周期钩子中惰性地访问它们，例如 <span class="options-api">`mounted`</span><span class="composition-api">`onMounted`</span>。
 
-请注意，如果一个第三方库编写时没有考虑到普遍的使用。将它集成到一个 SSR 应用程序中可能会很棘手。你或许可以通过模仿一些全局变量来让它工作，但这可能会很麻烦，并且可能会干扰其他库的环境检测代码。
+请注意，如果一个第三方库编写时没有考虑到普遍的使用。将它集成到一个 SSR 应用程序中可能会很棘手。你或许可以通过模仿一些全局变量来让它工作，但这 _可能_ 会很麻烦，并且可能会干扰其他库的环境检测代码。
 
 ### 跨请求状态污染 {#cross-request-state-pollution}
 
 在状态管理一章中，我们介绍了一种[使用响应性 API 的简单状态管理模式](state-management.html#simple-state-management-with-reactivity-api)。而在 SSR 环境中，这种模式需要一些额外的调整。
 
-该模式将以**单例模式**共享状态声明。这意味着在我们应用程序的整个生命周期中，只有一个响应式对象的实例。这在纯客户端的 Vue 应用中是可以的，因为我们的应用代码在每个浏览器页面访问时都是全新初始化的。
+该模式将以**单例模式**共享状态声明。这意味着在我们应用程序的整个生命周期中，只有一个响应式对象的实例。这在纯客户端的 Vue 应用中是可以的，因为我们的应用代码在每个浏览器页面访问时都是全新初始化的。这在纯客户端的 Vue 应用中是可以正常工作的，因为我们应用中的模块在每次浏览器页面访问时都是全新初始化的。
 
 然而，在 SSR 环境下，应用程序代码即在服务器启动时通常只在初始化一次。在这种情况下，我们应用程序中的状态管理单例将在服务器处理的多个请求中被共享。如果我们用一个用户的特定数据对共享的 store 单例进行更改，它可能会意外地泄露给另一个用户的请求。我们把这称为**跨请求的状态污染**。
+
+从技术上讲，我们可以在每次请求时重新初始化所有的 JavaScript 模块，就像在浏览器中那样。然而初始化 JavaScript 模块的成本很高，所以这将大大影响服务器的性能。
 
 推荐的解决方案是在每个请求中创建一个新的应用程序和共享对象的实例。然后，我们使用[应用级的供给](/guide/components/provide-inject.html#app-level-provide)来提供共享状态，并将其注入给需要它的组件中，而不是直接在我们的组件中将其导入：
 
@@ -219,14 +309,17 @@ export function createApp() {
 
 ```js
 const myDirective = {
-  mounted(el) {
-    el.id = 'foo'
+  mounted(el, binding) {
+    // 客户端侧实现：
+    // 直接更新 DOM
+    el.id = binding.value
   },
-  getSSRProps(binding, vnode) {
-    // the hook the directive binding and the element vnode as arguments.
-    // return props to be added to the vnode.
+  getSSRProps(binding) {
+    // 服务端侧实现：
+    // 返回要被渲染的 props
+    // getSSRProps 只接受指令绑定
     return {
-      id: 'foo'
+      id: binding.value
     }
   }
 }

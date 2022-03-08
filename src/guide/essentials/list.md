@@ -1,5 +1,13 @@
 # 列表渲染 {#list-rendering}
 
+<div class="options-api">
+  <VueSchoolLink href="https://vueschool.io/lessons/list-rendering-in-vue-3" title="列表渲染 - 免费 Vue.js 课程"/>
+</div>
+
+<div class="composition-api">
+  <VueSchoolLink href="https://vueschool.io/lessons/vue-fundamentals-capi-list-rendering-in-vue" title="列表渲染 - 免费 Vue.js 课程"/>
+</div>
+
 ## `v-for` {#v-for}
 
 我们可以使用 `v-for` 指令基于一个数组来渲染一个列表。`v-for` 指令需要一种特殊的语法形式 `item in items`，`items` 是源数据的数组，而 `item` 是对迭代项的**别名**：
@@ -220,7 +228,7 @@ data() {
 ## `v-for` 与 `v-if` {#v-for-with-v-if}
 
 :::warning 注意
-同时使用 `v-if` 和 `v-for` 是**不推荐的**，因为这样二者的优先级不明显。请看[风格指南](/style-guide/#avoid-v-if-with-v-for-essential)查看更多信息。
+同时使用 `v-if` 和 `v-for` 是**不推荐的**，因为这样二者的优先级不明显。请看[风格指南](/style-guide/#avoid-v-if-with-v-for-essential)查看更多细节。
 :::
 
 当它们同时存在于一个节点上时，`v-if` 比 `v-for` 的优先级更高。这意味着 `v-if` 的条件将无法访问到 `v-for` 作用域内定义的变量别名：

@@ -48,16 +48,36 @@ const props = defineProps<Props>()
 </script>
 ```
 
-:::warning 语法限制
+#### 语法限制 {#syntax-limitations}
+
 为了生成正确的运行时代码，传给 `defineProps()` 的泛型参数必须是以下之一：
 
-- 一个类型字面量
-- 对**同一个文件**中的一个接口或对象类型字面量的引用
+- 一个类型字面量：
 
-这个同一个文件的限制在未来的版本中可以被移除。
-:::
+  ```ts
+  defineProps<{ /*... */ }>()
+  ```
 
-### Prop 默认值 <sup class="vt-badge warning">experimental</sup> {#props-default-values}
+- 对**同一个文件**中的一个接口或对象类型字面量的引用：
+
+  ```ts
+  interface Props {/* ... */}
+
+  defineProps<Props>()
+  ```
+
+接口或对象字面类型可以包含从其他文件导入的类型引用，但是，传递给 `defineProps` 的泛型参数本身 **不能** 是一个导入的类型：
+
+```ts
+import { Props } from './other-file'
+
+// 不支持！
+defineProps<Props>()
+```
+
+这是因为 Vue 组件是单独编译的，编译器目前不会抓取导入的文件以分析源类型。这个限制可能会在未来的版本中被解除。
+
+### Prop 默认值 <sup class="vt-badge experimental" /> {#props-default-values}
 
 当使用基于类型的声明时，我们失去了对 prop 定义默认值的能力。这可以通过目前实验性的[响应性语法糖](/guide/extras/reactivity-transform.html#reactive-props-destructure)来解决：
 
@@ -200,7 +220,7 @@ const book: Book = reactive({ title: 'Vue 3 指引' })
 ```ts
 import { ref, computed } from 'vue'
 
-let count = ref(0)
+const count = ref(0)
 
 // 推导得到的类型：ComputedRef<number>
 const double = computed(() => count.value * 2)
@@ -244,8 +264,7 @@ function handleChange(event: Event) {
 
 ## 为 provide/inject 标注类型 {#typing-provide-inject}
 
-provide 和 inject 通常会在不同的组件中运行。要正确地为注入的值标记类型，
-Vue 提供了一个 `InjectionKey` 接口，它是一个继承自 `Symbol` 的泛型类型，可以用来在提供者和消费者之间同步注入值的类型：
+provide 和 inject 通常会在不同的组件中运行。要正确地为注入的值标记类型，Vue 提供了一个 `InjectionKey` 接口，它是一个继承自 `Symbol` 的泛型类型，可以用来在提供者和消费者之间同步注入值的类型：
 
 ```ts
 import { provide, inject, InjectionKey } from 'vue'
@@ -285,7 +304,7 @@ const foo = inject('foo') as string
 
 ```vue
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
 
 const el = ref<HTMLInputElement | null>(null)
 

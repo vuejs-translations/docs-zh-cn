@@ -115,7 +115,7 @@ Registers a callback to be called after the component has been unmounted.
 
   ```vue
   <script setup>
-  import { onMounted, unUnmounted } from 'vue'
+  import { onMounted, onUnmounted } from 'vue'
 
   let intervalId
   onMounted(() => {
@@ -167,7 +167,7 @@ Registers a hook to be called right before a component instance is to be unmount
 - **Type**
 
   ```ts
-  function onBeforeUnmounted(callback: () => void): void
+  function onBeforeUnmount(callback: () => void): void
   ```
 
 - **Details**
@@ -220,7 +220,7 @@ Registers a hook to be called when an error propagating from a descendent compon
 
   - An `errorCaptured` hook can return `false` to prevent the error from propagating further. This is essentially saying "this error has been handled and should be ignored." It will prevent any additional `errorCaptured` hooks or `app.config.errorHandler` from being invoked for this error.
 
-## onRenderTracked() <sup class="vt-badge warning">Dev only</sup>
+## onRenderTracked() <sup class="vt-badge dev-only" />
 
 Registers a debug hook to be called when a reactive dependency has been tracked by the component's render effect.
 
@@ -243,7 +243,7 @@ Registers a debug hook to be called when a reactive dependency has been tracked 
 
 - **See also:** [Reactivity in Depth](/guide/extras/reactivity-in-depth.html)
 
-## onRenderTriggered() <sup class="vt-badge warning">Dev only</sup>
+## onRenderTriggered() <sup class="vt-badge dev-only" />
 
 Registers a debug hook to be called when a reactive dependency triggers the component's render effect to be re-run.
 
@@ -297,7 +297,7 @@ Registers a callback to be called after the component instance is removed from t
 
 - **See also:** [Guide - Lifecycle of Cached Instance](/guide/built-ins/keep-alive.html#lifecycle-of-cached-instance)
 
-## onServerPrefetch() <sup class="vt-badge">SSR only</sup>
+## onServerPrefetch() <sup class="vt-badge" data-text="SSR only" />
 
 Registers a async function to be resolved before the component instance is to be rendered on the server.
 

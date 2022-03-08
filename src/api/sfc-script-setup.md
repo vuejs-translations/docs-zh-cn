@@ -127,6 +127,31 @@ import * as Form from './form-components'
 </template>
 ```
 
+## Using Custom Directives
+
+Globally registered custom directives just work as normal. Local custom directives don't need to be explicitly registered with `<script setup>`, but they must follow the naming scheme `vNameOfDirective`:
+
+```vue
+<script setup>
+const vMyDirective = {
+  beforeMount: (el) => {
+    // do something with the element
+  }
+}
+</script>
+<template>
+  <h1 v-my-directive>This is a Heading</h1>
+</template>
+```
+
+If you're importing a directive from elsewhere, it can be renamed to fit the required naming scheme:
+
+```vue
+<script setup>
+import { myDirective as vMyDirective } from './MyDirective.js'
+</script>
+```
+
 ## defineProps() & defineEmits()
 
 To declare options like `props` and `emits` with full type inference support, we can use the `defineProps` and `defineEmits` APIs, which are automatically available inside `<script setup>`:
@@ -227,10 +252,10 @@ const post = await fetch(`/api/post/1`).then((r) => r.json())
 In addition, the awaited expression will be automatically compiled in a format that preserves the current component instance context after the `await`.
 
 :::warning Note
-`async setup()` must be used in combination with `Suspense`, which is currently still an experimental feature. We plan to finalize and document it in a future release - but if you are curious now, you can refer to its [tests](https://github.com/vuejs/core/blob/master/packages/runtime-core/__tests__/components/Suspense.spec.ts) to see how it works.
+`async setup()` must be used in combination with `Suspense`, which is currently still an experimental feature. We plan to finalize and document it in a future release - but if you are curious now, you can refer to its [tests](https://github.com/vuejs/core/blob/main/packages/runtime-core/__tests__/components/Suspense.spec.ts) to see how it works.
 :::
 
-## TypeScript-only Features <sup class="vt-badge ts">TS</sup>
+## TypeScript-only Features <sup class="vt-badge ts" />
 
 ### Type-only props/emit declarations
 

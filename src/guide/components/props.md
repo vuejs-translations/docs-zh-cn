@@ -1,10 +1,10 @@
----
-aside: deep
----
-
 # Props {#props}
 
 > 阅读此章节时，我们假设你已经读过[组件基础](/guide/essentials/component-basics)，若你对组件还完全不了解，请先阅读它。
+
+<div class="options-api">
+  <VueSchoolLink href="https://vueschool.io/lessons/vue-3-reusable-components-with-props" title="Props - 免费 Vue.js 课程"/>
+</div>
 
 ## Props 声明 {#props-declaration}
 
@@ -96,7 +96,7 @@ export default {
 
 <div class="options-api">
 
-See also：[Typing Component Props](/guide/typescript/options-api.html#typing-component-props) <sup class="vt-badge ts">TS</sup>
+其他相关：[为组件 Props 标注类型](/guide/typescript/options-api.html#typing-component-props) <sup class="vt-badge ts" />
 
 </div>
 
@@ -113,7 +113,7 @@ defineProps<{
 </script>
 ```
 
-查看这一章获取更多[组件 props 类型标注](/guide/typescript/composition-api.html#typing-component-props)的相关细节。<sup class="vt-badge ts">TS</sup>
+查看这一章获取更多[组件 props 类型标注](/guide/typescript/composition-api.html#typing-component-props)的相关细节。<sup class="vt-badge ts" />
 
 </div>
 
@@ -380,7 +380,7 @@ export default {
 ```js
 defineProps({
   // 基础类型检查
-  // （给出 `null` 和 `undefined` 值则会跳过任何类型校验）
+  // （给出 `null` 和 `undefined` 值则会跳过任何类型校查）
   propA: Number,
   // 多种可能的类型
   propB: [String, Number],
@@ -431,7 +431,8 @@ defineProps({
 ```js
 export default {
   props: {
-    // 基础类型检查（给出 `null` 和 `undefined` 值则会跳过任何类型校验）
+    // 基础类型检查
+    //（给出 `null` 和 `undefined` 值则会跳过任何类型校验）
     propA: Number,
     // 多种可能的类型
     propB: [String, Number],
@@ -476,6 +477,14 @@ export default {
 ```
 
 </div>
+
+一些补充细节：
+
+- 所有 props 默认都是可选的，除非声明了 `required: true`。
+
+- 未传递的 prop 会有一个缺省值 `undefined`。
+
+- 如果声明了 `default` 值，那么在 prop 的值被解析为 `undefined` 时，无论 prop 是未被传递还是显式指明的 `undefined`，都会改为 `default` 值。
 
 当 prop 的校验失败后，Vue 会抛出一个控制台警告 (在开发模式下)。
 
@@ -575,3 +584,28 @@ export default {
 <!-- equivalent of passing :disabled="false" -->
 <MyComponent />
 ```
+
+当需要一个 prop 在声明时允许多种类型时，应该像这样：
+
+<div class="composition-api">
+
+```js
+defineProps({
+  disabled: [Boolean, Number]
+})
+```
+
+</div>
+<div class="options-api">
+
+```js
+export default {
+  props: {
+    disabled: [Boolean, Number]
+  }
+}
+```
+
+</div>
+
+无论声明类型的顺序如何，`Boolean` 类型的特殊转换规则都会被应用。

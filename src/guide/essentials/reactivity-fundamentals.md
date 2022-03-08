@@ -77,7 +77,7 @@ const state = reactive({ count: 0 })
 
 响应式对象其实是 [JavaScript Proxy](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy)，其行为表现与一般对象相似。不同之处在于 Vue 能够跟踪对响应式对象属性的访问与更改操作。如果你对这其中的细节感到好奇，我们在 [深入响应式系统](/guide/extras/reactivity-in-depth.html) 一章中会进行解释，但我们推荐你先读完这里的主要指南。
 
-你也可以看看：[为响应式对象标注类型](/guide/typescript/composition-api.html#typing-reactive)。 <sup class="vt-badge ts">TS</sup>
+你也可以看看：[为响应式对象标注类型](/guide/typescript/composition-api.html#typing-reactive)。 <sup class="vt-badge ts" />
 
 要在组件模板中使用响应式状态，请在 `setup()` 函数中定义并返回。
 
@@ -164,6 +164,8 @@ function increment() {
 <div class="options-api">
 
 ## 声明方法 \* {#declaring-methods}
+
+<VueSchoolLink href="https://vueschool.io/lessons/methods-in-vue-3" title="方法 - 免费 Vue.js 课程"/>
 
 要为组件添加方法，我们需要用到 `methods` 选项。它应该是一个包含所有方法的对象：
 
@@ -355,15 +357,20 @@ console.log(proxy.nested === raw) // false
    ```js
    const state = reactive({ count: 0 })
 
-   // 函数接受一个纯数字
-   // 并不会追踪 state.count 的变化
-   callSomeFunction(state.count)
+   // n 是一个局部变量，同 state.count 
+   // 失去响应性连接
+   let n = state.count
+   // 不影响原来的状态
+   n++
 
-   // count 已经是一个
-   // 与 state 响应性失去连接的纯数字
+   // count 也和 state.count 失去了响应性连接
    let { count } = state
    // 不会影响原状态
    count++
+
+   // 该函数接收一个普通数字，并且
+   // 将无法跟踪 state.count 的变化
+   callSomeFunction(state.count)
    ```
 
 ## `ref()` 定义响应式变量 \*\* {#reactive-variables-with-ref}
@@ -388,7 +395,7 @@ count.value++
 console.log(count.value) // 1
 ```
 
-你也可以看看：[为 ref 标注类型](/guide/typescript/composition-api.html#typing-ref)。 <sup class="vt-badge ts">TS</sup>
+你也可以看看：[为 ref 标注类型](/guide/typescript/composition-api.html#typing-ref)。 <sup class="vt-badge ts" />
 
 和响应式对象的属性类似，ref 的 `.value` 属性也是响应式的。同时，当值为对象类型时，会用 `reactive()` 自动转换它的 `.value`。
 
@@ -446,15 +453,19 @@ function increment() {
 
 请注意，解包过程仅作用于顶层 property，访问深层级的 ref 则不会解包：
 
+所以我们给出下面这样的对象：
+
 ```js
 const object = { foo: ref(1) }
 ```
+
+The following expression will **NOT** work as expected:
 
 ```vue-html
 {{ object.foo }} <!-- 无法自动解包 -->
 ```
 
-我们可以通过让 `foo` 成为顶层 property 来解决这个问题：
+渲染的结果会是一个 `[object Object]1` 因为 `object.foo` 是一个 ref 对象。我们可以通过让 `foo` 成为顶层 property 来解决这个问题：
 
 ```js
 const { foo } = object
@@ -465,6 +476,14 @@ const { foo } = object
 ```
 
 现在 `foo` 将被包装成预期的样子。
+
+需要注意的是，如果一个 ref 是文本插值（即一个 <code v-pre>{{ }}</code> 符号）计算的最终值，它也将被解包。因此下面的渲染结果将为 `1`：
+
+```vue-html
+{{ object.foo }}
+```
+
+这只是文本插值的一个方便功能，相当于 <code v-pre>{{ object.foo.value ]}</code>。
 
 ### ref 在响应式对象中的解包 \*\* {#ref-unwrapping-in-reactive-objects}
 
@@ -495,7 +514,9 @@ console.log(count.value) // 1
 
 只有当嵌套在一个深层反应式对象内时，才会发生 ref 解包。当起作为 [浅层响应式对象](/api/reactivity-advanced.html#shallowreactive) 的属性被访问时不会解套。
 
-另外，当从数组或 `Map` 这样的原生集合类型访问 ref 时，也不会进行解包。
+#### 数组和集合类型的 ref 解包 {#ref-unwrapping-in-arrays-and-collections}
+
+不像响应式对象，当从数组或 `Map` 这样的原生集合类型访问 ref 时，不会进行解包。
 
 ```js
 const books = reactive([ref('Vue 3 Guide')])
@@ -555,7 +576,7 @@ export default {
 
 <div class="composition-api">
 
-### 响应性语法糖 <sup class="vt-badge warning">experimental</sup> \*\* {#reactivity-transform}
+### 响应性语法糖 <sup class="vt-badge experimental" /> \*\* {#reactivity-transform}
 
 不得不对 ref 使用 `.value` 是一个受限于 JavaScript 语言限制的缺点。不过在编译期间，自动在合适的位置上添加上 `.value` 可以改进开发体验。Vue 提供了一个语法糖，可以在编译时作相应转换，使得我们可以像这样书写上面的计数器示例：
 

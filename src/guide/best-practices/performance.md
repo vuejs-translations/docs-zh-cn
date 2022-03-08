@@ -37,7 +37,7 @@ Vue 的设计对于大多数常见的使用情况来说都是性能优秀的，�
 
 ## 页面加载优化 {#page-load-optimizations}
 
-页面加载优化有许多跟框架无关的方面 - 这份 [web.dev 指南](https://web.dev/fast/) 提供了一个全面的总结。这里，我们将主要关注和 Vue 本身相关的技巧。
+页面加载优化有许多跟框架无关的方面 - 这份 [web.dev 指南](https://web.dev/fast/) 提供了一个全面的总结。这里，我们将主要关注和 Vue 相关的技巧。
 
 ### 包体积与 Tree-shaking 优化 {#bundle-size-and-tree-shaking}
 
@@ -75,13 +75,14 @@ function loadLazy() {
 
 ```js
 import { defineAsyncComponent } from 'vue'
+
 // 会为 Foo.vue 及其依赖创建单独的一个块
 // 它只会按需加载
 //（即该异步组件在页面中被渲染时）
 const Foo = defineAsyncComponent(() => import('./Foo.vue'))
 ```
 
-如果在客户端侧通过 Vue Router 构建了路由，那么强烈建议将路由组件改写为异步组件形式。查看 [懒加载路由](https://next.router.vuejs.org/guide/advanced/lazy-loading.html) 获取更多细节。
+如果在客户端侧通过 Vue Router 构建了路由，那么强烈建议使用异步组件作为路由组件改。查看 [懒加载路由](https://next.router.vuejs.org/guide/advanced/lazy-loading.html) 了解更多细节。
 
 ### SSR / SSG {#ssr-ssg}
 
@@ -124,6 +125,7 @@ const Foo = defineAsyncComponent(() => import('./Foo.vue'))
 ## 总体优化 {#general-optimizations}
 
 > 以下提示会同时影响页面加载和更新性能。
+
 ### 大型虚拟列表 {#virtualize-large-lists}
 
 所有的前端应用中最常见的性能问题就是渲染大型列表。无论一个框架性能有多好，渲染成千上万个列表项**都会**变得很慢，因为浏览器需要处理大量的 DOM 节点。
@@ -145,10 +147,12 @@ Vue 确实也为此提供了一种解决方案，通过使用 [`shallowRef()`](/
 const shallowArray = shallowRef([
   /* 巨大的列表，里面包含深层的对象 */
 ])
+
 // 这不会触发更新...
 shallowArray.value.push(newObject)
 // 这才会触发更新
 shallowArray.value = [...shallowArr.value, newObject]
+
 // 这不会触发更新...
 shallowArray.value[0].foo = 1
 // 这才会触发更新

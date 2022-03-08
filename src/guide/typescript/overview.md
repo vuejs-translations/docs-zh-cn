@@ -36,7 +36,7 @@ Vue 本身就是用 TypeScript 编写的，并对 TypeScript 提供了头等的�
 
   - [TypeScript Vue Plugin](https://marketplace.visualstudio.com/items?itemName=johnsoncodehk.vscode-typescript-vue-plugin) 用于支持在 TS 中 import `*.vue` 文件。
 
-- [WebStorm](https://www.jetbrains.com/webstorm/) 也对 TypeScript 和 Vue 提供了内置的支持。
+- [WebStorm](https://www.jetbrains.com/webstorm/) 对 TypeScript 和 Vue 也都提供了开箱即用的支持。其他的 JetBrains IDE 也同样可以通过一个[免费插件](https://plugins.jetbrains.com/plugin/9442-vue-js)支持。
 
 ### 配置 `tsconfig.json` {#configuring-tsconfigjson}
 
