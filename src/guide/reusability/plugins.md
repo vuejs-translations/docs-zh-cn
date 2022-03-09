@@ -85,7 +85,7 @@ app.use(i18nPlugin, {
 <h1>{{ $translate('greetings.hello') }}</h1>
 ```
 
-另请参阅：[Augmenting Global Properties](/guide/typescript/options-api.html#augmenting-global-properties) <sup class="vt-badge ts">TS</sup>
+另请参阅：[Augmenting Global Properties](/guide/typescript/options-api.html#augmenting-global-properties) <sup class="vt-badge ts" />
 
 :::tip
 请谨慎使用全局属性，如果在整个应用程序中使用不同插件注入的太多全局属性，很容易令开发者困惑。

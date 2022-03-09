@@ -1,6 +1,6 @@
 <script setup>
 import ElasticHeader from './demos/ElasticHeader.vue'
-import NotActivated from './demos/NotActivated.vue'
+import DisabledButton from './demos/DisabledButton.vue'
 import Colors from './demos/Colors.vue'
 import AnimateWatcher from './demos/AnimateWatcher.vue'
 </script>
@@ -16,11 +16,12 @@ Vue 提供了 [`<Transition>`](/guide/built-ins/transition.html) 和 [`<Transiti
 <div class="composition-api">
 
 ```js
-const notActivated = ref(false)
-function warnNotActivated() {
-  notActivated.value = true
+const disabled = ref(false)
+
+function warnDisabled() {
+  disabled.value = true
   setTimeout(() => {
-    notActivated.value = false
+    disabled.value = false
   }, 1500)
 }
 ```
@@ -32,14 +33,14 @@ function warnNotActivated() {
 export default {
   data() {
     return {
-      notActivated: false
+      disabled: false
     }
   },
   methods: {
-    warnNotActivated() {
-      this.notActivated = true
+    warnDisabled() {
+      this.disabled = true
       setTimeout(() => {
-        this.notActivated = false
+        this.disabled = false
       }, 1500)
     }
   }
@@ -50,8 +51,8 @@ export default {
 
 ```vue-html
 <div :class="{ shake: notActivated }">
-  <button @click="warnNotActivated">点击此处</button>
-  <span v-if="notActivated">此功能未激活。</span>
+  <button @click="warnDisabled">点击此处</button>
+  <span v-if="disabled">此功能未激活。</span>
 </div>
 ```
 
@@ -81,7 +82,7 @@ export default {
 }
 ```
 
-<NotActivated />
+<DisabledButton />
 
 ## 状态驱动的动画 {#state-driven-animations}
 

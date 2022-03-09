@@ -265,7 +265,7 @@ setup(props) {
 }
 ```
 
-## TypeScript 集成 <sup class="vt-badge ts">TS</sup> {#typescript-integration}
+## TypeScript 集成 <sup class="vt-badge ts" /> {#typescript-integration}
 
 Vue 为这些宏函数都提供了类型声明 (全局可用) 并且类型都会符合你的使用预期。它与标准的 TypeScript 语义没有不兼容之处，因此它的语法可以与所有现有的工具兼容。
 

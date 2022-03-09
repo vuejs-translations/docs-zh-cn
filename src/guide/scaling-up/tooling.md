@@ -65,16 +65,16 @@
 
 ## 浏览器开发者插件 {#browser-devtools}
 
+<VueSchoolLink href="https://vueschool.io/lessons/using-vue-dev-tools-with-vuejs-3" title="开发者工具 - 免费 Vue.js 课程"/>
+
 Vue 的浏览器开发者插件使我们可以浏览一个 Vue 应用的组件树，查看各个组件的状态，追踪状态管理的事件，还有测评性能表现。
 
 ![devtools 截图](https://raw.githubusercontent.com/vuejs/devtools/main/media/screenshot-shadow.png)
 
-<!-- TODO update links after swapping versions -->
-
 - [文档](https://devtools.vuejs.org/)
-- [Chrome 插件商店页](https://chrome.google.com/webstore/detail/vuejs-devtools/ljjemllljcmogpfapbkkighbhhppjdbg)
+- [Chrome 插件商店页](https://chrome.google.com/webstore/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd)
 - [Firefox 所属插件页](https://addons.mozilla.org/en-US/firefox/addon/vue-js-devtools/)
-- [独立的 Electron 应用所属插件](https://github.com/vuejs/vue-devtools/blob/dev/packages/shell-electron/README.md)
+- [独立的 Electron 应用所属插件](https://devtools.vuejs.org/guide/installation.html#standalone)
 
 ## TypeScript {#typescript}
 
@@ -151,8 +151,10 @@ Vue 团队维护着 [eslint-plugin-vue](https://github.com/vuejs/eslint-plugin-v
 ## 其他在线 Playground {#other-online-playgrounds}
 
 - [VueUse Playground](https://play.vueuse.org)
-- [Repl.it 上使用 Vue + Vite](https://replit.com/@templates/VueJS-with-Vite)
-- [CodeSandbox 的 Vue 模板](https://codesandbox.io/s/vue-3)
-- [CodePen 的 Vue 模板](https://codepen.io/pen/editor/vue)
+- [Vue + Vite on Repl.it](https://replit.com/@templates/VueJS-with-Vite)
+- [Vue on CodeSandbox](https://codesandbox.io/s/vue-3)
+- [Vue on Codepen](https://codepen.io/pen/editor/vue)
+- [Vue on Components.studio](https://components.studio/create/vue3)
+- [Vue on WebComponents.dev](https://webcomponents.dev/create/cevue)
 
 <!-- TODO ## Backend Framework Integrations -->

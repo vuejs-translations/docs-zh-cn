@@ -8,7 +8,7 @@ Update the element's text content.
 
 - **Details**
 
-  `v-text` works by setting the element's [textContent](https://developer.mozilla.org/en-US/docs/Web/API/Node/textContent) property, so it will overwrite any existing content inside the element. If you need to update the part of `textContent`, you should use [mustache interpolations](/guide/essentials/template-syntax.html#text) instead.
+  `v-text` works by setting the element's [textContent](https://developer.mozilla.org/en-US/docs/Web/API/Node/textContent) property, so it will overwrite any existing content inside the element. If you need to update the part of `textContent`, you should use [mustache interpolations](/guide/essentials/template-syntax.html#text-interpolation) instead.
 
 - **Example**
 
@@ -54,7 +54,7 @@ Toggle the element's visibility based on the truthy-ness of the expression value
 
   `v-show` works by setting the `display` CSS property via inline styles, and will try to respect the initial `display` value when the element is visible. It also triggers transitions when its condition changes.
 
-- **其他相关：** [Conditional Rendering - v-show](/guide/essentials/conditional.html#v-show)
+- **See also:** [Conditional Rendering - v-show](/guide/essentials/conditional.html#v-show)
 
 ## v-if
 
@@ -251,7 +251,7 @@ Attach an event listener to the element.
 
 - **其他相关：**
   - [Event Handling](/guide/essentials/event-handling.html)
-  - [Components - Custom Events](/guide/essentials/component-basics.html#listening-to-child-components-events)
+  - [Components - Custom Events](/guide/essentials/component-basics.html#listening-to-events)
 
 ## v-bind
 
@@ -319,13 +319,16 @@ Dynamically bind one or more attributes, or a component prop to an expression.
   <svg><a :xlink:special="foo"></a></svg>
   ```
 
-  The `.prop` modifier also has a dedicated shorthand, `.`:
+  The `.prop` and `.attr` modifiers also have a dedicated shorthand, `.` and `^` respectively:
 
   ```vue-html
   <div :someProperty.prop="someObject"></div>
-
   <!-- equivalent to -->
   <div .someProperty="someObject"></div>
+  
+  <div :someProperty.attr="someString"></div>
+  <!-- equivalent to -->
+  <div ^someProperty="someString"></div>
   ```
 
   The `.camel` modifier allows camelizing a `v-bind` attribute name when using in-DOM templates, e.g. the SVG `viewBox` attribute:
@@ -370,14 +373,14 @@ Denote named slots or slots that expect to receive props.
 
 - **Shorthand:** `#`
 
-- **期望：** JavaScript expression that is valid in a function argument position (supports destructuring in [supported environments](/guide/components/slots.html#destructuring-slot-props)). Optional - only needed if expecting props to be passed to the slot.
+- **Expects:** JavaScript expression that is valid in a function argument position, including support for destructuring. Optional - only needed if expecting props to be passed to the slot.
 
 - **参数：** slot name (optional, defaults to `default`)
 
 - **Limited to:**
 
   - `<template>`
-  - [components](/guide/components/slots.html#abbreviated-syntax-for-lone-default-slots) (for a lone default slot with props)
+  - [components](/guide/components/slots.html#scoped-slots) (for a lone default slot with props)
 
 - **Example:**
 
@@ -425,7 +428,7 @@ Skip compilation for this element and all its children.
 
   Inside the element with `v-pre`, all Vue template syntax will be preserved and rendered as-is. The most common use case of this is displaying raw mustache tags.
 
-- **示例：**
+- **Example:**
 
   ```vue-html
   <span v-pre>{{ this will not be compiled }}</span>
@@ -459,11 +462,11 @@ Render the element and component once only, and skip future updates.
 
   Since 3.2, you can also memoize part of the template with invalidation conditions using [`v-memo`](#v-memo).
 
-- **其他相关：**
-  - [Data Binding Syntax - interpolations](/guide/essentials/template-syntax.html#text)
+- **See also:**
+  - [Data Binding Syntax - interpolations](/guide/essentials/template-syntax.html#text-interpolation)
   - [v-memo](#v-memo)
 
-## v-memo <sup class="vt-badge">3.2+</sup>
+## v-memo <sup class="vt-badge" data-text="3.2+" />
 
 - **Expects:** `any[]`
 

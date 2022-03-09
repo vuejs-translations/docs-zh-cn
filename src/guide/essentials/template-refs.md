@@ -32,13 +32,27 @@ onMounted(() => {
 </template>
 ```
 
+If not using `<script setup>`, make sure to also return the ref from `setup()`:
+
+```js{6}
+export default {
+  setup() {
+    const input = ref(null)
+    // ...
+    return {
+      input
+    }
+  }
+}
+```
+
 </div>
 <div class="options-api">
 
 挂载结束后 ref 都会被暴露在 `this.$refs` 之上：
 
 ```vue
-<script setup>
+<script>
 export default {
   mounted() {
     this.$refs.input.focus()
@@ -53,7 +67,7 @@ export default {
 
 </div>
 
-注意，你只可以**在组件挂载后**才能访问 ref。如果你想在模板中的表达式上访问 `$refs.input`，在初次渲染时会是 `null`。这是因为在初次渲染前这个元素还压根不存在呢！
+注意，你只可以**在组件挂载后**才能访问 ref。如果你想在模板中的表达式上访问 <span class="options-api">`$refs.input`</span><span class="composition-api">`input`</span>，在初次渲染时会是 `null`。这是因为在初次渲染前这个元素还压根不存在呢！
 
 <div class="composition-api">
 
@@ -69,7 +83,7 @@ watchEffect(() => {
 })
 ```
 
-See also：[Typing Template Refs](/guide/typescript/composition-api.html#typing-template-refs) <sup class="vt-badge ts">TS</sup>
+See also：[Typing Template Refs](/guide/typescript/composition-api.html#typing-template-refs) <sup class="vt-badge ts" />
 
 </div>
 
@@ -222,7 +236,7 @@ defineExpose({
 
 当父组件通过模板 ref 获取到了该组件的实例，得到的实例类型为 `{ a: number, b: number }` (ref 都会自动解套，和一般的实例一样)。
 
-你也可以看看[为组件的模板 ref 标注类型 ](/guide/typescript/composition-api.html#typing-component-template-refs) <sup class="vt-badge ts">TS</sup>
+你也可以看看[为组件的模板 ref 标注类型](/guide/typescript/composition-api.html#typing-component-template-refs) <sup class="vt-badge ts" />
 
 </div>
 <div class="options-api">
