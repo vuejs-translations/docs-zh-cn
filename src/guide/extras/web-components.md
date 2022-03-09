@@ -6,7 +6,7 @@
 
 ## 在 Vue 中使用自定义元素 {#using-custom-elements-in-vue}
 
-Vue [在 Custom Elements Everywhere 测试中取得了 100% 的分数](https://custom-elements-everywhere.com/libraries/vue/results/results.html)。在 Vue 应用中使用自定义元素基本上上与使用原生 HTML 元素的效果相同，但需要留意以下几点：
+Vue [在 Custom Elements Everywhere 测试中取得了 100% 的分数](https://custom-elements-everywhere.com/libraries/vue/results/results.html)。在 Vue 应用中使用自定义元素基本上与使用原生 HTML 元素的效果相同，但需要留意以下几点：
 
 ### 跳过组件解析 {#skipping-component-resolution}
 
