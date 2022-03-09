@@ -1,5 +1,7 @@
 # Teleport·传送门 {#teleport}
 
+<VueSchoolLink href="https://vueschool.io/lessons/vue-3-teleport" title="Teleport - 免费的 Vue.js 课程"/>
+
 `<Teleport>` 是一个内置组件，使我们可以将一个组件的一部分模板“传送”到该组件的 DOM 层次结构之外的 DOM 节点中。
 
 ## 基本使用 {#basic-usage}

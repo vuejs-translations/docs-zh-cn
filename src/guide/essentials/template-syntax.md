@@ -249,9 +249,7 @@ data() {
 <a :[someAttr]="value"> ... </a>
 ```
 
-上面的例子将会在 DOM 内嵌模板中被转换为 `:[someattr]`。
-如果你的组件拥有 “someAttr” property 而非 “someattr”，
-这段代码将不会工作。
+上面的例子将会在 DOM 内嵌模板中被转换为 `:[someattr]`。如果你的组件拥有 “someAttr” property 而非 “someattr”，这段代码将不会工作。
 
 ### 修饰符 {#modifiers}
 
@@ -265,7 +263,7 @@ data() {
 
 最后，在这里你可以直观地看到完整的指令语法：
 
-![directive syntax graph](./images/directive.png)
+![指令语法图](./images/directive.png)
 
 <!-- https://www.figma.com/file/BGWUknIrtY9HOmbmad0vFr/Directive -->
 

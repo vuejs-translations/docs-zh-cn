@@ -4,7 +4,7 @@
 
 ## Prop Drilling
 
-通常情况下，当我们需要从父组件向子组件传递数据时，会使用 props。想象一下这样的结构：有一些多层级嵌套的组件，形成了一颗巨大的组件树，而某个深层的子组件需要一个较远的祖先组件中的部分内容。在这种情况下，如果使用 props 则必须将其沿着组件链逐级传递下去，这会非常麻烦：
+通常情况下，当我们需要从父组件向子组件传递数据时，会使用 [props](/guide/components/props)。想象一下这样的结构：有一些多层级嵌套的组件，形成了一颗巨大的组件树，而某个深层的子组件需要一个较远的祖先组件中的部分内容。在这种情况下，如果仅使用 props 则必须将其沿着组件链逐级传递下去，这会非常麻烦：
 
 ![Prop drilling 过程的图示](./images/prop-drilling.png)
 
@@ -350,7 +350,7 @@ import { myInjectionKey } from './keys.js'
 const injected = inject(myInjectionKey)
 ```
 
-请查看：[为 Provide / Inject 标注类型](/guide/typescript/composition-api.html#typing-provide-inject) <sup class="vt-badge ts">TS</sup>
+其他相关：[为 Provide / Inject 标注类型](/guide/typescript/composition-api.html#typing-provide-inject) <sup class="vt-badge ts" />
 
 </div>
 

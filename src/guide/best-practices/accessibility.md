@@ -40,7 +40,7 @@ Web 无障碍访问 (也称为 a11y) 是指创建可供任何人都可以使用�
 }
 ```
 
-一旦用户改变路由，请将焦点放回到这个跳过链接。通过用如下方式聚焦 `ref` 即可实现：
+一旦用户改变路由，请将焦点放回到这个“跳过”链接。通过如下方式聚焦“跳过”链接的模板 ref （假设使用了 `vue-router`）即可实现：
 
 ```vue
 <script>
@@ -54,7 +54,27 @@ export default {
 </script>
 ```
 
-<!-- <common-codepen-snippet title="Skip to Main" slug="GRrvQJa" :height="350" tab="js,result" theme="light" :preview="false" :editable="false" /> -->
+</div>
+<div class="composition-api">
+
+```vue
+<script setup>
+import { ref, watch } from 'vue'
+import { useRoute } from 'vue-router'
+
+const route = useRoute()
+const skipLink = ref()
+
+watch(
+  () => route.path,
+  () => {
+    skipLink.value.focus()
+  }
+)
+</script>
+```
+
+</div>
 
 [阅读关于跳过链接到主要内容的文档](https://www.w3.org/WAI/WCAG21/Techniques/general/G1.html)
 
@@ -255,6 +275,27 @@ export default {
 避免使用占位符，因为它们可能会使许多用户感到困惑。
 
 占位符的缺陷之一是默认情况下它们不符合[颜色对比度标准](https://www.w3.org/WAI/WCAG21/Understanding/contrast-minimum.html)；应当修改其颜色，让它看起来像是预先填入 input 框中的数据一样。查看以下示例，可以看到满足颜色对比度条件的姓氏占位符看起来像预填充的数据：
+
+```vue-html
+<form
+  class="demo"
+  action="/dataCollectionLocation"
+  method="post"
+  autocomplete="on"
+>
+  <div v-for="item in formItems" :key="item.id" class="form-item">
+    <label :for="item.id">{{ item.label }}: </label>
+    <input
+      type="text"
+      :id="item.id"
+      :name="item.id"
+      v-model="item.value"
+      :placeholder="item.placeholder"
+    />
+  </div>
+  <button type="submit">Submit</button>
+</form>
+```
 
 <!-- <common-codepen-snippet title="Form Placeholder" slug="ExZvvMw" :height="265" tab="js,result" theme="light" :preview="false" :editable="false" /> -->
 

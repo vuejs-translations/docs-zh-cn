@@ -1,5 +1,7 @@
 # 组件注册 {#component-registration}
 
+<VueSchoolLink href="https://vueschool.io/lessons/vue-3-global-vs-local-vue-components" title="组件注册 - 免费 Vue.js 课程"/>
+
 > 阅读此章节时，我们假设你已经读过[组件基础](/guide/essentials/component-basics)，若你对组件还完全不了解，请先阅读它。
 
 一个 Vue 组件需要被“注册”使得 Vue 在渲染模板时能找到其实现。有两种方式来注册组件：全局注册和局部注册。
@@ -26,7 +28,7 @@ app.component(
 如果使用单文件组件，你可以注册被导入的 `.vue` 文件：
 
 ```js
-import MyComponent from './App.vue`
+import MyComponent from './App.vue'
 
 app.component('MyComponent', MyComponent)
 ```

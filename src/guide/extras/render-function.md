@@ -114,7 +114,7 @@ export default {
     // 使用数组返回多个根节点
     return () => [
       h('div'),
-      h('div')
+      h('div'),
       h('div')
     ]
   }
@@ -165,7 +165,7 @@ export default {
     // 用数组来返回多个根节点
     return [
       h('div'),
-      h('div')
+      h('div'),
       h('div')
     ]
   }
@@ -294,6 +294,7 @@ h('div', [this.ok ? h('div', 'yes') : h('span', 'no')])
 ```js
 h(
   'ul',
+  // assuming `items` is a ref with array value
   items.value.map(({ id, text }) => {
     return h('li', { key: id }, text)
   })
@@ -384,7 +385,7 @@ h('input', {
 />
 ```
 
-可以使用 `withModifiers` 来处理其他的事件和按键修饰符：
+对于事件和按键修饰符，可以使用 [`withModifiers`](/api/render-function.html#withmodifiers) 函数：
 
 ```js
 import { withModifiers } from 'vue'
@@ -456,7 +457,7 @@ export default {
     return () => [
       // 默认插槽：
       // <div><slot /></div>
-      h('div', slots.default())
+      h('div', slots.default()),
 
       // 具名插槽：
       // <div><slot name="footer" :text="message" /></div>
@@ -492,7 +493,7 @@ export default {
   render() {
     return [
       // <div><slot /></div>
-      h('div', this.$slots.default())
+      h('div', this.$slots.default()),
 
       // <div><slot name="footer" :text="message" /></div>
       h(
@@ -559,7 +560,7 @@ h(MyComponent, null, {
 <div class="composition-api">
 
 ```js
-import { h, KeepAlive, Teleport, Transition, TransitionGroup } from Vue
+import { h, KeepAlive, Teleport, Transition, TransitionGroup } from 'vue'
 
 export default {
   setup () {
@@ -572,7 +573,7 @@ export default {
 <div class="options-api">
 
 ```js
-import { h, KeepAlive, Teleport, Transition, TransitionGroup } from Vue
+import { h, KeepAlive, Teleport, Transition, TransitionGroup } from 'vue'
 
 export default {
   render () {
@@ -596,7 +597,7 @@ export default {
   setup(props, { emit }) {
     return () =>
       h(SomeComponent, {
-        modelValue: modelValue,
+        modelValue: props.modelValue,
         'onUpdate:modelValue': (value) => emit('update:modelValue', value)
       })
   }
@@ -626,7 +627,7 @@ export default {
 可以使用 [`withDirectives`](/api/render-function.html#withdirectives) 将自定义指令应用于 VNode：
 
 ```js
-import { h, withDirectives } from Vue
+import { h, withDirectives } from 'vue'
 
 // 自定义指令
 const pin = {

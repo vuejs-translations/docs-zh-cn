@@ -14,7 +14,7 @@ Vue 提供了两个内置组件，可以帮助你制作基于状态变化的过�
 
 - `<Transition>` 会在一个元素或组件进入和离开 DOM 时应用动画。当前这一章节正是对它的介绍。
 
-- `<TransitionGroup>` 会在一个元素或组件被插入到 `v-for` 列表中，或是被移动或从其中移除时应用动画。我们将在下一章节中深入展开介绍它。
+- `<TransitionGroup>` 会在一个元素或组件被插入到 `v-for` 列表中，或是被移动或从其中移除时应用动画。我们将在[下一章节](/guide/built-ins/transition-group.html)中深入展开介绍它。
 
 除了这两个组件，我们也可以通过其他技术手段来应用动画，比如切换 CSS 类或用状态绑定样式来驱动动画。这些其他的方法会在[动画技巧](/guide/extras/animation.html)章节中展开介绍到。
 
@@ -463,7 +463,7 @@ export default {
 得益于 Vue 的组件系统，过渡是可以被重用的。要创建一个可被重用的过渡，我们需要为 `<Transition>` 组件创建一个包裹组件，并向内传入插槽内容：
 
 ```vue{5}
-<!-- MyTransitio.vue -->
+<!-- MyTransition.vue -->
 <script>
 // JavaScript 钩子逻辑...
 </script>
@@ -476,7 +476,7 @@ export default {
     @leave="onLeave">
     <slot></slot> <!-- 向内传递插槽内容 -->
   </Transition>
-</tempalte>
+</template>
 
 <style>
 /*
@@ -574,7 +574,7 @@ export default {
 
 当你使用 Vue 的过渡类约定规则定义了 CSS 过渡/动画，并想在它们之间切换时，这可能很有用。
 
-你也可以根据你的组件的当前状态在 JavaScript 过渡钩子中应用不同的行为。在此篇的最后，我们可以得出结论，创建动态过渡的终极方式是创建[可重用的过渡组件](#reusable-transitions)，这些组件接受 prop 来改变过渡的性质。现在在编写动画时，就只有你想不到，没有做不到的了。
+你也可以根据你的组件的当前状态在 JavaScript 过渡钩子中应用不同的行为。在此篇的最后，我们可以得出结论，创建动态过渡的终极方式是创建[可重用的过渡组件](#reusable-transitions)，这些组件接受 prop 来改变过渡的性质。现在在编写动画时，就真的只有你想不到，没有做不到的了。
 
 ---
 

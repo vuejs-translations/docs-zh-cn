@@ -2,6 +2,10 @@
 
 > 阅读此章节时，我们假设你已经读过[组件基础](/guide/essentials/component-basics)，若你对组件还完全不了解，请先阅读它。
 
+<div class="options-api">
+  <VueSchoolLink href="https://vueschool.io/lessons/defining-custom-events-emits" title="定义自定义事件 - 免费 Vue.js 课程"/>
+</div>
+
 ## 触发与监听事件 {#emitting-and-listening-to-events}
 
 在组件的模板表达式中，可以直接使用 `$emit` 函数触发自定义事件 (例如：在 `v-on` 的处理函数中)：
@@ -146,7 +150,7 @@ const emit = defineEmits<{
 </script>
 ```
 
-更多细节：[如何为组件的事件标注类型](/guide/typescript/composition-api.html#typing-component-emits) <sup class="vt-badge ts">TS</sup>
+更多细节：[如何为组件所抛出事件标注类型](/guide/typescript/composition-api.html#typing-component-emits) <sup class="vt-badge ts" />
 
 </div>
 <div class="options-api">
@@ -162,7 +166,7 @@ export default {
 }
 ```
 
-你也可以看看这一章了解[如何为组件的事件标注类型](/guide/typescript/options-api.html#typing-component-emits)。<sup class="vt-badge ts">TS</sup>
+你也可以看看这一章了解[如何为组件所抛出的事件标注类型](/guide/typescript/options-api.html#typing-component-emits)。<sup class="vt-badge ts" />
 
 </div>
 
@@ -176,7 +180,7 @@ export default {
 
 和对 prop 添加类型校验的方式类似，所有触发的事件也可以使用对象形式来描述。
 
-要为事件添加校验，那么事件可以被赋值为一个函数，接受的参数就是触发事件时传入的内容，返回一个布尔值来表明事件是否合法。
+要为事件添加校验，那么事件可以被赋值为一个函数，接受的参数就是抛出事件时传入 <span class="options-api">`this.$emit`</span><span class="composition-api">`emit`</span> 的内容，返回一个布尔值来表明事件是否合法。
 
 <div class="composition-api">
 

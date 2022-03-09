@@ -4,6 +4,14 @@
 
 ## 绑定 HTML 类 {#binding-html-classes}
 
+<div class="options-api">
+  <VueSchoolLink href="https://vueschool.io/lessons/dynamic-css-classes-with-vue-3" title="动态 CSS 类 - 免费 Vue.js 课程"/>
+</div>
+
+<div class="composition-api">
+  <VueSchoolLink href="https://vueschool.io/lessons/vue-fundamentals-capi-dynamic-css-classes-with-vue" title="动态 CSS 类 - 免费 Vue.js 课程"/>
+</div>
+
 ### 绑定对象 {#binding-to-objects}
 
 我们可以给 `:class` (`v-bind:class` 的缩写) 传递一个对象来动态切换类：
