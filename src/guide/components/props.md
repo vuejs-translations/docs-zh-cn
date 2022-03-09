@@ -432,7 +432,7 @@ defineProps({
 export default {
   props: {
     // 基础类型检查
-    //（给出 `null` 和 `undefined` 值则会跳过任何类型校验）
+    //（给出 `null` 和 `undefined` 值则会跳过任何类型检查）
     propA: Number,
     // 多种可能的类型
     propB: [String, Number],

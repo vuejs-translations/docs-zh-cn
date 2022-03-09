@@ -465,7 +465,7 @@ The following expression will **NOT** work as expected:
 {{ object.foo }} <!-- 无法自动解包 -->
 ```
 
-渲染的结果会是一个 `[object Object]1` 因为 `object.foo` 是一个 ref 对象。我们可以通过让 `foo` 成为顶层 property 来解决这个问题：
+渲染的结果会是一个 `[object Object]`，因为 `object.foo` 是一个 ref 对象。我们可以通过让 `foo` 成为顶层 property 来解决这个问题：
 
 ```js
 const { foo } = object

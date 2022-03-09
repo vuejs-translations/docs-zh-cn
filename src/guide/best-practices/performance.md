@@ -82,7 +82,7 @@ import { defineAsyncComponent } from 'vue'
 const Foo = defineAsyncComponent(() => import('./Foo.vue'))
 ```
 
-如果在客户端侧通过 Vue Router 构建了路由，那么强烈建议使用异步组件作为路由组件改。查看 [懒加载路由](https://next.router.vuejs.org/guide/advanced/lazy-loading.html) 了解更多细节。
+如果在客户端侧通过 Vue Router 构建了路由，那么强烈建议使用异步组件作为路由组件。查看 [懒加载路由](https://next.router.vuejs.org/guide/advanced/lazy-loading.html) 了解更多细节。
 
 ### SSR / SSG {#ssr-ssg}
 

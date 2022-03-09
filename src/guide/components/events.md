@@ -166,7 +166,7 @@ export default {
 }
 ```
 
-你也可以看看这一章了解[如何为组件所抛出事件标注类型](/guide/typescript/options-api.html#typing-component-emits)。<sup class="vt-badge ts" />
+你也可以看看这一章了解[如何为组件所抛出的事件标注类型](/guide/typescript/options-api.html#typing-component-emits)。<sup class="vt-badge ts" />
 
 </div>
 

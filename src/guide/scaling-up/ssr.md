@@ -182,7 +182,7 @@ createApp().mount('#app')
 服务器在请求处理函数中使用相同的应用创建逻辑：
 
 ```js{2,5}
-// server.js (irrelevant code omitted)
+// server.js (不相关的代码省略)
 import { createApp } from './app.js'
 
 server.get('/', (req, res) => {

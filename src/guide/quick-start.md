@@ -117,7 +117,7 @@ footer: false
 你可以在映射表中添加其他的依赖——但请务必确保你使用的是该库的 ES 模块版本。
 
 :::tip 不要用在生产环境
-基于导入映射表的配置仅用于学习——如果你想在生产环境中不想对 Vue 使用任何构建工具，请务必阅读[生产环境部署指南](/guide/best-practices/production-deployment.html#without-build-tools)。
+基于导入映射表的配置仅用于学习——如果你想在生产环境中使用 Vue 而不借助任何构建工具，请务必阅读[生产环境部署指南](/guide/best-practices/production-deployment.html#without-build-tools)。
 :::
 
 ### 通过 HTTP 提供服务 {#serving-over-http}
