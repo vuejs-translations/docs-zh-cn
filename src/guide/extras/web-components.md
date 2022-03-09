@@ -132,7 +132,7 @@ document.body.appendChild(
 
   - 基础类型的属性值 (`string`，`boolean` 或 `number`) 会被反射为 attribute。
 
-- 当它们被设为 attributes 时 (永远是字符串)，Vue 也会自动转换以 `Boolean` 或 `Number` 类型声明的 props 到所期望的类型。比如下面这样的 props 声明：
+- 当它们被设为 attribute 时 (永远是字符串)，Vue 也会自动将以 `Boolean` 或 `Number` 类型声明的 prop 转换为所期望的类型。比如下面这样的 props 声明：
 
   ```js
   props: {
