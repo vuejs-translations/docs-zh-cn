@@ -42,6 +42,8 @@ Web 无障碍访问 (也称为 a11y) 是指创建可供任何人都可以使用�
 
 一旦用户改变路由，请将焦点放回到这个“跳过”链接。通过如下方式聚焦“跳过”链接的模板 ref （假设使用了 `vue-router`）即可实现：
 
+<div class="options-api">
+
 ```vue
 <script>
 export default {
