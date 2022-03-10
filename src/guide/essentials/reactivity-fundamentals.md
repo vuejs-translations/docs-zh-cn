@@ -483,7 +483,7 @@ const { foo } = object
 {{ object.foo }}
 ```
 
-这只是文本插值的一个方便功能，相当于 <code v-pre>{{ object.foo.value ]}</code>。
+这只是文本插值的一个方便功能，相当于 <code v-pre>{{ object.foo.value }}</code>。
 
 ### ref 在响应式对象中的解包 \*\* {#ref-unwrapping-in-reactive-objects}
 
