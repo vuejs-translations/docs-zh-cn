@@ -11,10 +11,10 @@ jobs:
     steps:
       - uses: TobKed/github-forks-sync-action@master
         with:
-          github_token: ${{ secrets.GH_PERSONAL_ACCESS_TOKEN }}
+          github_token: ${{ secrets.UPSTREAM_SYNC_TOKEN }}
           upstream_repository: vuejs/docs
-          target_repository: initdc/docs-zh-cn
           upstream_branch: main
+          target_repository: vuejs-translations/docs-zh-cn
           target_branch: upstream
           force: false
           tags: false
