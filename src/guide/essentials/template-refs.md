@@ -32,7 +32,7 @@ onMounted(() => {
 </template>
 ```
 
-If not using `<script setup>`, make sure to also return the ref from `setup()`:
+如果不使用 `<script setup>`，需确保从 `setup()` 返回 ref：
 
 ```js{6}
 export default {
@@ -83,7 +83,7 @@ watchEffect(() => {
 })
 ```
 
-See also：[Typing Template Refs](/guide/typescript/composition-api.html#typing-template-refs) <sup class="vt-badge ts" />
+也可参考：[为模板 ref 标注类型](/guide/typescript/composition-api.html#typing-template-refs) <sup class="vt-badge ts" />
 
 </div>
 
@@ -234,9 +234,9 @@ defineExpose({
 </script>
 ```
 
-当父组件通过模板 ref 获取到了该组件的实例，得到的实例类型为 `{ a: number, b: number }` (ref 都会自动解套，和一般的实例一样)。
+当父组件通过模板 ref 获取到了该组件的实例时，得到的实例类型为 `{ a: number, b: number }` (ref 都会自动解套，和一般的实例一样)。
 
-你也可以看看[为组件的模板 ref 标注类型](/guide/typescript/composition-api.html#typing-component-template-refs) <sup class="vt-badge ts" />
+你也可以看看：[为组件的模板 ref 标注类型](/guide/typescript/composition-api.html#typing-component-template-refs) <sup class="vt-badge ts" />
 
 </div>
 <div class="options-api">
