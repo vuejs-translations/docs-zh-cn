@@ -593,7 +593,7 @@ const BlogPost = {
 <span>hello</span>
 ```
 
-will be parsed as：
+将被解析为：
 
 ```vue-html
 <my-component>
