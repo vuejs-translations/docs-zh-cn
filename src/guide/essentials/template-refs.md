@@ -32,7 +32,7 @@ onMounted(() => {
 </template>
 ```
 
-If not using `<script setup>`, make sure to also return the ref from `setup()`:
+如果不使用 `<script setup>`，需确保从 `setup()` 返回 ref：
 
 ```js{6}
 export default {
