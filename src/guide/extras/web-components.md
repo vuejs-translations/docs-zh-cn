@@ -6,7 +6,7 @@
 
 ## 在 Vue 中使用自定义元素 {#using-custom-elements-in-vue}
 
-Vue [在 Custom Elements Everywhere 测试中取得了 100% 的分数](https://custom-elements-everywhere.com/libraries/vue/results/results.html)。在 Vue 应用中使用自定义元素基本上上与使用原生 HTML 元素的效果相同，但需要留意以下几点：
+Vue [在 Custom Elements Everywhere 测试中取得了 100% 的分数](https://custom-elements-everywhere.com/libraries/vue/results/results.html)。在 Vue 应用中使用自定义元素基本上与使用原生 HTML 元素的效果相同，但需要留意以下几点：
 
 ### 跳过组件解析 {#skipping-component-resolution}
 
@@ -52,7 +52,7 @@ module.exports = {
       .rule('vue')
       .use('vue-loader')
       .tap(options => ({
-        ...options
+        ...options,
         compilerOptions: {
           // 将所有带 ion- 的标签名都视为自定义元素
           isCustomElement: tag => tag.startsWith('ion-')
@@ -132,7 +132,7 @@ document.body.appendChild(
 
   - 基础类型的属性值 (`string`，`boolean` 或 `number`) 会被反射为 attribute。
 
-- Vue 也会在它们被设置为 attribute 时自动转换以 `Boolean` 或 `Number` 类型声明的 props 到所期望的类型。当它们被设为 attributes 时 (永远是字符串)。比如下面这样的 props 声明：
+- 当它们被设为 attribute 时 (永远是字符串)，Vue 也会自动将以 `Boolean` 或 `Number` 类型声明的 prop 转换为所期望的类型。比如下面这样的 props 声明：
 
   ```js
   props: {
@@ -208,7 +208,7 @@ customElements.define('my-example', ExampleElement)
 ```js
 import { defineCustomElement } from 'vue'
 import Foo from './MyFoo.ce.vue'
-import Bar from './MyBar.ce.bar'
+import Bar from './MyBar.ce.vue'
 
 const MyFoo = defineCustomElement(Foo)
 const MyBar = defineCustomElement(Bar)
@@ -230,7 +230,7 @@ export function register() {
 
 自定义元素和 Vue 组件之间确实存在一定程度的功能重叠：它们都允许我们定义具有数据传递、事件发射和生命周期管理的可重用组件。然而，Web Components 的 API 相对来说是更底层的和更基础的。要构建一个实际的应用程序，我们需要相当多平台没有涵盖的附加功能：
 
-- 一个声明式的、高效的模板系统。
+- 一个声明式的、高效的模板系统；
 
 - 一个响应式状态管理系统，促进跨组件逻辑提取和重用；
 

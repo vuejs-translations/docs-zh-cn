@@ -55,7 +55,7 @@ Mounts the application instance in a container element.
 
 - **Details**
 
-  The first argument can either be a CSS selector (the first matched element will be used) or an actual DOM element. Returns the root component instance.
+  The argument can either be an actual DOM element or a CSS selector (the first matched element will be used). Returns the root component instance.
 
   If the component has a template or a render function defined, it will replace any existing DOM nodes inside the container. Otherwise, if the runtime compiler is available, the `innerHTML` of the container will be used as the template.
 
@@ -217,7 +217,7 @@ Registers a global custom directive if passing both a name string and a directiv
 
 - **See also:** [Custom Directives](/guide/reusability/custom-directives.html)
 
-## app.use()  {#appuse}
+## app.use()
 
 Installs a [plugin](/guide/reusability/plugins.html).
 
@@ -351,7 +351,7 @@ Assign a global handler for uncaught errors propagating from within the applicat
   }
   ```
 
-## app.config.warnHandler  {#appconfigwarnhandler}
+## app.config.warnHandler
 
 Assign a custom handler for runtime warnings from Vue.
 
@@ -387,7 +387,7 @@ Assign a custom handler for runtime warnings from Vue.
 
 ## app.config.performance
 
-Set this to `true` to enable component init, compile, render and patch performance tracing in the browser devtool performance/timeline panel. Only works in development mode and in browsers that support the [performance.mark](/) API.
+Set this to `true` to enable component init, compile, render and patch performance tracing in the browser devtool performance/timeline panel. Only works in development mode and in browsers that support the [performance.mark](https://developer.mozilla.org/en-US/docs/Web/API/Performance/mark) API.
 
 - **Type**: `boolean`
 
@@ -438,11 +438,11 @@ Adjusts template whitespace handling behavior.
 
 - **Details**
 
-  Vue removes / condenses whitespaces in templates to produce more efficient compiled output. The default strategy is "condense", with the following behavior:
+  Vue removes / condenses whitespace characters in templates to produce more efficient compiled output. The default strategy is "condense", with the following behavior:
 
-  1. Leading / ending whitespaces inside an element are condensed into a single space.
-  2. Whitespaces between elements that contain newlines are removed.
-  3. Consecutive whitespaces in text nodes are condensed into a single space.
+  1. Leading / ending whitespace characters inside an element are condensed into a single space.
+  2. Whitespace characters between elements that contain newlines are removed.
+  3. Consecutive whitespace characters in text nodes are condensed into a single space.
 
   Setting this option to `'preserve'` will disable (2) and (3).
 

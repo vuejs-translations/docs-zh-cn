@@ -4,7 +4,7 @@
 
 ## Prop Drilling
 
-通常情况下，当我们需要从父组件向子组件传递数据时，会使用 props。想象一下这样的结构：有一些多层级嵌套的组件，形成了一颗巨大的组件树，而某个深层的子组件需要一个较远的祖先组件中的部分内容。在这种情况下，如果使用 props 则必须将其沿着组件链逐级传递下去，这会非常麻烦：
+通常情况下，当我们需要从父组件向子组件传递数据时，会使用 [props](/guide/components/props)。想象一下这样的结构：有一些多层级嵌套的组件，形成了一颗巨大的组件树，而某个深层的子组件需要一个较远的祖先组件中的部分内容。在这种情况下，如果仅使用 props 则必须将其沿着组件链逐级传递下去，这会非常麻烦：
 
 ![Prop drilling 过程的图示](./images/prop-drilling.png)
 
@@ -239,14 +239,12 @@ export default {
 
 <div class="composition-api">
 
-<!-- TODO: translation -->
+当使用响应式 `provide`/`inject` 值时，**建议尽可能将任何对反应式状态的变更都保持在 *provider* 内部**。 这样可以确保 `provide` 的状态和变更操作都在同一个组件内，使其更容易维护。
 
-When using reactive provide / inject values，**it is recommended to keep any mutations to reactive state inside of the _provider_ whenever possible**。This ensures that the provided state and its possible mutations are co-located in the same component，making it easier to maintain in the future。
-
-There may be times where we need to update the data from a injector component。In such cases，we recommend providing a method that is responsible for mutating the state：
+有的时候，我们可能需要在 `injector` 组件中更改数据。在这种情况下，我们推荐在 `provider` 组件内提供一个更改数据方法：
 
 ```vue{7-9,13}
-<!-- inside provider component -->
+<!-- 在 provider 组件内 -->
 <script setup>
 import { provide, ref } from 'vue'
 
@@ -264,7 +262,7 @@ provide('location', {
 ```
 
 ```vue{5}
-<!-- in injector component -->
+<!-- 在 injector 组件 -->
 <script setup>
 import { inject } from 'vue'
 
@@ -276,7 +274,7 @@ const { location, updateLocation } = inject('location')
 </template>
 ```
 
-Finally，you can wrap the provided value with [`readonly()`](/api/reactivity-core.html#readonly) if you want to ensure that the data passed through `provide` cannot be mutated by the injected component。
+最后，如果你想确保从 `provide` 传过来的数据不能被 `injector` 的组件更改，你可以使用[`readonly()`](/api/reactivity-core.html#readonly) 来包裹提供的值。
 
 ```vue
 <script setup>
@@ -352,7 +350,7 @@ import { myInjectionKey } from './keys.js'
 const injected = inject(myInjectionKey)
 ```
 
-See also：[Typing Provide / Inject](/guide/typescript/composition-api.html#typing-provide-inject) <sup class="vt-badge ts">TS</sup>
+其他相关：[为 Provide / Inject 标注类型](/guide/typescript/composition-api.html#typing-provide-inject) <sup class="vt-badge ts" />
 
 </div>
 

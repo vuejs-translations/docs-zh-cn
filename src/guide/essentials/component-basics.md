@@ -219,7 +219,7 @@ const props = defineProps(['title'])
 console.log(props.title)
 ```
 
-你也可以看看[为组件 props 标注类型](/guide/typescript/composition-api.html#typing-component-props)这一章了解更多。<sup class="vt-badge ts">TS</sup>
+你也可以看看[为组件 props 标注类型](/guide/typescript/composition-api.html#typing-component-props)这一章了解更多。<sup class="vt-badge ts" />
 
 如果你没有使用 `<script setup>`，props 必须以 `props` 选项的方式声明，props 对象会作为 `setup()` 函数的第一个参数：
 
@@ -430,7 +430,7 @@ const emit = defineEmits(['enlarge-text'])
 emit('enlarge-text')
 ```
 
-你也可以看看[为组件 emits 标注类型](/guide/typescript/composition-api.html#typing-component-emits)这一章了解更多。<sup class="vt-badge ts">TS</sup>
+你也可以看看[为组件 emits 标注类型](/guide/typescript/composition-api.html#typing-component-emits)这一章了解更多。<sup class="vt-badge ts" />
 
 如果你没有在使用 `<script setup>`，你可以通过 `emits` 选项定义组件会抛出的事件。你可以从 `setup()` 函数的第二个参数，即 setup 上下文对象上访问到 `emit` 函数：
 

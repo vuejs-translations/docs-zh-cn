@@ -1,5 +1,7 @@
 # 组件注册 {#component-registration}
 
+<VueSchoolLink href="https://vueschool.io/lessons/vue-3-global-vs-local-vue-components" title="组件注册 - 免费 Vue.js 课程"/>
+
 > 阅读此章节时，我们假设你已经读过[组件基础](/guide/essentials/component-basics)，若你对组件还完全不了解，请先阅读它。
 
 一个 Vue 组件需要被“注册”使得 Vue 在渲染模板时能找到其实现。有两种方式来注册组件：全局注册和局部注册。
@@ -26,7 +28,7 @@ app.component(
 如果使用单文件组件，你可以注册被导入的 `.vue` 文件：
 
 ```js
-import MyComponent from './App.vue`
+import MyComponent from './App.vue'
 
 app.component('MyComponent', MyComponent)
 ```
@@ -130,7 +132,7 @@ export default {
 
 在整个指引中，我们都使用 PascalCase 作为组件名的注册格式，这是因为：
 
-1. PascalCase 是合法的 JavaScript 标识符。这使得在 JavaScript 中导入和注册组件都很容易，同时 IDE 也能提供较好的的自动补全。
+1. PascalCase 是合法的 JavaScript 标识符。这使得在 JavaScript 中导入和注册组件都很容易，同时 IDE 也能提供较好的自动补全。
 
 2. `<PascalCase />` 在模板中更明显地表明了这是一个 Vue 组件，而不是原生 HTML 元素。同时也能够将 Vue 组件和自定义元素 (web components) 区分开来。
 
