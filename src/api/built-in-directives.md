@@ -6,11 +6,11 @@ Update the element's text content.
 
 - **Expects:** `string`
 
-- **Details**
+- **详细信息**
 
   `v-text` works by setting the element's [textContent](https://developer.mozilla.org/en-US/docs/Web/API/Node/textContent) property, so it will overwrite any existing content inside the element. If you need to update the part of `textContent`, you should use [mustache interpolations](/guide/essentials/template-syntax.html#text-interpolation) instead.
 
-- **Example**
+- **示例**
 
   ```vue-html
   <span v-text="msg"></span>
@@ -50,7 +50,7 @@ Toggle the element's visibility based on the truthy-ness of the expression value
 
 - **Expects:** `any`
 
-- **Details**
+- **详细信息**
 
   `v-show` works by setting the `display` CSS property via inline styles, and will try to respect the initial `display` value when the element is visible. It also triggers transitions when its condition changes.
 
@@ -62,7 +62,7 @@ Conditionally render an element or a template fragment based on the truthy-ness 
 
 - **Expects:** `any`
 
-- **Details**
+- **详细信息**
 
   When a `v-if` element is toggled, the element and its contained directives / components are destroyed and re-constructed. If the initial condition is falsy, then the inner content won't be rendered at all.
 
@@ -80,13 +80,13 @@ Denote the "else block" for `v-if` or a `v-if` / `v-else-if` chain.
 
 - **Does not expect expression**
 
-- **Details**
+- **详细信息**
 
   - Restriction: previous sibling element must have `v-if` or `v-else-if`.
 
   - Can be used on `<template>` to denote a conditional block containing only text or multiple elements.
 
-- **Example**
+- **示例**
 
   ```vue-html
   <div v-if="Math.random() > 0.5">
@@ -105,13 +105,13 @@ Denote the "else if block" for `v-if`. Can be chained.
 
 - **Expects:** `any`
 
-- **Details**
+- **详细信息**
 
   - Restriction: previous sibling element must have `v-if` or `v-else-if`.
 
   - Can be used on `<template>` to denote a conditional block containing only text or multiple elements.
 
-- **Example**
+- **示例**
 
   ```vue-html
   <div v-if="type === 'A'">
@@ -136,7 +136,7 @@ Render the element or template block multiple times based on the source data.
 
 - **Expects:** `Array | Object | number | string | Iterable`
 
-- **Details**
+- **详细信息**
 
   The directive's value must use the special syntax `alias in expression` to provide an alias for the current element being iterated on:
 
@@ -190,7 +190,7 @@ Attach an event listener to the element.
   - `.middle` - only trigger handler for middle button mouse events.
   - `.passive` - attaches a DOM event with `{ passive: true }`.
 
-- **Details**
+- **详细信息**
 
   The event type is denoted by the argument. The expression can be a method name, an inline statement, or omitted if there are modifiers present.
 
@@ -424,7 +424,7 @@ Skip compilation for this element and all its children.
 
 - **Does not expect expression**
 
-- **Details**
+- **详细信息**
 
   Inside the element with `v-pre`, all Vue template syntax will be preserved and rendered as-is. The most common use case of this is displaying raw mustache tags.
 
@@ -440,7 +440,7 @@ Render the element and component once only, and skip future updates.
 
 - **Does not expect expression**
 
-- **Details**
+- **详细信息**
 
   On subsequent re-renders, the element/component and all its children will be treated as static content and skipped. This can be used to optimize update performance.
 
@@ -470,7 +470,7 @@ Render the element and component once only, and skip future updates.
 
 - **Expects:** `any[]`
 
-- **Details**
+- **详细信息**
 
   Memoize a sub-tree of the template. Can be used on both elements and components. The directive expects a fixed-length array of dependency values to compare for the memoization. If every value in the array was the same as last render, then updates for the entire sub-tree will be skipped. For example:
 
@@ -512,7 +512,7 @@ Used to hide un-compiled template until it is ready.
 
 - **Does not expect expression**
 
-- **Details**
+- **详细信息**
 
   **This directive is only needed in no-build-step setups.**
 

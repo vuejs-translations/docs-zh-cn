@@ -6,7 +6,7 @@ Exposes the current version of Vue.
 
 - **Type:** `string`
 
-- **Example**
+- **示例**
 
   ```js
   import { version } from 'vue'
@@ -18,19 +18,19 @@ Exposes the current version of Vue.
 
 A utility for waiting for the next DOM update flush.
 
-- **Type**
+- **类型**
 
   ```ts
   function nextTick(callback?: () => void): Promise<void>
   ```
 
-- **Details**
+- **详细信息**
 
   When you mutate reactive state in Vue, the resulting DOM updates are not applied synchronously. Instead, Vue buffers them until the "next tick" to ensure that each component updates only once no matter how many state changes you have made.
 
   `nextTick()` can be used immediately after a state change to wait for the DOM updates to complete. You can either pass a callback as an argument, or await the returned Promise.
 
-- **Example**
+- **示例**
 
   <div class="composition-api">
 
@@ -98,7 +98,7 @@ A utility for waiting for the next DOM update flush.
 
 A type helper for defining a Vue component with type inference.
 
-- **Type**
+- **类型**
 
   ```ts
   function defineComponent(
@@ -108,7 +108,7 @@ A type helper for defining a Vue component with type inference.
 
   > Type is simplified for readability.
 
-- **Details**
+- **详细信息**
 
   The first argument expects a component options object. The return value will be the same options object, since the function is essentially a runtime no-op for type inference purposes only.
 
@@ -128,7 +128,7 @@ A type helper for defining a Vue component with type inference.
 
 Define an async component which is lazy loaded only when it is rendered. The argument can either be a loader function, or an options object for more advanced control of the loading behavior.
 
-- **Type**
+- **类型**
 
   ```ts
   function defineAsyncComponent(
@@ -159,7 +159,7 @@ Define an async component which is lazy loaded only when it is rendered. The arg
 
 This method accepts the same argument as [`defineComponent`](#definecomponent), but instead returns a native [Custom Element](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_custom_elements) class constructor.
 
-- **Type**
+- **类型**
 
   ```ts
   function defineCustomElement(
@@ -173,13 +173,13 @@ This method accepts the same argument as [`defineComponent`](#definecomponent), 
 
   > Type is simplified for readability.
 
-- **Details**
+- **详细信息**
 
   In addition to normal component options, `defineCustomElement()` also supports a special option `styles`, which should be an array of inlined CSS strings, for providing CSS that should be injected into the element's shadow root.
 
   The return value is a custom element constructor that can be registered using [`customElements.define()`](https://developer.mozilla.org/en-US/docs/Web/API/CustomElementRegistry/define).
 
-- **Example**
+- **示例**
 
   ```js
   import { defineCustomElement } from 'vue'

@@ -4,7 +4,7 @@
 
 Provide values that can be injected by descendent components.
 
-- **Type**
+- **类型**
 
   ```ts
   interface ComponentOptions {
@@ -18,7 +18,7 @@ Provide values that can be injected by descendent components.
 
   The `provide` option should be either an object or a function that returns an object. This object contains the properties that are available for injection into its descendants. You can use Symbols as keys in this object.
 
-- **Example**
+- **示例**
 
   Basic usage:
 
@@ -58,7 +58,7 @@ Provide values that can be injected by descendent components.
 
 Declare properties to inject into the current component by locating them from ancestor providers.
 
-- **Type**
+- **类型**
 
   ```ts
   interface ComponentOptions {
@@ -75,7 +75,7 @@ Declare properties to inject into the current component by locating them from an
   }
   ```
 
-- **Details**
+- **详细信息**
 
   The `inject` option should be either:
 
@@ -90,7 +90,7 @@ Declare properties to inject into the current component by locating them from an
 
   Note that injected bindings are NOT reactive. This is intentional. However, if the injected value is a reactive object, properties on that object do remain reactive. See [Working with Reactivity](/guide/components/provide-inject.html#working-with-reactivity) for more details.
 
-- **Example**
+- **示例**
 
   Basic usage:
 
@@ -173,7 +173,7 @@ Declare properties to inject into the current component by locating them from an
 
 An array of option objects to be mixed into the current component.
 
-- **Type**
+- **类型**
 
   ```ts
   interface ComponentOptions {

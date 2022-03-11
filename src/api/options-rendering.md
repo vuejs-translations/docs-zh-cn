@@ -4,7 +4,7 @@
 
 A string template for the component.
 
-- **Type**
+- **类型**
 
   ```ts
   interface ComponentOptions {
@@ -12,7 +12,7 @@ A string template for the component.
   }
   ```
 
-- **Details**
+- **详细信息**
 
   A template provided via the `template` option will be compiled on-the-fly at runtime. It is only supported when using a build of Vue that includes the template compiler. The template compiler is **NOT** included in Vue builds that have the word `runtime` in their names, e.g. `vue.runtime.esm-bundler.js`. Consult the [dist file guide](https://github.com/vuejs/core/tree/main/packages/vue#which-dist-file-to-use) for more details about the different builds.
 
@@ -30,7 +30,7 @@ A string template for the component.
 
 A function that programmatically returns the virtual DOM tree of the component.
 
-- **Type**
+- **类型**
 
   ```ts
   interface ComponentOptions {
@@ -65,7 +65,7 @@ A function that programmatically returns the virtual DOM tree of the component.
 
 Configure runtime compiler options for the component's template.
 
-- **Type**
+- **类型**
 
   ```ts
   interface ComponentOptions {
@@ -78,7 +78,7 @@ Configure runtime compiler options for the component's template.
   }
   ```
 
-- **Details**
+- **详细信息**
 
   This config option is only respected when using the full build (i.e. the standalone `vue.js` that can compile templates in the browser). It supports the same options as the app-level [app.config.compilerOptions](/api/application.html#app-config-compileroptions), and has higher priority for the current component.
 

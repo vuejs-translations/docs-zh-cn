@@ -8,13 +8,13 @@ All APIs listed on this page must be called synchronously during the `setup()` p
 
 Registers a callback to be called after the component has been mounted.
 
-- **Type**
+- **类型**
 
   ```ts
   function onMounted(callback: () => void): void
   ```
 
-- **Details**
+- **详细信息**
 
   A component is considered mounted after:
 
@@ -26,7 +26,7 @@ Registers a callback to be called after the component has been mounted.
 
   **This hook is not called during server-side rendering.**
 
-- **Example**
+- **示例**
 
   Accessing an element via template ref:
 
@@ -50,13 +50,13 @@ Registers a callback to be called after the component has been mounted.
 
 Registers a callback to be called after the component has updated its DOM tree due to a reactive state change.
 
-- **Type**
+- **类型**
 
   ```ts
   function onUpdated(callback: () => void): void
   ```
 
-- **Details**
+- **详细信息**
 
   A parent component's updated hook is called after that of its child components.
 
@@ -68,7 +68,7 @@ Registers a callback to be called after the component has updated its DOM tree d
   Do not mutate component state in the updated hook - this will likely lead to an infinite update loop!
   :::
 
-- **Example**
+- **示例**
 
   Accessing updated DOM:
 
@@ -93,13 +93,13 @@ Registers a callback to be called after the component has updated its DOM tree d
 
 Registers a callback to be called after the component has been unmounted.
 
-- **Type**
+- **类型**
 
   ```ts
   function onUnmounted(callback: () => void): void
   ```
 
-- **Details**
+- **详细信息**
 
   A component is considered unmounted after:
 
@@ -111,7 +111,7 @@ Registers a callback to be called after the component has been unmounted.
 
   **This hook is not called during server-side rendering.**
 
-- **Example**
+- **示例**
 
   ```vue
   <script setup>
@@ -132,13 +132,13 @@ Registers a callback to be called after the component has been unmounted.
 
 Registers a hook to be called right before the component is to be mounted.
 
-- **Type**
+- **类型**
 
   ```ts
   function onBeforeMount(callback: () => void): void
   ```
 
-- **Details**
+- **详细信息**
 
   When this hook is called, the component has finished setting up its reactive state, but no DOM nodes have been created yet. It is about to execute its DOM render effect for the first time.
 
@@ -148,13 +148,13 @@ Registers a hook to be called right before the component is to be mounted.
 
 Registers a hook to be called right before the component is about to update its DOM tree due to a reactive state change.
 
-- **Type**
+- **类型**
 
   ```ts
   function onBeforeUpdate(callback: () => void): void
   ```
 
-- **Details**
+- **详细信息**
 
   This hook can be used to access the DOM state before Vue updates the DOM. It is also safe to modify component state inside this hook.
 
@@ -164,13 +164,13 @@ Registers a hook to be called right before the component is about to update its 
 
 Registers a hook to be called right before a component instance is to be unmounted.
 
-- **Type**
+- **类型**
 
   ```ts
   function onBeforeUnmount(callback: () => void): void
   ```
 
-- **Details**
+- **详细信息**
 
   When this hook is called, the component instance is still fully functional.
 
@@ -180,7 +180,7 @@ Registers a hook to be called right before a component instance is to be unmount
 
 Registers a hook to be called when an error propagating from a descendent component has been captured.
 
-- **Type**
+- **类型**
 
   ```ts
   function onErrorCaptured(callback: ErrorCapturedHook): void
@@ -192,7 +192,7 @@ Registers a hook to be called when an error propagating from a descendent compon
   ) => boolean | void
   ```
 
-- **Details**
+- **详细信息**
 
   Errors can be captured from the following sources:
 
@@ -226,7 +226,7 @@ Registers a debug hook to be called when a reactive dependency has been tracked 
 
 **This hook is development-mode-only and not called during server-side rendering.**
 
-- **Type**
+- **类型**
 
   ```ts
   function onRenderTracked(callback: DebuggerHook): void
@@ -249,7 +249,7 @@ Registers a debug hook to be called when a reactive dependency triggers the comp
 
 **This hook is development-mode-only and not called during server-side rendering.**
 
-- **Type**
+- **类型**
 
   ```ts
   function onRenderTriggered(callback: DebuggerHook): void
@@ -275,7 +275,7 @@ Registers a callback to be called after the component instance is inserted into 
 
 **This hook is not called during server-side rendering.**
 
-- **Type**
+- **类型**
 
   ```ts
   function onActivated(callback: () => void): void
@@ -289,7 +289,7 @@ Registers a callback to be called after the component instance is removed from t
 
 **This hook is not called during server-side rendering.**
 
-- **Type**
+- **类型**
 
   ```ts
   function onDeactivated(callback: () => void): void
@@ -301,19 +301,19 @@ Registers a callback to be called after the component instance is removed from t
 
 Registers a async function to be resolved before the component instance is to be rendered on the server.
 
-- **Type**
+- **类型**
 
   ```ts
   function onServerPrefetch(callback: () => Promise<any>): void
   ```
 
-- **Details**
+- **详细信息**
 
   If the callback returns a Promise, the server renderer will wait until the Promise is resolved before rendering the component.
 
   This hook is only called during server-side rendering can be used to perform server-only data fetching.
 
-- **Example**
+- **示例**
 
   ```vue
   <script setup>

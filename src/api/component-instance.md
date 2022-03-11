@@ -10,7 +10,7 @@ All properties listed on this page are readonly (except nested properties in `$d
 
 The object returned from the [`data`](./options-state.html#data) option, made reactive by the component. The component instance proxies access to the properties on its data object.
 
-- **Type**
+- **类型**
 
   ```ts
   interface ComponentPublicInstance {
@@ -22,7 +22,7 @@ The object returned from the [`data`](./options-state.html#data) option, made re
 
 An object representing the component's current, resolved props.
 
-- **Type**
+- **类型**
 
   ```ts
   interface ComponentPublicInstance {
@@ -30,7 +30,7 @@ An object representing the component's current, resolved props.
   }
   ```
 
-- **Details**
+- **详细信息**
 
   Only props declared via the [`props`](./options-state.html#props) option will be included. The component instance proxies access to the properties on its props object.
 
@@ -38,7 +38,7 @@ An object representing the component's current, resolved props.
 
 The root DOM node that the component instance is managing.
 
-- **Type**
+- **类型**
 
   ```ts
   interface ComponentPublicInstance {
@@ -46,7 +46,7 @@ The root DOM node that the component instance is managing.
   }
   ```
 
-- **Details**
+- **详细信息**
 
   `$el` will be `undefined` until the component is [mounted](./options-lifecycle#mounted).
 
@@ -62,7 +62,7 @@ The root DOM node that the component instance is managing.
 
 The resolved component options used for instantiating the current component instance.
 
-- **Type**
+- **类型**
 
   ```ts
   interface ComponentPublicInstance {
@@ -70,7 +70,7 @@ The resolved component options used for instantiating the current component inst
   }
   ```
 
-- **Details**
+- **详细信息**
 
   The `$options` object exposes the resolved options for the current component and is the merge result of these possible sources:
 
@@ -95,7 +95,7 @@ The resolved component options used for instantiating the current component inst
 
 The parent instance, if the current instance has one. It will be `null` for the root instance itself.
 
-- **Type**
+- **类型**
 
   ```ts
   interface ComponentPublicInstance {
@@ -107,7 +107,7 @@ The parent instance, if the current instance has one. It will be `null` for the 
 
 The root component instance of the current component tree. If the current instance has no parents this value will be itself.
 
-- **Type**
+- **类型**
 
   ```ts
   interface ComponentPublicInstance {
@@ -119,7 +119,7 @@ The root component instance of the current component tree. If the current instan
 
 An object representing the [slots](/guide/components/slots.html) passed by the parent component.
 
-- **Type**
+- **类型**
 
   ```ts
   interface ComponentPublicInstance {
@@ -129,7 +129,7 @@ An object representing the [slots](/guide/components/slots.html) passed by the p
   type Slot = (...args: any[]) => VNode[]
   ```
 
-- **Details**
+- **详细信息**
 
   Typically used when manually authoring [render functions](/guide/extras/render-function.html), but can also be used to detect whether a slot is present.
 
@@ -143,7 +143,7 @@ An object representing the [slots](/guide/components/slots.html) passed by the p
 
 An object of DOM elements and component instances, registered via [template refs](/guide/essentials/template-refs.html).
 
-- **Type**
+- **类型**
 
   ```ts
   interface ComponentPublicInstance {
@@ -160,7 +160,7 @@ An object of DOM elements and component instances, registered via [template refs
 
 An object that contains the component's fallthrough attributes.
 
-- **Type**
+- **类型**
 
   ```ts
   interface ComponentPublicInstance {
@@ -168,7 +168,7 @@ An object that contains the component's fallthrough attributes.
   }
   ```
 
-- **Details**
+- **详细信息**
 
   [Fallthrough Attributes](/guide/components/attrs.html) are attributes and event handlers passed by the parent component, but not declared as a prop or a emitted event by the child.
 
@@ -182,7 +182,7 @@ An object that contains the component's fallthrough attributes.
 
 Imperative API for creating watchers.
 
-- **Type**
+- **类型**
 
   ```ts
   interface ComponentPublicInstance {
@@ -210,7 +210,7 @@ Imperative API for creating watchers.
   type StopHandle = () => void
   ```
 
-- **Details**
+- **详细信息**
 
   The first argument is the watch source. It can be a component property name string, a simple dot-delimited path string, or a getter function.
 
@@ -221,7 +221,7 @@ Imperative API for creating watchers.
   - **`flush`**: adjust the callback's flush timing. See [Callback Flush Timing](/guide/essentials/watchers.html#callback-flush-timing).
   - **`onTrack / onTrigger`**: debug the watcher's dependencies. See [Watcher Debugging](/guide/extras/reactivity-in-depth.html#watcher-debugging).
 
-- **Example**
+- **示例**
 
   Watch a property name:
 
@@ -265,7 +265,7 @@ Imperative API for creating watchers.
 
 Trigger a custom event on the current instance. Any additional arguments will be passed into the listener's callback function.
 
-- **Type**
+- **类型**
 
   ```ts
   interface ComponentPublicInstance {
@@ -273,7 +273,7 @@ Trigger a custom event on the current instance. Any additional arguments will be
   }
   ```
 
-- **Example**
+- **示例**
 
   ```js
   export default {
@@ -295,7 +295,7 @@ Trigger a custom event on the current instance. Any additional arguments will be
 
 Force the component instance to re-render.
 
-- **Type**
+- **类型**
 
   ```ts
   interface ComponentPublicInstance {
@@ -303,7 +303,7 @@ Force the component instance to re-render.
   }
   ```
 
-- **Details**
+- **详细信息**
 
   This should be rarely needed given Vue's fully automatic reactivity system. The only cases where you may need it is when you have explicitly created non-reactive component state using advanced reactivity APIs.
 
@@ -311,7 +311,7 @@ Force the component instance to re-render.
 
 Instance-bound version of the global [`nextTick()`](./general.html#nexttick).
 
-- **Type**
+- **类型**
 
   ```ts
   interface ComponentPublicInstance {
@@ -319,7 +319,7 @@ Instance-bound version of the global [`nextTick()`](./general.html#nexttick).
   }
   ```
 
-- **Details**
+- **详细信息**
 
   The only different from the global version of `nextTick()` is that the callback passed to `this.$nextTick()` will have its `this` context bound to the current component instance.
 

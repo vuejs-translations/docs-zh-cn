@@ -16,7 +16,7 @@ A "meta component" for rendering dynamic components or elements.
   }
   ```
 
-- **Details**
+- **详细信息**
 
   The actual component to render is determined by the `is` prop.
 
@@ -24,7 +24,7 @@ A "meta component" for rendering dynamic components or elements.
 
   - Alternatively, `is` can also be directly bound to the definition of a component.
 
-- **Example**
+- **示例**
 
   Rendering components by registered name (Options API):
 
@@ -112,7 +112,7 @@ Denotes slot content outlets in templates.
   }
   ```
 
-- **Details**
+- **详细信息**
 
   The `<slot>` element can use the `name` attribute to specify a slot name. When no `name` is specified, it will render the default slot. Additional attributes passed to the slot element will be passed as slot props to the scoped slot defined in the parent.
 

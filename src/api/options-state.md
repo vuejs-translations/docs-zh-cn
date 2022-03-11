@@ -4,7 +4,7 @@
 
 A function that returns the initial reactive state for the component instance.
 
-- **Type**
+- **类型**
 
   ```ts
   interface ComponentOptions {
@@ -15,7 +15,7 @@ A function that returns the initial reactive state for the component instance.
   }
   ```
 
-- **Details**
+- **详细信息**
 
   The function is expected to return a plain JavaScript object, which will be made reactive by Vue. After the instance is created, the original data object can be accessed as `this.$data`. The component instance also proxies all the properties found on the data object, so `this.a` will be equivalent to `this.$data.a`.
 
@@ -25,7 +25,7 @@ A function that returns the initial reactive state for the component instance.
 
   It is **not** recommend to return objects with their own stateful behavior like browser API objects and prototype properties. The returned object should ideally be a plain object that only represents the state of the component.
 
-- **Example**
+- **示例**
 
   ```js
   export default {
@@ -51,7 +51,7 @@ A function that returns the initial reactive state for the component instance.
 
 Declare the props of a component.
 
-- **Type**
+- **类型**
 
   ```ts
   interface ComponentOptions {
@@ -76,7 +76,7 @@ Declare the props of a component.
 
   > Types are simplified for readability.
 
-- **Details**
+- **详细信息**
 
   In Vue, all component props need to be explicitly declared. Component props can be declared in two forms:
 
@@ -95,7 +95,7 @@ Declare the props of a component.
 
   - **`validator`**: Custom validator function that takes the prop value as the sole argument. In development mode, a console warning will be thrown if this function returns a falsy value (i.e. the validation fails).
 
-- **Example**
+- **示例**
 
   Simple declaration:
 
@@ -131,7 +131,7 @@ Declare the props of a component.
 
 Declare computed properties to be exposed on the component instance.
 
-- **Type**
+- **类型**
 
   ```ts
   interface ComponentOptions {
@@ -156,7 +156,7 @@ Declare computed properties to be exposed on the component instance.
   }
   ```
 
-- **Details**
+- **详细信息**
 
   The option accepts an object where the key is the name of the computed property, and the value is either a computed getter, or an object with `get` and `set` methods (for writable computed properties).
 
@@ -172,7 +172,7 @@ Declare computed properties to be exposed on the component instance.
   }
   ```
 
-- **Example**
+- **示例**
 
   ```js
   export default {
@@ -211,7 +211,7 @@ Declare computed properties to be exposed on the component instance.
 
 Declare methods to be mixed into the component instance.
 
-- **Type**
+- **类型**
 
   ```ts
   interface ComponentOptions {
@@ -221,13 +221,13 @@ Declare methods to be mixed into the component instance.
   }
   ```
 
-- **Details**
+- **详细信息**
 
   Declared methods can be directly accessed on the component instance, or used in template expressions. All methods have their `this` context automatically bound to the component instance, even when passed around.
 
   Avoid using arrow functions when declaring methods, as they will not have access to the component instance via `this`.
 
-- **Example**
+- **示例**
 
   ```js
   export default {
@@ -248,11 +248,11 @@ Declare methods to be mixed into the component instance.
 
   > Types are simplified for readability.
 
-- **Details**
+- **详细信息**
 
 Declare watch callbacks to be invoked on data change.
 
-- **Type**
+- **类型**
 
   ```ts
   interface ComponentOptions {
@@ -281,7 +281,7 @@ Declare watch callbacks to be invoked on data change.
 
   > Types are simplified for readability.
 
-- **Details**
+- **详细信息**
 
   The `watch` option expects an object where keys are the reactive component instance properties to watch (e.g. properties declared via `data` or `computed`) — and values are the corresponding callbacks. The callback receives the new value and the old value of the watched source.
 
@@ -296,7 +296,7 @@ Declare watch callbacks to be invoked on data change.
 
   Avoid using arrow functions when declaring watch callbacks as they will not have access to the component instance via `this`.
 
-- **Example**
+- **示例**
 
   ```js
   export default {
@@ -370,7 +370,7 @@ Declare watch callbacks to be invoked on data change.
 
 Declare the custom events emitted by the component.
 
-- **Type**
+- **类型**
 
   ```ts
   interface ComponentOptions {
@@ -384,7 +384,7 @@ Declare the custom events emitted by the component.
   type EmitValidator = (...args: unknown[]) => boolean
   ```
 
-- **Details**
+- **详细信息**
 
   Emitted events can be declared in two forms:
 
@@ -395,7 +395,7 @@ Declare the custom events emitted by the component.
 
   Note that the `emits` option affects which event listeners received by the component are considered component event listeners vs. native DOM event listeners. A declared event's listener will not be added to the component's root element, and will be removed from the component's `$attrs` object. See [Fallthrough Attributes](/guide/components/attrs.html) for more details.
 
-- **Example**
+- **示例**
 
   Array syntax:
 
@@ -435,7 +435,7 @@ Declare the custom events emitted by the component.
 
 Declare exposed public properties when the component instance is accessed by a parent via template refs.
 
-- **Type**
+- **类型**
 
   ```ts
   interface ComponentOptions {
@@ -443,7 +443,7 @@ Declare exposed public properties when the component instance is accessed by a p
   }
   ```
 
-- **Details**
+- **详细信息**
 
   By default, a component instance exposes all instance properties to the parent when accessed via `$parent`, `$root`, or template refs. This can be undesirable since a component most likely have internal state or methods that should be kept private to avoid tight coupling.
 
@@ -451,7 +451,7 @@ Declare exposed public properties when the component instance is accessed by a p
 
   `expose` only affects user-defined properties - it does not filter out built-in component instance properties.
 
-- **Example**
+- **示例**
 
   ```js
   export default {

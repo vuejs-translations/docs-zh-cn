@@ -4,7 +4,7 @@
 
 Creates virtual DOM nodes (vnodes).
 
-- **Type**
+- **类型**
 
   ```ts
   // full signature
@@ -26,7 +26,7 @@ Creates virtual DOM nodes (vnodes).
 
   > Types are simplified for readability.
 
-- **Details**
+- **详细信息**
 
   The first argument can either be a string (for native elements) or a Vue component definition. The second argument is the props to be passed, and the third argument is the children.
 
@@ -34,7 +34,7 @@ Creates virtual DOM nodes (vnodes).
 
   For convenience, the props argument can be omitted when the children is not a slots object.
 
-- **Example**
+- **示例**
 
   Creating native elements:
 
@@ -99,13 +99,13 @@ Creates virtual DOM nodes (vnodes).
 
 Merge multiple props objects with special handling for certain props.
 
-- **Type**
+- **类型**
 
   ```ts
   function mergeProps(...args: object[]): object
   ```
 
-- **Details**
+- **详细信息**
 
   `mergeProps()` supports merging multiple props objects with special handling for the following props:
 
@@ -115,7 +115,7 @@ Merge multiple props objects with special handling for certain props.
 
   If you do not need the merge behavior and want simple overwrites, native object spread can be used instead.
 
-- **Example**
+- **示例**
 
   ```js
   import { mergeProps } from 'vue'
@@ -143,13 +143,13 @@ Merge multiple props objects with special handling for certain props.
 
 Clones a vnode.
 
-- **Type**
+- **类型**
 
   ```ts
   function cloneVNode(vnode: VNode, extraProps?: object): VNode
   ```
 
-- **Details**
+- **详细信息**
 
   Returns a cloned vnode, optionally with extra props to merge with the original.
 
@@ -157,7 +157,7 @@ Clones a vnode.
 
   Vnodes have special internal properties, so cloning them is not as simple as an object spread. `cloneVNode()` handles most of the internal logic.
 
-- **Example**
+- **示例**
 
   ```js
   import { h, cloneVNode } from 'vue'
@@ -170,7 +170,7 @@ Clones a vnode.
 
 Checks if a value is a vnode.
 
-- **Type**
+- **类型**
 
   ```ts
   function isVNode(value: unknown): boolean
@@ -180,13 +180,13 @@ Checks if a value is a vnode.
 
 For manually resolving a registered component by name.
 
-- **Type**
+- **类型**
 
   ```ts
   function resolveComponent(name: string): Component | string
   ```
 
-- **Details**
+- **详细信息**
 
   **Note: you do not need this if you can import the component directly.**
 
@@ -194,7 +194,7 @@ For manually resolving a registered component by name.
 
   If the component is not found, a runtime warning will be emitted, and the name string is returned.
 
-- **Example**
+- **示例**
 
   <div class="composition-api">
 
@@ -234,13 +234,13 @@ For manually resolving a registered component by name.
 
 For manually resolving a registered directive by name.
 
-- **Type**
+- **类型**
 
   ```ts
   function resolveDirective(name: string): Directive | undefined
   ```
 
-- **Details**
+- **详细信息**
 
   **Note: you do not need this if you can import the component directly.**
 
@@ -254,7 +254,7 @@ For manually resolving a registered directive by name.
 
 For adding custom directives to vnodes.
 
-- **Type**
+- **类型**
 
   ```ts
   function withDirectives(
@@ -271,11 +271,11 @@ For adding custom directives to vnodes.
   >
   ```
 
-- **Details**
+- **详细信息**
 
   Wraps an existing vnode with custom directives. The second argument is an array of custom directives. Each custom directive is also represented as an array in the form of `[Directive, value, argument, modifiers]`. Tailing elements of the array can be omitted if not needed.
 
-- **Example**
+- **示例**
 
   ```js
   import { h, withDirectives } from 'vue'
@@ -302,13 +302,13 @@ For adding custom directives to vnodes.
 
 For adding built-in [`v-on` modifiers](/guide/essentials/event-handling.html#event-modifiers) to an event handler function.
 
-- **Type**
+- **类型**
 
   ```ts
   function withModifiers(fn: Function, modifiers: string[]): Function
   ```
 
-- **Example**
+- **示例**
 
   ```js
   import { h, withModifiers } from 'vue'

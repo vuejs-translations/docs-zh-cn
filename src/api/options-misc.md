@@ -4,7 +4,7 @@
 
 Explicitly declare a display name for the component.
 
-- **Type**
+- **类型**
 
   ```ts
   interface ComponentOptions {
@@ -12,7 +12,7 @@ Explicitly declare a display name for the component.
   }
   ```
 
-- **Details**
+- **详细信息**
 
   The name of a component is used for the following:
 
@@ -30,7 +30,7 @@ Explicitly declare a display name for the component.
 
 ## inheritAttrs
 
-- **Type**
+- **类型**
 
   ```ts
   interface ComponentOptions {
@@ -38,11 +38,11 @@ Explicitly declare a display name for the component.
   }
   ```
 
-- **Details**
+- **详细信息**
 
   By default, parent scope attribute bindings that are not recognized as props will "fallthrough". This means that when we have a single-root component, these bindings will be applied to the root element of the child component as normal HTML attributes. When authoring a component that wraps a target element or another component, this may not always be the desired behavior. By setting `inheritAttrs` to `false`, this default behavior can be disabled. The attributes are available via the `$attrs` instance property and can be explicitly bound to a non-root element using `v-bind`.
 
-- **Example**
+- **示例**
 
   <div class="options-api">
 
@@ -104,7 +104,7 @@ Explicitly declare a display name for the component.
 
 An object that registers components to be made available to the component instance.
 
-- **Type**
+- **类型**
 
   ```ts
   interface ComponentOptions {
@@ -112,7 +112,7 @@ An object that registers components to be made available to the component instan
   }
   ```
 
-- **Example**
+- **示例**
 
   ```js
   import Foo from './Foo.vue'
@@ -134,7 +134,7 @@ An object that registers components to be made available to the component instan
 
 An object that registers directives to be made available to the component instance.
 
-- **Type**
+- **类型**
 
   ```ts
   interface ComponentOptions {
@@ -142,7 +142,7 @@ An object that registers directives to be made available to the component instan
   }
   ```
 
-- **Example**
+- **示例**
 
   ```js
   export default {

@@ -4,17 +4,17 @@
 
 Creates an application instance.
 
-- **Type**
+- **类型**
 
   ```ts
   function createApp(rootComponent: Component, rootProps?: object): App
   ```
 
-- **Details**
+- **详细信息**
 
   The first argument is the root component. The second optional argument is the props to be passed to the root component.
 
-- **Example**
+- **示例**
 
   With inline root component:
 
@@ -45,7 +45,7 @@ Creates an application instance in [SSR Hydration](/guide/scaling-up/ssr.html#cl
 
 Mounts the application instance in a container element.
 
-- **Type**
+- **类型**
 
   ```ts
   interface App {
@@ -53,7 +53,7 @@ Mounts the application instance in a container element.
   }
   ```
 
-- **Details**
+- **详细信息**
 
   The argument can either be an actual DOM element or a CSS selector (the first matched element will be used). Returns the root component instance.
 
@@ -63,7 +63,7 @@ Mounts the application instance in a container element.
 
   For each app instance, `mount()` can only be called once.
 
-- **Example**
+- **示例**
 
   ```js
   import { createApp } from 'vue'
@@ -82,7 +82,7 @@ Mounts the application instance in a container element.
 
 Unmounts a mounted application instance, triggering the unmount lifecycle hooks for all components in the application's component tree.
 
-- **Type**
+- **类型**
 
   ```ts
   interface App {
@@ -94,7 +94,7 @@ Unmounts a mounted application instance, triggering the unmount lifecycle hooks 
 
 Provide a value that can be injected in all descendent components within the application.
 
-- **Type**
+- **类型**
 
   ```ts
   interface App {
@@ -102,11 +102,11 @@ Provide a value that can be injected in all descendent components within the app
   }
   ```
 
-- **Details**
+- **详细信息**
 
   Expects the injection key as the first argument, and the provided value as the second. Returns the application instance itself.
 
-- **Example**
+- **示例**
 
   ```js
   import { createApp } from 'vue'
@@ -152,7 +152,7 @@ Provide a value that can be injected in all descendent components within the app
 
 Registers a global component if passing both a name string and a component definition, or retrieves an already registered one if only the name is passed.
 
-- **Type**
+- **类型**
 
   ```ts
   interface App {
@@ -161,7 +161,7 @@ Registers a global component if passing both a name string and a component defin
   }
   ```
 
-- **Example**
+- **示例**
 
   ```js
   import { createApp } from 'vue'
@@ -183,7 +183,7 @@ Registers a global component if passing both a name string and a component defin
 
 Registers a global custom directive if passing both a name string and a directive definition, or retrieves an already registered one if only the name is passed.
 
-- **Type**
+- **类型**
 
   ```ts
   interface App {
@@ -192,7 +192,7 @@ Registers a global custom directive if passing both a name string and a directiv
   }
   ```
 
-- **Example**
+- **示例**
 
   ```js
   import { createApp } from 'vue'
@@ -221,7 +221,7 @@ Registers a global custom directive if passing both a name string and a directiv
 
 Installs a [plugin](/guide/reusability/plugins.html).
 
-- **Type**
+- **类型**
 
   ```ts
   interface App {
@@ -229,7 +229,7 @@ Installs a [plugin](/guide/reusability/plugins.html).
   }
   ```
 
-- **Details**
+- **详细信息**
 
   Expects the plugin as the first argument, and optional plugin options as the second argument.
 
@@ -237,7 +237,7 @@ Installs a [plugin](/guide/reusability/plugins.html).
 
   When `app.use()` is called on the same plugin multiple times, the plugin will be installed only once.
 
-- **Example**
+- **示例**
 
   ```js
   import { createApp } from 'vue'
@@ -262,7 +262,7 @@ Mixins are supported in Vue 3 mainly for backwards compatibility due to its wide
 For logic reuse, prefer [Composables](/guide/reusability/composables.html) instead.
 :::
 
-- **Type**
+- **类型**
 
   ```ts
   interface App {
@@ -274,7 +274,7 @@ For logic reuse, prefer [Composables](/guide/reusability/composables.html) inste
 
 Provides the version of Vue that the application was created with. This is useful inside [plugins](/guide/reusability/plugins.html), where you might need conditional logic based on different Vue versions.
 
-- **Type**
+- **类型**
 
   ```ts
   interface App {
@@ -282,7 +282,7 @@ Provides the version of Vue that the application was created with. This is usefu
   }
   ```
 
-- **Example**
+- **示例**
 
   Performing a version check inside a plugin:
 
@@ -315,7 +315,7 @@ console.log(app.config)
 
 Assign a global handler for uncaught errors propagating from within the application.
 
-- **Type**
+- **类型**
 
   ```ts
   interface AppConfig {
@@ -329,7 +329,7 @@ Assign a global handler for uncaught errors propagating from within the applicat
   }
   ```
 
-- **Details**
+- **详细信息**
 
   The error handler receives three arguments: the error, the component instance that triggered the error, and an information string specifying the error source type.
 
@@ -343,7 +343,7 @@ Assign a global handler for uncaught errors propagating from within the applicat
   - Custom directive hooks
   - Transition hooks
 
-- **Example**
+- **示例**
 
   ```js
   app.config.errorHandler = (err, instance, info) => {
@@ -355,7 +355,7 @@ Assign a global handler for uncaught errors propagating from within the applicat
 
 Assign a custom handler for runtime warnings from Vue.
 
-- **Type**
+- **类型**
 
   ```ts
   interface AppConfig {
@@ -367,7 +367,7 @@ Assign a custom handler for runtime warnings from Vue.
   }
   ```
 
-- **Details**
+- **详细信息**
 
   The warning handler receives the warning message as the first argument, the source component instance as the second argument, and a component trace string as the third.
 
@@ -377,7 +377,7 @@ Assign a custom handler for runtime warnings from Vue.
   Warnings only work during development, so this config is ignored in production mode.
   :::
 
-- **Example**
+- **示例**
 
   ```js
   app.config.warnHandler = (msg, instance, trace) => {
@@ -389,7 +389,7 @@ Assign a custom handler for runtime warnings from Vue.
 
 Set this to `true` to enable component init, compile, render and patch performance tracing in the browser devtool performance/timeline panel. Only works in development mode and in browsers that support the [performance.mark](https://developer.mozilla.org/en-US/docs/Web/API/Performance/mark) API.
 
-- **Type**: `boolean`
+- **类型**: `boolean`
 
 - **See also:** [Guide - Performance](/guide/best-practices/performance.html)
 
@@ -411,13 +411,13 @@ Specifies a check method to recognize native custom elements.
 
 - **Type:** `(tag: string) => boolean`
 
-- **Details**
+- **详细信息**
 
   Should return `true` if the tag should be treated as a native custom element. For a matched tag, Vue will render it as a native element instead of attempting to resolve it as a Vue component.
 
   Native HTML and SVG tags don't need to be matched in this function - Vue's parser recognizes them automatically.
 
-- **Example**
+- **示例**
 
   ```js
   // treat all tags starting with 'ion-' as custom elements
@@ -436,7 +436,7 @@ Adjusts template whitespace handling behavior.
 
 - **Default:** `'condense'`
 
-- **Details**
+- **详细信息**
 
   Vue removes / condenses whitespace characters in templates to produce more efficient compiled output. The default strategy is "condense", with the following behavior:
 
@@ -446,7 +446,7 @@ Adjusts template whitespace handling behavior.
 
   Setting this option to `'preserve'` will disable (2) and (3).
 
-- **Example**
+- **示例**
 
   ```js
   app.config.compilerOptions.whitespace = 'preserve'
@@ -460,11 +460,11 @@ Adjusts the delimiters used for text interpolation within the template.
 
 - **Default:** `{{ "['\u007b\u007b', '\u007d\u007d']" }}`
 
-- **Details**
+- **详细信息**
 
   This is typically used to avoid conflicting with server-side frameworks that also use mustache syntax.
 
-- **Example**
+- **示例**
 
   ```js
   // Delimiters changed to ES6 template string style
@@ -479,11 +479,11 @@ Adjusts treatment of HTML comments in templates.
 
 - **Default:** `false`
 
-- **Details**
+- **详细信息**
 
   By default, Vue will remove the comments in production. Setting this option to `true` will force Vue to preserve comments even in production. Comments are always preserved during development. This option is typically used when Vue is used with other libraries that rely on HTML comments.
 
-- **Example**
+- **示例**
 
   ```js
   app.config.compilerOptions.comments = true
@@ -493,7 +493,7 @@ Adjusts treatment of HTML comments in templates.
 
 An object that can be used to register global properties that can be accessed on any component instance inside the application.
 
-- **Type**
+- **类型**
 
   ```ts
   interface AppConfig {
@@ -501,13 +501,13 @@ An object that can be used to register global properties that can be accessed on
   }
   ```
 
-- **Details**
+- **详细信息**
 
   This is a replacement of Vue 2's `Vue.prototype` which is no longer present in Vue 3. As with anything global, this should be used sparingly.
 
   If a global property conflicts with a component’s own property, the component's own property will have higher priority.
 
-- **Usage**
+- **用法**
 
   ```js
   app.config.globalProperties.msg = 'hello'
@@ -527,7 +527,7 @@ An object that can be used to register global properties that can be accessed on
 
 An object for defining merging strategies for custom component options.
 
-- **Type**
+- **类型**
 
   ```ts
   interface AppConfig {
@@ -537,7 +537,7 @@ An object for defining merging strategies for custom component options.
   type OptionMergeFunction = (to: unknown, from: unknown) => any
   ```
 
-- **Details**
+- **详细信息**
 
   Some plugins / libraries add support for custom component options (by injecting global mixins). These options may require special merging logic when the same option needs to be "merged" from multiple sources (e.g. mixins or component inheritance).
 
@@ -545,7 +545,7 @@ An object for defining merging strategies for custom component options.
 
   The merge strategy function receives the value of that option defined on the parent and child instances as the first and second arguments, respectively.
 
-- **Example**
+- **示例**
 
   ```js
   const app = createApp({

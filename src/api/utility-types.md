@@ -8,7 +8,7 @@ This page only lists a few commonly used utility types that may need explanation
 
 Used to annotate a prop with more advanced types when using runtime props declarations.
 
-- **Example**
+- **示例**
 
   ```ts
   import { PropType } from 'vue'
@@ -36,7 +36,7 @@ Used to annotate a prop with more advanced types when using runtime props declar
 
 Used to augment the component instance type to support custom global properties.
 
-- **Example**
+- **示例**
 
   ```ts
   import axios from 'axios'
@@ -59,7 +59,7 @@ Used to augment the component instance type to support custom global properties.
 
 Used to augment the component options type to support custom options.
 
-- **Example**
+- **示例**
 
   ```ts
   import { Route } from 'vue-router'
@@ -81,7 +81,7 @@ Used to augment the component options type to support custom options.
 
 Used to augment allowed TSX props in order to use non-declared props on TSX elements.
 
-- **Example**
+- **示例**
 
   ```ts
   declare module 'vue' {
@@ -106,7 +106,7 @@ Used to augment allowed TSX props in order to use non-declared props on TSX elem
 
 Used to augment allowed values in style property bindings.
 
-- **Example**
+- **示例**
 
   Allow any custom CSS property
 
