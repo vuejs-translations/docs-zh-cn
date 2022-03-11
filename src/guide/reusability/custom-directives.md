@@ -109,7 +109,7 @@ app.directive('focus', {
 
 ```js
 const myDirective = {
-  // 在帮顶元素的 attribute 前调用
+  // 在绑定元素的 attribute 前调用
   // 或事件监听器应用前调用
   created(el, binding, vnode, prevVnode) {
     // 下面会介绍各个参数的细节
