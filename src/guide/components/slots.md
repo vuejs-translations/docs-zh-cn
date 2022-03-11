@@ -12,7 +12,7 @@
 
 ```vue-html{2}
 <FancyButton>
-  点击这里 <!-- 插槽内容 -->
+  Click me! <!-- 插槽内容 -->
 </FancyButton>
 ```
 
@@ -20,7 +20,7 @@
 
 ```vue-html{2}
 <button class="fancy-btn">
-  <slot></slot> <!-- slot outlet -->
+  <slot></slot> <!-- 插槽插口 -->
 </button>
 ```
 
@@ -30,11 +30,11 @@
 
 <!-- https://www.figma.com/file/LjKTYVL97Ck6TEmBbstavX/slot -->
 
-最终渲染出的 DOM 结果是这样：
+最终渲染出的 DOM 是这样：
 
 ```html
 <button class="fancy-btn">
-  点击这里
+  Click me!
 </button>
 ```
 
@@ -49,13 +49,13 @@
 
 </div>
 
-`<FancyButton>` 通过插槽承担了渲染 `<button>` 这个外壳 (以及想要的样式)，而内部的内容由父元素提供。
+`<FancyButton>` 通过插槽承担了渲染 `<button>` 这个外壳（以及相应的样式）的职责，而内部的内容由父元素提供。
 
-若你想换一种方式理解插槽，那么不妨和 JavaScript 的函数作个比较：
+通过和下面的 JavaScript 函数作对比，来以另一种方式理解插槽：
 
 ```js
 // 父元素传入插槽内容
-FancyButton('点击此处')
+FancyButton('Click me!')
 
 // FancyButton 在自己的模板中渲染插槽内容
 function FancyButton(slotContent) {
@@ -67,11 +67,11 @@ function FancyButton(slotContent) {
 }
 ```
 
-插槽内容不仅仅局限于文本。它也可以是任意合法的模板内容，例如我们可以传入一些元素，甚至是组件：
+除了文本以外，插槽内容还可以是任意合法的模板内容。例如我们可以传入多个元素，甚至是组件：
 
 ```vue-html
 <FancyButton>
-  <span style="color:red">试试点击这里！</span>
+  <span style="color:red">Click me!</span>
   <AwesomeIcon name="plus" />
 </FancyButton>
 ```
@@ -87,13 +87,13 @@ function FancyButton(slotContent) {
 
 </div>
 
-当有了插槽之后，`<FancyButton>` 组件变得更灵活，也更容易复用。我们现在可以在不同的地方使用它，传入不同的内容，但都具有相同的外部样式。
+使用插槽后，`<FancyButton>` 组件的扩展性、可复用性都增强了。现在可以在不同位置给其传入不同插槽内容使其各自渲染不同内容，同时还保证都具有相同的外部样式。
 
-Vue 组件的插槽机制是受到了[原生 Web Component `<slot>` 元素](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/slot)的启发，但也作出了一些功能的拓展，我们后面就会看到。
+Vue 组件的插槽机制是受[原生 Web Component `<slot>` 元素](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/slot)的启发而诞生，同时还做了一些功能拓展，这些拓展的功能我们后面会学习到。
 
 ## 渲染作用域 {#render-scope}
 
-插槽内容可以访问到父组件的数据，因为插槽内容本身也是在父组件模板的一部分。举个例子：
+插槽内容可以访问到父组件的数据，因为插槽内容本身也是父组件模板的一部分。举个例子：
 
 ```vue-html
 <span>{{ message }}</span>
@@ -104,11 +104,11 @@ Vue 组件的插槽机制是受到了[原生 Web Component `<slot>` 元素](http
 
 插槽内容**无法访问**子组件的数据，请牢记一条规则：
 
-> 任何父组件模板中的东西都是被编译到父组件的作用域中；而任何子组件模板中的东西都只被编译到子组件的作用域中。
+> 任何父组件模板中的东西都只被编译到父组件的作用域中；而任何子组件模板中的东西都只被编译到子组件的作用域中。
 
 ## 默认内容 {#fallback-content}
 
-我们也经常会遇到外部没有提供任何内容的情况，此时可能会为插槽提供一个默认的内容来渲染。比如在 `<SubmitButton>` 组件中：
+我们也经常会遇到外部没有提供任何内容的情况，此时为插槽提供一个默认的内容来渲染就很有必要。比如在 `<SubmitButton>` 组件中：
 
 ```vue-html
 <button type="submit">
@@ -116,38 +116,38 @@ Vue 组件的插槽机制是受到了[原生 Web Component `<slot>` 元素](http
 </button>
 ```
 
-如果外部没有提供任何插槽内容，我们可能想在 `<button>` 中渲染“提交”这两个字。要让这两个字成为默认内容，需要写在 `<slot>` 标签之间：
+如果外部没有提供任何插槽内容，我们可能想在 `<button>` 中渲染“Submit”这个单词。要让其成为默认内容，需要将其写在 `<slot>` 标签之间：
 
 ```vue-html{3}
 <button type="submit">
   <slot>
-    提交 <!-- 默认内容 -->
+    Submit <!-- 默认内容 -->
   </slot>
 </button>
 ```
 
-当我们在父组件中使用 `<submit-button>` 但不提供任何插槽内容：
+当我们在父组件中使用 `<SubmitButton>` 但不提供任何插槽内容：
 
 ```vue-html
 <SubmitButton />
 ```
 
-那么将渲染出下面这样的 DOM 结构，包含默认的“提交”二字：
+那么将渲染出下面这样的 DOM 结构，包含默认的“Submit”单词：
 
 ```html
-<button type="submit">提交</button>
+<button type="submit">Submit</button>
 ```
 
 但如果我们提供了别的内容给插槽：
 
 ```vue-html
-<SubmitButton>保存</SubmitButton>
+<SubmitButton>Save</SubmitButton>
 ```
 
-那么渲染的 DOM 中会选择使用提供的插槽内容：
+那么渲染的 DOM 会是提供的插槽内容：
 
 ```html
-<button type="submit">保存</button>
+<button type="submit">Save</button>
 ```
 
 <div class="composition-api">
@@ -215,21 +215,21 @@ Vue 组件的插槽机制是受到了[原生 Web Component `<slot>` 元素](http
 
 <!-- https://www.figma.com/file/2BhP8gVZevttBu9oUmUUyz/named-slot -->
 
-下面我们给出完整的、向 `<BaseLayout>` 传递内容的代码，指令均使用的是缩写形式：
+下面我们给出完整的、向 `<BaseLayout>` 传递插槽内容的代码，指令均使用的是缩写形式：
 
 ```vue-html
 <BaseLayout>
   <template #header>
-    <h1>这里是一个页面标题</h1>
+    <h1>Here might be a page title</h1>
   </template>
 
   <template #default>
-    <p>一个文章内容的段落</p>
-    <p>另一个段落</p>
+    <p>A paragraph for the main content.</p>
+    <p>And another one.</p>
   </template>
 
   <template #footer>
-    <p>这里有一些联系方式</p>
+    <p>Here's some contact info</p>
   </template>
 </BaseLayout>
 ```
@@ -257,14 +257,14 @@ Vue 组件的插槽机制是受到了[原生 Web Component `<slot>` 元素](http
 ```html
 <div class="container">
   <header>
-    <h1>这里是一个页面标题</h1>
+    <h1>Here might be a page title</h1>
   </header>
   <main>
-    <p>一个文章内容的段落</p>
-    <p>另一个段落</p>
+    <p>A paragraph for the main content.</p>
+    <p>And another one.</p>
   </main>
   <footer>
-    <p>这里有一些联系方式</p>
+    <p>Here's some contact info</p>
   </footer>
 </div>
 ```
@@ -280,7 +280,7 @@ Vue 组件的插槽机制是受到了[原生 Web Component `<slot>` 元素](http
 
 </div>
 
-我们还是用 JavaScript 函数的作类比来理解：
+我们还是用 JavaScript 函数作类比来理解：
 
 ```js
 // 传入不同的内容给不同名字的插槽
@@ -325,9 +325,9 @@ function BaseLayout(slots) {
 
 在上面的[渲染作用域](#render-scope)中我们讨论到，插槽的内容无法访问到子组件的状态。
 
-然而在某些场景下插槽的内容可能想要同时利用父组件域内和子组件域内的数据。要做到这一点，我们需要让子组件将一部分数据在渲染时提供给插槽。
+然而在某些场景下插槽的内容可能想要同时使用父组件域内和子组件域内的数据。要做到这一点，我们需要一种方法来让子组件在渲染时将一部分数据提供给插槽。
 
-而我们确实也有办法这么做！我们可以像对组件传递 props 那样，向一个插槽的插口上传递 attribute：
+我们也确实有办法这么做！可以像对组件传递 prop 那样，向一个插槽的插口上传递 attribute：
 
 ```vue-html
 <!-- <MyComponent> 的模板 -->
@@ -336,7 +336,7 @@ function BaseLayout(slots) {
 </div>
 ```
 
-当需要接收插槽 props 时，一般的默认插槽和具名插槽的使用方式有了一些小小的区别。下面我们将会展示是怎样的不同，首先是一个默认插槽，通过子组件标签上的 `v-slot` 指令，直接接收到了一个插槽 props 对象：
+当需要接收插槽 prop 时，默认插槽和具名插槽的使用方式有一些小区别。下面我们将先展示默认插槽如何接受 prop，通过子组件标签上的 `v-slot` 指令，直接接收到了一个插槽 prop 对象：
 
 ```vue-html
 <MyComponent v-slot="slotProps">
@@ -361,7 +361,7 @@ function BaseLayout(slots) {
 
 子组件传入插槽的 props 作为了 `v-slot` 指令的值，可以在插槽内的表达式中访问。
 
-你可以将作用域插槽类比为一个传入子组件的函数。子组件会将相应的 props 作为参数传给它：
+你可以将作用域插槽类比为一个传入子组件的函数。子组件会将相应的 prop 作为参数去调用它：
 
 ```js
 MyComponent({
@@ -382,9 +382,9 @@ function MyComponent(slots) {
 }
 ```
 
-实际上，这已经和作用域插槽的最终的代码编译结果、以及手动地调用[渲染函数](/guide/extras/render-function.html)的方式非常类似了。
+实际上，这已经和作用域插槽的最终代码编译结果、以及手动编写[渲染函数](/guide/extras/render-function.html)时使用作用域插槽的方式非常类似了。
 
-`v-slot="slotProps"` 可以类比这里的函数签名，和函数的参数类似，我们也可以在 `v-slot` 使用：
+`v-slot="slotProps"` 可以类比这里的函数签名，和函数的参数类似，我们也可以在 `v-slot` 中使用解构：
 
 ```vue-html
 <MyComponent v-slot="{ text, count }">
@@ -423,14 +423,14 @@ function MyComponent(slots) {
 
 ### 一个漂亮的列表示例 {#fancy-list-example}
 
-想要了解作用域插槽怎么样使用更好吗？不妨看看这个 `<FancyList>` 组件的例子，它会渲染一个列表，其中会封装一些加载远端数据的逻辑、并提供此数据来做列表的渲染，或者是像分页、无限滚动这样更进阶的功能。然而我们希望它能够灵活处理每一项的外观，并将对每一项样式的控制权留给使用它的父组件。我们期望的用法可能是这样的：
+想要了解作用域插槽怎么样使用更加优雅吗？不妨看看这个 `<FancyList>` 组件的例子，它会渲染一个列表，其中会封装一些加载远端数据的逻辑、以及使用此数据来做列表渲染，或者是像分页、无限滚动这样更进阶的功能。然而我们希望它能够灵活处理每一项的外观，并将对每一项样式的控制权留给使用它的父组件。我们期望的用法可能是这样的：
 
 ```vue-html
 <FancyList :api-url="url" :per-page="10">
   <template #item="{ body, username, likes }">
     <div class="item">
       <p>{{ body }}</p>
-      <p>作者：{{ username }} | {{ likes }} 人赞过</p>
+      <p>by {{ username }} | {{ likes }} likes</p>
     </div>
   </template>
 </FancyList>
@@ -459,15 +459,15 @@ function MyComponent(slots) {
 
 ### 无渲染组件 {#renderless-components}
 
-上面的 `<FancyList>` 用例同时封装了可重用的逻辑 (数据获取、分页等) 和视图输出，但也将部分视图的最终输出通过作用域插槽交给了消费者组件来管理。
+上面的 `<FancyList>` 案例同时封装了可重用的逻辑 (数据获取、分页等) 和视图输出，但也将部分视图输出通过作用域插槽交给了消费者组件来管理。
 
-如果我们将这个概念拓展一下，可以想象的是，一些组件可能只包括了逻辑而不需要自己渲染内容，视图的输出通过作用域插槽全权交给了消费者组件。我们将这种类型的组件称为**无渲染组件**。
+如果我们将这个概念拓展一下，可以想象的是，一些组件可能只包括了逻辑而不需要自己渲染内容，视图输出通过作用域插槽全权交给了消费者组件。我们将这种类型的组件称为**无渲染组件**。
 
 这里有一个无渲染组件的例子，一个封装了追踪当前鼠标位置逻辑的组件：
 
 ```vue-html
 <MouseTracker v-slot="{ x, y }">
-  鼠标位于：{{ x }}, {{ y }}
+  Mouse is at: {{ x }}, {{ y }}
 </MouseTracker>
 ```
 
@@ -482,6 +482,6 @@ function MyComponent(slots) {
 
 </div>
 
-虽然这是一个有趣的模式，但能用使用无渲染组件实现的大部分功能都可以通过组合式 API 以另一种更有效的方式实现，且不会产生额外的组件嵌套的开销。之后我们会在[组合](/guide/reusability/composables.html)一章中介绍如何更高效地实现追踪鼠标位置的逻辑。
+虽然这个模式很有趣，但大部分能用使用无渲染组件实现的功能都可以通过组合式 API 以另一种更高效的方式实现，并且还不会带来额外组件嵌套的开销。之后我们会在[可组合函数](/guide/reusability/composables.html)一章中介绍如何更高效地实现追踪鼠标位置的功能。
 
-尽管如此，作用域插槽还是在需要**同时**封装逻辑、组合视图界面时很有用，就像上面的 `<FancyList>` 组件那样。
+尽管如此，作用域插槽在需要**同时**封装逻辑、组合视图界面时还是很有用，就像上面的 `<FancyList>` 组件那样。
