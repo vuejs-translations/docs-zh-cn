@@ -202,7 +202,7 @@ export default {
 ### 单选按钮 {#radio}
 
 ```vue-html
-<div>Picked: {{ picked }}</div>
+<div>选择: {{ picked }}</div>
 
 <input type="radio" id="one" value="One" v-model="picked" />
 <label for="one">One</label>
@@ -212,7 +212,7 @@ export default {
 ```
 
 <div class="demo">
-  <div>Picked: {{ picked }}</div>
+  <div>选择: {{ picked }}</div>
 
   <input type="radio" id="one" value="One" v-model="picked" />
   <label for="one">One</label>
