@@ -210,7 +210,7 @@ const book: Book = reactive({ title: 'Vue 3 指引' })
 ```
 
 :::tip
-不推荐使用 `reactive()` 的泛型参数，因为处理了深层次 ref 解套的返回值与泛型参数的类型不同。
+不推荐使用 `reactive()` 的泛型参数，因为处理了深层次 ref 解包的返回值与泛型参数的类型不同。
 :::
 
 ## 为 `computed()` 标注类型 {#typing-computed}

@@ -243,7 +243,7 @@ data() {
 </li>
 ```
 
-在外新包裹一层 `<template>` 再在其上使用 `v-for` 可以解决这个问题 (这也更加明显易读)：
+在外新包装一层 `<template>` 再在其上使用 `v-for` 可以解决这个问题 (这也更加明显易读)：
 
 ```vue-html
 <template v-for="todo in todos">
