@@ -305,7 +305,7 @@ export default {
 
 </div>
 
-Select options can be dynamically rendered with `v-for`:
+选择器选项可以使用 `v-for` 动态渲染：
 
 <div class="composition-api">
 
