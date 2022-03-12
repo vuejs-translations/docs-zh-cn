@@ -120,7 +120,7 @@ export default {
 
 ```vue-html
 <div class="btn-wrapper">
-  <button class="btn">点击此处</button>
+  <button class="btn">click me</button>
 </div>
 ```
 
@@ -128,7 +128,7 @@ export default {
 
 ```vue-html{2}
 <div class="btn-wrapper">
-  <button class="btn" v-bind="$attrs">点击此处</button>
+  <button class="btn" v-bind="$attrs">click me</button>
 </div>
 ```
 
