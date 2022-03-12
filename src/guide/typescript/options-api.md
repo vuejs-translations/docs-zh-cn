@@ -8,7 +8,7 @@
 
 ## 为组件的 prop 标注类型 {#typing-component-props}
 
-选项式 API 中对 prop 的类型推导需要用 `defineComponent()` 来包裹组件。有了它，Vue 才可以通过 `props` 以及一些额外的选项，比如 `required: true` 和 `default` 来推导出 prop 的类型：
+选项式 API 中对 prop 的类型推导需要用 `defineComponent()` 来包装组件。有了它，Vue 才可以通过 `props` 以及一些额外的选项，比如 `required: true` 和 `default` 来推导出 prop 的类型：
 
 ```ts
 import { defineComponent } from 'vue'
