@@ -82,7 +82,7 @@ const awesome = ref(true)
 
 ## `<template>` 上的 `v-if` {#v-if-on-template}
 
-因为 `v-if` 是一个指令，他必须依附于某个元素。但如果我们想要切换不只一个元素呢？在这种情况下我们可以在一个 `<template>` 元素上使用 `v-if`，这只是一个不可见的包裹元素，最后渲染的结果并不会包含这个 `<template>` 元素。
+因为 `v-if` 是一个指令，他必须依附于某个元素。但如果我们想要切换不只一个元素呢？在这种情况下我们可以在一个 `<template>` 元素上使用 `v-if`，这只是一个不可见的包装器元素，最后渲染的结果并不会包含这个 `<template>` 元素。
 
 ```vue-html
 <template v-if="ok">

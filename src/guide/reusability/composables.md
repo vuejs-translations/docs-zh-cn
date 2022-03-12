@@ -198,7 +198,7 @@ export function useFetch(url) {
     // 在请求之前重设状态...
     data.value = null
     error.value = null
-    // unref() 解套可能为 ref 的值
+    // unref() 解包可能为 ref 的值
     fetch(unref(url))
       .then((res) => res.json())
       .then((json) => (data.value = json))
@@ -255,7 +255,7 @@ const { x, y } = useMouse()
 
 从可组合函数返回一个响应式对象会导致在对象解构过程中丢失与可组合函数内状态的响应性连接。与之相反，ref 则可以维持这一响应性连接。
 
-如果你更希望以对象 property 的形式从可组合函数中返回状态，你可以将要返回的对象用 `reactive()` 包裹，这样其中的 ref 会被自动解套，例如：
+如果你更希望以对象 property 的形式从可组合函数中返回状态，你可以将要返回的对象用 `reactive()` 包装，这样其中的 ref 会被自动解包，例如：
 
 ```js
 const mouse = reactive(useMouse())

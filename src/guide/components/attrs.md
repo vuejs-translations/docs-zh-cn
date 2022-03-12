@@ -116,7 +116,7 @@ export default {
 
 - 一个 `v-on` 侦听函数，比如 `@click`，会在对象上以 `$attrs.onClick` 的形式暴露。
 
-现在我们要再次使用一下[之前小节](#attribute-inheritance)中的 `<MyButton>` 组件例子。有时候我们可能为了样式，需要在 `<button>` 元素外包裹一层 `<div>`：
+现在我们要再次使用一下[之前小节](#attribute-inheritance)中的 `<MyButton>` 组件例子。有时候我们可能为了样式，需要在 `<button>` 元素外包装一层 `<div>`：
 
 ```vue-html
 <div class="btn-wrapper">

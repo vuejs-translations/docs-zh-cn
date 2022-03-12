@@ -86,7 +86,7 @@ renderToString(app).then((html) => {
 
 [`renderToString()`](/api/ssr.html#rendertostring) 接收一个 Vue 应用实例作为参数，返回一个 Promise，当 Promise resolve 时得到应用渲染的 HTML。当然你也可以使用 [Node.js Stream API](https://nodejs.org/api/stream.html) 或者 [Web Streams API](https://developer.mozilla.org/en-US/docs/Web/API/Streams_API) 来执行流式渲染。查看 [SSR API 参考](/api/ssr.html)获取完整的相关细节。
 
-然后我们可以将 Vue SSR 代码移到服务器请求处理器中，它将应用程序的标记与整个页面的HTML包裹起来。我们将在下一步中使用 [`express`](https://expressjs.com/)：
+然后我们可以将 Vue SSR 代码移到服务器请求处理器中，它将应用程序的标记与整个页面的 HTML 包装起来。我们将在下一步中使用 [`express`](https://expressjs.com/)：
 
 - 运行 `npm install express`
 - 创建下面这样的 `server.js` 文件：

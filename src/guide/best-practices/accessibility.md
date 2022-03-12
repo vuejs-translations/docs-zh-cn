@@ -175,7 +175,7 @@ watch(
 ![Chrome 开发者工具正在通过标签展示无障碍访问的 input 框的名字](./images/AccessibleLabelChromeDevTools.png)
 
 :::warning 警告：
-你可能还见过这样的包裹 input 框的标签：
+你可能还见过这样的包装 input 框的标签：
 
 ```vue-html
 <label>
