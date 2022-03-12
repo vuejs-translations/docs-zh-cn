@@ -186,7 +186,7 @@ export default {
   <label for="demo-mike">Mike</label>
 </div>
 
-In this case, the `checkedNames` array will always contain the values from the currently checked boxes.
+在这个例子中，`checkedNames` 数组将始终包含来自当前选中框的值。
 
 <div class="composition-api">
 
