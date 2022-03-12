@@ -89,7 +89,7 @@ The resolved component options used for instantiating the current component inst
   })
   ```
 
-- **See also:** [`app.config.optionMergeStrategies`](/api/application.html#app-config-optionmergestrategies)
+- **相关内容：** [`app.config.optionMergeStrategies`](/api/application.html#app-config-optionmergestrategies)
 
 ## $parent
 
@@ -137,7 +137,7 @@ An object representing the [slots](/guide/components/slots.html) passed by the p
 
   If a slot is a [scoped slot](/guide/components/slots.html#scoped-slots), arguments passed to the slot functions are available to the slot as its slot props.
 
-- **See also:** [Render Functions - Rendering Slots](/guide/extras/render-function.html#rendering-slots)
+- **相关内容：** [Render Functions - Rendering Slots](/guide/extras/render-function.html#rendering-slots)
 
 ## $refs
 
@@ -151,7 +151,7 @@ An object of DOM elements and component instances, registered via [template refs
   }
   ```
 
-- **See also:**
+- **相关内容：**
 
   - [Template refs](/guide/essentials/template-refs.html)
   - [Special Attributes - ref](./built-in-special-attributes.md#ref)
@@ -174,7 +174,7 @@ An object that contains the component's fallthrough attributes.
 
   By default, everything in `$attrs` will be automatically inherited on the component's root element if there is only a single root element. This behavior is disabled if the component has multiple root nodes, and can be explicitly disabled with the [`inheritAttrs`](./options-misc.html#inheritattrs) option.
 
-- **See also:**
+- **相关内容：**
 
   - [Fallthrough Attributes](/guide/components/attrs.html)
 
@@ -257,7 +257,7 @@ Imperative API for creating watchers.
   unwatch()
   ```
 
-- **See also:**
+- **相关内容：**
   - [Options - `watch`](/api/options-state.html#watch)
   - [Guide - Watchers](/guide/essentials/watchers.html)
 
@@ -286,7 +286,7 @@ Trigger a custom event on the current instance. Any additional arguments will be
   }
   ```
 
-- **See also:**
+- **相关内容：**
 
   - [Component - Events](/guide/components/events.html)
   - [`emits` option](./options-state.html#emits)
@@ -323,4 +323,4 @@ Instance-bound version of the global [`nextTick()`](./general.html#nexttick).
 
   The only different from the global version of `nextTick()` is that the callback passed to `this.$nextTick()` will have its `this` context bound to the current component instance.
 
-- **See also:** [`nextTick()`](./general.html#nexttick)
+- **相关内容：** [`nextTick()`](./general.html#nexttick)

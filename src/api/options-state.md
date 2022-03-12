@@ -45,7 +45,7 @@ A function that returns the initial reactive state for the component instance.
   data: (vm) => ({ a: vm.myProp })
   ```
 
-- **其他相关：** [Reactivity in Depth](/guide/extras/reactivity-in-depth.html)
+- **相关内容：** [Reactivity in Depth](/guide/extras/reactivity-in-depth.html)
 
 ## props
 
@@ -125,7 +125,7 @@ Declare the props of a component.
   }
   ```
 
-- **其他相关：** [Props](/guide/components/props.html)
+- **相关内容：** [Props](/guide/components/props.html)
 
 ## computed
 
@@ -205,7 +205,7 @@ Declare computed properties to be exposed on the component instance.
   }
   ```
 
-- **其他相关：** [Computed Properties](/guide/essentials/computed.html)
+- **相关内容：** [Computed Properties](/guide/essentials/computed.html)
 
 ## methods
 
@@ -364,7 +364,7 @@ Declare watch callbacks to be invoked on data change.
   }
   ```
 
-- **See also:** [Watchers](/guide/essentials/watchers.html)
+- **相关内容：** [Watchers](/guide/essentials/watchers.html)
 
 ## emits
 

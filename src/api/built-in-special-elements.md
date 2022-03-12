@@ -90,7 +90,7 @@ A "meta component" for rendering dynamic components or elements.
 
   Registration is not required if you pass the component itself to `is` rather than its name, e.g. in `<script setup>`.
 
-- **其他相关：** [Dynamic Components](/guide/essentials/component-basics.html#dynamic-components)
+- **相关内容：** [Dynamic Components](/guide/essentials/component-basics.html#dynamic-components)
 
 ## `<slot>`
 
@@ -120,4 +120,4 @@ Denotes slot content outlets in templates.
 
   `<slot>` elements in Vue templates are compiled into JavaScript, so they are not to be confused with [native `<slot>` elements](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/slot).
 
-- **See also:** [Component - Slots](/guide/components/slots.html)
+- **相关内容：** [Component - Slots](/guide/components/slots.html)

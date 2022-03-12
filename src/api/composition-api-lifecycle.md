@@ -241,7 +241,7 @@ Registers a debug hook to be called when a reactive dependency has been tracked 
   }
   ```
 
-- **See also:** [Reactivity in Depth](/guide/extras/reactivity-in-depth.html)
+- **相关内容：** [Reactivity in Depth](/guide/extras/reactivity-in-depth.html)
 
 ## onRenderTriggered() <sup class="vt-badge dev-only" />
 
@@ -267,7 +267,7 @@ Registers a debug hook to be called when a reactive dependency triggers the comp
   }
   ```
 
-- **See also:** [Reactivity in Depth](/guide/extras/reactivity-in-depth.html)
+- **相关内容：** [Reactivity in Depth](/guide/extras/reactivity-in-depth.html)
 
 ## onActivated()
 
@@ -281,7 +281,7 @@ Registers a callback to be called after the component instance is inserted into 
   function onActivated(callback: () => void): void
   ```
 
-- **See also:** [Guide - Lifecycle of Cached Instance](/guide/built-ins/keep-alive.html#lifecycle-of-cached-instance)
+- **相关内容：** [Guide - Lifecycle of Cached Instance](/guide/built-ins/keep-alive.html#lifecycle-of-cached-instance)
 
 ## onDeactivated()
 
@@ -295,7 +295,7 @@ Registers a callback to be called after the component instance is removed from t
   function onDeactivated(callback: () => void): void
   ```
 
-- **See also:** [Guide - Lifecycle of Cached Instance](/guide/built-ins/keep-alive.html#lifecycle-of-cached-instance)
+- **相关内容：** [Guide - Lifecycle of Cached Instance](/guide/built-ins/keep-alive.html#lifecycle-of-cached-instance)
 
 ## onServerPrefetch() <sup class="vt-badge" data-text="SSR only" />
 
@@ -338,4 +338,4 @@ Registers a async function to be resolved before the component instance is to be
   </script>
   ```
 
-- **See also:** [Server-Side Rendering](/guide/scaling-up/ssr.html)
+- **相关内容：** [Server-Side Rendering](/guide/scaling-up/ssr.html)

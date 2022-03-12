@@ -228,7 +228,7 @@ Called when a reactive dependency has been tracked by the component's render eff
   }
   ```
 
-- **See also:** [Reactivity in Depth](/guide/extras/reactivity-in-depth.html)
+- **相关内容：** [Reactivity in Depth](/guide/extras/reactivity-in-depth.html)
 
 ## renderTriggered <sup class="vt-badge dev-only" />
 
@@ -252,7 +252,7 @@ Called when a reactive dependency triggers the component's render effect to be r
   }
   ```
 
-- **See also:** [Reactivity in Depth](/guide/extras/reactivity-in-depth.html)
+- **相关内容：** [Reactivity in Depth](/guide/extras/reactivity-in-depth.html)
 
 ## activated
 
@@ -268,7 +268,7 @@ Called after the component instance is inserted into the DOM as part of a tree c
   }
   ```
 
-- **See also:** [Guide - Lifecycle of Cached Instance](/guide/built-ins/keep-alive.html#lifecycle-of-cached-instance)
+- **相关内容：** [Guide - Lifecycle of Cached Instance](/guide/built-ins/keep-alive.html#lifecycle-of-cached-instance)
 
 ## deactivated
 
@@ -284,7 +284,7 @@ Called after the component instance is removed from the DOM as part of a tree ca
   }
   ```
 
-- **See also:** [Guide - Lifecycle of Cached Instance](/guide/built-ins/keep-alive.html#lifecycle-of-cached-instance)
+- **相关内容：** [Guide - Lifecycle of Cached Instance](/guide/built-ins/keep-alive.html#lifecycle-of-cached-instance)
 
 ## serverPrefetch <sup class="vt-badge" data-text="SSR only" />
 
@@ -329,4 +329,4 @@ Async function to be resolved before the component instance is to be rendered on
   }
   ```
 
-- **See also:** [Server-Side Rendering](/guide/scaling-up/ssr.html)
+- **相关内容：** [Server-Side Rendering](/guide/scaling-up/ssr.html)

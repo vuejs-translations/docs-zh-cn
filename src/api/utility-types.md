@@ -30,7 +30,7 @@ Used to annotate a prop with more advanced types when using runtime props declar
   }
   ```
 
-- **See also:** [Guide - Typing Component Props](/guide/typescript/options-api.html#typing-component-props)
+- **相关内容：** [Guide - Typing Component Props](/guide/typescript/options-api.html#typing-component-props)
 
 ## ComponentCustomProperties
 
@@ -53,7 +53,7 @@ Used to augment the component instance type to support custom global properties.
   Augmentations must be placed in a module `.ts` or `.d.ts` file. See [Type Augmentation Placement](/guide/typescript/options-api.html#augmenting-global-properties) for more details.
   :::
 
-- **See also:** [Guide - Augmenting Global Properties](/guide/typescript/options-api.html#augmenting-global-properties)
+- **相关内容：** [Guide - Augmenting Global Properties](/guide/typescript/options-api.html#augmenting-global-properties)
 
 ## ComponentCustomOptions
 
@@ -75,7 +75,7 @@ Used to augment the component options type to support custom options.
   Augmentations must be placed in a module `.ts` or `.d.ts` file. See [Type Augmentation Placement](/guide/typescript/options-api.html#augmenting-global-properties) for more details.
   :::
 
-- **See also:** [Guide - Augmenting Custom Options](/guide/typescript/options-api.html#augmenting-custom-options)
+- **相关内容：** [Guide - Augmenting Custom Options](/guide/typescript/options-api.html#augmenting-custom-options)
 
 ## ComponentCustomProps
 

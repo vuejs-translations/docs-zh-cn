@@ -98,7 +98,7 @@ Explicitly declare a display name for the component.
 
   </div>
 
-- **See also:** [Fallthrough Attributes](/guide/components/attrs.html)
+- **相关内容：** [Fallthrough Attributes](/guide/components/attrs.html)
 
 ## components
 
@@ -128,7 +128,7 @@ An object that registers components to be made available to the component instan
   }
   ```
 
-- **See also:** [Component Registration](/guide/components/registration.html)
+- **相关内容：** [Component Registration](/guide/components/registration.html)
 
 ## directives
 
@@ -163,4 +163,4 @@ An object that registers directives to be made available to the component instan
 
   A hash of directives to be made available to the component instance.
 
-- **See also:** [Custom Directives](/guide/reusability/custom-directives.html)
+- **相关内容：** [Custom Directives](/guide/reusability/custom-directives.html)

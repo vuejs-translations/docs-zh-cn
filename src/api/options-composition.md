@@ -52,7 +52,7 @@ Provide values that can be injected by descendent components.
 
   Note in the above example, the provided `msg` will NOT be reactive. See [Working with Reactivity](/guide/components/provide-inject.html#working-with-reactivity) for more details.
 
-- **See also:** [Provide / Inject](/guide/components/provide-inject.html)
+- **相关内容：** [Provide / Inject](/guide/components/provide-inject.html)
 
 ## inject
 
@@ -167,7 +167,7 @@ Declare properties to inject into the current component by locating them from an
   }
   ```
 
-- **其他相关：** [Provide / Inject](/guide/components/provide-inject.html)
+- **相关内容：** [Provide / Inject](/guide/components/provide-inject.html)
 
 ## mixins
 
@@ -215,7 +215,7 @@ An array of option objects to be mixed into the current component.
 
 A "base class" component to extend from.
 
-- **Type:**
+- **类型**
 
   ```ts
   interface ComponentOptions {
@@ -223,7 +223,7 @@ A "base class" component to extend from.
   }
   ```
 
-- **Type:**
+- **类型**
 
   ```ts
   interface ComponentOptions {

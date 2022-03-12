@@ -39,7 +39,7 @@ Takes an inner value and returns a reactive and mutable ref object, which has a 
   console.log(count.value) // 1
   ```
 
-- **See also:**
+- **相关内容：**
   - [Guide - Reactive Variables with `ref()`](/guide/essentials/reactivity-fundamentals.html#reactive-variables-with-ref)
   - [Guide - Typing `ref()`](/guide/typescript/composition-api.html#typing-ref)
 
@@ -108,7 +108,7 @@ Takes a getter function and returns a readonly reactive [ref](#ref) object for t
   })
   ```
 
-- **See also:**
+- **相关内容：**
   - [Guide - Computed Properties](/guide/essentials/computed.html)
   - [Guide - Computed Debugging](/guide/extras/reactivity-in-depth.html#computed-debugging)
   - [Guide - Typing `computed()`](/guide/typescript/composition-api.html#typing-computed)
@@ -186,7 +186,7 @@ Returns a reactive proxy of the object.
   console.log(obj.count === count.value) // true
   ```
 
-- **See also:**
+- **相关内容：**
   - [Guide - Reactivity Fundamentals](/guide/essentials/reactivity-fundamentals.html)
   - [Guide - Typing `reactive()`](/guide/typescript/composition-api.html#typing-reactive)
 

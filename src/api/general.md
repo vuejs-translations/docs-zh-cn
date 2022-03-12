@@ -4,7 +4,7 @@
 
 Exposes the current version of Vue.
 
-- **Type:** `string`
+- **类型** `string`
 
 - **示例**
 
@@ -92,7 +92,7 @@ A utility for waiting for the next DOM update flush.
 
   </div>
 
-- **See also:** [`this.$nextTick()`](/api/component-instance.html#nexttick)
+- **相关内容：** [`this.$nextTick()`](/api/component-instance.html#nexttick)
 
 ## defineComponent()
 
@@ -122,7 +122,7 @@ A type helper for defining a Vue component with type inference.
   type FooInstance = InstanceType<typeof Foo>
   ```
 
-- **See also:** [Guide - Using Vue with TypeScript](/guide/typescript/overview.html#general-usage-notes)
+- **相关内容：** [Guide - Using Vue with TypeScript](/guide/typescript/overview.html#general-usage-notes)
 
 ## defineAsyncComponent()
 
@@ -153,7 +153,7 @@ Define an async component which is lazy loaded only when it is rendered. The arg
   }
   ```
 
-- **See also:** [Guide - Async Components](/guide/components/async.html)
+- **相关内容：** [Guide - Async Components](/guide/components/async.html)
 
 ## defineCustomElement()
 
@@ -192,7 +192,7 @@ This method accepts the same argument as [`defineComponent`](#definecomponent), 
   customElements.define('my-vue-element', MyVueElement)
   ```
 
-- **See also:**
+- **相关内容：**
 
   - [Guide - Building Custom Elements with Vue](/guide/extras/web-components.html#building-custom-elements-with-vue)
 

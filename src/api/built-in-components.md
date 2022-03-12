@@ -118,7 +118,7 @@ Provides animated transition effects to a **single** element or component.
   </Transition>
   ```
 
-- **其他相关：** [`<Transition>` Guide](/guide/built-ins/transition.html)
+- **相关内容：** [`<Transition>` Guide](/guide/built-ins/transition.html)
 
 ## `<TransitionGroup>`
 
@@ -164,7 +164,7 @@ Provides transition effects for **multiple** elements or components in a list.
   </TransitionGroup>
   ```
 
-- **See also:** [Guide - TransitionGroup](/guide/built-ins/transition-group.html)
+- **相关内容：** [Guide - TransitionGroup](/guide/built-ins/transition-group.html)
 
 ## `<KeepAlive>`
 
@@ -257,7 +257,7 @@ Caches dynamically toggled components wrapped inside.
   </KeepAlive>
   ```
 
-- **See also:** [Guide - KeepAlive](/guide/built-ins/keep-alive.html)
+- **相关内容：** [Guide - KeepAlive](/guide/built-ins/keep-alive.html)
 
 ## `<Teleport>`
 
@@ -299,7 +299,7 @@ Renders its slot content to another part of the DOM.
   </teleport>
   ```
 
-- **See also:** [Guide - Teleport](/guide/built-ins/teleport.html)
+- **相关内容：** [Guide - Teleport](/guide/built-ins/teleport.html)
 
 ## `<Suspense>` <sup class="vt-badge experimental" />
 
@@ -325,4 +325,4 @@ Used for orchestrating nested async dependencies in a component tree.
 
   If it encounters async dependencies ([Async Components](/guide/components/async.html) and components with [`async setup()`](/guide/built-ins/suspense.html#async-setup)) while rendering the default slot, it will wait until all of them are resolved before displaying the default slot.
 
-- **See also:** [Guide - Suspense](/guide/built-ins/suspense.html)
+- **相关内容：** [Guide - Suspense](/guide/built-ins/suspense.html)

@@ -93,7 +93,7 @@ Creates virtual DOM nodes (vnodes).
   })
   ```
 
-- **See also:** [Guide - Creating VNodes](/guide/extras/render-function.html#creating-vnodes)
+- **相关内容：** [Guide - Creating VNodes](/guide/extras/render-function.html#creating-vnodes)
 
 ## mergeProps()
 
@@ -228,7 +228,7 @@ For manually resolving a registered component by name.
 
   </div>
 
-- **See also:** [Guide - Render Functions - Components](/guide/extras/render-function.html#components)
+- **相关内容：** [Guide - Render Functions - Components](/guide/extras/render-function.html#components)
 
 ## resolveDirective()
 
@@ -248,7 +248,7 @@ For manually resolving a registered directive by name.
 
   If the directive is not found, a runtime warning will be emitted, and the function returns `undefined`.
 
-- **See also:** [Guide - Render Functions - Custom Directives](/guide/extras/render-function.html#custom-directives)
+- **相关内容：** [Guide - Render Functions - Custom Directives](/guide/extras/render-function.html#custom-directives)
 
 ## withDirectives()
 
@@ -296,7 +296,7 @@ For adding custom directives to vnodes.
   ])
   ```
 
-- **See also:** [Guide - Render Functions - Custom Directives](/guide/extras/render-function.html#custom-directives)
+- **相关内容：** [Guide - Render Functions - Custom Directives](/guide/extras/render-function.html#custom-directives)
 
 ## withModifiers()
 
@@ -321,4 +321,4 @@ For adding built-in [`v-on` modifiers](/guide/essentials/event-handling.html#eve
   })
   ```
 
-- **See also:** [Guide - Render Functions - Event Modifiers](/guide/extras/render-function.html#event-modifiers)
+- **相关内容：** [Guide - Render Functions - Event Modifiers](/guide/extras/render-function.html#event-modifiers)
