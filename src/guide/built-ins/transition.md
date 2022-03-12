@@ -460,7 +460,7 @@ export default {
 
 ## 可重用过渡 {#reusable-transitions}
 
-得益于 Vue 的组件系统，过渡是可以被重用的。要创建一个可被重用的过渡，我们需要为 `<Transition>` 组件创建一个包裹组件，并向内传入插槽内容：
+得益于 Vue 的组件系统，过渡是可以被重用的。要创建一个可被重用的过渡，我们需要为 `<Transition>` 组件创建一个包装组件，并向内传入插槽内容：
 
 ```vue{5}
 <!-- MyTransition.vue -->
@@ -469,7 +469,7 @@ export default {
 </script>
 
 <template>
-  <!-- 包裹内置的 Transition 组件 -->
+  <!-- 包装内置的 Transition 组件 -->
   <Transition
     name="my-transition"
     @enter="onEnter"
