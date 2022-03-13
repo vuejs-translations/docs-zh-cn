@@ -275,7 +275,7 @@ E2E 测试和相应开发过程的主要问题之一是，运行整个套件需�
 
   总的来说，我们认为 Cypress 提供了最完整的 E2E 解决方案，其具有信息丰富的图形界面、出色的调试性、内置断言和存根、抗剥落性、并行化和快照等诸多特性。而且如上所述，它还提供对 [组件测试](https://docs.cypress.io/guides/component-testing/introduction) 的支持。不过，它只支持测试基于 Chromium 的浏览器和 Firefox。
 
-### 其它选项 {#other-options-3}
+### 其他选项 {#other-options-3}
 
 - [Playwright](https://playwright.dev/) 也是一个非常好的 E2E 测试解决方案，支持测试范围更广的浏览器品类（主要是 WebKit 型的）。查看这篇文章 [《为什么选择 Playwright》](https://playwright.dev/docs/why-playwright) 了解更多细节。
 
