@@ -114,7 +114,7 @@ export default {
       state.count++
     }
 
-    // 不要忘了同时暴露 increment 函数
+    // 不要忘记同时暴露 increment 函数
     return {
       state,
       increment
@@ -348,7 +348,7 @@ console.log(proxy.nested === raw) // false
    ```js
    let state = reactive({ count: 0 })
 
-   // 这将不会按照你的期望工作
+   // 这行不通！
    state = reactive({ count: 1 })
    ```
 
@@ -357,7 +357,7 @@ console.log(proxy.nested === raw) // false
    ```js
    const state = reactive({ count: 0 })
 
-   // n 是一个局部变量，同 state.count 
+   // n 是一个局部变量，同 state.count
    // 失去响应性连接
    let n = state.count
    // 不影响原来的状态
@@ -444,7 +444,7 @@ function increment() {
 
 <template>
   <button @click="increment">
-    {{ count }} <!-- no .value needed -->
+    {{ count }} <!-- 无需 .value -->
   </button>
 </template>
 ```
@@ -585,7 +585,7 @@ export default {
 let count = $ref(0)
 
 function increment() {
-  // no need for .value
+  // 无需 .value
   count++
 }
 </script>

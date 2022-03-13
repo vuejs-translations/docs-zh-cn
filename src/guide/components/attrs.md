@@ -99,7 +99,7 @@ export default {
 这些透传进来的 attribute 可以在模板的表达式中直接用 `$attrs` 访问到。
 
 ```vue-html
-<span>透传 attribute: {{ $attrs }}</span>
+<span>Fallthrough attribute: {{ $attrs }}</span>
 ```
 
 这个 `$attrs` 对象包含了除组件的 `props` 和 `emits` 属性外的所有其他 attribute，例如 `class`，`style`，`v-on` 监听器等等。
@@ -120,7 +120,7 @@ export default {
 
 ```vue-html
 <div class="btn-wrapper">
-  <button class="btn">点击此处</button>
+  <button class="btn">click me</button>
 </div>
 ```
 
@@ -128,7 +128,7 @@ export default {
 
 ```vue-html{2}
 <div class="btn-wrapper">
-  <button class="btn" v-bind="$attrs">点击此处</button>
+  <button class="btn" v-bind="$attrs">click me</button>
 </div>
 ```
 

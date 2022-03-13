@@ -17,7 +17,7 @@ export default {
     }
   },
   watch: {
-    // whenever question changes, this function will run
+    // 每当 question 改变时，这个函数就会执行
     question(newQuestion, oldQuestion) {
       if (newQuestion.indexOf('?') > -1) {
         this.getAnswer()
@@ -131,7 +131,7 @@ watch([x, () => y.value], ([newX, newY]) => {
 ```js
 const obj = reactive({ count: 0 })
 
-// 这不会正常工作，因为你是向 watch() 传入了一个 number
+// 这不起作用，因为你是向 watch() 传入了一个 number
 watch(obj.count, (count) => {
   console.log(`count is: ${count}`)
 })
@@ -416,7 +416,7 @@ const data = ref(null)
 
 watchEffect(() => {
   if (data.value) {
-    // 得到数据后要做的事...
+    // 数据加载后执行某些操作...
   }
 })
 ```
