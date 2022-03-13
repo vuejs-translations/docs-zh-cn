@@ -305,7 +305,7 @@ export default {
 
 </div>
 
-选择器的选项可以使用 `v-for` 动态渲染:
+选择器的选项可以使用 `v-for` 动态渲染：
 
 <div class="composition-api">
 
