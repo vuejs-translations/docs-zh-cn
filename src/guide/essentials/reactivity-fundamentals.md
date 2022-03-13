@@ -459,7 +459,7 @@ function increment() {
 const object = { foo: ref(1) }
 ```
 
-下面的表达式不会像预期的那样工作：
+下面的表达式将**不会**像预期的那样工作：
 
 ```vue-html
 {{ object.foo }} <!-- 无法自动解包 -->
