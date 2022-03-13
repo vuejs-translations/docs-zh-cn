@@ -578,10 +578,10 @@ export default {
 该组件可以被这样使用：
 
 ```vue-html
-<!-- 等同于 :disabled="true" -->
+<!-- 等同于传入 :disabled="true" -->
 <MyComponent disabled />
 
-<!-- 等同于 :disabled="false" -->
+<!-- 等同于传入 :disabled="false" -->
 <MyComponent />
 ```
 

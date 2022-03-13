@@ -202,7 +202,7 @@ data() {
 在使用时添加一些类：
 
 ```vue-html
-<!-- 组件在使用时 -->
+<!-- 在使用组件时 -->
 <my-component class="baz boo"></my-component>
 ```
 
