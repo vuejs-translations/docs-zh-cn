@@ -52,8 +52,8 @@ const multiSelected = ref([])
 ### 文本 {#text}
 
 ```vue-html
-<p>输入的信息：{{ message }}</p>
-<input v-model="message" placeholder="开始编辑..." />
+<p>Message is: {{ message }}</p>
+<input v-model="message" placeholder="edit me" />
 ```
 
 <div class="demo">
@@ -80,9 +80,9 @@ const multiSelected = ref([])
 ### 多行文本 {#multiline-text}
 
 ```vue-html
-<span>多行信息：</span>
+<span>Multiline message is:</span>
 <p style="white-space: pre-line;">{{ message }}</p>
-<textarea v-model="message" placeholder="请添加多行..."></textarea>
+<textarea v-model="message" placeholder="add multiple lines"></textarea>
 ```
 
 <div class="demo">
@@ -161,7 +161,7 @@ export default {
 </div>
 
 ```vue-html
-<div>选择的名字有：{{ checkedNames }}</div>
+<div>Checked names: {{ checkedNames }}</div>
 
 <input type="checkbox" id="jack" value="Jack" v-model="checkedNames">
 <label for="jack">Jack</label>
@@ -174,7 +174,7 @@ export default {
 ```
 
 <div class="demo">
-  <div>选择的名字有：{{ checkedNames }}</div>
+  <div>Checked names: {{ checkedNames }}</div>
 
   <input type="checkbox" id="demo-jack" value="Jack" v-model="checkedNames">
   <label for="demo-jack">Jack</label>
@@ -237,10 +237,10 @@ In this case, the `checkedNames` array will always contain the values from the c
 单个选择器的示例如下：
 
 ```vue-html
-<div>选择的是：{{ selected }}</div>
+<div>Selected: {{ selected }}</div>
 
 <select v-model="selected">
-  <option disabled value="">请选择</option>
+  <option disabled value="">Please select one</option>
   <option>A</option>
   <option>B</option>
   <option>C</option>
@@ -248,9 +248,9 @@ In this case, the `checkedNames` array will always contain the values from the c
 ```
 
 <div class="demo">
-  <div>选择的是：{{ selected }}</div>
+  <div>Selected: {{ selected }}</div>
   <select v-model="selected">
-    <option disabled value="">请选择</option>
+    <option disabled value="">Please select one</option>
     <option>A</option>
     <option>B</option>
     <option>C</option>
@@ -275,7 +275,7 @@ In this case, the `checkedNames` array will always contain the values from the c
 多选 (值绑定到一个数组)：
 
 ```vue-html
-<div>选择的是：{{ selected }}</div>
+<div>Selected: {{ selected }}</div>
 
 <select v-model="selected" multiple>
   <option>A</option>
@@ -285,7 +285,7 @@ In this case, the `checkedNames` array will always contain the values from the c
 ```
 
 <div class="demo">
-  <div>选择的是：{{ multiSelected }}</div>
+  <div>Selected: {{ multiSelected }}</div>
 
   <select v-model="multiSelected" multiple>
     <option>A</option>
@@ -305,7 +305,7 @@ In this case, the `checkedNames` array will always contain the values from the c
 
 </div>
 
-Select options can be dynamically rendered with `v-for`:
+选择器的选项可以使用 `v-for` 动态渲染:
 
 <div class="composition-api">
 
@@ -346,7 +346,7 @@ export default {
   </option>
 </select>
 
-<div>选择的是：{{ selected }}</div>
+<div>Selected: {{ selected }}</div>
 ```
 
 <div class="composition-api">

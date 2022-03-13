@@ -195,14 +195,14 @@ data() {
 举个例子，如果你声明了一个组件名叫 `my-component`，模板如下：
 
 ```vue-html
-<!-- child component template -->
+<!-- 子组件模板 -->
 <p class="foo bar">Hi!</p>
 ```
 
 在使用时添加一些类：
 
 ```vue-html
-<!-- when using the component -->
+<!-- 在使用组件时 -->
 <my-component class="baz boo"></my-component>
 ```
 
@@ -227,7 +227,7 @@ data() {
 如果你的组件有多个根元素，你将需要指定哪个根元素来接收这个类。你可以通过组件的 `$attrs` property 来实现指定：
 
 ```vue-html
-<!-- my-component template using $attrs -->
+<!-- my-component 模板使用 $attrs 时 -->
 <p :class="$attrs.class">Hi!</p>
 <span>This is a child component</span>
 ```
