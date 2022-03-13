@@ -140,8 +140,8 @@ items.forEach((item, index) => {
 
 ```js
 const myObject = reactive({
-  title: '如何在 Vue 中渲染列表',
-  author: '王小明',
+  title: 'How to do lists in Vue',
+  author: 'Jane Doe',
   publishedAt: '2016-04-10'
 })
 ```
@@ -153,8 +153,8 @@ const myObject = reactive({
 data() {
   return {
     myObject: {
-      title: '如何在 Vue 中渲染列表',
-      author: '王小明',
+      title: 'How to do lists in Vue',
+      author: 'Jane Doe',
       publishedAt: '2016-04-10'
     }
   }
@@ -234,7 +234,7 @@ data() {
 当它们同时存在于一个节点上时，`v-if` 比 `v-for` 的优先级更高。这意味着 `v-if` 的条件将无法访问到 `v-for` 作用域内定义的变量别名：
 
 ```vue-html
-<!-- 
+<!--
  这会抛出一个错误，因为属性 todo 此时
  没有在该实例上定义
 -->
@@ -263,7 +263,7 @@ data() {
 
 ```vue-html
 <div v-for="item in items" :key="item.id">
-  <!-- content -->
+  <!-- 内容 -->
 </div>
 ```
 

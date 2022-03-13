@@ -4,10 +4,10 @@ let show = $ref(true)
 
 <template>
   <div class="demo">
-    <button @click="show = !show">切换</button>
+    <button @click="show = !show">Toggle</button>
     <Transition name="bounce">
       <p v-if="show" style="margin-top: 20px; text-align: center;">
-        你好！你会看到这里正在跳跃！
+        Hello here is some bouncy text!
       </p>
     </Transition>
   </div>

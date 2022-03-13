@@ -242,7 +242,7 @@ export default {
     return {
       post: {
         id: 1,
-        title: '我的 Vue 学习之旅'
+        title: 'My Journey with Vue'
       }
     }
   }
@@ -255,7 +255,7 @@ export default {
 ```js
 const post = {
   id: 1,
-  title: '我的 Vue 学习之旅'
+  title: 'My Journey with Vue'
 }
 ```
 
@@ -578,10 +578,10 @@ export default {
 该组件可以被这样使用：
 
 ```vue-html
-<!-- equivalent of passing :disabled="true" -->
+<!-- 等同于传入 :disabled="true" -->
 <MyComponent disabled />
 
-<!-- equivalent of passing :disabled="false" -->
+<!-- 等同于传入 :disabled="false" -->
 <MyComponent />
 ```
 

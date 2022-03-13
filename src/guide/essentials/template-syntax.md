@@ -54,7 +54,7 @@ Vue 使用一种基于 HTML 的模板语法，使我们能够声明式地将其�
 
 ### 缩写 {#shorthand}
 
-因为 `v-bind` 特别常用，有相应的缩写语法：
+因为 `v-bind` 非常常用，我们提供了特定的缩写语法：
 
 ```vue-html
 <div :id="dynamicId"></div>
@@ -66,9 +66,9 @@ Vue 使用一种基于 HTML 的模板语法，使我们能够声明式地将其�
 
 ### 布尔型 Attribute {#boolean-attributes}
 
-[布尔型 attribute](https://html.spec.whatwg.org/multipage/common-microsyntaxes.html#boolean-attributes) 就那些依据 true/false 值决定是否应该在该元素上存在的 attribute。[`disabled`](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/disabled) 就是最常见的例子之一。
+[布尔型 attribute](https://html.spec.whatwg.org/multipage/common-microsyntaxes.html#boolean-attributes) 依据 true / false 值来决定 attribute 是否应该存在于该元素上。[`disabled`](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/disabled) 就是最常见的例子之一。
 
-`v-bind` 在这种场景下的行为不太一样：
+`v-bind` 在这种场景下的行为略有不同：
 
 ```vue-html
 <button :disabled="isButtonDisabled">Button</button>

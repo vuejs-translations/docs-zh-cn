@@ -29,9 +29,9 @@ Vue 提供了两个内置组件，可以帮助你制作基于状态变化的过�
 以下是最基本用法的示例：
 
 ```vue-html
-<button @click="show = !show">切换</button>
+<button @click="show = !show">Toggle</button>
 <Transition>
-  <p v-if="show">你好！</p>
+  <p v-if="show">hello</p>
 </Transition>
 ```
 
@@ -175,7 +175,7 @@ Vue 提供了两个内置组件，可以帮助你制作基于状态变化的过�
 ```vue-html
 <Transition name="bounce">
   <p v-if="show" style="text-align: center;">
-    你好！你会看到这里正在跳跃！
+    Hello here is some bouncy text!
   </p>
 </Transition>
 ```
@@ -511,9 +511,9 @@ export default {
 
 ```vue-html
 <Transition>
-  <button v-if="docState === 'saved'">编辑</button>
-  <button v-else-if="docState === 'edited'">保存</button>
-  <button v-else-if="docState === 'editing'">取消</button>
+  <button v-if="docState === 'saved'">Edit</button>
+  <button v-else-if="docState === 'edited'">Save</button>
+  <button v-else-if="docState === 'editing'">Cancel</button>
 </Transition>
 ```
 
@@ -569,7 +569,7 @@ export default {
 ```vue-html
 <Transition :name="transitionName">
   <!-- ... -->
-</Transition>
+</Transition>Fallthrough
 ```
 
 当你使用 Vue 的过渡类约定规则定义了 CSS 过渡/动画，并想在它们之间切换时，这可能很有用。
