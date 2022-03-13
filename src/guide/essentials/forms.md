@@ -44,7 +44,7 @@ const multiSelected = ref([])
 - `<select>` 使用的 `value` 作为 prop，`change` 作为事件：
 
 ::: tip 注意
-`v-model` 会忽略任何表单元素上初始的 `value`，`checked` 或 `selected` attributes。它将始终将当前绑定的 JavaScript 状态视为数据的正确来源。你应该在 JavaScript 侧声明该初始值，使用<span class="options-api"> `data` 选项</span><span class="composition-api">响应式系统的 API</span>。
+`v-model` 会忽略任何表单元素上初始的 `value`，`checked` 或 `selected` attributes。它将始终将当前绑定的 JavaScript 状态视为数据的正确来源。你应该在 JavaScript 中声明该初始值，使用<span class="options-api"> `data` 选项</span><span class="composition-api">响应式系统的 API</span>。
 :::
 
 ## 基本用法 {#basic-usage}
@@ -186,7 +186,7 @@ export default {
   <label for="demo-mike">Mike</label>
 </div>
 
-In this case, the `checkedNames` array will always contain the values from the currently checked boxes.
+在这个例子中，`checkedNames` 数组将始终包含来自当前选中框的值。
 
 <div class="composition-api">
 
@@ -305,7 +305,7 @@ In this case, the `checkedNames` array will always contain the values from the c
 
 </div>
 
-选择器的选项可以使用 `v-for` 动态渲染:
+选择器的选项可以使用 `v-for` 动态渲染：
 
 <div class="composition-api">
 
