@@ -459,7 +459,7 @@ function increment() {
 const object = { foo: ref(1) }
 ```
 
-The following expression will **NOT** work as expected:
+下面的表达式不会像预期的那样工作：
 
 ```vue-html
 {{ object.foo }} <!-- 无法自动解包 -->
