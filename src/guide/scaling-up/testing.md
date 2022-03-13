@@ -10,7 +10,7 @@ import TestingApiSwitcher from './TestingApiSwitcher.vue'
 
 在本篇指引中，我们将介绍基本术语，并提供关于为 Vue 3 应用程序应选择哪些工具的建议。
 
-还有一个特定用于 Vue 的小节，是关于可组合函数测试，查看下面的 [测试可组合函数](#testing-composables) 了解更多细节。
+还有一个特定用于 Vue 的小节，是关于组合式函数测试，查看下面的 [测试组合式函数](#testing-composables) 了解更多细节。
 
 ## 何时测试 {#when-to-test}
 
@@ -20,7 +20,7 @@ import TestingApiSwitcher from './TestingApiSwitcher.vue'
 
 当设计你的 Vue 应用程序的测试策略时，你应该利用以下几种测试类型：
 
-- **单元测试**：检查给定函数、类或可组合函数的输入是否产生预期的输出或副作用。
+- **单元测试**：检查给定函数、类或组合式函数的输入是否产生预期的输出或副作用。
 - **组件测试**：检查你的组件是否正常安装和渲染、是否可以与之互动，以及表现是否符合预期。这些测试比单元测试导入了更多的代码，更复杂，需要更多时间来执行。
 - **端到端测试**：检查跨越多个页面的功能，并针对生产构建进行真正的网络请求。这些测试通常涉及到建立一个数据库或其他形式的后端。
 
@@ -32,7 +32,7 @@ import TestingApiSwitcher from './TestingApiSwitcher.vue'
 
 ## 单元测试 {#unit-testing}
 
-编写单元测试是为了验证小的、独立的代码单元是否按预期工作。一个单元测试通常覆盖一个单个函数、类、可组合的或模块。单元测试侧重于逻辑上的正确性，只关注应用程序整体功能的一小部分。他们可能会模拟你的应用程序环境的很大一部分。（如初始状态、复杂的类、第三方模块和网络请求）
+编写单元测试是为了验证小的、独立的代码单元是否按预期工作。一个单元测试通常覆盖一个单个函数、类、组合式函数或模块。单元测试侧重于逻辑上的正确性，只关注应用程序整体功能的一小部分。他们可能会模拟你的应用程序环境的很大一部分。（如初始状态、复杂的类、第三方模块和网络请求）
 
 它们关注的是逻辑上的正确性，可以很容易地进行验证。最常见的单元测试的例子是测试一个函数是否根据不同的输入参数返回预期的值。
 
@@ -77,13 +77,13 @@ describe('increment', () => {
 
 但有两种情况下，你必须对 Vue 的特定功能进行单元测试。
 
-1. 可组合函数
+1. 组合式函数
 2. 组件
 
-### 可组合函数 {#composables}
+### 组合式函数 {#composables}
 
-有一类 Vue 应用中特有的函数被称为 [可组合函数](/guide/reusability/composables.html)，在测试过程中可能需要特殊处理。
-你可以跳转到下方查看 [测试可组合函数](#testing-composables) 了解更多细节。
+有一类 Vue 应用中特有的函数被称为 [组合式函数](/guide/reusability/composables.html)，在测试过程中可能需要特殊处理。
+你可以跳转到下方查看 [测试组合式函数](#testing-composables) 了解更多细节。
 
 ### 组件的单元测试 {#unit-testing-components}
 
@@ -213,7 +213,7 @@ cy.get(valueSelector).should('be.visible').and('contain.text', '0')
 
 ### 推荐 {#recommendation-2}
 
-- [Vitest](https://vitest.dev/) 对于组件和可组合函数都采用无头渲染的方式（例如 VueUse 中的 [`useFavicon`](https://vueuse.org/core/useFavicon/#usefavicon) 函数。组件和 DOM 都可以通过 [@testing-library/vue](https://testing-library.com/docs/vue-testing-library/intro) 来测试。
+- [Vitest](https://vitest.dev/) 对于组件和组合式函数都采用无头渲染的方式（例如 VueUse 中的 [`useFavicon`](https://vueuse.org/core/useFavicon/#usefavicon) 函数。组件和 DOM 都可以通过 [@testing-library/vue](https://testing-library.com/docs/vue-testing-library/intro) 来测试。
 
 - [Cypress 组件测试](https://on.cypress.io/component) 会预期其准确地渲染样式或者触发原生 DOM 事件。可以搭配 [@testing-library/cypress](https://testing-library.com/docs/cypress-testing-library/intro) 这个库一同进行测试。
 
@@ -357,18 +357,18 @@ test('这应该会成功！', () => {
 > npm test
 ```
 
-### 测试可组合函数 {#testing-composables}
+### 测试组合式函数 {#testing-composables}
 
-> 这一小节假设你已经读过了 [可组合函数](/guide/reusability/composables.html) 这一章。
+> 这一小节假设你已经读过了[组合式函数](/guide/reusability/composables.html)这一章。
 
-当涉及到测试可组合函数时，我们可以根据是否依赖宿主组件实例把它们分为两类：
+当涉及到测试组合式函数时，我们可以根据是否依赖宿主组件实例把它们分为两类：
 
-当一个可组合函数使用以下 API 时，它依赖于一个宿主组件实例。
+当一个组合式函数使用以下 API 时，它依赖于一个宿主组件实例。
 
 - 生命周期钩子
 - 供给/注入
 
-如果一个可组合程序只使用响应性 API，那么它可以通过直接调用它并断言其返回的状态/方法来进行测试。
+如果一个组合式程序只使用响应性 API，那么它可以通过直接调用它并断言其返回的状态/方法来进行测试。
 
 ```js
 // counter.js
@@ -398,7 +398,7 @@ test('useCounter', () => {
 })
 ```
 
-一个依赖生命周期钩子或供给/注入的可组合函数需要被包装在一个宿主组件中才可以测试。我们可以创建下面这样的帮手函数：
+一个依赖生命周期钩子或供给/注入的组合式函数需要被包装在一个宿主组件中才可以测试。我们可以创建下面这样的帮手函数：
 
 ```js
 // test-utils.js
@@ -434,7 +434,7 @@ test('useFoo', () => {
 })
 ```
 
-对于更复杂的可组合函数，通过使用 [组件测试] 编写针对这个包装器组件的测试，这会容易很多。
+对于更复杂的组合式函数，通过使用[组件测试]编写针对这个包装器组件的测试，这会容易很多。
 
 <!--
 TODO more testing recipes can be added in the future e.g.
