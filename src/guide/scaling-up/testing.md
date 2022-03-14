@@ -231,7 +231,7 @@ Vitest 和基于浏览器的运行器之间的主要区别是速度和执行上�
 
 ### 其他选择 {#other-options-2}
 
-- [Nightwatch](https://v2.nightwatchjs.org/) 是一个测试运行器，支持 Vue 的组件测试。（Nightwatch v2 版本的 [示例项目](https://github.com/nightwatchjs-community/todo-vue)）
+- [Nightwatch](https://v2.nightwatchjs.org/) 是一个端到端测试运行器，支持 Vue 的组件测试。（Nightwatch v2 版本的 [示例项目](https://github.com/nightwatchjs-community/todo-vue)）
 
 ## 端到端（E2E）测试 {#e2e-testing}
 
