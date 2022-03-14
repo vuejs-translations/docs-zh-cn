@@ -10,7 +10,7 @@
 
 ## `v-for` {#v-for}
 
-我们可以使用 `v-for` 指令基于一个数组来渲染一个列表。`v-for` 指令需要一种特殊的语法形式 `item in items`，`items` 是源数据的数组，而 `item` 是对迭代项的**别名**：
+我们可以使用 `v-for` 指令基于一个数组来渲染一个列表。`v-for` 指令需要一种特殊的语法形式 `item in items`，其中`items` 是源数据的数组，而 `item` 是迭代项的**别名**：
 
 <div class="composition-api">
 
@@ -38,7 +38,7 @@ data() {
 </li>
 ```
 
-在 `v-for` 块中可以完整地访问父作用域内的属性。`v-for` 也支持使用可选的第二个参数，表示当前项的位置索引。
+在 `v-for` 块中可以完整地访问父作用域内的 property。`v-for` 也支持使用可选的第二个参数表示当前项的位置索引。
 
 <div class="composition-api">
 
@@ -103,7 +103,7 @@ items.forEach((item, index) => {
 })
 ```
 
-注意 `v-for` 是如何对应 `forEach` 回调的函数签名的。实际上，你也可以在定义 `v-for` 的变量别名使用解构，和解构函数参数类似：
+注意 `v-for` 是如何对应 `forEach` 回调的函数签名的。实际上，你也可以在定义 `v-for` 的变量别名时使用解构，和解构函数参数类似：
 
 ```vue-html
 <li v-for="{ message } in items">
@@ -116,7 +116,7 @@ items.forEach((item, index) => {
 </li>
 ```
 
-对于嵌套多层的 `v-for`，作用域的工作方式和函数的作用域很类似。每个 `v-for` 作用域都可以访问到父级作用域：
+对于多层嵌套的 `v-for`，作用域的工作方式和函数的作用域很类似。每个 `v-for` 作用域都可以访问到父级作用域：
 
 ```vue-html
 <li v-for="item in items">
@@ -140,8 +140,8 @@ items.forEach((item, index) => {
 
 ```js
 const myObject = reactive({
-  title: '如何在 Vue 中渲染列表',
-  author: '王小明',
+  title: 'How to do lists in Vue',
+  author: 'Jane Doe',
   publishedAt: '2016-04-10'
 })
 ```
@@ -153,8 +153,8 @@ const myObject = reactive({
 data() {
   return {
     myObject: {
-      title: '如何在 Vue 中渲染列表',
-      author: '王小明',
+      title: 'How to do lists in Vue',
+      author: 'Jane Doe',
       publishedAt: '2016-04-10'
     }
   }
@@ -199,12 +199,12 @@ data() {
 </div>
 
 :::tip 注意
-当遍历一个对象时，顺序是依据 `Object.keys()` 的枚举顺序，由于不同的 JavaScript 引擎可能会有不同的实现，所以可能会导致顺序不一致。
+当遍历一个对象时，顺序是依据 `Object.keys()` 的枚举顺序，由于不同的 JavaScript 引擎可能会有不同的实现，所以顺序可能会不一致。
 :::
 
 ## `v-for` {#v-for-with-a-range}
 
-可以直接传给 `v-for` 一个整数值。在这种用例中，将会将该模板基于 `1...n` 的取值范围重复多次。
+可以直接传给 `v-for` 一个整数值。在这种用例中，会将该模板基于 `1...n` 的取值范围重复多次。
 
 ```vue-html
 <span v-for="n in 10">{{ n }}</span>
@@ -214,7 +214,7 @@ data() {
 
 ## `<template>` 上的 `v-for` {#v-for-on-template}
 
-与模板上的 `v-if` 类似，你也可以在 `<template>` 标签上使用 `v-for` 来渲染包含多个元素的一个块。例如：
+与模板上的 `v-if` 类似，你也可以在 `<template>` 标签上使用 `v-for` 来渲染一个包含多个元素的块。例如：
 
 ```vue-html
 <ul>
@@ -228,13 +228,13 @@ data() {
 ## `v-for` 与 `v-if` {#v-for-with-v-if}
 
 :::warning 注意
-同时使用 `v-if` 和 `v-for` 是**不推荐的**，因为这样二者的优先级不明显。请看[风格指南](/style-guide/#avoid-v-if-with-v-for-essential)查看更多细节。
+同时使用 `v-if` 和 `v-for` 是**不推荐的**，因为这样二者的优先级不明显。请转阅[风格指南](/style-guide/#avoid-v-if-with-v-for-essential)查看更多细节。
 :::
 
 当它们同时存在于一个节点上时，`v-if` 比 `v-for` 的优先级更高。这意味着 `v-if` 的条件将无法访问到 `v-for` 作用域内定义的变量别名：
 
 ```vue-html
-<!-- 
+<!--
  这会抛出一个错误，因为属性 todo 此时
  没有在该实例上定义
 -->
@@ -243,7 +243,7 @@ data() {
 </li>
 ```
 
-在外新包裹一层 `<template>` 再在其上使用 `v-for` 可以解决这个问题 (这也更加明显易读)：
+在外新包装一层 `<template>` 再在其上使用 `v-for` 可以解决这个问题 (这也更加明显易读)：
 
 ```vue-html
 <template v-for="todo in todos">
@@ -255,15 +255,15 @@ data() {
 
 ## 通过 key 管理状态 {#maintaining-state-with-key}
 
-当 Vue 更新一个 `v-for` 渲染的列表时，默认情况下使用的是“原地修补”的策略。如果数据项的顺序发生了改变，Vue 不是通过移动 DOM 元素来匹配条目的顺序，而是在适当的位置对每个元素进行修补，并确保在特定索引上更新为应该渲染的内容。
+Vue 默认按照“就地更新”的策略来更新通过 `v-for` 渲染的元素列表。当数据项的顺序改变时，Vue 不会随之移动 DOM 元素的顺序，而是就地更新每个元素，确保它们在原本指定的索引位置上渲染。
 
 默认模式是高效的，但**只适用于列表渲染输出不依赖子组件状态或者临时 DOM 状态 (例如表单输入值)**。
 
-为了给 Vue 一个提示，以便它可以跟踪每个节点的标识，从而重用和重新排序现有的元素，你需要为每个项目提供一个唯一的 `key` 属性：
+为了给 Vue 一个提示，以便它可以跟踪每个节点的标识，从而重用和重新排序现有的元素，你需要为每个项目提供一个唯一的 `key` attribute：
 
 ```vue-html
 <div v-for="item in items" :key="item.id">
-  <!-- content -->
+  <!-- 内容 -->
 </div>
 ```
 
@@ -276,10 +276,10 @@ data() {
 ```
 
 :::tip 注意
-`key` 在这里是一个通过 `v-bind` 绑定的特殊 attribute。请不要和[在 `v-for` 中使用对象](#v-for-with-an-object)里所提到的对象属性的 key 相混淆了。
+`key` 在这里是一个通过 `v-bind` 绑定的特殊 attribute。请不要和[在 `v-for` 中使用对象](#v-for-with-an-object)里所提到的对象 property key 相混淆。
 :::
 
-[推荐](/style-guide/#keyed-v-for-essential)在任何可行的时候为 `v-for` 提供一个 `key`，除非所迭代的 DOM 内容非常简单 (例如：不包含组件或有状态的 DOM 元素)，或者有意依赖默认行为来获得性能增益。
+[推荐](/style-guide/#keyed-v-for-essential)在任何可行的时候为 `v-for` 提供一个 `key` attribute，除非所迭代的 DOM 内容非常简单 (例如：不包含组件或有状态的 DOM 元素)，或者有意依赖默认行为来获得性能增益。
 
 `key` 绑定的值期望是一个基础类型的值，例如字符串或 number 类型。不要用对象作为 `v-for` 的 key。要获取 `key` attribute 的更多用途细节，请看 [`key` API 文档](/api/built-in-special-attributes.html#key)。
 
@@ -293,7 +293,7 @@ data() {
 <my-component v-for="item in items" :key="item.id"></my-component>
 ```
 
-但是，这不会自动将任何数据传递给组件，因为组件有自己独立的作用域。为了将迭代后的数据传递到组件中，我们还是应该使用 props：
+但是，这不会自动将任何数据传递给组件，因为组件有自己独立的作用域。为了将迭代后的数据传递到组件中，我们还是应该使用 prop：
 
 ```vue-html
 <my-component
@@ -304,7 +304,7 @@ data() {
 ></my-component>
 ```
 
-不自动将 `item` 注入组件的原因是，这会使组件与 `v-for` 的工作方式紧密耦合。明确其数据的来源可以使组件在其他情况下可重用。
+不自动将 `item` 注入组件的原因是，这会使组件与 `v-for` 的工作方式紧密耦合。明确其数据的来源可以使组件在其他情况下重用。
 
 <div class="composition-api">
 
@@ -319,9 +319,9 @@ data() {
 
 ## 数组变化侦测 {#array-change-detection}
 
-### 诱变方法 {#mutation-methods}
+### 变更方法 {#mutation-methods}
 
-Vue 使用代理来观察数组，使其所有更改数组内容的方法都会触发视图更新。被封装的诱变方法如下：
+Vue 包装了一批侦听数组的变更方法，以至于这些方法可以触发视图更新。被包装的变更方法如下：
 
 - `push()`
 - `pop()`
@@ -333,7 +333,7 @@ Vue 使用代理来观察数组，使其所有更改数组内容的方法都会�
 
 ### 替换一个数组 {#replacing-an-array}
 
-诱变方法，顾名思义，就是会对调用它们的方法进行更改。相对地，也有一些非诱变方法，例如 `filter()`，`concat()` 和 `slice()`，这些都不会更改原数组，而总是**返回一个新数组**。当遇到的是非诱变方法时，我们需要将旧的数组替换为新的：
+变更方法，顾名思义，就是会对调用它们的原数组进行变更。相对地，也有一些非变更方法，例如 `filter()`，`concat()` 和 `slice()`，这些都不会更改原数组，而总是**返回一个新数组**。当遇到的是非变更方法时，我们需要将旧的数组替换为新的：
 
 <div class="composition-api">
 
@@ -351,11 +351,11 @@ this.items = this.items.filter((item) => item.message.match(/Foo/))
 
 </div>
 
-你可能认为这将导致 Vue 丢弃现有的 DOM 并重新呈现整个列表——幸运的是，情况并非如此。Vue 实现了一些巧妙的方法来最大化对 DOM 元素的重用，因此用另一个包含部分重叠对象的数组来做替换，仍会是一种非常高效的操作。
+你可能认为这将导致 Vue 丢弃现有的 DOM 并重新渲染整个列表——幸运的是，情况并非如此。Vue 实现了一些巧妙的方法来最大化对 DOM 元素的重用，因此用另一个包含部分重叠对象的数组来做替换，仍会是一种非常高效的操作。
 
 ## 展示过滤或排序后的结果 {#displaying-filtered-sorted-results}
 
-有时，我们希望显示数组经过过滤或排序后的内容，而不实际更改或重置原始数据。在这种情况下，你可以创建返回已筛选或已排序数组的计算属性。
+有时，我们希望显示数组经过过滤或排序后的内容，而不实际变更或重置原始数据。在这种情况下，你可以创建返回已过滤或已排序数组的计算属性。
 
 举个例子：
 
@@ -391,7 +391,7 @@ computed: {
 <li v-for="n in evenNumbers">{{ n }}</li>
 ```
 
-在计算属性不可行的情况下 (例如在多层嵌套的‘v-for’循环中)，你可以使用以下方法：
+在计算属性不可行的情况下 (例如在多层嵌套的 `v-for` 循环中)，你可以使用以下方法：
 
 <div class="composition-api">
 
@@ -430,7 +430,7 @@ methods: {
 </ul>
 ```
 
-在计算属性中使用 `reverse()` 和 `sort()` 请保持谨慎！这两个方法将改变原始数组，计算函数中不应该这么做。请在调用这些方法之前创建一个原数组的副本：
+在计算属性中使用 `reverse()` 和 `sort()` 请保持谨慎！这两个方法将变更原始数组，计算函数中不应该这么做。请在调用这些方法之前创建一个原数组的副本：
 
 ```diff
 - return numbers.reverse()

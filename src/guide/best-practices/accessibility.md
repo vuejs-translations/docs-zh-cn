@@ -15,7 +15,7 @@ Web 无障碍访问 (也称为 a11y) 是指创建可供任何人都可以使用�
 ```vue-html
 <ul class="skip-links">
   <li>
-    <a href="#main" ref="skipLink">跳到主内容</a>
+    <a href="#main" ref="skipLink">Skip to main content</a>
   </li>
 </ul>
 ```
@@ -96,17 +96,17 @@ watch(
 
 ```vue-html
 <main role="main" aria-labelledby="main-title">
-  <h1 id="main-title">主标题</h1>
+  <h1 id="main-title">Main title</h1>
   <section aria-labelledby="section-title">
-    <h2 id="section-title"> 二级标题 </h2>
-    <h3>章节小标题</h3>
+    <h2 id="section-title"> Section Title </h2>
+    <h3>Section Subtitle</h3>
     <!-- 内容 -->
   </section>
   <section aria-labelledby="section-title">
-    <h2 id="section-title"> 二级标题 </h2>
-    <h3>章节小标题</h3>
+    <h2 id="section-title"> Section Title </h2>
+    <h3>Section Subtitle</h3>
     <!-- 内容 -->
-    <h3>章节小标题</h3>
+    <h3>Section Subtitle</h3>
     <!-- 内容 -->
   </section>
 </main>
@@ -164,7 +164,7 @@ watch(
 提供标签来描述所有表单控件的用途；使 `for` 和 `id` 链接起来：
 
 ```vue-html
-<label for="name">名字</label>
+<label for="name">Name</label>
 <input type="text" name="name" id="name" v-model="name" />
 ```
 
@@ -175,11 +175,11 @@ watch(
 ![Chrome 开发者工具正在通过标签展示无障碍访问的 input 框的名字](./images/AccessibleLabelChromeDevTools.png)
 
 :::warning 警告：
-你可能还见过这样的包裹 input 框的标签：
+你可能还见过这样的包装 input 框的标签：
 
 ```vue-html
 <label>
-  名字：
+  Name：
   <input type="text" name="name" id="name" v-model="name" />
 </label>
 ```
@@ -192,7 +192,7 @@ watch(
 你也可以为 input 框配置一个带有 [`aria-label`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/ARIA_Techniques/Using_the_aria-label_attribute) 的无障碍访问名。
 
 ```vue-html
-<label for="name">名字</label>
+<label for="name">Name</label>
 <input
   type="text"
   name="name"
@@ -310,8 +310,8 @@ watch(
 
 ```vue-html
 <fieldset>
-  <legend>使用 aria-labelledby</legend>
-  <label id="date-label" for="date">当前日期：</label>
+  <legend>Using aria-labelledby</legend>
+  <label id="date-label" for="date">Current Date:</label>
   <input
     type="date"
     name="date"
@@ -326,8 +326,8 @@ watch(
 
 ```vue-html
 <fieldset>
-  <legend>使用 aria-describedby</legend>
-  <label id="dob" for="dob">生日日期：</label>
+  <legend>Using aria-describedby</legend>
+  <label id="dob" for="dob">Date of Birth:</label>
   <input type="date" name="dob" id="dob" aria-describedby="dob-instructions" />
   <p id="dob-instructions">MM/DD/YYYY</p>
 </fieldset>
@@ -343,9 +343,9 @@ watch(
 
 ```vue-html
 <form role="search">
-  <label for="search" class="hidden-visually">搜索：</label>
+  <label for="search" class="hidden-visually">Search: </label>
   <input type="text" name="search" id="search" v-model="search" />
-  <button type="submit">搜索</button>
+  <button type="submit">Search</button>
 </form>
 ```
 
@@ -374,8 +374,8 @@ watch(
 添加 `aria-hidden="true"` 在无障碍访问时被隐藏，但对其他可视用户仍然是可见的。不要在可聚焦的元素上使用它，请只在装饰性的、重复的的或屏幕外的内容上使用它。
 
 ```vue-html
-<p>这里不会在屏幕助读器上被隐藏</p>
-<p aria-hidden="true">这里会在屏幕助读器上被隐藏</p>
+<p>This is not hidden from screen readers.</p>
+<p aria-hidden="true">This is hidden from screen readers.</p>
 ```
 
 ### 按钮 {#buttons}
@@ -385,11 +385,11 @@ watch(
 
 ```vue-html
 <form action="/dataCollectionLocation" method="post" autocomplete="on">
-  <!-- Buttons -->
+  <!-- 按钮 -->
   <button type="button">Cancel</button>
   <button type="submit">Submit</button>
 
-  <!-- Input buttons -->
+  <!-- 输入按钮 -->
   <input type="button" value="Cancel" />
   <input type="submit" value="Submit" />
 </form>
@@ -407,7 +407,7 @@ watch(
 
   ```vue-html
   <form role="search">
-    <label for="search" class="hidden-visually">搜索：</label>
+    <label for="search" class="hidden-visually">Search: </label>
     <input type="text" name="search" id="search" v-model="search" />
     <input
       type="image"
@@ -422,11 +422,11 @@ watch(
 
 ```vue-html
 <form role="search">
-  <label for="searchIcon" class="hidden-visually">搜索：</label>
+  <label for="searchIcon" class="hidden-visually">Search: </label>
   <input type="text" name="searchIcon" id="searchIcon" v-model="searchIcon" />
   <button type="submit">
     <i class="fas fa-search" aria-hidden="true"></i>
-    <span class="hidden-visually">搜索</span>
+    <span class="hidden-visually">Search</span>
   </button>
 </form>
 ```
