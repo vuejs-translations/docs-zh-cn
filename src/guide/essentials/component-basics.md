@@ -558,7 +558,7 @@ HTML 标签和属性名称是不分大小写的，所以浏览器会把任何大
 // JavaScript 中的 camelCase
 const BlogPost = {
   props: ['postTitle'],
-  emits: ['updatePost']
+  emits: ['updatePost'],
   template: `
     <h3>{{ postTitle }}</h3>
   `
