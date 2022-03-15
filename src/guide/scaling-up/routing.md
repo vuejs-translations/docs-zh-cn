@@ -4,8 +4,8 @@
 
 <!-- TODO update links -->
 <div>
-  <VueSchoolLink href="https://vueschool.io/courses/vue-router-4-for-everyone" title="Free Vue Router Course">
-    Watch a Free Video Course on Vue School
+  <VueSchoolLink href="https://vueschool.io/courses/vue-router-4-for-everyone" title="Vue Router - 免费 Vue.js 课程">
+    在 Vue School 上观看免费课程
   </VueSchoolLink>
 </div>
 
