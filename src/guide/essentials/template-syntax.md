@@ -52,17 +52,17 @@ Vue 使用一种基于 HTML 的模板语法，使我们能够声明式地将其�
 
 `v-bind` 指令指示 Vue 将元素的 `id` attribute 与组件的 `dynamicId` property 保持一致。如果绑定的值是 `null` 或者 `undefined`，那么该 attribute 将会从渲染的元素上移除。
 
-### 缩写 {#shorthand}
+### 简写 {#shorthand}
 
-因为 `v-bind` 非常常用，我们提供了特定的缩写语法：
+因为 `v-bind` 非常常用，我们提供了特定的简写语法：
 
 ```vue-html
 <div :id="dynamicId"></div>
 ```
 
-开头为 `:` 的 attribute 可能和一般的 HTML attribute 看起来不太一样，但它的确是合法的 attribute 名称字符，并且所有支持 Vue 的浏览器都能正确解析它。此外，他们不会出现在最终渲染的标签中。缩写语法是可选的，但相信在你了解了它更多的用处后，你应该会更喜欢它。
+开头为 `:` 的 attribute 可能和一般的 HTML attribute 看起来不太一样，但它的确是合法的 attribute 名称字符，并且所有支持 Vue 的浏览器都能正确解析它。此外，他们不会出现在最终渲染的标签中。简写语法是可选的，但相信在你了解了它更多的用处后，你应该会更喜欢它。
 
-> 接下来的指引中，我们都将在示例中使用缩写语法，因为这是在 Vue 开发者之间最常见的用法。
+> 接下来的指引中，我们都将在示例中使用简写语法，因为这是在 Vue 开发者之间最常见的用法。
 
 ### 布尔型 Attribute {#boolean-attributes}
 
@@ -183,22 +183,22 @@ data() {
 ```vue-html
 <a v-bind:href="url"> ... </a>
 
-<!-- 缩写 -->
+<!-- 简写 -->
 <a :href="url"> ... </a>
 ```
 
-这里 `href` 就是一个参数，它告诉 `v-bind` 指令将表达式 `url` 的值绑定到元素的 `href` attribute 上。在缩写中，参数前的一切 (例如 `v-bind:`) 都会被缩略为一个 `:` 字符。
+这里 `href` 就是一个参数，它告诉 `v-bind` 指令将表达式 `url` 的值绑定到元素的 `href` attribute 上。在简写中，参数前的一切 (例如 `v-bind:`) 都会被缩略为一个 `:` 字符。
 
 另一个例子是 `v-on` 指令，它将监听 DOM 事件：
 
 ```vue-html
 <a v-on:click="doSomething"> ... </a>
 
-<!-- 缩写 -->
+<!-- 简写 -->
 <a @click="doSomething"> ... </a>
 ```
 
-这里的参数是要监听的事件名称：`click`。`v-on` 也是少部分含有缩写的指令之一，缩写字符为 `@`。我们之后也会讨论关于事件处理的更多细节。
+这里的参数是要监听的事件名称：`click`。`v-on` 也是少部分含有简写的指令之一，简写字符为 `@`。我们之后也会讨论关于事件处理的更多细节。
 
 ### 动态参数 {#dynamic-arguments}
 
@@ -211,7 +211,7 @@ data() {
 -->
 <a v-bind:[attributeName]="url"> ... </a>
 
-<!-- 缩写 -->
+<!-- 简写 -->
 <a :[attributeName]="url"> ... </a>
 ```
 
@@ -222,7 +222,7 @@ data() {
 ```vue-html
 <a v-on:[eventName]="doSomething"> ... </a>
 
-<!-- 缩写 -->
+<!-- 简写 -->
 <a @[eventName]="doSomething">
 ```
 

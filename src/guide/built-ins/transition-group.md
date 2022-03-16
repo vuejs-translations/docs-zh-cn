@@ -10,7 +10,7 @@ import ListStagger from './transition-demos/ListStagger.vue'
 
 ## 和 `<Transition>` 的区别 {#differences-from-transition}
 
-`<TransitionGroup>` 支持和 `<Transition>` 基本相同的 props、过渡 CSS class 和 JavaScript 钩子监听器，但有一下几点区别：
+`<TransitionGroup>` 支持和 `<Transition>` 基本相同的 prop、过渡 CSS class 和 JavaScript 钩子监听器，但有以下几点区别：
 
 - 默认情况下，它不会渲染一个包装器元素。但你可以通过传入 `tag` prop 来指定一个元素作为包装器元素来渲染。
 
