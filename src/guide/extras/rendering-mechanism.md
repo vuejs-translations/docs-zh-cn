@@ -115,7 +115,7 @@ createElementVNode("div", {
 
 ```js
 if (vnode.patchFlag & PatchFlags.CLASS /* 2 */) {
-  // 更新节点的 CSS 类
+  // 更新节点的 CSS class
 }
 ```
 

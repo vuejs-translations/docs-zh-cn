@@ -16,7 +16,7 @@ Vue 提供了两个内置组件，可以帮助你制作基于状态变化的过�
 
 - `<TransitionGroup>` 会在一个元素或组件被插入到 `v-for` 列表中，或是被移动或从其中移除时应用动画。我们将在[下一章节](/guide/built-ins/transition-group.html)中深入展开介绍它。
 
-除了这两个组件，我们也可以通过其他技术手段来应用动画，比如切换 CSS 类或用状态绑定样式来驱动动画。这些其他的方法会在[动画技巧](/guide/extras/animation.html)章节中展开介绍到。
+除了这两个组件，我们也可以通过其他技术手段来应用动画，比如切换 CSS class 或用状态绑定样式来驱动动画。这些其他的方法会在[动画技巧](/guide/extras/animation.html)章节中展开介绍到。
 
 ## `<Transition>` 组件 {#the-transition-component}
 
@@ -36,7 +36,7 @@ Vue 提供了两个内置组件，可以帮助你制作基于状态变化的过�
 ```
 
 ```css
-/* 下面我们会解释这些类是做什么的 */
+/* 下面我们会解释这些 class 是做什么的 */
 .v-enter-active,
 .v-leave-active {
   transition: opacity 0.5s ease;
@@ -67,7 +67,7 @@ Vue 提供了两个内置组件，可以帮助你制作基于状态变化的过�
 
 当一个 `<Transition>` 组件中的元素被插入或移除时，会发生下面这些事情：
 
-1. Vue 会自动检测目标元素是否应用了 CSS 过渡或动画。如果是，则一些 [CSS 过渡类](#transition-classes)会在适当的时机被添加和移除。
+1. Vue 会自动检测目标元素是否应用了 CSS 过渡或动画。如果是，则一些[过渡 CSS class](#transition-classes) 会在适当的时机被添加和移除。
 
 2. 如果有作为监听器的 [JavaScript 钩子](#javascript-hooks)，这些钩子函数会在适当时机被调用。
 
@@ -75,25 +75,25 @@ Vue 提供了两个内置组件，可以帮助你制作基于状态变化的过�
 
 ## 基于 CSS 的过渡 {#css-based-transitions}
 
-### 过渡 CSS 类 {#transition-classes}
+### 过渡 CSS class {#transition-classes}
 
-一共有 6 个应用于进入与离开过渡效果的 CSS 类。
+一共有 6 个应用于进入与离开过渡效果的 CSS class。
 
 ![过渡图示](./images/transition-classes.png)
 
 <!-- https://www.figma.com/file/rlOv0ZKJFFNA9hYmzdZv3S/Transition-Classes -->
 
-1. `v-enter-from`：进入动画的起始状态。这个 CSS 类在元素插入之前添加，在元素插入完成后的下一帧移除。
+1. `v-enter-from`：进入动画的起始状态。这个 CSS class 在元素插入之前添加，在元素插入完成后的下一帧移除。
 
-2. `v-enter-active`：进入动画的生效状态，应用于整个进入动画阶段。这个 CSS 类在元素被插入之前被添加，在过渡/动画完成之后移除。这个类可以用来定义进入动画的持续时间、延迟与速度曲线类型。
+2. `v-enter-active`：进入动画的生效状态，应用于整个进入动画阶段。这个 CSS class 在元素被插入之前被添加，在过渡/动画完成之后移除。这个 class 可以用来定义进入动画的持续时间、延迟与速度曲线类型。
 
-3. `v-enter-to`：进入动画的结束状态。这个 CSS 类在元素插入完成后的下一帧被添加 (也就是 `v-enter-from` 被移除的同时)，在过渡/动画完成之后移除。
+3. `v-enter-to`：进入动画的结束状态。这个 CSS class 在元素插入完成后的下一帧被添加 (也就是 `v-enter-from` 被移除的同时)，在过渡/动画完成之后移除。
 
 4. `v-leave-from`：离开动画的起始状态，在离开过渡效果被触发时立即添加，在一帧后被移除。
 
-5. `v-leave-active`：离开动画的生效状态，应用于整个离开动画阶段。在离开过渡效果被触发时立即添加，在过渡/动画完成之后移除。这个类可以用来定义离开动画的持续时间、延迟与速度曲线类型。
+5. `v-leave-active`：离开动画的生效状态，应用于整个离开动画阶段。在离开过渡效果被触发时立即添加，在过渡/动画完成之后移除。这个 class 可以用来定义离开动画的持续时间、延迟与速度曲线类型。
 
-6. `v-leave-to`：离开动画的结束状态。这个 CSS 类在一个离开动画被触发后的下一帧被添加 (也就是 `v-leave-from` 被移除的同时)，在过渡/动画完成之后移除。
+6. `v-leave-to`：离开动画的结束状态。这个 CSS class 在一个离开动画被触发后的下一帧被添加 (也就是 `v-leave-from` 被移除的同时)，在过渡/动画完成之后移除。
 
 `v-enter-active` 和 `v-leave-active` 给了我们为进入和离开动画指定不同速度曲线的能力，我们在下面的小节中将看到一个示例。
 
@@ -107,7 +107,7 @@ Vue 提供了两个内置组件，可以帮助你制作基于状态变化的过�
 </Transition>
 ```
 
-对于一个有名字的过渡，它的过渡相关 CSS 类会以其名字而不是 `v` 作为前缀。举个例子，上面被应用的 CSS 类将会是 `fade-enter-active` 而不是 `v-enter-active`。这个“fade”过渡的 CSS 类将会是这样：
+对于一个有名字的过渡，它的过渡相关 CSS class 会以其名字而不是 `v` 作为前缀。举个例子，上面被应用的 CSS class 将会是 `fade-enter-active` 而不是 `v-enter-active`。这个“fade”过渡的 CSS class 将会是这样：
 
 ```css
 .fade-enter-active,
@@ -170,7 +170,7 @@ Vue 提供了两个内置组件，可以帮助你制作基于状态变化的过�
 
 [原生 CSS 动画](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Animations/Using_CSS_animations)和 CSS trasition 的应用方式基本上是相同的，只有一点不同，那就是 `*-enter-from` 不是在元素插入后立即移除，而是在一个 `animationend` 事件触发时被移除。
 
-对于大多数的 CSS 动画，我们可以简单地在 `*-enter-active` 和 `*-leave-active` 类下面声明它们。下面是一个示例：
+对于大多数的 CSS 动画，我们可以简单地在 `*-enter-active` 和 `*-leave-active` class 下面声明它们。下面是一个示例：
 
 ```vue-html
 <Transition name="bounce">
@@ -213,9 +213,9 @@ Vue 提供了两个内置组件，可以帮助你制作基于状态变化的过�
 
 </div>
 
-### 自定义过渡类 {#custom-transition-classes}
+### 自定义过渡 class {#custom-transition-classes}
 
-你也可以向 `<Transition>` 传递以下的 props 来指定自定义的过渡类：
+你也可以向 `<Transition>` 传递以下的 props 来指定自定义的过渡 class：
 
 - `enter-from-class`
 - `enter-active-class`
@@ -224,7 +224,7 @@ Vue 提供了两个内置组件，可以帮助你制作基于状态变化的过�
 - `leave-active-class`
 - `leave-to-class`
 
-你传入的这些类会覆盖相应阶段的默认类名。这个功能在你想要在 Vue 的动画机制下集成其他的第三方 CSS 动画库时非常有用，比如 [Animate.css](https://daneden.github.io/animate.css/)：
+你传入的这些 class 会覆盖相应阶段的默认 class 名。这个功能在你想要在 Vue 的动画机制下集成其他的第三方 CSS 动画库时非常有用，比如 [Animate.css](https://daneden.github.io/animate.css/)：
 
 ```vue-html
 <!-- 假设你已经引入了 Animate.css -->
@@ -260,7 +260,7 @@ Vue 需要附加事件侦听器，以便知道过渡何时结束。可以是 `tr
 
 ### 深层级过渡与显式过渡时间 {#nested-transitions-and-explicit-transition-durations}
 
-尽管过渡类仅能应用在 `<Transition>` 的直接子元素上，我们还是可以使用深层级的 CSS 选择器，使深层级的元素发生过渡。
+尽管过渡 class 仅能应用在 `<Transition>` 的直接子元素上，我们还是可以使用深层级的 CSS 选择器，使深层级的元素发生过渡。
 
 ```vue-html
 <Transition name="nested">
@@ -572,7 +572,7 @@ export default {
 </Transition>Fallthrough
 ```
 
-当你使用 Vue 的过渡类约定规则定义了 CSS 过渡/动画，并想在它们之间切换时，这可能很有用。
+当你使用 Vue 的过渡 class 约定规则定义了 CSS 过渡/动画，并想在它们之间切换时，这可能很有用。
 
 你也可以根据你的组件的当前状态在 JavaScript 过渡钩子中应用不同的行为。在此篇的最后，我们可以得出结论，创建动态过渡的终极方式是创建[可重用的过渡组件](#reusable-transitions)，这些组件接受 prop 来改变过渡的性质。现在在编写动画时，就真的只有你想不到，没有做不到的了。
 
