@@ -74,7 +74,7 @@ Declare the props of a component.
   type PropType<T> = { new (): T } | { new (): T }[]
   ```
 
-  > Types are simplified for readability.
+  > 为了便于阅读，对类型进行了简化。
 
 - **详细信息**
 
@@ -246,7 +246,7 @@ Declare methods to be mixed into the component instance.
   }
   ```
 
-  > Types are simplified for readability.
+  > 为了便于阅读，对类型进行了简化。
 
 - **详细信息**
 
@@ -279,7 +279,7 @@ Declare watch callbacks to be invoked on data change.
   }
   ```
 
-  > Types are simplified for readability.
+  > 为了便于阅读，对类型进行了简化。
 
 - **详细信息**
 

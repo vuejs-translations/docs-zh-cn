@@ -24,7 +24,7 @@ Creates virtual DOM nodes (vnodes).
   type Slots = { [name: string]: Slot }
   ```
 
-  > Types are simplified for readability.
+  > 为了便于阅读，对类型进行了简化。
 
 - **详细信息**
 
