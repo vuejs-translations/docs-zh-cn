@@ -306,7 +306,7 @@ Runs a function immediately while reactively tracking its dependencies and re-ru
   })
   ```
 
-- **See also**:
+- **相关内容**:
   - [Guide - Watchers](/guide/essentials/watchers.html#watcheffect)
   - [Guide - Watcher Debugging](/guide/extras/reactivity-in-depth.html#watcher-debugging)
 
@@ -455,7 +455,7 @@ Watches one or more reactive data sources and invokes a callback function when t
   })
   ```
 
-- **See also**:
+- **相关内容**:
 
   - [Guide - Watchers](/guide/essentials/watchers.html)
   - [Guide - Watcher Debugging](/guide/extras/reactivity-in-depth.html#watcher-debugging)
