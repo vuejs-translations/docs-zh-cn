@@ -67,7 +67,7 @@ Vue 提供了两个内置组件，可以帮助你制作基于状态变化的过�
 
 当一个 `<Transition>` 组件中的元素被插入或移除时，会发生下面这些事情：
 
-1. Vue 会自动检测目标元素是否应用了 CSS 过渡或动画。如果是，则一些[过渡 CSS class](#transition-classes) 会在适当的时机被添加和移除。
+1. Vue 会自动检测目标元素是否应用了 CSS 过渡或动画。如果是，则一些 [CSS 过渡 class](#transition-classes) 会在适当的时机被添加和移除。
 
 2. 如果有作为监听器的 [JavaScript 钩子](#javascript-hooks)，这些钩子函数会在适当时机被调用。
 
@@ -75,7 +75,7 @@ Vue 提供了两个内置组件，可以帮助你制作基于状态变化的过�
 
 ## 基于 CSS 的过渡 {#css-based-transitions}
 
-### 过渡 CSS class {#transition-classes}
+### CSS 过渡 class {#transition-classes}
 
 一共有 6 个应用于进入与离开过渡效果的 CSS class。
 
