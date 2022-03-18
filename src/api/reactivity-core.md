@@ -1,4 +1,4 @@
-# 响应性 API：Core {#reactivity-api-core} 
+# 响应性 API：核心 {#reactivity-api-core} 
 
 :::info 相关内容
 要更好地了解响应性 API，推荐阅读下面几个指南中的章节：

@@ -1,8 +1,8 @@
-# 响应性 API：Advanced
+# 响应性 API：进阶 {#reactivity-api-advanced}
 
-## shallowRef()
+## shallowRef() {#shallowref}
 
-Shallow version of [`ref()`](./reactivity-core.html#ref).
+[`ref()`](./reactivity-core.html#ref) 的浅层作用形式。
 
 - **类型**
 
@@ -16,29 +16,29 @@ Shallow version of [`ref()`](./reactivity-core.html#ref).
 
 - **详细信息**
 
-  Unlike `ref()`, the inner value of a shallow ref is stored and exposed as-is, and will not be made deeply reactive. Only the `.value` access is reactive.
+  和 `ref()` 不同，浅层 ref 的内部值将会原样存储和暴露，并且不会被深层递归地转为响应式。只有对 `.value` 的访问是响应式的。
 
-  `shallowRef()` is typically used for performance optimizations of large data structures, or integration with external state management systems.
+  `shallowRef()` 常常用于对大型数据结构的性能优化或是与外部的状态管理系统集成。
 
 - **示例**
 
   ```js
   const state = shallowRef({ count: 1 })
 
-  // does NOT trigger change
+  // 不会触发更改
   state.value.count = 2
 
-  // does trigger change
+  // 会触发更改
   state.value = { count: 2 }
   ```
 
 - **相关内容：**
-  - [Guide - Reduce Reactivity Overhead for Large Immutable Structures](/guide/best-practices/performance.html#reduce-reactivity-overhead-for-large-immutable-structures)
-  - [Guide - Integration with External State Systems](/guide/extras/reactivity-in-depth.html#integration-with-external-state-systems)
+  - [指南 - 减少大型不可变结构的响应性开销](/guide/best-practices/performance.html#reduce-reactivity-overhead-for-large-immutable-structures)
+  - [指南 - 与其他状态系统集成](/guide/extras/reactivity-in-depth.html#integration-with-external-state-systems)
 
-## triggerRef()
+## triggerRef() {#triggerref}
 
-Force trigger effects that depends on a [shallow ref](#shallowref). This is typically used after making deep mutations to the inner value of a shallow ref.
+强制触发依赖于一个 [浅层 ref](#shallowref) 的副作用，这常常用在对浅层 ref 的内部值做了变更之后。
 
 - **类型**
 
@@ -53,21 +53,21 @@ Force trigger effects that depends on a [shallow ref](#shallowref). This is typi
     greet: 'Hello, world'
   })
 
-  // Logs "Hello, world" once for the first run-through
+  // 触发该副作用第一次应该会打印 "Hello, world"
   watchEffect(() => {
     console.log(shallow.value.greet)
   })
 
-  // This won't trigger the effect because the ref is shallow
+  // 这次变更不应触发副作用，因为这个 ref 是浅层的
   shallow.value.greet = 'Hello, universe'
 
-  // Logs "Hello, universe"
+  // 打印 "Hello, universe"
   triggerRef(shallow)
   ```
 
-## customRef()
+## customRef()  {#customref}
 
-Creates a customized ref with explicit control over its dependency tracking and updates triggering.
+创建一个自定义的 ref，显式声明对其依赖追踪和更新触发的控制方式。
 
 - **类型**
 
@@ -85,13 +85,13 @@ Creates a customized ref with explicit control over its dependency tracking and 
 
 - **详细信息**
 
-  `customRef()` expects a factory function, which receives `track` and `trigger` functions as arguments and should return an object with `get` and `set` methods.
+  `customRef()` 预期接受一个工厂函数，这个工厂函数接受 `track` 和 `trigger` 两个函数作为参数，并应该返回一个带 `get` 和 `set` 方法的对象。
 
-  In general, `track()` should be called inside `get()`, and `trigger()` should be called inside `set()`. However, you have full control over when they should be called, or whether they should be called at all.
+  一般来说，`track()` 应该在 `get()` 方法中调用，而 `trigger()` 应该在 `set()` 中调用。然而，你对它们该怎么调用、需不需要调用都有完全的控制权。
 
 - **示例**
 
-  Creating a debounced ref that only updates the value after a certain timeout after the latest set call:
+  创建一个防抖 ref，即仅在上一次 set 调用后的一端固定间隔后再调用：
 
   ```js
   import { customRef } from 'vue'
@@ -116,7 +116,7 @@ Creates a customized ref with explicit control over its dependency tracking and 
   }
   ```
 
-  Usage in component:
+  在组件中使用：
 
   ```vue
   <script setup>
@@ -129,11 +129,11 @@ Creates a customized ref with explicit control over its dependency tracking and 
   </template>
   ```
 
-  [Try it in the Playground](https://sfc.vuejs.org/#eyJBcHAudnVlIjoiPHNjcmlwdCBzZXR1cD5cbmltcG9ydCB7IHVzZURlYm91bmNlZFJlZiB9IGZyb20gJy4vZGVib3VuY2VkUmVmLmpzJ1xuY29uc3QgdGV4dCA9IHVzZURlYm91bmNlZFJlZignaGVsbG8nLCAxMDAwKVxuPC9zY3JpcHQ+XG5cbjx0ZW1wbGF0ZT5cbiAgPHA+XG4gICAgVGhpcyB0ZXh0IG9ubHkgdXBkYXRlcyAxIHNlY29uZCBhZnRlciB5b3UndmUgc3RvcHBlZCB0eXBpbmc6XG4gIDwvcD5cbiAgPHA+e3sgdGV4dCB9fTwvcD5cbiAgPGlucHV0IHYtbW9kZWw9XCJ0ZXh0XCIgLz5cbjwvdGVtcGxhdGU+IiwiaW1wb3J0LW1hcC5qc29uIjoie1xuICBcImltcG9ydHNcIjoge1xuICAgIFwidnVlXCI6IFwiaHR0cHM6Ly9zZmMudnVlanMub3JnL3Z1ZS5ydW50aW1lLmVzbS1icm93c2VyLmpzXCJcbiAgfVxufSIsImRlYm91bmNlZFJlZi5qcyI6ImltcG9ydCB7IGN1c3RvbVJlZiB9IGZyb20gJ3Z1ZSdcblxuZXhwb3J0IGZ1bmN0aW9uIHVzZURlYm91bmNlZFJlZih2YWx1ZSwgZGVsYXkgPSAyMDApIHtcbiAgbGV0IHRpbWVvdXRcbiAgcmV0dXJuIGN1c3RvbVJlZigodHJhY2ssIHRyaWdnZXIpID0+IHtcbiAgICByZXR1cm4ge1xuICAgICAgZ2V0KCkge1xuICAgICAgICB0cmFjaygpXG4gICAgICAgIHJldHVybiB2YWx1ZVxuICAgICAgfSxcbiAgICAgIHNldChuZXdWYWx1ZSkge1xuICAgICAgICBjbGVhclRpbWVvdXQodGltZW91dClcbiAgICAgICAgdGltZW91dCA9IHNldFRpbWVvdXQoKCkgPT4ge1xuICAgICAgICAgIHZhbHVlID0gbmV3VmFsdWVcbiAgICAgICAgICB0cmlnZ2VyKClcbiAgICAgICAgfSwgZGVsYXkpXG4gICAgICB9XG4gICAgfVxuICB9KVxufSJ9)
+  [在 Playground 中尝试一下](https://sfc.vuejs.org/#eyJBcHAudnVlIjoiPHNjcmlwdCBzZXR1cD5cbmltcG9ydCB7IHVzZURlYm91bmNlZFJlZiB9IGZyb20gJy4vZGVib3VuY2VkUmVmLmpzJ1xuY29uc3QgdGV4dCA9IHVzZURlYm91bmNlZFJlZignaGVsbG8nLCAxMDAwKVxuPC9zY3JpcHQ+XG5cbjx0ZW1wbGF0ZT5cbiAgPHA+XG4gICAgVGhpcyB0ZXh0IG9ubHkgdXBkYXRlcyAxIHNlY29uZCBhZnRlciB5b3UndmUgc3RvcHBlZCB0eXBpbmc6XG4gIDwvcD5cbiAgPHA+e3sgdGV4dCB9fTwvcD5cbiAgPGlucHV0IHYtbW9kZWw9XCJ0ZXh0XCIgLz5cbjwvdGVtcGxhdGU+IiwiaW1wb3J0LW1hcC5qc29uIjoie1xuICBcImltcG9ydHNcIjoge1xuICAgIFwidnVlXCI6IFwiaHR0cHM6Ly9zZmMudnVlanMub3JnL3Z1ZS5ydW50aW1lLmVzbS1icm93c2VyLmpzXCJcbiAgfVxufSIsImRlYm91bmNlZFJlZi5qcyI6ImltcG9ydCB7IGN1c3RvbVJlZiB9IGZyb20gJ3Z1ZSdcblxuZXhwb3J0IGZ1bmN0aW9uIHVzZURlYm91bmNlZFJlZih2YWx1ZSwgZGVsYXkgPSAyMDApIHtcbiAgbGV0IHRpbWVvdXRcbiAgcmV0dXJuIGN1c3RvbVJlZigodHJhY2ssIHRyaWdnZXIpID0+IHtcbiAgICByZXR1cm4ge1xuICAgICAgZ2V0KCkge1xuICAgICAgICB0cmFjaygpXG4gICAgICAgIHJldHVybiB2YWx1ZVxuICAgICAgfSxcbiAgICAgIHNldChuZXdWYWx1ZSkge1xuICAgICAgICBjbGVhclRpbWVvdXQodGltZW91dClcbiAgICAgICAgdGltZW91dCA9IHNldFRpbWVvdXQoKCkgPT4ge1xuICAgICAgICAgIHZhbHVlID0gbmV3VmFsdWVcbiAgICAgICAgICB0cmlnZ2VyKClcbiAgICAgICAgfSwgZGVsYXkpXG4gICAgICB9XG4gICAgfVxuICB9KVxufSJ9)
 
-## shallowReactive()
+## shallowReactive()  {#shallowreactive}
 
-Shallow version of [`reactive()`](./reactivity-core.html#reactive).
+[`reactive()`](./reactivity-core.html#reactive) 的浅层作用形式。
 
 - **类型**
 
@@ -143,10 +143,10 @@ Shallow version of [`reactive()`](./reactivity-core.html#reactive).
 
 - **详细信息**
 
-  Unlike `reactive()`, there is no deep conversion: only root-level properties are reactive for a shallow reactive object. Property values are stored and exposed as-is - this also means properties with ref values will **not** be automatically unwrapped.
+  和 `reactive()`不同，这里不会有深层次转换：一个浅层响应式对象里只有根级别的属性是响应式的。属性的值会被原样存储和暴露，这也意味着属性为 ref 的值 **不会** 被自动解包了。
 
-  :::warning Use with Caution
-  Shallow data structures should only be used for root level state in a component. Avoid nesting it inside a deep reactive object as it creates a tree with inconsistent reactivity behavior which can be difficult to understand and debug.
+  :::warning 谨慎使用
+  浅层数据结构应该只用于组件中的根级状态。请避免将其嵌套在深层次的响应式对象中，因为它会创建一个具有不一致的响应行为的树，这可能很难理解和调试。
   :::
 
 - **示例**
@@ -169,7 +169,7 @@ Shallow version of [`reactive()`](./reactivity-core.html#reactive).
   state.nested.bar++
   ```
 
-## shallowReadonly()
+## shallowReadonly()  {#shallowreadonly}
 
 Shallow version of [`readonly()`](./reactivity-core.html#readonly).
 
@@ -207,7 +207,7 @@ Shallow version of [`readonly()`](./reactivity-core.html#readonly).
   state.nested.bar++
   ```
 
-## toRaw()
+## toRaw()  {#toraw}
 
 Returns the raw, original object of a Vue-created proxy.
 
@@ -232,7 +232,7 @@ Returns the raw, original object of a Vue-created proxy.
   console.log(toRaw(reactiveFoo) === foo) // true
   ```
 
-## markRaw()
+## markRaw()  {#markraw}
 
 Marks an object so that it will never be converted to a proxy. Returns the object itself.
 
@@ -279,7 +279,7 @@ Marks an object so that it will never be converted to a proxy. Returns the objec
 
   :::
 
-## effectScope()
+## effectScope()  {#effectscope}
 
 Creates an effect scope object which can capture the reactive effects (i.e. computed and watchers) created within it so that these effects can be disposed together. For detailed use cases of this API, please consult its corresponding [RFC](https://github.com/vuejs/rfcs/blob/master/active-rfcs/0041-reactivity-effect-scope.md).
 
@@ -311,7 +311,7 @@ Creates an effect scope object which can capture the reactive effects (i.e. comp
   scope.stop()
   ```
 
-## getCurrentScope()
+## getCurrentScope()  {#getcurrentscope}
 
 Returns the current active [effect scope](#effectscope) if there is one.
 
@@ -321,7 +321,7 @@ Returns the current active [effect scope](#effectscope) if there is one.
   function getCurrentScope(): EffectScope | undefined
   ```
 
-## onScopeDispose()
+## onScopeDispose()  {#onscopedispose}
 
 Registers a dispose callback on the current active [effect scope](#effectscope). The callback will be invoked when the associated effect scope is stopped.
 
