@@ -2,11 +2,11 @@
 
 ## 基本示例 {#basic-example}
 
-计算属性允许我们声明性地计算推导值。然而，在有些情况下，为了应对一些状态的变化，我们需要运行些“副作用”：例如更改 DOM，或者根据异步操作的结果，去修改另一处的状态。
+计算属性允许我们声明性地计算派生值。然而，在有些情况下，为了应对一些状态的变化，我们需要运行些“副作用”：例如更改 DOM，或者根据异步操作的结果，去修改另一处的状态。
 
 <div class="options-api">
 
-在选项式 API 中，我们可以使用 [`watch` 选项](/api/options-state.html#watch)在每次响应式 property 发生变化时触发一个函数。
+在选项式 API 中，我们可以使用 [`watch` 选项](/api/options-state.html#watch)，在每次响应式 property 发生变化时触发一个函数。
 
 ```js
 export default {
@@ -17,7 +17,7 @@ export default {
     }
   },
   watch: {
-    // whenever question changes, this function will run
+    // 每当 question 变化了，这个函数总会执行
     question(newQuestion, oldQuestion) {
       if (newQuestion.indexOf('?') > -1) {
         this.getAnswer()
@@ -65,7 +65,7 @@ export default {
 
 <div class="composition-api">
 
-在组合式 API 中，我们可以使用 [`watch` 函数](/api/reactivity-core.html#watch)在每次响应式状态发生变化时触发回调函数：
+在组合式 API 中，我们可以使用 [`watch` 函数](/api/reactivity-core.html#watch)。在每次响应式状态发生变化时触发回调函数：
 
 ```vue
 <script setup>
@@ -222,9 +222,9 @@ watch(
 
 <div class="options-api">
 
-## 积极侦听 {#eager-watchers}
+## 即时回调的侦听器 {#eager-watchers}
 
-`watch` 默认是懒侦听的：仅在侦听源变化时，才会执行回调。但在某些场景中，我们希望在创建侦听器时，立即执行一遍回调，或者说要积极地执行回调。举个例子，我们想请求一些初始数据，然后在相关状态更改时重新请求数据。
+`watch` 默认是懒执行的：仅在侦听源变化时，才会执行回调。但在某些场景中，我们希望在创建侦听器时，立即执行一遍回调。举个例子，我们想请求一些初始数据，然后在相关状态更改时重新请求数据。
 
 我们可以用一个对象来声明侦听器，这个对象有 `handler` 方法和 `immediate: true` 选项，这样便能强制回调函数立即执行：
 
@@ -236,7 +236,7 @@ export default {
       handler(newQuestion) {
         // 在组件实例创建时会立即调用
       },
-      // 强制积极执行回调
+      // 强制回调函数即时执行
       immediate: true
     }
   }
@@ -250,7 +250,7 @@ export default {
 
 ## `watchEffect()` \*\*
 
-`watch()` 是懒执行的：仅在侦听源变化时，才会执行回调。但在某些场景中，我们希望在创建侦听器时，立即执行一遍回调，或者说要积极地执行回调。举个例子，我们想请求一些初始数据，然后在相关状态更改时重新请求数据。我们可以这样写：
+`watch()` 是懒执行的：仅在侦听源变化时，才会执行回调。但在某些场景中，我们希望在创建侦听器时，立即执行一遍回调。举个例子，我们想请求一些初始数据，然后在相关状态更改时重新请求数据。我们可以这样写：
 
 ```js
 const url = ref('https://...')
