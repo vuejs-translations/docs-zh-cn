@@ -61,7 +61,7 @@ export default {
 }
 ```
 
-当你在赋值后再访问 `this.someObject`，此值已经是原来的 `original` 的一个响应式代理。**这与 Vue 2 中原始的 `newObject` 不会变为响应式完全不同：请确保始终通过 `this` 来访问响应式状态。**
+当你在赋值后再访问 `this.someObject`，此值已经是原来的 `newObject` 的一个响应式代理。**这与 Vue 2 中原始的 `newObject` 不会变为响应式完全不同：请确保始终通过 `this` 来访问响应式状态。**
 
 </div>
 
