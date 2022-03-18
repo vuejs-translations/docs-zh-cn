@@ -159,19 +159,19 @@
     }
   })
 
-  // mutating state's own properties is reactive
+  // 更改状态自身的属性是响应式的
   state.foo++
 
-  // ...but does not convert nested objects
+  // ...但下层嵌套对象不会被转为响应式
   isReactive(state.nested) // false
 
-  // NOT reactive
+  // 不是响应式的
   state.nested.bar++
   ```
 
 ## shallowReadonly()  {#shallowreadonly}
 
-Shallow version of [`readonly()`](./reactivity-core.html#readonly).
+[`readonly()`](./reactivity-core.html#readonly) 的浅层作用形式
 
 - **类型**
 
@@ -181,10 +181,10 @@ Shallow version of [`readonly()`](./reactivity-core.html#readonly).
 
 - **详细信息**
 
-  Unlike `readonly()`, there is no deep conversion: only root-level properties are made readonly. Property values are stored and exposed as-is - this also means properties with ref values will **not** be automatically unwrapped.
+  和 `readonly()` 不同，这里没有深层级的转换：只有跟根层级的属性变为了只读。属性值都会被原样存储和暴露，这也意味着值为 ref 的属性 **不会** 被自动解包了。
 
-  :::warning Use with Caution
-  Shallow data structures should only be used for root level state in a component. Avoid nesting it inside a deep reactive object as it creates a tree with inconsistent reactivity behavior which can be difficult to understand and debug.
+  :::warning 谨慎使用
+  浅层数据结构应该只用于组件中的根级状态。请避免将其嵌套在深层次的响应式对象中，因为它会创建一个具有不一致的响应行为的树，这可能很难理解和调试。
   :::
 
 - **示例**
@@ -197,19 +197,19 @@ Shallow version of [`readonly()`](./reactivity-core.html#readonly).
     }
   })
 
-  // mutating state's own properties will fail
+  // 更改状态自身的属性会失败
   state.foo++
 
-  // ...but works on nested objects
+  // ...但可以更改下层嵌套对象
   isReadonly(state.nested) // false
 
-  // works
+  // 这是可以通过的
   state.nested.bar++
   ```
 
 ## toRaw()  {#toraw}
 
-Returns the raw, original object of a Vue-created proxy.
+根据一个 Vue 创建的代理返回其原始对象。
 
 - **类型**
 
@@ -219,9 +219,9 @@ Returns the raw, original object of a Vue-created proxy.
 
 - **详细信息**
 
-  `toRaw()` can return the original object from proxies created by [`reactive()`](./reactivity-core.html#reactive), [`readonly()`](./reactivity-core.html#readonly), [`shallowReactive()`](#shallowreactive) or [`shallowReadonly()`](#shallowreadonly).
+  `toRaw()` 可以返回由 [`reactive()`](./reactivity-core.html#reactive)、[`readonly()`](./reactivity-core.html#readonly)、[`shallowReactive()`](#shallowreactive) 或者 [`shallowReadonly()`](#shallowreadonly) 创建的代理对应的源对象。
 
-  This is an escape hatch that can be used to temporarily read without incurring proxy access / tracking overhead or write without triggering changes. It is **not** recommended to hold a persistent reference to the original object. Use with caution.
+  这是一个可以用于临时读取而不引起代理访问/跟踪开销，或是写入而不触发更改的特殊方法。
 
 - **示例**
 
@@ -234,7 +234,7 @@ Returns the raw, original object of a Vue-created proxy.
 
 ## markRaw()  {#markraw}
 
-Marks an object so that it will never be converted to a proxy. Returns the object itself.
+将一个对象标记为不可被转为代理的对象。返回也是该对象。
 
 - **类型**
 
@@ -248,19 +248,19 @@ Marks an object so that it will never be converted to a proxy. Returns the objec
   const foo = markRaw({})
   console.log(isReactive(reactive(foo))) // false
 
-  // also works when nested inside other reactive objects
+  // 也适用于嵌套在其他响应性对象
   const bar = reactive({ foo })
   console.log(isReactive(bar.foo)) // false
   ```
 
-  :::warning Use with Caution
-  `markRaw()` and shallow APIs such as `shallowReactive()` allow you to selectively opt-out of the default deep reactive/readonly conversion and embed raw, non-proxied objects in your state graph. They can be used for various reasons:
+  :::warning 谨慎使用
+  `markRaw()` 和 `shallowReactive()` 这样的浅层式 API 是你可以有选择地 有选择地避开默认的深度响应/只读转换，并在状态关系谱中嵌入原始的、非代理的对象。它们可能用于各种各样的原因：
 
-  - Some values simply should not be made reactive, for example a complex 3rd party class instance, or a Vue component object.
+  - 有些值不应该是响应式的，例如复杂的第三方类实例或 Vue 组件对象。
 
-  - Skipping proxy conversion can provide performance improvements when rendering large lists with immutable data sources.
+  - 当呈现带有不可变数据源的大型列表时，跳过代理转换可以提供性能改进。
 
-  They are considered advanced because the raw opt-out is only at the root level, so if you set a nested, non-marked raw object into a reactive object and then access it again, you get the proxied version back. This can lead to **identity hazards** - i.e. performing an operation that relies on object identity but using both the raw and the proxied version of the same object:
+  这应该是一种进阶需求，因为只在根层访问能到原始值，所以如果你把一个嵌套的、没有标记的原始对象设置成一个反应式对象，然后再次访问它，你会得到代理的版本回来。这可能会导致**识别风险**，即是说执行一个依赖于对象标识的操作，但同时使用同一对象的原始版本和代理版本：
 
   ```js
   const foo = markRaw({
@@ -268,20 +268,20 @@ Marks an object so that it will never be converted to a proxy. Returns the objec
   })
 
   const bar = reactive({
-    // although `foo` is marked as raw, foo.nested is not.
+    // 尽管 `foo` 被标记为了原始对象，但 foo.nested 却没有
     nested: foo.nested
   })
 
   console.log(foo.nested === bar.nested) // false
   ```
 
-  Identity hazards are in general rare. However, to properly utilize these APIs while safely avoiding identity hazards requires a solid understanding of how the reactivity system works.
+  识别风险一般是很罕见的。然而，要正确使用这些 API，同时安全地避免这样的风险，需要你对响应性系统的工作方式有充分的了解。
 
   :::
 
 ## effectScope()  {#effectscope}
 
-Creates an effect scope object which can capture the reactive effects (i.e. computed and watchers) created within it so that these effects can be disposed together. For detailed use cases of this API, please consult its corresponding [RFC](https://github.com/vuejs/rfcs/blob/master/active-rfcs/0041-reactivity-effect-scope.md).
+创建一个 effect 作用域，可以捕获其中所创建的响应式依赖（例如计算属性和侦听器），这样捕获到的作用都可以一起处理。对于该 API 的使用细节，请查阅对应的 [RFC](https://github.com/vuejs/rfcs/blob/master/active-rfcs/0041-reactivity-effect-scope.md)。
 
 - **类型**
 
@@ -289,7 +289,7 @@ Creates an effect scope object which can capture the reactive effects (i.e. comp
   function effectScope(detached?: boolean): EffectScope
 
   interface EffectScope {
-    run<T>(fn: () => T): T | undefined // undefined if scope is inactive
+    run<T>(fn: () => T): T | undefined // 如果作用域不活跃就为 undefined
     stop(): void
   }
   ```
@@ -307,13 +307,13 @@ Creates an effect scope object which can capture the reactive effects (i.e. comp
     watchEffect(() => console.log('Count: ', doubled.value))
   })
 
-  // to dispose all effects in the scope
+  // 处理掉当前作用域内的所有 effect
   scope.stop()
   ```
 
 ## getCurrentScope()  {#getcurrentscope}
 
-Returns the current active [effect scope](#effectscope) if there is one.
+如果有的话，返回当前活跃的 [effect 作用域](#effectscope)。
 
 - **类型**
 
@@ -323,9 +323,9 @@ Returns the current active [effect scope](#effectscope) if there is one.
 
 ## onScopeDispose()  {#onscopedispose}
 
-Registers a dispose callback on the current active [effect scope](#effectscope). The callback will be invoked when the associated effect scope is stopped.
+在当前活动的 [effect 作用域](#effectscope) 上注册一个处置回调。这个回调函数会在相关的副作用范围停止时被调用。
 
-This method can be used as a non-component-coupled replacement of `onUnmounted` in reusable composition functions, since each Vue component's `setup()` function is also invoked in an effect scope.
+这个方法可以作为可重用的组合式函数中 `onUnmounted` 的替代品，它并不与组件耦合，而每一个 Vue 组件的 `setup()` 函数也是在一个 effect 作用域中调用的。
 
 - **类型**
 
