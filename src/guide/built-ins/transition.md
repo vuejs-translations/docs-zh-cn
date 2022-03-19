@@ -67,7 +67,7 @@ Vue 提供了两个内置组件，可以帮助你制作基于状态变化的过�
 
 当一个 `<Transition>` 组件中的元素被插入或移除时，会发生下面这些事情：
 
-1. Vue 会自动检测目标元素是否应用了 CSS 过渡或动画。如果是，则一些 [CSS 过渡 class](#transition-classes)会在适当的时机被添加和移除。
+1. Vue 会自动检测目标元素是否应用了 CSS 过渡或动画。如果是，则一些 [CSS 过渡 class](#transition-classes) 会在适当的时机被添加和移除。
 
 2. 如果有作为监听器的 [JavaScript 钩子](#javascript-hooks)，这些钩子函数会在适当时机被调用。
 
@@ -428,9 +428,9 @@ export default {
 
 </div>
 
-这些钩子可以与 CSS 过渡/动画结合使用，也可以单独使用。
+这些钩子可以与 CSS 过渡或动画结合使用，也可以单独使用。
 
-在使用仅由 JavaScript 执行的动画时，最好是添加一个 `:css="false"` prop。这显式地向 Vue 表明跳过 CSS 过渡的自动探测。除了性能稍好一些之外，还可以防止 CSS 规则意外地干扰过渡。
+在使用仅由 JavaScript 执行的动画时，最好是添加一个 `:css="false"` prop。这显式地向 Vue 表明跳过对 CSS 过渡的自动探测。除了性能稍好一些之外，还可以防止 CSS 规则意外地干扰过渡。
 
 ```vue-html{3}
 <Transition
@@ -441,7 +441,7 @@ export default {
 </Transition>
 ```
 
-在有了 `:css="false"` 后，我们就全权自己负责控制什么时候过渡结束了。这种情况下对于 `@enter` 和 `@leave` 钩子来说，回调函数 `done` 就是必须的。否则，钩子将被同步调用，过渡将立即完成。
+在有了 `:css="false"` 后，我们就自己全权负责控制什么时候过渡结束了。这种情况下对于 `@enter` 和 `@leave` 钩子来说，回调函数 `done` 就是必须的。否则，钩子将被同步调用，过渡将立即完成。
 
 这里是使用 [GreenSock 库](https://greensock.com/)执行动画的一个示例，你也可以使用任何你想要的库，比如 [Anime.js](https://animejs.com/) 或者 [Motion One](https://motion.dev/)。
 
@@ -511,9 +511,9 @@ export default {
 
 ```vue-html
 <Transition>
-  <button v-if="docState === 'saved'">编辑</button>
-  <button v-else-if="docState === 'edited'">保存</button>
-  <button v-else-if="docState === 'editing'">取消</button>
+  <button v-if="docState === 'saved'">Edit</button>
+  <button v-else-if="docState === 'edited'">Save</button>
+  <button v-else-if="docState === 'editing'">Cancel</button>
 </Transition>
 ```
 
@@ -564,7 +564,7 @@ export default {
 
 ## 动态过渡 {#dynamic-transitions}
 
-`<Transition>` 的 props (比如 `name`) 也可以是动态的！这让我们可以根据状态变化动态地应用不同类型的过渡：
+`<Transition>` 的 prop (比如 `name`) 也可以是动态的！这让我们可以根据状态变化动态地应用不同类型的过渡：
 
 ```vue-html
 <Transition :name="transitionName">
@@ -572,7 +572,7 @@ export default {
 </Transition>
 ```
 
-当你使用 Vue 的过渡类约定规则定义了 CSS 过渡/动画，并想在它们之间切换时，这可能很有用。
+当你使用 Vue 的过渡 class 约定规则定义了 CSS 过渡或动画，并想在它们之间切换时，这可能很有用。
 
 你也可以根据你的组件的当前状态在 JavaScript 过渡钩子中应用不同的行为。在此篇的最后，我们可以得出结论，创建动态过渡的终极方式是创建[可重用的过渡组件](#reusable-transitions)，这些组件接受 prop 来改变过渡的性质。现在在编写动画时，就真的只有你想不到，没有做不到的了。
 
