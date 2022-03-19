@@ -36,7 +36,7 @@ Vue 提供了两个内置组件，可以帮助你制作基于状态变化的过�
 ```
 
 ```css
-/* 下面我们会解释这些类是做什么的 */
+/* 下面我们会解释这些 class 是做什么的 */
 .v-enter-active,
 .v-leave-active {
   transition: opacity 0.5s ease;
@@ -75,9 +75,9 @@ Vue 提供了两个内置组件，可以帮助你制作基于状态变化的过�
 
 ## 基于 CSS 的过渡 {#css-based-transitions}
 
-### 用于过渡的 Class {#transition-classes}
+### CSS 过渡 class {#transition-classes}
 
-一共有 6 个应用于进入与离开过渡效果的 class。
+一共有 6 个应用于进入与离开过渡效果的 CSS class。
 
 ![过渡图示](./images/transition-classes.png)
 
@@ -213,9 +213,9 @@ Vue 提供了两个内置组件，可以帮助你制作基于状态变化的过�
 
 </div>
 
-### 自定义过渡 Class {#custom-transition-classes}
+### 自定义过渡 class {#custom-transition-classes}
 
-你也可以向 `<Transition>` 传递以下的 prop 来指定自定义的过渡 class：
+你也可以向 `<Transition>` 传递以下的 props 来指定自定义的过渡 class：
 
 - `enter-from-class`
 - `enter-active-class`
@@ -224,7 +224,7 @@ Vue 提供了两个内置组件，可以帮助你制作基于状态变化的过�
 - `leave-active-class`
 - `leave-to-class`
 
-它们将会覆盖对应阶段的默认 class。这个功能在你想要在 Vue 的动画机制下集成其他的第三方 CSS 动画库时非常有用，比如 [Animate.css](https://daneden.github.io/animate.css/)：
+你传入的这些 class 会覆盖相应阶段的默认 class 名。这个功能在你想要在 Vue 的动画机制下集成其他的第三方 CSS 动画库时非常有用，比如 [Animate.css](https://daneden.github.io/animate.css/)：
 
 ```vue-html
 <!-- 假设你已经在页面中引入了 Animate.css -->
@@ -260,7 +260,7 @@ Vue 需要附加事件侦听器，以便知道过渡何时结束。可以是 `tr
 
 ### 深层级过渡与显式过渡时间 {#nested-transitions-and-explicit-transition-durations}
 
-尽管过渡类仅能应用在 `<Transition>` 的直接子元素上，我们还是可以使用嵌套的 CSS 选择器，使嵌套元素发生过渡。
+尽管过渡 class 仅能应用在 `<Transition>` 的直接子元素上，我们还是可以使用深层级的 CSS 选择器，使深层级的元素发生过渡。
 
 ```vue-html
 <Transition name="nested">
@@ -460,7 +460,7 @@ export default {
 
 ## 可重用过渡 {#reusable-transitions}
 
-得益于 Vue 的组件系统，过渡是可以被重用的。要创建一个可被重用的过渡，我们需要为 `<Transition>` 组件创建一个包裹组件，并向内传入插槽内容：
+得益于 Vue 的组件系统，过渡是可以被重用的。要创建一个可被重用的过渡，我们需要为 `<Transition>` 组件创建一个包装组件，并向内传入插槽内容：
 
 ```vue{5}
 <!-- MyTransition.vue -->
@@ -469,7 +469,7 @@ export default {
 </script>
 
 <template>
-  <!-- 包裹内置的 Transition 组件 -->
+  <!-- 包装内置的 Transition 组件 -->
   <Transition
     name="my-transition"
     @enter="onEnter"
@@ -569,7 +569,7 @@ export default {
 ```vue-html
 <Transition :name="transitionName">
   <!-- ... -->
-</Transition>
+</Transition>Fallthrough
 ```
 
 当你使用 Vue 的过渡 class 约定规则定义了 CSS 过渡或动画，并想在它们之间切换时，这可能很有用。

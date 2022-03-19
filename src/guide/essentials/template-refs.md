@@ -78,7 +78,7 @@ watchEffect(() => {
   if (input.value) {
     input.value.focus()
   } else {
-    // 此时还未挂载，或此元素已经被卸载（例如经过 v-if 控制）
+    // 此时还未挂载，或此元素已经被卸载（例如通过 v-if 控制）
   }
 })
 ```
@@ -160,7 +160,7 @@ export default {
 除了使用字符串值作名字，`ref` attribute 还可以绑定为一个函数，会在每次组件更新时都被调用。函数接受该元素引用作为第一个参数：
 
 ```vue-html
-<input :ref="(el) => { /* assign el to a property or ref */ }">
+<input :ref="(el) => { /* 将 el 分配给 property 或 ref */ }">
 ```
 
 如果你正在使用一个动态的 `:ref` 绑定，我们也可以传一个函数。当元素卸载时，这个 `el` 参数会是 `null`。你当然也可以使用一个方法而不是内联函数。
@@ -181,7 +181,7 @@ import Child from './Child.vue'
 const child = ref(null)
 
 onMounted(() => {
-  // child.value 为 <Child /> 这个组件实例
+  // child.value 是 <Child /> 组件的实例
 })
 </script>
 
@@ -202,7 +202,7 @@ export default {
     Child
   },
   mounted() {
-    // this.$refs.child 为 <Child /> 这个组件实例
+    // this.$refs.child 是 <Child /> 组件的实例
   }
 }
 </script>
@@ -234,7 +234,7 @@ defineExpose({
 </script>
 ```
 
-当父组件通过模板 ref 获取到了该组件的实例时，得到的实例类型为 `{ a: number, b: number }` (ref 都会自动解套，和一般的实例一样)。
+当父组件通过模板 ref 获取到了该组件的实例时，得到的实例类型为 `{ a: number, b: number }` (ref 都会自动解包，和一般的实例一样)。
 
 你也可以看看：[为组件的模板 ref 标注类型](/guide/typescript/composition-api.html#typing-component-template-refs) <sup class="vt-badge ts" />
 

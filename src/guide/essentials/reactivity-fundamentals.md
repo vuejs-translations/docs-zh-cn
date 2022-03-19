@@ -61,7 +61,7 @@ export default {
 }
 ```
 
-当你在赋值后再访问 `this.someObject`，此值已经是原来的 `original` 的一个响应式代理。**这与 Vue 2 中原始的 `newObject` 不会变为响应式完全不同：请确保始终通过 `this` 来访问响应式状态。**
+当你在赋值后再访问 `this.someObject`，此值已经是原来的 `newObject` 的一个响应式代理。**这与 Vue 2 中原始的 `newObject` 不会变为响应式完全不同：请确保始终通过 `this` 来访问响应式状态。**
 
 </div>
 
@@ -114,7 +114,7 @@ export default {
       state.count++
     }
 
-    // 不要忘了同时暴露 increment 函数
+    // 不要忘记同时暴露 increment 函数
     return {
       state,
       increment
@@ -348,7 +348,7 @@ console.log(proxy.nested === raw) // false
    ```js
    let state = reactive({ count: 0 })
 
-   // 这将不会按照你的期望工作
+   // 这行不通！
    state = reactive({ count: 1 })
    ```
 
@@ -357,7 +357,7 @@ console.log(proxy.nested === raw) // false
    ```js
    const state = reactive({ count: 0 })
 
-   // n 是一个局部变量，同 state.count 
+   // n 是一个局部变量，同 state.count
    // 失去响应性连接
    let n = state.count
    // 不影响原来的状态
@@ -444,7 +444,7 @@ function increment() {
 
 <template>
   <button @click="increment">
-    {{ count }} <!-- no .value needed -->
+    {{ count }} <!-- 无需 .value -->
   </button>
 </template>
 ```
@@ -459,7 +459,7 @@ function increment() {
 const object = { foo: ref(1) }
 ```
 
-The following expression will **NOT** work as expected:
+下面的表达式将**不会**像预期的那样工作：
 
 ```vue-html
 {{ object.foo }} <!-- 无法自动解包 -->
@@ -512,7 +512,7 @@ console.log(state.count) // 2
 console.log(count.value) // 1
 ```
 
-只有当嵌套在一个深层反应式对象内时，才会发生 ref 解包。当起作为 [浅层响应式对象](/api/reactivity-advanced.html#shallowreactive) 的属性被访问时不会解套。
+只有当嵌套在一个深层反应式对象内时，才会发生 ref 解包。当起作为[浅层响应式对象](/api/reactivity-advanced.html#shallowreactive)的属性被访问时不会解包。
 
 #### 数组和集合类型的 ref 解包 {#ref-unwrapping-in-arrays-and-collections}
 
@@ -576,7 +576,7 @@ export default {
 
 <div class="composition-api">
 
-### 响应性语法糖 <sup class="vt-badge experimental" /> \*\* {#reactivity-transform}
+## 响应性语法糖 <sup class="vt-badge experimental" /> \*\* {#reactivity-transform}
 
 不得不对 ref 使用 `.value` 是一个受限于 JavaScript 语言限制的缺点。不过在编译期间，自动在合适的位置上添加上 `.value` 可以改进开发体验。Vue 提供了一个语法糖，可以在编译时作相应转换，使得我们可以像这样书写上面的计数器示例：
 
@@ -585,7 +585,7 @@ export default {
 let count = $ref(0)
 
 function increment() {
-  // no need for .value
+  // 无需 .value
   count++
 }
 </script>

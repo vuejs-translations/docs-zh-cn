@@ -1,20 +1,20 @@
-# 类与样式绑定 {#class-and-style-bindings}
+# Class 与 Style 绑定 {#class-and-style-bindings}
 
-数据绑定的一个常见需求场景是操纵元素的 CSS 类列表和内联样式。因为它们都是 attribute，我们可以使用 `v-bind` 来做这件事：我们只需要通过表达式计算出一个字符串作为最终结果即可。然而频繁地连接字符串让人很闹心，也很容易出错。因此，Vue 专门为 `class` 和 `style` 的 `v-bind` 用法提供了特殊的功能增强。除了字符串外，表达式的结果还可以是对象或数组。
+数据绑定的一个常见需求场景是操纵元素的 CSS class 列表和内联样式。因为它们都是 attribute，我们可以使用 `v-bind` 来做这件事：我们只需要通过表达式计算出一个字符串作为最终结果即可。然而频繁地连接字符串让人很闹心，也很容易出错。因此，Vue 专门为 `class` 和 `style` 的 `v-bind` 用法提供了特殊的功能增强。除了字符串外，表达式的结果还可以是对象或数组。
 
-## 绑定 HTML 类 {#binding-html-classes}
+## 绑定 HTML class {#binding-html-classes}
 
 <div class="options-api">
-  <VueSchoolLink href="https://vueschool.io/lessons/dynamic-css-classes-with-vue-3" title="动态 CSS 类 - 免费 Vue.js 课程"/>
+  <VueSchoolLink href="https://vueschool.io/lessons/dynamic-css-classes-with-vue-3" title="动态 CSS class - 免费 Vue.js 课程"/>
 </div>
 
 <div class="composition-api">
-  <VueSchoolLink href="https://vueschool.io/lessons/vue-fundamentals-capi-dynamic-css-classes-with-vue" title="动态 CSS 类 - 免费 Vue.js 课程"/>
+  <VueSchoolLink href="https://vueschool.io/lessons/vue-fundamentals-capi-dynamic-css-classes-with-vue" title="动态 CSS class - 免费 Vue.js 课程"/>
 </div>
 
 ### 绑定对象 {#binding-to-objects}
 
-我们可以给 `:class` (`v-bind:class` 的缩写) 传递一个对象来动态切换类：
+我们可以给 `:class` (`v-bind:class` 的缩写) 传递一个对象来动态切换 class：
 
 ```vue-html
 <div :class="{ active: isActive }"></div>
@@ -22,7 +22,7 @@
 
 上面的语法表示 `active` 是否存在取决于数据属性 `isActive` 的[真假值](https://developer.mozilla.org/en-US/docs/Glossary/Truthy)。
 
-你可以在对象中写多个字段来操作多个类。此外，`:class` 指令也可以和一般的 `class` attribute 共存。所以可以有下面这样的状态：
+你可以在对象中写多个字段来操作多个 class。此外，`:class` 指令也可以和一般的 `class` attribute 共存。所以可以有下面这样的状态：
 
 <div class="composition-api">
 
@@ -61,7 +61,7 @@ data() {
 <div class="static active"></div>
 ```
 
-当 `isActive` 或者 `hasError` 改变时，类列表会随之更新。举个例子，如果 `hasError` 变为 `true`，类列表也会变成 `"static active text-danger"`。
+当 `isActive` 或者 `hasError` 改变时，class 列表会随之更新。举个例子，如果 `hasError` 变为 `true`，class 列表也会变成 `"static active text-danger"`。
 
 绑定的对象也不一定写成内联的形式：
 
@@ -138,7 +138,7 @@ computed: {
 
 ### 绑定数组 {#binding-to-arrays}
 
-我们可以给 `:class` 绑定一个数组以应用一系列 CSS 类：
+我们可以给 `:class` 绑定一个数组以应用一系列 CSS class：
 
 <div class="composition-api">
 
@@ -172,7 +172,7 @@ data() {
 <div class="active text-danger"></div>
 ```
 
-如果你也想在数组中按条件触发某个类，你可以使用三元表达式：
+如果你也想在数组中按条件触发某个 class，你可以使用三元表达式：
 
 ```vue-html
 <div :class="[isActive ? activeClass : '', errorClass]"></div>
@@ -180,7 +180,7 @@ data() {
 
 `errorClass` 会一直存在，但 `activeClass` 只会在 `isActive` 为真时才存在。
 
-然而，这可能在有多个依赖条件的类时会有些冗长。因此也可以在数组中使用对象语法：
+然而，这可能在有多个依赖条件的 class 时会有些冗长。因此也可以在数组中使用对象语法：
 
 ```vue-html
 <div :class="[{ active: isActive }, errorClass]"></div>
@@ -190,19 +190,19 @@ data() {
 
 > 本节假设你已经有 [Vue 组件](/guide/essentials/component-basics)的知识基础。如果没有，你也可以暂时跳过，以后再阅读。
 
-对于只有一个根元素的组件，当你使用了 `class` attribute 时，这些类会被添加到根元素上，并与该元素上已有的类合并。
+对于只有一个根元素的组件，当你使用了 `class` attribute 时，这些 class 会被添加到根元素上，并与该元素上已有的 class 合并。
 
 举个例子，如果你声明了一个组件名叫 `my-component`，模板如下：
 
 ```vue-html
-<!-- child component template -->
+<!-- 子组件模板 -->
 <p class="foo bar">Hi!</p>
 ```
 
-在使用时添加一些类：
+在使用时添加一些 class：
 
 ```vue-html
-<!-- when using the component -->
+<!-- 在使用组件时 -->
 <my-component class="baz boo"></my-component>
 ```
 
@@ -212,7 +212,7 @@ data() {
 <p class="foo bar baz boo">Hi</p>
 ```
 
-类的绑定也是同样的：
+Class 的绑定也是同样的：
 
 ```vue-html
 <my-component :class="{ active: isActive }"></my-component>
@@ -224,10 +224,10 @@ data() {
 <p class="foo bar active">Hi</p>
 ```
 
-如果你的组件有多个根元素，你将需要指定哪个根元素来接收这个类。你可以通过组件的 `$attrs` property 来实现指定：
+如果你的组件有多个根元素，你将需要指定哪个根元素来接收这个 class。你可以通过组件的 `$attrs` property 来实现指定：
 
 ```vue-html
-<!-- my-component template using $attrs -->
+<!-- my-component 模板使用 $attrs 时 -->
 <p :class="$attrs.class">Hi!</p>
 <span>This is a child component</span>
 ```
@@ -337,4 +337,4 @@ data() {
 <div :style="{ display: ['-webkit-box', '-ms-flexbox', 'flex'] }"></div>
 ```
 
-数组仅会渲染游览器支持的最后一个值。在这个示例中，在支持不需要特别加前缀的浏览器中都会渲染为 `display: flex` 的弹性盒子。
+数组仅会渲染浏览器支持的最后一个值。在这个示例中，在支持不需要特别加前缀的浏览器中都会渲染为 `display: flex` 的弹性盒子。

@@ -2,11 +2,11 @@
 import gsap from 'gsap'
 
 const list = [
-  { msg: 'JavaScript' },
-  { msg: 'TypeScript' },
-  { msg: 'Vue.js' },
-  { msg: '开源' },
-  { msg: '前端' }
+  { msg: 'Bruce Lee' },
+  { msg: 'Jackie Chan' },
+  { msg: 'Chuck Norris' },
+  { msg: 'Jet Li' },
+  { msg: 'Kung Fury' }
 ]
 
 let query = $ref('')
@@ -41,7 +41,7 @@ function onLeave(el, done) {
 
 <template>
   <div class="demo" style="height: 265px">
-    <input v-model="query" style="margin-bottom: 20px" placeholder="输入内容来过滤列表" />
+    <input v-model="query" style="margin-bottom: 20px" />
     <TransitionGroup
       tag="ul"
       :css="false"

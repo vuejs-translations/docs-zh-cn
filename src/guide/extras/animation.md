@@ -7,11 +7,11 @@ import AnimateWatcher from './demos/AnimateWatcher.vue'
 
 # 动画技巧 {#animation-techniques}
 
-Vue 提供了 [`<Transition>`](/guide/built-ins/transition.html) 和 [`<TransitionGroup>`](/guide/built-ins/transition-group.html) 组件来处理进入、离开或是列表的过渡。但是在网页上制作动画的方式非常多，即使是在一个 Vue 应用中。这里我们会探讨一些别的技巧。
+Vue 提供了 [`<Transition>`](/guide/built-ins/transition.html) 和 [`<TransitionGroup>`](/guide/built-ins/transition-group.html) 组件来处理进入、离开和列表的过渡。然而，在网页上制作动画的方式非常多，即使是在一个 Vue 应用中也是如此。这里我们会探讨一些别的技巧。
 
-## 基于 CSS 类的动画 {#class-based-animations}
+## 基于 CSS class 的动画 {#class-based-animations}
 
-对于那些不是正在进入或离开 DOM 的元素，我们可以通过给它们动态添加 CSS 类来触发动画：
+对于那些不是正在进入或离开 DOM 的元素，我们可以通过给它们动态添加 CSS class 来触发动画：
 
 <div class="composition-api">
 
@@ -51,8 +51,8 @@ export default {
 
 ```vue-html
 <div :class="{ shake: notActivated }">
-  <button @click="warnDisabled">点击此处</button>
-  <span v-if="disabled">此功能未激活。</span>
+  <button @click="warnDisabled">Click me</button>
+  <span v-if="disabled">This feature is disabled!</span>
 </div>
 ```
 
@@ -86,7 +86,7 @@ export default {
 
 ## 状态驱动的动画 {#state-driven-animations}
 
-某些过渡效果可以通过插值来应用，例如，通过在交互发生时将样式绑定到元素。看看下面这个示例：
+有些过渡效果可以通过动态地插值来实现，例如，在交互时动态地绑定样式到元素，以这个例子为例：
 
 <div class="composition-api">
 
@@ -123,7 +123,7 @@ export default {
   :style="{ backgroundColor: `hsl(${x}, 80%, 50%)` }"
   class="movearea"
 >
-  <p>移动鼠标穿过这个 div...</p>
+  <p>Move your mouse across this div...</p>
   <p>x: {{ x }}</p>
 </div>
 ```
@@ -181,7 +181,7 @@ export default {
 </div>
 
 ```vue-html
-输入一个数字：<input v-model.number="number" />
+Type a number: <input v-model.number="number" />
 <p>{{ tweened.number.toFixed(0) }}</p>
 ```
 

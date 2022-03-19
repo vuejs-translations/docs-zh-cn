@@ -87,7 +87,7 @@ const __temp = useMouse(),
 console.log(x.value, y.value)
 ```
 
-请注意如果 `x` 已经是一个 ref，`toRef(__temp, 'x')` 则会简单地返回它本身，而不会再创建新的 ref。如果一个被解构的值不是 ref (例如是一个函数)，也仍然可以使用，这个值会被包裹进一个 ref，因此其他代码都会正常工作。
+请注意如果 `x` 已经是一个 ref，`toRef(__temp, 'x')` 则会简单地返回它本身，而不会再创建新的 ref。如果一个被解构的值不是 ref (例如是一个函数)，也仍然可以使用，这个值会被包装进一个 ref，因此其他代码都会正常工作。
 
 对 `$()` 的解构在响应式对象**和**包含数个 ref 的对象都可用。
 
@@ -180,7 +180,7 @@ let count = ref(0)
 trackChange(count.value)
 ```
 
-这里的 `count.value` 是以一个 number 类型值的形式传入，然而 `trackChange` 期望接收的是一个真正的 ref。要解决这个问题，可以在将 `count` 作为参数传入之前，用 `$$()` 包裹：
+这里的 `count.value` 是以一个 number 类型值的形式传入，然而 `trackChange` 期望接收的是一个真正的 ref。要解决这个问题，可以在将 `count` 作为参数传入之前，用 `$$()` 包装：
 
 ```diff
 let count = $ref(0)
