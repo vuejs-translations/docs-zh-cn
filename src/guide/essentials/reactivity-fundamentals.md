@@ -512,7 +512,7 @@ console.log(state.count) // 2
 console.log(count.value) // 1
 ```
 
-只有当嵌套在一个深层响应式对象内时，才会发生 ref 解包。当起作为[浅层响应式对象](/api/reactivity-advanced.html#shallowreactive)的property被访问时不会解包。
+只有当嵌套在一个深层响应式对象内时，才会发生 ref 解包。当起作为[浅层响应式对象](/api/reactivity-advanced.html#shallowreactive)的 property 被访问时不会解包。
 
 #### 数组和集合类型的 ref 解包 {#ref-unwrapping-in-arrays-and-collections}
 
