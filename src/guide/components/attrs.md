@@ -110,12 +110,6 @@ export default {
 
 - 像 `@click` 这样的一个 `v-on` 事件监听器将在此对象下被暴露为一个函数 `$attrs.onClick`。
 
-一些额外的注意点：
-
-- 跟 props 不同的是，透传 attributes 在 JS 中会保留其原本的大小写格式。比如一个名为 `foo-bar` 的 attribute 需要用 `$attrs['foo-bar']` 这样的形式来获取。
-
-- 一个 `v-on` 侦听函数，比如 `@click`，会在对象上以 `$attrs.onClick` 的形式暴露。
-
 现在我们要再次使用一下[之前小节](#attribute-inheritance)中的 `<MyButton>` 组件例子。有时候我们可能为了样式，需要在 `<button>` 元素外包装一层 `<div>`：
 
 ```vue-html
