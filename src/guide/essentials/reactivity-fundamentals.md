@@ -375,7 +375,7 @@ console.log(proxy.nested === raw) // false
 
 ## `ref()` 定义响应式变量 \*\* {#reactive-variables-with-ref}
 
-为了解决 `reactive()` 带来的限制，Vue也提供了一个 [`ref()`](/api/reactivity-core.html#ref) 方法来允许我们创建可以使用任何值类型的响应式 **ref**：
+为了解决 `reactive()` 带来的限制，Vue 也提供了一个 [`ref()`](/api/reactivity-core.html#ref) 方法来允许我们创建可以使用任何值类型的响应式 **ref**：
 
 ```js
 import { ref } from 'vue'
