@@ -451,7 +451,7 @@ function increment() {
 
 [在 Playground 尝试一下](https://sfc.vuejs.org/#eyJBcHAudnVlIjoiPHNjcmlwdCBzZXR1cD5cbmltcG9ydCB7IHJlZiB9IGZyb20gJ3Z1ZSdcblxuY29uc3QgY291bnQgPSByZWYoMClcblxuZnVuY3Rpb24gaW5jcmVtZW50KCkge1xuICBjb3VudC52YWx1ZSsrXG59XG48L3NjcmlwdD5cblxuPHRlbXBsYXRlPlxuICA8YnV0dG9uIEBjbGljaz1cImluY3JlbWVudFwiPnt7IGNvdW50IH19PC9idXR0b24+XG48L3RlbXBsYXRlPiIsImltcG9ydC1tYXAuanNvbiI6IntcbiAgXCJpbXBvcnRzXCI6IHtcbiAgICBcInZ1ZVwiOiBcImh0dHBzOi8vc2ZjLnZ1ZWpzLm9yZy92dWUucnVudGltZS5lc20tYnJvd3Nlci5qc1wiXG4gIH1cbn0ifQ==)
 
-请注意，解包过程仅作用于顶层 property，访问深层级的 ref 则不会解包：
+请注意，仅当 ref 是模板渲染上下文的顶层 property 时才适用自动“解包”。 例如， foo 是顶层 property，但 object.foo 不是。
 
 所以我们给出下面这样的对象：
 
@@ -462,7 +462,7 @@ const object = { foo: ref(1) }
 下面的表达式将**不会**像预期的那样工作：
 
 ```vue-html
-{{ object.foo }} <!-- 无法自动解包 -->
+{{ object.foo + 1 }}
 ```
 
 渲染的结果会是一个 `[object Object]`，因为 `object.foo` 是一个 ref 对象。我们可以通过让 `foo` 成为顶层 property 来解决这个问题：
@@ -472,10 +472,10 @@ const { foo } = object
 ```
 
 ```vue-html
-{{ foo }} <!-- 自动解包 -->
+{{ foo + 1 }}
 ```
 
-现在 `foo` 将被包装成预期的样子。
+现在渲染结果将是 2。
 
 需要注意的是，如果一个 ref 是文本插值（即一个 <code v-pre>{{ }}</code> 符号）计算的最终值，它也将被解包。因此下面的渲染结果将为 `1`：
 
