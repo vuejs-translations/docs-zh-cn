@@ -397,7 +397,7 @@ console.log(count.value) // 1
 
 你也可以看看：[为 ref 标注类型](/guide/typescript/composition-api.html#typing-ref) <sup class="vt-badge ts" />
 
-和响应式对象的property类似，ref 的 `.value` property也是响应式的。同时，当值为对象类型时，会用 `reactive()` 自动转换它的 `.value`。
+和响应式对象的 property 类似，ref 的 `.value` property 也是响应式的。同时，当值为对象类型时，会用 `reactive()` 自动转换它的 `.value`。
 
 一个包含对象类型值的 ref 可以响应式地替换整个对象：
 
