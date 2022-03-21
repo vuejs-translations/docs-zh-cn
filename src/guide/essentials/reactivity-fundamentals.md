@@ -352,7 +352,7 @@ console.log(proxy.nested === raw) // false
    state = reactive({ count: 1 })
    ```
 
-   同时这也意味着当指定或解构一个响应式对象的property为局部变量，或者把property传入一个方法，我们都会失去响应性连接：
+   同时这也意味着当指定或解构一个响应式对象的 property 为局部变量，或者把 property 传入一个方法，我们都会失去响应性连接：
 
    ```js
    const state = reactive({ count: 0 })
