@@ -516,7 +516,7 @@ console.log(count.value) // 1
 
 #### 数组和集合类型的 ref 解包 {#ref-unwrapping-in-arrays-and-collections}
 
-不像响应式对象，当ref作为响应式数组或像`Map`这种原生集合类型的元素被访问时，不会进行解包。
+不像响应式对象，当 ref 作为响应式数组或像 `Map` 这种原生集合类型的元素被访问时，不会进行解包。
 
 ```js
 const books = reactive([ref('Vue 3 Guide')])
