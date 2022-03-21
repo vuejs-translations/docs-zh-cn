@@ -225,7 +225,7 @@ onMounted(() => {
 <div class="vt-box-container next-steps">
   <a class="vt-box" href="/tutorial/">
     <p class="next-steps-link">尝试教程</p>
-    <p class="next-steps-caption">适合喜欢边动手边学得读者。</p>
+    <p class="next-steps-caption">适合喜欢边动手边学的读者。</p>
   </a>
   <a class="vt-box" href="/guide/quick-start.html">
     <p class="next-steps-link">继续阅读该指南</p>
