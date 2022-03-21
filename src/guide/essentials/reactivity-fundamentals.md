@@ -383,7 +383,7 @@ import { ref } from 'vue'
 const count = ref(0)
 ```
 
-`ref()` 从参数中获取到值，将其包装为一个带 `.value` property的ref对象：
+`ref()` 从参数中获取到值，将其包装为一个带 `.value` property 的 ref 对象：
 
 ```js
 const count = ref(0)
