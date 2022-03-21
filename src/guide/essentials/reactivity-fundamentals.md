@@ -501,7 +501,7 @@ state.count = 1
 console.log(count.value) // 1
 ```
 
-如果将一个新的 ref 赋值给一个关联了已有 ref 的property，那么它会替换掉旧的 ref：
+如果将一个新的 ref 赋值给一个关联了已有 ref 的 property，那么它会替换掉旧的 ref：
 
 ```js
 const otherCount = ref(2)
