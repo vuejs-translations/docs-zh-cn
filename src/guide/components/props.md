@@ -176,7 +176,7 @@ export default {
 
 ### 传递不同的值类型 {#passing-different-value-types}
 
-在上述的两个例子中，我们只传入了字符串值，但实际上_任何_类型的值都可以作为一个 prop。
+在上述的两个例子中，我们只传入了字符串值，但实际上*任何* 类型的值都可以作为一个 prop。
 
 #### Number {#number}
 
