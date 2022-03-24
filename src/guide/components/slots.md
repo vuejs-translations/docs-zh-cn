@@ -49,7 +49,7 @@
 
 </div>
 
-通过使用插槽，让 `<FancyButton>` 仅负责渲染对外的 `<button>` （以及相应的样式），而内部的内容由父组件提供。
+通过使用插槽，让 `<FancyButton>` 仅负责渲染外层的 `<button>` （以及相应的样式），而内部的内容由父组件提供。
 
 通过和下面的 JavaScript 函数作对比，来以另一种方式理解插槽：
 
@@ -163,7 +163,7 @@ Vue 组件的插槽机制是受[原生 Web Component `<slot>` 元素](https://de
 
 ## 具名插槽 {#named-slots}
 
-有时一个组件中有多个插槽的插口是很有用的。举个例子，在一个 `<BaseLayout>` 组件中，有如下这样的模板：
+有时在一个组件中包含多个插槽的插口是很有用的。举个例子，在一个 `<BaseLayout>` 组件中，有如下这样的模板：
 
 ```vue-html
 <div class="container">
@@ -179,7 +179,7 @@ Vue 组件的插槽机制是受[原生 Web Component `<slot>` 元素](https://de
 </div>
 ```
 
-对于这种场景，`<slot>` 元素可以有一个特殊的 attribute `name`，用来给各个插槽分配唯一ID，确定最终每一处会渲染的内容：
+对于这种场景，`<slot>` 元素可以有一个特殊的 attribute `name`，用来给各个插槽分配唯一的 ID，以确定每一处要渲染的内容：
 
 ```vue-html
 <div class="container">
@@ -197,7 +197,7 @@ Vue 组件的插槽机制是受[原生 Web Component `<slot>` 元素](https://de
 
 没有提供 `name` 的 `<slot>` 插口会隐式地命名为“default”。
 
-在父组件中使用 `<BaseLayout>` 时，我们需要一种方式将多个插槽内容传入各自目标插槽的插口。此时就需要用到**具名插槽**了：
+在父组件中使用 `<BaseLayout>` 时，我们需要一种方式将多个插槽内容传入到各自目标插槽的插口。此时就需要用到**具名插槽**了：
 
 要为具名插槽传入内容，我们需要使用一个含 `v-slot` 指令的 `<template>` 元素，并将目标插槽的名字传给该指令：
 
