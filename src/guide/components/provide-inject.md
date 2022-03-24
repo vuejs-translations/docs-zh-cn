@@ -386,5 +386,5 @@ export default {
   
 <small>
 __译者注__
-<a id="footnote-1"></a>[1] 在本章及后续章节中，<strong>“供给”</strong>将成为对应 Provide 的一个专有概念
+<a id="footnote-1"></a>[1] 在本章及后续章节中，“**提供**”将成为对应 Provide 的一个专有概念
 </small>
