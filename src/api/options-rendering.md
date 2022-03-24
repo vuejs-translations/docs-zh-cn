@@ -51,7 +51,7 @@ A function that programmatically returns the virtual DOM tree of the component.
   type VNodeArrayChildren = (VNodeArrayChildren | VNodeChildAtom)[]
   ```
 
-- **Details:**
+- **详细信息**
 
   `render` is an alternative to string templates that allows you to leverage the full programmatic power of JavaScript to declare the render output of the component.
 
