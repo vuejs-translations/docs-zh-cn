@@ -438,7 +438,7 @@ export default {
 
 ### 多个 `v-model` 绑定 {#multiple-v-model-bindings}
 
-通过我们刚才在 [`v-model` 参数]小节中学到的，利用一个特定的 prop 和一个特定事件，可以在一个组件上创建多个 `v-model` 双向绑定：
+通过我们刚才在 [`v-model` 参数](https://staging-cn.vuejs.org/guide/components/events.html#v-model-arguments)小节中学到的，利用一个特定的 prop 和一个特定事件，可以在一个组件上创建多个 `v-model` 双向绑定：
 
 每一个 `v-model` 都会同步不同的 prop，而不需要在组件上写更多额外的选项：
 
