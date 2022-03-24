@@ -576,7 +576,7 @@ export default {
 
 <div class="composition-api">
 
-## 响应性语法糖 <sup class="vt-badge experimental" /> \*\*
+## 响应性语法糖 <sup class="vt-badge experimental" /> \*\* {#reactivity-transform}
 
 不得不对 ref 使用 `.value` 是一个受限于 JavaScript 语言限制的缺点。然而，通过编译时转换，我们可以在适当的位置自动添加 `.value` 来提升开发体验。Vue 提供了一种编译时转换，使得可以像这样书写之前的“计数器”示例：
 
