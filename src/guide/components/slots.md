@@ -280,7 +280,7 @@ Vue 组件的插槽机制是受[原生 Web Component `<slot>` 元素](https://de
 
 </div>
 
-使用 JavaScript 函数可能更有助于你来理解具名插槽
+使用 JavaScript 函数可能更有助于你来理解具名插槽：
 
 ```js
 // 传入不同的内容给不同名字的插槽
