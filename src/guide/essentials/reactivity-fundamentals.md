@@ -224,7 +224,7 @@ export default {
 import { nextTick } from 'vue'
 
 function increment() {
-  count.value++
+  state.count++
   nextTick(() => {
     // 访问更新后的 DOM
   })
@@ -352,7 +352,7 @@ console.log(proxy.nested === raw) // false
    state = reactive({ count: 1 })
    ```
 
-   同时这也意味着当指定或解构一个响应式对象的 property 为局部变量，或者把 property 传入一个方法，我们都会失去响应性连接：
+  同时这也意味着当我们将响应式对象的 property 赋值或解构至本地变量时，或是将该 property 传入一个函数时，我们会失去响应性：
 
    ```js
    const state = reactive({ count: 0 })

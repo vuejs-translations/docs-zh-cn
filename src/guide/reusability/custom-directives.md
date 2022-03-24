@@ -161,7 +161,7 @@ const myDirective = {
 ```js
 {
   arg: 'foo',
-  modifiers: { baz: true },
+  modifiers: { bar: true },
   value: /* `baz` 的值 */,
   oldValue: /* 上一次更新时 `baz` 的值 */
 }
