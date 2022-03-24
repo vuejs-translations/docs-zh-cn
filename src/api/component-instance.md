@@ -258,8 +258,8 @@
   ```
 
 - **相关内容：**
-  - [Options - `watch`](/api/options-state.html#watch)
-  - [Guide - Watchers](/guide/essentials/watchers.html)
+  - [选项 - `watch`](/api/options-state.html#watch)
+  - [指南 - 侦听器](/guide/essentials/watchers.html)
 
 ## $emit() {#emit}
 
