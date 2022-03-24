@@ -4,6 +4,8 @@
 
 ## 为组件的 prop 标注类型 {#typing-component-props}
 
+### 使用 `<script setup>` {#using-script-setup}
+
 当使用 `<script setup>` 时，这个 `defineProps()` 宏函数支持从它的参数中推导类型：
 
 ```vue
