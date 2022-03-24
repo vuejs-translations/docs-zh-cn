@@ -425,7 +425,7 @@ callSomeFunction(obj.foo)
 const { foo, bar } = obj
 ```
 
-一言以蔽之，`ref()` 使我们能创造一种任意值的 “引用” 并能够在不丢失响应性地随意传递。这个功能非常重要，因为它经常用于将逻辑提取到 [组合函数](/guide/reusability/composables.html) 中。
+一言以蔽之，`ref()` 使我们能创造一种任意值的 “引用” 并能够不丢失响应性地随意传递。这个功能非常重要，因为它经常用于将逻辑提取到 [组合函数](/guide/reusability/composables.html) 中。
 
 ### ref 在模板中的解包 \*\* {#ref-unwrapping-in-templates}
 
