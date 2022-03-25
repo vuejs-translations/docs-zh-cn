@@ -158,7 +158,7 @@
 
 ## $attrs {#attrs}
 
-一个包含了组件所有直传 attribute 的对象。
+一个包含了组件所有透传 attribute 的对象。
 
 - **类型**
 
@@ -170,13 +170,13 @@
 
 - **详细信息**
 
-  [直传 Attribute](/guide/components/attrs.html) 是一些由父组件传入的 attribute 和事件处理器，且没有在此子组件中声明为一个 prop 或要抛出的事件。
+  [透传 Attribute](/guide/components/attrs.html) 是一些由父组件传入的 attribute 和事件处理器，且没有在此子组件中声明为一个 prop 或要抛出的事件。
 
   默认情况下，若是单一根节点组件，`$attrs` 中的所有属性都是直接自动继承自组件的根元素。而多根节点组件则不会如此，同时你也可以通过配置[`inheritAttrs`](./options-misc.html#inheritattrs)选项来显式地关闭该行为。
 
 - **相关内容：**
 
-  - [直传 Attribute](/guide/components/attrs.html)
+  - [透传 Attribute](/guide/components/attrs.html)
 
 ## $watch() {#watch}
 
