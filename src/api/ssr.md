@@ -1,10 +1,10 @@
-# Server-Side Rendering API
+# 服务端渲染 API
 
 ## renderToString()
 
-- **Exported from `vue/server-renderer`**
+- **导出自 `vue/server-renderer`**
 
-- **Type**
+- **类型**
 
   ```ts
   function renderToString(
@@ -13,7 +13,7 @@
   ): Promise<string>
   ```
 
-- **Example**
+- **示例**
 
   ```js
   import { createSSRApp } from 'vue'
@@ -30,11 +30,11 @@
   })()
   ```
 
-  ### Handling Teleports
+  ### 处理 Teleport
 
-  If the rendered app contains Teleports, the teleported content will not be part of the rendered string. In most cases, the best solution is to conditionally render the Teleport on mount.
+  如果渲染的应用包含 Teleport，那么 teleport 内容将不会作为渲染字符的一部分。在大多数情况下，最佳方案是在挂载时有条件的渲染 Teleport。
 
-  If you do need to hydrate teleported content, they are exposed under the `teleports` property of the ssr context object:
+  如果你需要激活 teleport 内容，他位于服务端渲染上下文对象的 `teleports` property中：
 
   ```js
   const ctx = {}
@@ -43,15 +43,15 @@
   console.log(ctx.teleports) // { '#teleported': 'teleported content' }
   ```
 
-- **See also:** [Guide - Server-Side Rendering](/guide/scaling-up/ssr.html)
+- **相关内容:** [指引 - 服务端渲染](/guide/scaling-up/ssr.html)
 
 ## renderToNodeStream()
 
-Renders input as a [Node.js Readable stream](https://nodejs.org/api/stream.html#stream_class_stream_readable).
+渲染输入作为 [Node.js Readable stream](https://nodejs.org/api/stream.html#stream_class_stream_readable)。
 
-- **Exported from `vue/server-renderer`**
+- **导出自 `vue/server-renderer`**
 
-- **Type**
+- **类型**
 
   ```ts
   function renderToNodeStream(
@@ -60,24 +60,24 @@ Renders input as a [Node.js Readable stream](https://nodejs.org/api/stream.html#
   ): Readable
   ```
 
-- **Example**
+- **示例**
 
   ```js
-  // inside a Node.js http handler
+  // 内置 Node.js http 处理器
   renderToNodeStream(app).pipe(res)
   ```
 
-  :::tip Note
-  This method is not supported in the ESM build of `vue/server-renderer`, which is decoupled from Node.js environments. Use [`pipeToNodeWritable`](#pipetonodewritable) instead.
+  :::tip 备注
+  ESM构建的 `vue/server-renderer` 不支持此方法,它与 Node.js 环境分离。使用 [`pipeToNodeWritable`](#pipetonodewritable) 代替。
   :::
 
 ## pipeToNodeWritable()
 
-Render and pipe to an existing [Node.js Writable stream](https://nodejs.org/api/stream.html#stream_writable_streams) instance.
+渲染和传输到现有的 [Node.js Writable stream](https://nodejs.org/api/stream.html#stream_writable_streams) 实例。
 
-- **Exported from `vue/server-renderer`**
+- **导出自 `vue/server-renderer`**
 
-- **Type**
+- **类型**
 
   ```ts
   function pipeToNodeWritable(
@@ -87,20 +87,20 @@ Render and pipe to an existing [Node.js Writable stream](https://nodejs.org/api/
   ): void
   ```
 
-- **Example**
+- **示例**
 
   ```js
-  // inside a Node.js http handler
+  // 内置 Node.js http 处理器
   pipeToNodeWritable(app, {}, res)
   ```
 
 ## renderToWebStream()
 
-Renders input as a [Web ReadableStream](https://developer.mozilla.org/en-US/docs/Web/API/Streams_API).
+渲染输入作为 [Web ReadableStream](https://developer.mozilla.org/en-US/docs/Web/API/Streams_API)。
 
-- **Exported from `vue/server-renderer`**
+- **导出自 `vue/server-renderer`**
 
-- **Type**
+- **类型**
 
   ```ts
   function renderToWebStream(
@@ -109,24 +109,24 @@ Renders input as a [Web ReadableStream](https://developer.mozilla.org/en-US/docs
   ): ReadableStream
   ```
 
-- **Example**
+- **示例**
 
   ```js
-  // inside an environment with ReadableStream support
+  // 内置一个支持ReadableStream的环境
   return new Response(renderToWebStream(app))
   ```
 
-  :::tip Note
-  In environments that do not expose `ReadableStream` constructor in the global scope, [`pipeToWebWritable()`](#pipetowebwritable) should be used instead.
+  :::tip 备注
+  在这些环境中，不能在全局作用域暴露出 `ReadableStream` 的构造函数，使用 [`pipeToWebWritable()`](#pipetowebwritable) 代替。
   :::
 
 ## pipeToWebWritable()
 
-Render and pipe to an existing [Web WritableStream](https://developer.mozilla.org/en-US/docs/Web/API/WritableStream) instance.
+渲染和传输到现有的 [Web WritableStream](https://developer.mozilla.org/en-US/docs/Web/API/WritableStream) 实例。
 
-- **Exported from `vue/server-renderer`**
+- **导出自 `vue/server-renderer`**
 
-- **Type**
+- **类型**
 
   ```ts
   function pipeToWebWritable(
@@ -136,13 +136,13 @@ Render and pipe to an existing [Web WritableStream](https://developer.mozilla.or
   ): void
   ```
 
-- **Example**
+- **示例**
 
-  This is typically used in combination with [`TransformStream`](https://developer.mozilla.org/en-US/docs/Web/API/TransformStream):
+  通常与 [`TransformStream`](https://developer.mozilla.org/en-US/docs/Web/API/TransformStream) 结合使用：
 
   ```js
-  // TransformStream is available in environments such as CloudFlare workers.
-  // in Node.js, TransformStream needs to be explicitly imported from 'stream/web'
+  // 诸如CloudFlare workers这样的环境中，TransformStream 是可用的。
+  // 在 Node.js， TransformStream 需要从 'stream/web' 显示导入
   const { readable, writable } = new TransformStream()
   pipeToWebWritable(app, {}, writable)
 
@@ -151,11 +151,11 @@ Render and pipe to an existing [Web WritableStream](https://developer.mozilla.or
 
 ## renderToSimpleStream()
 
-Renders input in streaming mode using a simple readable interface.
+在流模式中使用一个简单的可读接口进行渲染输入。
 
-- **Exported from `vue/server-renderer`**
+- **导出自 `vue/server-renderer`**
 
-- **Type**
+- **类型**
 
   ```ts
   function renderToSimpleStream(
@@ -170,7 +170,7 @@ Renders input in streaming mode using a simple readable interface.
   }
   ```
 
-- **Example**
+- **示例**
 
   ```js
   let res = ''
@@ -196,27 +196,27 @@ Renders input in streaming mode using a simple readable interface.
 
 ## useSSRContext()
 
-A runtime API used to retrieve the context object passed to `renderToString()` or other server render APIs.
+一种用于检索已传递给 `renderToString()` 或其他服务端渲染API上下文对象的运行时API。
 
-- **Type**
+- **类型**
 
   ```ts
   function useSSRContext<T = Record<string, any>>(): T | undefined
   ```
 
-- **Example**
+- **示例**
 
-  The retrieved context can be used to attach information that is needed for rendering the final HTML (e.g. head metadata).
+  被检索的上下文能够作为附加信息用于渲染最终的 HTML （例如头部元数据）
 
   ```vue
   <script setup>
   import { useSSRContext } from 'vue'
 
-  // make sure to only call it during SSR
+  // 确保只在服务端渲染时调用
   // https://vitejs.dev/guide/ssr.html#conditional-logic
   if (import.meta.env.SSR) {
     const ctx = useSSRContext()
-    // ...attach properties to the context
+    // ...附加 property 给上下文
   }
   </script>
   ```
