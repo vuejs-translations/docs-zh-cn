@@ -6,13 +6,13 @@
   <VueSchoolLink href="https://vueschool.io/lessons/vue-3-reusable-components-with-props" title="Props - 免费 Vue.js 课程"/>
 </div>
 
-## Props 声明 {#props-declaration}
+## Prop 声明 {#props-declaration}
 
-组件需要显式声明 props，这样 Vue 才能知道外部传入的哪些是 props，哪些是透传 attribute (下一章中我们会讨论到它)。
+组件需要显式声明 prop，这样 Vue 才能知道外部传入的哪些是 prop，哪些是透传 attribute (下一章中我们会讨论到它)。
 
 <div class="composition-api">
 
-在单文件组件中使用 `<script setup>` 时，props 可以使用 `defineProps()` 宏来定义：
+在单文件组件中使用 `<script setup>` 时，prop 可以使用 `defineProps()` 宏来定义：
 
 ```vue
 <script setup>
@@ -22,7 +22,7 @@ console.log(props.foo)
 </script>
 ```
 
-在没有使用 `<script setup>` 的组件中，props 需使用 [`props`](/api/options-state.html#props) 选项来定义：
+在没有使用 `<script setup>` 的组件中，prop 可以使用 [`props`](/api/options-state.html#props) 选项来定义：
 
 ```js
 export default {
@@ -34,13 +34,13 @@ export default {
 }
 ```
 
-请注意，传给 `defineProps()` 的参数和提供给 `props` 选项的值是相同的，两种声明方式背后其实使用的都是 props 选项。
+请注意，传递给 `defineProps()` 的参数和提供给 `props` 选项的值是相同的，两种声明方式背后其实使用的都是 prop 选项。
 
 </div>
 
 <div class="options-api">
 
-Props are declared using the [`props`](/api/options-state.html#props) option：
+prop 使用 [`props`](/api/options-state.html#props) 选项来定义：
 
 ```js
 export default {
@@ -54,7 +54,7 @@ export default {
 
 </div>
 
-除了使用字符串数组来声明 props 外，还可以使用对象的形式：
+除了使用字符串数组来声明 prop 外，还可以使用对象的形式：
 
 <div class="options-api">
 
@@ -92,7 +92,7 @@ export default {
 
 对于以对象形式声明中的每个属性，key 是 prop 的名称，而值应该是预期类型的构造函数。
 
-这不仅为你的组件提供了文档，而且如果其他开发者在使用你的组件时传递了错误的类型，也会在浏览器控制台中抛出警告。我们将在本页下方进一步讨论有关 [prop 校验](#prop-validation)的更多细节。
+这不仅为你的组件提供了文档，而且如果其他开发者在使用你的组件时传递了错误的类型，也会在浏览器控制台中抛出警告。我们将在本章节稍后进一步讨论有关 [prop 校验](#prop-validation)的更多细节。
 
 <div class="options-api">
 
@@ -102,7 +102,7 @@ export default {
 
 <div class="composition-api">
 
-如果你正在搭配 TypeScript 使用 `<script setup>`，也可以使用类型标注来声明 props：
+如果你正在搭配 TypeScript 使用 `<script setup>`，也可以使用类型标注来声明 prop：
 
 ```vue
 <script setup lang="ts">
@@ -117,11 +117,11 @@ defineProps<{
 
 </div>
 
-## 传递 props 的细节 {#prop-passing-details}
+## 传递 prop 的细节 {#prop-passing-details}
 
 ### Prop 名字格式 {#prop-name-casing}
 
-如果 prop 的名字很长，应使用 camelCase 形式，因为它们是合法的 JavaScript 标识符，可以直接在模板的表达式中引用，避免在作为属性 key 名时必须带引号。
+如果 prop 的名字很长，应使用 camelCase 形式，因为它们是合法的 JavaScript 标识符，可以直接在模板的表达式中使用，避免在作为属性 key 名时必须带引号。
 
 <div class="composition-api">
 
@@ -148,23 +148,23 @@ export default {
 <span>{{ greetingMessage }}</span>
 ```
 
-从技术上来讲，你也可以在向子组件传递 props 时使用 camelCase 形式。(使用 [DOM 模板](/guide/essentials/component-basics.html#dom-template-parsing-caveats)时例外) 而实际上为了和 HTML attribute 对齐，都会将其转为 kebab-case 形式：
+从技术上来讲，你也可以在子组件传递 prop 时使用 camelCase 形式。(使用 [DOM 模板](/guide/essentials/component-basics.html#dom-template-parsing-caveats)时例外) 而实际上为了和 HTML attribute 对齐，都会将其转为 kebab-case 形式：
 
 ```vue-html
 <MyComponent greeting-message="hello" />
 ```
 
-一般情况下都会使用 [PascalCase 作为组件标签名](/guide/components/registration.html#component-name-casing)，因为这提高了模板的可读性，能很好地区分出 Vue 组件和原生 HTML 元素。然而这对于传递 props 来说收效却并不高，因此我们选择对其进行转换。
+一般情况下都会使用 [PascalCase 作为组件标签名](/guide/components/registration.html#component-name-casing)，因为这提高了模板的可读性，能很好地区分出 Vue 组件和原生 HTML 元素。然而这对于传递 props 来说收效并不高，因此我们选择对其进行转换。
 
-### 静态 vs. 动态 Props {#static-vs-dynamic-props}
+### 静态 vs. 动态 Prop {#static-vs-dynamic-props}
 
-至此，你已经见过了很多像这样的静态值形式的 props：
+至此，你已经见过了很多像这样的静态值形式的 prop：
 
 ```vue-html
 <BlogPost title="My journey with Vue" />
 ```
 
-相应地还有使用 `v-bind` 或缩写 `:` 所动态绑定的 props 值：
+相应地还有使用 `v-bind` 或缩写 `:` 所动态绑定的 prop 值：
 
 ```vue-html
 <!-- 根据一个变量的值动态传入 -->
@@ -176,7 +176,7 @@ export default {
 
 ### 传递不同的值类型 {#passing-different-value-types}
 
-在上述的两个例子中，我们只传入了字符串值，但实际上*任何* 类型的值都可以作为一个 prop。
+在上述的两个例子中，我们只传入了字符串值，但实际上**任何**类型的值都可以作为一个 prop。
 
 #### Number {#number}
 
@@ -305,7 +305,7 @@ export default {
 
 想要更改 prop 通常都符合以下两种场景：
 
-1. **prop 被用于传入初始值；而子组件想在之后将其作为一个局部数据属性。** 在这种情况下，最好是新定义一个局部数据属性，从 props 上取初始值即可：
+1. **prop 被用于传入初始值；而子组件想在之后将其作为一个局部数据属性。** 在这种情况下，最好是新定义一个局部数据属性，从 prop 上获取初始值即可：
 
    <div class="composition-api">
 
@@ -371,7 +371,7 @@ export default {
 
 ## Prop 校验 {#prop-validation}
 
-组件可以更细致地指定对其 props 的需求，比如你上面看到的类型限制，如果并没有指定要求，Vue 会在浏览器的 JavaScript 控制台中抛出警告来提醒你。这在开发为其他人提供的组件时非常有用。
+组件可以更细致地指定对其 prop 的需求，比如你上面看到的类型限制，如果并没有指定要求，Vue 会在浏览器的 JavaScript 控制台中抛出警告来提醒你。这在开发为其他人提供的组件时非常有用。
 
 要描述对 prop 的校验，你可以向 <span class="composition-api">`defineProps()` 宏</span><span class="options-api">`props` 选项</span>提供一个带有 prop 校验的对象，而不是一个字符串数组，例如：
 
@@ -480,7 +480,7 @@ export default {
 
 一些补充细节：
 
-- 所有 props 默认都是可选的，除非声明了 `required: true`。
+- 所有 prop 默认都是可选的，除非声明了 `required: true`。
 
 - 未传递的 prop 会有一个缺省值 `undefined`。
 
