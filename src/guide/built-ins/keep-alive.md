@@ -60,12 +60,12 @@ import SwitchComponent from './keep-alive-demos/SwitchComponent.vue'
   <component :is="view"></component>
 </KeepAlive>
 
-<!-- 正则表达式（需使用 `v-bind`） -->
+<!-- 正则表达式 (需使用 `v-bind`) -->
 <KeepAlive :include="/a|b/">
   <component :is="view"></component>
 </KeepAlive>
 
-<!-- 数组（需使用 `v-bind`）-->
+<!-- 数组 (需使用 `v-bind`) -->
 <KeepAlive :include="['a', 'b']">
   <component :is="view"></component>
 </KeepAlive>
