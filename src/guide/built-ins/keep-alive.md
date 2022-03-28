@@ -22,16 +22,16 @@ import SwitchComponent from './keep-alive-demos/SwitchComponent.vue'
 
 你会发现在切回来之后，之前已更改的状态都被重置了。
 
-在切换时创建新的组件实例通常是有用的行为，但在这个例子中，我们是的确想要组件能在非活跃状态时保留它们的状态。要解决这个问题，我们可以用 `<KeepAlive>` 这个内置组件将动态组件包装起来：
+在切换时创建新的组件实例通常是有用的行为，但在这个例子中，我们是的确想要组件能在非活跃状态时保留它们的状态。要解决这个问题，我们可以用内置的 `<KeepAlive>` 组件将这些动态组件包装起来：
 
 ```vue-html
-<!-- 非活跃状态的组件将会被缓存！ -->
+<!-- 非活跃的组件将会被缓存！ -->
 <KeepAlive>
   <component :is="activeComponent" />
 </KeepAlive>
 ```
 
-现在，在切换时组件的状态也能被保留了：
+现在，在组件切换时状态也能被保留了：
 
 <SwitchComponent use-KeepAlive />
 
@@ -47,12 +47,12 @@ import SwitchComponent from './keep-alive-demos/SwitchComponent.vue'
 </div>
 
 :::tip
-当在 [DOM 模板](/guide/essentials/component-basics.html#dom-template-parsing-caveats)中使用时，请使用 `<keep-alive>` 来引用它。
+在 [DOM 模板](/guide/essentials/component-basics.html#dom-template-parsing-caveats)中使用时，它应该被写为 `<keep-alive>`。
 :::
 
-## 包含 / 排除 {#include-exclude}
+## 包含/排除 {#include-exclude}
 
-默认情况下，`<KeepAlive>` 会缓存它之中的任何组件实例。但我们可以通过 `include` 和 `exclude` prop 来定制该行为。这两个 prop 的值都可以是一个以英文逗号分隔的字符串、一个正则表达式，或是包含这两种类型的一个数组：
+默认情况下，`<KeepAlive>` 会缓存内部的任何组件实例。但我们可以通过 `include` 和 `exclude` prop 来定制该行为。这两个 prop 的值都可以是一个以英文逗号分隔的字符串、一个正则表达式，或是包含这两种类型的一个数组：
 
 ```vue-html
 <!-- 以英文逗号分隔的字符串 -->
@@ -71,11 +71,11 @@ import SwitchComponent from './keep-alive-demos/SwitchComponent.vue'
 </KeepAlive>
 ```
 
-匹配将根据组件的 [`name`](/api/options-misc.html#name) 选项进行检查，所以要想通过 `KeepAlive` 有条件地缓存的组件必须显式声明一个 `name` 选项。
+它会根据组件的 [`name`](/api/options-misc.html#name) 选项进行匹配，所以组件如果想要条件性地被 `KeepAlive` 缓存，就必须显式声明一个 `name` 选项。
 
-## 最大缓存实例 {#max-cached-instances}
+## 最大缓存实例数 {#max-cached-instances}
 
-我们可以通过传入 `max` prop 来限制组件实例缓存的最大数量。当指定了 `max` 时，`<KeepAlive>` 会像一个 [LRU 缓存](<https://en.wikipedia.org/wiki/Cache_replacement_policies#Least_recently_used_(LRU)>)：如果缓存实例的数量即将超过指定的最大数量，最近访问次数最少的缓存实例将被销毁，以便为新的实例腾出空间。
+我们可以通过传入 `max` prop 来限制可被缓存的最大组件实例数。`<KeepAlive>` 的行为在指定了 `max` 后类似一个 [LRU 缓存](<https://en.wikipedia.org/wiki/Cache_replacement_policies#Least_recently_used_(LRU)>)：如果缓存的实例数量即将超过指定的那个最大数量，则最久没有被访问的缓存实例将被销毁，以便为新的实例腾出空间。
 
 ```vue-html
 <KeepAlive :max="10">
@@ -85,7 +85,7 @@ import SwitchComponent from './keep-alive-demos/SwitchComponent.vue'
 
 ## 缓存实例的生命周期 {#lifecycle-of-cached-instance}
 
-当一个组件实例从 DOM 上移除但因为被 `<KeepAlive>` 缓存而仍作为组件树的一部分时，它将变为**不活跃**状态而不是被卸载。当一个组件实例作为缓存树的一部分插入到 DOM 中时，它将重新**活跃**。
+当一个组件实例从 DOM 上移除但因为被 `<KeepAlive>` 缓存而仍作为组件树的一部分时，它将变为**不活跃**状态而不是被卸载。当一个组件实例作为缓存树的一部分插入到 DOM 中时，它将重新**被激活**。
 
 <div class="composition-api">
 
