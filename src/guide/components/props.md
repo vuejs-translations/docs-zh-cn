@@ -154,7 +154,7 @@ export default {
 <MyComponent greeting-message="hello" />
 ```
 
-一般情况下都会使用 [PascalCase 作为组件标签名](/guide/components/registration.html#component-name-casing)，因为这提高了模板的可读性，能很好地区分出 Vue 组件和原生 HTML 元素。然而这对于传递 props 来说收效并不高，因此我们选择对其进行转换。
+一般情况下都会使用 [PascalCase 作为组件标签名](/guide/components/registration.html#component-name-casing)，因为这提高了模板的可读性，能很好地区分出 Vue 组件和原生 HTML 元素。然而这对于传递 prop 来说收效并不高，因此我们选择对其进行转换。
 
 ### 静态 vs. 动态 Prop {#static-vs-dynamic-props}
 
