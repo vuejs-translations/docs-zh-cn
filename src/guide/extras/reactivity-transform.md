@@ -54,7 +54,7 @@ function increment() {
 - [`customRef`](/api/reactivity-advanced.html#customref) -> `$customRef`
 - [`toRef`](/api/reactivity-utilities.html#toref) -> `$toRef`
 
-当响应性语法糖时，这些宏函数都是全局可用的、无需手动导入。但如果你想让它更明显，你也可以选择从 `vue/macros` 中引入它们：
+当启用响应性语法糖时，这些宏函数都是全局可用的、无需手动导入。但如果你想让它更明显，你也可以选择从 `vue/macros` 中引入它们：
 
 ```js
 import { $ref } from 'vue/macros'
