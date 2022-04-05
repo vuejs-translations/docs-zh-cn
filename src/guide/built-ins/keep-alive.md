@@ -96,8 +96,8 @@ import SwitchComponent from './keep-alive-demos/SwitchComponent.vue'
 import { onActivated, onDeactivated } from 'vue'
 
 onActivated(() => {
-  // 在首次挂载、
-  // 以及每次从缓存中被重新插入的时候调用
+  // 调用时机为首次挂载
+  // 以及每次从缓存中被重新插入时
 })
 
 onDeactivated(() => {
