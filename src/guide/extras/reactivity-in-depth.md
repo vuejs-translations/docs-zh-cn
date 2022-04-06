@@ -365,7 +365,7 @@ Vue 的响应性系统是通过深度转换纯 JavaScript 对象到响应式代�
 
 [不可变数据结构](https://en.wikipedia.org/wiki/Persistent_data_structure)通过永不更改状态对象来解决这个问题。与 Vue 不同的是，它会创建一个新对象，保留旧的对象未发生改变的一部分。在 JavaScript 中有多种不同的方式来使用不可变数据，但我们推荐使用 [Immer](https://immerjs.github.io/immer/) 搭配 Vue，因为它使你可以在保持原有直观、可变的语法的同时，使用不可变数据。
 
-我们可以通过一个简单的可组合函数来集成 Immer：
+我们可以通过一个简单的组合式函数来集成 Immer：
 
 ```js
 import produce from 'immer'

@@ -53,7 +53,7 @@ onMounted(() => {
 
 组合式 API 最基本的优势是它使我们能够通过[组合函数](/guide/reusability/composables.html)来实现更加简洁高效的逻辑复用。它解决了[所有 mixins 的缺陷](/guide/reusability/composables.html#vs-mixins)，那是选项式 API 中一种逻辑复用机制。
 
-组合式 API 提供的更多逻辑复用可能性孵化了一些非常棒的社区项目，比如 [VueUse](https://vueuse.org/)，一个不断成长的工具型可组合函数集合。组合式 API 还为其他第三方状态管理库集成 Vue 的响应式系统提供了一套简洁清晰的机制，例如 [RxJS](https://vueuse.org/rxjs/readme.html#vueuse-rxjs)。
+组合式 API 提供的更多逻辑复用可能性孵化了一些非常棒的社区项目，比如 [VueUse](https://vueuse.org/)，一个不断成长的工具型组合式函数集合。组合式 API 还为其他第三方状态管理库集成 Vue 的响应式系统提供了一套简洁清晰的机制，例如 [RxJS](https://vueuse.org/rxjs/readme.html#vueuse-rxjs)。
 
 ### 更灵活的代码组织 {#more-flexible-code-organization}
 

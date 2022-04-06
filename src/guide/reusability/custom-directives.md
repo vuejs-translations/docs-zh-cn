@@ -12,7 +12,7 @@ const vFocus = {
 
 除了 Vue 内置的一系列指令 (比如 `v-model` 或 `v-show`) 之外，Vue 还允许你注册自定义的指令。
 
-我们已经介绍过了两种 Vue 中重用逻辑的方式：[组件](/guide/essentials/component-basics.html)和[可组合函数](./composables)。组件主要关注构建视图区块，而可组合函数关注于有状态的逻辑。自定义指令则主要是封装了可重用的对底层 DOM 访问的逻辑。
+我们已经介绍过了两种 Vue 中重用逻辑的方式：[组件](/guide/essentials/component-basics.html)和[组合式函数](./composables)。组件主要关注构建视图区块，而组合式函数关注于有状态的逻辑。自定义指令则主要是封装了可重用的对底层 DOM 访问的逻辑。
 
 一个自定义指令被定义为一个包含类似于组件的生命周期钩子的对象。钩子接收指令绑定到的元素。下面是一个自定义指令的例子，当元素被 Vue 插入到 DOM 中时，会聚焦一个 input 元素：
 
