@@ -2,13 +2,13 @@
 outline: deep
 ---
 
-# 透传 attribute {#fallthrough-attributes}
+# 透传 Attribute {#fallthrough-attributes}
 
 > 阅读此章节时，我们假设你已经读过[组件基础](/guide/essentials/component-basics)，若你对组件还完全不了解，请先阅读它。
 
 ## Attribute 继承 {#attribute-inheritance}
 
-“透传 attribute”的意思是 attribute 或者被传递给一个组件的 `v-on` 事件监听器，但并没有显式地声明在所接收组件的 [props](./props) 或 [emits](./events.html#defining-custom-events) 上。最常见的例子就是 `class`、`style` 和 `id`。
+“透传 attribute”是传递给组件的 attribute 或者 `v-on` 事件监听器，但并没有显式地声明在所接收组件的 [props](./props) 或 [emits](./events.html#defining-custom-events) 上。最常见的例子就是 `class`、`style` 和 `id`。
 
 当一个组件以单个元素为根作渲染时，透传的 attribute 会自动添加到根元素的 attribute 中。举个例子，下面这个 `<MyButton>` 组件有这样的模板：
 
@@ -110,12 +110,6 @@ export default {
 
 - 像 `@click` 这样的一个 `v-on` 事件监听器将在此对象下被暴露为一个函数 `$attrs.onClick`。
 
-一些额外的注意点：
-
-- 跟 props 不同的是，透传 attributes 在 JS 中会保留其原本的大小写格式。比如一个名为 `foo-bar` 的 attribute 需要用 `$attrs['foo-bar']` 这样的形式来获取。
-
-- 一个 `v-on` 侦听函数，比如 `@click`，会在对象上以 `$attrs.onClick` 的形式暴露。
-
 现在我们要再次使用一下[之前小节](#attribute-inheritance)中的 `<MyButton>` 组件例子。有时候我们可能为了样式，需要在 `<button>` 元素外包装一层 `<div>`：
 
 ```vue-html
@@ -158,7 +152,7 @@ export default {
 <footer>...</footer>
 ```
 
-## 在 JavaScript 中访问透传 Attributes {#accessing-fallthrough-attributes-in-javascript}
+## 在 JavaScript 中访问透传 Attribute {#accessing-fallthrough-attributes-in-javascript}
 
 <div class="composition-api">
 

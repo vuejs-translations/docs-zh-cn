@@ -44,15 +44,6 @@ const nav = [
         ]
       },
       {
-        text: '视频教程',
-        items: [
-          { text: '合作伙伴', link: '/ecosystem/partners' },
-          { text: '主题', link: '/ecosystem/themes' },
-          { text: 'Jobs', link: 'https://vuejobs.com/?ref=vuejs' },
-          { text: 'T-Shirt 商店', link: 'https://vue.threadless.com/' }
-        ]
-      },
-      {
         text: '视频课程',
         items: [
           {

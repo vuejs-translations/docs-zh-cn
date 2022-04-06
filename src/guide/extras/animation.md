@@ -9,9 +9,9 @@ import AnimateWatcher from './demos/AnimateWatcher.vue'
 
 Vue 提供了 [`<Transition>`](/guide/built-ins/transition.html) 和 [`<TransitionGroup>`](/guide/built-ins/transition-group.html) 组件来处理进入、离开和列表的过渡。然而，在网页上制作动画的方式非常多，即使是在一个 Vue 应用中也是如此。这里我们会探讨一些别的技巧。
 
-## 基于 CSS 类的动画 {#class-based-animations}
+## 基于 CSS class 的动画 {#class-based-animations}
 
-对于那些不是正在进入或离开 DOM 的元素，我们可以通过给它们动态添加 CSS 类来触发动画：
+对于那些不是正在进入或离开 DOM 的元素，我们可以通过给它们动态添加 CSS class 来触发动画：
 
 <div class="composition-api">
 

@@ -62,7 +62,7 @@ export default {
 
 <div class="composition-api">
 
-在 `<script setup>` 中，任何以 `v` 开头的 camelCase 格式的变量都会可以被用作一个自定义指令。再上线的例子中，`vFocus` 即可以在模板中被用作指令 `v-focus`。
+在 `<script setup>` 中，任何以 `v` 开头的 camelCase 格式的变量都会可以被用作一个自定义指令。在上面的例子中，`vFocus` 即可以在模板中被用作指令 `v-focus`。
 
 如果不使用 `<script setup>`，自定义指令可以通过 `directives` 选项注册：
 
@@ -161,7 +161,7 @@ const myDirective = {
 ```js
 {
   arg: 'foo',
-  modifiers: { baz: true },
+  modifiers: { bar: true },
   value: /* `baz` 的值 */,
   oldValue: /* 上一次更新时 `baz` 的值 */
 }

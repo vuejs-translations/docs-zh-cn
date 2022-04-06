@@ -459,7 +459,7 @@ export default {
 
 这会渲染成这样：
 
-:::danger 这是一个用来展示 Error 弹框的示例
+:::danger This is an Error for Demo Purposes
 Something bad happened.
 :::
 
@@ -468,7 +468,7 @@ Something bad happened.
 ```vue{4}
 <template>
   <div class="alert-box">
-    <strong>Error!</strong>
+    <strong>This is an Error for Demo Purposes</strong>
     <slot />
   </div>
 </template>
@@ -558,7 +558,7 @@ HTML 标签和属性名称是不分大小写的，所以浏览器会把任何大
 // JavaScript 中的 camelCase
 const BlogPost = {
   props: ['postTitle'],
-  emits: ['updatePost']
+  emits: ['updatePost'],
   template: `
     <h3>{{ postTitle }}</h3>
   `
