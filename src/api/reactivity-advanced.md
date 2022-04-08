@@ -1,10 +1,10 @@
-# Reactivity API: Advanced
+# 响应性 API：进阶 {#reactivity-api-advanced}
 
-## shallowRef()
+## shallowRef() {#shallowref}
 
-Shallow version of [`ref()`](./reactivity-core.html#ref).
+[`ref()`](./reactivity-core.html#ref) 的浅层作用形式。
 
-- **Type**
+- **类型**
 
   ```ts
   function shallowRef<T>(value: T): ShallowRef<T>
@@ -14,62 +14,62 @@ Shallow version of [`ref()`](./reactivity-core.html#ref).
   }
   ```
 
-- **Details**
+- **详细信息**
 
-  Unlike `ref()`, the inner value of a shallow ref is stored and exposed as-is, and will not be made deeply reactive. Only the `.value` access is reactive.
+  和 `ref()` 不同，浅层 ref 的内部值将会原样存储和暴露，并且不会被深层递归地转为响应式。只有对 `.value` 的访问是响应式的。
 
-  `shallowRef()` is typically used for performance optimizations of large data structures, or integration with external state management systems.
+  `shallowRef()` 常常用于对大型数据结构的性能优化或是与外部的状态管理系统集成。
 
-- **Example**
+- **示例**
 
   ```js
   const state = shallowRef({ count: 1 })
 
-  // does NOT trigger change
+  // 不会触发更改
   state.value.count = 2
 
-  // does trigger change
+  // 会触发更改
   state.value = { count: 2 }
   ```
 
-- **See also:**
-  - [Guide - Reduce Reactivity Overhead for Large Immutable Structures](/guide/best-practices/performance.html#reduce-reactivity-overhead-for-large-immutable-structures)
-  - [Guide - Integration with External State Systems](/guide/extras/reactivity-in-depth.html#integration-with-external-state-systems)
+- **相关内容：**
+  - [指南 - 减少大型不可变结构的响应性开销](/guide/best-practices/performance.html#reduce-reactivity-overhead-for-large-immutable-structures)
+  - [指南 - 与其他状态系统集成](/guide/extras/reactivity-in-depth.html#integration-with-external-state-systems)
 
-## triggerRef()
+## triggerRef() {#triggerref}
 
-Force trigger effects that depends on a [shallow ref](#shallowref). This is typically used after making deep mutations to the inner value of a shallow ref.
+强制触发依赖于一个 [浅层 ref](#shallowref) 的副作用，这常常用在对浅层 ref 的内部值做了变更之后。
 
-- **Type**
+- **类型**
 
   ```ts
   function triggerRef(ref: ShallowRef): void
   ```
 
-- **Example**
+- **示例**
 
   ```js
   const shallow = shallowRef({
     greet: 'Hello, world'
   })
 
-  // Logs "Hello, world" once for the first run-through
+  // 触发该副作用第一次应该会打印 "Hello, world"
   watchEffect(() => {
     console.log(shallow.value.greet)
   })
 
-  // This won't trigger the effect because the ref is shallow
+  // 这次变更不应触发副作用，因为这个 ref 是浅层的
   shallow.value.greet = 'Hello, universe'
 
-  // Logs "Hello, universe"
+  // 打印 "Hello, universe"
   triggerRef(shallow)
   ```
 
-## customRef()
+## customRef()  {#customref}
 
-Creates a customized ref with explicit control over its dependency tracking and updates triggering.
+创建一个自定义的 ref，显式声明对其依赖追踪和更新触发的控制方式。
 
-- **Type**
+- **类型**
 
   ```ts
   function customRef<T>(factory: CustomRefFactory<T>): Ref<T>
@@ -83,15 +83,15 @@ Creates a customized ref with explicit control over its dependency tracking and 
   }
   ```
 
-- **Details**
+- **详细信息**
 
-  `customRef()` expects a factory function, which receives `track` and `trigger` functions as arguments and should return an object with `get` and `set` methods.
+  `customRef()` 预期接受一个工厂函数，这个工厂函数接受 `track` 和 `trigger` 两个函数作为参数，并应该返回一个带 `get` 和 `set` 方法的对象。
 
-  In general, `track()` should be called inside `get()`, and `trigger()` should be called inside `set()`. However, you have full control over when they should be called, or whether they should be called at all.
+  一般来说，`track()` 应该在 `get()` 方法中调用，而 `trigger()` 应该在 `set()` 中调用。然而，你对它们该怎么调用、需不需要调用都有完全的控制权。
 
-- **Example**
+- **示例**
 
-  Creating a debounced ref that only updates the value after a certain timeout after the latest set call:
+  创建一个防抖 ref，即仅在上一次 set 调用后的一端固定间隔后再调用：
 
   ```js
   import { customRef } from 'vue'
@@ -116,7 +116,7 @@ Creates a customized ref with explicit control over its dependency tracking and 
   }
   ```
 
-  Usage in component:
+  在组件中使用：
 
   ```vue
   <script setup>
@@ -129,27 +129,27 @@ Creates a customized ref with explicit control over its dependency tracking and 
   </template>
   ```
 
-  [Try it in the Playground](https://sfc.vuejs.org/#eyJBcHAudnVlIjoiPHNjcmlwdCBzZXR1cD5cbmltcG9ydCB7IHVzZURlYm91bmNlZFJlZiB9IGZyb20gJy4vZGVib3VuY2VkUmVmLmpzJ1xuY29uc3QgdGV4dCA9IHVzZURlYm91bmNlZFJlZignaGVsbG8nLCAxMDAwKVxuPC9zY3JpcHQ+XG5cbjx0ZW1wbGF0ZT5cbiAgPHA+XG4gICAgVGhpcyB0ZXh0IG9ubHkgdXBkYXRlcyAxIHNlY29uZCBhZnRlciB5b3UndmUgc3RvcHBlZCB0eXBpbmc6XG4gIDwvcD5cbiAgPHA+e3sgdGV4dCB9fTwvcD5cbiAgPGlucHV0IHYtbW9kZWw9XCJ0ZXh0XCIgLz5cbjwvdGVtcGxhdGU+IiwiaW1wb3J0LW1hcC5qc29uIjoie1xuICBcImltcG9ydHNcIjoge1xuICAgIFwidnVlXCI6IFwiaHR0cHM6Ly9zZmMudnVlanMub3JnL3Z1ZS5ydW50aW1lLmVzbS1icm93c2VyLmpzXCJcbiAgfVxufSIsImRlYm91bmNlZFJlZi5qcyI6ImltcG9ydCB7IGN1c3RvbVJlZiB9IGZyb20gJ3Z1ZSdcblxuZXhwb3J0IGZ1bmN0aW9uIHVzZURlYm91bmNlZFJlZih2YWx1ZSwgZGVsYXkgPSAyMDApIHtcbiAgbGV0IHRpbWVvdXRcbiAgcmV0dXJuIGN1c3RvbVJlZigodHJhY2ssIHRyaWdnZXIpID0+IHtcbiAgICByZXR1cm4ge1xuICAgICAgZ2V0KCkge1xuICAgICAgICB0cmFjaygpXG4gICAgICAgIHJldHVybiB2YWx1ZVxuICAgICAgfSxcbiAgICAgIHNldChuZXdWYWx1ZSkge1xuICAgICAgICBjbGVhclRpbWVvdXQodGltZW91dClcbiAgICAgICAgdGltZW91dCA9IHNldFRpbWVvdXQoKCkgPT4ge1xuICAgICAgICAgIHZhbHVlID0gbmV3VmFsdWVcbiAgICAgICAgICB0cmlnZ2VyKClcbiAgICAgICAgfSwgZGVsYXkpXG4gICAgICB9XG4gICAgfVxuICB9KVxufSJ9)
+  [在 Playground 中尝试一下](https://sfc.vuejs.org/#eyJBcHAudnVlIjoiPHNjcmlwdCBzZXR1cD5cbmltcG9ydCB7IHVzZURlYm91bmNlZFJlZiB9IGZyb20gJy4vZGVib3VuY2VkUmVmLmpzJ1xuY29uc3QgdGV4dCA9IHVzZURlYm91bmNlZFJlZignaGVsbG8nLCAxMDAwKVxuPC9zY3JpcHQ+XG5cbjx0ZW1wbGF0ZT5cbiAgPHA+XG4gICAgVGhpcyB0ZXh0IG9ubHkgdXBkYXRlcyAxIHNlY29uZCBhZnRlciB5b3UndmUgc3RvcHBlZCB0eXBpbmc6XG4gIDwvcD5cbiAgPHA+e3sgdGV4dCB9fTwvcD5cbiAgPGlucHV0IHYtbW9kZWw9XCJ0ZXh0XCIgLz5cbjwvdGVtcGxhdGU+IiwiaW1wb3J0LW1hcC5qc29uIjoie1xuICBcImltcG9ydHNcIjoge1xuICAgIFwidnVlXCI6IFwiaHR0cHM6Ly9zZmMudnVlanMub3JnL3Z1ZS5ydW50aW1lLmVzbS1icm93c2VyLmpzXCJcbiAgfVxufSIsImRlYm91bmNlZFJlZi5qcyI6ImltcG9ydCB7IGN1c3RvbVJlZiB9IGZyb20gJ3Z1ZSdcblxuZXhwb3J0IGZ1bmN0aW9uIHVzZURlYm91bmNlZFJlZih2YWx1ZSwgZGVsYXkgPSAyMDApIHtcbiAgbGV0IHRpbWVvdXRcbiAgcmV0dXJuIGN1c3RvbVJlZigodHJhY2ssIHRyaWdnZXIpID0+IHtcbiAgICByZXR1cm4ge1xuICAgICAgZ2V0KCkge1xuICAgICAgICB0cmFjaygpXG4gICAgICAgIHJldHVybiB2YWx1ZVxuICAgICAgfSxcbiAgICAgIHNldChuZXdWYWx1ZSkge1xuICAgICAgICBjbGVhclRpbWVvdXQodGltZW91dClcbiAgICAgICAgdGltZW91dCA9IHNldFRpbWVvdXQoKCkgPT4ge1xuICAgICAgICAgIHZhbHVlID0gbmV3VmFsdWVcbiAgICAgICAgICB0cmlnZ2VyKClcbiAgICAgICAgfSwgZGVsYXkpXG4gICAgICB9XG4gICAgfVxuICB9KVxufSJ9)
 
-## shallowReactive()
+## shallowReactive()  {#shallowreactive}
 
-Shallow version of [`reactive()`](./reactivity-core.html#reactive).
+[`reactive()`](./reactivity-core.html#reactive) 的浅层作用形式。
 
-- **Type**
+- **类型**
 
   ```ts
   function shallowReactive<T extends object>(target: T): T
   ```
 
-- **Details**
+- **详细信息**
 
-  Unlike `reactive()`, there is no deep conversion: only root-level properties are reactive for a shallow reactive object. Property values are stored and exposed as-is - this also means properties with ref values will **not** be automatically unwrapped.
+  和 `reactive()`不同，这里不会有深层次转换：一个浅层响应式对象里只有根级别的属性是响应式的。属性的值会被原样存储和暴露，这也意味着属性为 ref 的值 **不会** 被自动解包了。
 
-  :::warning Use with Caution
-  Shallow data structures should only be used for root level state in a component. Avoid nesting it inside a deep reactive object as it creates a tree with inconsistent reactivity behavior which can be difficult to understand and debug.
+  :::warning 谨慎使用
+  浅层数据结构应该只用于组件中的根级状态。请避免将其嵌套在深层次的响应式对象中，因为它会创建一个具有不一致的响应行为的树，这可能很难理解和调试。
   :::
 
-- **Example**
+- **示例**
 
   ```js
   const state = shallowReactive({
@@ -159,35 +159,35 @@ Shallow version of [`reactive()`](./reactivity-core.html#reactive).
     }
   })
 
-  // mutating state's own properties is reactive
+  // 更改状态自身的属性是响应式的
   state.foo++
 
-  // ...but does not convert nested objects
+  // ...但下层嵌套对象不会被转为响应式
   isReactive(state.nested) // false
 
-  // NOT reactive
+  // 不是响应式的
   state.nested.bar++
   ```
 
-## shallowReadonly()
+## shallowReadonly()  {#shallowreadonly}
 
-Shallow version of [`readonly()`](./reactivity-core.html#readonly).
+[`readonly()`](./reactivity-core.html#readonly) 的浅层作用形式
 
-- **Type**
+- **类型**
 
   ```ts
   function shallowReadonly<T extends object>(target: T): Readonly<T>
   ```
 
-- **Details**
+- **详细信息**
 
-  Unlike `readonly()`, there is no deep conversion: only root-level properties are made readonly. Property values are stored and exposed as-is - this also means properties with ref values will **not** be automatically unwrapped.
+  和 `readonly()` 不同，这里没有深层级的转换：只有跟根层级的属性变为了只读。属性值都会被原样存储和暴露，这也意味着值为 ref 的属性 **不会** 被自动解包了。
 
-  :::warning Use with Caution
-  Shallow data structures should only be used for root level state in a component. Avoid nesting it inside a deep reactive object as it creates a tree with inconsistent reactivity behavior which can be difficult to understand and debug.
+  :::warning 谨慎使用
+  浅层数据结构应该只用于组件中的根级状态。请避免将其嵌套在深层次的响应式对象中，因为它会创建一个具有不一致的响应行为的树，这可能很难理解和调试。
   :::
 
-- **Example**
+- **示例**
 
   ```js
   const state = shallowReadonly({
@@ -197,33 +197,33 @@ Shallow version of [`readonly()`](./reactivity-core.html#readonly).
     }
   })
 
-  // mutating state's own properties will fail
+  // 更改状态自身的属性会失败
   state.foo++
 
-  // ...but works on nested objects
+  // ...但可以更改下层嵌套对象
   isReadonly(state.nested) // false
 
-  // works
+  // 这是可以通过的
   state.nested.bar++
   ```
 
-## toRaw()
+## toRaw()  {#toraw}
 
-Returns the raw, original object of a Vue-created proxy.
+根据一个 Vue 创建的代理返回其原始对象。
 
-- **Type**
+- **类型**
 
   ```ts
   function toRaw<T>(proxy: T): T
   ```
 
-- **Details**
+- **详细信息**
 
-  `toRaw()` can return the original object from proxies created by [`reactive()`](./reactivity-core.html#reactive), [`readonly()`](./reactivity-core.html#readonly), [`shallowReactive()`](#shallowreactive) or [`shallowReadonly()`](#shallowreadonly).
+  `toRaw()` 可以返回由 [`reactive()`](./reactivity-core.html#reactive)、[`readonly()`](./reactivity-core.html#readonly)、[`shallowReactive()`](#shallowreactive) 或者 [`shallowReadonly()`](#shallowreadonly) 创建的代理对应的源对象。
 
-  This is an escape hatch that can be used to temporarily read without incurring proxy access / tracking overhead or write without triggering changes. It is **not** recommended to hold a persistent reference to the original object. Use with caution.
+  这是一个可以用于临时读取而不引起代理访问/跟踪开销，或是写入而不触发更改的特殊方法。
 
-- **Example**
+- **示例**
 
   ```js
   const foo = {}
@@ -232,35 +232,35 @@ Returns the raw, original object of a Vue-created proxy.
   console.log(toRaw(reactiveFoo) === foo) // true
   ```
 
-## markRaw()
+## markRaw()  {#markraw}
 
-Marks an object so that it will never be converted to a proxy. Returns the object itself.
+将一个对象标记为不可被转为代理的对象。返回也是该对象。
 
-- **Type**
+- **类型**
 
   ```ts
   function markRaw<T extends object>(value: T): T
   ```
 
-- **Example**
+- **示例**
 
   ```js
   const foo = markRaw({})
   console.log(isReactive(reactive(foo))) // false
 
-  // also works when nested inside other reactive objects
+  // 也适用于嵌套在其他响应性对象
   const bar = reactive({ foo })
   console.log(isReactive(bar.foo)) // false
   ```
 
-  :::warning Use with Caution
-  `markRaw()` and shallow APIs such as `shallowReactive()` allow you to selectively opt-out of the default deep reactive/readonly conversion and embed raw, non-proxied objects in your state graph. They can be used for various reasons:
+  :::warning 谨慎使用
+  `markRaw()` 和 `shallowReactive()` 这样的浅层式 API 是你可以有选择地 有选择地避开默认的深度响应/只读转换，并在状态关系谱中嵌入原始的、非代理的对象。它们可能用于各种各样的原因：
 
-  - Some values simply should not be made reactive, for example a complex 3rd party class instance, or a Vue component object.
+  - 有些值不应该是响应式的，例如复杂的第三方类实例或 Vue 组件对象。
 
-  - Skipping proxy conversion can provide performance improvements when rendering large lists with immutable data sources.
+  - 当呈现带有不可变数据源的大型列表时，跳过代理转换可以提供性能改进。
 
-  They are considered advanced because the raw opt-out is only at the root level, so if you set a nested, non-marked raw object into a reactive object and then access it again, you get the proxied version back. This can lead to **identity hazards** - i.e. performing an operation that relies on object identity but using both the raw and the proxied version of the same object:
+  这应该是一种进阶需求，因为只在根层访问能到原始值，所以如果你把一个嵌套的、没有标记的原始对象设置成一个反应式对象，然后再次访问它，你会得到代理的版本回来。这可能会导致**识别风险**，即是说执行一个依赖于对象标识的操作，但同时使用同一对象的原始版本和代理版本：
 
   ```js
   const foo = markRaw({
@@ -268,33 +268,33 @@ Marks an object so that it will never be converted to a proxy. Returns the objec
   })
 
   const bar = reactive({
-    // although `foo` is marked as raw, foo.nested is not.
+    // 尽管 `foo` 被标记为了原始对象，但 foo.nested 却没有
     nested: foo.nested
   })
 
   console.log(foo.nested === bar.nested) // false
   ```
 
-  Identity hazards are in general rare. However, to properly utilize these APIs while safely avoiding identity hazards requires a solid understanding of how the reactivity system works.
+  识别风险一般是很罕见的。然而，要正确使用这些 API，同时安全地避免这样的风险，需要你对响应性系统的工作方式有充分的了解。
 
   :::
 
-## effectScope()
+## effectScope()  {#effectscope}
 
-Creates an effect scope object which can capture the reactive effects (i.e. computed and watchers) created within it so that these effects can be disposed together. For detailed use cases of this API, please consult its corresponding [RFC](https://github.com/vuejs/rfcs/blob/master/active-rfcs/0041-reactivity-effect-scope.md).
+创建一个 effect 作用域，可以捕获其中所创建的响应式依赖（例如计算属性和侦听器），这样捕获到的作用都可以一起处理。对于该 API 的使用细节，请查阅对应的 [RFC](https://github.com/vuejs/rfcs/blob/master/active-rfcs/0041-reactivity-effect-scope.md)。
 
-- **Type**
+- **类型**
 
   ```ts
   function effectScope(detached?: boolean): EffectScope
 
   interface EffectScope {
-    run<T>(fn: () => T): T | undefined // undefined if scope is inactive
+    run<T>(fn: () => T): T | undefined // 如果作用域不活跃就为 undefined
     stop(): void
   }
   ```
 
-- **Example**
+- **示例**
 
   ```js
   const scope = effectScope()
@@ -307,27 +307,27 @@ Creates an effect scope object which can capture the reactive effects (i.e. comp
     watchEffect(() => console.log('Count: ', doubled.value))
   })
 
-  // to dispose all effects in the scope
+  // 处理掉当前作用域内的所有 effect
   scope.stop()
   ```
 
-## getCurrentScope()
+## getCurrentScope()  {#getcurrentscope}
 
-Returns the current active [effect scope](#effectscope) if there is one.
+如果有的话，返回当前活跃的 [effect 作用域](#effectscope)。
 
-- **Type**
+- **类型**
 
   ```ts
   function getCurrentScope(): EffectScope | undefined
   ```
 
-## onScopeDispose()
+## onScopeDispose()  {#onscopedispose}
 
-Registers a dispose callback on the current active [effect scope](#effectscope). The callback will be invoked when the associated effect scope is stopped.
+在当前活动的 [effect 作用域](#effectscope) 上注册一个处置回调。这个回调函数会在相关的副作用范围停止时被调用。
 
-This method can be used as a non-component-coupled replacement of `onUnmounted` in reusable composition functions, since each Vue component's `setup()` function is also invoked in an effect scope.
+这个方法可以作为可重用的组合式函数中 `onUnmounted` 的替代品，它并不与组件耦合，而每一个 Vue 组件的 `setup()` 函数也是在一个 effect 作用域中调用的。
 
-- **Type**
+- **类型**
 
   ```ts
   function onScopeDispose(fn: () => void): void

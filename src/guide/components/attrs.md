@@ -67,9 +67,9 @@ outline: deep
 
 请注意：
 
-1. 直传的 attribute 不会包含 `<MyButton>` 上声明过的 props 或是针对 `emits` 声明事件的 `v-on` 侦听函数，换句话说，声明过的 props 和侦听函数被 `<MyButton>`“消费”了。
+1. 透传的 attribute 不会包含 `<MyButton>` 上声明过的 props 或是针对 `emits` 声明事件的 `v-on` 侦听函数，换句话说，声明过的 props 和侦听函数被 `<MyButton>`“消费”了。
 
-2. 直传的 attribute 若符合声明，也可以作为 props 传入 `<BaseButton>`。
+2. 透传的 attribute 若符合声明，也可以作为 props 传入 `<BaseButton>`。
 
 ## 禁用 Attribute 继承 {#disabling-attribute-inheritance}
 
