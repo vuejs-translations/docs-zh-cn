@@ -516,26 +516,26 @@ export const sidebar = {
   ],
   '/style-guide/': [
     {
-      text: 'Style Guide',
+      text: '风格指南',
       items: [
         {
-          text: 'Overview',
+          text: '概述',
           link: '/style-guide/'
         },
         {
-          text: 'A - Essential',
+          text: 'A - 必要的',
           link: '/style-guide/rules-essential'
         },
         {
-          text: 'B - Strongly Recommended',
+          text: 'B - 强烈推荐',
           link: '/style-guide/rules-strongly-recommended'
         },
         {
-          text: 'C - Recommended',
+          text: 'C - 推荐',
           link: '/style-guide/rules-recommended'
         },
         {
-          text: 'D - Use with Caution',
+          text: 'D - 谨慎使用',
           link: '/style-guide/rules-use-with-caution'
         }
       ]
