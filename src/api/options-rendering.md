@@ -1,10 +1,10 @@
-# Options: Rendering
+# 渲染选项 {#options-rendering}
 
-## template
+## template {#template}
 
-A string template for the component.
+一个组件的字符串模板。
 
-- **Type**
+- **类型**
 
   ```ts
   interface ComponentOptions {
@@ -12,25 +12,25 @@ A string template for the component.
   }
   ```
 
-- **Details**
+- **详细信息**
 
-  A template provided via the `template` option will be compiled on-the-fly at runtime. It is only supported when using a build of Vue that includes the template compiler. The template compiler is **NOT** included in Vue builds that have the word `runtime` in their names, e.g. `vue.runtime.esm-bundler.js`. Consult the [dist file guide](https://github.com/vuejs/core/tree/main/packages/vue#which-dist-file-to-use) for more details about the different builds.
+  通过 `template` 选项提供的模板将会在运行时编译。这仅在 Vue 包含了模板编译器的情况下支持。当使用的 Vue 发行版文件名中带有 `runtime` 时模板编译器是 **未被包含** 的，例如 `vue.runtime.esm-bundler.js`。请看 [发行版文件指南](https://github.com/vuejs/core/tree/main/packages/vue#which-dist-file-to-use) 了解不同构建版本之间的详细区别。
 
-  If the string starts with `#` it will be used as a `querySelector` and use the selected element's `innerHTML` as the template string. This allows the source template to be authored using native `<template>` elements.
+  如果该字符串以 `#` 开头它将会被用作一个 `querySelector`，并会将所选择到的元素的 `innerHTML` 作为其模板字符串。这允许来源模板可以通过原生 `<template>` 元素书写。
 
-  If the `render` option is also present in the same component, `template` will be ignored.
+  如果 `render` 选项也同时存在于该组件中，`template` 将被忽略。
 
-  If the root component of your application doesn't have a `template` or `render` option specified, Vue will try to use the `innerHTML` of the mounted element as the template instead.
+  如果应用的根组件不含任何 `template` 或 `render` 选项，Vue 将会尝试使用所挂载元素的 `innerHTML` 来作为模板。
 
-  :::warning Security Note
-  Only use template sources that you can trust. Do not use user-provided content as your template. See [Security Guide](/guide/best-practices/security.html#rule-no-1-never-use-non-trusted-templates) for more details.
+  :::warning 安全性注意
+  请仅使用你可以信任的模板来源。不要使用任何用户提供的模板。查看 [安全性指南](/guide/best-practices/security.html#rule-no-1-never-use-non-trusted-templates) 了解更多细节。
   :::
 
-## render
+## render {#render}
 
-A function that programmatically returns the virtual DOM tree of the component.
+一个编程式创建虚拟 DOM 树的函数。
 
-- **Type**
+- **类型**
 
   ```ts
   interface ComponentOptions {
@@ -51,35 +51,35 @@ A function that programmatically returns the virtual DOM tree of the component.
   type VNodeArrayChildren = (VNodeArrayChildren | VNodeChildAtom)[]
   ```
 
-- **Details:**
+- **详细信息**
 
-  `render` is an alternative to string templates that allows you to leverage the full programmatic power of JavaScript to declare the render output of the component.
+  `render` 是字符串模板的一种替代，可以使你利用 JavaScript 的丰富表达力来完全编程式地声明组件最终的渲染输出。
 
-  Pre-compiled templates, for example those in Single-File Components, are compiled into the `render` option at build time. If both `render` and `template` are present in a component, `render` will take higher priority.
+  预编译的模板，例如单文件组件中的那样，将在构建时生成出 `render` 选项，如果一个组件中同时出现了 `render` 和 `template` 选项，`render` 的优先级更高。
 
-- **See also:**
-  - [Rendering Mechanism](/guide/extras/rendering-mechanism.html)
-  - [Render Functions](/guide/extras/render-function.html)
+- **相关内容：**
+  - [渲染机制](/guide/extras/rendering-mechanism.html)
+  - [渲染函数](/guide/extras/render-function.html)
 
-## compilerOptions
+## compilerOptions {#compileroptions}
 
-Configure runtime compiler options for the component's template.
+配置运行时编译器编译组件模板的选项。
 
-- **Type**
+- **类型**
 
   ```ts
   interface ComponentOptions {
     compilerOptions?: {
       isCustomElement?: (tag: string) => boolean
-      whitespace?: 'condense' | 'preserve' // default: 'condense'
-      delimiters?: [string, string] // default: ['{{', '}}']
-      comments?: boolean // default: false
+      whitespace?: 'condense' | 'preserve' // 默认：'condense'
+      delimiters?: [string, string] // 默认：['{{', '}}']
+      comments?: boolean // 默认：false
     }
   }
   ```
 
-- **Details**
+- **详细信息**
 
-  This config option is only respected when using the full build (i.e. the standalone `vue.js` that can compile templates in the browser). It supports the same options as the app-level [app.config.compilerOptions](/api/application.html#app-config-compileroptions), and has higher priority for the current component.
+  这个配置选项仅在使用了完整发行版（即独立的 `vue.js` 可以在浏览器中编译模板）时才有效。它与应用级的 [app.config.compilerOptions](/api/application.html#app-config-compileroptions) 选项配置格式相同，并针对当前组件有更高的优先级。
 
-- **See also:** [app.config.compilerOptions](/api/application.html#app-config-compileroptions)
+- **相关内容：** [app.config.compilerOptions](/api/application.html#app-config-compileroptions)

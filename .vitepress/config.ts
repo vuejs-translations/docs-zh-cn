@@ -10,7 +10,7 @@ const nav = [
     text: '文档',
     activeMatch: `^/(guide|style-guide|cookbook|examples)/`,
     items: [
-      { text: '指引', link: '/guide/introduction' },
+      { text: '指南', link: '/guide/introduction' },
       { text: '教程', link: '/tutorial/' },
       { text: '范例', link: '/examples/' },
       { text: '快速开始', link: '/guide/quick-start' },
@@ -40,15 +40,6 @@ const nav = [
           { text: '合作伙伴', link: '/ecosystem/partners' },
           { text: '主题', link: '/ecosystem/themes' },
           { text: '工作', link: 'https://vuejobs.com/?ref=vuejs' },
-          { text: 'T-Shirt 商店', link: 'https://vue.threadless.com/' }
-        ]
-      },
-      {
-        text: '视频教程',
-        items: [
-          { text: '合作伙伴', link: '/ecosystem/partners' },
-          { text: '主题', link: '/ecosystem/themes' },
-          { text: 'Jobs', link: 'https://vuejobs.com/?ref=vuejs' },
           { text: 'T-Shirt 商店', link: 'https://vue.threadless.com/' }
         ]
       },

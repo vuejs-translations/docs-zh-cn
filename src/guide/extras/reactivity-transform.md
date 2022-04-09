@@ -54,7 +54,7 @@ function increment() {
 - [`customRef`](/api/reactivity-advanced.html#customref) -> `$customRef`
 - [`toRef`](/api/reactivity-utilities.html#toref) -> `$toRef`
 
-当响应性语法糖时，这些宏函数都是全局可用的、无需手动导入。但如果你想让它更明显，你也可以选择从 `vue/macros` 中引入它们：
+当启用响应性语法糖时，这些宏函数都是全局可用的、无需手动导入。但如果你想让它更明显，你也可以选择从 `vue/macros` 中引入它们：
 
 ```js
 import { $ref } from 'vue/macros'
@@ -246,9 +246,9 @@ function useMouse() {
 }
 ```
 
-### 在解构 `$$()` 使用 {#usage-on-destructured-props}
+### 在已解构的 prop 上使用 `$$()` {#usage-on-destructured-props}
 
-`$$()` 可以用在对 props 的结构，因为它们也是响应式的变量。编译器会高效地通过 `toRef` 来做转换：
+`$$()` 适用于已解构的 prop，因为它们也是响应式的变量。编译器会高效地通过 `toRef` 来做转换：
 
 ```ts
 const { count } = defineProps<{ count: number }>()

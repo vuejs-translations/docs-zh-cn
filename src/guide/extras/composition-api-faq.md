@@ -53,7 +53,7 @@ onMounted(() => {
 
 组合式 API 最基本的优势是它使我们能够通过[组合函数](/guide/reusability/composables.html)来实现更加简洁高效的逻辑复用。它解决了[所有 mixins 的缺陷](/guide/reusability/composables.html#vs-mixins)，那是选项式 API 中一种逻辑复用机制。
 
-组合式 API 提供的更多逻辑复用可能性孵化了一些非常棒的社区项目，比如 [VueUse](https://vueuse.org/)，一个不断成长的工具型可组合函数集合。组合式 API 还为其他第三方状态管理库集成 Vue 的响应式系统提供了一套简洁清晰的机制，例如 [RxJS](https://vueuse.org/rxjs/readme.html#vueuse-rxjs)。
+组合式 API 提供的更多逻辑复用可能性孵化了一些非常棒的社区项目，比如 [VueUse](https://vueuse.org/)，一个不断成长的工具型组合式函数集合。组合式 API 还为其他第三方状态管理库集成 Vue 的响应式系统提供了一套简洁清晰的机制，例如 [RxJS](https://vueuse.org/rxjs/readme.html#vueuse-rxjs)。
 
 ### 更灵活的代码组织 {#more-flexible-code-organization}
 
@@ -136,6 +136,6 @@ React Hooks 在组件每次更新时都会重新调用。这就产生了一些�
 
 - Vue 的响应性系统运行时会自动收集计算属性和侦听器的依赖，因此无需我们手动声明依赖。
 
-- 无需手动缓存回调函数来避免不必要的组件更新。总而言之，Vue 细粒度的响应性系统确保了组件尽在需要的时候更新。对 Vue 开发者来说几乎不怎么需要对子组件更新进行手动优化。
+- 无需手动缓存回调函数来避免不必要的组件更新。总而言之，Vue 细粒度的响应性系统确保了组件仅执行必要的更新。对 Vue 开发者来说几乎不怎么需要对子组件更新进行手动优化。
 
-我们承认 React Hooks 的创造性，它是组合式 API 的一个主要灵感来源。然而，它的设计也确实存在上面提到的问题，而 Vue 的响应性模型恰好提供了绕过了它们。
+我们承认 React Hooks 的创造性，它是组合式 API 的一个主要灵感来源。然而，它的设计也确实存在上面提到的问题，而 Vue 的响应性模型恰好提供了一种解决这些问题的方法。
