@@ -18,7 +18,7 @@ outline: deep
 
 - [依赖注入](/api/composition-api-dependency-injection.html)：例如 `provide()` 和 `inject()`，使我们可以在使用响应性 API 时，利用 Vue 的依赖注入系统。
 
-组合式 API 是 Vue 3 的内置功能，而要想在在 Vue 2 中使用，可以使用官方维护的插件 [`@vue/composition-api`](https://github.com/vuejs/composition-api)。在 Vue 3 中，组合式 API 基本上都会配合 [`<script setup>`](/api/sfc-script-setup.html) 语法在单文件组件中使用。下面是一个使用组合式 API 的组件示例：
+组合式 API 是 Vue 3 的内置功能，而要想在 Vue 2 中使用，可以使用官方维护的插件 [`@vue/composition-api`](https://github.com/vuejs/composition-api)。在 Vue 3 中，组合式 API 基本上都会配合 [`<script setup>`](/api/sfc-script-setup.html) 语法在单文件组件中使用。下面是一个使用组合式 API 的组件示例：
 
 ```vue
 <script setup>
@@ -104,7 +104,7 @@ onMounted(() => {
 
 可以。你可以在一个选项式 API 组件中使用 [`setup()`](/api/composition-api-setup.html#setup) 选项。
 
-然而，我们只推荐你在就旧项目中这样使用。它们长期基于选项式 API 开发、又可能想要集成新的功能，或是想要集成基于组合式 API 的第三方库。
+然而，我们只推荐你在旧项目中这样使用。它们长期基于选项式 API 开发、又可能想要集成新的功能，或是想要集成基于组合式 API 的第三方库。
 
 ### 选项式 API 会被废弃吗？ {#will-options-api-be-deprecated}
 
