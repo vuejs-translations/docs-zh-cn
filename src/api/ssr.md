@@ -32,9 +32,9 @@
 
   ### 处理 Teleport
 
-  如果渲染的应用包含 Teleport，那么 teleport 内容将不会作为渲染字符的一部分。在大多数情况下，最佳方案是在挂载时有条件的渲染 Teleport。
+  如果渲染的应用包含 Teleport，那么 teleport 的内容将不会作为渲染字符串的一部分。在大多数情况下，最佳方案是在挂载时条件式地渲染 Teleport。
 
-  如果你需要激活 teleport 内容，他位于服务端渲染上下文对象的 `teleports` property中：
+  如果你需要激活 teleport 内容，服务端渲染上下文对象将它们暴露在了 `teleports` property 下：
 
   ```js
   const ctx = {}
@@ -47,7 +47,7 @@
 
 ## renderToNodeStream()
 
-渲染输入作为 [Node.js Readable stream](https://nodejs.org/api/stream.html#stream_class_stream_readable)。
+[Node.js Readable stream](https://nodejs.org/api/stream.html#stream_class_stream_readable) 形式的渲染输入。
 
 - **导出自 `vue/server-renderer`**
 
@@ -63,12 +63,12 @@
 - **示例**
 
   ```js
-  // 内置 Node.js http 处理器
+  // 在一个 Node.js http 处理函数内
   renderToNodeStream(app).pipe(res)
   ```
 
   :::tip 备注
-  ESM构建的 `vue/server-renderer` 不支持此方法,它与 Node.js 环境分离。使用 [`pipeToNodeWritable`](#pipetonodewritable) 代替。
+  `vue/server-renderer` 的 ESM 构建不支持此方法，因为它是与 Node.js 环境分离的。请换为使用 [`pipeToNodeWritable`](#pipetonodewritable)。
   :::
 
 ## pipeToNodeWritable()
@@ -90,13 +90,13 @@
 - **示例**
 
   ```js
-  // 内置 Node.js http 处理器
+  // 在一个 Node.js http 处理函数内
   pipeToNodeWritable(app, {}, res)
   ```
 
 ## renderToWebStream()
 
-渲染输入作为 [Web ReadableStream](https://developer.mozilla.org/en-US/docs/Web/API/Streams_API)。
+[Web ReadableStream](https://developer.mozilla.org/en-US/docs/Web/API/Streams_API) 形式的渲染输入。
 
 - **导出自 `vue/server-renderer`**
 
@@ -112,12 +112,12 @@
 - **示例**
 
   ```js
-  // 内置一个支持ReadableStream的环境
+  // 在一个支持 ReadableStream 的环境下
   return new Response(renderToWebStream(app))
   ```
 
   :::tip 备注
-  在这些环境中，不能在全局作用域暴露出 `ReadableStream` 的构造函数，使用 [`pipeToWebWritable()`](#pipetowebwritable) 代替。
+  在不能全局暴露 `ReadableStream` 构造函数的环境下，请换为使用 [`pipeToWebWritable()`](#pipetowebwritable)。
   :::
 
 ## pipeToWebWritable()
@@ -141,8 +141,8 @@
   通常与 [`TransformStream`](https://developer.mozilla.org/en-US/docs/Web/API/TransformStream) 结合使用：
 
   ```js
-  // 诸如CloudFlare workers这样的环境中，TransformStream 是可用的。
-  // 在 Node.js， TransformStream 需要从 'stream/web' 显示导入
+  // 诸如 CloudFlare worker 这样的环境中，TransformStream 是可用的。
+  // 在 Node.js 中，TransformStream 需要从 'stream/web' 显示导入。
   const { readable, writable } = new TransformStream()
   pipeToWebWritable(app, {}, writable)
 
@@ -196,7 +196,7 @@
 
 ## useSSRContext()
 
-一种用于检索已传递给 `renderToString()` 或其他服务端渲染API上下文对象的运行时API。
+一个运行时 API，用于获取已传递给 `renderToString()` 或其他服务端渲染 API 的上下文对象。
 
 - **类型**
 
@@ -206,7 +206,7 @@
 
 - **示例**
 
-  被检索的上下文能够作为附加信息用于渲染最终的 HTML （例如头部元数据）
+  得到的上下文能够作为附加信息用于渲染最终的 HTML (例如 head 中的元数据)。
 
   ```vue
   <script setup>
