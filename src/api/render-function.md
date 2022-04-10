@@ -176,9 +176,9 @@
   function isVNode(value: unknown): boolean
   ```
 
-## resolveComponent()
+## resolveComponent() {#resolvecomponent}
 
-For manually resolving a registered component by name.
+按名称手动解析已注册的组件。
 
 - **类型**
 
@@ -188,11 +188,11 @@ For manually resolving a registered component by name.
 
 - **详细信息**
 
-  **Note: you do not need this if you can import the component directly.**
+  **备注：如果你可以直接引入组件就不需使用此方法。**
 
-  `resolveComponent()` must be called inside<span class="composition-api"> either `setup()` or</span> the render function in order to resolve from the correct component context.
+  为了能从正确的组件上下文进行解析， `resolveComponent()` 必须在<span class="composition-api">  `setup()` 或</span>渲染函数内调用。
 
-  If the component is not found, a runtime warning will be emitted, and the name string is returned.
+  如果组件未找到，会抛出一个运行时警告，并返回组件名字符串。
 
 - **示例**
 
@@ -228,11 +228,11 @@ For manually resolving a registered component by name.
 
   </div>
 
-- **相关内容：** [Guide - Render Functions - Components](/guide/extras/render-function.html#components)
+- **相关内容：** [指南 - 渲染函数 - 组件](/guide/extras/render-function.html#components)
 
-## resolveDirective()
+## resolveDirective() {#resolvedirective}
 
-For manually resolving a registered directive by name.
+按名称手动解析已注册的指令。
 
 - **类型**
 
@@ -242,17 +242,17 @@ For manually resolving a registered directive by name.
 
 - **详细信息**
 
-  **Note: you do not need this if you can import the component directly.**
+  **备注：如果你可以直接引入组件就不需使用此方法。**
 
-  `resolveDirective()` must be called inside<span class="composition-api"> either `setup()` or</span> the render function in order to resolve from the correct component context.
+  为了能从正确的组件上下文进行解析， `resolveDirective()` 必须在<span class="composition-api">  `setup()` 或</span>渲染函数内调用。
 
-  If the directive is not found, a runtime warning will be emitted, and the function returns `undefined`.
+  如果指令没有找到，会抛出一个运行时警告，并返回 `undefined`。
 
-- **相关内容：** [Guide - Render Functions - Custom Directives](/guide/extras/render-function.html#custom-directives)
+- **相关内容：** [指南 - 渲染函数 - 自定义指令](/guide/extras/render-function.html#custom-directives)
 
-## withDirectives()
+## withDirectives() {#withdirectives}
 
-For adding custom directives to vnodes.
+用于给 vnode 增加自定义指令。
 
 - **类型**
 
@@ -273,14 +273,14 @@ For adding custom directives to vnodes.
 
 - **详细信息**
 
-  Wraps an existing vnode with custom directives. The second argument is an array of custom directives. Each custom directive is also represented as an array in the form of `[Directive, value, argument, modifiers]`. Tailing elements of the array can be omitted if not needed.
+  用自定义指令包装一个现有的 vnode 。第二个参数是自定义指令数组。每个自定义指令也可以表示为 `[Directive, value, argument, modifiers]` 形式的数组。如果不需要，可以省略数组的尾元素。
 
 - **示例**
 
   ```js
   import { h, withDirectives } from 'vue'
 
-  // a custom directive
+  // 一个自定义指令
   const pin = {
     mounted() {
       /* ... */
@@ -296,11 +296,11 @@ For adding custom directives to vnodes.
   ])
   ```
 
-- **相关内容：** [Guide - Render Functions - Custom Directives](/guide/extras/render-function.html#custom-directives)
+- **相关内容：** [指南 - 渲染函数 - 自定义指令](/guide/extras/render-function.html#custom-directives)
 
-## withModifiers()
+## withModifiers() {#withmodifiers}
 
-For adding built-in [`v-on` modifiers](/guide/essentials/event-handling.html#event-modifiers) to an event handler function.
+用于向事件处理函数添加内置 [`v-on` 修饰符](/guide/essentials/event-handling.html#event-modifiers) 。
 
 - **类型**
 
@@ -314,11 +314,11 @@ For adding built-in [`v-on` modifiers](/guide/essentials/event-handling.html#eve
   import { h, withModifiers } from 'vue'
 
   const vnode = h('button', {
-    // equivalent of v-on.stop.prevent
+    // 等价于 v-on.stop.prevent
     onClick: withModifiers(() => {
       // ...
     }, ['stop', 'prevent'])
   })
   ```
 
-- **相关内容：** [Guide - Render Functions - Event Modifiers](/guide/extras/render-function.html#event-modifiers)
+- **相关内容：** [指南 - 渲染函数 - 事件修饰符](/guide/extras/render-function.html#event-modifiers)
