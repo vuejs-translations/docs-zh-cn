@@ -1,20 +1,20 @@
-# Render Function APIs
+# 渲染函数 API
 
 ## h()
 
-Creates virtual DOM nodes (vnodes).
+创建虚拟 DOM 节点(vnode)。
 
 - **类型**
 
   ```ts
-  // full signature
+  // 详细的函数签名
   function h(
     type: string | Component,
     props?: object | null,
     children?: Children | Slot | Slots
   ): VNode
 
-  // omitting props
+  // 省略 props
   function h(type: string | Component, children?: Children | Slot): VNode
 
   type Children = string | number | boolean | VNode | null | Children[]
@@ -28,64 +28,64 @@ Creates virtual DOM nodes (vnodes).
 
 - **详细信息**
 
-  The first argument can either be a string (for native elements) or a Vue component definition. The second argument is the props to be passed, and the third argument is the children.
+  第一个参数可以是一个原生元素的字符串或一个 Vue 组件定义。第二个参数是要传递的 prop ，第三个参数是 children 。
 
-  When creating a component vnode, the children must be passed as slot functions. A single slot function can be passed if the component expects only the default slot. Otherwise, the slots must be passed as an object of slot functions.
+  当创建一个组件 vnode 时， children 必须作为插槽函数传递。如果组件只期望默认插槽，那么可以只传递单个插槽函数。否则，必须作为一个插槽函数的对象来传递。
 
-  For convenience, the props argument can be omitted when the children is not a slots object.
+  为了方便起见，当 children 不是一个插槽对象时， props 可以被省略。
 
 - **示例**
 
-  Creating native elements:
+  创建原生元素：
 
   ```js
   import { h } from 'vue'
 
-  // all arguments except the type are optional
+  // 除了 type 必填以外，其他的参数都是可选的
   h('div')
   h('div', { id: 'foo' })
 
-  // both attributes and properties can be used in props
-  // Vue automatically picks the right way to assign it
+  // attribute 和 property 都能在 prop 中书写
+  // Vue 会自动将它们分配到正确的位置
   h('div', { class: 'bar', innerHTML: 'hello' })
 
-  // class and style have the same object / array
-  // value support like in templates
+  // 类与样式可以像在模板中一样
+  // 用数组或对象的形式书写
   h('div', { class: [foo, { bar }], style: { color: 'red' } })
 
-  // event listeners should be passed as onXxx
+  // 事件监听器应以 onXxx 的形式书写
   h('div', { onClick: () => {} })
 
-  // children can be a string
+  // children 可以是一个字符串
   h('div', { id: 'foo' }, 'hello')
 
-  // props can be omitted when there are no props
+  // 没有 props 时可以省略不写
   h('div', 'hello')
   h('div', [h('span', 'hello')])
 
-  // children array can contain mixed vnodes and strings
+  // children 数组可以同时包含 vnode 与字符串
   h('div', ['hello', h('span', 'hello')])
   ```
 
-  Creating components:
+  创建组件:
 
   ```js
   import Foo from './Foo.vue'
 
-  // passing props
+  // 传递 prop
   h(Foo, {
-    // equivalent of some-prop="hello"
+    // 等同于 some-prop="hello"
     someProp: 'hello',
-    // equivalent of @update="() => {}"
+    // 等同于 @update="() => {}"
     onUpdate: () => {}
   })
 
-  // passing single default slot
+  // 传递单个默认插槽
   h(Foo, () => 'default slot')
 
-  // passing named slots
-  // notice the `null` is required to avoid
-  // slots object being treated as props
+  // 传递具名插槽
+  // 注意 `null` 是必需的
+  // 以避免 slot 对象被当成 prop 处理
   h(MyComponent, null, {
     default: () => 'default slot',
     foo: () => h('div', 'foo'),
@@ -93,11 +93,11 @@ Creates virtual DOM nodes (vnodes).
   })
   ```
 
-- **相关内容：** [Guide - Creating VNodes](/guide/extras/render-function.html#creating-vnodes)
+- **相关内容：** [指南 - 渲染函数 & JSX - 创建 VNodes](/guide/extras/render-function.html#creating-vnodes)
 
 ## mergeProps()
 
-Merge multiple props objects with special handling for certain props.
+合并多个 props 对象，并对某些 props 进行特殊处理。
 
 - **类型**
 
@@ -107,13 +107,13 @@ Merge multiple props objects with special handling for certain props.
 
 - **详细信息**
 
-  `mergeProps()` supports merging multiple props objects with special handling for the following props:
+  `mergeProps()` 支持合并多个 props 对象并对以下 props 进行特殊处理：
 
   - `class`
   - `style`
-  - `onXxx` event listeners - multiple listeners with the same name will be merged into an array.
+  - `onXxx` 事件监听器 —— 具有相同名称的多个监听器将会被合并到一个数组中。
 
-  If you do not need the merge behavior and want simple overwrites, native object spread can be used instead.
+  如果你不需要合并行为而只是想要简单的覆盖，则应该选择对原生对象进行扩展而不是使用此 API 。
 
 - **示例**
 
@@ -141,7 +141,7 @@ Merge multiple props objects with special handling for certain props.
 
 ## cloneVNode()
 
-Clones a vnode.
+克隆一个 vnode 。
 
 - **类型**
 
@@ -151,11 +151,11 @@ Clones a vnode.
 
 - **详细信息**
 
-  Returns a cloned vnode, optionally with extra props to merge with the original.
+  返回一个克隆的 vnode ，也可以选择将额外的 props 与原 vnode 进行合并。
 
-  Vnodes should be considered immutable once created, and you should not mutate the props of an existing vnode. Instead, clone it with different / extra props.
+  Vnode 一旦被创建，那么就应该认为它是不可变的，并且你不应该变更一个已存在的 vnode 的 props 。而是以不同的/额外的 props 克隆它。
 
-  Vnodes have special internal properties, so cloning them is not as simple as an object spread. `cloneVNode()` handles most of the internal logic.
+  Vnode 具有特殊的内部属性，因此克隆它们并不像对象扩展那么简单。 `cloneVNode()` 处理了大量的内部逻辑。
 
 - **示例**
 
@@ -168,7 +168,7 @@ Clones a vnode.
 
 ## isVNode()
 
-Checks if a value is a vnode.
+检查一个值是不是一个 vnode 。
 
 - **类型**
 
@@ -178,7 +178,7 @@ Checks if a value is a vnode.
 
 ## resolveComponent()
 
-For manually resolving a registered component by name.
+通过其名称手动解析一个已注册的组件。
 
 - **类型**
 
@@ -188,11 +188,11 @@ For manually resolving a registered component by name.
 
 - **详细信息**
 
-  **Note: you do not need this if you can import the component directly.**
+  **注意： 如果你可以直接导入组件，那么你将不会需要此 API 。**
 
-  `resolveComponent()` must be called inside<span class="composition-api"> either `setup()` or</span> the render function in order to resolve from the correct component context.
+  `resolveComponent()` 只能在<span class="composition-api"> `setup()` 或者</span>渲染函数中被调用，以便从正确的组件上下文中进行解析。
 
-  If the component is not found, a runtime warning will be emitted, and the name string is returned.
+  如果没有找到该组件，则会抛出一个运行时警告，并返回 name 字符串。
 
 - **示例**
 
@@ -228,11 +228,11 @@ For manually resolving a registered component by name.
 
   </div>
 
-- **相关内容：** [Guide - Render Functions - Components](/guide/extras/render-function.html#components)
+- **相关内容：** [指南 - 渲染函数 & JSX - 组件](/guide/extras/render-function.html#components)
 
 ## resolveDirective()
 
-For manually resolving a registered directive by name.
+通过其名称手动解析一个已注册的指令。
 
 - **类型**
 
@@ -242,17 +242,17 @@ For manually resolving a registered directive by name.
 
 - **详细信息**
 
-  **Note: you do not need this if you can import the component directly.**
+  **注意： 如果你可以直接导入组件，那么你将不会需要此 API 。**
 
-  `resolveDirective()` must be called inside<span class="composition-api"> either `setup()` or</span> the render function in order to resolve from the correct component context.
+  `resolveDirective()` 只能在<span class="composition-api"> `setup()` 或者</span>渲染函数中被调用，以便从正确的组件上下文中进行解析。
 
-  If the directive is not found, a runtime warning will be emitted, and the function returns `undefined`.
+  如果没有找到该指令，则会抛出一个运行时警告，并返回 `undefined` 。
 
-- **相关内容：** [Guide - Render Functions - Custom Directives](/guide/extras/render-function.html#custom-directives)
+- **相关内容：** [指南- 渲染函数 & JSX - 自定义指令](/guide/extras/render-function.html#custom-directives)
 
 ## withDirectives()
 
-For adding custom directives to vnodes.
+允许将指令应用于 vnode 。
 
 - **类型**
 
@@ -273,14 +273,14 @@ For adding custom directives to vnodes.
 
 - **详细信息**
 
-  Wraps an existing vnode with custom directives. The second argument is an array of custom directives. Each custom directive is also represented as an array in the form of `[Directive, value, argument, modifiers]`. Tailing elements of the array can be omitted if not needed.
+  将一个已存在的 vnode 用自定义指令包装。第二个参数是一个自定义指令的数组。每个自定义指令都会以 `[Directive, value, argument, modifiers]` 形式的数组出现。如果不需要数组尾部的元素，则允许将其省略。
 
 - **示例**
 
   ```js
   import { h, withDirectives } from 'vue'
 
-  // a custom directive
+  // 一个自定义指令
   const pin = {
     mounted() {
       /* ... */
@@ -296,11 +296,11 @@ For adding custom directives to vnodes.
   ])
   ```
 
-- **相关内容：** [Guide - Render Functions - Custom Directives](/guide/extras/render-function.html#custom-directives)
+- **相关内容：** [指南 - 渲染函数 & JSX - 自定义指令](/guide/extras/render-function.html#custom-directives)
 
 ## withModifiers()
 
-For adding built-in [`v-on` modifiers](/guide/essentials/event-handling.html#event-modifiers) to an event handler function.
+为事件处理函数添加内置 [`v-on` 修饰符](/guide/essentials/event-handling.html#event-modifiers) 。
 
 - **类型**
 
@@ -314,11 +314,11 @@ For adding built-in [`v-on` modifiers](/guide/essentials/event-handling.html#eve
   import { h, withModifiers } from 'vue'
 
   const vnode = h('button', {
-    // equivalent of v-on.stop.prevent
+    // 等同于 v-on.stop.prevent
     onClick: withModifiers(() => {
       // ...
     }, ['stop', 'prevent'])
   })
   ```
 
-- **相关内容：** [Guide - Render Functions - Event Modifiers](/guide/extras/render-function.html#event-modifiers)
+- **相关内容：** [指南 - 渲染函数 & JSX - 事件修饰符](/guide/extras/render-function.html#event-modifiers)
