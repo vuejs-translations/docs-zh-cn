@@ -200,7 +200,7 @@ export const sidebar = {
       text: '可重用性',
       items: [
         {
-          text: '可组合函数',
+          text: '组合式函数',
           link: '/guide/reusability/composables'
         },
         {
