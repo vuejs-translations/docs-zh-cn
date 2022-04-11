@@ -94,19 +94,19 @@
 
 ## `<slot>` {#slot}
 
-Denotes slot content outlets in templates.
+表示模板中的插槽内容出口。
 
 - **Props**
 
   ```ts
   interface SlotProps {
     /**
-     * Any props passed to <slot> to passed as arguments
-     * for scoped slots
+     * 任何传递给 <slot> 的 prop 都可以作为作用域插槽
+     * 的参数传递
      */
     [key: string]: any
     /**
-     * Reserved for specifying slot name.
+     * 保留用于指定插槽名。
      */
     name?: string
   }
@@ -114,10 +114,10 @@ Denotes slot content outlets in templates.
 
 - **详细信息**
 
-  The `<slot>` element can use the `name` attribute to specify a slot name. When no `name` is specified, it will render the default slot. Additional attributes passed to the slot element will be passed as slot props to the scoped slot defined in the parent.
+  `<slot>` 元素可以使用 `name` attribute 来指定插槽名。当没有指定 `name` 时，将会渲染默认槽。传递给插槽元素的附加 attribute 将作为插槽 prop ，传递给父级中定义的作用域插槽。
 
-  The element itself will be replaced by its matched slot content.
+  元素本身将被其所匹配的插槽内容替换。
 
-  `<slot>` elements in Vue templates are compiled into JavaScript, so they are not to be confused with [native `<slot>` elements](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/slot).
+  Vue 模板里的 `<slot>` 元素会被编译到 JavaScript，因此不要与 [原生 `<slot>` 元素](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/slot) 进行混淆。
 
-- **相关内容：** [Component - Slots](/guide/components/slots.html)
+- **相关内容：** [组件 - 插槽](/guide/components/slots.html)
