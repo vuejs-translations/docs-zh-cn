@@ -1,12 +1,12 @@
-# Built-in Special Elements
+# 内置特殊元素 {#built-in-special-elements}
 
-:::info Not Components
-`<component>` and `<slot>` are component-like features and part of the template syntax. They are not true components and are compiled away during template compilation. As such, they are conventionally written with lowercase in templates.
+:::info 不是组件
+`<component>` 和 `<slot>` 具有类似组件的特性，也是模板语法的一部分。它们并非真正的组件，同时在模板编译期间会被编译掉。因此，它们通常在模板中用小写字母书写。
 :::
 
-## `<component>`
+## `<component>` {#component}
 
-A "meta component" for rendering dynamic components or elements.
+一种用于渲染动态组件或元素的 “元组件” 。
 
 - **Props**
 
@@ -18,15 +18,15 @@ A "meta component" for rendering dynamic components or elements.
 
 - **详细信息**
 
-  The actual component to render is determined by the `is` prop.
+  要渲染的实际组件由 `is` prop 决定。
 
-  - When `is` is a string, it could be either an HTML tag name or a component's registered name.
+  - 当 `is` 是字符串，它既可以是 HTML 标签名也可以是组件的注册名。
 
-  - Alternatively, `is` can also be directly bound to the definition of a component.
+  - 或者， `is` 也可以直接绑定到组件的定义。
 
 - **示例**
 
-  Rendering components by registered name (Options API):
+  按注册名渲染组件 （选项式 API）：
 
   ```vue
   <script>
@@ -48,7 +48,7 @@ A "meta component" for rendering dynamic components or elements.
   </template>
   ```
 
-  Rendering components by definition (Composition API with `<script setup>`):
+  按定义渲染组件 （ `<script setup>` 组合式 API):
 
   ```vue
   <script setup>
@@ -61,13 +61,13 @@ A "meta component" for rendering dynamic components or elements.
   </template>
   ```
 
-  Rendering HTML elements:
+  渲染 HTML 元素：
 
   ```vue-html
   <component :is="href ? 'a' : 'span'"></component>
   ```
 
-  The [built-in components](./built-in-components.html) can all be passed to `is`, but you must register them if you want to pass them by name. For example:
+  [内置组件](./built-in-components.html)都可以传递给 `is`，但是如果想通过名称传递则必须先对其进行注册。举个例子：
 
   ```vue
   <script>
@@ -88,11 +88,11 @@ A "meta component" for rendering dynamic components or elements.
   </template>
   ```
 
-  Registration is not required if you pass the component itself to `is` rather than its name, e.g. in `<script setup>`.
+  如果将组件本身传递给 `is` 而不是其名称，则不需要注册，例如在 `<script setup>`。
 
-- **相关内容：** [Dynamic Components](/guide/essentials/component-basics.html#dynamic-components)
+- **相关内容：** [动态组件](/guide/essentials/component-basics.html#dynamic-components)
 
-## `<slot>`
+## `<slot>` {#slot}
 
 Denotes slot content outlets in templates.
 
