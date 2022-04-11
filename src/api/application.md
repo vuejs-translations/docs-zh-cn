@@ -259,7 +259,7 @@
 :::warning 不推荐
 Mixins 在 Vue 3 支持主要是为了向后兼容，因为生态中有许多库使用到。目前 mixin，特别是全局 mixin，都应避免在应用程序代码中使用。
 
-若要进行逻辑重用，推荐采用 [可组合函数](/guide/reusability/composables.html) 来替代。
+若要进行逻辑重用，推荐采用 [组合式函数](/guide/reusability/composables.html) 来替代。
 :::
 
 - **类型**

@@ -82,14 +82,14 @@
 
   上面这个 ref **不会** 和 `state.foo` 保持同步，因为这个 `ref()` 接收到的是一个纯字符串值。
 
-  `toRef()` 这个函数在你想把一个 prop 的 ref 传递给一个可组合函数时会很有用：
+  `toRef()` 这个函数在你想把一个 prop 的 ref 传递给一个组合式函数时会很有用：
 
   ```vue
   <script setup>
   const props = defineProps(/* ... */)
 
   // 将 `props.foo` 转为一个 ref，接着将其转为
-  // 一个可组合函数
+  // 一个组合式函数
   useSomeFeature(toRef(props, 'foo'))
   </script>
   ```
@@ -136,7 +136,7 @@
   console.log(state.foo) // 3
   ```
 
-  在你要从一个可组合函数中返回响应式对象、而消费者组件想要解构或展开它又不想丢失响应性时，`toRefs` 会很有用：
+  在你要从一个组合式函数中返回响应式对象、而消费者组件想要解构或展开它又不想丢失响应性时，`toRefs` 会很有用：
 
   ```js
   function useFeatureX() {
