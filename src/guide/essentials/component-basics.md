@@ -459,7 +459,7 @@ export default {
 
 这会渲染成这样：
 
-:::danger 这是一个用来展示 Error 弹框的示例
+:::danger This is an Error for Demo Purposes
 Something bad happened.
 :::
 
@@ -468,7 +468,7 @@ Something bad happened.
 ```vue{4}
 <template>
   <div class="alert-box">
-    <strong>Error!</strong>
+    <strong>This is an Error for Demo Purposes</strong>
     <slot />
   </div>
 </template>

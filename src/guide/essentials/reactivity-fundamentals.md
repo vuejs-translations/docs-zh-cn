@@ -302,7 +302,7 @@ function mutateDeeply() {
 
 <div class="composition-api">
 
-### 响应式代理 vs. 原始对象 {#reactive-proxy-vs-original} \*\*
+### 响应式代理 vs. 原始对象 \*\* {#reactive-proxy-vs-original-1} 
 
 值得注意的是，`reactive()` 返回的是一个原始对象的 [Proxy](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy)，它和原始对象是不相等的：
 

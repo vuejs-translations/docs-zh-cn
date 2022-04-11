@@ -78,7 +78,7 @@ Provides animated transition effects to a **single** element or component.
   }
   ```
 
-- **Events**
+- **事件**
 
   - `@before-enter`
   - `@before-leave`
@@ -92,7 +92,7 @@ Provides animated transition effects to a **single** element or component.
   - `@leave-cancelled` (`v-show` only)
   - `@appear-cancelled`
 
-- **Example**
+- **示例**
 
   Simple element:
 
@@ -118,7 +118,7 @@ Provides animated transition effects to a **single** element or component.
   </Transition>
   ```
 
-- **其他相关：** [`<Transition>` Guide](/guide/built-ins/transition.html)
+- **相关内容：** [`<Transition>` Guide](/guide/built-ins/transition.html)
 
 ## `<TransitionGroup>`
 
@@ -142,11 +142,11 @@ Provides transition effects for **multiple** elements or components in a list.
   }
   ```
 
-- **Events**
+- **事件**
 
   `<TransitionGroup>` emits the same events as `<Transition>`.
 
-- **Details**
+- **详细信息**
 
   By default, `<TransitionGroup>` doesn't render a wrapper DOM element, but one can be defined via the `tag` prop.
 
@@ -154,7 +154,7 @@ Provides transition effects for **multiple** elements or components in a list.
 
   `<TransitionGroup>` supports moving transitions via CSS transform. When a child's position on screen has changed after an update, it will get applied a moving CSS class (auto generated from the `name` attribute or configured with the `move-class` prop). If the CSS `transform` property is "transition-able" when the moving class is applied, the element will be smoothly animated to its destination using the [FLIP technique](https://aerotwist.com/blog/flip-your-animations/).
 
-- **Example**
+- **示例**
 
   ```vue-html
   <TransitionGroup tag="ul" name="slide">
@@ -164,7 +164,7 @@ Provides transition effects for **multiple** elements or components in a list.
   </TransitionGroup>
   ```
 
-- **See also:** [Guide - TransitionGroup](/guide/built-ins/transition-group.html)
+- **相关内容：** [Guide - TransitionGroup](/guide/built-ins/transition-group.html)
 
 ## `<KeepAlive>`
 
@@ -193,7 +193,7 @@ Caches dynamically toggled components wrapped inside.
   type MatchPattern = string | RegExp | (string | RegExp)[]
   ```
 
-- **Details**
+- **详细信息**
 
   When wrapped around a dynamic component, `<KeepAlive>` caches the inactive component instances without destroying them.
 
@@ -201,7 +201,7 @@ Caches dynamically toggled components wrapped inside.
 
   When a component is toggled inside `<KeepAlive>`, its `activated` and `deactivated` lifecycle hooks will be invoked accordingly, providing an alternative to `mounted` and `unmounted`, which are not called. This applies to the direct child of `<KeepAlive>` as well as to all of its descendants.
 
-- **Example**
+- **示例**
 
   Basic usage:
 
@@ -257,7 +257,7 @@ Caches dynamically toggled components wrapped inside.
   </KeepAlive>
   ```
 
-- **See also:** [Guide - KeepAlive](/guide/built-ins/keep-alive.html)
+- **相关内容：** [Guide - KeepAlive](/guide/built-ins/keep-alive.html)
 
 ## `<Teleport>`
 
@@ -281,7 +281,7 @@ Renders its slot content to another part of the DOM.
   }
   ```
 
-- **Example**
+- **示例**
 
   Specifying target container:
 
@@ -299,7 +299,7 @@ Renders its slot content to another part of the DOM.
   </teleport>
   ```
 
-- **See also:** [Guide - Teleport](/guide/built-ins/teleport.html)
+- **相关内容：** [Guide - Teleport](/guide/built-ins/teleport.html)
 
 ## `<Suspense>` <sup class="vt-badge experimental" />
 
@@ -313,16 +313,16 @@ Used for orchestrating nested async dependencies in a component tree.
   }
   ```
 
-- **Events**
+- **事件**
 
   - `@resolve`
   - `@pending`
   - `@fallback`
 
-- **Details**
+- **详细信息**
 
   `<Suspense>` accepts two slots: the `#default` slot and the `#fallback` slot. It will display the content of the fallback slot while rendering the default slot in memory.
 
   If it encounters async dependencies ([Async Components](/guide/components/async.html) and components with [`async setup()`](/guide/built-ins/suspense.html#async-setup)) while rendering the default slot, it will wait until all of them are resolved before displaying the default slot.
 
-- **See also:** [Guide - Suspense](/guide/built-ins/suspense.html)
+- **相关内容：** [Guide - Suspense](/guide/built-ins/suspense.html)

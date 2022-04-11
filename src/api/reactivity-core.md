@@ -1,17 +1,17 @@
-# Reactivity API: Core
+# 响应性 API：核心 {#reactivity-api-core} 
 
-:::info See also
-To better understand the Reactivity APIs, it is recommended to read the following chapters in the guide:
+:::info 相关内容
+要更好地了解响应性 API，推荐阅读下面几个指南中的章节：
 
-- [Reactivity Fundamentals](/guide/essentials/reactivity-fundamentals.html) (with the API preference set to Composition API)
-- [Reactivity in Depth](/guide/extras/reactivity-in-depth.html)
+- [响应性基础](/guide/essentials/reactivity-fundamentals.html) (with the API preference set to Composition API)
+- [深入响应性系统](/guide/extras/reactivity-in-depth.html)
   :::
 
-## ref()
+## ref()  {#ref}
 
-Takes an inner value and returns a reactive and mutable ref object, which has a single property `.value` that points to the inner value.
+接受一个值，将其用作内部值来返回一个响应式的、可更改的 ref 对象。只有一个属性 `.value` 用来指向内部的值。
 
-- **Type**
+- **类型**
 
   ```ts
   function ref<T>(value: T): Ref<UnwrapRef<T>>
@@ -21,15 +21,15 @@ Takes an inner value and returns a reactive and mutable ref object, which has a 
   }
   ```
 
-- **Details**
+- **详细信息**
 
-  The ref object is mutable - i.e. you can assign new values to `.value`. It is also reactive - i.e. any read operations to `.value` is tracked, and write operations will trigger associated effects.
+  ref 对象是可更改的，也就是说你可以为 `.value` 赋予新的值。它也是响应式的，即所有对 `.value` 的操作都将被追踪，并且写操作会触发相应的副作用。
 
-  If an object is assigned as a ref's value, the object is made deeply reactive with [reactive()](#reactive). This also means if the object contains nested refs, they will be deeply unwrapped.
+  如果将一个对象赋值给 ref，那么这个对象将通过 [reactive()](#reactive) 转为具有深层次响应性的对象。这也意味着如果对象中包含了嵌套的 ref，它们将被深层地解包。
 
-  To avoid the deep conversion, use [`shallowRef()`](./reactivity-advanced.html#shallowref) instead.
+  若要避免这种深层次的转换，请使用 [`shallowRef()`](./reactivity-advanced.html#shallowref) 来替代。
 
-- **Example**
+- **示例**
 
   ```js
   const count = ref(0)
@@ -39,25 +39,25 @@ Takes an inner value and returns a reactive and mutable ref object, which has a 
   console.log(count.value) // 1
   ```
 
-- **See also:**
-  - [Guide - Reactive Variables with `ref()`](/guide/essentials/reactivity-fundamentals.html#reactive-variables-with-ref)
-  - [Guide - Typing `ref()`](/guide/typescript/composition-api.html#typing-ref)
+- **相关内容：**
+  - [指南 - `ref()` 定义响应式变量](/guide/essentials/reactivity-fundamentals.html#reactive-variables-with-ref)
+  - [指南 - 为 `ref()` 标注类型](/guide/typescript/composition-api.html#typing-ref)
 
-## computed()
+## computed() {#computed}
 
-Takes a getter function and returns a readonly reactive [ref](#ref) object for the returned value from the getter. It can also take an object with `get` and `set` functions to create a writable ref object.
+接受一个计算函数，返回一个只读的响应式 [ref](#ref) 对象，即计算函数的返回值。它也可以接受一个带有 `get` 和 `set` 函数的对象来创建一个可写的 ref 对象。
 
-- **Type**
+- **类型**
 
   ```ts
-  // read-only
+  // 只读
   function computed<T>(
     getter: () => T,
-    // see "Computed Debugging" link below
+    // 查看下方的 "计算属性调试" 链接
     debuggerOptions?: DebuggerOptions
   ): Readonly<Ref<Readonly<T>>>
 
-  // writable
+  // 可写的
   function computed<T>(
     options: {
       get: () => T
@@ -67,9 +67,9 @@ Takes a getter function and returns a readonly reactive [ref](#ref) object for t
   ): Ref<T>
   ```
 
-- **Example**
+- **示例**
 
-  Creating a readonly computed ref:
+  创建一个只读的计算属性 ref：
 
   ```js
   const count = ref(1)
@@ -77,10 +77,10 @@ Takes a getter function and returns a readonly reactive [ref](#ref) object for t
 
   console.log(plusOne.value) // 2
 
-  plusOne.value++ // error
+  plusOne.value++ // 错误
   ```
 
-  Creating a writable computed ref:
+  创建一个可写的计算属性 ref：
 
   ```js
   const count = ref(1)
@@ -95,7 +95,7 @@ Takes a getter function and returns a readonly reactive [ref](#ref) object for t
   console.log(count.value) // 0
   ```
 
-  Debugging:
+  调试：
 
   ```js
   const plusOne = computed(() => count.value + 1, {
@@ -108,73 +108,73 @@ Takes a getter function and returns a readonly reactive [ref](#ref) object for t
   })
   ```
 
-- **See also:**
-  - [Guide - Computed Properties](/guide/essentials/computed.html)
-  - [Guide - Computed Debugging](/guide/extras/reactivity-in-depth.html#computed-debugging)
-  - [Guide - Typing `computed()`](/guide/typescript/composition-api.html#typing-computed)
+- **相关内容：**
+  - [指南 - 计算属性](/guide/essentials/computed.html)
+  - [指南 - 计算属性调试](/guide/extras/reactivity-in-depth.html#computed-debugging)
+  - [指南 - 为 `computed()` 标注类型](/guide/typescript/composition-api.html#typing-computed)
 
-## reactive()
+## reactive() {#reactive}
 
-Returns a reactive proxy of the object.
+返回一个对象的响应式代理。
 
-- **Type**
+- **类型**
 
   ```ts
   function reactive<T extends object>(target: T): UnwrapNestedRefs<T>
   ```
 
-- **Details**
+- **详细信息**
 
-  The reactive conversion is "deep": it affects all nested properties. A reactive object also deeply unwraps any properties that are [refs](#ref) while maintaining reactivity.
+  响应式转换时“深层”的：它会影响到内部所有层次的属性。一个响应式对象也可以深层地解包任何为 [ref](#ref) 的属性，同时保持响应性。
 
-  It should also be noted that there is no ref unwrapping performed when the ref is accessed as an element of a reactive array or a native collection type like `Map`.
+  同时值得注意的是，当访问到某个响应式数组或 `Map` 这样的原生集合类型中为 ref 的元素时，不会执行 ref 的解包。
 
-  To avoid the deep conversion and only retain reactivity at the root level, use [shallowReactive()](./reactivity-advanced.html#shallowreactive) instead.
+  若为避免深层响应式转换，只想保留对这个对象顶层次访问的响应性，请使用 [shallowReactive()](./reactivity-advanced.html#shallowreactive) 作替代。
 
-  The returned object and its nested objects are wrapped with [ES Proxy](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy) and **not** equal to the original objects. It is recommended to work exclusively with the reactive proxy and avoid relying on the original object.
+  返回的对象以及其中嵌套的对象都会通过 [ES Proxy](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy) 包裹，因此 **不等于** 源对象，建议只使用响应式代理，避免依赖于原始对象。
 
-- **Example**
+- **示例**
 
-  Creating a reactive object:
+  创建一个响应式对象：
 
   ```js
   const obj = reactive({ count: 0 })
   obj.count++
   ```
 
-  Ref unwrapping:
+  ref 的解包：
 
   ```ts
   const count = ref(1)
   const obj = reactive({ count })
 
-  // ref will be unwrapped
+  // ref 会被解包
   console.log(obj.count === count.value) // true
 
-  // it will update `obj.count`
+  // 会更新 `obj.count`
   count.value++
   console.log(count.value) // 2
   console.log(obj.count) // 2
 
-  // it will also update `count` ref
+  // 也会更新 `count` ref
   obj.count++
   console.log(obj.count) // 3
   console.log(count.value) // 3
   ```
 
-  Note that refs are **not** unwrapped when accessed as array or collection elements:
+  注意当访问到某个响应式数组或 `Map` 这样的原生集合类型中为 ref 的元素时，**不会**执行 ref 的解包：
 
   ```js
   const books = reactive([ref('Vue 3 Guide')])
-  // need .value here
+  // 这里需要 .value
   console.log(books[0].value)
 
   const map = reactive(new Map([['count', ref(0)]]))
-  // need .value here
+  // 这里需要 .value
   console.log(map.get('count').value)
   ```
 
-  When assigning a [ref](#ref) to a `reactive` property, that ref will also be automatically unwrapped:
+  将一个 [ref](#ref) 赋值给为一个 `reactive` 属性时，该 ref 会被自动解包：
 
   ```ts
   const count = ref(1)
@@ -186,15 +186,15 @@ Returns a reactive proxy of the object.
   console.log(obj.count === count.value) // true
   ```
 
-- **See also:**
-  - [Guide - Reactivity Fundamentals](/guide/essentials/reactivity-fundamentals.html)
-  - [Guide - Typing `reactive()`](/guide/typescript/composition-api.html#typing-reactive)
+- **相关内容：**
+  - [指南 - 响应式基础](/guide/essentials/reactivity-fundamentals.html)
+  - [指南 - 为 `reactive()` 标注类型](/guide/typescript/composition-api.html#typing-reactive)
 
-## readonly()
+## readonly()  {#readonly}
 
-Takes an object (reactive or plain) or a [ref](#ref) and returns a readonly proxy to the original.
+接受一个对象（不论是响应式还是一般的）或是一个 [ref](#ref)，返回一个原值的只读代理。
 
-- **Type**
+- **类型**
 
   ```ts
   function readonly<T extends object>(
@@ -202,13 +202,13 @@ Takes an object (reactive or plain) or a [ref](#ref) and returns a readonly prox
   ): DeepReadonly<UnwrapNestedRefs<T>>
   ```
 
-- **Details**
+- **详细信息**
 
-  A readonly proxy is deep: any nested property accessed will be readonly as well. It also has the same ref-unwrapping behavior as `reactive()`, except the unwrapped values will also be made readonly.
+  一个只读的代理是深层生效的，对任何内部层级的属性的访问都是只读的。它与 `reactive()` 有相同的 ref 解包行为，而解包得的值也同样是只读的。
 
-  To avoid the deep conversion, use [shallowReadonly()](./reactivity-advanced.html#shallowreadonly) instead.
+  要避免深层级的转换行为，请使用 [shallowReadonly()](./reactivity-advanced.html#shallowreadonly) 作替代。
 
-- **Example**
+- **示例**
 
   ```js
   const original = reactive({ count: 0 })
@@ -216,22 +216,22 @@ Takes an object (reactive or plain) or a [ref](#ref) and returns a readonly prox
   const copy = readonly(original)
 
   watchEffect(() => {
-    // works for reactivity tracking
+    // 用来做响应性追踪
     console.log(copy.count)
   })
 
-  // mutating original will trigger watchers relying on the copy
+  // 更改源属性会触发依赖其只读副本的侦听器
   original.count++
 
-  // mutating the copy will fail and result in a warning
+  // 更改该只读副本将会失败，并会得到一个警告
   copy.count++ // warning!
   ```
 
-## watchEffect()
+## watchEffect()  {#watcheffect}
 
-Runs a function immediately while reactively tracking its dependencies and re-runs it whenever the dependencies are changed.
+立即运行一个函数，同时响应式地追踪其依赖，并在依赖更改时重新执行。
 
-- **Type**
+- **类型**
 
   ```ts
   function watchEffect(
@@ -250,15 +250,15 @@ Runs a function immediately while reactively tracking its dependencies and re-ru
   type StopHandle = () => void
   ```
 
-- **Details**
+- **详细信息**
 
-  The first argument is the effect function to be run. The effect function receives a function that can be used to register a cleanup callback. The cleanup callback will be called right before the next time the effect is re-run, and can be used to clean up invalidated side effects, e.g. a pending async request (see example below).
+  第一个函数就是要运行的副作用函数。这个副作用函数的参数也是一个函数，用来注册清理回调。清理回调会在该副作用下一次执行前被调用，可以用来清理无效的副作用，例如等待中的异步请求（参见下面的示例）。
 
-  The second argument is an optional options object that can be used to adjust the effect's flush timing or to debug the effect's dependencies.
+  第二个参数是一个可选的选项，可以用来调整副作用的刷新时机或调试副作用的依赖。
 
-  The return value is a handle function that can be called to stop the effect from running again.
+  返回值是一个用来停止该副作用的函数。
 
-- **Example**
+- **示例**
 
   ```js
   const count = ref(0)
@@ -275,20 +275,20 @@ Runs a function immediately while reactively tracking its dependencies and re-ru
   ```js
   watchEffect(async (onCleanup) => {
     const { response, cancel } = doAsyncWork(id.value)
-    // `cancel` will be called if `id` changes
-    // so that previous pending request will be cancelled
-    // if not yet completed
+    // `cancel` 会在 `id` 更改时调用
+    // 因此，之前的等待中的请求
+    // 若没有完成将被取消
     onCleanup(cancel)
     data.value = await response
   })
   ```
 
-  Stopping the watcher:
+  停止侦听器：
 
   ```js
   const stop = watchEffect(() => {})
 
-  // when the watcher is no longer needed:
+  // 当不再需要此侦听器时:
   stop()
   ```
 
@@ -306,33 +306,33 @@ Runs a function immediately while reactively tracking its dependencies and re-ru
   })
   ```
 
-- **See also**:
-  - [Guide - Watchers](/guide/essentials/watchers.html#watcheffect)
-  - [Guide - Watcher Debugging](/guide/extras/reactivity-in-depth.html#watcher-debugging)
+- **相关内容**:
+  - [指南 - 侦听器](/guide/essentials/watchers.html#watcheffect)
+  - [指南 - 侦听器调试](/guide/extras/reactivity-in-depth.html#watcher-debugging)
 
-## watchPostEffect()
+## watchPostEffect()  {#watchposteffect}
 
-Alias of [`watchEffect()`](#watcheffect) with `flush: 'post'` option.
+[`watchEffect()`](#watcheffect) 使用 `flush: 'post'` 选项时的别名。
 
-## watchSyncEffect()
+## watchSyncEffect()  {#watchsynceffect}
 
-Alias of [`watchEffect()`](#watcheffect) with `flush: 'sync'` option.
+[`watchEffect()`](#watcheffect) 使用 `flush: 'sync'` 选项时的别名。
 
-## watch()
+## watch()  {#watch}
 
-Watches one or more reactive data sources and invokes a callback function when the sources change.
+侦听一个或多个响应式数据源，并在数据源变化时调用所给的回调函数。
 
-- **Type**
+- **类型**
 
   ```ts
-  // watching single source
+  // 侦听单个来源
   function watch<T>(
     source: WatchSource<T>,
     callback: WatchCallback<T>,
     options?: WatchOptions
   ): StopHandle
 
-  // watching multiple sources
+  // 侦听多个来源
   function watch<T>(
     sources: WatchSource<T>[],
     callback: WatchCallback<T[]>,
@@ -350,50 +350,50 @@ Watches one or more reactive data sources and invokes a callback function when t
     | (() => T) // getter
     | T extends object
     ? T
-    : never // reactive object
+    : never // 响应式对象
 
   interface WatchOptions extends WatchEffectOptions {
-    immediate?: boolean // default: false
-    deep?: boolean // default: false
-    flush?: 'pre' | 'post' | 'sync' // default: 'pre'
+    immediate?: boolean // 默认：false
+    deep?: boolean // 默认：false
+    flush?: 'pre' | 'post' | 'sync' // 默认：'pre'
     onTrack?: (event: DebuggerEvent) => void
     onTrigger?: (event: DebuggerEvent) => void
   }
   ```
 
-  > Types are simplified for readability.
+  > 为了便于阅读，对类型进行了简化。
 
-- **Details**
+- **详细信息**
 
-  `watch()` is lazy by default - i.e. the callback is only called when the watched source has changed.
+  `watch()` 默认是懒侦听的，即回调函数仅会在侦听源发生变化时才执行。
 
-  The first argument is the watcher's **source**. The source can be one of the following:
+  第一个参数是侦听器的 **源**。这个来源可以是以下几种：
 
-  - A getter function that returns a value
-  - A ref
-  - A reactive object
-  - ...or an array of the above.
+  - 一个函数，返回一个值
+  - 一个 ref
+  - 一个响应式对象
+  - ...或是以上值可能为以上三种类型的数组
 
-  The second argument is the callback that will be called when the source changes. The callback receives three arguments: the new value, the old value, and a function for registering a side effect cleanup callback. The cleanup callback will be called right before the next time the effect is re-run, and can be used to clean up invalidated side effects, e.g. a pending async request.
+  第二个参数是在发生变化时要调用的回调函数。这个回调函数接受三个参数：新的值、旧的值，以及一个用于注册副作用清理回调的函数。清理副作用的回调会在副作用下一次重新执行前调用，可以用来清除无效的副作用，例如等待中的异步请求。
 
-  When watching multiple sources, the callback receives two arrays containing new / old values corresponding to the source array.
+  当侦听多个来源时，回调函数接受的新、旧值都是所对应源各个值的一个数组。
 
-  The third optional argument is an options object that supports the following options:
+  第三个可选的参数是一个对象，支持以下这些选项：
 
-  - **`immediate`**: trigger the callback immediately on watcher creation. Old value will be `undefined` on the first call.
-  - **`deep`**: force deep traversal of the source if it is an object, so that the callback fires on deep mutations. See [Deep Watchers](/guide/essentials/watchers.html#deep-watchers).
-  - **`flush`**: adjust the callback's flush timing. See [Callback Flush Timing](/guide/essentials/watchers.html#callback-flush-timing).
-  - **`onTrack / onTrigger`**: debug the watcher's dependencies. See [Watcher Debugging](/guide/extras/reactivity-in-depth.html#watcher-debugging).
+  - **`immediate`**：在侦听器创建时立即触发回调。这第一次调用时旧的值会是 `undefined`。
+  - **`deep`**：如果源是对象，强制深度遍历，以便在深层级变更时启动回调。相关内容请看 [深层侦听器](/guide/essentials/watchers.html#deep-watchers) 一节。
+  - **`flush`**：调整回调函数的刷新时机。相关内容请看 [回调的刷新时机](/guide/essentials/watchers.html#callback-flush-timing) 一节。
+  - **`onTrack / onTrigger`**：调试侦听器的依赖。相关内容请看 [调试侦听器](/guide/extras/reactivity-in-depth.html#watcher-debugging) 一节。
 
-  Compared to [`watchEffect()`](#watcheffect), `watch()` allows us to:
+  与 [`watchEffect()`](#watcheffect) 相比，`watch()` 使我们可以：
 
-  - Perform the side effect lazily;
-  - Be more specific about what state should trigger the watcher to re-run;
-  - Access both the previous and current value of the watched state.
+  - 懒执行副作用；
+  - 更加明确是应该由哪个状态触发侦听器重新执行；
+  - 可以访问所侦听状态的前一个值和当前值。
 
-- **Example**
+- **示例**
 
-  Watching a getter:
+  侦听源是一个函数：
 
   ```js
   const state = reactive({ count: 0 })
@@ -405,7 +405,7 @@ Watches one or more reactive data sources and invokes a callback function when t
   )
   ```
 
-  Watching a ref:
+  侦听源是一个 ref：
 
   ```js
   const count = ref(0)
@@ -414,7 +414,7 @@ Watches one or more reactive data sources and invokes a callback function when t
   })
   ```
 
-  When watching multiple sources, the callback receives arrays containing new / old values corresponding to the source array:
+  当侦听多个来源时，回调函数接受的新、旧值都是所对应源各个值的一个数组：
 
   ```js
   watch([fooRef, barRef], ([foo, bar], [prevFoo, prevBar]) => {
@@ -422,7 +422,7 @@ Watches one or more reactive data sources and invokes a callback function when t
   })
   ```
 
-  When using a getter source, the watcher only fires if the getter's return value has changed. If you want the callback to fire even on deep mutations, you need to explicitly force the watcher into deep mode with `{ deep: true }`. Note in deep mode, the new value and the old will be the same object if the callback was triggered by a deep mutation:
+  当使用函数作源时，侦听器只在此函数的返回值发生变化时才会启动。如果你想让回调在深层级变更时也能启动，你需要明确地用 `{ deep: true }` 强制侦听器进入深层级模式。
 
   ```js
   const state = reactive({ count: 0 })
@@ -435,16 +435,16 @@ Watches one or more reactive data sources and invokes a callback function when t
   )
   ```
 
-  When directly watching a reactive object, the watcher is automatically in deep mode:
+  当直接侦听一个响应式对象时，侦听器自动处于深层级模式：
 
   ```js
   const state = reactive({ count: 0 })
   watch(state, () => {
-    /* triggers on deep mutation to state */
+    /* 深层级变更状态所触发的回调 */
   })
   ```
 
-  `watch()` shares the same flush timing and debugging options with [`watchEffect()`](#watcheffect):
+  `watch()` 和 [`watchEffect()`](#watcheffect) 享有相同的刷新时机和调试选项：
 
   ```js
   watch(source, callback, {
@@ -455,7 +455,7 @@ Watches one or more reactive data sources and invokes a callback function when t
   })
   ```
 
-- **See also**:
+- **相关内容**:
 
-  - [Guide - Watchers](/guide/essentials/watchers.html)
-  - [Guide - Watcher Debugging](/guide/extras/reactivity-in-depth.html#watcher-debugging)
+  - [指南 - 侦听器](/guide/essentials/watchers.html)
+  - [指南 - 侦听器调试](/guide/extras/reactivity-in-depth.html#watcher-debugging)

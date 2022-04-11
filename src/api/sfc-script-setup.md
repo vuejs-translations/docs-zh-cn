@@ -1,13 +1,13 @@
-# 单文件组件 `<script setup>`
+# 单文件组件 `<script setup>` {#script-setup}
 
-`<script setup>` 是在单文件组件 (SFC) 中使用[组合式 API](/api/composition-api.html) 的编译时语法糖。相比于普通的 `<script>` 语法，它具有更多优势：
+`<script setup>` 是在单文件组件 (SFC) 中使用组合式 API 的编译时语法糖。相比于普通的 `<script>` 语法，它具有更多优势：
 
 - 更少的样板内容，更简洁的代码。
 - 能够使用纯 Typescript 声明 props 和抛出事件。
 - 更好的运行时性能 (其模板会被编译成与其同一作用域的渲染函数，没有任何的中间代理)。
 - 更好的 IDE 类型推断性能 (减少语言服务器从代码中抽离类型的工作)。
 
-## 基本语法
+## 基本语法 {#basic-syntax}
 
 要使用这个语法，需要将 `setup` attribute 添加到 `<script>` 代码块上：
 
@@ -19,7 +19,7 @@ console.log('hello script setup')
 
 里面的代码会被编译成组件 `setup()` 函数的内容。这意味着与普通的 `<script>` 只在组件被首次引入的时候执行一次不同，`<script setup>` 中的代码会在**每次组件实例被创建的时候执行**。
 
-### 顶层的绑定会被暴露给模板
+### 顶层的绑定会被暴露给模板  {#top-level-bindings-are-exposed-to-template}
 
 当使用 `<script setup>` 的时候，任何在 `<script setup>` 声明的顶层的绑定 (包括变量，函数声明，以及 import 引入的内容) 都能在模板中直接使用：
 
@@ -51,9 +51,9 @@ import { capitalize } from './helpers'
 </template>
 ```
 
-## 响应式
+## 响应式 {#reactivity}
 
-响应式状态需要明确使用[响应式 APIs](/api/basic-reactivity.html) 来创建。和从 `setup()` 函数中返回值一样，ref 值在模板中使用的时候会自动解包：
+响应式状态需要明确使用[响应式 APIs](/api/reactivity-core.html) 来创建。和从 `setup()` 函数中返回值一样，ref 值在模板中使用的时候会自动解包：
 
 ```vue
 <script setup>
@@ -67,7 +67,7 @@ const count = ref(0)
 </template>
 ```
 
-## 使用组件
+## 使用组件 {#using-components}
 
 `<script setup>` 范围里的值也能被直接作为自定义组件的标签名使用：
 
@@ -83,7 +83,7 @@ import MyComponent from './MyComponent.vue'
 
 将 `MyComponent` 看做被一个变量所引用。如果你使用过 JSX，在这里的使用它的心智模型是一样的。其 kebab-case 格式的 `<my-component>` 同样能在模板中使用。不过，我们强烈建议使用 PascalCase 格式以保持一致性。同时也有助于区分原生的自定义元素。
 
-### 动态组件
+### 动态组件 {#dynamic-components}
 
 由于组件被引用为变量而不是作为字符串键来注册的，在 `<script setup>` 中要使用动态组件的时候，就应该使用动态的 `:is` 来绑定：
 
@@ -101,7 +101,7 @@ import Bar from './Bar.vue'
 
 请注意组件是如何在三元表达式中被当做变量使用的。
 
-### 递归组件
+### 递归组件 {#recursive-components}
 
 一个单文件组件可以通过它的文件名被其自己所引用。例如：名为 `FooBar.vue` 的组件可以在其模板中用 `<FooBar/>` 引用它自己。
 
@@ -111,7 +111,7 @@ import Bar from './Bar.vue'
 import { FooBar as FooBarChild } from './components'
 ```
 
-### 命名空间组件
+### 命名空间组件 {#namespaced-components}
 
 可以使用带点的组件标记，例如 `<Foo.Bar>` 来引用嵌套在对象属性中的组件。这在需要从单个文件中导入多个组件的时候非常有用：
 
@@ -127,11 +127,9 @@ import * as Form from './form-components'
 </template>
 ```
 
-## 使用自定义指令
+## 使用自定义指令 {#using-custom-directives}
 
-全局注册的自定义指令将以符合预期的方式工作，且本地注册的指令可以直接在模板中使用，就像上文所提及的组件一样。
-
-但这里有一个需要注意的限制：必须以 `vNameOfDirective` 的形式来命名本地自定义指令，以使得它们可以直接在模板中使用。
+全局注册的自定义指令将以符合预期的方式工作，且本地注册的指令可以直接在模板中使用，就像上文所提及的组件一样。但这里有一个需要注意的限制：必须以 `vNameOfDirective` 的形式来命名本地自定义指令，以使得它们可以直接在模板中使用。
 
 ```vue
 <script setup>
@@ -147,13 +145,14 @@ const vMyDirective = {
 ```
 
 导入的指令同样能够工作，并且能够通过重命名来使其符合命名规范
+
 ```vue
 <script setup>
 import { myDirective as vMyDirective } from './MyDirective.js'
 </script>
 ```
 
-## `defineProps()` 和 `defineEmits()`
+## `defineProps()` 和 `defineEmits()` {#defineprops-defineemits}
 
 在 `<script setup>` 中必须使用 `defineProps` 和 `defineEmits` API 来声明 `props` 和 `emits` ，它们具备完整的类型推断并且在 `<script setup>` 中是直接可用的：
 
@@ -170,7 +169,7 @@ const emit = defineEmits(['change', 'delete'])
 
 - `defineProps` 和 `defineEmits` 都是只在 `<script setup>` 中才能使用的**编译器宏**。他们不需要导入且会随着 `<script setup>` 处理过程一同被编译掉。
 
-- `defineProps` 接收与 [`props` 选项](/api/options-data.html#props)相同的值，`defineEmits` 也接收 [`emits` 选项](/api/options-data.html#emits)相同的值。
+- `defineProps` 接收与 `props` 选项相同的值，`defineEmits` 也接收 `emits` 选项相同的值。
 
 - `defineProps` 和 `defineEmits` 在选项传入后，会提供恰当的类型推断。
 
@@ -178,7 +177,7 @@ const emit = defineEmits(['change', 'delete'])
 
 如果使用了 Typescript，[使用纯类型声明来声明 prop 和 emits](#仅限-typescript-的功能) 也是可以的。
 
-## `defineExpose`
+## `defineExpose` {#defineexpose}
 
 使用 `<script setup>` 的组件是**默认关闭**的，也即通过模板 ref 或者 `$parent` 链获取到的组件的公开实例，不会暴露任何在 `<script setup>` 中声明的绑定。
 
@@ -200,7 +199,7 @@ defineExpose({
 
 当父组件通过模板 ref 的方式获取到当前组件的实例，获取到的实例会像这样 `{ a: number, b: number }` (ref 会和在普通实例中一样被自动解包)
 
-## `useSlots()` 和 `useAttrs()`
+## `useSlots()` 和 `useAttrs()` {#useslots-useattrs}
 
 在 `<script setup>` 使用 `slots` 和 `attrs` 的情况应该是很罕见的，因为可以在模板中通过 `$slots` 和 `$attrs` 来访问它们。在你的确需要使用它们的罕见场景中，可以分别用 `useSlots` 和 `useAttrs` 两个辅助函数：
 
@@ -215,7 +214,7 @@ const attrs = useAttrs()
 
 `useSlots` 和 `useAttrs` 是真实的运行时函数，它会返回与 `setupContext.slots` 和 `setupContext.attrs` 等价的值，同样也能在普通的组合式 API 中使用。
 
-## 与普通的 `<script>` 一起使用
+## 与普通的 `<script>` 一起使用 {#usage-alongside-normal-script}
 
 `<script setup>` 可以和普通的 `<script>` 一起使用。普通的 `<script>` 在有这些需要的情况下或许会被使用到：
 
@@ -240,7 +239,7 @@ export default {
 </script>
 ```
 
-## 顶层 `await`
+## 顶层 `await` {#top-level-await}
 
 `<script setup>` 中可以使用顶层 `await`。结果代码会被编译成 `async setup()`：
 
@@ -256,9 +255,9 @@ const post = await fetch(`/api/post/1`).then((r) => r.json())
 `async setup()` 必须与 `Suspense` 组合使用，`Suspense` 目前还是处于实验阶段的特性。我们打算在将来的某个发布版本中开发完成并提供文档 - 如果你现在感兴趣，可以参照 [tests](https://github.com/vuejs/vue-next/blob/master/packages/runtime-core/__tests__/components/Suspense.spec.ts) 看它是如何工作的。
 :::
 
-## 仅限 TypeScript 的功能
+## 仅限 TypeScript 的功能 {#typescript-only-features}
 
-### 仅限类型的 props/emit 声明
+### 仅限类型的 props/emit 声明 {#type-only-propsemit-declarations}
 
 props 和 emits 都可以使用传递字面量类型的纯类型语法做为参数给 `defineProps` 和 `defineEmits` 来声明：
 
@@ -291,7 +290,7 @@ const emit = defineEmits<{
 
   现在还不支持复杂的类型和从其它文件进行类型导入。理论上来说，将来是可能实现类型导入的。
 
-### 使用类型声明时的默认 props 值
+### 使用类型声明时的默认 props 值 {#default-props-values-when-using-type-declaration}
 
 仅限类型的 `defineProps` 声明的不足之处在于，它没有可以给 props 提供默认值的方式。为了解决这个问题，提供了 `withDefaults` 编译器宏：
 
@@ -309,6 +308,6 @@ const props = withDefaults(defineProps<Props>(), {
 
 上面代码会被编译为等价的运行时 props 的 `default` 选项。此外，`withDefaults` 辅助函数提供了对默认值的类型检查，并确保返回的 `props` 的类型删除了已声明默认值的属性的可选标志。
 
-## 限制
+## 限制  {#restrictions}
 
 由于模块执行语义的差异，`<script setup>` 中的代码依赖单文件组件的上下文。当将其移动到外部的 `.js` 或者 `.ts` 文件中的时候，对于开发者和工具来说都会感到混乱。因而 **`<script setup>`** 不能和 `src` attribute 一起使用。

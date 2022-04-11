@@ -200,7 +200,7 @@ export const store = reactive({
 请注意这里点击的处理函数使用了 `store.increment()`，带上了圆括号作为内联表达式调用，因为它并不是组件的方法，并且必须要以正确的 `this` 上下文来调用。
 :::
 
-除了我们这里用到的单个响应式对象作为一个 store 之外，你还可以使用其他[响应性 API](/api/reactivity-core.html) 例如 `ref()` 或是 `computed()`，或是甚至通过一个[可组合函数](/guide/reusability/composables.html)来返回一个全局状态：
+除了我们这里用到的单个响应式对象作为一个 store 之外，你还可以使用其他[响应性 API](/api/reactivity-core.html) 例如 `ref()` 或是 `computed()`，或是甚至通过一个[组合式函数](/guide/reusability/composables.html)来返回一个全局状态：
 
 ```js
 import { ref } from 'vue'
@@ -230,7 +230,7 @@ export function useCount() {
 虽然我们的手动状态管理解决方案在简单的场景中已经足够了，但是在大规模的生产应用中还有很多其他事项需要考虑：
 
 - 更强的团队协作约定
-- 与 Vue DevTools 集成，包括时间轴、组件内部审查和时间旅行调试。
+- 与 Vue DevTools 集成，包括时间轴、组件内部审查和时间旅行调试
 - 模块热更新 (HMR)
 - 服务端渲染支持
 
