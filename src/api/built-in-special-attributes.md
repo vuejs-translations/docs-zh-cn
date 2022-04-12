@@ -1,18 +1,18 @@
-# Built-in Special Attributes
+# 内置特殊 attribute {#built-in-special-attributes}
 
-## key
+## key {#key}
 
-The `key` special attribute is primarily used as a hint for Vue's virtual DOM algorithm to identify vnodes when diffing the new list of nodes against the old list.
+`key` 特殊 attribute 主要作为 Vue 的虚拟 DOM 算法提示，在比较新旧节点列表时用于识别 vnode。
 
-- **Expects:** `number | string | symbol`
+- **预期：** `number | string | symbol`
 
 - **详细信息**
 
-  Without keys, Vue uses an algorithm that minimizes element movement and tries to patch/reuse elements of the same type in-place as much as possible. With keys, it will reorder elements based on the order change of keys, and elements with keys that are no longer present will always be removed / destroyed.
+  不传 key，Vue 使用最小化元素移动算法，并尽可能地就地更新/复用相同类型的元素。传了 key，将根据 key 的变化顺序来重新排列元素，并且会移除/销毁 key 不存在的元素。
 
-  Children of the same common parent must have **unique keys**. Duplicate keys will cause render errors.
+  父元素相同的子元素必须具有 **唯一 key** 。重复的 key 将会导致渲染异常。
 
-  The most common use case is combined with `v-for`:
+  最常见的用例是与 `v-for` 结合：
 
   ```vue-html
   <ul>
@@ -20,12 +20,12 @@ The `key` special attribute is primarily used as a hint for Vue's virtual DOM al
   </ul>
   ```
 
-  It can also be used to force replacement of an element/component instead of reusing it. This can be useful when you want to:
+  也可以用于强制替换一个元素/组件而不是复用它。当你想这么做时它可能会很有用：
 
-  - Properly trigger lifecycle hooks of a component
-  - Trigger transitions
+  - 在适当的时候触发组件的生命周期钩子
+  - 触发 transition
 
-  For example:
+  举个例子：
 
   ```vue-html
   <transition>
@@ -33,9 +33,9 @@ The `key` special attribute is primarily used as a hint for Vue's virtual DOM al
   </transition>
   ```
 
-  When `text` changes, the `<span>` will always be replaced instead of patched, so a transition will be triggered.
+  当 `text` 变化时，`<span>` 总是会被替换而不是更新，因此 transition 将会被触发。
 
-- **相关内容：** [Guide - List Rendering - Maintaining State with `key`](/guide/essentials/list.html#maintaining-state-with-key)
+- **相关内容：** [指南 - 列表渲染 - 通过 `key` 管理状态](/guide/essentials/list.html#maintaining-state-with-key)
 
 ## ref
 
