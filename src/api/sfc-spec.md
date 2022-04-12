@@ -138,4 +138,4 @@ p {{ msg }}
 
 ## 注释 {#comments}
 
-在每一个区块中你都可以按照相应语言的语法书写注释。（HTML、CSS、JavaScript 和 Pug 等等）对于顶层注释，请使用 HTML 的注释与发 `<!-- comment contents here -->`
+在每一个区块中你都可以按照相应语言的语法书写注释。（HTML、CSS、JavaScript 和 Pug 等等）对于顶层注释，请使用 HTML 的注释语法 `<!-- comment contents here -->`
