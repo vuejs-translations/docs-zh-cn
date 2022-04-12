@@ -569,7 +569,7 @@ export default {
 ```vue-html
 <Transition :name="transitionName">
   <!-- ... -->
-</Transition>Fallthrough
+</Transition>
 ```
 
 当你使用 Vue 的过渡 class 约定规则定义了 CSS 过渡或动画，并想在它们之间切换时，这可能很有用。
