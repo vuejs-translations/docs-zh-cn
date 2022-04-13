@@ -1,16 +1,16 @@
-# 内置特殊 attribute {#built-in-special-attributes}
+# 内置特殊 Attribute {#built-in-special-attributes}
 
 ## key {#key}
 
 `key` 特殊 attribute 主要作为 Vue 的虚拟 DOM 算法提示，在比较新旧节点列表时用于识别 vnode。
 
-- **预期：** `number | string | symbol`
+- **预期：**`number | string | symbol`
 
 - **详细信息**
 
   不传 key，Vue 使用最小化元素移动算法，并尽可能地就地更新/复用相同类型的元素。传了 key，将根据 key 的变化顺序来重新排列元素，并且会移除/销毁 key 不存在的元素。
 
-  父元素相同的子元素必须具有 **唯一 key** 。重复的 key 将会导致渲染异常。
+  父元素相同的子元素必须具有**唯一 key**。重复的 key 将会导致渲染异常。
 
   最常见的用例是与 `v-for` 结合：
 
@@ -37,24 +37,24 @@
 
 - **相关内容：** [指南 - 列表渲染 - 通过 `key` 管理状态](/guide/essentials/list.html#maintaining-state-with-key)
 
-## ref
+## ref {#ref}
 
-Denotes a [template ref](/guide/essentials/template-refs.html).
+表示[模板 ref](/guide/essentials/template-refs.html)。
 
-- **Expects:** `string | Function`
+- **预期：**`string | Function`
 
 - **详细信息**
 
-  `ref` is used to register a reference to an element or a child component.
+  `ref` 用于注册元素或子组件的引用。
 
-  In Options API, the reference will be registered under the component's `this.$refs` object:
+  使用选项式 API，引用将被注册在组件的 `this.$refs` 对象里：
 
   ```vue-html
-  <!-- stored as this.$refs.p -->
+  <!-- 存储为 this.$refs.p -->
   <p ref="p">hello</p>
   ```
 
-  In Composition API, the reference will be stored in a ref with matching name:
+  使用组合式 API，引用存储在与名字匹配的 ref 里：
 
   ```vue
   <script setup>
@@ -68,31 +68,31 @@ Denotes a [template ref](/guide/essentials/template-refs.html).
   </template>
   ```
 
-  If used on a plain DOM element, the reference will be that element; if used on a child component, the reference will be the child component instance.
+  如果用于普通 DOM 元素，引用将是元素本身；如果用于子组件，引用将是子组件的实例。
 
-  Alternatively `ref` can accept a function value which provides full control over where to store the reference:
+  或者 `ref` 可以接收一个函数值，用于对存储引用位置的完全控制：
 
   ```vue-html
   <ChildComponent :ref="(el) => child = el" />
   ```
 
-  An important note about the ref registration timing: because the refs themselves are created as a result of the render function, you must wait until the component is mounted before accessing them.
+  关于 ref 注册时机的重要说明：因为 ref 本身是作为渲染函数的结果来创建的，必须等到组件挂载了才能对它进行访问。
 
-  `this.$refs` is also non-reactive, therefore you should not attempt to use it in templates for data-binding.
+  `this.$refs` 也是非响应式的，因此你不应该尝试在模板中使用它来数据绑定。
 
-- **相关内容：** [Template Refs](/guide/essentials/template-refs.html)
+- **相关内容：** [模板 ref](/guide/essentials/template-refs.html)
 
-## is
+## is {#is}
 
-Used for binding [dynamic components](/guide/essentials/component-basics.html#dynamic-components).
+用于绑定[动态组件](/guide/essentials/component-basics.html#dynamic-components)。
 
-- **Expects:** `string | Component`
+- **预期：**`string | Component`
 
-- **Usage on native elements** <sup class="vt-badge">3.1+</sup>
+- **用在原生元素** <sup class="vt-badge">3.1+</sup>
 
-  When the `is` attribute is used on a native HTML element, it will be interpreted as a [Customized built-in element](https://html.spec.whatwg.org/multipage/custom-elements.html#custom-elements-customized-builtin-example), which is a native web platform feature.
+  当 `is` attribute 用于原生 HTML 元素时，它将被当作 [Customized built-in element](https://html.spec.whatwg.org/multipage/custom-elements.html#custom-elements-customized-builtin-example)，其为原生 web 平台的特性。
 
-  There is, however, a use case where you may need Vue to replace a native element with a Vue component, as explained in [DOM Template Parsing Caveats](/guide/essentials/component-basics.html#dom-template-parsing-caveats). You can prefix the value of the `is` attribute with `vue:` so that Vue will render the element as a Vue component instead:
+  但是，在这种用例中，你可能需要 Vue 用其组件来替换原生元素，如 [DOM 模板解析注意事项](/guide/essentials/component-basics.html#dom-template-parsing-caveats)所述。你可以在 `is` attribute 的值中加上 `vue:` 前缀，这样 Vue 就会把该元素渲染为 Vue 组件：
 
   ```vue-html
   <table>
@@ -102,5 +102,5 @@ Used for binding [dynamic components](/guide/essentials/component-basics.html#dy
 
 - **相关内容：**
 
-  - [Built-in Special Element - `<component>`](/api/built-in-special-elements.html#component)
-  - [Dynamic Components](/guide/essentials/component-basics.html#dynamic-components)
+  - [内置特殊元素 - `<component>`](/api/built-in-special-elements.html#component)
+  - [动态组件](/guide/essentials/component-basics.html#dynamic-components)
