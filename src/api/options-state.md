@@ -110,9 +110,9 @@
   ```js
   export default {
     props: {
-      // type check
+      // 类型检查
       height: Number,
-      // type check plus other validations
+      // 类型检查 + 其他验证
       age: {
         type: Number,
         default: 0,
@@ -180,11 +180,11 @@
       return { a: 1 }
     },
     computed: {
-      // readonly
+      // 只读
       aDouble() {
         return this.a * 2
       },
-      // writable
+      // 可写
       aPlus: {
         get() {
           return this.a + 1
@@ -283,13 +283,13 @@
 
 - **详细信息**
 
-  `watch` 选项期望接受一个对象，其中键是需要侦听的响应式组件实例 property （例如，通过 `data` 或 `computed` 声明的 property) — 值是相应的回调函数。该回调函数接受被侦听源的新值和旧值。
+  `watch` 选项期望接受一个对象，其中键是需要侦听的响应式组件实例 property （例如，通过 `data` 或 `computed` 声明的 property）——值是相应的回调函数。该回调函数接受被侦听源的新值和旧值。
 
-  除了一个根级 property，键也可以是一个简单的由点分隔的路径，例如 `a.b.c`。注意，这种用法**不支持**复杂表达式 —— 仅支持由点分隔的路径。如果你需要侦听复杂的数据源，可以使用命令式的 [`$watch()`](/api/component-instance.html#watch) API。
+  除了一个根级 property，键也可以是一个简单的由点分隔的路径，例如 `a.b.c`。注意，这种用法**不支持**复杂表达式——仅支持由点分隔的路径。如果你需要侦听复杂的数据源，可以使用命令式的 [`$watch()`](/api/component-instance.html#watch) API。
 
   值也可以是一个方法名称的字符串（通过 `methods` 声明)，或包含额外选项的对象。当使用对象语法时，回调函数应被声明在 `handler` 中。额外的选项包含：
 
-  - **`immediate`**：在侦听器创建时立即触发回调。第一次调用时，旧址将为 `undefined`。
+  - **`immediate`**：在侦听器创建时立即触发回调。第一次调用时，旧值将为 `undefined`。
   - **`deep`**：如果源是对象或数组，则强制深度遍历源，以便在深度变更时触发回调。详见 [深层侦听器](/guide/essentials/watchers.html#deep-watchers)。
   - **`flush`**：调整回调的刷新时机。详见 [回调的刷新时机](/guide/essentials/watchers.html#callback-flush-timing).
   - **`onTrack / onTrigger`**：调试侦听器的依赖关系。详见 [侦听器调试](/guide/extras/reactivity-in-depth.html#watcher-debugging).
@@ -312,31 +312,31 @@
       }
     },
     watch: {
-      // watching top-level property
+      // 侦听顶级 property
       a(val, oldVal) {
         console.log(`new: ${val}, old: ${oldVal}`)
       },
-      // string method name
+      // 字符串方法名称
       b: 'someMethod',
-      // the callback will be called whenever any of the watched object properties change regardless of their nested depth
+      // 该回调将会在被侦听的对象的 property 改变时调动，无论其被嵌套多深
       c: {
         handler(val, oldVal) {
           console.log('c changed')
         },
         deep: true
       },
-      // watching a single nested property:
+      // 侦听单个嵌套 property：
       'c.d': function (val, oldVal) {
         // do something
       },
-      // the callback will be called immediately after the start of the observation
+      // 该回调将会在侦听开始之后立即调用
       e: {
         handler(val, oldVal) {
           console.log('e changed')
         },
         immediate: true
       },
-      // you can pass array of callbacks, they will be called one-by-one
+      // 你可以传入回调数组，它们将会被逐一调用
       f: [
         'handle1',
         function handle2(val, oldVal) {
@@ -413,10 +413,10 @@
   ```js
   export default {
     emits: {
-      // no validation
+      // 没有验证函数
       click: null,
 
-      // with validation
+      // 具有验证函数
       submit: (payload) => {
         if (payload.email && payload.password) {
           return true
@@ -449,13 +449,13 @@
 
   `expose` 选项期望一个 property 名称字符串的列表。当使用 `expose` 时，只有显式列出的 property 将在组件实例上暴露。
 
-  `expose` 仅影响用户定义的 property —— 它不会过滤调内置的组件实例 property。
+  `expose` 仅影响用户定义的 property——它不会过滤掉内置的组件实例 property。
 
 - **示例**
 
   ```js
   export default {
-    // only `publicMethod` will be available on the public instance
+    // 只有 `publicMethod` 在公共实例上可用
     expose: ['publicMethod'],
     methods: {
       publicMethod() {
