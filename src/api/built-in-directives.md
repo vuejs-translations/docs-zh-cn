@@ -1,40 +1,40 @@
-# Built-in Directives
+# 内置指令
 
-## v-text
+## v-text {#v-text}
 
-Update the element's text content.
+更新元素的文本内容。
 
-- **Expects:** `string`
+- **预期：** `string`
 
 - **详细信息**
 
-  `v-text` works by setting the element's [textContent](https://developer.mozilla.org/en-US/docs/Web/API/Node/textContent) property, so it will overwrite any existing content inside the element. If you need to update the part of `textContent`, you should use [mustache interpolations](/guide/essentials/template-syntax.html#text-interpolation) instead.
+  `v-text` 通过设置元素的 [textContent](https://developer.mozilla.org/en-US/docs/Web/API/Node/textContent) property 来工作，因此它将覆盖元素中所有现有的内容。如果你需要更新 `textContent` 的部分，应该使用 [mustache interpolations](/guide/essentials/template-syntax.html#text-interpolation) 代替。
 
 - **示例**
 
   ```vue-html
   <span v-text="msg"></span>
-  <!-- same as -->
+  <!-- 等同于 -->
   <span>{{msg}}</span>
   ```
 
-- **相关内容：** [Template Syntax - Text Interpolation](/guide/essentials/template-syntax.html#text-interpolation)
+- **相关内容：** [模板语法 - 文本插值](/guide/essentials/template-syntax.html#text-interpolation)
 
-## v-html
+## v-html {#v-html}
 
-Update the element's [innerHTML](https://developer.mozilla.org/en-US/docs/Web/API/Element/innerHTML).
+更新元素的 [innerHTML](https://developer.mozilla.org/en-US/docs/Web/API/Element/innerHTML)。
 
-- **Expects:** `string`
+- **预期：** `string`
 
 - **详细信息**
 
-  Contents of `v-html` are inserted as plain HTML - Vue template syntax will not be processed. If you find yourself trying to compose templates using `v-html`, try to rethink the solution by using components instead.
+  `v-html` 的内容直接作为普通 HTML 插入 - Vue 模板语法是不会被解析的。如果你发现自己正打算用 `v-html` 来编写模板，重新想想怎么使用组件来代替。
 
-  ::: warning Security Note
-  Dynamically rendering arbitrary HTML on your website can be very dangerous because it can easily lead to [XSS attacks](https://en.wikipedia.org/wiki/Cross-site_scripting). Only use `v-html` on trusted content and **never** on user-provided content.
+  ::: warning 安全说明
+  在自己网站上动态地渲染任意 HTML 将是非常危险的，因为这非常容易导致 [XSS 攻击](https://en.wikipedia.org/wiki/Cross-site_scripting)。仅仅把 `v-html` 用于可信任的内容，**永不**用于用户提供的内容。
   :::
 
-  In [Single-File Components](/guide/scaling-up/sfc), `scoped` styles will not apply to content inside `v-html`, because that HTML is not processed by Vue's template compiler. If you want to target `v-html` content with scoped CSS, you can instead use [CSS modules](./sfc-css-features.html#css-modules) or an additional, global `<style>` element with a manual scoping strategy such as BEM.
+  在 [单文件组件](/guide/scaling-up/sfc)，`scoped` 样式将不会作用于 `v-html` 里的内容，因为 HTML 内容不会被 Vue 的模板编译器解析。如果你想让 `v-html` 的内容也用上 scoped CSS，你可以使用 [CSS modules](./sfc-css-features.html#css-modules) 或使用一个额外的全局 `<style>` 元素，手动设置类似 BEM 的作用域策略。
 
 - **示例：**
 
@@ -42,49 +42,49 @@ Update the element's [innerHTML](https://developer.mozilla.org/en-US/docs/Web/AP
   <div v-html="html"></div>
   ```
 
-- **相关内容：** [Template Syntax - Raw HTML](/guide/essentials/template-syntax.html#raw-html)
+- **相关内容：** [模板语法 - 原始 HTML](/guide/essentials/template-syntax.html#raw-html)
 
-## v-show
+## v-show {#v-show}
 
-Toggle the element's visibility based on the truthy-ness of the expression value.
+基于表达式值的真假性，来改变元素的可见性。
 
-- **Expects:** `any`
-
-- **详细信息**
-
-  `v-show` works by setting the `display` CSS property via inline styles, and will try to respect the initial `display` value when the element is visible. It also triggers transitions when its condition changes.
-
-- **相关内容：** [Conditional Rendering - v-show](/guide/essentials/conditional.html#v-show)
-
-## v-if
-
-Conditionally render an element or a template fragment based on the truthy-ness of the expression value.
-
-- **Expects:** `any`
+- **预期：** `any`
 
 - **详细信息**
 
-  When a `v-if` element is toggled, the element and its contained directives / components are destroyed and re-constructed. If the initial condition is falsy, then the inner content won't be rendered at all.
+  `v-show` 通过设置内联样式的 `display` CSS property 来工作，当元素可见时将使用初始 `display` 值。当条件改变时，也会触发过度效果。
 
-  Can be used on `<template>` to denote a conditional block containing only text or multiple elements.
+- **相关内容：** [条件渲染 - v-show](/guide/essentials/conditional.html#v-show)
 
-  This directive triggers transitions when its condition changes.
+## v-if {#v-if}
 
-  When used together, `v-if` has a higher priority than `v-for`. We don't recommend using these two directives together on one element — see the [list rendering guide](/guide/essentials/list.html#v-for-with-v-if) for details.
+基于表达式值的真假性，来条件性地渲染元素或者模板片段。
 
-- **相关内容：** [Conditional Rendering - v-if](/guide/essentials/conditional.html#v-if)
+- **预期：** `any`
+
+- **详细信息**
+
+  当 `v-if` 元素被触发，元素及其所包含的指令/组件都会销毁和重构。如果初始条件是假，那么其内部的内容根本都不会被渲染。
+
+  可用于 `<template>` 表示仅包含文本或多个元素的条件块。
+
+  当条件改变时会触发过度效果。
+
+  当同时使用时， `v-if` 比 `v-for` 优先级更高。我们并不推荐在一元素上同时使用这两个指令 — 查看 [列表渲染指南](/guide/essentials/list.html#v-for-with-v-if) 详情。
+
+- **相关内容：** [条件渲染 - v-if](/guide/essentials/conditional.html#v-if)
 
 ## v-else
 
-Denote the "else block" for `v-if` or a `v-if` / `v-else-if` chain.
+表示 `v-if` 或 `v-if` / `v-else-if` 链式调用的”else 块“。
 
-- **Does not expect expression**
+- **无需传入表达式**
 
 - **详细信息**
 
-  - Restriction: previous sibling element must have `v-if` or `v-else-if`.
+  - 限定：上一个兄弟元素必须有 `v-if` 或 `v-else-if`。
 
-  - Can be used on `<template>` to denote a conditional block containing only text or multiple elements.
+  - 可用于 `<template>` 表示仅包含文本或多个元素的条件块。
 
 - **示例**
 
@@ -97,19 +97,19 @@ Denote the "else block" for `v-if` or a `v-if` / `v-else-if` chain.
   </div>
   ```
 
-- **相关内容：** [Conditional Rendering - v-else](/guide/essentials/conditional.html#v-else)
+- **相关内容：** [条件渲染 - v-else](/guide/essentials/conditional.html#v-else)
 
-## v-else-if
+## v-else-if  {#v-else-if}
 
-Denote the "else if block" for `v-if`. Can be chained.
+表示 `v-if` 的”else if 块“。可以进行链式调用。
 
-- **Expects:** `any`
+- **预期：** `any`
 
 - **详细信息**
 
-  - Restriction: previous sibling element must have `v-if` or `v-else-if`.
+  - 限定：上一个兄弟元素必须有 `v-if` 或 `v-else-if`。
 
-  - Can be used on `<template>` to denote a conditional block containing only text or multiple elements.
+  - 可用于 `<template>` 表示仅包含文本或多个元素的条件块。
 
 - **示例**
 
@@ -128,17 +128,17 @@ Denote the "else if block" for `v-if`. Can be chained.
   </div>
   ```
 
-- **相关内容：** [Conditional Rendering - v-else-if](/guide/essentials/conditional.html#v-else-if)
+- **相关内容：** [条件渲染 - v-else-if](/guide/essentials/conditional.html#v-else-if)
 
 ## v-for
 
-Render the element or template block multiple times based on the source data.
+基于原始数据多次渲染元素或模板块。
 
-- **Expects:** `Array | Object | number | string | Iterable`
+- **预期：** `Array | Object | number | string | Iterable`
 
 - **详细信息**
 
-  The directive's value must use the special syntax `alias in expression` to provide an alias for the current element being iterated on:
+  指令值必须使用特殊语法 `alias in expression` 为正在迭代的元素提供一个别名：
 
   ```vue-html
   <div v-for="item in items">
@@ -146,7 +146,7 @@ Render the element or template block multiple times based on the source data.
   </div>
   ```
 
-  Alternatively, you can also specify an alias for the index (or the key if used on an Object):
+  或者，你也可以为索引指定别名（如果用在对象，则是键值）：
 
   ```vue-html
   <div v-for="(item, index) in items"></div>
@@ -154,7 +154,7 @@ Render the element or template block multiple times based on the source data.
   <div v-for="(value, name, index) in object"></div>
   ```
 
-  The default behavior of `v-for` will try to patch the elements in-place without moving them. To force it to reorder elements, you should provide an ordering hint with the `key` special attribute:
+   `v-for` 的默认方式是尝试就地更新元素而不移动它们。要强制给元素重新排序，你需要提供 `key` 特殊 attribute 作为排序提示：
 
   ```vue-html
   <div v-for="item in items" :key="item.id">
@@ -162,10 +162,10 @@ Render the element or template block multiple times based on the source data.
   </div>
   ```
 
-  `v-for` can also work on values that implement the [Iterable Protocol](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterable_protocol), including native `Map` and `Set`.
+  `v-for` 也可以用于 [Iterable Protocol](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterable_protocol) 的实现，包括原生 `Map` 和 `Set`。
 
 - **相关内容：**
-  - [List Rendering](/guide/essentials/list.html)
+  - [列表渲染](/guide/essentials/list.html)
 
 ## v-on
 
@@ -173,7 +173,7 @@ Attach an event listener to the element.
 
 - **Shorthand:** `@`
 
-- **Expects:** `Function | Inline Statement | Object (without argument)`
+- **预期：** `Function | Inline Statement | Object (without argument)`
 
 - **Argument:** `event` (optional if using Object syntax)
 
@@ -347,7 +347,7 @@ Dynamically bind one or more attributes, or a component prop to an expression.
 
 Create a two-way binding on a form input element or a component.
 
-- **Expects:** varies based on value of form inputs element or output of components
+- **预期：** varies based on value of form inputs element or output of components
 
 - **Limited to:**
 
@@ -373,7 +373,7 @@ Denote named slots or slots that expect to receive props.
 
 - **Shorthand:** `#`
 
-- **Expects:** JavaScript expression that is valid in a function argument position, including support for destructuring. Optional - only needed if expecting props to be passed to the slot.
+- **预期：** JavaScript expression that is valid in a function argument position, including support for destructuring. Optional - only needed if expecting props to be passed to the slot.
 
 - **参数：** slot name (optional, defaults to `default`)
 
@@ -468,7 +468,7 @@ Render the element and component once only, and skip future updates.
 
 ## v-memo <sup class="vt-badge" data-text="3.2+" />
 
-- **Expects:** `any[]`
+- **预期：** `any[]`
 
 - **详细信息**
 
