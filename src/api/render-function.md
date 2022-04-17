@@ -28,7 +28,7 @@
 
 - **详细信息**
 
-  第一个参数既可以是一个字符串（用于原生元素）也可以是一个 Vue 组件。第二个参数是要传递的 prop，第三个参数是子节点。
+  第一个参数既可以是一个字符串 (用于原生元素) 也可以是一个 Vue 组件定义。第二个参数是要传递的 prop，第三个参数是子节点。
 
   当创建一个组件的 vnode 时，子节点必须以插槽函数进行传递。如果组件只有默认槽，可以使用单个插槽函数进行传递。否则，必须以插槽函数的对象形式来传递。
 
@@ -46,7 +46,7 @@
   h('div', { id: 'foo' })
 
   // attribute 和 property 都可以用于 prop
-  // VUE 会自动选择正确的方式来分配它
+  // Vue 会自动选择正确的方式来分配它
   h('div', { class: 'bar', innerHTML: 'hello' })
 
   // class 与 style 可以像在模板中一样
@@ -63,7 +63,7 @@
   h('div', 'hello')
   h('div', [h('span', 'hello')])
 
-  // children 数组可以同时包含 vnode 和 字符串
+  // children 数组可以同时包含 vnode 和字符串
   h('div', ['hello', h('span', 'hello')])
   ```
 
@@ -93,7 +93,7 @@
   })
   ```
 
-- **相关内容：** [指南 - 创建 VNode](/guide/extras/render-function.html#creating-vnodes)
+- **相关内容**：[指南 - 创建 VNode](/guide/extras/render-function.html#creating-vnodes)
 
 ## mergeProps() {#mergeprops}
 
@@ -111,7 +111,7 @@
 
   - `class`
   - `style`
-  - `onXxx` 事件监听 - 多个同名的事件监听内容将被合并到一个数组。
+  - `onXxx` 事件监听器——多个同名的事件监听器将被合并到一个数组。
 
   如果你不需要合并行为而是简单覆盖，可以使用原生 object spread 语法来代替。
 
@@ -141,7 +141,7 @@
 
 ## cloneVNode() {#clonevnode}
 
-克隆 vnode。
+克隆一个 vnode。
 
 - **类型**
 
@@ -153,9 +153,9 @@
 
   返回一个克隆的 vnode，可在原有基础上添加一些额外的 prop。
 
-  vnode 被认为是一旦创建就不能修改的，你也不应该修改已创建的 vnode 的 prop。所以，用带有不同/额外的 prop 来克隆它。
+  Vnode 被认为是一旦创建就不能修改的，你不应该修改已创建的 vnode 的 prop，而应该附带不同的/额外的 prop 来克隆它。
 
-  vnode 具有特殊的内部 property ，因此克隆它并不像 object spread 一样简单。 `cloneVNode()` 处理了大部分的内部逻辑。
+  Vnode 具有特殊的内部 property ，因此克隆它并不像 object spread 一样简单。 `cloneVNode()` 处理了大部分这样的内部逻辑。
 
 - **示例**
 
@@ -168,7 +168,7 @@
 
 ## isVNode() {#isvnode}
 
-判断是否为 vnode 类型。
+判断一个值是否为 vnode 类型。
 
 - **类型**
 
@@ -190,7 +190,7 @@
 
   **备注：如果你可以直接引入组件就不需使用此方法。**
 
-  为了能从正确的组件上下文进行解析， `resolveComponent()` 必须在<span class="composition-api">  `setup()` 或</span>渲染函数内调用。
+  为了能从正确的组件上下文进行解析，`resolveComponent()` 必须在<span class="composition-api"> `setup()` 或</span>渲染函数内调用。
 
   如果组件未找到，会抛出一个运行时警告，并返回组件名字符串。
 
@@ -228,7 +228,7 @@
 
   </div>
 
-- **相关内容：** [指南 - 渲染函数 - 组件](/guide/extras/render-function.html#components)
+- **相关内容**：[指南 - 渲染函数 - 组件](/guide/extras/render-function.html#components)
 
 ## resolveDirective() {#resolvedirective}
 
@@ -244,11 +244,11 @@
 
   **备注：如果你可以直接引入组件就不需使用此方法。**
 
-  为了能从正确的组件上下文进行解析， `resolveDirective()` 必须在<span class="composition-api">  `setup()` 或</span>渲染函数内调用。
+  为了能从正确的组件上下文进行解析，`resolveDirective()` 必须在<span class="composition-api"> `setup()` 或</span>渲染函数内调用。
 
   如果指令没有找到，会抛出一个运行时警告，并返回 `undefined`。
 
-- **相关内容：** [指南 - 渲染函数 - 自定义指令](/guide/extras/render-function.html#custom-directives)
+- **相关内容**：[指南 - 渲染函数 - 自定义指令](/guide/extras/render-function.html#custom-directives)
 
 ## withDirectives() {#withdirectives}
 
@@ -296,11 +296,11 @@
   ])
   ```
 
-- **相关内容：** [指南 - 渲染函数 - 自定义指令](/guide/extras/render-function.html#custom-directives)
+- **相关内容**：[指南 - 渲染函数 - 自定义指令](/guide/extras/render-function.html#custom-directives)
 
 ## withModifiers() {#withmodifiers}
 
-用于向事件处理函数添加内置 [`v-on` 修饰符](/guide/essentials/event-handling.html#event-modifiers) 。
+用于向事件处理函数添加内置 [`v-on` 修饰符](/guide/essentials/event-handling.html#event-modifiers)。
 
 - **类型**
 
@@ -321,4 +321,4 @@
   })
   ```
 
-- **相关内容：** [指南 - 渲染函数 - 事件修饰符](/guide/extras/render-function.html#event-modifiers)
+- **相关内容**：[指南 - 渲染函数 - 事件修饰符](/guide/extras/render-function.html#event-modifiers)
