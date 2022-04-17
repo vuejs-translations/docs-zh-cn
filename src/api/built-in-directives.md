@@ -472,7 +472,7 @@
 
 - **详细信息**
 
-  Memoize 一个模板的子树。元素和组件都可以使用。该指令期待传入一个定长的依赖值数组用来比较并 memoization。如果数组里的每个值都与最后一次的渲染相同，那么整个子树的更新将被跳过。举个例子：
+  Memoize <sup>[[1]](#footnote-1)</sup> 一个模板的子树。元素和组件都可以使用。该指令期待传入一个定长的依赖值数组用来比较并 memoization。如果数组里的每个值都与最后一次的渲染相同，那么整个子树的更新将被跳过。举个例子：
 
   ```vue-html
   <div v-memo="[valueA, valueB]">
@@ -505,6 +505,11 @@
 
 - **相关内容：**
   - [v-once](#v-once)
+
+<small>
+译者注
+<a id="footnote-1"></a>[1] memoize 与 memorize 是同源词，在计算机中有特殊意义，可理解为“缓存”。参见 <a href="https://en.wikipedia.org/wiki/Memoization">Memoization - Wikipedia</a>
+</small>
 
 ## v-cloak {#v-cloak}
 
