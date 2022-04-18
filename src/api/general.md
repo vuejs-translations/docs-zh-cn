@@ -2,7 +2,7 @@
 
 ## version {#version}
 
-暴露当前所使用的 Vue 版本
+暴露当前所使用的 Vue 版本。
 
 - **类型** `string`
 
