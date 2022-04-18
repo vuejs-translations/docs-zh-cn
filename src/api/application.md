@@ -219,7 +219,7 @@
 
 ## app.use()  {#appuse}
 
-安装一个 [插件]](/guide/reusability/plugins.html)。
+安装一个 [插件](/guide/reusability/plugins.html)。
 
 - **类型**
 
