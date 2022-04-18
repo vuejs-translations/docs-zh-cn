@@ -153,7 +153,7 @@
   }
   ```
 
-- **相关内容：** [Guide - Async Components](/guide/components/async.html)
+- **相关内容：** [指南 - 异步组件](/guide/components/async.html)
 
 ## defineCustomElement()  {#definecustomelement}
 
