@@ -16,7 +16,7 @@ A "meta component" for rendering dynamic components or elements.
   }
   ```
 
-- **Details**
+- **详细信息**
 
   The actual component to render is determined by the `is` prop.
 
@@ -24,7 +24,7 @@ A "meta component" for rendering dynamic components or elements.
 
   - Alternatively, `is` can also be directly bound to the definition of a component.
 
-- **Example**
+- **示例**
 
   Rendering components by registered name (Options API):
 
@@ -34,7 +34,7 @@ A "meta component" for rendering dynamic components or elements.
   import Bar from './Bar.vue'
 
   export default {
-    components: { Foo, Bar }
+    components: { Foo, Bar },
     data() {
       return {
         view: 'Foo'
@@ -90,7 +90,7 @@ A "meta component" for rendering dynamic components or elements.
 
   Registration is not required if you pass the component itself to `is` rather than its name, e.g. in `<script setup>`.
 
-- **其他相关：** [Dynamic Components](/guide/essentials/component-basics.html#dynamic-components)
+- **相关内容：** [Dynamic Components](/guide/essentials/component-basics.html#dynamic-components)
 
 ## `<slot>`
 
@@ -112,7 +112,7 @@ Denotes slot content outlets in templates.
   }
   ```
 
-- **Details**
+- **详细信息**
 
   The `<slot>` element can use the `name` attribute to specify a slot name. When no `name` is specified, it will render the default slot. Additional attributes passed to the slot element will be passed as slot props to the scoped slot defined in the parent.
 
@@ -120,4 +120,4 @@ Denotes slot content outlets in templates.
 
   `<slot>` elements in Vue templates are compiled into JavaScript, so they are not to be confused with [native `<slot>` elements](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/slot).
 
-- **See also:** [Component - Slots](/guide/components/slots.html)
+- **相关内容：** [Component - Slots](/guide/components/slots.html)

@@ -4,9 +4,9 @@ let show = $ref(true)
 
 <template>
   <div class="demo">
-    <button @click="show = !show">切换淡入 / 淡出</button>
+    <button @click="show = !show">Toggle Slide + Fade</button>
     <Transition name="slide-fade">
-      <p style="margin-top: 20px" v-if="show">你好！</p>
+      <p style="margin-top: 20px" v-if="show">hello</p>
     </Transition>
   </div>
 </template>

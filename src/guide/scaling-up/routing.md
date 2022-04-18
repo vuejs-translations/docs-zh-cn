@@ -3,6 +3,11 @@
 ## 官方路由 {#official-router}
 
 <!-- TODO update links -->
+<div>
+  <VueSchoolLink href="https://vueschool.io/courses/vue-router-4-for-everyone" title="免费的 Vue Router 课程">
+    在 Vue School 观看免费的视频课程
+  </VueSchoolLink>
+</div>
 
 对于大多数的单页面应用，都推荐使用官方支持的[路由库](https://github.com/vuejs/vue-router-next)。要了解更多细节，请查看 vue-router 的[文档](https://next.router.vuejs.org/)。
 

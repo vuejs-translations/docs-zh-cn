@@ -15,6 +15,14 @@ const multiSelected = ref([])
 
 # 表单输入绑定 {#form-input-bindings}
 
+<div class="options-api">
+  <VueSchoolLink href="https://vueschool.io/lessons/user-inputs-vue-devtools-in-vue-3" title="用户输入 - 免费 Vue.js 课程"/>
+</div>
+
+<div class="composition-api">
+  <VueSchoolLink href="https://vueschool.io/lessons/vue-fundamentals-capi-user-inputs-in-vue" title="用户输入 - 免费 Vue.js 课程"/>
+</div>
+
 在前端处理表单时，我们常常需要将表单输入框的内容同步给 JavaScript 中相应的变量。手动连接值绑定和更改事件监听器可能会很麻烦：
 
 ```vue-html
@@ -36,7 +44,7 @@ const multiSelected = ref([])
 - `<select>` 使用的 `value` 作为 prop，`change` 作为事件：
 
 ::: tip 注意
-`v-model` 会忽略任何表单元素上初始的 `value`，`checked` 或 `selected` attributes。它将始终将当前绑定的 JavaScript 状态视为数据的正确来源。你应该在 JavaScript 侧声明该初始值，使用<span class="options-api"> `data` 选项</span><span class="composition-api">响应式系统的 API</span>。
+`v-model` 会忽略任何表单元素上初始的 `value`，`checked` 或 `selected` attributes。它将始终将当前绑定的 JavaScript 状态视为数据的正确来源。你应该在 JavaScript 中声明该初始值，使用<span class="options-api"> `data` 选项</span><span class="composition-api">响应式系统的 API</span>。
 :::
 
 ## 基本用法 {#basic-usage}
@@ -44,8 +52,8 @@ const multiSelected = ref([])
 ### 文本 {#text}
 
 ```vue-html
-<p>输入的信息：{{ message }}</p>
-<input v-model="message" placeholder="开始编辑..." />
+<p>Message is: {{ message }}</p>
+<input v-model="message" placeholder="edit me" />
 ```
 
 <div class="demo">
@@ -72,9 +80,9 @@ const multiSelected = ref([])
 ### 多行文本 {#multiline-text}
 
 ```vue-html
-<span>多行信息：</span>
+<span>Multiline message is:</span>
 <p style="white-space: pre-line;">{{ message }}</p>
-<textarea v-model="message" placeholder="请添加多行..."></textarea>
+<textarea v-model="message" placeholder="add multiple lines"></textarea>
 ```
 
 <div class="demo">
@@ -153,7 +161,7 @@ export default {
 </div>
 
 ```vue-html
-<div>选择的名字有：{{ checkedNames }}</div>
+<div>Checked names: {{ checkedNames }}</div>
 
 <input type="checkbox" id="jack" value="Jack" v-model="checkedNames">
 <label for="jack">Jack</label>
@@ -166,7 +174,7 @@ export default {
 ```
 
 <div class="demo">
-  <div>选择的名字有：{{ checkedNames }}</div>
+  <div>Checked names: {{ checkedNames }}</div>
 
   <input type="checkbox" id="demo-jack" value="Jack" v-model="checkedNames">
   <label for="demo-jack">Jack</label>
@@ -178,7 +186,7 @@ export default {
   <label for="demo-mike">Mike</label>
 </div>
 
-In this case, the `checkedNames` array will always contain the values from the currently checked boxes.
+在这个例子中，`checkedNames` 数组将始终包含来自当前选中框的值。
 
 <div class="composition-api">
 
@@ -229,10 +237,10 @@ In this case, the `checkedNames` array will always contain the values from the c
 单个选择器的示例如下：
 
 ```vue-html
-<div>选择的是：{{ selected }}</div>
+<div>Selected: {{ selected }}</div>
 
 <select v-model="selected">
-  <option disabled value="">请选择</option>
+  <option disabled value="">Please select one</option>
   <option>A</option>
   <option>B</option>
   <option>C</option>
@@ -240,9 +248,9 @@ In this case, the `checkedNames` array will always contain the values from the c
 ```
 
 <div class="demo">
-  <div>选择的是：{{ selected }}</div>
+  <div>Selected: {{ selected }}</div>
   <select v-model="selected">
-    <option disabled value="">请选择</option>
+    <option disabled value="">Please select one</option>
     <option>A</option>
     <option>B</option>
     <option>C</option>
@@ -267,7 +275,7 @@ In this case, the `checkedNames` array will always contain the values from the c
 多选 (值绑定到一个数组)：
 
 ```vue-html
-<div>选择的是：{{ selected }}</div>
+<div>Selected: {{ selected }}</div>
 
 <select v-model="selected" multiple>
   <option>A</option>
@@ -277,7 +285,7 @@ In this case, the `checkedNames` array will always contain the values from the c
 ```
 
 <div class="demo">
-  <div>选择的是：{{ multiSelected }}</div>
+  <div>Selected: {{ multiSelected }}</div>
 
   <select v-model="multiSelected" multiple>
     <option>A</option>
@@ -297,7 +305,7 @@ In this case, the `checkedNames` array will always contain the values from the c
 
 </div>
 
-Select options can be dynamically rendered with `v-for`:
+选择器的选项可以使用 `v-for` 动态渲染：
 
 <div class="composition-api">
 
@@ -338,7 +346,7 @@ export default {
   </option>
 </select>
 
-<div>选择的是：{{ selected }}</div>
+<div>Selected: {{ selected }}</div>
 ```
 
 <div class="composition-api">
@@ -434,7 +442,9 @@ export default {
 <input v-model.number="age" />
 ```
 
-这将非常有用，因为即使是 `<input type="number">` 元素，也始终返回的是个字符串值。如果该值无法被 `parseFloat()` 处理，那么将返回原始值。
+如果该值无法被 `parseFloat()` 处理，那么将返回原始值。
+
+`number` 修饰符会在输入框有 `type="number"` 时自动应用。
 
 ### `.trim` {#trim}
 
@@ -448,4 +458,4 @@ export default {
 
 > 如果你还不熟悉 Vue 的组件，那么现在可以跳过这个部分。
 
-HTML 的内置输入类型并不总是满足你的需求。幸运的是，Vue 组件允许你构建具有完全自定义行为的可重用输入。这些输入也可以使用 `v-model`！要了解更多关于此的内容，请在组件指引中阅读[配合 `v-model` 使用](/guide/components/events.html#usage-with-v-model)。
+HTML 的内置表单输入类型并不总能满足你的需求。幸运的是，你可以使用 Vue 构建具有完全自定义行为的可复用输入组件，并且这些输入组件也可以使用 `v-model`！要了解更多关于此的内容，请在组件指引中阅读[配合 `v-model` 使用](/guide/components/events.html#usage-with-v-model)。

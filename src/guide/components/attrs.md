@@ -2,13 +2,13 @@
 outline: deep
 ---
 
-# 透传 attribute {#fallthrough-attributes}
+# 透传 Attribute {#fallthrough-attributes}
 
 > 阅读此章节时，我们假设你已经读过[组件基础](/guide/essentials/component-basics)，若你对组件还完全不了解，请先阅读它。
 
 ## Attribute 继承 {#attribute-inheritance}
 
-“透传 attribute”的意思是 attribute 或者被传递给一个组件的 `v-on` 事件监听器，但并没有显式地声明在所接收组件的 [props](./props) 或 [emits](./events.html#defining-custom-events) 上。最常见的例子就是 `class`、`style` 和 `id`。
+“透传 attribute”是传递给组件的 attribute 或者 `v-on` 事件监听器，但并没有显式地声明在所接收组件的 [props](./props) 或 [emits](./events.html#defining-custom-events) 上。最常见的例子就是 `class`、`style` 和 `id`。
 
 当一个组件以单个元素为根作渲染时，透传的 attribute 会自动添加到根元素的 attribute 中。举个例子，下面这个 `<MyButton>` 组件有这样的模板：
 
@@ -67,9 +67,9 @@ outline: deep
 
 请注意：
 
-1. 直传的 attribute 不会包含 `<MyButton>` 上声明过的 props 或是针对 `emits` 声明事件的 `v-on` 侦听函数，换句话说，声明过的 props 和侦听函数被 `<MyButton>`“消费”了。
+1. 透传的 attribute 不会包含 `<MyButton>` 上声明过的 props 或是针对 `emits` 声明事件的 `v-on` 侦听函数，换句话说，声明过的 props 和侦听函数被 `<MyButton>`“消费”了。
 
-2. 直传的 attribute 若符合声明，也可以作为 props 传入 `<BaseButton>`。
+2. 透传的 attribute 若符合声明，也可以作为 props 传入 `<BaseButton>`。
 
 ## 禁用 Attribute 继承 {#disabling-attribute-inheritance}
 
@@ -99,22 +99,22 @@ export default {
 这些透传进来的 attribute 可以在模板的表达式中直接用 `$attrs` 访问到。
 
 ```vue-html
-<span>透传 attribute: {{ $attrs }}</span>
+<span>Fallthrough attribute: {{ $attrs }}</span>
 ```
 
 这个 `$attrs` 对象包含了除组件的 `props` 和 `emits` 属性外的所有其他 attribute，例如 `class`，`style`，`v-on` 监听器等等。
 
-一些额外的注意点：
+有几点需要注意：
 
-- 跟 props 不同的是，透传 attributes 在 JS 中会保留其原本的大小写格式。比如一个名为 `foo-bar` 的 attribute 需要用 `$attrs['foo-bar']` 这样的形式来获取。
+- 和 props 有所不同，透传 attributes 在 JavaScript 中保留了它们原始的大小写，所以像 `foo-bar` 这样的一个 attribute 需要通过 `$attrs['foo-bar']` 来访问。
 
-- 一个 `v-on` 侦听函数，比如 `@click`，会在对象上以 `$attrs.onClick` 的形式暴露。
+- 像 `@click` 这样的一个 `v-on` 事件监听器将在此对象下被暴露为一个函数 `$attrs.onClick`。
 
-现在我们要再次使用一下[之前小节](#attribute-inheritance)中的 `<MyButton>` 组件例子。有时候我们可能为了样式，需要在 `<button>` 元素外包裹一层 `<div>`：
+现在我们要再次使用一下[之前小节](#attribute-inheritance)中的 `<MyButton>` 组件例子。有时候我们可能为了样式，需要在 `<button>` 元素外包装一层 `<div>`：
 
 ```vue-html
 <div class="btn-wrapper">
-  <button class="btn">点击此处</button>
+  <button class="btn">click me</button>
 </div>
 ```
 
@@ -122,7 +122,7 @@ export default {
 
 ```vue-html{2}
 <div class="btn-wrapper">
-  <button class="btn" v-bind="$attrs">点击此处</button>
+  <button class="btn" v-bind="$attrs">click me</button>
 </div>
 ```
 
@@ -130,7 +130,7 @@ export default {
 
 ## 多根节点的 Attribute 继承 {#attribute-inheritance-on-multiple-root-nodes}
 
-和单根节点组件有所不同，有着多个根节点的组件没有自动 attribute 透传行为。
+和单根节点组件有所不同，有着多个根节点的组件没有自动 attribute 透传行为。如果 `$attrs` 没有被显式绑定，将会抛出一个运行时警告。
 
 ```vue-html
 <CustomLayout id="custom-layout" @click="changeValue" />
@@ -152,7 +152,7 @@ export default {
 <footer>...</footer>
 ```
 
-## 在 JavaScript 中访问透传 Attributes {#accessing-fallthrough-attributes-in-javascript}
+## 在 JavaScript 中访问透传 Attribute {#accessing-fallthrough-attributes-in-javascript}
 
 <div class="composition-api">
 
@@ -177,7 +177,7 @@ export default {
 }
 ```
 
-需要注意的是，虽然这里的 `attrs` 对象总是反映为最新的透传 attribute，但它并不是响应式的 (考虑到性能因素)。你不能通过侦听器去监听它的变化。如果你需要响应性，可以使用 prop。或者你也可以使用 `onUpdated()` 以在每次更新时结合最新的 `attrs` 执行副作用。
+需要注意的是，虽然这里的 `attrs` 对象总是反映为最新的透传 attribute，但它并不是响应式的 (考虑到性能因素)。你不能通过侦听器去监听它的变化。如果你需要响应性，可以使用 prop。或者你也可以使用 `onUpdated()` 使得在每次更新时结合最新的 `attrs` 执行副作用。
 
 </div>
 

@@ -1,6 +1,6 @@
 # 生命周期钩子 {#lifecycle-hooks}
 
-每个 Vue 组件实例都需要在创建时走过一系列的初始化步骤，比如设置好数据观察，编译模板，挂载实例到 DOM 并在数据改变时更新 DOM。在此过程中，它还运行称为生命周期钩子的函数，让用户有机会在特定阶段添加自己的代码。
+每个 Vue 组件实例在创建时都需要经历一系列的初始化步骤，比如设置好数据侦听，编译模板，挂载实例到 DOM 以及数据改变时更新 DOM。在此过程中，它也会运行称为生命周期钩子的函数，让开发者有机会在特定阶段添加自己的代码。
 
 ## 注册周期钩子 {#registering-lifecycle-hooks}
 
@@ -13,7 +13,7 @@
 import { onMounted } from 'vue'
 
 onMounted(() => {
-  console.log(`组件现在已经被挂载。`)
+  console.log(`the component is now mounted.`)
 })
 </script>
 ```
@@ -24,7 +24,7 @@ onMounted(() => {
 ```js
 export default {
   mounted() {
-    console.log(`组件现在已经被挂载。`)
+    console.log(`the component is now mounted.`)
   }
 }
 ```

@@ -14,7 +14,7 @@ app.use(myPlugin, {
 })
 ```
 
-它可以是一个拥有 `install()` 方法的对象，或者就简单地只是一个函数，它自己就是安装函数。安装函数接收[应用实例](/api/application.html)和可选传入的额外选项：
+它可以是一个拥有 `install()` 方法的对象，或者就简单地只是一个函数，它自己就是安装函数。安装函数接收[应用实例](/api/application.html)和传递给 `app.use()` 的额外选项：
 
 ```js
 const myPlugin = {
@@ -36,20 +36,20 @@ const myPlugin = {
 
 ## 编写一个插件 {#writing-a-plugin}
 
-为了更好地理解如何构建 Vue.js 插件，我们可以试着做一个简单的 `i18n` ([国际化 (Internationalization)](https://en.wikipedia.org/wiki/Internationalization_and_localization) 的缩写) 插件来学习。
+为了更好地理解如何构建 Vue.js 插件，我们可以试着写一个简单的 `i18n` ([国际化 (Internationalization)](https://en.wikipedia.org/wiki/Internationalization_and_localization) 的缩写) 插件。
 
-让我们从设置插件对象开始。建议在一个单独的文件中创建并导出它，以保证更好的管理逻辑，如下所示：
+让我们从设置插件对象开始。建议在一个单独的文件中创建并导出它，以保证更好地管理逻辑，如下所示：
 
 ```js
 // plugins/i18n.js
 export default {
   install: (app, options) => {
-    // 插件代码在这里书写
+    // 在这里编写插件代码
   }
 }
 ```
 
-我们想让整个应用程序有一个按 key 名翻译文本内容的函数，因此我们将它暴露在 `config.globalProperties` 上。这个函数接受一个 `key` 字符串作参数，用来在用户提供的翻译字典中查找对应语言的文本。
+我们想让整个应用程序有一个按 key 名翻译文本内容的函数，因此我们将它暴露在 `app.config.globalProperties` 上。这个函数接收一个以 `.` 作为分隔符的 `key` 字符串，用来在用户提供的翻译字典中查找对应语言的文本。
 
 ```js{4-11}
 // plugins/i18n.js
@@ -57,8 +57,8 @@ export default {
   install: (app, options) => {
     // 注入一个全局可用的 $translate() 方法
     app.config.globalProperties.$translate = (key) => {
-      // 获取到 `options` 下的深层属性
-      // 使用 `key` 作索引访问
+      // 获取 `options` 对象的深层属性
+      // 使用 `key` 作为索引
       return key.split('.').reduce((o, i) => {
         if (o) return o[i]
       }, options)
@@ -79,13 +79,13 @@ app.use(i18nPlugin, {
 })
 ```
 
-我们的 `$translate` 函数会接受一个字符串例如 `greetings.hello`，在用户提供的翻译字典中查找，并返回翻译得到的值，在这个理中就是 `Bonjour!`：
+我们的 `$translate` 函数会接收一个例如 `greetings.hello`的字符串，在用户提供的翻译字典中查找，并返回翻译得到的值，在这里就是 `Bonjour!`：
 
 ```vue-html
 <h1>{{ $translate('greetings.hello') }}</h1>
 ```
 
-See also：[Augmenting Global Properties](/guide/typescript/options-api.html#augmenting-global-properties) <sup class="vt-badge ts">TS</sup>
+另请参阅：[Augmenting Global Properties](/guide/typescript/options-api.html#augmenting-global-properties) <sup class="vt-badge ts" />
 
 :::tip
 请谨慎使用全局属性，如果在整个应用程序中使用不同插件注入的太多全局属性，很容易令开发者困惑。
@@ -93,7 +93,7 @@ See also：[Augmenting Global Properties](/guide/typescript/options-api.html#aug
 
 ### 插件中的供给 / 注入
 
-插件编写中，我们可以通过 `provide` 来为插件用户供给一些内容。举个例子，我们可以让应用内全局可以访问 `options` 参数，以便能够在各处都能使用这个翻译字典对象。
+在插件中，我们可以通过 `provide` 来为插件用户供给一些内容。举个例子，我们可以将 `options` 参数提供给整个应用，以便各个组件都能使用这个翻译字典对象。
 
 ```js{10}
 // plugins/i18n.js
@@ -110,7 +110,7 @@ export default {
 }
 ```
 
-插件用户可以在它们的组件中用 `'i18n'` 为 key 注入并访问插件的选项对象。
+现在，插件用户就可以在他们的组件中以 `i18n` 为 key 注入并访问插件的选项对象了。
 
 <div class="composition-api">
 
