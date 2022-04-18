@@ -32,13 +32,27 @@ onMounted(() => {
 </template>
 ```
 
+如果不使用 `<script setup>`，需确保从 `setup()` 返回 ref：
+
+```js{6}
+export default {
+  setup() {
+    const input = ref(null)
+    // ...
+    return {
+      input
+    }
+  }
+}
+```
+
 </div>
 <div class="options-api">
 
 挂载结束后 ref 都会被暴露在 `this.$refs` 之上：
 
 ```vue
-<script setup>
+<script>
 export default {
   mounted() {
     this.$refs.input.focus()
@@ -53,7 +67,7 @@ export default {
 
 </div>
 
-注意，你只可以**在组件挂载后**才能访问 ref。如果你想在模板中的表达式上访问 `$refs.input`，在初次渲染时会是 `null`。这是因为在初次渲染前这个元素还压根不存在呢！
+注意，你只可以**在组件挂载后**才能访问 ref。如果你想在模板中的表达式上访问 <span class="options-api">`$refs.input`</span><span class="composition-api">`input`</span>，在初次渲染时会是 `null`。这是因为在初次渲染前这个元素还压根不存在呢！
 
 <div class="composition-api">
 
@@ -64,12 +78,12 @@ watchEffect(() => {
   if (input.value) {
     input.value.focus()
   } else {
-    // 此时还未挂载，或此元素已经被卸载（例如经过 v-if 控制）
+    // 此时还未挂载，或此元素已经被卸载（例如通过 v-if 控制）
   }
 })
 ```
 
-See also：[Typing Template Refs](/guide/typescript/composition-api.html#typing-template-refs) <sup class="vt-badge ts">TS</sup>
+也可参考：[为模板 ref 标注类型](/guide/typescript/composition-api.html#typing-template-refs) <sup class="vt-badge ts" />
 
 </div>
 
@@ -146,7 +160,7 @@ export default {
 除了使用字符串值作名字，`ref` attribute 还可以绑定为一个函数，会在每次组件更新时都被调用。函数接受该元素引用作为第一个参数：
 
 ```vue-html
-<input :ref="(el) => { /* assign el to a property or ref */ }">
+<input :ref="(el) => { /* 将 el 分配给 property 或 ref */ }">
 ```
 
 如果你正在使用一个动态的 `:ref` 绑定，我们也可以传一个函数。当元素卸载时，这个 `el` 参数会是 `null`。你当然也可以使用一个方法而不是内联函数。
@@ -167,7 +181,7 @@ import Child from './Child.vue'
 const child = ref(null)
 
 onMounted(() => {
-  // child.value 为 <Child /> 这个组件实例
+  // child.value 是 <Child /> 组件的实例
 })
 </script>
 
@@ -188,7 +202,7 @@ export default {
     Child
   },
   mounted() {
-    // this.$refs.child 为 <Child /> 这个组件实例
+    // this.$refs.child 是 <Child /> 组件的实例
   }
 }
 </script>
@@ -204,7 +218,7 @@ export default {
 
 <div class="composition-api">
 
-有一个例外的情况，使用了 `<script setup>` 的组件时**默认私有**的：一个父组件无法访问到一个使用了 `<script setup>` 的子组件中的任何东西，除非子组件在其中通过 `defineExpose` 宏显式暴露：
+有一个例外的情况，使用了 `<script setup>` 的组件是**默认私有**的：一个父组件无法访问到一个使用了 `<script setup>` 的子组件中的任何东西，除非子组件在其中通过 `defineExpose` 宏显式暴露：
 
 ```vue
 <script setup>
@@ -220,9 +234,9 @@ defineExpose({
 </script>
 ```
 
-当父组件通过模板 ref 获取到了该组件的实例，得到的实例类型为 `{ a: number, b: number }` (ref 都会自动解套，和一般的实例一样)。
+当父组件通过模板 ref 获取到了该组件的实例时，得到的实例类型为 `{ a: number, b: number }` (ref 都会自动解包，和一般的实例一样)。
 
-你也可以看看[为组件的模板 ref 标注类型 ](/guide/typescript/composition-api.html#typing-component-template-refs) <sup class="vt-badge ts">TS</sup>
+你也可以看看：[为组件的模板 ref 标注类型](/guide/typescript/composition-api.html#typing-component-template-refs) <sup class="vt-badge ts" />
 
 </div>
 <div class="options-api">

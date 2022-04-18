@@ -1,17 +1,16 @@
 import fs from 'fs'
 import path from 'path'
 import { defineConfigWithTheme } from 'vitepress'
+import type { Config as ThemeConfig } from '@vue/theme'
 import baseConfig from '@vue/theme/config'
 import { headerPlugin } from './headerMdPlugin'
-import type { Config } from '@vue/theme'
-import { UserConfig } from 'vitepress'
 
 const nav = [
   {
     text: '文档',
     activeMatch: `^/(guide|style-guide|cookbook|examples)/`,
     items: [
-      { text: '指引', link: '/guide/introduction' },
+      { text: '指南', link: '/guide/introduction' },
       { text: '教程', link: '/tutorial/' },
       { text: '范例', link: '/examples/' },
       { text: '快速开始', link: '/guide/quick-start' },
@@ -45,7 +44,7 @@ const nav = [
         ]
       },
       {
-        text: '视频教程',
+        text: '视频课程',
         items: [
           {
             text: 'Vue Mastery',
@@ -201,7 +200,7 @@ export const sidebar = {
       text: '可重用性',
       items: [
         {
-          text: '可组合函数',
+          text: '组合式函数',
           link: '/guide/reusability/composables'
         },
         {
@@ -544,8 +543,8 @@ export const sidebar = {
   ]
 }
 
-export default defineConfigWithTheme<Config>({
-  extends: baseConfig as () => UserConfig<Config>,
+export default defineConfigWithTheme<ThemeConfig>({
+  extends: baseConfig,
 
   lang: 'zh-CN',
   title: 'Vue.js',
@@ -565,12 +564,28 @@ export default defineConfigWithTheme<Config>({
       }
     ],
     [
+      'link',
+      {
+        rel: 'preconnect',
+        href: 'https://sponsors.vuejs.org'
+      }
+    ],
+    [
       'script',
       {},
       fs.readFileSync(
         path.resolve(__dirname, './inlined-scripts/restorePreference.js'),
         'utf-8'
       )
+    ],
+    [
+      'script',
+      {
+        src: 'https://cdn.usefathom.com/script.js',
+        'data-site': 'XNOLWPLB',
+        'data-spa': 'auto',
+        defer: ''
+      }
     ]
   ],
 
@@ -640,21 +655,7 @@ export default defineConfigWithTheme<Config>({
     },
     build: {
       minify: 'terser',
-      chunkSizeWarningLimit: Infinity,
-      rollupOptions: {
-        output: {
-          chunkFileNames: 'assets/chunks/[name].[hash].js',
-          manualChunks(id, ctx) {
-            if (id.includes('gsap')) {
-              return 'gsap'
-            }
-            if (id.includes('dynamics.js')) {
-              return 'dynamics'
-            }
-            return moveToVendor(id, ctx)
-          }
-        }
-      }
+      chunkSizeWarningLimit: Infinity
     },
     json: {
       stringify: true
@@ -665,59 +666,3 @@ export default defineConfigWithTheme<Config>({
     reactivityTransform: true
   }
 })
-
-const cache = new Map<string, boolean>()
-
-/**
- * This is temporarily copied from Vite - which should be exported in a
- * future release.
- *
- * @TODO when this is exported by Vite, VitePress should ship a better
- * manual chunk strategy to split chunks for deps that are imported by
- * multiple pages but not all.
- */
-function moveToVendor(id: string, { getModuleInfo }: any) {
-  if (
-    id.includes('node_modules') &&
-    !/\.css($|\\?)/.test(id) &&
-    staticImportedByEntry(id, getModuleInfo, cache)
-  ) {
-    return 'vendor'
-  }
-}
-
-function staticImportedByEntry(
-  id: string,
-  getModuleInfo: any,
-  cache: Map<string, boolean>,
-  importStack: string[] = []
-): boolean {
-  if (cache.has(id)) {
-    return cache.get(id) as boolean
-  }
-  if (importStack.includes(id)) {
-    // circular deps!
-    cache.set(id, false)
-    return false
-  }
-  const mod = getModuleInfo(id)
-  if (!mod) {
-    cache.set(id, false)
-    return false
-  }
-
-  if (mod.isEntry) {
-    cache.set(id, true)
-    return true
-  }
-  const someImporterIs = mod.importers.some((importer: string) =>
-    staticImportedByEntry(
-      importer,
-      getModuleInfo,
-      cache,
-      importStack.concat(id)
-    )
-  )
-  cache.set(id, someImporterIs)
-  return someImporterIs
-}

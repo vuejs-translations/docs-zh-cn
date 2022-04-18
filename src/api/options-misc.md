@@ -1,10 +1,10 @@
-# Options: Misc
+# 其他杂项选项 {#options-misc}
 
-## name
+## name {#name}
 
-Explicitly declare a display name for the component.
+显式声明组件展示时的名称。
 
-- **Type**
+- **类型**
 
   ```ts
   interface ComponentOptions {
@@ -12,25 +12,25 @@ Explicitly declare a display name for the component.
   }
   ```
 
-- **Details**
+- **详细信息**
 
-  The name of a component is used for the following:
+  组件的名字有以下用途：
 
-  - Recursive self-reference in the component's own template
-  - Display in Vue DevTools' component inspection tree
-  - Display in warning component traces
+  - 在组件自己的模板中递归引用自己时
+  - 在 Vue 开发者工具中的组件树显示时
+  - 在组件抛出的警告追踪栈信息中显示时
 
-  When you use Single-File Components, the component already infers its own name from the filename. For example, a file named `MyComponent.vue` will have the inferred display name "MyComponent".
+  当你在使用单文件组件时，组件已经会根据其文件名推导出其名称。举个例子，一个名为 `MyComponent.vue` 的文件会推导出显示名称为“MyComponent”。
 
-  Another case is that when a component is registered globally with [`app.component`](/api/application.html#app-component), the global ID is automatically set as its name.
+  另一种场景是裆一个组件通过 [`app.component`](/api/application.html#app-component) 被全局注册时，这个全局 ID 就自动被设为了其名称。
 
-  The `name` option allows you to override the inferred name, or to explicitly provide a name when no name can be inferred (e.g. when not using build tools, or an inlined non-SFC component).
+  使用 `name` 选项使你可以覆盖推导出的名称，或是在没有推导出名字时显式提供一个。（例如没有使用构建工具时，或是一个内联的非 SFC 式的组件）
 
-  There is one case where `name` is explicitly necessary: when matching against cacheable components in [`<KeepAlive>`](/guide/built-ins/keep-alive.html) via its `include / exclude` props.
+  有一种场景下 `name` 必须是已显式声明的：即 [`<KeepAlive>`](/guide/built-ins/keep-alive.html) 通过其 `include / exclude` prop 来匹配其需要缓存的组件时。
 
-## inheritAttrs
+## inheritAttrs {#inheritattrs}
 
-- **Type**
+- **类型**
 
   ```ts
   interface ComponentOptions {
@@ -38,11 +38,11 @@ Explicitly declare a display name for the component.
   }
   ```
 
-- **Details**
+- **详细信息**
 
-  By default, parent scope attribute bindings that are not recognized as props will "fallthrough". This means that when we have a single-root component, these bindings will be applied to the root element of the child component as normal HTML attributes. When authoring a component that wraps a target element or another component, this may not always be the desired behavior. By setting `inheritAttrs` to `false`, this default behavior can be disabled. The attributes are available via the `$attrs` instance property and can be explicitly bound to a non-root element using `v-bind`.
+  默认情况下，父组件范围内没有被识别为 prop 的 attribute 绑定将“透传"。这意味着当我们有一个单根节点的组件时，这些绑定会被应用在子组件的根节点元素上，作为一个常规的 HTML attribute。当编写一个包裹目标元素或其他组件的组件时，这不一定是所期望的行为。通过设置 `inheritAttrs` 为 `false`，可以禁用这个默认行为。attributes 可以通过 `$attrs` 这个实例属性来访问，并且可以通过 `v-bind` 来显式绑定在一个非根节点的元素上。
 
-- **Example**
+- **示例**
 
   <div class="options-api">
 
@@ -70,7 +70,7 @@ Explicitly declare a display name for the component.
   </div>
   <div class="composition-api">
 
-  When declaring this option in a component that uses `<script setup>`, a separate `<script>` block is necessary:
+  在一个组件的 `<script setup>` 中声明这个选项时，需要一个额外的 `<script>` 块：
 
   ```vue
   <script>
@@ -98,13 +98,13 @@ Explicitly declare a display name for the component.
 
   </div>
 
-- **See also:** [Fallthrough Attributes](/guide/components/attrs.html)
+- **相关内容：** [透传 attribute](/guide/components/attrs.html)
 
-## components
+## components {#components}
 
-An object that registers components to be made available to the component instance.
+一个用来为当前组件注册其可用组件的对象。
 
-- **Type**
+- **类型**
 
   ```ts
   interface ComponentOptions {
@@ -112,7 +112,7 @@ An object that registers components to be made available to the component instan
   }
   ```
 
-- **Example**
+- **示例**
 
   ```js
   import Foo from './Foo.vue'
@@ -120,21 +120,21 @@ An object that registers components to be made available to the component instan
 
   export default {
     components: {
-      // shorthand
+      // 简写
       Foo,
-      // register under a different name
+      // 使用一个不同的名称注册
       RenamedBar: Bar
     }
   }
   ```
 
-- **See also:** [Component Registration](/guide/components/registration.html)
+- **相关内容：** [组件注册](/guide/components/registration.html)
 
-## directives
+## directives {#directives}
 
-An object that registers directives to be made available to the component instance.
+一个用来为当前组件注册其可用指令的对象。
 
-- **Type**
+- **类型**
 
   ```ts
   interface ComponentOptions {
@@ -142,12 +142,12 @@ An object that registers directives to be made available to the component instan
   }
   ```
 
-- **Example**
+- **示例**
 
   ```js
   export default {
     directives: {
-      // enables v-focus in template
+      // 在模板中启用 v-focus
       focus: {
         mounted(el) {
           el.focus()
@@ -161,6 +161,6 @@ An object that registers directives to be made available to the component instan
   <input v-focus>
   ```
 
-  A hash of directives to be made available to the component instance.
+  这个列表中的指令都在当前组件实例中可用。
 
-- **See also:** [Custom Directives](/guide/reusability/custom-directives.html)
+- **相关内容：** [自定义指令](/guide/reusability/custom-directives.html)

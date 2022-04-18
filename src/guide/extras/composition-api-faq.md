@@ -18,7 +18,7 @@ outline: deep
 
 - [依赖注入](/api/composition-api-dependency-injection.html)：例如 `provide()` 和 `inject()`，使我们可以在使用响应性 API 时，利用 Vue 的依赖注入系统。
 
-组合式 API 是 Vue 3 的内置功能，而要想在在 Vue 2 中使用，可以使用官方维护的插件 [`@vue/composition-api`](https://github.com/vuejs/composition-api)。在 Vue 3 中，组合式 API 基本上都会配合 [`<script setup>`](/api/sfc-script-setup.html) 语法在单文件组件中使用。下面是一个使用组合式 API 的组件示例：
+组合式 API 是 Vue 3 的内置功能，而要想在 Vue 2 中使用，可以使用官方维护的插件 [`@vue/composition-api`](https://github.com/vuejs/composition-api)。在 Vue 3 中，组合式 API 基本上都会配合 [`<script setup>`](/api/sfc-script-setup.html) 语法在单文件组件中使用。下面是一个使用组合式 API 的组件示例：
 
 ```vue
 <script setup>
@@ -53,7 +53,7 @@ onMounted(() => {
 
 组合式 API 最基本的优势是它使我们能够通过[组合函数](/guide/reusability/composables.html)来实现更加简洁高效的逻辑复用。它解决了[所有 mixins 的缺陷](/guide/reusability/composables.html#vs-mixins)，那是选项式 API 中一种逻辑复用机制。
 
-组合式 API 提供的更多逻辑复用可能性孵化了一些非常棒的社区项目，比如 [VueUse](https://vueuse.org/)，一个不断成长的工具型可组合函数集合。组合式 API 还为其他第三方状态管理库集成 Vue 的响应式系统提供了一套简洁清晰的机制，例如 [RxJS](https://vueuse.org/rxjs/readme.html#vueuse-rxjs)。
+组合式 API 提供的更多逻辑复用可能性孵化了一些非常棒的社区项目，比如 [VueUse](https://vueuse.org/)，一个不断成长的工具型组合式函数集合。组合式 API 还为其他第三方状态管理库集成 Vue 的响应式系统提供了一套简洁清晰的机制，例如 [RxJS](https://vueuse.org/rxjs/readme.html#vueuse-rxjs)。
 
 ### 更灵活的代码组织 {#more-flexible-code-organization}
 
@@ -90,7 +90,7 @@ onMounted(() => {
 
 ### 生产包体积更小 {#smaller-production-bundle-and-less-overhead}
 
-搭配 `<script setup>` 使用组合式 API 比等价情况下的选项式 API 更高效，对代码压缩也更友好。这是由于 `<script setup>` 形式书写的组件模板被编译为了一个内连函数，和 `<script setup>` 中的代码位于同一作用域。不像选项式 API 需要依赖 `this` 上下文对象访问属性，被编译的模板可以直接访问 `<script setup>` 中定义的变量，无需一个代码实例从中代理。这对代码压缩更友好，因为变量的名字可以变得更短，但对象的属性名则不能。
+搭配 `<script setup>` 使用组合式 API 比等价情况下的选项式 API 更高效，对代码压缩也更友好。这是由于 `<script setup>` 形式书写的组件模板被编译为了一个内联函数，和 `<script setup>` 中的代码位于同一作用域。不像选项式 API 需要依赖 `this` 上下文对象访问属性，被编译的模板可以直接访问 `<script setup>` 中定义的变量，无需一个代码实例从中代理。这对代码压缩更友好，因为变量的名字可以变得更短，但对象的属性名则不能。
 
 ## 与选项式 API 的关系 {#relationship-with-options-api}
 
@@ -104,7 +104,7 @@ onMounted(() => {
 
 可以。你可以在一个选项式 API 组件中使用 [`setup()`](/api/composition-api-setup.html#setup) 选项。
 
-然而，我们只推荐你在就旧项目中这样使用。它们长期基于选项式 API 开发、又可能想要集成新的功能，或是想要集成基于组合式 API 的第三方库。
+然而，我们只推荐你在旧项目中这样使用。它们长期基于选项式 API 开发、又可能想要集成新的功能，或是想要集成基于组合式 API 的第三方库。
 
 ### 选项式 API 会被废弃吗？ {#will-options-api-be-deprecated}
 
@@ -136,6 +136,6 @@ React Hooks 在组件每次更新时都会重新调用。这就产生了一些�
 
 - Vue 的响应性系统运行时会自动收集计算属性和侦听器的依赖，因此无需我们手动声明依赖。
 
-- 无需手动缓存回调函数来避免不必要的组件更新。总而言之，Vue 细粒度的响应性系统确保了组件尽在需要的时候更新。对 Vue 开发者来说几乎不怎么需要对子组件更新进行手动优化。
+- 无需手动缓存回调函数来避免不必要的组件更新。总而言之，Vue 细粒度的响应性系统确保了组件仅执行必要的更新。对 Vue 开发者来说几乎不怎么需要对子组件更新进行手动优化。
 
-我们承认 React Hooks 的创造性，它是组合式 API 的一个主要灵感来源。然而，它的设计也确实存在上面提到的问题，而 Vue 的响应性模型恰好提供了绕过了它们。
+我们承认 React Hooks 的创造性，它是组合式 API 的一个主要灵感来源。然而，它的设计也确实存在上面提到的问题，而 Vue 的响应性模型恰好提供了一种解决这些问题的方法。

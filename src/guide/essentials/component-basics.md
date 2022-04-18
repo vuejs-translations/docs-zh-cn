@@ -6,7 +6,7 @@
 
 <!-- https://www.figma.com/file/qa7WHDQRWuEZNRs7iZRZSI/components -->
 
-这和我们嵌套 HTML 元素的方式类似，Vue 实现了自己的组件数据模型，使我们可以在每个组件内封装自定义内容与逻辑。Vue 同样也能很好地配合原生 Web Component。如果你想知道 Vue 组件与原生 Web Components 相比如何，可以[阅读此章节](/guide/extras/web-components.html)。
+这和我们嵌套 HTML 元素的方式类似，Vue 实现了自己的组件数据模型，使我们可以在每个组件内封装自定义内容与逻辑。Vue 同样也能很好地配合原生 Web Component。如果你想知道 Vue 组件与原生 Web Components 之间的关系，可以[阅读此章节](/guide/extras/web-components.html)。
 
 ## 定义一个组件 {#defining-a-component}
 
@@ -26,7 +26,7 @@ export default {
 </script>
 
 <template>
-  <button @click="count++">点击了 {{ count }} 次</button>
+  <button @click="count++">You clicked me {{ count }} times.</button>
 </template>
 ```
 
@@ -41,7 +41,7 @@ const count = ref(0)
 </script>
 
 <template>
-  <button @click="count++">点击了 {{ count }} 次</button>
+  <button @click="count++">You clicked me {{ count }} times.</button>
 </template>
 ```
 
@@ -86,7 +86,7 @@ export default {
 
 </div>
 
-这里的模板是一个内联的 JavaScript 字符串，而 Vue 将会在运行时编译它。你也可以使用 ID 选择器来指向一个元素 (通常是原生的 `<template>` 元素)，Vue 将会使用其内容作为模板来源。
+这里的模板是一个内联的 JavaScript 字符串，Vue 将会在运行时编译它。你也可以使用 ID 选择器来指向一个元素 (通常是原生的 `<template>` 元素)，Vue 将会使用其内容作为模板来源。
 
 上面的例子中定义了一个组件，并在一个 `.js` 文件里默认导出了它自己，但你也可以通过具名导出在一个文件中导出多个组件。
 
@@ -112,7 +112,7 @@ export default {
 </script>
 
 <template>
-  <h1>这里是一个子组件！</h1>
+  <h1>Here is a child component!</h1>
   <ButtonCounter />
 </template>
 ```
@@ -129,7 +129,7 @@ import ButtonCounter from './ButtonCounter.vue'
 </script>
 
 <template>
-  <h1>这里是一个子组件！</h1>
+  <h1>Here is a child component!</h1>
   <ButtonCounter />
 </template>
 ```
@@ -143,7 +143,7 @@ import ButtonCounter from './ButtonCounter.vue'
 组件可以被重用任意多次：
 
 ```vue-html
-<h1>这里有好多子组件！</h1>
+<h1>Here is a child component!</h1>
 <ButtonCounter />
 <ButtonCounter />
 <ButtonCounter />
@@ -219,7 +219,7 @@ const props = defineProps(['title'])
 console.log(props.title)
 ```
 
-你也可以看看[为组件 props 标注类型](/guide/typescript/composition-api.html#typing-component-props)这一章了解更多。<sup class="vt-badge ts">TS</sup>
+你也可以看看[为组件 props 标注类型](/guide/typescript/composition-api.html#typing-component-props)这一章了解更多。<sup class="vt-badge ts" />
 
 如果你没有使用 `<script setup>`，props 必须以 `props` 选项的方式声明，props 对象会作为 `setup()` 函数的第一个参数：
 
@@ -239,9 +239,9 @@ export default {
 当一个 prop 被注册后，可以像这样以自定义 attribute 的形式传递数据给它：
 
 ```vue-html
-<BlogPost title="我的 Vue 学习之旅" />
-<BlogPost title="Vue 博客文章总集" />
-<BlogPost title="为什么 Vue 这么有趣" />
+<BlogPost title="My journey with Vue" />
+<BlogPost title="Blogging with Vue" />
+<BlogPost title="Why Vue is so fun" />
 ```
 
 然而在某些应用中，你也许在父组件中有如下的一个博客文章数组：
@@ -352,7 +352,7 @@ const postFontSize = ref(1)
 <template>
   <div class="blog-post">
     <h4>{{ title }}</h4>
-    <button>放大文字</button>
+    <button>Enlarge text</button>
   </div>
 </template>
 ```
@@ -373,7 +373,7 @@ const postFontSize = ref(1)
 <template>
   <div class="blog-post">
     <h4>{{ title }}</h4>
-    <button @click="$emit('enlarge-text')">放大文字</button>
+    <button @click="$emit('enlarge-text')">Enlarge text</button>
   </div>
 </template>
 ```
@@ -430,7 +430,7 @@ const emit = defineEmits(['enlarge-text'])
 emit('enlarge-text')
 ```
 
-你也可以看看[为组件 emits 标注类型](/guide/typescript/composition-api.html#typing-component-emits)这一章了解更多。<sup class="vt-badge ts">TS</sup>
+你也可以看看[为组件 emits 标注类型](/guide/typescript/composition-api.html#typing-component-emits)这一章了解更多。<sup class="vt-badge ts" />
 
 如果你没有在使用 `<script setup>`，你可以通过 `emits` 选项定义组件会抛出的事件。你可以从 `setup()` 函数的第二个参数，即 setup 上下文对象上访问到 `emit` 函数：
 
@@ -453,14 +453,14 @@ export default {
 
 ```vue-html
 <AlertBox>
-  发生了一些错误。
+  Something bad happened.
 </AlertBox>
 ```
 
 这会渲染成这样：
 
-:::danger 这是一个用来展示 Error 弹框的示例
-发生了一些错误。
+:::danger This is an Error for Demo Purposes
+Something bad happened.
 :::
 
 这可以通过 Vue 的自定义 `<slot>` 元素来实现：
@@ -468,7 +468,7 @@ export default {
 ```vue{4}
 <template>
   <div class="alert-box">
-    <strong>Error!</strong>
+    <strong>This is an Error for Demo Purposes</strong>
     <slot />
   </div>
 </template>
@@ -558,7 +558,7 @@ HTML 标签和属性名称是不分大小写的，所以浏览器会把任何大
 // JavaScript 中的 camelCase
 const BlogPost = {
   props: ['postTitle'],
-  emits: ['updatePost']
+  emits: ['updatePost'],
   template: `
     <h3>{{ postTitle }}</h3>
   `
@@ -593,7 +593,7 @@ const BlogPost = {
 <span>hello</span>
 ```
 
-will be parsed as：
+将被解析为：
 
 ```vue-html
 <my-component>

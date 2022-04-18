@@ -1,5 +1,13 @@
 # 计算属性 {#computed-properties}
 
+<div class="options-api">
+  <VueSchoolLink href="https://vueschool.io/lessons/computed-properties-in-vue-3" title="计算属性 - 免费 Vue.js 课程"/>
+</div>
+
+<div class="composition-api">
+  <VueSchoolLink href="https://vueschool.io/lessons/vue-fundamentals-capi-computed-properties-in-vue-with-the-composition-api" title="计算属性 - 免费 Vue.js 课程"/>
+</div>
+
 ## 基础示例 {#basic-example}
 
 模板中的表达式虽然方便，但也只能用来做简单的操作。如果在模板中写太多逻辑，会让使其变得臃肿，难以维护。比如说，我们有这样一个包含嵌套数组的对象：
@@ -89,7 +97,7 @@ export default {
 
 在模板中使用计算属性的方式和一般的 property 并无二致。Vue 会检测到 `this.publishedBooksMessage` 依赖于 `this.author.books`，所以当 `this.author.books` 改变时，任何依赖于 `this.publishedBooksMessage` 的绑定都将同时更新。
 
-也可参考：[为计算属性标记类型 ](/guide/typescript/options-api.html#typing-computed) <sup class="vt-badge ts">TS</sup>
+也可参考：[为计算属性标记类型](/guide/typescript/options-api.html#typing-computed) <sup class="vt-badge ts" />
 
 </div>
 
@@ -126,7 +134,7 @@ const publishedBooksMessage = computed(() => {
 
 Vue 的计算属性会自动追踪响应式依赖。它会检测到 `publishedBooksMessage` 依赖于 `author.books`，所以当 `author.books` 改变时，任何依赖于 `publishedBooksMessage` 的绑定都会同时更新。
 
-也可参考：[为计算属性标注类型 ](/guide/typescript/composition-api.html#typing-computed) <sup class="vt-badge ts">TS</sup>
+也可参考：[为计算属性标注类型](/guide/typescript/composition-api.html#typing-computed) <sup class="vt-badge ts" />
 
 </div>
 
@@ -259,4 +267,4 @@ const fullName = computed({
 
 ### 避免直接修改计算属性值 {#avoid-mutating-computed-value}
 
-从计算属性返回的值是派生状态。可以把它看作是一个“临时快照”，每当源状态发生变化时，就会创建一个新的快照。因此更改快照是没有意义的，因此，计算属性的返回值应该被视为只读的，并且永远不会发生突变。应该更新它所依赖的源状态，以触发新一次计算。
+从计算属性返回的值是派生状态。可以把它看作是一个“临时快照”，每当源状态发生变化时，就会创建一个新的快照。更改快照是没有意义的，因此计算属性的返回值应该被视为只读的，并且永远不应该被更改——应该更新它所依赖的源状态以触发新的计算。

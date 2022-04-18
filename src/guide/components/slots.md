@@ -2,15 +2,17 @@
 
 > 阅读此章节时，我们假设你已经读过[组件基础](/guide/essentials/component-basics)，若你对组件还完全不了解，请先阅读它。
 
+<VueSchoolLink href="https://vueschool.io/lessons/vue-3-component-slots" title="Slots - 免费 Vue.js 课程"/>
+
 ## 插槽内容与插口 {#slot-content-and-outlet}
 
 我们已经学习过组件能够接收任意类型的 JavaScript 值作为 props，但组件要如何接收模板内容呢？在某些场景中，我们可能想要为子组件传递一些模板片段，让子组件在它们的组件中渲染这些片段。
 
-举个例子，这里有一个 `<FancyButotn>` 组件，可以像这样使用：
+举个例子，这里有一个 `<FancyButton>` 组件，可以像这样使用：
 
 ```vue-html{2}
 <FancyButton>
-  点击这里 <!-- 插槽内容 -->
+  Click me! <!-- 插槽内容 -->
 </FancyButton>
 ```
 
@@ -18,21 +20,21 @@
 
 ```vue-html{2}
 <button class="fancy-btn">
-  <slot></slot> <!-- slot outlet -->
+  <slot></slot> <!-- 插槽插口 -->
 </button>
 ```
 
-`<slot>` 元素是一个**插槽的插口**，指出了父元素提供的**插槽内容**在哪里被渲染。
+`<slot>` 元素是一个**插槽的插口**，标示了父元素提供的**插槽内容**将在哪里被渲染。
 
 ![插槽图示](./images/slots.png)
 
 <!-- https://www.figma.com/file/LjKTYVL97Ck6TEmBbstavX/slot -->
 
-最终渲染出的 DOM 结果是这样：
+最终渲染出的 DOM 是这样：
 
 ```html
 <button class="fancy-btn">
-  点击这里
+  Click me!
 </button>
 ```
 
@@ -47,13 +49,13 @@
 
 </div>
 
-`<FancyButton>` 通过插槽承担了渲染 `<button>` 这个外壳 (以及想要的样式)，而内部的内容由父元素提供。
+通过使用插槽，让 `<FancyButton>` 仅负责渲染外层的 `<button>` （以及相应的样式），而内部的内容由父组件提供。
 
-若你想换一种方式理解插槽，那么不妨和 JavaScript 的函数作个比较：
+通过和下面的 JavaScript 函数作对比，来以另一种方式理解插槽：
 
 ```js
 // 父元素传入插槽内容
-FancyButton('点击此处')
+FancyButton('Click me!')
 
 // FancyButton 在自己的模板中渲染插槽内容
 function FancyButton(slotContent) {
@@ -65,11 +67,11 @@ function FancyButton(slotContent) {
 }
 ```
 
-插槽内容不仅仅局限于文本。它也可以是任意合法的模板内容，例如我们可以传入一些元素，甚至是组件：
+除了文本以外，插槽内容还可以是任意合法的模板内容。例如我们可以传入多个元素，甚至是组件：
 
 ```vue-html
 <FancyButton>
-  <span style="color:red">试试点击这里！</span>
+  <span style="color:red">Click me!</span>
   <AwesomeIcon name="plus" />
 </FancyButton>
 ```
@@ -85,13 +87,13 @@ function FancyButton(slotContent) {
 
 </div>
 
-当有了插槽之后，`<FancyButton>` 组件变得更灵活，也更容易复用。我们现在可以在不同的地方使用它，传入不同的内容，但都具有相同的外部样式。
+通过使用插槽，`<FancyButton>` 组件更加灵活和具有可复用性。现在组件可以用在不同的地方渲染各异的内容，但同时还保证都具有相同的样式。
 
-Vue 组件的插槽机制是受到了[原生 Web Component `<slot>` 元素](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/slot)的启发，但也作出了一些功能的拓展，我们后面就会看到。
+Vue 组件的插槽机制是受[原生 Web Component `<slot>` 元素](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/slot)的启发而诞生，同时还做了一些功能拓展，这些拓展的功能我们后面会学习到。
 
 ## 渲染作用域 {#render-scope}
 
-插槽内容可以访问到父组件的数据，因为插槽内容本身也是在父组件模板的一部分。举个例子：
+插槽内容可以访问到父组件的数据作用域，因为插槽内容本身是在父组件模板中定义的。举个例子：
 
 ```vue-html
 <span>{{ message }}</span>
@@ -102,11 +104,11 @@ Vue 组件的插槽机制是受到了[原生 Web Component `<slot>` 元素](http
 
 插槽内容**无法访问**子组件的数据，请牢记一条规则：
 
-> 任何父组件模板中的东西都是被编译到父组件的作用域中；而任何子组件模板中的东西都只被编译到子组件的作用域中。
+> 任何父组件模板中的东西都只被编译到父组件的作用域中；而任何子组件模板中的东西都只被编译到子组件的作用域中。
 
 ## 默认内容 {#fallback-content}
 
-我们也经常会遇到外部没有提供任何内容的情况，此时可能会为插槽提供一个默认的内容来渲染。比如在 `<SubmitButton>` 组件中：
+在外部没有提供任何内容的情况下，为插槽指定默认内容用于渲染是很有用的。比如在 `<SubmitButton>` 组件中：
 
 ```vue-html
 <button type="submit">
@@ -114,38 +116,38 @@ Vue 组件的插槽机制是受到了[原生 Web Component `<slot>` 元素](http
 </button>
 ```
 
-如果外部没有提供任何插槽内容，我们可能想在 `<button>` 中渲染“提交”这两个字。要让这两个字成为默认内容，需要写在 `<slot>` 标签之间：
+如果我们想在父组件没有提供任何插槽内容时，把“Submit”文本渲染到 `<button>` 内。需要将“Submit”写在 `<slot>` 标签之间，使其成为默认内容：
 
 ```vue-html{3}
 <button type="submit">
   <slot>
-    提交 <!-- 默认内容 -->
+    Submit <!-- 默认内容 -->
   </slot>
 </button>
 ```
 
-当我们在父组件中使用 `<submit-button>` 但不提供任何插槽内容：
+当我们在父组件中使用 `<SubmitButton>` 但不提供任何插槽内容：
 
 ```vue-html
 <SubmitButton />
 ```
 
-那么将渲染出下面这样的 DOM 结构，包含默认的“提交”二字：
+那么将渲染默认的“Submit”单词：
 
 ```html
-<button type="submit">提交</button>
+<button type="submit">Submit</button>
 ```
 
-但如果我们提供了别的内容给插槽：
+但如果我们提供了别的内容：
 
 ```vue-html
-<SubmitButton>保存</SubmitButton>
+<SubmitButton>Save</SubmitButton>
 ```
 
-那么渲染的 DOM 中会选择使用提供的插槽内容：
+那么将渲染提供的内容：
 
 ```html
-<button type="submit">保存</button>
+<button type="submit">Save</button>
 ```
 
 <div class="composition-api">
@@ -161,7 +163,7 @@ Vue 组件的插槽机制是受到了[原生 Web Component `<slot>` 元素](http
 
 ## 具名插槽 {#named-slots}
 
-有时一个组件中可能会有多个插槽的插口。举个例子，在一个 `<BaseLayout>` 组件中，有如下这样的模板：
+有时在一个组件中包含多个插槽的插口是很有用的。举个例子，在一个 `<BaseLayout>` 组件中，有如下这样的模板：
 
 ```vue-html
 <div class="container">
@@ -177,7 +179,7 @@ Vue 组件的插槽机制是受到了[原生 Web Component `<slot>` 元素](http
 </div>
 ```
 
-对于这种场景，`<slot>` 元素可以有一个特殊的 attribute `name`，可以是一个独一无二的标识符，用来区分各个插槽，确定每一处最终会渲染的内容：
+对于这种场景，`<slot>` 元素可以有一个特殊的 attribute `name`，用来给各个插槽分配唯一的 ID，以确定每一处要渲染的内容：
 
 ```vue-html
 <div class="container">
@@ -195,7 +197,7 @@ Vue 组件的插槽机制是受到了[原生 Web Component `<slot>` 元素](http
 
 没有提供 `name` 的 `<slot>` 插口会隐式地命名为“default”。
 
-在父组件中使用到 `<BaseLayout>` 时，我们需要给各个插槽传入内容，为了模板片段让各入各门、各寻其所。此时就需要用到**具名插槽**了：
+在父组件中使用 `<BaseLayout>` 时，我们需要一种方式将多个插槽内容传入到各自目标插槽的插口。此时就需要用到**具名插槽**了：
 
 要为具名插槽传入内容，我们需要使用一个含 `v-slot` 指令的 `<template>` 元素，并将目标插槽的名字传给该指令：
 
@@ -213,26 +215,7 @@ Vue 组件的插槽机制是受到了[原生 Web Component `<slot>` 元素](http
 
 <!-- https://www.figma.com/file/2BhP8gVZevttBu9oUmUUyz/named-slot -->
 
-下面我们给出完整的、向 `<BaseLayout>` 传递内容的代码，指令均使用的是缩写形式：
-
-```vue-html
-<BaseLayout>
-  <template #header>
-    <h1>这里是一个页面标题</h1>
-  </template>
-
-  <template #default>
-    <p>一个文章内容的段落</p>
-    <p>另一个段落</p>
-  </template>
-
-  <template #footer>
-    <p>这里有一些联系方式</p>
-  </template>
-</BaseLayout>
-```
-
-When a component accepts both default slot and named slots, all top-level non-`<template>` nodes are implciitly treated as content for default slot. So the above can also be written as:
+下面我们给出完整的、向 `<BaseLayout>` 传递插槽内容的代码，指令均使用的是缩写形式：
 
 ```vue-html
 <BaseLayout>
@@ -240,7 +223,26 @@ When a component accepts both default slot and named slots, all top-level non-`<
     <h1>Here might be a page title</h1>
   </template>
 
-  <!-- implicit default slot -->
+  <template #default>
+    <p>A paragraph for the main content.</p>
+    <p>And another one.</p>
+  </template>
+
+  <template #footer>
+    <p>Here's some contact info</p>
+  </template>
+</BaseLayout>
+```
+
+当一个组件同时接收默认插槽和具名插槽时，所有位于顶级的非 `<template>` 节点都被隐式地视为默认插槽的内容。所以上面也可以写成：
+
+```vue-html
+<BaseLayout>
+  <template #header>
+    <h1>Here might be a page title</h1>
+  </template>
+
+  <!-- 隐式的默认插槽 -->
   <p>A paragraph for the main content.</p>
   <p>And another one.</p>
 
@@ -250,19 +252,19 @@ When a component accepts both default slot and named slots, all top-level non-`<
 </BaseLayout>
 ```
 
-Now everything inside the `<template>` elements will be passed to the corresponding slots. The final rendered HTML will be:
+现在 `<template>` 元素中的所有内容都将被传递到相应的插槽。最终渲染出的 HTML 如下：
 
 ```html
 <div class="container">
   <header>
-    <h1>这里是一个页面标题</h1>
+    <h1>Here might be a page title</h1>
   </header>
   <main>
-    <p>一个文章内容的段落</p>
-    <p>另一个段落</p>
+    <p>A paragraph for the main content.</p>
+    <p>And another one.</p>
   </main>
   <footer>
-    <p>这里有一些联系方式</p>
+    <p>Here's some contact info</p>
   </footer>
 </div>
 ```
@@ -278,7 +280,7 @@ Now everything inside the `<template>` elements will be passed to the correspond
 
 </div>
 
-我们还是用 JavaScript 函数的作类比来理解：
+使用 JavaScript 函数可能更有助于你来理解具名插槽：
 
 ```js
 // 传入不同的内容给不同名字的插槽
@@ -292,7 +294,7 @@ BaseLayout({
 function BaseLayout(slots) {
   return (
     `<div class="container">
-      <header>${slots.header}<header>
+      <header>${slots.header}</header>
       <main>${slots.default}</main>
       <footer>${slots.footer}</footer>
     </div>`
@@ -323,9 +325,9 @@ function BaseLayout(slots) {
 
 在上面的[渲染作用域](#render-scope)中我们讨论到，插槽的内容无法访问到子组件的状态。
 
-然而在某些场景下插槽的内容可能想要同时利用父组件域内和子组件域内的数据。要做到这一点，我们需要让子组件将一部分数据在渲染时提供给插槽。
+然而在某些场景下插槽的内容可能想要同时使用父组件域内和子组件域内的数据。要做到这一点，我们需要一种方法来让子组件在渲染时将一部分数据提供给插槽。
 
-而我们确实也有办法这么做！我们可以像对组件传递 props 那样，向一个插槽的插口上传递 attribute：
+我们也确实有办法这么做！可以像对组件传递 prop 那样，向一个插槽的插口上传递 attribute：
 
 ```vue-html
 <!-- <MyComponent> 的模板 -->
@@ -334,13 +336,17 @@ function BaseLayout(slots) {
 </div>
 ```
 
-当需要接收插槽 props 时，一般的默认插槽和具名插槽的使用方式有了一些小小的区别。下面我们将会展示是怎样的不同，首先是一个默认插槽，通过子组件标签上的 `v-slot` 指令，直接接收到了一个插槽 props 对象：
+当需要接收插槽 prop 时，默认插槽和具名插槽的使用方式有一些小区别。下面我们将先展示默认插槽如何接受 prop，通过子组件标签上的 `v-slot` 指令，直接接收到了一个插槽 prop 对象：
 
 ```vue-html
-<MyComonent v-slot="slotProps">
+<MyComponent v-slot="slotProps">
   {{ slotProps.text }} {{ slotProps.count }}
-<MyComponent>
+</MyComponent>
 ```
+
+![scoped slots diagram](./images/scoped-slots.svg)
+
+<!-- https://www.figma.com/file/QRneoj8eIdL1kw3WQaaEyc/scoped-slot -->
 
 <div class="composition-api">
 
@@ -355,7 +361,7 @@ function BaseLayout(slots) {
 
 子组件传入插槽的 props 作为了 `v-slot` 指令的值，可以在插槽内的表达式中访问。
 
-你可以将作用于插槽类比为一个传入子组件的函数。子组件会将相应的 props 作为参数传给它：
+你可以将作用域插槽类比为一个传入子组件的函数。子组件会将相应的 prop 作为参数去调用它：
 
 ```js
 MyComponent({
@@ -376,15 +382,14 @@ function MyComponent(slots) {
 }
 ```
 
-实际上，这已经和作用域插槽的最终的代码编译结果、以及手动地调用[渲染函数](/guide/extras/render-function.html)的方式非常类似了。
+实际上，这已经和作用域插槽的最终代码编译结果、以及手动编写[渲染函数](/guide/extras/render-function.html)时使用作用域插槽的方式非常类似了。
 
-`v-slot="slotProps"` 可以类比这里的函数签名，和函数的参数类似，我们也可以在 `v-slot` 使用：
-
+`v-slot="slotProps"` 可以类比这里的函数签名，和函数的参数类似，我们也可以在 `v-slot` 中使用解构：
 
 ```vue-html
-<MyComonent v-slot="{ text, count }">
+<MyComponent v-slot="{ text, count }">
   {{ text }} {{ count }}
-<MyComponent>
+</MyComponent>
 ```
 
 ### 具名作用域插槽 {#named-scoped-slots}
@@ -402,7 +407,7 @@ function MyComponent(slots) {
   </template>
 
   <template #footer="footerProps">
-    {{ headerProps }}
+    {{ footerProps }}
   </template>
 </MyComponent>
 ```
@@ -418,14 +423,14 @@ function MyComponent(slots) {
 
 ### 一个漂亮的列表示例 {#fancy-list-example}
 
-想要了解作用域插槽怎么样使用更好吗？不妨看看这个 `<FancyList>` 组件的例子，它会渲染一个列表，其中会封装一些加载远端数据的逻辑、并提供此数据来做列表的渲染，或者是像分页、无限滚动这样更进阶的功能。然而我们希望它能够灵活处理每一项的外观，并将对每一项样式的控制权留给使用它的父组件。我们期望的用法可能是这样的：
+想要了解作用域插槽怎么样使用更加优雅吗？不妨看看这个 `<FancyList>` 组件的例子，它会渲染一个列表，其中会封装一些加载远端数据的逻辑、以及使用此数据来做列表渲染，或者是像分页、无限滚动这样更进阶的功能。然而我们希望它能够灵活处理每一项的外观，并将对每一项样式的控制权留给使用它的父组件。我们期望的用法可能是这样的：
 
 ```vue-html
 <FancyList :api-url="url" :per-page="10">
   <template #item="{ body, username, likes }">
     <div class="item">
       <p>{{ body }}</p>
-      <p>作者：{{ username }} | {{ likes }} 人赞过</p>
+      <p>by {{ username }} | {{ likes }} likes</p>
     </div>
   </template>
 </FancyList>
@@ -454,29 +459,29 @@ function MyComponent(slots) {
 
 ### 无渲染组件 {#renderless-components}
 
-上面的 `<FancyList>` 用例同时封装了可重用的逻辑 (数据获取、分页等) 和视图输出，但也将部分视图的最终输出通过作用域插槽交给了消费者组件来管理。
+上面的 `<FancyList>` 案例同时封装了可重用的逻辑 (数据获取、分页等) 和视图输出，但也将部分视图输出通过作用域插槽交给了消费者组件来管理。
 
-如果我们将这个概念拓展一下，可以想象的是，一些组件可能只包括了逻辑而不需要自己渲染内容，视图的输出通过作用域插槽全权交给了消费者组件。我们将这种类型的组件称为**无渲染组件**。
+如果我们将这个概念拓展一下，可以想象的是，一些组件可能只包括了逻辑而不需要自己渲染内容，视图输出通过作用域插槽全权交给了消费者组件。我们将这种类型的组件称为**无渲染组件**。
 
 这里有一个无渲染组件的例子，一个封装了追踪当前鼠标位置逻辑的组件：
 
 ```vue-html
 <MouseTracker v-slot="{ x, y }">
-  鼠标位于：{{ x }}, {{ y }}
+  Mouse is at: {{ x }}, {{ y }}
 </MouseTracker>
 ```
 
 <div class="composition-api">
 
-[在 Playground 中尝试一下](https://sfc.vuejs.org/#eyJBcHAudnVlIjoiPHNjcmlwdCBzZXR1cD5cbmltcG9ydCBNb3VzZVRyYWNrZXIgZnJvbSAnLi9Nb3VzZVRyYWNrZXIudnVlJ1xuPC9zY3JpcHQ+XG5cbjx0ZW1wbGF0ZT5cblx0PE1vdXNlVHJhY2tlciB2LXNsb3Q9XCJ7IHgsIHkgfVwiPlxuICBcdE1vc3VlIGlzIGF0OiB7eyB4IH19LCB7eyB5IH19XG5cdDwvTW91c2VUcmFja2VyPlxuPC90ZW1wbGF0ZT4iLCJpbXBvcnQtbWFwLmpzb24iOiJ7XG4gIFwiaW1wb3J0c1wiOiB7XG4gICAgXCJ2dWVcIjogXCJodHRwczovL3NmYy52dWVqcy5vcmcvdnVlLnJ1bnRpbWUuZXNtLWJyb3dzZXIuanNcIlxuICB9XG59IiwiTW91c2VUcmFja2VyLnZ1ZSI6IjxzY3JpcHQgc2V0dXA+XG5pbXBvcnQgeyByZWYsIG9uTW91bnRlZCwgb25Vbm1vdW50ZWQgfSBmcm9tICd2dWUnXG4gIFxuY29uc3QgeCA9IHJlZigwKVxuY29uc3QgeSA9IHJlZigwKVxuXG5jb25zdCB1cGRhdGUgPSBlID0+IHtcbiAgeC52YWx1ZSA9IGUucGFnZVhcbiAgeS52YWx1ZSA9IGUucGFnZVlcbn1cblxub25Nb3VudGVkKCgpID0+IHdpbmRvdy5hZGRFdmVudExpc3RlbmVyKCdtb3VzZW1vdmUnLCB1cGRhdGUpKVxub25Vbm1vdW50ZWQoKCkgPT4gd2luZG93LnJlbW92ZUV2ZW50TGlzdGVuZXIoJ21vdXNlbW92ZScsIHVwZGF0ZSkpXG48L3NjcmlwdD5cblxuPHRlbXBsYXRlPlxuICA8c2xvdCA6eD1cInhcIiA6eT1cInlcIi8+XG48L3RlbXBsYXRlPiJ9)
+[在 Playground 中尝试一下](https://sfc.vuejs.org/#eyJBcHAudnVlIjoiPHNjcmlwdCBzZXR1cD5cbmltcG9ydCBNb3VzZVRyYWNrZXIgZnJvbSAnLi9Nb3VzZVRyYWNrZXIudnVlJ1xuPC9zY3JpcHQ+XG5cbjx0ZW1wbGF0ZT5cblx0PE1vdXNlVHJhY2tlciB2LXNsb3Q9XCJ7IHgsIHkgfVwiPlxuICBcdE1vdXNlIGlzIGF0OiB7eyB4IH19LCB7eyB5IH19XG5cdDwvTW91c2VUcmFja2VyPlxuPC90ZW1wbGF0ZT4iLCJpbXBvcnQtbWFwLmpzb24iOiJ7XG4gIFwiaW1wb3J0c1wiOiB7XG4gICAgXCJ2dWVcIjogXCJodHRwczovL3NmYy52dWVqcy5vcmcvdnVlLnJ1bnRpbWUuZXNtLWJyb3dzZXIuanNcIlxuICB9XG59IiwiTW91c2VUcmFja2VyLnZ1ZSI6IjxzY3JpcHQgc2V0dXA+XG5pbXBvcnQgeyByZWYsIG9uTW91bnRlZCwgb25Vbm1vdW50ZWQgfSBmcm9tICd2dWUnXG4gIFxuY29uc3QgeCA9IHJlZigwKVxuY29uc3QgeSA9IHJlZigwKVxuXG5jb25zdCB1cGRhdGUgPSBlID0+IHtcbiAgeC52YWx1ZSA9IGUucGFnZVhcbiAgeS52YWx1ZSA9IGUucGFnZVlcbn1cblxub25Nb3VudGVkKCgpID0+IHdpbmRvdy5hZGRFdmVudExpc3RlbmVyKCdtb3VzZW1vdmUnLCB1cGRhdGUpKVxub25Vbm1vdW50ZWQoKCkgPT4gd2luZG93LnJlbW92ZUV2ZW50TGlzdGVuZXIoJ21vdXNlbW92ZScsIHVwZGF0ZSkpXG48L3NjcmlwdD5cblxuPHRlbXBsYXRlPlxuICA8c2xvdCA6eD1cInhcIiA6eT1cInlcIi8+XG48L3RlbXBsYXRlPiJ9)
 
 </div>
 <div class="options-api">
 
-[在 Playground 中尝试一下](https://sfc.vuejs.org/#eyJBcHAudnVlIjoiPHNjcmlwdD5cbmltcG9ydCBNb3VzZVRyYWNrZXIgZnJvbSAnLi9Nb3VzZVRyYWNrZXIudnVlJ1xuICBcbmV4cG9ydCBkZWZhdWx0IHtcbiAgY29tcG9uZW50czoge1xuICAgIE1vdXNlVHJhY2tlclxuICB9XG59XG48L3NjcmlwdD5cblxuPHRlbXBsYXRlPlxuXHQ8TW91c2VUcmFja2VyIHYtc2xvdD1cInsgeCwgeSB9XCI+XG4gIFx0TW9zdWUgaXMgYXQ6IHt7IHggfX0sIHt7IHkgfX1cblx0PC9Nb3VzZVRyYWNrZXI+XG48L3RlbXBsYXRlPiIsImltcG9ydC1tYXAuanNvbiI6IntcbiAgXCJpbXBvcnRzXCI6IHtcbiAgICBcInZ1ZVwiOiBcImh0dHBzOi8vc2ZjLnZ1ZWpzLm9yZy92dWUucnVudGltZS5lc20tYnJvd3Nlci5qc1wiXG4gIH1cbn0iLCJNb3VzZVRyYWNrZXIudnVlIjoiPHNjcmlwdD5cbmV4cG9ydCBkZWZhdWx0IHtcbiAgZGF0YSgpIHtcbiAgICByZXR1cm4ge1xuICAgICAgeDogMCxcbiAgICAgIHk6IDBcbiAgICB9XG4gIH0sXG4gIG1ldGhvZHM6IHtcbiAgICB1cGRhdGUoZSkge1xuICAgICAgdGhpcy54ID0gZS5wYWdlWFxuICAgICAgdGhpcy55ID0gZS5wYWdlWVxuICAgIH1cbiAgfSxcbiAgbW91bnRlZCgpIHtcbiAgICB3aW5kb3cuYWRkRXZlbnRMaXN0ZW5lcignbW91c2Vtb3ZlJywgdGhpcy51cGRhdGUpXG4gIH0sXG4gIHVubW91bnRlZCgpIHtcbiAgICB3aW5kb3cucmVtb3ZlRXZlbnRMaXN0ZW5lcignbW91c2Vtb3ZlJywgdGhpcy51cGRhdGUpXG4gIH1cbn1cbjwvc2NyaXB0PlxuXG48dGVtcGxhdGU+XG4gIDxzbG90IDp4PVwieFwiIDp5PVwieVwiLz5cbjwvdGVtcGxhdGU+In0=)
+[在 Playground 中尝试一下](https://sfc.vuejs.org/#eyJBcHAudnVlIjoiPHNjcmlwdD5cbmltcG9ydCBNb3VzZVRyYWNrZXIgZnJvbSAnLi9Nb3VzZVRyYWNrZXIudnVlJ1xuICBcbmV4cG9ydCBkZWZhdWx0IHtcbiAgY29tcG9uZW50czoge1xuICAgIE1vdXNlVHJhY2tlclxuICB9XG59XG48L3NjcmlwdD5cblxuPHRlbXBsYXRlPlxuXHQ8TW91c2VUcmFja2VyIHYtc2xvdD1cInsgeCwgeSB9XCI+XG4gIFx0TW91c2UgaXMgYXQ6IHt7IHggfX0sIHt7IHkgfX1cblx0PC9Nb3VzZVRyYWNrZXI+XG48L3RlbXBsYXRlPiIsImltcG9ydC1tYXAuanNvbiI6IntcbiAgXCJpbXBvcnRzXCI6IHtcbiAgICBcInZ1ZVwiOiBcImh0dHBzOi8vc2ZjLnZ1ZWpzLm9yZy92dWUucnVudGltZS5lc20tYnJvd3Nlci5qc1wiXG4gIH1cbn0iLCJNb3VzZVRyYWNrZXIudnVlIjoiPHNjcmlwdD5cbmV4cG9ydCBkZWZhdWx0IHtcbiAgZGF0YSgpIHtcbiAgICByZXR1cm4ge1xuICAgICAgeDogMCxcbiAgICAgIHk6IDBcbiAgICB9XG4gIH0sXG4gIG1ldGhvZHM6IHtcbiAgICB1cGRhdGUoZSkge1xuICAgICAgdGhpcy54ID0gZS5wYWdlWFxuICAgICAgdGhpcy55ID0gZS5wYWdlWVxuICAgIH1cbiAgfSxcbiAgbW91bnRlZCgpIHtcbiAgICB3aW5kb3cuYWRkRXZlbnRMaXN0ZW5lcignbW91c2Vtb3ZlJywgdGhpcy51cGRhdGUpXG4gIH0sXG4gIHVubW91bnRlZCgpIHtcbiAgICB3aW5kb3cucmVtb3ZlRXZlbnRMaXN0ZW5lcignbW91c2Vtb3ZlJywgdGhpcy51cGRhdGUpXG4gIH1cbn1cbjwvc2NyaXB0PlxuXG48dGVtcGxhdGU+XG4gIDxzbG90IDp4PVwieFwiIDp5PVwieVwiLz5cbjwvdGVtcGxhdGU+In0=)
 
 </div>
 
-虽然这是一个有趣的模式，但能用使用无渲染组件实现的大部分功能都可以通过组合式 API 以另一种更有效的方式实现，且不会产生额外的组件嵌套的开销。之后我们会在[组合](/guide/reusability/composables.html)一章中介绍如何更高效地实现追踪鼠标位置的逻辑。
+虽然这个模式很有趣，但大部分能用无渲染组件实现的功能都可以通过组合式 API 以另一种更高效的方式实现，并且还不会带来额外组件嵌套的开销。之后我们会在[组合式函数](/guide/reusability/composables.html)一章中介绍如何更高效地实现追踪鼠标位置的功能。
 
-尽管如此，作用域插槽还是在需要**同时**封装逻辑、组合视图界面时很有用，就像上面的 `<FancyList>` 组件那样。
+尽管如此，作用域插槽在需要**同时**封装逻辑、组合视图界面时还是很有用，就像上面的 `<FancyList>` 组件那样。

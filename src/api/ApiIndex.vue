@@ -6,11 +6,11 @@ import { data as apiIndex, APIGroup } from './api.data'
 import { ref, computed } from 'vue'
 
 const query = ref('')
-const nomralize = (s: string) => s.toLowerCase().replace(/-/g, ' ')
+const normalize = (s: string) => s.toLowerCase().replace(/-/g, ' ')
 
 const filtered = computed(() => {
-  const q = nomralize(query.value)
-  const matches = (text: string) => nomralize(text).includes(q)
+  const q = normalize(query.value)
+  const matches = (text: string) => normalize(text).includes(q)
 
   return apiIndex
     .map((section) => {
@@ -67,13 +67,29 @@ function slugify(text: string): string {
   <div id="api-index">
     <div class="header">
       <h1>API 参考</h1>
-      <input class="api-filter" placeholder="过滤" v-model="query" />
+      <div class="api-filter">
+        <label for="api-filter">过滤</label>
+        <input
+          type="search"
+          placeholder="Enter keyword"
+          id="api-filter"
+          v-model="query"
+        />
+      </div>
     </div>
 
-    <div v-for="section of filtered" :key="section.text" class="api-section">
+    <div
+      v-for="section of filtered"
+      :key="section.text"
+      class="api-section"
+    >
       <h2 :id="slugify(section.text)">{{ section.text }}</h2>
       <div class="api-groups">
-        <div v-for="item of section.items" :key="item.text" class="api-group">
+        <div
+          v-for="item of section.items"
+          :key="item.text"
+          class="api-group"
+        >
           <h3>{{ item.text }}</h3>
           <ul>
             <li v-for="h of item.headers" :key="h">
@@ -167,6 +183,13 @@ h3 {
 }
 
 .api-filter {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 1rem;
+}
+
+.api-filter input {
   border: 1px solid var(--vt-c-divider);
   border-radius: 8px;
   padding: 6px 12px;

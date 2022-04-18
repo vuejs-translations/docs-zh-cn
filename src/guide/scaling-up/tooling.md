@@ -63,18 +63,18 @@
 
 - 其他支持[语言服务协议](https://microsoft.github.io/language-server-protocol/) (LSP) 的 IDE 也可以通过 LSP 享受到 Volar 所提供的的核心功能。例如 [coc-volar](https://github.com/yaegassy/coc-volar)，它是为 Vim/NeoVim 提供更多 Vue SFC 支持。
 
-## 浏览器内开发者插件 {#browser-devtools}
+## 浏览器开发者插件 {#browser-devtools}
 
-Vue 的浏览器内开发者插件使我们可以浏览一个 Vue 应用的组件树，查看各个组件的状态，追踪状态管理的事件，还有测评性能表现。
+<VueSchoolLink href="https://vueschool.io/lessons/using-vue-dev-tools-with-vuejs-3" title="开发者工具 - 免费 Vue.js 课程"/>
+
+Vue 的浏览器开发者插件使我们可以浏览一个 Vue 应用的组件树，查看各个组件的状态，追踪状态管理的事件，还有测评性能表现。
 
 ![devtools 截图](https://raw.githubusercontent.com/vuejs/devtools/main/media/screenshot-shadow.png)
 
-<!-- TODO update links after swapping versions -->
-
 - [文档](https://devtools.vuejs.org/)
-- [Chrome 插件商店页](https://chrome.google.com/webstore/detail/vuejs-devtools/ljjemllljcmogpfapbkkighbhhppjdbg)
+- [Chrome 插件商店页](https://chrome.google.com/webstore/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd)
 - [Firefox 所属插件页](https://addons.mozilla.org/en-US/firefox/addon/vue-js-devtools/)
-- [独立的 Electron 应用所属插件](https://github.com/vuejs/vue-devtools/blob/dev/packages/shell-electron/README.md)
+- [独立的 Electron 应用所属插件](https://devtools.vuejs.org/guide/installation.html#standalone)
 
 ## TypeScript {#typescript}
 
@@ -98,7 +98,7 @@ Vue 的浏览器内开发者插件使我们可以浏览一个 Vue 应用的组�
 
 Vue 团队维护着 [eslint-plugin-vue](https://github.com/vuejs/eslint-plugin-vue) 项目，它是一个 [ESLint](https://eslint.org/) 插件，会提供 SFC 相关规则的定义。
 
-之前使用 Vue CLI 的用户可能习惯于通过 Webpack loader 来配置规范检查器。然而，若基于 Vite 构建，我们一般推荐：
+之前使用 Vue CLI 的用户可能习惯于通过 webpack loader 来配置规范检查器。然而，若基于 Vite 构建，我们一般推荐：
 
 1. `npm install -D eslint eslint-plugin-vue`，然后遵照 `eslint-plugin-vue` 的[指引](https://eslint.vuejs.org/user-guide/#usage)进行配置。
 
@@ -106,11 +106,11 @@ Vue 团队维护着 [eslint-plugin-vue](https://github.com/vuejs/eslint-plugin-v
 
 3. 将 ESLint 格式检查作为一个生产构建的步骤，保证你可以在最终打包时获得完整的规范检查反馈。
 
-4. (可选) 启用类似 [lint-staged](https://github.com/okonet/lint-staged) 一类的工具来自动地在 git commit 提交时自动作规范检查。
+4. (可选) 启用类似 [lint-staged](https://github.com/okonet/lint-staged) 一类的工具在 git commit 提交时自动执行规范检查。
 
 ## 格式化 {#formatting}
 
-- [Volar](https://github.com/johnsoncodehk/volar) VSCode 插件为 Vue SFC 提供了开箱即用的格式化功能
+- [Volar](https://github.com/johnsoncodehk/volar) VSCode 插件为 Vue SFC 提供了开箱即用的格式化功能。
 
 - 除此之外，[Prettier](https://prettier.io/) 也提供了内置的 Vue SFC 格式化支持。
 
@@ -118,25 +118,25 @@ Vue 团队维护着 [eslint-plugin-vue](https://github.com/vuejs/eslint-plugin-v
 
 自定义块被编译成导入到同一 Vue 文件的不同请求查询。这取决于底层构建工具如何处理这类导入请求。
 
-- 如果使用 Vite，需使用一个自定义 Vite 插件将自定义块转换为可执行的 JavaScript 代码，[可以看看这个示例](https://github.com/vitejs/vite/tree/main/packages/plugin-vue#example-for-transforming-custom-blocks)。
+- 如果使用 Vite，需使用一个自定义 Vite 插件将自定义块转换为可执行的 JavaScript 代码。[示例](https://github.com/vitejs/vite/tree/main/packages/plugin-vue#example-for-transforming-custom-blocks)。
 
-- 如果使用 Vue CLI 或只是 Webpack，需要使用一个 loader 来配置如何转换匹配到的自定义块。[可以看看这个示例](https://vue-loader.vuejs.org/custom-blocks.html#custom-blocks)。
+- 如果使用 Vue CLI 或只是 webpack，需要使用一个 loader 来配置如何转换匹配到的自定义块。[示例](https://vue-loader.vuejs.org/custom-blocks.html#custom-blocks)。
 
 ## 底层库 {#lower-level-packages}
 
-### `@vue/compiler-sfc` {#vuecompiler-sfc}
+### `@vue/compiler-sfc` {#vue-compiler-sfc}
 
 - [文档](https://github.com/vuejs/core/tree/main/packages/compiler-sfc)
 
 这个包是 Vue 核心 monorepo 的一部分，并始终和 `vue` 主包版本号保持一致。它已经成为 `vue` 主包的一个依赖并代理到了 `vue/compiler-sfc` 目录下，因此你无需单独安装它。
 
-这个包本身提供了处理 Vue SFC 的底层的功能，并只适用于需要支持 Vue SFC 相关工具链的作者。
+这个包本身提供了处理 Vue SFC 的底层的功能，并只适用于需要支持 Vue SFC 相关工具链的开发者。
 
 :::tip
 请始终选择通过 `vue/compiler-sfc` 的深度导入来使用这个包，因为这样可以确保其与 Vue 运行时版本同步。<!-- TODO: need check -->
 :::
 
-### `@vitejs/plugin-vue` {#vitejsplugin-vue}
+### `@vitejs/plugin-vue` {#vitejs-plugin-vue}
 
 - [文档](https://github.com/vitejs/vite/tree/main/packages/plugin-vue)
 
@@ -146,13 +146,15 @@ Vue 团队维护着 [eslint-plugin-vue](https://github.com/vuejs/eslint-plugin-v
 
 - [文档](https://vue-loader.vuejs.org/)
 
-为 Webpack 提供 Vue SFC 支持的官方 loader。如果你正在使用 Vue CLI，也可以看看[如何在 Vue CLI 中更改 `vue-loader` 选项的文档](https://cli.vuejs.org/guide/webpack.html#modifying-options-of-a-loader)。
+为 webpack 提供 Vue SFC 支持的官方 loader。如果你正在使用 Vue CLI，也可以看看[如何在 Vue CLI 中更改 `vue-loader` 选项的文档](https://cli.vuejs.org/guide/webpack.html#modifying-options-of-a-loader)。
 
 ## 其他在线 Playground {#other-online-playgrounds}
 
 - [VueUse Playground](https://play.vueuse.org)
-- [Repl.it 上使用 Vue + Vite](https://replit.com/@templates/VueJS-with-Vite)
-- [CodeSandbox 的 Vue 模板](https://codesandbox.io/s/vue-3)
-- [CodePen 的 Vue 模板](https://codepen.io/pen/editor/vue)
+- [Vue + Vite on Repl.it](https://replit.com/@templates/VueJS-with-Vite)
+- [Vue on CodeSandbox](https://codesandbox.io/s/vue-3)
+- [Vue on Codepen](https://codepen.io/pen/editor/vue)
+- [Vue on Components.studio](https://components.studio/create/vue3)
+- [Vue on WebComponents.dev](https://webcomponents.dev/create/cevue)
 
 <!-- TODO ## Backend Framework Integrations -->
