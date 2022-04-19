@@ -167,7 +167,7 @@ import ButtonCounter from './ButtonCounter.vue'
 如果你是直接在 DOM 中书写模板 (例如原生 `<template>` 元素的内容)，模板的编译将服从于原生 HTML 的解析行为。在这种情况下，你应该需要使用 `kebab-case` 形式并显式地关闭这些组件的标签。
 
 ```vue-html
-<!-- 如果模板时写在 DOM 中 -->
+<!-- 如果是在 DOM 中书写该模板 -->
 <button-counter></button-counter>
 <button-counter></button-counter>
 <button-counter></button-counter>
