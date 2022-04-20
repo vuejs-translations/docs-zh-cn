@@ -1,4 +1,4 @@
-# 内置特殊 Attribute {#built-in-special-attributes}
+# 内置的特殊 Attribute {#built-in-special-attributes}
 
 ## key {#key}
 
