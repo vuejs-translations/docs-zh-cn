@@ -101,7 +101,7 @@
 
 ## v-else-if  {#v-else-if}
 
-表示 `v-if` 的”else if 块“。可以进行链式调用。
+表示 `v-if` 的“else if 块”。可以进行链式调用。
 
 - **预期：** `any`
 
