@@ -2,7 +2,7 @@
 
 ## key {#key}
 
-`key` 特殊 attribute 主要作为 Vue 的虚拟 DOM 算法提示，在比较新旧节点列表时用于识别 vnode。
+`key` 这个特殊的 attribute 主要作为 Vue 的虚拟 DOM 算法提示，在比较新旧节点列表时用于识别 vnode。
 
 - **预期：**`number | string | symbol`
 
