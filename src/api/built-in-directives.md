@@ -76,7 +76,7 @@
 
 ## v-else {#v-else}
 
-表示 `v-if` 或 `v-if` / `v-else-if` 链式调用的”else 块“。
+表示 `v-if` 或 `v-if` / `v-else-if` 链式调用的“else 块”。
 
 - **无需传入表达式**
 
