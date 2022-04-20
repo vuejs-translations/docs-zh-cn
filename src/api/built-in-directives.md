@@ -154,7 +154,7 @@
   <div v-for="(value, name, index) in object"></div>
   ```
 
-   `v-for` 的默认方式是尝试就地更新元素而不移动它们。要强制给元素重新排序，你需要提供 `key` 特殊 attribute 作为排序提示：
+   `v-for` 的默认方式是尝试就地更新元素而不移动它们。要强制其重新排序元素，你需要用特殊 attribute `key` 来提供一个排序提示：
 
   ```vue-html
   <div v-for="item in items" :key="item.id">
