@@ -70,7 +70,7 @@
 
   当条件改变时会触发过渡效果。
 
-  当同时使用时， `v-if` 比 `v-for` 优先级更高。我们并不推荐在一元素上同时使用这两个指令 — 查看 [列表渲染指南](/guide/essentials/list.html#v-for-with-v-if) 详情。
+  当同时使用时， `v-if` 比 `v-for` 优先级更高。我们并不推荐在一元素上同时使用这两个指令 — 查看[列表渲染指南](/guide/essentials/list.html#v-for-with-v-if)详情。
 
 - **相关内容：** [条件渲染——v-if](/guide/essentials/conditional.html#v-if)
 
