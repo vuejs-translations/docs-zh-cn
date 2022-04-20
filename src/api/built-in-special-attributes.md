@@ -41,7 +41,7 @@
 
 表示[模板 ref](/guide/essentials/template-refs.html)。
 
-- **预期：**`string | Function`
+- **预期：** `string | Function`
 
 - **详细信息**
 
