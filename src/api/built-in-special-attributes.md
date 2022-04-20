@@ -54,7 +54,7 @@
   <p ref="p">hello</p>
   ```
 
-  使用组合式 API，引用存储在与名字匹配的 ref 里：
+  使用组合式 API，引用将存储在与名字匹配的 ref 里：
 
   ```vue
   <script setup>
