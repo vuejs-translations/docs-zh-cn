@@ -31,7 +31,7 @@
   `v-html` 的内容直接作为普通 HTML 插入—— Vue 模板语法是不会被解析的。如果你发现自己正打算用 `v-html` 来编写模板，不如重新想想怎么使用组件来代替。
 
   ::: warning 安全说明
-  在自己网站上动态地渲染任意 HTML 将是非常危险的，因为这非常容易导致 [XSS 攻击](https://en.wikipedia.org/wiki/Cross-site_scripting)。仅仅把 `v-html` 用于可信任的内容，**永不**用于用户提供的内容。
+ 在你的站点上动态渲染任意的 HTML 是非常危险的，因为它很容易导致 [XSS 攻击](https://en.wikipedia.org/wiki/Cross-site_scripting)。请只对可信内容使用 HTML 插值，**绝不要**将用户提供的内容作为插值
   :::
 
   在 [单文件组件](/guide/scaling-up/sfc)，`scoped` 样式将不会作用于 `v-html` 里的内容，因为 HTML 内容不会被 Vue 的模板编译器解析。如果你想让 `v-html` 的内容也支持 scoped CSS，你可以使用 [CSS modules](./sfc-css-features.html#css-modules) 或使用一个额外的全局 `<style>` 元素，手动设置类似 BEM 的作用域策略。
