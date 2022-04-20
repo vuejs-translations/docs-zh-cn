@@ -35,7 +35,8 @@ export default defineComponent({
 我们可以使用 `PropType` 这个工具类型来标记更复杂的 prop 类型：
 
 ```ts
-import { defineComponent, PropType } from 'vue'
+import { defineComponent } from 'vue'
+import type { PropType } from 'vue'
 
 interface Book {
   title: string
@@ -69,7 +70,8 @@ export default defineComponent({
 因为一个 TypeScript 的 [设计限制](https://github.com/microsoft/TypeScript/issues/38845)，你在使用函数作为 prop 的 `validator` 和 `default` 选项值时需要格外小心——确保使用箭头函数：
 
 ```ts
-import { defineComponent, PropType } from 'vue'
+import { defineComponent } from 'vue'
+import type { PropType } from 'vue'
 
 interface Book {
   title: string

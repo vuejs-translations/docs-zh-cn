@@ -93,7 +93,7 @@
   })
   ```
 
-- **相关内容**：[指南 - 创建 VNode](/guide/extras/render-function.html#creating-vnodes)
+- **相关内容**：[指南——渲染函数——创建 VNode](/guide/extras/render-function.html#creating-vnodes)
 
 ## mergeProps() {#mergeprops}
 

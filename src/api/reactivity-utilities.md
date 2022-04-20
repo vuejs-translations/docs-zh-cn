@@ -80,12 +80,14 @@
   const fooRef = ref(state.foo)
   ```
 
-  上面这个 ref **不会** 和 `state.foo` 保持同步，因为这个 `ref()` 接收到的是一个纯字符串值。
+  上面这个 ref **不会** 和 `state.foo` 保持同步，因为这个 `ref()` 接收到的是一个纯数字值。
 
   `toRef()` 这个函数在你想把一个 prop 的 ref 传递给一个组合式函数时会很有用：
 
   ```vue
   <script setup>
+  import { toRef } from 'vue'
+  
   const props = defineProps(/* ... */)
 
   // 将 `props.foo` 转为一个 ref，接着将其转为
@@ -94,7 +96,9 @@
   </script>
   ```
 
-  `toRef()` 即使在源属性已经不存在的情况下，也会返回一个可用的 ref。这使得它在处理可选 prop 的时候会很有用，而可选属性在使用 [`toRefs`](#torefs) 时不会被保留。
+  When `toRef` is used with component props, the usual restrictions around mutating the props still apply. Attempting to assign a new value to the ref is equivalent to trying to modify the prop directly and is not allowed. In that scenario you may want to consider using [`computed`](./reactivity-core.html#computed) with `get` and `set` instead. See the guide to [using `v-model` with components](/guide/components/events.html#usage-with-v-model) for more information.
+
+  `toRef()` 即使在源 property 已经不存在的情况下，也会返回一个可用的 ref。这使得它在处理可选 property 的时候会很有用，而可选 property 在使用 [`toRefs`](#torefs) 时不会被保留。
 
 ## toRefs() {#torefs}
 

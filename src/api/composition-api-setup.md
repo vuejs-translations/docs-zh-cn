@@ -38,10 +38,10 @@ export default {
 </template>
 ```
 
-注意从 `setup` 返回的 [ref](/api/reactivity-core.html#ref) 在模板上访问时会 [自动浅层解包](/guide/essentials/reactivity-fundamentals.html#ref-unwrapping-in-templates) 因此你无须再在模板中为它写 `.value`。当通过 `this` 访问时也会同样如此解包。
+注意从 `setup` 返回的 [ref](/api/reactivity-core.html#ref) 在模板上访问时会 [自动浅层解包](/guide/essentials/reactivity-fundamentals.html#deep-reactivity) 因此你无须再在模板中为它写 `.value`。当通过 `this` 访问时也会同样如此解包。
 
 :::tip
-`setup()` 自身并不含对组件实例的访问权，即在 `setup()` 中访问 `this` 会是 `null`。你可以从选项式 API 中访问由组合式 API 暴露的值，但反过来则不行。
+`setup()` 自身并不含对组件实例的访问权，即在 `setup()` 中访问 `this` 会是 `undefined`。你可以从选项式 API 中访问由组合式 API 暴露的值，但反过来则不行。
 :::
 
 ## 访问 Props  {#accessing-props}
@@ -64,7 +64,7 @@ export default {
 如果你确实需要从 props 上解构，或者想要将某个 prop 传入到一个外部函数中但想保持响应性，那么你可以使用 [toRefs()](./reactivity-utilities.html#torefs) [toRef()](/api/reactivity-utilities.html#toref) 这两个工具 API：
 
 ```js
-import { toRefs } from 'vue'
+import { toRefs, toRef } from 'vue'
 
 export default {
   setup(props) {
