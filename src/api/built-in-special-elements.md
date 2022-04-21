@@ -48,7 +48,7 @@
   </template>
   ```
 
-  按定义渲染组件( `<script setup>` 组合式 API):
+  按定义渲染组件 (`<script setup>` 组合式 API):
 
   ```vue
   <script setup>
