@@ -61,7 +61,7 @@ export default {
 
 注意如果你从 `props` 对象上解构，被解构的变量将会丢失响应性。因此我们推荐通过 `props.xxx` 的形式来使用其中的属性。
 
-如果你确实需要从 props 上解构，或者想要将某个 prop 传入到一个外部函数中但想保持响应性，那么你可以使用 [toRefs()](./reactivity-utilities.html#torefs) [toRef()](/api/reactivity-utilities.html#toref) 这两个工具 API：
+如果你确实需要从 props 上解构，或者想要将某个 prop 传入到一个外部函数中但想保持响应性，那么你可以使用 [toRefs()](./reactivity-utilities.html#torefs) 和 [toRef()](/api/reactivity-utilities.html#toref) 这两个工具 API：
 
 ```js
 import { toRefs } from 'vue'
