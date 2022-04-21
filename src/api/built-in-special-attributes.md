@@ -1,18 +1,18 @@
-# Built-in Special Attributes
+# 内置的特殊 Attribute {#built-in-special-attributes}
 
-## key
+## key {#key}
 
-The `key` special attribute is primarily used as a hint for Vue's virtual DOM algorithm to identify vnodes when diffing the new list of nodes against the old list.
+`key` 这个特殊的 attribute 主要作为 Vue 的虚拟 DOM 算法提示，在比较新旧节点列表时用于识别 vnode。
 
-- **Expects:** `number | string | symbol`
+- **预期：** `number | string | symbol`
 
 - **详细信息**
 
-  Without keys, Vue uses an algorithm that minimizes element movement and tries to patch/reuse elements of the same type in-place as much as possible. With keys, it will reorder elements based on the order change of keys, and elements with keys that are no longer present will always be removed / destroyed.
+  在没有 key 的情况下，Vue 将使用一种最小化元素移动的算法，并尽可能地就地更新/复用相同类型的元素。如果传了 key，则将根据 key 的变化顺序来重新排列元素，并且将始终移除/销毁 key 已经不存在的元素。
 
-  Children of the same common parent must have **unique keys**. Duplicate keys will cause render errors.
+  同一个父元素下的子元素必须具有**唯一的 key**。重复的 key 将会导致渲染异常。
 
-  The most common use case is combined with `v-for`:
+  最常见的用例是与 `v-for` 结合：
 
   ```vue-html
   <ul>
@@ -20,12 +20,12 @@ The `key` special attribute is primarily used as a hint for Vue's virtual DOM al
   </ul>
   ```
 
-  It can also be used to force replacement of an element/component instead of reusing it. This can be useful when you want to:
+  也可以用于强制替换一个元素/组件而不是复用它。当你想这么做时它可能会很有用：
 
-  - Properly trigger lifecycle hooks of a component
-  - Trigger transitions
+  - 在适当的时候触发组件的生命周期钩子
+  - 触发过渡
 
-  For example:
+  举个例子：
 
   ```vue-html
   <transition>
@@ -33,28 +33,28 @@ The `key` special attribute is primarily used as a hint for Vue's virtual DOM al
   </transition>
   ```
 
-  When `text` changes, the `<span>` will always be replaced instead of patched, so a transition will be triggered.
+  当 `text` 变化时，`<span>` 总是会被替换而不是更新，因此 transition 将会被触发。
 
-- **相关内容：** [Guide - List Rendering - Maintaining State with `key`](/guide/essentials/list.html#maintaining-state-with-key)
+- **相关内容：** [指南——列表渲染——通过 `key` 管理状态](/guide/essentials/list.html#maintaining-state-with-key)
 
-## ref
+## ref {#ref}
 
-Denotes a [template ref](/guide/essentials/template-refs.html).
+表示[模板 ref](/guide/essentials/template-refs.html)。
 
-- **Expects:** `string | Function`
+- **预期：** `string | Function`
 
 - **详细信息**
 
-  `ref` is used to register a reference to an element or a child component.
+  `ref` 用于注册元素或子组件的引用。
 
-  In Options API, the reference will be registered under the component's `this.$refs` object:
+  使用选项式 API，引用将被注册在组件的 `this.$refs` 对象里：
 
   ```vue-html
-  <!-- stored as this.$refs.p -->
+  <!-- 存储为 this.$refs.p -->
   <p ref="p">hello</p>
   ```
 
-  In Composition API, the reference will be stored in a ref with matching name:
+  使用组合式 API，引用将存储在与名字匹配的 ref 里：
 
   ```vue
   <script setup>
@@ -68,31 +68,31 @@ Denotes a [template ref](/guide/essentials/template-refs.html).
   </template>
   ```
 
-  If used on a plain DOM element, the reference will be that element; if used on a child component, the reference will be the child component instance.
+  如果用于普通 DOM 元素，引用将是元素本身；如果用于子组件，引用将是子组件的实例。
 
-  Alternatively `ref` can accept a function value which provides full control over where to store the reference:
+  或者 `ref` 可以接收一个函数值，用于对存储引用位置的完全控制：
 
   ```vue-html
   <ChildComponent :ref="(el) => child = el" />
   ```
 
-  An important note about the ref registration timing: because the refs themselves are created as a result of the render function, you must wait until the component is mounted before accessing them.
+  关于 ref 注册时机的重要说明：因为 ref 本身是作为渲染函数的结果来创建的，必须等待组件挂载后才能对它进行访问。
 
-  `this.$refs` is also non-reactive, therefore you should not attempt to use it in templates for data-binding.
+  `this.$refs` 也是非响应式的，因此你不应该尝试在模板中使用它来进行数据绑定。
 
-- **相关内容：** [Template Refs](/guide/essentials/template-refs.html)
+- **相关内容：** [模板 ref](/guide/essentials/template-refs.html)
 
-## is
+## is {#is}
 
-Used for binding [dynamic components](/guide/essentials/component-basics.html#dynamic-components).
+用于绑定[动态组件](/guide/essentials/component-basics.html#dynamic-components)。
 
-- **Expects:** `string | Component`
+- **预期：**`string | Component`
 
-- **Usage on native elements** <sup class="vt-badge">3.1+</sup>
+- **用于原生元素** <sup class="vt-badge">3.1+</sup>
 
-  When the `is` attribute is used on a native HTML element, it will be interpreted as a [Customized built-in element](https://html.spec.whatwg.org/multipage/custom-elements.html#custom-elements-customized-builtin-example), which is a native web platform feature.
+  当 `is` attribute 用于原生 HTML 元素时，它将被当作 [Customized built-in element](https://html.spec.whatwg.org/multipage/custom-elements.html#custom-elements-customized-builtin-example)，其为原生 web 平台的特性。
 
-  There is, however, a use case where you may need Vue to replace a native element with a Vue component, as explained in [DOM Template Parsing Caveats](/guide/essentials/component-basics.html#dom-template-parsing-caveats). You can prefix the value of the `is` attribute with `vue:` so that Vue will render the element as a Vue component instead:
+  但是，在这种用例中，你可能需要 Vue 用其组件来替换原生元素，如 [DOM 模板解析注意事项](/guide/essentials/component-basics.html#dom-template-parsing-caveats)所述。你可以在 `is` attribute 的值中加上 `vue:` 前缀，这样 Vue 就会把该元素渲染为 Vue 组件：
 
   ```vue-html
   <table>
@@ -102,5 +102,5 @@ Used for binding [dynamic components](/guide/essentials/component-basics.html#dy
 
 - **相关内容：**
 
-  - [Built-in Special Element - `<component>`](/api/built-in-special-elements.html#component)
-  - [Dynamic Components](/guide/essentials/component-basics.html#dynamic-components)
+  - [内置特殊元素——`<component>`](/api/built-in-special-elements.html#component)
+  - [动态组件](/guide/essentials/component-basics.html#dynamic-components)
