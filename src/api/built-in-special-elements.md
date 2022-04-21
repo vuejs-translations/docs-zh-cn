@@ -90,7 +90,7 @@
 
   如果将组件本身传递给 `is` 而不是其名称，则不需要注册，例如在 `<script setup>` 中。
 
-- **相关内容：** [动态组件](/guide/essentials/component-basics.html#dynamic-components)
+- **相关内容**：[动态组件](/guide/essentials/component-basics.html#dynamic-components)
 
 ## `<slot>` {#slot}
 
