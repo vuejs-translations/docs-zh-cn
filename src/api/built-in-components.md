@@ -34,7 +34,7 @@ h(Transition, {
      */
     name?: string
     /**
-     * 是否应用 CSS 过渡类。
+     * 是否应用 CSS 过渡 class。
      * 默认：true
      */
     css?: boolean
