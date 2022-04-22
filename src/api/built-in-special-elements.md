@@ -118,6 +118,6 @@
 
   元素本身将被其所匹配的插槽内容替换。
 
-  Vue 模板里的 `<slot>` 元素会被编译到 JavaScript，因此不要与 [原生 `<slot>` 元素](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/slot) 进行混淆。
+  Vue 模板里的 `<slot>` 元素会被编译到 JavaScript，因此不要与[原生 `<slot>` 元素](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/slot)进行混淆。
 
 - **相关内容：** [组件 - 插槽](/guide/components/slots.html)
