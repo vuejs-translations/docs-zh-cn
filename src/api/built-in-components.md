@@ -64,7 +64,7 @@ h(Transition, {
 
     /**
      * 用于自定义过渡类的 Prop。
-     * 在模板中使用 kebab-case，例如：enter-from-class="xxx"
+     * 在模板中使用短横线命名，例如：enter-from-class="xxx"
      */
     enterFromClass?: string
     enterActiveClass?: string
