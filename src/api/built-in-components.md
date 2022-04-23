@@ -29,7 +29,7 @@ h(Transition, {
   interface TransitionProps {
     /**
      * 用于自动生成过渡 CSS class 名。
-     * 例如 `name: fade` 将自动扩展为 `.fade-enter`，
+     * 例如 `name: 'fade'` 将自动扩展为 `.fade-enter`，
      * `.fade-enter-active` 等。
      */
     name?: string
