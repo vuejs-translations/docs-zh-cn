@@ -12,11 +12,11 @@
 
 - **详细信息**
 
-  `provide()` 接受两个参数：注入的 key 名称，可以是一个字符串或是一个 symbol，然后是要注入的值。
+  `provide()` 接受两个参数：第一个参数是要注入的 key，可以是一个字符串或者一个 symbol，第二个参数是要注入的值。
 
-  当使用 TypeScript 时，key 可以是一个被转换为 `InjectionKey` 的 symbol，这是一个 Vue 提供的工具类型，继承自 `Symbol`，可以用来同步 `provide()` 和 `inject()` 之间值的类型。
+  当使用 TypeScript 时，key 可以是一个被转换为 `InjectionKey` 的 symbol。`InjectionKey` 是一个 Vue 提供的工具类型，继承自 `Symbol`，可以用来同步 `provide()` 和 `inject()` 之间值的类型。
 
-  同生命周期钩子 API 一样，`provide()` 必须在组件的 `setup()` 阶段中同步调用。
+  与注册生命周期钩子的 API 类似，`provide()` 必须在组件的 `setup()` 阶段同步调用。
 
 - **示例**
 
@@ -32,7 +32,7 @@
   const count = ref(0)
   provide('count', count)
 
-  // 通过 Symbol 作为 key 作供给
+  // 供给时将 Symbol 作为 key
   provide(fooSymbol, count)
   </script>
   ```
@@ -43,18 +43,18 @@
 
 ## inject()  {#inject}
 
-注入一个由祖先组件或整个应用（通过 `app.provide()`）供给的值。
+注入一个由祖先组件或整个应用 (通过 `app.provide()`) 供给的值。
 
 - **类型**
 
   ```ts
-  // 不带默认值
+  // 没有默认值
   function inject<T>(key: InjectionKey<T> | string): T | undefined
 
   // 带有默认值
   function inject<T>(key: InjectionKey<T> | string, defaultValue: T): T
 
-  // 通过工厂函数
+  // 使用工厂函数
   function inject<T>(
     key: InjectionKey<T> | string,
     defaultValue: () => T,
@@ -64,13 +64,13 @@
 
 - **详细信息**
 
-  第一个参数是注入目标的 key。Vue 会遍历父组件链，通过匹配 key 来确定所供给的值。如果父组件链上多个组件对同一个 key 供给了值，那么离得更近的组件将会“覆盖”住链上更远的组件所供给的值。如果没有能通过 key 匹配到值，`inject()` 会返回 `undefined` 除非提供了一个默认值。
+  第一个参数是注入的 key。Vue 会遍历父组件链，通过匹配 key 来确定所供给的值。如果父组件链上多个组件对同一个 key 供给了值，那么离得更近的组件将会“覆盖”链上更远的组件所供给的值。如果没有能通过 key 匹配到值，`inject()` 将返回 `undefined`，除非提供了一个默认值。
 
-  第二个参数是可选的，即在没匹配到时使用的默认值。它也可以是一个工厂函数，用来返回某些创建起来比较复杂的值。如果默认值本身就是一个函数，那么你必须传入第三个参数 `false` 以表明这个函数就是默认值，而不是将其视为一个工厂函数。
+  第二个参数是可选的，即在没有匹配到 key 时使用的默认值。它也可以是一个工厂函数，用来返回某些创建起来比较复杂的值。如果默认值本身就是一个函数，那么你必须将 `false` 作为第三个参数传入，表明这个函数就是默认值，而不是一个工厂函数。
 
-  与生命周期钩子注册函数类似，`inject()` 必须在组件的 `setup()` 阶段同步调用。
+  与注册生命周期钩子的 API 类似，`inject()` 必须在组件的 `setup()` 阶段同步调用。
 
-  当使用 TypeScript 时，key 可以是一个 symbol，类型可以转换为 `InjectionKey`，这是一个 Vue 提供的工具类型，继承自 `Symbol`，可以用来同步 `provide()` 和 `inject()` 之间值的类型。
+  当使用 TypeScript 时，key 可以是一个被转换为 `InjectionKey` 的 symbol。`InjectionKey` 是一个 Vue 提供的工具类型，继承自 `Symbol`，可以用来同步 `provide()` 和 `inject()` 之间值的类型。
 
 - **示例**
 
