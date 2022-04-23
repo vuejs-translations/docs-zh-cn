@@ -14,7 +14,7 @@
 
   `provide()` 接受两个参数：注入的 key 名称，可以是一个字符串或是一个 symbol，然后是要注入的值。
 
-  当使用 TypeScript 时，key 可以是一个 symbol，类型可以转换为 `InjectionKey`，这是一个 Vue 提供的工具类型，继承自 `Symbol`，可以用来同步 `provide()` 和 `inject()` 之间值的类型。
+  当使用 TypeScript 时，key 可以是一个被转换为 `InjectionKey` 的 symbol，这是一个 Vue 提供的工具类型，继承自 `Symbol`，可以用来同步 `provide()` 和 `inject()` 之间值的类型。
 
   同生命周期钩子 API 一样，`provide()` 必须在组件的 `setup()` 阶段中同步调用。
 
