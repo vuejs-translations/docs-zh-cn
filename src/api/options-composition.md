@@ -103,7 +103,7 @@
   }
   ```
 
-	使用注入的值作为 prop 的默认值：
+  使用注入的值作为 prop 的默认值：
 
   ```js
   const Child = {
@@ -118,7 +118,7 @@
   }
   ```
 
-	使用注入的值作为 data：
+  使用注入的值作为 data：
 
   ```js
   const Child = {
@@ -141,7 +141,7 @@
   }
   ```
 
-	如果需要从不同名字的 property 中注入，请使用 `from` 指明来源 property。
+  如果需要从不同名字的 property 中注入，请使用 `from` 指明来源 property。
 
   ```js
   const Child = {
@@ -185,7 +185,7 @@
 
   `mixins` 选项接受一个 mixin 对象数组。这些 mixin 对象可以像普通的实例对象一样包含实例选项，它们将使用一定的选项合并逻辑与最终的选项进行合并。举个例子，如果你的 mixin 包含了一个 `created` 钩子，而组件自身也有一个，那么这两个函数都会被调用。
 
-	Mixin 钩子的调用顺序与提供它们的选项顺序相同，且会在组件自身的钩子前被调用。
+  Mixin 钩子的调用顺序与提供它们的选项顺序相同，且会在组件自身的钩子前被调用。
 
   :::warning 不再推荐
   在 Vue 2 中，mixins 是创建可重用组件逻辑的主要方式。尽管 mixins 在 Vue 3 中保留了支持，但对于组件间的逻辑复用，[Composition API](/guide/reusability/composables.html) 是现在更推荐的方式。
