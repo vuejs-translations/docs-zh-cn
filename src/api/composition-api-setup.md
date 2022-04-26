@@ -38,7 +38,7 @@ export default {
 </template>
 ```
 
-请注意在模板中访问时从 `setup` 返回的 [ref](/api/reactivity-core.html#ref) 时，它会s[自动浅层解包](/guide/essentials/reactivity-fundamentals.html#ref-unwrapping-in-templates)，因此你无须再在模板中为它写 `.value`。当通过 `this` 访问时也会同样如此解包。
+请注意在模板中访问从 `setup` 返回的 [ref](/api/reactivity-core.html#ref) 时，它会[自动浅层解包](/guide/essentials/reactivity-fundamentals.html#ref-unwrapping-in-templates)，因此你无须再在模板中为它写 `.value`。当通过 `this` 访问时也会同样如此解包。
 
 :::tip
 `setup()` 自身并不含对组件实例的访问权，即在 `setup()` 中访问 `this` 会是 `undefined`。你可以在选项式 API 中访问组合式 API 暴露的值，但反过来则不行。
