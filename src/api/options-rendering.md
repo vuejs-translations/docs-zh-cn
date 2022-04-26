@@ -23,7 +23,7 @@
   如果应用的根组件不含任何 `template` 或 `render` 选项，Vue 将会尝试使用所挂载元素的 `innerHTML` 来作为模板。
 
   :::warning 安全性注意
-  请仅使用你可以信任的模板来源。不要直接使用用户提供的内容作为模板。查看 [安全性指南](/guide/best-practices/security.html#rule-no-1-never-use-non-trusted-templates) 了解更多细节。
+  请仅使用你可以信任的模板来源。不要直接将用户提供的内容用作模板。查看 [安全性指南](/guide/best-practices/security.html#rule-no-1-never-use-non-trusted-templates) 了解更多细节。
   :::
 
 ## render {#render}
