@@ -41,7 +41,7 @@
 
 ## toRef() {#toref}
 
-可用于为响应式对象上的属性创建 ref。这样创建的 ref 与其源属性保持同步：改变源属性将更新 ref，反之亦然。
+可用于为响应式对象上的 property 创建 ref。这样创建的 ref 与其源 property 保持同步：改变源 property 将更新 ref，反之亦然。
 
 - **类型**
 
