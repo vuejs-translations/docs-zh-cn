@@ -86,6 +86,8 @@
 
   ```vue
   <script setup>
+  import { toRef } from 'vue'
+  
   const props = defineProps(/* ... */)
 
   // 将 `props.foo` 转换为 ref，然后传入
@@ -93,6 +95,8 @@
   useSomeFeature(toRef(props, 'foo'))
   </script>
   ```
+
+  When `toRef` is used with component props, the usual restrictions around mutating the props still apply. Attempting to assign a new value to the ref is equivalent to trying to modify the prop directly and is not allowed. In that scenario you may want to consider using [`computed`](./reactivity-core.html#computed) with `get` and `set` instead. See the guide to [using `v-model` with components](/guide/components/events.html#usage-with-v-model) for more information.
 
   即使源属性当前不存在，`toRef()` 也会返回一个可用的 ref。这让它在处理可选 prop 的时候格外实用，而可选 prop 在使用 [`toRefs`](#torefs) 时不会被保留。
 
