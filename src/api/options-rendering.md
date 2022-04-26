@@ -80,6 +80,6 @@
 
 - **详细信息**
 
-  这个配置选项仅在使用了完整发行版（即可以在浏览器中编译模板的独立 `vue.js` ）时才有效。它支持与应用级的 [app.config.compilerOptions](/api/application.html#app-config-compileroptions) 相同的选项，并针对当前组件有更高的优先级。
+  这个配置选项仅在使用了完整的构建版本（即可以在浏览器中编译模板的独立 `vue.js` ）时才有效。它支持与应用级的 [app.config.compilerOptions](/api/application.html#app-config-compileroptions) 相同的选项，并针对当前组件有更高的优先级。
 
 - **相关内容：** [app.config.compilerOptions](/api/application.html#app-config-compileroptions)
