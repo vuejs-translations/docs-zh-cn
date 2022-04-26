@@ -10,7 +10,7 @@
   function isRef<T>(r: Ref<T> | unknown): r is Ref<T>
   ```
 
-  注意返回值是一个 [类型谓词](https://www.typescriptlang.org/docs/handbook/advanced-types.html#user-defined-type-guards)，这意味着 `isRef` 可以被用作类型守卫：
+  注意返回值是一个 [类型谓词](https://www.typescriptlang.org/docs/handbook/2/narrowing.html#using-type-predicates)，这意味着 `isRef` 可以被用作类型守卫：
 
   ```ts
   let foo: unknown
