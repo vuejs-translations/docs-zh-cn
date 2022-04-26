@@ -10,19 +10,19 @@
   function isRef<T>(r: Ref<T> | unknown): r is Ref<T>
   ```
 
-  注意返回值是一个 [类型谓词](https://www.typescriptlang.org/docs/handbook/2/narrowing.html#using-type-predicates)，这意味着 `isRef` 可以被用作类型守卫：
+  请注意，返回值是一个 [类型谓词](https://www.typescriptlang.org/docs/handbook/2/narrowing.html#using-type-predicates)，这意味着 `isRef` 可以被用作类型守卫：
 
   ```ts
   let foo: unknown
   if (isRef(foo)) {
-    // foo 的类型被收敛为了 Ref<unknown>
+    // foo 的类型被收窄为了 Ref<unknown>
     foo.value
   }
   ```
 
 ## unref() {#unref}
 
-若参数值是一个 ref 则取出内部的值，否则返回值就是参数本身。这是 `val = isRef(val) ? val.value : val` 计算的一个语法糖。
+如果参数是 ref，则返回内部值，否则返回参数本身。这是 `val = isRef(val) ? val.value : val` 计算的一个语法糖。
 
 - **类型**
 
@@ -35,13 +35,13 @@
   ```ts
   function useFoo(x: number | Ref<number>) {
     const unwrapped = unref(x)
-    // unwrapped 现在保证是 number 类型了
+    // unwrapped 现在保证为 number 类型
   }
   ```
 
 ## toRef() {#toref}
 
-可以通过一个响应式对象的属性来创建一个 ref。创建得到的 ref 与源属性保持同步：对源属性的更改将会同步更新 ref，反过来该 ref 的变动也会影响源属性。
+可用于为响应式对象上的 property 创建 ref。这样创建的 ref 与其源 property 保持同步：改变源 property 将更新 ref，反之亦然。
 
 - **类型**
 
@@ -74,7 +74,7 @@
   console.log(fooRef.value) // 3
   ```
 
-  注意这和下面这个不同：
+  请注意，这不同于：
 
   ```js
   const fooRef = ref(state.foo)
@@ -90,19 +90,19 @@
   
   const props = defineProps(/* ... */)
 
-  // 将 `props.foo` 转为一个 ref，接着将其转为
+  // 将 `props.foo` 转换为 ref，然后传入
   // 一个组合式函数
   useSomeFeature(toRef(props, 'foo'))
   </script>
   ```
 
-  When `toRef` is used with component props, the usual restrictions around mutating the props still apply. Attempting to assign a new value to the ref is equivalent to trying to modify the prop directly and is not allowed. In that scenario you may want to consider using [`computed`](./reactivity-core.html#computed) with `get` and `set` instead. See the guide to [using `v-model` with components](/guide/components/events.html#usage-with-v-model) for more information.
+  当 `toRef` 与组件 prop 结合使用时，关于对 prop 做出更改的通用限制依然有效。尝试将新的值传递给 ref 等效于尝试直接更改 prop，这是不允许的。在这种场景下，你可能可以考虑使用带有 `get` 和 `set` 的 [`computed`](./reactivity-core.html#computed) 替代。详情请见 [在组件上使用 `v-model`](/guide/components/events.html#usage-with-v-model) 指南。
 
-  `toRef()` 即使在源 property 已经不存在的情况下，也会返回一个可用的 ref。这使得它在处理可选 property 的时候会很有用，而可选 property 在使用 [`toRefs`](#torefs) 时不会被保留。
+  即使源 property 当前不存在，`toRef()` 也会返回一个可用的 ref。这让它在处理可选 prop 的时候格外实用，而可选 prop 在使用 [`toRefs`](#torefs) 时不会被保留。
 
 ## toRefs() {#torefs}
 
-将一个响应式对象转为一个简单对象，其中每个属性都是一个指向源对象相应属性的 ref。每个独立的 ref 都是由 [`toRef()`](#toref) 创建的。
+将一个响应式对象转换为一个普通对象，这个普通对象的每个 property 都是指向源对象相应 property 的 ref。每个单独的 ref 都是使用 [`toRef()`](#toref) 创建的。
 
 - **类型**
 
@@ -129,7 +129,7 @@
   stateAsRefs 的类型：{
     foo: Ref<number>,
     bar: Ref<number>
-  } 
+  }
   */
 
   // 这个 ref 和源属性已经“链接上了”
@@ -140,7 +140,7 @@
   console.log(state.foo) // 3
   ```
 
-  在你要从一个组合式函数中返回响应式对象、而消费者组件想要解构或展开它又不想丢失响应性时，`toRefs` 会很有用：
+  当从组合式函数中返回响应式对象时，`toRefs` 大有作为，使用它，消费者组件可以解构/扩展返回的对象而不会失去响应性：
 
   ```js
   function useFeatureX() {
@@ -155,15 +155,15 @@
     return toRefs(state)
   }
 
-  // 可以在解构时不丢失响应性
+  // 可以解构而不会失去响应性
   const { foo, bar } = useFeatureX()
   ```
 
-  `toRefs` 只会通过在调用时可以列举出的属性来创建 ref。如果要基于一个可能还不存在的属性创建，请使用 [`toRef`](#toref) 来替代。
+  `toRefs` 在调用时只会为源对象上可以列举出的 property 创建 ref。如果要为可能还不存在的 property 创建 ref，请改用 [`toRef`](#toref) 。
 
 ## isProxy()  {#isproxy}
 
-检查该对象是否为由 [`reactive()`](./reactivity-core.html#reactive)、[`readonly()`](./reactivity-core.html#readonly)、[`shallowReactive()`](./reactivity-advanced.html#shallowreactive) 或 [`shallowReadonly()`](./reactivity-advanced.html#shallowreadonly) 创建的代理。
+检查一个对象是否是由 [`reactive()`](./reactivity-core.html#reactive)、[`readonly()`](./reactivity-core.html#readonly)、[`shallowReactive()`](./reactivity-advanced.html#shallowreactive) 或 [`shallowReadonly()`](./reactivity-advanced.html#shallowreadonly) 创建的代理。
 
 - **类型**
 
@@ -173,7 +173,7 @@
 
 ## isReactive()  {#isreactive}
 
-检查该对象是否为由 [`reactive()`](./reactivity-core.html#reactive) 或 [`shallowReactive()`](./reactivity-advanced.html#shallowreactive) 创建的代理。
+检查一个对象是否是由 [`reactive()`](./reactivity-core.html#reactive) 或 [`shallowReactive()`](./reactivity-advanced.html#shallowreactive) 创建的代理。
 
 - **类型**
 
@@ -183,7 +183,7 @@
 
 ## isReadonly()  {#isreadonly}
 
-检查该对象是否为由 [`readonly()`](./reactivity-core.html#readonly) 或 [`shallowReadonly()`](./reactivity-advanced.html#shallowreadonly) 创建的代理。
+检查一个对象是否是由 [`readonly()`](./reactivity-core.html#readonly) 或 [`shallowReadonly()`](./reactivity-advanced.html#shallowreadonly) 创建的代理。
 
 - **类型**
 

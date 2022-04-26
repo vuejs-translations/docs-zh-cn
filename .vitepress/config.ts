@@ -401,7 +401,7 @@ export const sidebar = {
           link: '/api/built-in-special-elements'
         },
         {
-          text: '特殊 Attributes',
+          text: '特殊 Attribute',
           link: '/api/built-in-special-attributes'
         }
       ]
@@ -415,7 +415,7 @@ export const sidebar = {
       ]
     },
     {
-      text: '进阶 APIs',
+      text: '进阶 API',
       items: [
         { text: '渲染函数', link: '/api/render-function' },
         { text: '服务端渲染', link: '/api/ssr' },
