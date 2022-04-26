@@ -96,7 +96,7 @@
   </script>
   ```
 
-  When `toRef` is used with component props, the usual restrictions around mutating the props still apply. Attempting to assign a new value to the ref is equivalent to trying to modify the prop directly and is not allowed. In that scenario you may want to consider using [`computed`](./reactivity-core.html#computed) with `get` and `set` instead. See the guide to [using `v-model` with components](/guide/components/events.html#usage-with-v-model) for more information.
+  当 `toRef` 与组件 prop 结合使用时，关于对 prop 做出更改的通用限制依然有效。尝试将新的值传递给 ref 等效于尝试直接更改 prop，这是不允许的。在这种场景下，你可能可以考虑使用带有 `get` 和 `set` 的 [`computed`](./reactivity-core.html#computed) 替代。详情请见 [在组件上使用 `v-model`](/guide/components/events.html#usage-with-v-model) 指南。
 
   即使源 property 当前不存在，`toRef()` 也会返回一个可用的 ref。这让它在处理可选 prop 的时候格外实用，而可选 prop 在使用 [`toRefs`](#torefs) 时不会被保留。
 
