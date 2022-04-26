@@ -246,9 +246,9 @@
   }
   ```
 
-  > 为了便于阅读，对类型进行了简化。
+- **参考：** [Event 处理](/guide/essentials/event-handling.html)
 
-- **详细信息**
+## watch
 
 声明在数据更改时调用的侦听回调。
 
