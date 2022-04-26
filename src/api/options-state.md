@@ -17,13 +17,13 @@
 
 - **详细信息**
 
-  该函数将返回一个普通的 JavaScript 对象，Vue 将使其成为响应式对象。实例创建后，可以通过 `this.$data` 访问原始数据对象。组件实例也代理了该数据对象上所有的 property，因此 `this.a` 等价于 `this.$data.a`。
+  该函数预期返回一个普通 JavaScript 对象，Vue 将使其成为响应式对象。实例创建后，可以通过 `this.$data` 访问原始数据对象。组件实例也代理了该数据对象上所有的 property，因此 `this.a` 等价于 `this.$data.a`。
 
   根数据对象一旦被侦听后，你就无法在其上面添加响应式 property。因此推荐在创建实例之前，预先声明所有的根级响应式 property。
 
   以 `_` 或 `$` 开头的 property 将**不会**被组件实例代理，因为它们可能和 Vue 的内置 property、API 方法冲突。你必须以 `this.$data._property` 的方式访问它们。
 
-  **不**推荐返回一个已具有其自身状态行为的对象，如浏览器 API 对象和原型 property 等。理想状态下，返回的对象应是一个仅代表组件状态的简单对象。
+  **不**推荐返回一个已具有其自身状态行为的对象，如浏览器 API 对象和原型 property 等。理想状态下，返回的对象应是一个仅代表组件状态的普通对象。
 
 - **示例**
 
@@ -78,18 +78,18 @@
 
 - **详细信息**
 
-  在 Vue 中，所有的组件 prop 需要被显式声明。组件 prop 可以通过两种方式声明：
+  在 Vue 中，所有的组件 prop 都需要被显式声明。组件 prop 可以通过两种方式声明：
 
   - 使用字符串数组的简易形式。
-  - 使用对象的完整形式。该对象的每个 property 键是 prop 的名称，每个值是 prop 的类型（一个构造函数）或高级选项。
+  - 使用对象的完整形式。该对象的每个 property 键是 prop 的名称，且值是 prop 的类型（一个构造函数）或高级选项。
 
   在基于对象的语法中，每个 prop 可以进一步定义如下选项：
 
-  - **`type`**：可以是这些原生构造函数之一： `String`、`Number`、`Boolean`、`Array`、`Object`、`Date`、`Function`、`Symbol`、任何自定义构造函数、或上述内容组成的数组。在开发模式中，Vue 会检查一个 prop 的值是否匹配其声明的类型，如果不匹配则会抛出警告。 详见 [Prop 校验](/guide/components/props.html#prop-validation)。
+  - **`type`**：可以是下列原生构造函数之一： `String`、`Number`、`Boolean`、`Array`、`Object`、`Date`、`Function`、`Symbol`、任何自定义构造函数，或由上述内容组成的数组。在开发模式中，Vue 会检查一个 prop 的值是否匹配其声明的类型，如果不匹配则会抛出警告。 详见 [Prop 校验](/guide/components/props.html#prop-validation)。
 
     还要注意，一个 `Boolean` 类型的 prop 会影响它在开发或生产模式下的值转换行为。 详见 [Boolean 类型转换](/guide/components/props.html#boolean-casting)。
 
-  - **`default`**：为该 prop 指定一个默认值，如果该 prop 没有被传入或为 `undefined` 时，则使用这个默认值。对象或数组的默认值必须从一个工厂函数返回。工厂函数也接收原始 prop 对象作为参数。
+  - **`default`**：为该 prop 指定一个当其没有被传入或值为 `undefined` 时的默认值。对象或数组的默认值必须从一个工厂函数返回。工厂函数也接收原始 prop 对象作为参数。
 
   - **`required`**：定义该 prop 是否必需传入。在非生产环境中，如果 required 值为 [truthy](https://developer.mozilla.org/en-US/docs/Glossary/Truthy) 且 prop 未被传入，一个控制台警告将会被抛出。
 
@@ -389,7 +389,7 @@
   可以以两种形式声明触发的事件：
 
   - 使用字符串数组的简易形式。
-  - 使用对象的完整形式。该对象的每个 property 键是事件的名称，每个值是 `null` 或一个验证函数.
+  - 使用对象的完整形式。该对象的每个 property 键是事件的名称，值是 `null` 或一个验证函数。
 
   验证函数将接受传递给组件的 `$emit` 调用的额外参数。例如，如果 `this.$emit('foo', 1)` 被调用，`foo` 相应的验证函数将接受参数 `1`。验证函数应返回布尔值，以表明事件参数是否有效。
 
@@ -433,7 +433,7 @@
 
 ## expose
 
-声明暴露的公共 property，当组件实例被父组件通过模板 refs 访问的时候。
+声明当组件实例被父组件通过模板 refs 访问时暴露的公共 property。
 
 - **类型**
 
