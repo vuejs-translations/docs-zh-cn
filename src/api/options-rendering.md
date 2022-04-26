@@ -14,7 +14,7 @@
 
 - **详细信息**
 
-  通过 `template` 选项提供的模板将会在运行时即时编译。这仅在 Vue 构建时包含了模板编译器的情况下支持。当使用的 Vue 发行版文件名中带有 `runtime` 时模板编译器是 **未被包含** 的，例如 `vue.runtime.esm-bundler.js`。请查阅 [发行版文件指南](https://github.com/vuejs/core/tree/main/packages/vue#which-dist-file-to-use) 了解不同构建版本之间的详细区别。
+  通过 `template` 选项提供的模板将会在运行时即时编译。这仅在使用了包含模板编译器的 Vue 构建版本的情况下支持。文件名中带有 `runtime` 的 Vue 构建版本**未包含**模板编译器，例如 `vue.runtime.esm-bundler.js`。请查阅 [发行版文件指南](https://github.com/vuejs/core/tree/main/packages/vue#which-dist-file-to-use) 了解不同构建版本之间的详细区别。
 
   如果该字符串以 `#` 开头，它将被用作 `querySelector`，并使用所选元素的 `innerHTML` 作为模板字符串。这允许使用原生 `<template>` 元素来创作源模板。
 
