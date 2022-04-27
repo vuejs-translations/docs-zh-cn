@@ -2,9 +2,9 @@
 
 ## 总览 {#overview}
 
-一个 Vue 单文件组件（SFC），使用 `*.vue` 作为文件后缀名，是一种使用了类似 HTML 语法的自定义文件格式，用于定义 Vue 组件。一个 Vue 单文件组件从语法上是兼容 HTML 的。
+一个 Vue 单文件组件（SFC），通常使用 `*.vue` 作为文件扩展名，它是一种使用了类似 HTML 语法的自定义文件格式，用于定义 Vue 组件。一个 Vue 单文件组件在语法上是兼容 HTML 的。
 
-每一个 `*.vue` 文件都由三种类型的顶层块构成： `<template>`、`<script>`，和 `<style>`，以及一些其他的自定义块：
+每一个 `*.vue` 文件都由三种顶层语块构成： `<template>`、`<script>`，和 `<style>`，以及一些其他的自定义块：
 
 ```vue
 <template>
@@ -36,21 +36,21 @@ export default {
 
 ### `<template>` {#template}
 
-- 每一个 `*.vue` 文件可以包含至多一个顶层 `<template>` 块。
+- 每一个 `*.vue` 文件最多可以包含一个顶层 `<template>` 块。
 
-- 内容将会被提取、传递给 `@vue/compiler-dom`，预编译为 JavaScript 渲染函数，并附在导出的组件上作为其`render` 选项。
+- 语块包裹的内容将会被提取、传递给 `@vue/compiler-dom`，预编译为 JavaScript 渲染函数，并附在导出的组件上作为其`render` 选项。
 
 ### `<script>` {#script}
 
-- 每一个 `*.vue` 文件可以包含至多一个 `<script>` 块。（使用 [`<script setup>`](/api/sfc-script-setup.html) 的情况除外）
+- 每一个 `*.vue` 文件最多可以包含一个 `<script>` 块。（使用 [`<script setup>`](/api/sfc-script-setup.html) 的情况除外）
 
 - 这个脚本代码块将作为 ES 模块执行。
 
-- **默认导出** 应该是 Vue 的组件选项对象，可以是一个对象字面量或是通过 [defineComponent](/api/general.html#definecomponent) 函数定义后返回。
+- **默认导出** 应该是 Vue 的组件选项对象，可以是一个对象字面量或是[defineComponent](/api/general.html#definecomponent) 函数返回的返回值。
 
 ### `<script setup>` {#script-setup}
 
-- 每一个 `*.vue` 文件可以包含至多一个 `<script setup>`。（不包括一般的 `<script>`）
+- 每一个 `*.vue` 文件最多可以包含一个 `<script setup>`。（不包括一般的 `<script>`）
 
 - 这个脚本块将被预处理为组件的 `setup()` 函数，这意味着它将 **为每一个组件实例** 都执行。`<script setup>` 中的顶层绑定都将自动暴露给模板。要了解更多细节，请看 [`<script setup>` 的专门文档](/api/sfc-script-setup)。
 
@@ -58,7 +58,7 @@ export default {
 
 - 每一个 `*.vue` 文件可以包含多个 `<style>` 标签。
 
-- 一个 `<style>` 类型可以使用 `scoped` 或 `module` attribute（查看 [SFC 样式功能](/api/sfc-css-features)了解更多细节）来帮助封装当前组件的样式。多个使用了不同封装模式的 `<style>` 标签可以被混合入同一个组件。
+- 一个 `<style>` 类型可以使用 `scoped` 或 `module` attribute（查看 [SFC 样式功能](/api/sfc-css-features)了解更多细节）来帮助封装当前组件的样式。使用了不同封装模式的多个 `<style>` 标签可以被混合入同一个组件。
 
 ### 自定义块 {#custom-blocks}
 
@@ -68,11 +68,11 @@ export default {
 - [vite-plugin-vue-gql: `<gql>`](https://github.com/wheatjs/vite-plugin-vue-gql)
 - [vue-i18n: `<i18n>`](https://github.com/intlify/bundle-tools/tree/main/packages/vite-plugin-vue-i18n#i18n-custom-block)
 
-处理自定义块需要依赖工具链。如果你想要在构建中集成你的自定义块，请参见 [相关工具链指南](/guide/scaling-up/tooling.html#sfc-custom-block-integrations) 获取更多细节。
+自定义块的处理需要依赖工具链。如果你想要在构建中集成你的自定义语块，请参见 [相关工具链指南](/guide/scaling-up/tooling.html#sfc-custom-block-integrations) 获取更多细节。
 
 ## 自动名称推导 {#automatic-name-inference}
 
-一个 SFC 会在以下场景中根据**文件名**自动推导其组件名：
+SFC 在以下场景中会根据**文件名**自动推导其组件名：
 
 - 开发警告信息格式
 - DevTools 审阅
@@ -88,7 +88,7 @@ export default {
 </script>
 ```
 
-`lang` 可以被应用给任意块，比如我们可以在 `<style>` 标签上使用 [SASS](https://sass-lang.com/) 或是 `<template>` 上使用 [Pug](https://pugjs.org/api/getting-started.html)：
+`lang` 在任意块上都能使用，比如我们可以在 `<style>` 标签上使用 [SASS](https://sass-lang.com/) 或是 `<template>` 上使用 [Pug](https://pugjs.org/api/getting-started.html)：
 
 ```vue-html
 <template lang="pug">
@@ -111,7 +111,7 @@ p {{ msg }}
 
 ## Src 导入 {#src-imports}
 
-如果你更喜欢将你的 `*.vue` 组件分散到多个文件中，你可以为一个语言区块使用 `src` 这个 attribute 来导入一个外部文件：
+如果你更喜欢将 `*.vue` 组件分散到多个文件中，可以为一个语块使用 `src` 这个 attribute 来导入一个外部文件：
 
 ```vue
 <template src="./template.html"></template>
@@ -129,7 +129,7 @@ p {{ msg }}
 <style src="todomvc-app-css/index.css" />
 ```
 
-`src` 导入对自定义区块也同样适用：
+`src` 导入对自定义语块也同样适用：
 
 ```vue
 <unit-test src="./unit-test.js">
@@ -138,4 +138,4 @@ p {{ msg }}
 
 ## 注释 {#comments}
 
-在每一个区块中你都可以按照相应语言的语法书写注释。（HTML、CSS、JavaScript 和 Pug 等等）对于顶层注释，请使用 HTML 的注释语法 `<!-- comment contents here -->`
+在每一个区块中你都可以按照相应语言（HTML、CSS、JavaScript 和 Pug 等等）的语法书写注释。对于顶层注释，请使用 HTML 的注释语法 `<!-- comment contents here -->`
