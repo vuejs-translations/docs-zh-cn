@@ -41,6 +41,38 @@
     "platinum": true
   },
   {
+    "name": "Monterail",
+    "logo": "monterail.png",
+    "intro": "Monterail is a full-service software development company from Poland. Since 2010, we have been building innovative software for start-ups, SMBs, and enterprises from various industries globally. Our Vue experts, using battle-tested technologies and frameworks, have delivered more than 30 Vue-based projects.",
+    "description": [
+      "At a full-service consultancy like Monterail, you get every competence under one roof. From concept, to design, and product release. Depending on the product lifecycle stage, we guide clients through building applications from scratch or scaling them quickly.",
+      "A diverse pool of experts, including Product Designers, QA specialists and Business Analysts, take care of professional tech stack consultation and business idea validation. We work within the Agile methodology ensuring smooth communication flow and aim for long-term partnerships. We've developed all kinds of Vue applications from virtual real estate tours to donation platforms.",
+      "Why Monterail?",
+      "- Listed in the Financial Times 1000 rank twice in a row (2018 & 2019)",
+      "- Recognized by Deloitte as one of the fastest-growing tech companies in Central Europe (2016 & 2017)",
+      "- Rated 4.7/5 on Clutch.",
+      "- NPS Score - 71",
+      "- Experts in software development and design with solid business experience",
+      "- A team experienced with remote work in a multicultural environment",
+      "- Detailed budget estimation received in weeks, not months"
+    ],
+    "proficiencies": [
+      "Vue.js",
+      "Ruby on Rails",
+      "Node.js",
+      "React Native",
+      "Flutter"
+    ],
+    "region": ["Europe"],
+    "website": {
+      "text": "www.monterail.com",
+      "url": "https://www.monterail.com/?utm_source=vuejs.org&utm_medium=referral&utm_campaign=partners"
+    },
+    "contact": "hello@monterail.com",
+    "hiring": "https://www.monterail.com/careers?utm_source=vuejs.org&utm_medium=referral&utm_campaign=partner-hiring-link",
+    "platinum": true
+  },
+  {
     "name": "Curotec",
     "logo": "curotec.png",
     "intro": "Our clients leverage our deep Vue.js & Nuxt.js expertise to develop better digital products and quickly expand their product development team velocity.",
@@ -74,6 +106,24 @@
       "url": "https://64robots.com/"
     },
     "contact": "rob@64robots.com",
+    "platinum": true
+  },
+  {
+    "name": "DevSquad",
+    "logo": "devsquad.png",
+    "intro": "You can think of DevSquad as the Navy SEALs of software development. Our team members have unique and diverse skills, and this cross-functionality lets us successfully complete any mission.",
+    "description": [
+      "All of our clients get their own dedicated Squad. Even if you need 30 developers, everyone working on your project is split into small agile teams of 2-6 people. A battle-tested small team can move quicker and with more precision than larger teams, just like the Navy SEALs.",
+      "Instead of the bug-filled code, you may have received in the past, we write robust software and test the hell out of it. But instead of just testing manually, we write additional code to test your code. This ensures bugs are spotted quickly and automatically before your employees or customers ever touch the software. And it prevents bigger problems down the road when you try to scale usage or add new features.",
+      "DevSquad gives you the proven proves and all the experience you need to build your software better, faster, and right the first time."
+    ],
+    "region": ["North America"],
+    "proficiencies": ["Vue.js", "Laravel", "Node.js"],
+    "website": {
+      "text": "devsquad.com",
+      "url": "https://devsquad.com/vuejs-developers/"
+    },
+    "contact": "phil@devsquad.com",
     "platinum": true
   },
   {
