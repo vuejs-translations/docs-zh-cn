@@ -21,7 +21,7 @@ export default {
   setup() {
     const count = ref(0)
 
-    // 返回值会暴露给模板和选项式 API 钩子
+    // 返回值会暴露给模板和其他的选项式 API 钩子
     return {
       count
     }
