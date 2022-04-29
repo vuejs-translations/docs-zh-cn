@@ -115,7 +115,7 @@ export default {
 
 ### 暴露公共 Property {#exposing-public-properties}
 
-`expose` 函数用于显式地限制该组件暴露出的属性，当父组件通过[模板 ref](/guide/essentials/template-refs.html#ref-on-component) 访问该组件的实例时，将仅能访问 `expose` 函数暴露出的内容：
+`expose` 函数用于显式地限制该组件暴露出的 property，当父组件通过[模板 ref](/guide/essentials/template-refs.html#ref-on-component) 访问该组件的实例时，将仅能访问 `expose` 函数暴露出的内容：
 
 ```js{5,10}
 export default {
