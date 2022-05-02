@@ -4,7 +4,7 @@ specifiers:
   '@types/markdown-it': ^12.2.3
   '@types/node': ^16.9.1
   '@vue/repl': ^1.0.0
-  '@vue/theme': ^1.0.1
+  '@vue/theme': ^1.0.2
   chalk: ^4.1.2
   dynamics.js: ^1.1.5
   gray-matter: ^4.0.3
@@ -19,7 +19,7 @@ specifiers:
 
 dependencies:
   '@vue/repl': 1.0.0_vue@3.2.31
-  '@vue/theme': 1.0.1_vue@3.2.31
+  '@vue/theme': 1.0.2_vue@3.2.31
   dynamics.js: 1.1.5
   gsap: 3.9.1
   vitepress: 0.22.2
@@ -49,6 +49,9 @@ packages:
     peerDependencies:
       '@algolia/client-search': ^4.9.1
       algoliasearch: ^4.9.1
+    peerDependenciesMeta:
+      '@algolia/client-search':
+        optional: true
     dependencies:
       '@algolia/autocomplete-shared': 1.5.0
       algoliasearch: 4.11.0
@@ -176,6 +179,13 @@ packages:
       '@types/react': '>= 16.8.0 < 18.0.0'
       react: '>= 16.8.0 < 18.0.0'
       react-dom: '>= 16.8.0 < 18.0.0'
+    peerDependenciesMeta:
+      '@types/react':
+        optional: true
+      react:
+        optional: true
+      react-dom:
+        optional: true
     dependencies:
       '@algolia/autocomplete-core': 1.5.0
       '@algolia/autocomplete-preset-algolia': 1.5.0_algoliasearch@4.11.0
@@ -322,8 +332,8 @@ packages:
     resolution: {integrity: sha512-ymN2pj6zEjiKJZbrf98UM2pfDd6F2H7ksKw7NDt/ZZ1fh5Ei39X5tABugtT03ZRlWd9imccoK0hE8hpjpU7irQ==}
     dev: false
 
-  /@vue/theme/1.0.1_vue@3.2.31:
-    resolution: {integrity: sha512-yVynG5l1BNAh8eQCGg19cyt5TMcbqQCAErT/XZUJOjVT4FjGK1ofGc3wUnDan1JSRF2WNBLOLZHwjc5dJy1Haw==}
+  /@vue/theme/1.0.2_vue@3.2.31:
+    resolution: {integrity: sha512-jBALidvFMLgcR76UQ2foi4yD5gHn1YrigXJglZe3Rb0rm4KRVLxPeCe/CAfD42Wsm9xAfSNDUxRneQfbQpA1eg==}
     dependencies:
       '@docsearch/css': 3.0.0-alpha.42
       '@docsearch/js': 3.0.0-alpha.42
