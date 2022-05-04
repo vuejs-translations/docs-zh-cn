@@ -80,7 +80,7 @@
   const fooRef = ref(state.foo)
   ```
 
-  上面这个 ref **不会** 和 `state.foo` 保持同步，因为这个 `ref()` 接收到的是一个纯字符串值。
+  上面这个 ref **不会** 和 `state.foo` 保持同步，因为这个 `ref()` 接收到的是一个纯数值。
 
   `toRef()` 这个函数在你想把一个 prop 的 ref 传递给一个组合式函数时会很有用：
 
