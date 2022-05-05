@@ -92,7 +92,7 @@
 
 ## app.provide()  {#app-provide}
 
-声明一个变量，可以在应用中所有后代组件注入使用。
+提供一个值，可以在应用中的所有后代组件注入使用。
 
 - **类型**
 
@@ -150,7 +150,7 @@
 
 ## app.component() {#app-component} 
 
-如果同时传递一个名字和一个组件对象，则注册一个全局组件；如果只传递一个名字，则会得到一个已经注册的组件。
+如果同时传递一个组件名字符串及其定义，则注册一个全局组件；如果只传递一个名字，则会得到一个已经注册的组件。
 
 - **类型**
 
@@ -313,7 +313,7 @@ console.log(app.config)
 
 ## app.config.errorHandler  {#app-config-errorhandler}
 
-用于为应用程序内传递的未捕获的错误指定一个全局处理函数。
+用于为应用内传递的未捕获的错误指定一个全局处理函数。
 
 - **类型**
 
@@ -473,7 +473,7 @@ console.log(app.config)
 
 ### app.compilerOptions.comments  {#app-compileroptions-comments}
 
-用于调整是否移除模板中 HTML 的注释。
+用于调整是否移除模板中的 HTML 注释。
 
 - **类型** `boolean`
 
@@ -491,7 +491,7 @@ console.log(app.config)
 
 ## app.config.globalProperties  {#app-config-globalproperties}
 
-用于注册能够被应用内所有组件实例访问到的全局属性。
+一个用于注册能够被应用内所有组件实例访问到的全局 property 的对象。
 
 - **类型**
 
@@ -525,7 +525,7 @@ console.log(app.config)
 
 ## app.config.optionMergeStrategies  {#app-config-optionmergestrategies}
 
-用于定义自定义组件选项的合并策略。
+一个用于定义自定义组件选项的合并策略的对象。
 
 - **类型**
 
