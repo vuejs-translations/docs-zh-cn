@@ -28,7 +28,7 @@ export default {
 </style>
 
 <custom1>
-  例如这个块可以作为组件的文档。
+  This could be e.g. documentation for the component.
 </custom1>
 ```
 
