@@ -36,29 +36,29 @@ export default {
 
 ### `<template>` {#template}
 
-- 每一个 `*.vue` 文件最多可以包含一个顶层 `<template>` 块。
+- 每个 `*.vue` 文件最多可以包含一个顶层 `<template>` 块。
 
 - 语块包裹的内容将会被提取、传递给 `@vue/compiler-dom`，预编译为 JavaScript 渲染函数，并附在导出的组件上作为其`render` 选项。
 
 ### `<script>` {#script}
 
-- 每一个 `*.vue` 文件最多可以包含一个 `<script>` 块。（使用 [`<script setup>`](/api/sfc-script-setup.html) 的情况除外）
+- 每个 `*.vue` 文件最多可以包含一个 `<script>` 块。（使用 [`<script setup>`](/api/sfc-script-setup.html) 的情况除外）
 
 - 这个脚本代码块将作为 ES 模块执行。
 
-- **默认导出** 应该是 Vue 的组件选项对象，可以是一个对象字面量或是[defineComponent](/api/general.html#definecomponent) 函数返回的返回值。
+- **默认导出** 应该是 Vue 的组件选项对象，可以是一个对象字面量或是 [defineComponent](/api/general.html#definecomponent) 函数的返回值。
 
 ### `<script setup>` {#script-setup}
 
-- 每一个 `*.vue` 文件最多可以包含一个 `<script setup>`。（不包括一般的 `<script>`）
+- 每个 `*.vue` 文件最多可以包含一个 `<script setup>`。（不包括一般的 `<script>`）
 
 - 这个脚本块将被预处理为组件的 `setup()` 函数，这意味着它将 **为每一个组件实例** 都执行。`<script setup>` 中的顶层绑定都将自动暴露给模板。要了解更多细节，请看 [`<script setup>` 的专门文档](/api/sfc-script-setup)。
 
 ### `<style>` {#style}
 
-- 每一个 `*.vue` 文件可以包含多个 `<style>` 标签。
+- 每个 `*.vue` 文件可以包含多个 `<style>` 标签。
 
-- 一个 `<style>` 类型可以使用 `scoped` 或 `module` attribute（查看 [SFC 样式功能](/api/sfc-css-features)了解更多细节）来帮助封装当前组件的样式。使用了不同封装模式的多个 `<style>` 标签可以被混合入同一个组件。
+- 一个 `<style>` 标签可以使用 `scoped` 或 `module` attribute（查看 [SFC 样式功能](/api/sfc-css-features)了解更多细节）来帮助封装当前组件的样式。使用了不同封装模式的多个 `<style>` 标签可以被混合入同一个组件。
 
 ### 自定义块 {#custom-blocks}
 
