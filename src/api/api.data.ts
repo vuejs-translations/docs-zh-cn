@@ -58,16 +58,17 @@ function parsePageHeaders(link: string) {
   const h2s = src.match(/^## [^\n]+/gm)
   let headers: { anchor: string; text: string }[] = []
   if (h2s) {
-    headers = h2s.map((h) => ({
-      anchor: h.match(/\{#([a-zA-Z0-9-]+)\}/)?.[1] ?? '',
-      text: h
+    headers = h2s.map((h) => {
+      let text = h
         .slice(2)
         .replace(/<sup class=.*/, '')
         .replace(/\\</g, '<')
         .replace(/`([^`]+)`/g, '$1')
         .replace(/\{#([a-zA-Z0-9-]+)\}/g, '') // hidden anchor tag
         .trim()
-    }))
+      let anchor = h.match(/\{#([a-zA-Z0-9-]+)\}/)?.[1] ?? text
+      return { text, anchor }
+    })
   }
   headersCache.set(fullPath, {
     timestamp,
