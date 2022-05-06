@@ -323,9 +323,9 @@
 
   ```vue-html
   <div :someProperty.prop="someObject"></div>
+  
   <!-- 等同于 -->
   <div .someProperty="someObject"></div>
-  
   ```
 
   当在 DOM 内模板使用 `.camel` 修饰符，可以驼峰化 `v-bind` attribute 的名称，例如 SVG `viewBox` attribute：
@@ -457,7 +457,7 @@
   </ul>
   ```
 
-  从3.2起，你也可以搭配 [`v-memo`](#v-memo) 的无效条件来记忆部分模板。
+  从3.2起，你也可以搭配 [`v-memo`](#v-memo) 的无效条件来缓存部分模板。
 
 - **相关内容：**
   - [数据绑定语法——插值](/guide/essentials/template-syntax.html#text-interpolation)
@@ -469,7 +469,7 @@
 
 - **详细信息**
 
-  记忆化 <sup>[[1]](#footnote-1)</sup> 一个模板的子树。元素和组件都可以使用。该指令期待传入一个定长的依赖值数组用来比较并进行记忆。如果数组里的每个值都与最后一次的渲染相同，那么整个子树的更新将被跳过。举个例子：
+  缓存一个模板的子树。元素和组件都可以使用。为了实现缓存，该指令期待传入一个定长地依赖值数组进行比较。如果数组里的每个值都与最后一次的渲染相同，那么整个子树的更新将被跳过。举个例子：
 
   ```vue-html
   <div v-memo="[valueA, valueB]">
@@ -477,9 +477,9 @@
   </div>
   ```
 
-  当组件重新渲染，如果 `valueA` 和 `valueB` 都保持不变，这个 `<div>` 及其子项的所有更新都将被跳过。实际上，甚至虚拟 DOM 的 vnode 创建也将被跳过，因为记忆的子树副本可以被重新使用。
+  当组件重新渲染，如果 `valueA` 和 `valueB` 都保持不变，这个 `<div>` 及其子项的所有更新都将被跳过。实际上，甚至虚拟 DOM 的 vnode 创建也将被跳过，因为缓存的子树副本可以被重新使用。
 
-  正确指定记忆数组很重要，否则应该生效的更新可能被跳过。`v-memo` 传入空依赖数组(`v-memo="[]"`)将与 `v-once` 效果相同。
+  正确指定缓存数组很重要，否则应该生效的更新可能被跳过。`v-memo` 传入空依赖数组(`v-memo="[]"`)将与 `v-once` 效果相同。
 
   **与 `v-for` 一起使用**
 
@@ -502,11 +502,6 @@
 
 - **相关内容：**
   - [v-once](#v-once)
-
-<small>
-译者注
-<a id="footnote-1"></a>[1] memoize 与 memorize 是同源词，在计算机中有特殊意义，可理解为“记忆”。参见 <a href="https://en.wikipedia.org/wiki/Memoization">Memoization - Wikipedia</a>
-</small>
 
 ## v-cloak {#v-cloak}
 
