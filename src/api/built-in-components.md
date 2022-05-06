@@ -55,7 +55,7 @@ h(Transition, {
      * 控制离开/进入过渡的时序。
      * 默认情况下是同时的。
      */
-    mode?: 'in-out' | 'out-in'
+    mode?: 'in-out' | 'out-in' | 'default'
     /**
      * 是否对初始渲染使用过渡。
      * 默认：false
@@ -246,7 +246,7 @@ h(Transition, {
   <!-- 数组 (使用 `v-bind`) -->
   <keepalive :include="['a', 'b']">
     <component :is="view"></component>
-  </keepalive>
+  </KeepAlive>
   ```
 
   使用 `max`:

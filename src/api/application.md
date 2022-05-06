@@ -395,14 +395,14 @@ console.log(app.config)
 
 ## app.config.compilerOptions  {#app-config-compileroptions}
 
-配置运行时编译器的选项。设置在此对象上的值都会被传入该“浏览器内”模板编译器之中，并会影响到所配置应用的所有组件。另外你也可以通过 [`compilerOptions` 选项](/) 在每个组件的基础上覆盖这些选项。
+配置运行时编译器的选项。设置在此对象上的值都会被传入该“浏览器内”模板编译器之中，并会影响到所配置应用的所有组件。另外你也可以通过 [`compilerOptions` 选项](/api/options-rendering.html#compileroptions) 在每个组件的基础上覆盖这些选项。
 
 ::: warning 重要
 此配置项仅在完整发行版中可用（即得到的 `vue.js` 可以在浏览器中编译模板）。如果你目前是通过搭配构建配置使用仅含运行时的发行版，那么编译器选项必须通过构建工具传递给 `@vue/compiler-dom`。
 
-- 对于 `vue-loader`：[通过 `compilerOptions` loader 的选项传递](/)。并请阅读 [如何在 `vue-cli` 中配置它](/)。
+- 对于 `vue-loader`：[通过 `compilerOptions` loader 的选项传递](https://vue-loader.vuejs.org/options.html#compileroptions)。并请阅读 [如何在 `vue-cli` 中配置它](https://cli.vuejs.org/guide/webpack.html#modifying-options-of-a-loader)。
 
-- 对于 `vite`: [通过 `@vitejs/plugin-vue` 的选项传递](/)。
+- 对于 `vite`: [通过 `@vitejs/plugin-vue` 的选项传递](https://github.com/vitejs/vite/tree/main/packages/plugin-vue#options)。
   :::
 
 ### app.compilerOptions.isCustomElement  {#app-compileroptions-iscustomelement}

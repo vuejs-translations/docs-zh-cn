@@ -57,17 +57,17 @@ import SwitchComponent from './keep-alive-demos/SwitchComponent.vue'
 ```vue-html
 <!-- 以英文逗号分隔的字符串 -->
 <KeepAlive include="a,b">
-  <component :is="view"></component>
+  <component :is="view" />
 </KeepAlive>
 
 <!-- 正则表达式 (需使用 `v-bind`) -->
 <KeepAlive :include="/a|b/">
-  <component :is="view"></component>
+  <component :is="view" />
 </KeepAlive>
 
 <!-- 数组 (需使用 `v-bind`) -->
 <KeepAlive :include="['a', 'b']">
-  <component :is="view"></component>
+  <component :is="view" />
 </KeepAlive>
 ```
 

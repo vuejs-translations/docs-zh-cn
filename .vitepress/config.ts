@@ -37,10 +37,17 @@ const nav = [
       {
         text: '资源',
         items: [
-          { text: '合作伙伴', link: '/ecosystem/partners' },
+          { text: '合作伙伴', link: '/partners/' },
           { text: '主题', link: '/ecosystem/themes' },
           { text: '工作', link: 'https://vuejobs.com/?ref=vuejs' },
           { text: 'T-Shirt 商店', link: 'https://vue.threadless.com/' }
+        ]
+      },
+      {
+        text: '核心库',
+        items: [
+          { text: 'Vue Router', link: 'https://router.vuejs.org/' },
+          { text: 'Pinia', link: 'https://pinia.vuejs.org/' }
         ]
       },
       {
@@ -112,6 +119,11 @@ const nav = [
   {
     text: '赞助者',
     link: '/sponsor/'
+  },
+  {
+    text: 'Partners',
+    link: '/partners/',
+    activeMatch: `^/partners/`,
   }
 ]
 

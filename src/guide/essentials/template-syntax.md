@@ -74,7 +74,7 @@ Vue 使用一种基于 HTML 的模板语法，使我们能够声明式地将其�
 <button :disabled="isButtonDisabled">Button</button>
 ```
 
-当 `isButtonDisabled` 为[真值](https://developer.mozilla.org/en-US/docs/Glossary/Truthy)或一个空字符串 (即 `<button disabled="">`) 时，元素会包含这个 `disabled` attribute。而当其为假值时 attribute 将被忽略。
+当 `isButtonDisabled` 为[真值](https://developer.mozilla.org/en-US/docs/Glossary/Truthy)或一个空字符串 (即 `<button disabled="">`) 时，元素会包含这个 `disabled` attribute。而当其为[假值](https://developer.mozilla.org/en-US/docs/Glossary/Falsy)时 attribute 将被忽略。
 
 ### 动态绑定多个值 {#dynamically-binding-multiple-attributes}
 
@@ -207,7 +207,7 @@ data() {
 ```vue-html
 <!--
 注意，参数表达式有一些约束，
-参见下面“动态参数表达式约束”一节的解释
+参见下面“动态参数值的限制”与“动态参数语法的限制”章节的解释
 -->
 <a v-bind:[attributeName]="url"> ... </a>
 
