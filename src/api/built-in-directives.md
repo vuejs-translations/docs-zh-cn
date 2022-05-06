@@ -18,7 +18,7 @@
   <span>{{msg}}</span>
   ```
 
-- **相关内容：** [模板语法——文本插值](/guide/essentials/template-syntax.html#text-interpolation)
+- **相关内容：** [模板语法 - 文本插值](/guide/essentials/template-syntax.html#text-interpolation)
 
 ## v-html {#v-html}
 
@@ -42,7 +42,7 @@
   <div v-html="html"></div>
   ```
 
-- **相关内容：** [模板语法——原始 HTML](/guide/essentials/template-syntax.html#raw-html)
+- **相关内容：** [模板语法 - 原始 HTML](/guide/essentials/template-syntax.html#raw-html)
 
 ## v-show {#v-show}
 
@@ -54,7 +54,7 @@
 
   `v-show` 通过设置内联样式的 `display` CSS property 来工作，当元素可见时将使用初始 `display` 值。当条件改变时，也会触发过度效果。
 
-- **相关内容：** [条件渲染——v-show](/guide/essentials/conditional.html#v-show)
+- **相关内容：** [条件渲染 - v-show](/guide/essentials/conditional.html#v-show)
 
 ## v-if {#v-if}
 
@@ -72,7 +72,7 @@
 
   当同时使用时， `v-if` 比 `v-for` 优先级更高。我们并不推荐在一元素上同时使用这两个指令 — 查看[列表渲染指南](/guide/essentials/list.html#v-for-with-v-if)详情。
 
-- **相关内容：** [条件渲染——v-if](/guide/essentials/conditional.html#v-if)
+- **相关内容：** [条件渲染 - v-if](/guide/essentials/conditional.html#v-if)
 
 ## v-else {#v-else}
 
@@ -97,7 +97,7 @@
   </div>
   ```
 
-- **相关内容：** [条件渲染——v-else](/guide/essentials/conditional.html#v-else)
+- **相关内容：** [条件渲染 - v-else](/guide/essentials/conditional.html#v-else)
 
 ## v-else-if  {#v-else-if}
 
@@ -128,7 +128,7 @@
   </div>
   ```
 
-- **相关内容：** [条件渲染——v-else-if](/guide/essentials/conditional.html#v-else-if)
+- **相关内容：** [条件渲染 - v-else-if](/guide/essentials/conditional.html#v-else-if)
 
 ## v-for {#v-for}
 
@@ -251,7 +251,7 @@
 
 - **相关内容：**
   - [事件处理](/guide/essentials/event-handling.html)
-  - [组件——自定义事件](/guide/essentials/component-basics.html#listening-to-events)
+  - [组件 - 自定义事件](/guide/essentials/component-basics.html#listening-to-events)
 
 ## v-bind {#v-bind}
 
@@ -338,7 +338,7 @@
 
 - **相关内容：**
   - [Class 与 Style 绑定](/guide/essentials/class-and-style.html)
-  - [组件—— Prop 传递细节](/guide/components/props.html#prop-passing-details)
+  - [组件 -  Prop 传递细节](/guide/components/props.html#prop-passing-details)
 
 ## v-model {#v-model}
 
@@ -362,7 +362,7 @@
 - **相关内容：**
 
   - [表单输入绑定](/guide/essentials/forms.html)
-  - [组件事件——配合 `v-model` 使用](/guide/components/events.html#usage-with-v-model)
+  - [组件事件 - 配合 `v-model` 使用](/guide/components/events.html#usage-with-v-model)
 
 ## v-slot {#v-slot}
 
@@ -413,7 +413,7 @@
   ```
 
 - **相关内容：**
-  - [组件——插槽](/guide/components/slots.html)
+  - [组件 - 插槽](/guide/components/slots.html)
 
 ## v-pre
 
@@ -460,7 +460,7 @@
   从3.2起，你也可以搭配 [`v-memo`](#v-memo) 的无效条件来缓存部分模板。
 
 - **相关内容：**
-  - [数据绑定语法——插值](/guide/essentials/template-syntax.html#text-interpolation)
+  - [数据绑定语法 - 插值](/guide/essentials/template-syntax.html#text-interpolation)
   - [v-memo](#v-memo)
 
 ## v-memo <sup class="vt-badge" data-text="3.2+" /> {#v-memo}
