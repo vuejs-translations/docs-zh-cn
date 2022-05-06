@@ -55,7 +55,7 @@ app
 
 ## 局部注册 {#local-registration}
 
-虽然十分方便，但全局注册有以下几个短板：
+全局注册虽然很方便，但有以下几个短板：
 
 1. 全局注册使构建系统无法移除未使用的组件(也叫“tree-shaking”)。如果你全局注册了一个组件，却一次都没有使用，它仍然会出现在最终的构建产物中。
 
@@ -65,7 +65,7 @@ app
 
 <div class="composition-api">
 
-当你在单文件组件中使用了 `<script setup>`，导入的组件会自动进行局部注册：
+当你在单文件组件中使用了 `<script setup>`，导入的组件可以在本地使用而无需注册：
 
 ```vue
 <script setup>
@@ -77,7 +77,7 @@ import ComponentA from './ComponentA.vue'
 </template>
 ```
 
-如果不使用 `<script setup>`，你需要使用 `components` 选项：
+如果不在 `<script setup>` 中，你将需要使用 `components` 选项：
 
 ```js
 import ComponentA from './ComponentA.js'

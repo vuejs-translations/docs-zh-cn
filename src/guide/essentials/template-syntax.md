@@ -34,9 +34,9 @@ Vue 使用一种基于 HTML 的模板语法，使我们能够声明式地将其�
   <p>Using v-html directive: <span v-html="rawHtml"></span></p>
 </p>
 
-这里我们遇到了一个新的概念。这里看到的 `v-html` attribute 被称为一个**指令**。指令由 `v-` 作为前缀，表明它们是一些由 Vue 提供的特殊 attribuite，你可能已经猜到了，它们将为渲染的 DOM 应用特殊的响应式行为。这里我们做的事情简单来说就是：在当前组件实例上，将此 span 元素的 innerHTML 与 `rawHtml` property 保持同步。
+这里我们遇到了一个新的概念。这里看到的 `v-html` attribute 被称为一个**指令**。指令由 `v-` 作为前缀，表明它们是一些由 Vue 提供的特殊 attribuite，你可能已经猜到了，它们将为渲染的 DOM 应用特殊的响应式行为。这里我们做的事情简单来说就是：在当前组件实例上，将此元素的 innerHTML 与 `rawHtml` property 保持同步。
 
-`span` 的内容将会被替换为 `rawHtml` property 的值，插值为纯 HTML——数据绑定将会被忽略。注意，你不能使用 `v-html` 来拼接组合模板，因为 Vue 不是一个基于字符串的模板引擎。相反，组件应该作为 UI 重用和组合的基本单元。
+`span` 的内容将会被替换为 `rawHtml` property 的值，插值为纯 HTML——数据绑定将会被忽略。注意，你不能使用 `v-html` 来拼接组合模板，因为 Vue 不是一个基于字符串的模板引擎。相反，组件更适合作为 UI 重用和组合的基本单元。
 
 :::warning 安全警告
 在网站上动态渲染任意 HTML 是非常危险的，因为这非常容易造成 [XSS 漏洞](https://en.wikipedia.org/wiki/Cross-site_scripting)。请仅在内容安全可信时再使用 `v-html`，并且**永远不要**使用用户提供的 HTML 内容。
@@ -74,7 +74,7 @@ Vue 使用一种基于 HTML 的模板语法，使我们能够声明式地将其�
 <button :disabled="isButtonDisabled">Button</button>
 ```
 
-当 `isButtonDisabled` 为[真值](https://developer.mozilla.org/en-US/docs/Glossary/Truthy)或一个空字符串 (即 `<button disabled="">`) 时，元素会包含这个 `disabled` attribute。而当其为假值时 attribute 将被忽略。
+当 `isButtonDisabled` 为[真值](https://developer.mozilla.org/en-US/docs/Glossary/Truthy)或一个空字符串 (即 `<button disabled="">`) 时，元素会包含这个 `disabled` attribute。而当其为[假值](https://developer.mozilla.org/en-US/docs/Glossary/Falsy)时 attribute 将被忽略。
 
 ### 动态绑定多个值 {#dynamically-binding-multiple-attributes}
 
@@ -207,7 +207,7 @@ data() {
 ```vue-html
 <!--
 注意，参数表达式有一些约束，
-参见下面“动态参数表达式约束”一节的解释
+参见下面“动态参数值的限制”与“动态参数语法的限制”章节的解释
 -->
 <a v-bind:[attributeName]="url"> ... </a>
 

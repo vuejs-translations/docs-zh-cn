@@ -175,7 +175,7 @@ const emit = defineEmits(['change', 'delete'])
 
 - 传入到 `defineProps` 和 `defineEmits` 的选项会从 setup 中提升到模块的范围。因此，传入的选项不能引用在 setup 范围中声明的局部变量。这样做会引起编译错误。但是，它*可以*引用导入的绑定，因为它们也在模块范围内。
 
-如果使用了 Typescript，[使用纯类型声明来声明 prop 和 emits](#仅限-typescript-的功能) 也是可以的。
+如果使用了 Typescript，[使用纯类型声明来声明 prop 和 emits](#typescript-only-features) 也是可以的。
 
 ## `defineExpose` {#defineexpose}
 

@@ -319,16 +319,13 @@
   <svg><a :xlink:special="foo"></a></svg>
   ```
 
-  `.prop` 和 `.attr` 修饰符也有专门的缩写，分别是 `.` 和 `^`：
+  `.prop` 修饰符也有专门的缩写，`.`：
 
   ```vue-html
   <div :someProperty.prop="someObject"></div>
   <!-- 等同于 -->
   <div .someProperty="someObject"></div>
   
-  <div :someProperty.attr="someString"></div>
-  <!-- 等同于 -->
-  <div ^someProperty="someString"></div>
   ```
 
   当在 DOM 内模板使用 `.camel` 修饰符，可以驼峰化 `v-bind` attribute 的名称，例如 SVG `viewBox` attribute：
