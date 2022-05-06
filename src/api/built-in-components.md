@@ -29,7 +29,7 @@ h(Transition, {
   interface TransitionProps {
     /**
      * 用于自动生成过渡 CSS class 名。
-     * 例如 `name: 'fade'` 将自动扩展为 `.fade-enter`，
+     * 例如 `name: 'fade'` 将自动扩展为 `.fade-enter`、
      * `.fade-enter-active` 等。
      */
     name?: string
@@ -63,7 +63,7 @@ h(Transition, {
     appear?: boolean
 
     /**
-     * 用于自定义过渡类的 Prop。
+     * 用于自定义过渡 class 的 prop。
      * 在模板中使用短横线命名，例如：enter-from-class="xxx"
      */
     enterFromClass?: string
@@ -118,7 +118,7 @@ h(Transition, {
   </Transition>
   ```
 
-- **相关内容：** [`<Transition>` 指南](/guide/built-ins/transition.html)
+- **相关内容**：[`<Transition>` 指南](/guide/built-ins/transition.html)
 
 ## `<TransitionGroup>`
 
@@ -131,11 +131,11 @@ h(Transition, {
   ```ts
   interface TransitionGroupProps extends Omit<TransitionProps, 'mode'> {
     /**
-     * 如果未定义，则渲染为片段 (fragment).
+     * 如果未定义，则渲染为片段 (fragment)。
      */
     tag?: string
     /**
-     * 用于自定义在移动过渡期间应用的 CSS 类。
+     * 用于自定义过渡期间被应用的 CSS class。
      * 在模板中使用 kebab-case，例如 move-class="xxx"
      */
     moveClass?: string
@@ -148,11 +148,11 @@ h(Transition, {
 
 - **详细信息**
 
-  默认情况下， `<TransitionGroup>` 不会渲染一个 DOM 元素包裹器，但是可以通过 `tag` prop 定义。
+  默认情况下，`<TransitionGroup>` 不会渲染一个 DOM 元素包裹器，但是可以通过 `tag` prop 定义。
 
-  注意，每个 `<transition-group>` 的子节点必须有 [**独立的key**](/guide/essentials/list.html#maintaining-state-with-key)，动画才能正常工作。
+  注意，每个 `<transition-group>` 的子节点必须有[**独立的 key**](/guide/essentials/list.html#maintaining-state-with-key)，动画才能正常工作。
 
-  `<TransitionGroup>` 支持通过 CSS transform 过渡移动。 当一个子节点被更新并在屏幕上的位置发生变化时，它会被应用一个移动中的 CSS 类 (通过 `name` attribute 自动生成或使用 `move-class` prop 配置)。如果 CSS `transform` property 是 “可过渡” property，在应用移动类时将会使用 [FLIP technique](https://aerotwist.com/blog/flip-your-animations/) 使元素流畅地到达动画终点。
+  `<TransitionGroup>` 支持通过 CSS transform 过渡移动。 当一个子节点在屏幕上的位置在更新之后发生变化时，它会被应用一个使其移动的 CSS class (通过 `name` attribute 自动生成或使用 `move-class` prop 配置)。如果使其移动的 class 被应用时 CSS `transform` property 是“可过渡的”，该元素会通过 [FLIP 技术](https://aerotwist.com/blog/flip-your-animations/)平滑地到达动画终点。
 
 - **示例**
 
@@ -164,7 +164,7 @@ h(Transition, {
   </TransitionGroup>
   ```
 
-- **相关内容：** [指南 - TransitionGroup](/guide/built-ins/transition-group.html)
+- **相关内容**：[指南 - TransitionGroup](/guide/built-ins/transition-group.html)
 
 ## `<KeepAlive>`
 
@@ -195,9 +195,9 @@ h(Transition, {
 
 - **详细信息**
 
-  `<KeepAlive>` 包裹动态组件时，会缓存不活动的组件实例，而不是销毁它们。
+  `<KeepAlive>` 包裹动态组件时，会缓存不活跃的组件实例，而不是销毁它们。
 
-  任何时候都只能有一个活动组件实例作为 `<KeepAlive>` 的直接子节点。
+  任何时候都只能有一个活跃组件实例作为 `<KeepAlive>` 的直接子节点。
 
   当一个组件在 `<KeepAlive>` 中被切换时，它的 `activated` 和 `deactivated` 生命周期钩子将被调用，用来替代 `mounted` 和 `unmounted`。这适用于 `<KeepAlive>` 的直接子节点及其所有子孙节点。
 
@@ -233,17 +233,17 @@ h(Transition, {
   使用 `include` / `exclude`:
 
   ```vue-html
-  <!-- comma-delimited string -->
+  <!-- 用逗号分隔的字符串 -->
   <KeepAlive include="a,b">
     <component :is="view"></component>
   </KeepAlive>
 
-  <!-- regex (use `v-bind`) -->
+  <!-- 正则表达式 (使用 `v-bind`) -->
   <KeepAlive :include="/a|b/">
     <component :is="view"></component>
   </KeepAlive>
 
-  <!-- Array (use `v-bind`) -->
+  <!-- 数组 (使用 `v-bind`) -->
   <keepalive :include="['a', 'b']">
     <component :is="view"></component>
   </keepalive>
@@ -257,7 +257,7 @@ h(Transition, {
   </KeepAlive>
   ```
 
-- **相关内容：** [指南 - KeepAlive](/guide/built-ins/keep-alive.html)
+- **相关内容**：[指南 - KeepAlive](/guide/built-ins/keep-alive.html)
 
 ## `<Teleport>`
 
@@ -268,12 +268,12 @@ h(Transition, {
   ```ts
   interface TeleportProps {
     /**
-     * 必须的。指定目标容器。
+     * 必填项。指定目标容器。
      * 可以是选择器或实际元素。
      */
     to: string | HTMLElement
     /**
-     * 当 `disabled` 的值为 `true` 时，内容将保留在其原始位置
+     * 当值为 `true` 时，内容将保留在其原始位置
      * 而不是移动到目标容器中。
      * 可以动态更改。
      */
@@ -299,7 +299,7 @@ h(Transition, {
   </teleport>
   ```
 
-- **相关内容：** [指南 - Teleport](/guide/built-ins/teleport.html)
+- **相关内容**：[指南 - Teleport](/guide/built-ins/teleport.html)
 
 ## `<Suspense>` <sup class="vt-badge experimental" />
 
@@ -321,8 +321,8 @@ h(Transition, {
 
 - **详细信息**
 
-  `<Suspense>` 接受两个插槽：`#default` 和 `#fallback`。它将在渲染内存中的默认槽时显示后备槽的内容。
+  `<Suspense>` 接受两个插槽：`#default` 和 `#fallback`。它将在内存中渲染默认插槽的同时展示后备插槽内容。
 
-  如果在渲染时遇到异步依赖项 ([Async Components](/guide/components/async.html) 和具有 [`async setup()`](/guide/built-ins/suspense.html#async-setup)) 的组件，它将等到所有异步依赖项解析完成时再显示默认插槽。
+  如果在渲染时遇到异步依赖项 ([异步组件](/guide/components/async.html)和具有 [`async setup()`](/guide/built-ins/suspense.html#async-setup) 的组件)，它将等到所有异步依赖项解析完成时再显示默认插槽。
 
-- **相关内容：** [指南 - Suspense](/guide/built-ins/suspense.html)
+- **相关内容**：[指南 - Suspense](/guide/built-ins/suspense.html)
