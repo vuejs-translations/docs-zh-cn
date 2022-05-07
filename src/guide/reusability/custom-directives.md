@@ -128,7 +128,6 @@ const myDirective = {
   beforeUnmount() {},
   // 绑定元素的父组件卸载后调用
   unmounted() {}
-  }
 }
 ```
 

@@ -14,7 +14,11 @@ const nav = [
       { text: '教程', link: '/tutorial/' },
       { text: '范例', link: '/examples/' },
       { text: '快速开始', link: '/guide/quick-start' },
-      { text: '风格指南', link: '/style-guide/' },
+      // { text: '风格指南', link: '/style-guide/' },
+      {
+        text: 'Vue 2 Docs',
+        link: 'https://v2.vuejs.org'
+      },
       {
         text: '从 Vue 2 迁移',
         link: 'https://v3-migration.vuejs.org/'
@@ -123,7 +127,7 @@ const nav = [
   {
     text: 'Partners',
     link: '/partners/',
-    activeMatch: `^/partners/`,
+    activeMatch: `^/partners/`
   }
 ]
 
