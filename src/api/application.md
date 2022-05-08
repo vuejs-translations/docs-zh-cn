@@ -1,6 +1,6 @@
 # 应用实例 API {#application-api} 
 
-## createApp() {#createapp} 
+## createApp() {#create-app} 
 
 创建一个应用实例。
 
@@ -12,7 +12,7 @@
 
 - **详细信息**
 
-  第一个参数是根组件。第二个参数可选，它是要传递给根组件的 props。
+  第一个参数是根组件。第二个参数可选，它是要传递给根组件的 prop。
 
 - **示例**
 
@@ -35,13 +35,13 @@
   const app = createApp(App)
   ```
 
-- **相关内容：** [指南 - 创建一个 Vue 应用实例](/guide/essentials/application.html)
+- **参考：** [指南 - 创建一个 Vue 应用实例](/guide/essentials/application.html)
 
-## createSSRApp()  {#createssrapp}
+## createSSRApp() {#create-ssr-app}
 
 以 [SSR 激活](/guide/scaling-up/ssr.html#client-hydration) 模式创建一个应用实例。用法与 `createApp()` 完全相同。
 
-## app.mount()  {#appmount}
+## app.mount()  {#app-mount}
 
 将应用程序实例挂载在一个容器元素中。
 
@@ -61,7 +61,7 @@
 
   在 SSR 激活模式下，它将激活容器内现有的 DOM 节点。如果出现了 [激活异常](/guide/scaling-up/ssr.html#hydration-mismatch)，那么现有的 DOM 节点将会经过变形来匹配预期的输出结果。
 
-  对每个应用实例，`mount()` 仅能调用一次。
+  对于每个应用实例，`mount()` 仅能调用一次。
 
 - **示例**
 
@@ -78,7 +78,7 @@
   app.mount(document.body.firstChild)
   ```
 
-## app.unmount()  {#appunmount}
+## app.unmount()  {#app-unmount}
 
 卸载一个已经挂载好的应用实例，会触发应用组件树上所有组件的卸载生命周期钩子。
 
@@ -90,9 +90,9 @@
   }
   ```
 
-## app.provide()  {#appprovide}
+## app.provide()  {#app-provide}
 
-供给一个值，可以被应用中所有后代组件注入。
+提供一个值，可以在应用中的所有后代组件注入使用。
 
 - **类型**
 
@@ -144,13 +144,13 @@
 
   </div>
 
-- **相关内容：**
+- **参考：**
   - [依赖注入](/guide/components/provide-inject.html)
   - [应用层 Provide](/guide/components/provide-inject.html#app-level-provide)
 
-## app.component() {#appcomponent} 
+## app.component() {#app-component} 
 
-如果同时传递一个名字和一个组件定义，则注册一个全局组件；如果只传递一个名字，则会得到一个已经注册的组件。
+如果同时传递一个组件名字符串及其定义，则注册一个全局组件；如果只传递一个名字，则会得到一个已经注册的组件。
 
 - **类型**
 
@@ -177,9 +177,9 @@
   const MyComponent = app.component('my-component')
   ```
 
-- **相关内容：** [组件注册](/guide/components/registration.html)
+- **参考：** [组件注册](/guide/components/registration.html)
 
-## app.directive() {#appdirective} 
+## app.directive() {#app-directive} 
 
 如果同时传递一个名字和一个指令定义，则注册一个全局指令；如果只传递一个名字，则会得到一个已经注册的指令。
 
@@ -215,11 +215,11 @@
   const myDirective = app.directive('my-directive')
   ```
 
-- **相关内容：** [自定义指令](/guide/reusability/custom-directives.html)
+- **参考：** [自定义指令](/guide/reusability/custom-directives.html)
 
-## app.use()  {#appuse}
+## app.use()  {#app-use}
 
-安装一个 [插件]](/guide/reusability/plugins.html)。
+安装一个 [插件](/guide/reusability/plugins.html)。
 
 - **类型**
 
@@ -250,9 +250,9 @@
   app.use(MyPlugin)
   ```
 
-- **相关内容：** [插件](/guide/reusability/plugins.html)
+- **参考：** [插件](/guide/reusability/plugins.html)
 
-## app.mixin() {#appmixin} 
+## app.mixin() {#app-mixin} 
 
 应用一个全局 mixin（适用于该应用程序的范围）。一个全局的 mixin 会将其包含的选项应用于应用程序中的每个组件实例。
 
@@ -270,7 +270,7 @@ Mixins 在 Vue 3 支持主要是为了向后兼容，因为生态中有许多库
   }
   ```
 
-## app.version  {#appversion}
+## app.version  {#app-version}
 
 提供当前应用所使用的 Vue 版本号。这在 [插件](/guide/reusability/plugins.html) 中很有用，因为可能需要在不同的 Vue 版本上有不同的逻辑。
 
@@ -297,9 +297,9 @@ Mixins 在 Vue 3 支持主要是为了向后兼容，因为生态中有许多库
   }
   ```
 
-- **相关内容：** [全局 API - version](/api/general.html#version)
+- **参考：** [全局 API - version](/api/general.html#version)
 
-## app.config {#appconfig} 
+## app.config {#app-config} 
 
 每个应用实例都会暴露一个 `config` 对象，其中包含了对这个应用的配置设定。你可以在挂载应用前更改这些属性（相关文档在下方）。
 
@@ -311,9 +311,9 @@ const app = createApp(/* ... */)
 console.log(app.config)
 ```
 
-## app.config.errorHandler  {#appconfigerrorhandler}
+## app.config.errorHandler  {#app-config-errorhandler}
 
-为应用程序内传递的未捕获的错误指定一个全局处理程序。
+用于为应用内传递的未捕获的错误指定一个全局处理函数。
 
 - **类型**
 
@@ -351,9 +351,9 @@ console.log(app.config)
   }
   ```
 
-## app.config.warnHandler  {#appconfigwarnhandler}
+## app.config.warnHandler  {#app-config-warnhandler}
 
-为 Vue 的运行时警告指定一个自定义处理程序。
+用于为 Vue 的运行时警告指定一个自定义处理函数。
 
 - **类型**
 
@@ -385,29 +385,29 @@ console.log(app.config)
   }
   ```
 
-## app.config.performance  {#appconfigperformance}
+## app.config.performance  {#app-config-performance}
 
 设置此项为 `true` 可以在浏览器开发工具的“性能/时间线”页中启用对组件初始化、编译、渲染和修补的性能表现追踪。仅在开发模式和支持 [performance.mark] API 的浏览器中工作。
 
-- **类型**: `boolean`
+- **类型** `boolean`
 
-- **相关内容：** [指南 - 性能](/guide/best-practices/performance.html)
+- **参考：** [指南 - 性能](/guide/best-practices/performance.html)
 
-## app.config.compilerOptions  {#appconfigcompileroptions}
+## app.config.compilerOptions  {#app-config-compileroptions}
 
-配置运行时编译器的选项。设置在此对象上的值都会被传入该“浏览器内”模板编译器之中，并会影响到所配置应用的所有组件。另外你也可以通过 [`compilerOptions` 选项](/) 在每个组件的基础上覆盖这些选项。
+配置运行时编译器的选项。设置在此对象上的值都会被传入该“浏览器内”模板编译器之中，并会影响到所配置应用的所有组件。另外你也可以通过 [`compilerOptions` 选项](/api/options-rendering.html#compileroptions) 在每个组件的基础上覆盖这些选项。
 
 ::: warning 重要
 此配置项仅在完整发行版中可用（即得到的 `vue.js` 可以在浏览器中编译模板）。如果你目前是通过搭配构建配置使用仅含运行时的发行版，那么编译器选项必须通过构建工具传递给 `@vue/compiler-dom`。
 
-- 对于 `vue-loader`：[通过 `compilerOptions` loader 的选项传递](/)。并请阅读 [如何在 `vue-cli` 中配置它](/)。
+- 对于 `vue-loader`：[通过 `compilerOptions` loader 的选项传递](https://vue-loader.vuejs.org/options.html#compileroptions)。并请阅读 [如何在 `vue-cli` 中配置它](https://cli.vuejs.org/guide/webpack.html#modifying-options-of-a-loader)。
 
-- 对于 `vite`: [通过 `@vitejs/plugin-vue` 的选项传递](/)。
+- 对于 `vite`: [通过 `@vitejs/plugin-vue` 的选项传递](https://github.com/vitejs/vite/tree/main/packages/plugin-vue#options)。
   :::
 
-### app.compilerOptions.isCustomElement  {#appcompileroptionsiscustomelement}
+### app.compilerOptions.isCustomElement  {#app-compileroptions-iscustomelement}
 
-指定一个检查方法来识别原生自定义元素。
+用于指定一个检查方法来识别原生自定义元素。
 
 - **类型** `(tag: string) => boolean`
 
@@ -426,11 +426,11 @@ console.log(app.config)
   }
   ```
 
-- **相关内容：** [Vue 与 Web Components](/guide/extras/web-components.html)
+- **参考：** [Vue 与 Web Components](/guide/extras/web-components.html)
 
-### app.compilerOptions.whitespace  {#appcompileroptionswhitespace}
+### app.compilerOptions.whitespace  {#app-compileroptions-whitespace}
 
-调整模板空格处理行为。
+用于调整模板中空格的处理行为。
 
 - **类型** `'condense' | 'preserve'`
 
@@ -452,9 +452,9 @@ console.log(app.config)
   app.config.compilerOptions.whitespace = 'preserve'
   ```
 
-### app.compilerOptions.delimiters  {#appcompileroptionsdelimiters}
+### app.compilerOptions.delimiters  {#app-compileroptions-delimiters}
 
-调整模板内用于文本插值的分隔符。
+用于调整模板内文本插值的分隔符。
 
 - **类型** `[string, string]`
 
@@ -471,9 +471,9 @@ console.log(app.config)
   app.config.compilerOptions.delimiters = ['${', '}']
   ```
 
-### app.compilerOptions.comments  {#appcompileroptionscomments}
+### app.compilerOptions.comments  {#app-compileroptions-comments}
 
-调整对模板中 HTML 注释的处理。
+用于调整是否移除模板中的 HTML 注释。
 
 - **类型** `boolean`
 
@@ -489,9 +489,9 @@ console.log(app.config)
   app.config.compilerOptions.comments = true
   ```
 
-## app.config.globalProperties  {#appconfigglobalproperties}
+## app.config.globalProperties  {#app-config-globalproperties}
 
-该对象用于注册能够被应用内所有组件实例访问到的全局属性。
+一个用于注册能够被应用内所有组件实例访问到的全局 property 的对象。
 
 - **类型**
 
@@ -523,7 +523,7 @@ console.log(app.config)
   }
   ```
 
-## app.config.optionMergeStrategies  {#appconfigoptionmergestrategies}
+## app.config.optionMergeStrategies  {#app-config-optionmergestrategies}
 
 一个用于定义自定义组件选项的合并策略的对象。
 
@@ -572,4 +572,4 @@ console.log(app.config)
   // 打印 'Hello Vue'
   ```
 
-- **相关内容：** [组件实例 - `$options`](/api/component-instance.html#options)
+- **参考：** [组件实例 - `$options`](/api/component-instance.html#options)

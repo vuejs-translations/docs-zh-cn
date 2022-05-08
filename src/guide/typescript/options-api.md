@@ -35,7 +35,8 @@ export default defineComponent({
 我们可以使用 `PropType` 这个工具类型来标记更复杂的 prop 类型：
 
 ```ts
-import { defineComponent, PropType } from 'vue'
+import { defineComponent } from 'vue'
+import type { PropType } from 'vue'
 
 interface Book {
   title: string
@@ -69,7 +70,8 @@ export default defineComponent({
 因为一个 TypeScript 的 [设计限制](https://github.com/microsoft/TypeScript/issues/38845)，你在使用函数作为 prop 的 `validator` 和 `default` 选项值时需要格外小心——确保使用箭头函数：
 
 ```ts
-import { defineComponent, PropType } from 'vue'
+import { defineComponent } from 'vue'
+import type { PropType } from 'vue'
 
 interface Book {
   title: string
@@ -232,7 +234,7 @@ declare module 'vue' {
 
 ### 类型扩充的位置 {#type-augmentation-placement}
 
-我们可以将这些类型扩充放在一个 `.ts` 文件，或是一个以整个项目为范围的 `*.d.ts` 文件中。无论哪一种，确保在 `tsconfig.json` 中将其引入。对于库或插件作者，这个文件应该在 `package.json` 的 `type` property 中被列出。
+我们可以将这些类型扩充放在一个 `.ts` 文件，或是一个以整个项目为范围的 `*.d.ts` 文件中。无论哪一种，确保在 `tsconfig.json` 中将其引入。对于库或插件作者，这个文件应该在 `package.json` 的 `types` property 中被列出。
 
 为了利用模块扩充的优势，你需要确保将扩充的模块放在 [TypeScript 模块](https://www.typescriptlang.org/docs/handbook/modules.html) 中。 也就是说，该文件需要包含至少一个顶级的 `import` 或 `export`，即使它只是 `export {}`。如果扩充被放在模块之外，它将覆盖原始类型，而不是扩充!
 

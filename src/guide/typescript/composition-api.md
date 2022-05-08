@@ -164,7 +164,8 @@ year.value = '2020'
 有时我们可能想为 ref 内的值指定一个更复杂的类型，可以通过使用 `Ref` 这个类型：
 
 ```ts
-import { ref, Ref } from 'vue'
+import { ref } from 'vue'
+import type { Ref } from 'vue'
 
 const year: Ref<string | number> = ref('2020')
 
@@ -269,7 +270,8 @@ function handleChange(event: Event) {
 provide 和 inject 通常会在不同的组件中运行。要正确地为注入的值标记类型，Vue 提供了一个 `InjectionKey` 接口，它是一个继承自 `Symbol` 的泛型类型，可以用来在提供者和消费者之间同步注入值的类型：
 
 ```ts
-import { provide, inject, InjectionKey } from 'vue'
+import { provide, inject } from 'vue'
+import type { InjectionKey } from 'vue'
 
 const key = Symbol() as InjectionKey<string>
 
