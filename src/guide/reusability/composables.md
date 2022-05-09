@@ -273,7 +273,7 @@ Mouse position is at: {{ mouse.x }}, {{ mouse.y }}
 
 - 如果你在一个应用中使用了[服务器端渲染](/guide/scaling-up/ssr.html) (SSR)，请确保在后置加载的声明钩子上执行 DOM 相关的副作用，例如：`onMounted()`。这些钩子仅会在浏览器中使用，因此可以确保能访问到 DOM。
 
-- 确保在 `onUnmounted()` 时清理副作用。举个例子，如果一个组合式函数设置了一个事件监听器，它就应该在 `onUnmounted()` 中被移除 (就像我们在 `useMouse()` 示例中看到的一样)。当然也可以像之前的`useEventListener()` 示例那样，使用一个组合式函数来自动帮你做这些事。
+- 确保在 `onUnmounted()` 时清理副作用。举个例子，如果一个组合式函数设置了一个事件监听器，它就应该在 `onUnmounted()` 中被移除 (就像我们在 `useMouse()` 示例中看到的一样)。当然也可以像之前的 `useEventListener()` 示例那样，使用一个组合式函数来自动帮你做这些事。
 
 ### 使用限制 {#usage-restrictions}
 

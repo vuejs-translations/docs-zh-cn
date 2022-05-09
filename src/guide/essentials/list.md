@@ -10,7 +10,7 @@
 
 ## `v-for` {#v-for}
 
-我们可以使用 `v-for` 指令基于一个数组来渲染一个列表。`v-for` 指令需要一种特殊的语法形式 `item in items`，其中`items` 是源数据的数组，而 `item` 是迭代项的**别名**：
+我们可以使用 `v-for` 指令基于一个数组来渲染一个列表。`v-for` 指令需要一种特殊的语法形式 `item in items`，其中 `items` 是源数据的数组，而 `item` 是迭代项的**别名**：
 
 <div class="composition-api">
 
