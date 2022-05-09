@@ -1,7 +1,7 @@
 # 生命周期选项 {#options-lifecycle}
 
 :::info 相关内容
-对于生命周期钩子的通用使用方法，请看 [指南 - 生命周期钩子](/guide/essentials/lifecycle.html)
+对于生命周期钩子的通用使用方法，请看[指南 - 生命周期钩子](/guide/essentials/lifecycle.html)
 :::
 
 ## beforeCreate {#beforecreate}
@@ -20,7 +20,7 @@
 
   会在实例初始化完成、prop 解析之后、`data()` 和 `computed` 等选项处理之前立即调用。
 
-  注意，组合式 API 中的 `setup()` 钩子会在任何选项式 API 钩子之前调用， `beforeCreate()` 也不例外。
+  注意，组合式 API 中的 `setup()` 钩子会在任何选项式 API 钩子之前调用，`beforeCreate()` 也不例外。
 
 ## created {#created}
 
@@ -72,7 +72,7 @@
 
   组件在以下情况下被视为已挂载：
 
-  - 所有同步子组件都已经被挂载。（不包含异步组件或 `<Suspense>` 树内的组件）
+  - 所有同步子组件都已经被挂载。(不包含异步组件或 `<Suspense>` 树内的组件)
 
   - 其自身的 DOM 树已经创建完成并插入了父容器中。注意仅当根容器在文档中时，才可以保证组件 DOM 树也在文档中。
 
@@ -158,7 +158,7 @@
 
   - 其所有子组件都已经被卸载。
 
-  - 所有相关的响应式作用（渲染作用以及 `setup()` 时创建的计算属性和侦听器）都已经停止。
+  - 所有相关的响应式作用 (渲染作用以及 `setup()` 时创建的计算属性和侦听器) 都已经停止。
 
   可以在这个钩子中手动清理一些副作用，例如计时器、DOM 事件监听器或者与服务器的连接。
 
@@ -201,7 +201,7 @@
 
   **错误传递规则**
 
-  - 默认情况下，所有的错误都会被发送到应用级的 [`app.config.errorHandler`](/api/application.html#app-config-errorhandler)（前提是这个函数已经定义），这样这些错误都能在一个统一的地方报告给分析服务。
+  - 默认情况下，所有的错误都会被发送到应用级的 [`app.config.errorHandler`](/api/application.html#app-config-errorhandler) (前提是这个函数已经定义)，这样这些错误都能在一个统一的地方报告给分析服务。
 
   - 如果组件的继承链或组件链上存在多个 `errorCaptured` 钩子，对于同一个错误，这些钩子都会被调用。
 
@@ -228,7 +228,7 @@
   }
   ```
 
-- **相关内容：** [Reactivity in Depth](/guide/extras/reactivity-in-depth.html)
+- **相关内容**：[深入响应式系统](/guide/extras/reactivity-in-depth.html)
 
 ## renderTriggered <sup class="vt-badge dev-only" /> {#rendertriggered-sup-classvt-badge-dev-only}
 
@@ -252,7 +252,7 @@
   }
   ```
 
-- **相关内容：** [Reactivity in Depth](/guide/extras/reactivity-in-depth.html)
+- **相关内容**：[深入响应式系统](/guide/extras/reactivity-in-depth.html)
 
 ## activated {#activated}
 
@@ -268,7 +268,7 @@
   }
   ```
 
-- **相关内容：** [指南 - 被缓存实例的生命周期](/guide/built-ins/keep-alive.html#lifecycle-of-cached-instance)
+- **相关内容**：[指南 - 被缓存实例的生命周期](/guide/built-ins/keep-alive.html#lifecycle-of-cached-instance)
 
 ## deactivated {#deactivated}
 
@@ -284,7 +284,7 @@
   }
   ```
 
-- **相关内容：** [指南 - 被缓存实例的生命周期](/guide/built-ins/keep-alive.html#lifecycle-of-cached-instance)
+- **相关内容**：[指南 - 被缓存实例的生命周期](/guide/built-ins/keep-alive.html#lifecycle-of-cached-instance)
 
 ## serverPrefetch <sup class="vt-badge" data-text="SSR only" /> {#serverprefetch}
 
@@ -329,4 +329,4 @@
   }
   ```
 
-- **相关内容：** [服务端渲染](/guide/scaling-up/ssr.html)
+- **相关内容**：[服务端渲染](/guide/scaling-up/ssr.html)

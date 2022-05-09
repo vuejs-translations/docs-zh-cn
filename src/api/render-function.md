@@ -107,7 +107,7 @@
 
 - **详细信息**
 
-    `mergeProps()` 支持以下特定 prop 参数的处理，将它们合并成一个对象。
+  `mergeProps()` 支持以下特定 prop 参数的处理，将它们合并成一个对象。
 
   - `class`
   - `style`
@@ -155,7 +155,7 @@
 
   Vnode 被认为是一旦创建就不能修改的，你不应该修改已创建的 vnode 的 prop，而应该附带不同的/额外的 prop 来克隆它。
 
-  Vnode 具有特殊的内部 property ，因此克隆它并不像 object spread 一样简单。 `cloneVNode()` 处理了大部分这样的内部逻辑。
+  Vnode 具有特殊的内部 property，因此克隆它并不像 object spread 一样简单。`cloneVNode()` 处理了大部分这样的内部逻辑。
 
 - **示例**
 
@@ -273,7 +273,7 @@
 
 - **详细信息**
 
-  用自定义指令包装一个现有的 vnode 。第二个参数是自定义指令数组。每个自定义指令也可以表示为 `[Directive, value, argument, modifiers]` 形式的数组。如果不需要，可以省略数组的尾元素。
+  用自定义指令包装一个现有的 vnode。第二个参数是自定义指令数组。每个自定义指令也可以表示为 `[Directive, value, argument, modifiers]` 形式的数组。如果不需要，可以省略数组的尾元素。
 
 - **示例**
 

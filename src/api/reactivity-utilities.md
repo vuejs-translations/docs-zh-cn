@@ -1,6 +1,6 @@
 # 响应性 API：工具函数 {#reactivity-api-utilities}
 
-## isRef()  {#isref}
+## isRef() {#isref}
 
 检查某个值是否为 ref。
 
@@ -10,7 +10,7 @@
   function isRef<T>(r: Ref<T> | unknown): r is Ref<T>
   ```
 
-  请注意，返回值是一个 [类型谓词](https://www.typescriptlang.org/docs/handbook/2/narrowing.html#using-type-predicates)，这意味着 `isRef` 可以被用作类型守卫：
+  请注意，返回值是一个[类型谓词](https://www.typescriptlang.org/docs/handbook/2/narrowing.html#using-type-predicates)，这意味着 `isRef` 可以被用作类型守卫：
 
   ```ts
   let foo: unknown
@@ -80,7 +80,7 @@
   const fooRef = ref(state.foo)
   ```
 
-  上面这个 ref **不会** 和 `state.foo` 保持同步，因为这个 `ref()` 接收到的是一个纯数值。
+  上面这个 ref **不会**和 `state.foo` 保持同步，因为这个 `ref()` 接收到的是一个纯数值。
 
   `toRef()` 这个函数在你想把一个 prop 的 ref 传递给一个组合式函数时会很有用：
 
@@ -96,7 +96,7 @@
   </script>
   ```
 
-  当 `toRef` 与组件 prop 结合使用时，关于对 prop 做出更改的通用限制依然有效。尝试将新的值传递给 ref 等效于尝试直接更改 prop，这是不允许的。在这种场景下，你可能可以考虑使用带有 `get` 和 `set` 的 [`computed`](./reactivity-core.html#computed) 替代。详情请见 [在组件上使用 `v-model`](/guide/components/events.html#usage-with-v-model) 指南。
+  当 `toRef` 与组件 prop 结合使用时，关于对 prop 做出更改的通用限制依然有效。尝试将新的值传递给 ref 等效于尝试直接更改 prop，这是不允许的。在这种场景下，你可能可以考虑使用带有 `get` 和 `set` 的 [`computed`](./reactivity-core.html#computed) 替代。详情请见[在组件上使用 `v-model`](/guide/components/events.html#usage-with-v-model) 指南。
 
   即使源 property 当前不存在，`toRef()` 也会返回一个可用的 ref。这让它在处理可选 prop 的时候格外实用，而可选 prop 在使用 [`toRefs`](#torefs) 时不会被保留。
 
@@ -161,7 +161,7 @@
 
   `toRefs` 在调用时只会为源对象上可以列举出的 property 创建 ref。如果要为可能还不存在的 property 创建 ref，请改用 [`toRef`](#toref) 。
 
-## isProxy()  {#isproxy}
+## isProxy() {#isproxy}
 
 检查一个对象是否是由 [`reactive()`](./reactivity-core.html#reactive)、[`readonly()`](./reactivity-core.html#readonly)、[`shallowReactive()`](./reactivity-advanced.html#shallowreactive) 或 [`shallowReadonly()`](./reactivity-advanced.html#shallowreadonly) 创建的代理。
 
@@ -171,7 +171,7 @@
   function isProxy(value: unknown): boolean
   ```
 
-## isReactive()  {#isreactive}
+## isReactive() {#isreactive}
 
 检查一个对象是否是由 [`reactive()`](./reactivity-core.html#reactive) 或 [`shallowReactive()`](./reactivity-advanced.html#shallowreactive) 创建的代理。
 
@@ -181,7 +181,7 @@
   function isReactive(value: unknown): boolean
   ```
 
-## isReadonly()  {#isreadonly}
+## isReadonly() {#isreadonly}
 
 检查一个对象是否是由 [`readonly()`](./reactivity-core.html#readonly) 或 [`shallowReadonly()`](./reactivity-advanced.html#shallowreadonly) 创建的代理。
 

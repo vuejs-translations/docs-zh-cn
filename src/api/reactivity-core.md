@@ -1,4 +1,4 @@
-# 响应性 API：核心 {#reactivity-api-core} 
+# 响应性 API：核心 {#reactivity-api-core}
 
 :::info 相关内容
 要更好地了解响应性 API，推荐阅读下面几个指南中的章节：
@@ -7,7 +7,7 @@
 - [深入响应性系统](/guide/extras/reactivity-in-depth.html)
   :::
 
-## ref()  {#ref}
+## ref() {#ref}
 
 接受一个内部值，返回一个响应式的、可更改的 ref 对象，此对象只有一个指向其内部值的 property `.value`。
 
@@ -43,7 +43,7 @@
   - [指南 - `ref()` 定义响应式变量](/guide/essentials/reactivity-fundamentals.html#reactive-variables-with-ref)
   - [指南 - 为 `ref()` 标注类型](/guide/typescript/composition-api.html#typing-ref)
 
-## computed() {#computed}
+## computed () {#computed}
 
 接受一个 getter 函数，返回一个只读的响应式 [ref](#ref) 对象，即 getter 函数的返回值。它也可以接受一个带有 `get` 和 `set` 函数的对象来创建一个可写的 ref 对象。
 
@@ -131,7 +131,7 @@
 
   若要避免深层响应式转换，只想保留对这个对象顶层次访问的响应性，请使用 [shallowReactive()](./reactivity-advanced.html#shallowreactive) 作替代。
 
-  返回的对象以及其中嵌套的对象都会通过 [ES Proxy](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy) 包裹，因此 **不等于** 源对象，建议只使用响应式代理，避免依赖于原始对象。
+  返回的对象以及其中嵌套的对象都会通过 [ES Proxy](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy) 包裹，因此**不等于**源对象，建议只使用响应式代理，避免依赖于原始对象。
 
 - **示例**
 
@@ -190,9 +190,9 @@
   - [指南 - 响应式基础](/guide/essentials/reactivity-fundamentals.html)
   - [指南 - 为 `reactive()` 标注类型](/guide/typescript/composition-api.html#typing-reactive)
 
-## readonly()  {#readonly}
+## readonly() {#readonly}
 
-接受一个对象（不论是响应式还是一般的）或是一个 [ref](#ref)，返回一个原值的只读代理。
+接受一个对象 (不论是响应式还是一般的) 或是一个 [ref](#ref)，返回一个原值的只读代理。
 
 - **类型**
 
@@ -227,7 +227,7 @@
   copy.count++ // warning!
   ```
 
-## watchEffect()  {#watcheffect}
+## watchEffect() {#watcheffect}
 
 立即运行一个函数，同时响应式地追踪其依赖，并在依赖更改时重新执行。
 
@@ -252,7 +252,7 @@
 
 - **详细信息**
 
-  第一个函数就是要运行的副作用函数。这个副作用函数的参数也是一个函数，用来注册清理回调。清理回调会在该副作用下一次执行前被调用，可以用来清理无效的副作用，例如等待中的异步请求（参见下面的示例）。
+  第一个函数就是要运行的副作用函数。这个副作用函数的参数也是一个函数，用来注册清理回调。清理回调会在该副作用下一次执行前被调用，可以用来清理无效的副作用，例如等待中的异步请求 (参见下面的示例)。
 
   第二个参数是一个可选的选项，可以用来调整副作用的刷新时机或调试副作用的依赖。
 
@@ -270,7 +270,7 @@
   // -> 输出 1
   ```
 
-  Side effect cleanup:
+  副作用清除：
 
   ```js
   watchEffect(async (onCleanup) => {
@@ -292,7 +292,7 @@
   stop()
   ```
 
-  选项:
+  选项：
 
   ```js
   watchEffect(() => {}, {
@@ -306,19 +306,19 @@
   })
   ```
 
-- **相关内容**:
+- **相关内容：**
   - [指南 - 侦听器](/guide/essentials/watchers.html#watcheffect)
   - [指南 - 侦听器调试](/guide/extras/reactivity-in-depth.html#watcher-debugging)
 
-## watchPostEffect()  {#watchposteffect}
+## watchPostEffect() {#watchposteffect}
 
 [`watchEffect()`](#watcheffect) 使用 `flush: 'post'` 选项时的别名。
 
-## watchSyncEffect()  {#watchsynceffect}
+## watchSyncEffect() {#watchsynceffect}
 
 [`watchEffect()`](#watcheffect) 使用 `flush: 'sync'` 选项时的别名。
 
-## watch()  {#watch}
+## watch() {#watch}
 
 侦听一个或多个响应式数据源，并在数据源变化时调用所给的回调函数。
 
@@ -367,7 +367,7 @@
 
   `watch()` 默认是懒侦听的，即仅在侦听源发生变化时才执行回调函数。
 
-  第一个参数是侦听器的 **源**。这个来源可以是以下几种：
+  第一个参数是侦听器的**源**。这个来源可以是以下几种：
 
   - 一个函数，返回一个值
   - 一个 ref
@@ -381,9 +381,9 @@
   第三个可选的参数是一个对象，支持以下这些选项：
 
   - **`immediate`**：在侦听器创建时立即触发回调。第一次调用时旧值是 `undefined`。
-  - **`deep`**：如果源是对象，强制深度遍历，以便在深层级变更时启动回调。相关内容请看 [深层侦听器](/guide/essentials/watchers.html#deep-watchers) 一节。
-  - **`flush`**：调整回调函数的刷新时机。相关内容请看 [回调的刷新时机](/guide/essentials/watchers.html#callback-flush-timing) 一节。
-  - **`onTrack / onTrigger`**：调试侦听器的依赖。相关内容请看 [调试侦听器](/guide/extras/reactivity-in-depth.html#watcher-debugging) 一节。
+  - **`deep`**：如果源是对象，强制深度遍历，以便在深层级变更时启动回调。相关内容请看[深层侦听器](/guide/essentials/watchers.html#deep-watchers)一节。
+  - **`flush`**：调整回调函数的刷新时机。相关内容请看[回调的刷新时机](/guide/essentials/watchers.html#callback-flush-timing)一节。
+  - **`onTrack / onTrigger`**：调试侦听器的依赖。相关内容请看[调试侦听器](/guide/extras/reactivity-in-depth.html#watcher-debugging)一节。
 
   与 [`watchEffect()`](#watcheffect) 相比，`watch()` 使我们可以：
 
@@ -455,7 +455,7 @@
   })
   ```
 
-- **相关内容**:
+- **相关内容：**
 
   - [指南 - 侦听器](/guide/essentials/watchers.html)
   - [指南 - 侦听器调试](/guide/extras/reactivity-in-depth.html#watcher-debugging)
