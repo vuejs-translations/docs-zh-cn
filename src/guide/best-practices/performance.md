@@ -10,15 +10,15 @@ Vue 的设计对于大多数常见的使用情况来说都是性能优秀的，�
 
 首先，让我们讨论一下网络性能的两个主要方面：
 
-- **页面加载性能**：应用展示出内容与首次访问时变为可交互的速度。这通常是使用网络的重要指标来衡量，如最大的 [最大内容绘制 (LCP)](https://web.dev/lcp/) 和 [首次输入延迟](https://web.dev/fid/)。
+- **页面加载性能**：应用展示出内容与首次访问时变为可交互的速度。这通常是使用网络的重要指标来衡量，如最大的[最大内容绘制 (LCP)](https://web.dev/lcp/) 和[首次输入延迟](https://web.dev/fid/)。
 
 - **更新性能**：应用响应用户输入更新的速度。举个例子，当用户在一个搜索框中输入时列表的更新速度，或者用户在一个单页面应用 (SPA) 中点击链接跳转页面时的切换速度。
 
 虽然最理想的情况是将两者都最大化，但是不同的前端架构往往会影响到在这些方面是否能达到更理想的性能。此外，你所构建的应用程序的类型极大地影响了你在性能方面应该优先考虑的问题。因此，确保最佳性能的第一步是为你的应用类型挑选合适的架构：
 
-- 查看 [使用 Vue 的多种方式](/guide/extras/ways-of-using-vue.html) 这一章看看如何用不同的方式围绕 Vue 组织架构。
+- 查看[使用 Vue 的多种方式](/guide/extras/ways-of-using-vue.html)这一章看看如何用不同的方式围绕 Vue 组织架构。
 
-- Jason Miller 在 [应用标本](https://jasonformat.com/application-holotypes/) 一文中讨论了 Web 应用的类型以及它们各自的理想的实现/交付方式。
+- Jason Miller 在[应用标本](https://jasonformat.com/application-holotypes/)一文中讨论了 Web 应用的类型以及它们各自的理想的实现/交付方式。
 
 ## 分析选项 {#profiling-options}
 
@@ -33,11 +33,11 @@ Vue 的设计对于大多数常见的使用情况来说都是性能优秀的，�
 
 - [Chrome 开发者工具“性能”面板](https://developer.chrome.com/docs/devtools/evaluate-performance/)
   - [`app.config.performance`](/api/application.html#app-config-performance) 将会开启 Vue 特有的性能标记，标记在 Chrome 开发者工具的性能时间线上。
-- [Vue 开发者扩展](/guide/scaling-up/tooling.html#browser-devtools) 也提供了性能分析的功能。
+- [Vue 开发者扩展](/guide/scaling-up/tooling.html#browser-devtools)也提供了性能分析的功能。
 
 ## 页面加载优化 {#page-load-optimizations}
 
-页面加载优化有许多跟框架无关的方面 - 这份 [web.dev 指南](https://web.dev/fast/) 提供了一个全面的总结。这里，我们将主要关注和 Vue 相关的技巧。
+页面加载优化有许多跟框架无关的方面 - 这份 [web.dev 指南](https://web.dev/fast/)提供了一个全面的总结。这里，我们将主要关注和 Vue 相关的技巧。
 
 ### 包体积与 Tree-shaking 优化 {#bundle-size-and-tree-shaking}
 
@@ -71,7 +71,7 @@ function loadLazy() {
 }
 ```
 
-懒加载对于页面初次加载时的优化帮助极大，它帮助应用暂时略过了那些不是立即需要的功能。在 Vue 应用中，这常常与 Vue 的 [异步组件](/guide/components/async.html) 搭配使用，为组件树创建分离的代码块：
+懒加载对于页面初次加载时的优化帮助极大，它帮助应用暂时略过了那些不是立即需要的功能。在 Vue 应用中，这常常与 Vue 的[异步组件](/guide/components/async.html)搭配使用，为组件树创建分离的代码块：
 
 ```js
 import { defineAsyncComponent } from 'vue'
@@ -82,11 +82,11 @@ import { defineAsyncComponent } from 'vue'
 const Foo = defineAsyncComponent(() => import('./Foo.vue'))
 ```
 
-如果在客户端侧通过 Vue Router 构建了路由，那么强烈建议使用异步组件作为路由组件。查看 [懒加载路由](https://next.router.vuejs.org/guide/advanced/lazy-loading.html) 了解更多细节。
+如果在客户端侧通过 Vue Router 构建了路由，那么强烈建议使用异步组件作为路由组件。查看[懒加载路由](https://next.router.vuejs.org/guide/advanced/lazy-loading.html)了解更多细节。
 
 ### SSR / SSG {#ssr-ssg}
 
-纯粹的客户端渲染存在内容到达时间缓慢的问题。这可以通过采用服务端渲染 (SSR) 或者静态站点生成 (SSG) 来进行优化。你可以查看 [SSR 指引](/guide/scaling-up/ssr.html) 了解更多细节。
+纯粹的客户端渲染存在内容到达时间缓慢的问题。这可以通过采用服务端渲染 (SSR) 或者静态站点生成 (SSG) 来进行优化。你可以查看 [SSR 指引](/guide/scaling-up/ssr.html)了解更多细节。
 
 ## 更新优化 {#update-optimizations}
 
@@ -120,7 +120,7 @@ const Foo = defineAsyncComponent(() => import('./Foo.vue'))
 
 ### `v-memo` {#v-memo}
 
-`v-memo` 是一个内置指令，可以用来有条件地跳过某些大型子树或者 `v-for` 列表的更新。查看它的 [API 参考手册](/api/built-in-directives.html#v-memo) 可以了解更多细节。
+`v-memo` 是一个内置指令，可以用来有条件地跳过某些大型子树或者 `v-for` 列表的更新。查看它的 [API 参考手册](/api/built-in-directives.html#v-memo)可以了解更多细节。
 
 ## 总体优化 {#general-optimizations}
 
@@ -167,6 +167,6 @@ shallowArray.value = [
 
 ### 避免不必要的组件抽象 {#avoid-unnecessary-component-abstractions}
 
-有些时候我们会去创建 [无渲染组件](/guide/components/slots.html#renderless-components) 或高阶组件 (用来渲染具有额外 props 的其他组件) 来实现更好的抽象或代码组织。虽然这并没有什么问题，但请记住，组件实例比普通 DOM 节点要昂贵得多，而且为了逻辑抽象创建太多组件实例将会导致性能损失。
+有些时候我们会去创建[无渲染组件](/guide/components/slots.html#renderless-components)或高阶组件 (用来渲染具有额外 props 的其他组件) 来实现更好的抽象或代码组织。虽然这并没有什么问题，但请记住，组件实例比普通 DOM 节点要昂贵得多，而且为了逻辑抽象创建太多组件实例将会导致性能损失。
 
 请注意，只减少几个实例不会有明显的效果，所以如果该组件在应用程序中只渲染了几次，就不用担心了。考虑这种优化的最佳场景还是在大型列表中。想象一下一个有 100 项的列表，每项的组件都包含许多子组件。在这里去掉一个不必要的组件抽象，可能会减少数百个组件实例的无谓性能消耗。

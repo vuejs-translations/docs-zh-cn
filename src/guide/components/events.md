@@ -27,7 +27,7 @@
 <MyComponent @some-event="callback" />
 ```
 
-同样，组件的事件监听器也支持`.once` 修饰符：
+同样，组件的事件监听器也支持 `.once` 修饰符：
 
 ```vue-html
 <MyComponent @some-event.once="callback" />
@@ -325,7 +325,7 @@ defineEmits(['update:modelValue'])
 
 </div>
 
-另一种在组件内实现 `v-model` 的方式是使用一个可写的 `computed` property ，给出 getter 和 setter。`get` 方法需返回 `modelValue` property 而 `set` 方法需触发相应的事件：
+另一种在组件内实现 `v-model` 的方式是使用一个可写的 `computed` property，给出 getter 和 setter。`get` 方法需返回 `modelValue` property 而 `set` 方法需触发相应的事件：
 
 <div class="options-api">
 

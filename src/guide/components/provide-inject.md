@@ -239,7 +239,7 @@ export default {
 
 <div class="composition-api">
 
-当使用响应式 `provide`/`inject` 值时，**建议尽可能将任何对响应式状态的变更都保持在 *provider* 内部**。 这样可以确保 `provide` 的状态和变更操作都在同一个组件内，使其更容易维护。
+当使用响应式 `provide`/`inject` 值时，**建议尽可能将任何对响应式状态的变更都保持在 *provider* 内部**。这样可以确保 `provide` 的状态和变更操作都在同一个组件内，使其更容易维护。
 
 有的时候，我们可能需要在 `injector` 组件中更改数据。在这种情况下，我们推荐在 `provider` 组件内提供一个更改数据方法：
 

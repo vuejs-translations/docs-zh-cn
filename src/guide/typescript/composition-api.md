@@ -68,7 +68,7 @@ const props = defineProps<Props>()
   defineProps<Props>()
   ```
 
-接口或对象字面类型可以包含从其他文件导入的类型引用，但是，传递给 `defineProps` 的泛型参数本身 **不能** 是一个导入的类型：
+接口或对象字面类型可以包含从其他文件导入的类型引用，但是，传递给 `defineProps` 的泛型参数本身**不能**是一个导入的类型：
 
 ```ts
 import { Props } from './other-file'
