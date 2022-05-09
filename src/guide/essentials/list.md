@@ -339,7 +339,7 @@ Vue 包装了一批侦听数组的变更方法，以至于这些方法可以触�
 
 ```js
 // `item` 是一个数组的 ref
-items.value = item.values.filter((item) => item.message.match(/Foo/))
+items.value = items.value.filter((item) => item.message.match(/Foo/))
 ```
 
 </div>
