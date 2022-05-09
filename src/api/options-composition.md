@@ -50,9 +50,9 @@
   }
   ```
 
-  请注意，针对上面这个例子，所供给的 `msg` 将**不会**是响应式的。请看 [配合响应性](/guide/components/provide-inject.html#working-with-reactivity) 一节获取更多细节。
+  请注意，针对上面这个例子，所供给的 `msg` 将**不会**是响应式的。请看[配合响应性](/guide/components/provide-inject.html#working-with-reactivity)一节获取更多细节。
 
-- **相关内容：** [依赖注入](/guide/components/provide-inject.html)
+- **相关内容**：[依赖注入](/guide/components/provide-inject.html)
 
 ## inject {#inject}
 
@@ -81,14 +81,14 @@
 
   - 一个字符串数组
   - 一个对象，其 key 名就是在当前组件中的本地绑定名称，而它的值应该是以下两种之一：
-    - 索引可用注入的 key（string 或者 Symbol）
+    - 索引可用注入的 key (string 或者 Symbol)
     - 一个对象
-      - 它的 `from` property 是一个 key（string 或者 Symbol），用于索引可用的注入
+      - 它的 `from` property 是一个 key (string 或者 Symbol)，用于索引可用的注入
       - 它的 `default` property 用作候补值。和 props 的默认值类似，如果它是一个对象，那么应该使用一个工厂函数来创建，以避免多个组件共享同一个对象。
 
   如果没有供给相匹配的 property、也没有提供默认值，那么注入的 property 将为 `undefined`。
 
-  请注意，注入绑定并非响应式的。这是有意为之的一个设计。如果要注入的值是一个响应式对象，那么这个对象上的 property 将会保留响应性。请看 [配合响应性](/guide/components/provide-inject.html#working-with-reactivity) 一节获取更多细节。
+  请注意，注入绑定并非响应式的。这是有意为之的一个设计。如果要注入的值是一个响应式对象，那么这个对象上的 property 将会保留响应性。请看[配合响应性](/guide/components/provide-inject.html#working-with-reactivity)一节获取更多细节。
 
 - **示例**
 
@@ -167,7 +167,7 @@
   }
   ```
 
-- **相关内容：** [依赖注入](/guide/components/provide-inject.html)
+- **相关内容**：[依赖注入](/guide/components/provide-inject.html)
 
 ## mixins {#mixins}
 

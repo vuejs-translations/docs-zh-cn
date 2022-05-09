@@ -43,7 +43,7 @@
   console.log(ctx.teleports) // { '#teleported': 'teleported content' }
   ```
 
-- **相关内容：** [指南 - 服务端渲染 (SSR)](/guide/scaling-up/ssr.html)
+- **相关内容**：[指南 - 服务端渲染 (SSR)](/guide/scaling-up/ssr.html)
 
 ## renderToNodeStream()
 

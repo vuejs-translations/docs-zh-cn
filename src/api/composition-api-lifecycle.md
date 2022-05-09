@@ -1,10 +1,10 @@
 # 组合式 API：生命周期钩子 {#composition-api-lifecycle-hooks}
 
 :::info 使用方式注意
-所有罗列在本页的 API 都应该在组件的 `setup()` 阶段被同步调用。相关细节请看 [指南 - 生命周期钩子](/guide/essentials/lifecycle.html)。
+所有罗列在本页的 API 都应该在组件的 `setup()` 阶段被同步调用。相关细节请看[指南 - 生命周期钩子](/guide/essentials/lifecycle.html)。
 :::
 
-## onMounted()  {#onmounted}
+## onMounted() {#onmounted}
 
 注册一个回调函数，在组件挂载完成后执行。
 
@@ -18,7 +18,7 @@
 
   组件在以下情况下被视为已挂载：
 
-  - 其所有同步子组件都已经被挂载（不包含异步组件或 `<Suspense>` 树内的组件）。
+  - 其所有同步子组件都已经被挂载 (不包含异步组件或 `<Suspense>` 树内的组件)。
 
   - 其自身的 DOM 树已经创建完成并插入了父容器中。注意仅当根容器在文档中时，才可以保证组件 DOM 树也在文档中。
 
@@ -46,7 +46,7 @@
   </template>
   ```
 
-## onUpdated()  {#onupdated}
+## onUpdated() {#onupdated}
 
 注册一个回调函数，在组件因为响应式状态变更而更新其 DOM 树之后调用。
 
@@ -89,7 +89,7 @@
   </template>
   ```
 
-## onUnmounted()  {#onunmounted}
+## onUnmounted() {#onunmounted}
 
 注册一个回调函数，在组件实例被卸载之后调用。
 
@@ -105,7 +105,7 @@
 
   - 其所有子组件都已经被卸载。
 
-  - 所有相关的响应式作用（渲染作用以及 `setup()` 时创建的计算属性和侦听器）都已经停止。
+  - 所有相关的响应式作用 (渲染作用以及 `setup()` 时创建的计算属性和侦听器) 都已经停止。
 
   可以在这个钩子中手动清理一些副作用，例如计时器、DOM 事件监听器或者与服务器的连接。
 
@@ -128,7 +128,7 @@
   </script>
   ```
 
-## onBeforeMount()  {#onbeforemount}
+## onBeforeMount() {#onbeforemount}
 
 注册一个钩子，在组件被挂载之前被调用。
 
@@ -144,7 +144,7 @@
 
   **这个钩子在服务器端渲染期间不会被调用。**
 
-## onBeforeUpdate()  {#onbeforeupdate}
+## onBeforeUpdate() {#onbeforeupdate}
 
 注册一个钩子，在组件即将因为响应式状态变更而更新其 DOM 树之前调用。
 
@@ -160,7 +160,7 @@
 
   **这个钩子在服务器端渲染期间不会被调用。**
 
-## onBeforeUnmount()  {#onbeforeunmount}
+## onBeforeUnmount() {#onbeforeunmount}
 
 注册一个钩子，在组件实例被卸载之前调用。
 
@@ -176,7 +176,7 @@
 
   **这个钩子在服务器端渲染期间不会被调用。**
 
-## onErrorCaptured()  {#onerrorcaptured}
+## onErrorCaptured() {#onerrorcaptured}
 
 注册一个钩子，在捕获了后代组件传递的错误时调用。
 
@@ -194,7 +194,7 @@
 
 - **详细信息**
 
-  错误可以从以下几个来源中捕获：:
+  错误可以从以下几个来源中捕获：
 
   - 组件渲染
   - 事件处理器
@@ -212,7 +212,7 @@
 
   **错误传播规则**
 
-  - 默认情况下，所有的错误都会被发送到应用级的 [`app.config.errorHandler`](/api/application.html#app-config-errorhandler)（前提是这个函数已经定义），这样这些错误都能在一个统一的地方报告给分析服务。
+  - 默认情况下，所有的错误都会被发送到应用级的 [`app.config.errorHandler`](/api/application.html#app-config-errorhandler) (前提是这个函数已经定义)，这样这些错误都能在一个统一的地方报告给分析服务。
 
   - 如果组件的继承链或组件链上存在多个 `errorCaptured` 钩子，对于同一个错误，这些钩子都会被调用。
 
@@ -220,7 +220,7 @@
 
   - `errorCaptured` 钩子可以通过返回 `false` 来阻止错误继续传递。即表示“这个错误已经被处理了，应当被忽略”，它将阻止其他的 `errorCaptured` 钩子或 `app.config.errorHandler` 因这个错误而被调用。
 
-## onRenderTracked() <sup class="vt-badge dev-only" />  {#onrendertracked}
+## onRenderTracked() <sup class="vt-badge dev-only" /> {#onrendertracked}
 
 注册一个调试钩子，当响应式依赖被组件的渲染作用追踪后调用。
 
@@ -241,9 +241,9 @@
   }
   ```
 
-- **相关内容：** [Reactivity in Depth](/guide/extras/reactivity-in-depth.html)
+- **相关内容**：[Reactivity in Depth](/guide/extras/reactivity-in-depth.html)
 
-## onRenderTriggered() <sup class="vt-badge dev-only" />  {#onrendertriggered}
+## onRenderTriggered() <sup class="vt-badge dev-only" /> {#onrendertriggered}
 
 注册一个调试钩子，当响应式依赖触发了组件渲染作用的运行之后调用。
 
@@ -267,9 +267,9 @@
   }
   ```
 
-- **相关内容：** [Reactivity in Depth](/guide/extras/reactivity-in-depth.html)
+- **相关内容**：[Reactivity in Depth](/guide/extras/reactivity-in-depth.html)
 
-## onActivated()  {#onactivated}
+## onActivated() {#onactivated}
 
 注册一个回调函数，若组件实例是 [`<KeepAlive>`](/api/built-in-components.html#keepalive) 缓存树的一部分，当组件被插入到 DOM 中时调用。
 
@@ -281,9 +281,9 @@
   function onActivated(callback: () => void): void
   ```
 
-- **相关内容：** [指南 - 缓存实例的生命周期](/guide/built-ins/keep-alive.html#lifecycle-of-cached-instance)
+- **相关内容**：[指南 - 缓存实例的生命周期](/guide/built-ins/keep-alive.html#lifecycle-of-cached-instance)
 
-## onDeactivated()  {#ondeactivated}
+## onDeactivated() {#ondeactivated}
 
 注册一个回调函数，若组件实例是 [`<KeepAlive>`](/api/built-in-components.html#keepalive) 缓存树的一部分，当组件从 DOM 中被移除时调用。
 
@@ -295,9 +295,9 @@
   function onDeactivated(callback: () => void): void
   ```
 
-- **相关内容：** [Guide - Lifecycle of Cached Instance](/guide/built-ins/keep-alive.html#lifecycle-of-cached-instance)
+- **相关内容**：[Guide - 缓存实例的生命周期](/guide/built-ins/keep-alive.html#lifecycle-of-cached-instance)
 
-## onServerPrefetch() <sup class="vt-badge" data-text="SSR only" />  {#onserverprefetch}
+## onServerPrefetch() <sup class="vt-badge" data-text="SSR only" /> {#onserverprefetch}
 
 注册一个异步函数，在组件实例在服务器上被渲染之前调用。
 
@@ -338,4 +338,4 @@
   </script>
   ```
 
-- **相关内容：** [服务端渲染](/guide/scaling-up/ssr.html)
+- **相关内容**：[服务端渲染](/guide/scaling-up/ssr.html)

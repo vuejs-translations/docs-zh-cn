@@ -48,7 +48,7 @@
   </template>
   ```
 
-  按定义渲染组件 (`<script setup>` 组合式 API):
+  按定义渲染组件 (`<script setup>` 组合式 API)：
 
   ```vue
   <script setup>
@@ -114,10 +114,10 @@
 
 - **详细信息**
 
-  `<slot>` 元素可以使用 `name` attribute 来指定插槽名。当没有指定 `name` 时，将会渲染默认插槽。传递给插槽元素的附加 attribute 将作为插槽 prop ，传递给父级中定义的作用域插槽。
+  `<slot>` 元素可以使用 `name` attribute 来指定插槽名。当没有指定 `name` 时，将会渲染默认插槽。传递给插槽元素的附加 attribute 将作为插槽 prop，传递给父级中定义的作用域插槽。
 
   元素本身将被其所匹配的插槽内容替换。
 
   Vue 模板里的 `<slot>` 元素会被编译到 JavaScript，因此不要与[原生 `<slot>` 元素](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/slot)进行混淆。
 
-- **相关内容：** [组件 - 插槽](/guide/components/slots.html)
+- **相关内容**：[组件 - 插槽](/guide/components/slots.html)

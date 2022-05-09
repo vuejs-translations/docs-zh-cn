@@ -37,11 +37,11 @@
   </script>
   ```
 
-- **相关内容**:
+- **相关内容：**
   - [指南 - 依赖注入](/guide/components/provide-inject.html)
   - [指南 - 为 provide/inject 标注类型](/guide/typescript/composition-api.html#typing-provide-inject)
 
-## inject()  {#inject}
+## inject() {#inject}
 
 注入一个由祖先组件或整个应用 (通过 `app.provide()`) 供给的值。
 
@@ -101,6 +101,6 @@
   </script>
   ```
 
-- **相关内容**:
+- **相关内容：**
   - [指南 - 依赖注入](/guide/components/provide-inject.html)
   - [指南 - 为 provide/inject 标注类型](/guide/typescript/composition-api.html#typing-provide-inject)

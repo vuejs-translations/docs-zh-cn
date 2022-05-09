@@ -126,7 +126,7 @@ h(Transition, {
 
 - **Props**
 
-  `<TransitionGroup>` 拥有与 `<Transition>` 除了 `mode` 以外所有的 prop，并增加了两个额外的 prop:
+  `<TransitionGroup>` 拥有与 `<Transition>` 除了 `mode` 以外所有的 prop，并增加了两个额外的 prop：
 
   ```ts
   interface TransitionGroupProps extends Omit<TransitionProps, 'mode'> {
@@ -152,7 +152,7 @@ h(Transition, {
 
   注意，每个 `<transition-group>` 的子节点必须有[**独立的 key**](/guide/essentials/list.html#maintaining-state-with-key)，动画才能正常工作。
 
-  `<TransitionGroup>` 支持通过 CSS transform 过渡移动。 当一个子节点在屏幕上的位置在更新之后发生变化时，它会被应用一个使其移动的 CSS class (通过 `name` attribute 自动生成或使用 `move-class` prop 配置)。如果使其移动的 class 被应用时 CSS `transform` property 是“可过渡的”，该元素会通过 [FLIP 技术](https://aerotwist.com/blog/flip-your-animations/)平滑地到达动画终点。
+  `<TransitionGroup>` 支持通过 CSS transform 过渡移动。当一个子节点在屏幕上的位置在更新之后发生变化时，它会被应用一个使其移动的 CSS class (通过 `name` attribute 自动生成或使用 `move-class` prop 配置)。如果使其移动的 class 被应用时 CSS `transform` property 是“可过渡的”，该元素会通过 [FLIP 技术](https://aerotwist.com/blog/flip-your-animations/)平滑地到达动画终点。
 
 - **示例**
 
@@ -211,7 +211,7 @@ h(Transition, {
   </KeepAlive>
   ```
 
-  与 `v-if` / `v-else` 分支一起使用时，同一时间只能有一个组件被渲染:
+  与 `v-if` / `v-else` 分支一起使用时，同一时间只能有一个组件被渲染：
 
   ```vue-html
   <KeepAlive>
@@ -220,7 +220,7 @@ h(Transition, {
   </KeepAlive>
   ```
 
-  与 `<Transition>` 一起使用:
+  与 `<Transition>` 一起使用：
 
   ```vue-html
   <Transition>
@@ -230,7 +230,7 @@ h(Transition, {
   </Transition>
   ```
 
-  使用 `include` / `exclude`:
+  使用 `include` / `exclude`：
 
   ```vue-html
   <!-- 用逗号分隔的字符串 -->
@@ -249,7 +249,7 @@ h(Transition, {
   </KeepAlive>
   ```
 
-  使用 `max`:
+  使用 `max`：
 
   ```vue-html
   <KeepAlive :max="10">

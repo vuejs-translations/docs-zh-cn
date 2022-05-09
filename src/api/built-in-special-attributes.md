@@ -4,7 +4,7 @@
 
 `key` 这个特殊的 attribute 主要作为 Vue 的虚拟 DOM 算法提示，在比较新旧节点列表时用于识别 vnode。
 
-- **预期：** `number | string | symbol`
+- **预期**：`number | string | symbol`
 
 - **详细信息**
 
@@ -35,13 +35,13 @@
 
   当 `text` 变化时，`<span>` 总是会被替换而不是更新，因此 transition 将会被触发。
 
-- **相关内容：** [指南——列表渲染——通过 `key` 管理状态](/guide/essentials/list.html#maintaining-state-with-key)
+- **相关内容**：[指南——列表渲染——通过 `key` 管理状态](/guide/essentials/list.html#maintaining-state-with-key)
 
 ## ref {#ref}
 
 表示[模板 ref](/guide/essentials/template-refs.html)。
 
-- **预期：** `string | Function`
+- **预期**：`string | Function`
 
 - **详细信息**
 
@@ -80,13 +80,13 @@
 
   `this.$refs` 也是非响应式的，因此你不应该尝试在模板中使用它来进行数据绑定。
 
-- **相关内容：** [模板 ref](/guide/essentials/template-refs.html)
+- **相关内容**：[模板 ref](/guide/essentials/template-refs.html)
 
 ## is {#is}
 
 用于绑定[动态组件](/guide/essentials/component-basics.html#dynamic-components)。
 
-- **预期：**`string | Component`
+- **预期**：`string | Component`
 
 - **用于原生元素** <sup class="vt-badge">3.1+</sup>
 
