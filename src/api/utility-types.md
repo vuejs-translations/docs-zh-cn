@@ -1,7 +1,7 @@
 # 工具类型 {#utility-types}
 
 :::info
-本页文档罗列出了一部分可能需要解释一下使用方式的常用工具类型。若要获取这些工具类型的完整列表，请查看[源代码](https://github.com/vuejs/core/blob/main/packages/runtime-core/src/index.ts#L131)。
+此页面仅列出了一些可能需要解释其使用方式的常用工具类型。 有关导出类型的完整列表，请查看[源代码](https://github.com/vuejs/core/blob/main/packages/runtime-core/src/index.ts#L131)。
 :::
 
 ## PropType\<T> {#proptypet}
@@ -126,9 +126,9 @@
   ```
 
  :::tip
-  类型扩充必须被放置在一个模块 `.ts` 或 `.d.ts` 文件中。查看 [类型扩充指南](/guide/typescript/options-api.html#augmenting-global-properties) 了解更多细节。
+  类型增强必须被放置在一个模块 `.ts` 或 `.d.ts` 文件中。查看 [类型增强指南](/guide/typescript/options-api.html#augmenting-global-properties) 了解更多细节。
   :::
-  
+
   :::info 相关内容
 SFC `<style>` 标签支持通过 `v-bind:CSS` 函数来链接 CSS 值与组件状态。这允许在没有类型扩充的情况下自定义属性。
 
