@@ -14,7 +14,7 @@
 
 - **详细信息**
 
-  通过 `template` 选项提供的模板将会在运行时即时编译。这仅在使用了包含模板编译器的 Vue 构建版本的情况下支持。文件名中带有 `runtime` 的 Vue 构建版本**未包含**模板编译器，例如 `vue.runtime.esm-bundler.js`。请查阅 [发行版文件指南](https://github.com/vuejs/core/tree/main/packages/vue#which-dist-file-to-use) 了解不同构建版本之间的详细区别。
+  通过 `template` 选项提供的模板将会在运行时即时编译。这仅在使用了包含模板编译器的 Vue 构建版本的情况下支持。文件名中带有 `runtime` 的 Vue 构建版本**未包含**模板编译器，例如 `vue.runtime.esm-bundler.js`。请查阅[发行版文件指南](https://github.com/vuejs/core/tree/main/packages/vue#which-dist-file-to-use)了解不同构建版本之间的详细区别。
 
   如果该字符串以 `#` 开头，它将被用作 `querySelector`，并使用所选元素的 `innerHTML` 作为模板字符串。这允许使用原生 `<template>` 元素来创作源模板。
 
@@ -23,7 +23,7 @@
   如果应用的根组件不含任何 `template` 或 `render` 选项，Vue 将会尝试使用所挂载元素的 `innerHTML` 来作为模板。
 
   :::warning 安全性注意
-  请仅使用你可以信任的模板来源。不要直接将用户提供的内容用作模板。查看 [安全性指南](/guide/best-practices/security.html#rule-no-1-never-use-non-trusted-templates) 了解更多细节。
+  请仅使用你可以信任的模板来源。不要直接将用户提供的内容用作模板。查看[安全性指南](/guide/best-practices/security.html#rule-no-1-never-use-non-trusted-templates)了解更多细节。
   :::
 
 ## render {#render}
@@ -80,6 +80,6 @@
 
 - **详细信息**
 
-  这个配置选项仅在使用了完整的构建版本（即可以在浏览器中编译模板的独立 `vue.js` ）时才有效。它支持与应用级的 [app.config.compilerOptions](/api/application.html#app-config-compileroptions) 相同的选项，并针对当前组件有更高的优先级。
+  这个配置选项仅在使用了完整的构建版本 (即可以在浏览器中编译模板的独立 `vue.js`) 时才有效。它支持与应用级的 [app.config.compilerOptions](/api/application.html#app-config-compileroptions) 相同的选项，并针对当前组件有更高的优先级。
 
-- **相关内容：** [app.config.compilerOptions](/api/application.html#app-config-compileroptions)
+- **相关内容**：[app.config.compilerOptions](/api/application.html#app-config-compileroptions)

@@ -38,7 +38,7 @@
 
 ## triggerRef() {#triggerref}
 
-强制触发依赖于一个 [浅层 ref](#shallowref) 的副作用，这常常用在对浅层 ref 的内部值做了变更之后。
+强制触发依赖于一个 [浅层 ref](#shallowref) 的副作用，这通常在对浅引用的内部值进行深度变更后使用。
 
 - **类型**
 
@@ -65,7 +65,7 @@
   triggerRef(shallow)
   ```
 
-## customRef()  {#customref}
+## customRef() {#customref}
 
 创建一个自定义的 ref，显式声明对其依赖追踪和更新触发的控制方式。
 
@@ -85,17 +85,17 @@
 
 - **详细信息**
 
-  `customRef()` 预期接受一个工厂函数，这个工厂函数接受 `track` 和 `trigger` 两个函数作为参数，并应该返回一个带 `get` 和 `set` 方法的对象。
+  `customRef()` 预期接收一个工厂函数作为参数，这个工厂函数接受 `track` 和 `trigger` 两个函数作为参数，并返回一个带有 `get` 和 `set` 方法的对象。
 
-  一般来说，`track()` 应该在 `get()` 方法中调用，而 `trigger()` 应该在 `set()` 中调用。然而，你对它们该怎么调用、需不需要调用都有完全的控制权。
+  一般来说，`track()` 应该在 `get()` 方法中调用，而 `trigger()` 应该在 `set()` 中调用。然而事实上，你对何时调用、是否应该调用他们有完全的控制权。
 
 - **示例**
 
-  创建一个防抖 ref，即仅在上一次 set 调用后的一端固定间隔后再调用：
+  创建一个防抖 ref，即只在最近一次 set 调用后的一段固定间隔后再调用：
 
   ```js
   import { customRef } from 'vue'
-  
+
   export function useDebouncedRef(value, delay = 200) {
     let timeout
     return customRef((track, trigger) => {
@@ -131,7 +131,7 @@
 
   [在 Playground 中尝试一下](https://sfc.vuejs.org/#eyJBcHAudnVlIjoiPHNjcmlwdCBzZXR1cD5cbmltcG9ydCB7IHVzZURlYm91bmNlZFJlZiB9IGZyb20gJy4vZGVib3VuY2VkUmVmLmpzJ1xuY29uc3QgdGV4dCA9IHVzZURlYm91bmNlZFJlZignaGVsbG8nLCAxMDAwKVxuPC9zY3JpcHQ+XG5cbjx0ZW1wbGF0ZT5cbiAgPHA+XG4gICAgVGhpcyB0ZXh0IG9ubHkgdXBkYXRlcyAxIHNlY29uZCBhZnRlciB5b3UndmUgc3RvcHBlZCB0eXBpbmc6XG4gIDwvcD5cbiAgPHA+e3sgdGV4dCB9fTwvcD5cbiAgPGlucHV0IHYtbW9kZWw9XCJ0ZXh0XCIgLz5cbjwvdGVtcGxhdGU+IiwiaW1wb3J0LW1hcC5qc29uIjoie1xuICBcImltcG9ydHNcIjoge1xuICAgIFwidnVlXCI6IFwiaHR0cHM6Ly9zZmMudnVlanMub3JnL3Z1ZS5ydW50aW1lLmVzbS1icm93c2VyLmpzXCJcbiAgfVxufSIsImRlYm91bmNlZFJlZi5qcyI6ImltcG9ydCB7IGN1c3RvbVJlZiB9IGZyb20gJ3Z1ZSdcblxuZXhwb3J0IGZ1bmN0aW9uIHVzZURlYm91bmNlZFJlZih2YWx1ZSwgZGVsYXkgPSAyMDApIHtcbiAgbGV0IHRpbWVvdXRcbiAgcmV0dXJuIGN1c3RvbVJlZigodHJhY2ssIHRyaWdnZXIpID0+IHtcbiAgICByZXR1cm4ge1xuICAgICAgZ2V0KCkge1xuICAgICAgICB0cmFjaygpXG4gICAgICAgIHJldHVybiB2YWx1ZVxuICAgICAgfSxcbiAgICAgIHNldChuZXdWYWx1ZSkge1xuICAgICAgICBjbGVhclRpbWVvdXQodGltZW91dClcbiAgICAgICAgdGltZW91dCA9IHNldFRpbWVvdXQoKCkgPT4ge1xuICAgICAgICAgIHZhbHVlID0gbmV3VmFsdWVcbiAgICAgICAgICB0cmlnZ2VyKClcbiAgICAgICAgfSwgZGVsYXkpXG4gICAgICB9XG4gICAgfVxuICB9KVxufSJ9)
 
-## shallowReactive()  {#shallowreactive}
+## shallowReactive() {#shallowreactive}
 
 [`reactive()`](./reactivity-core.html#reactive) 的浅层作用形式。
 
@@ -143,10 +143,10 @@
 
 - **详细信息**
 
-  和 `reactive()`不同，这里不会有深层次转换：一个浅层响应式对象里只有根级别的属性是响应式的。属性的值会被原样存储和暴露，这也意味着属性为 ref 的值 **不会** 被自动解包了。
+  和 `reactive()`不同，这里没有深层级的转换：一个浅层响应式对象里只有根级别的 property 是响应式的。property 的值会被原样存储和暴露，这也意味着值为 ref 的 property **不会** 被自动解包了。
 
   :::warning 谨慎使用
-  浅层数据结构应该只用于组件中的根级状态。请避免将其嵌套在深层次的响应式对象中，因为它会创建一个具有不一致的响应行为的树，这可能很难理解和调试。
+  浅层数据结构应该只用于组件中的根级状态。请避免将其嵌套在深层次的响应式对象中，因为它创建的树具有不一致的响应行为，这可能很难理解和调试。
   :::
 
 - **示例**
@@ -169,7 +169,7 @@
   state.nested.bar++
   ```
 
-## shallowReadonly()  {#shallowreadonly}
+## shallowReadonly() {#shallowreadonly}
 
 [`readonly()`](./reactivity-core.html#readonly) 的浅层作用形式
 
@@ -181,10 +181,10 @@
 
 - **详细信息**
 
-  和 `readonly()` 不同，这里没有深层级的转换：只有跟根层级的属性变为了只读。属性值都会被原样存储和暴露，这也意味着值为 ref 的属性 **不会** 被自动解包了。
+  和 `readonly()` 不同，这里没有深层级的转换：只有根层级的 property 变为了只读。property 的值都会被原样存储和暴露，这也意味着值为 ref 的 property **不会** 被自动解包了。
 
   :::warning 谨慎使用
-  浅层数据结构应该只用于组件中的根级状态。请避免将其嵌套在深层次的响应式对象中，因为它会创建一个具有不一致的响应行为的树，这可能很难理解和调试。
+  浅层数据结构应该只用于组件中的根级状态。请避免将其嵌套在深层次的响应式对象中，因为它创建的树具有不一致的响应行为，这可能很难理解和调试。
   :::
 
 - **示例**
@@ -207,7 +207,7 @@
   state.nested.bar++
   ```
 
-## toRaw()  {#toraw}
+## toRaw() {#toraw}
 
 根据一个 Vue 创建的代理返回其原始对象。
 
@@ -219,9 +219,9 @@
 
 - **详细信息**
 
-  `toRaw()` 可以返回由 [`reactive()`](./reactivity-core.html#reactive)、[`readonly()`](./reactivity-core.html#readonly)、[`shallowReactive()`](#shallowreactive) 或者 [`shallowReadonly()`](#shallowreadonly) 创建的代理对应的源对象。
+  `toRaw()` 可以返回由 [`reactive()`](./reactivity-core.html#reactive)、[`readonly()`](./reactivity-core.html#readonly)、[`shallowReactive()`](#shallowreactive) 或者 [`shallowReadonly()`](#shallowreadonly) 创建的代理对应的原始对象。
 
-  这是一个可以用于临时读取而不引起代理访问/跟踪开销，或是写入而不触发更改的特殊方法。
+  这是一个可以用于临时读取而不引起代理访问/跟踪开销，或是写入而不触发更改的特殊方法。不建议保存对原始对象的持久引用，请谨慎使用。
 
 - **示例**
 
@@ -232,9 +232,9 @@
   console.log(toRaw(reactiveFoo) === foo) // true
   ```
 
-## markRaw()  {#markraw}
+## markRaw() {#markraw}
 
-将一个对象标记为不可被转为代理的对象。返回也是该对象。
+将一个对象标记为不可被转为代理。返回该对象本身。
 
 - **类型**
 
@@ -254,13 +254,13 @@
   ```
 
   :::warning 谨慎使用
-  `markRaw()` 和 `shallowReactive()` 这样的浅层式 API 是你可以有选择地 有选择地避开默认的深度响应/只读转换，并在状态关系谱中嵌入原始的、非代理的对象。它们可能用于各种各样的原因：
+  `markRaw()` 和类似 `shallowReactive()` 这样的浅层式 API 使你可以有选择地避开默认的深度响应/只读转换，并在状态关系谱中嵌入原始的、非代理的对象。它们可能出于各种各样的原因被使用：
 
   - 有些值不应该是响应式的，例如复杂的第三方类实例或 Vue 组件对象。
 
-  - 当呈现带有不可变数据源的大型列表时，跳过代理转换可以提供性能改进。
+  - 当呈现带有不可变数据源的大型列表时，跳过代理转换可以提高性能。
 
-  这应该是一种进阶需求，因为只在根层访问能到原始值，所以如果你把一个嵌套的、没有标记的原始对象设置成一个反应式对象，然后再次访问它，你会得到代理的版本回来。这可能会导致**识别风险**，即是说执行一个依赖于对象标识的操作，但同时使用同一对象的原始版本和代理版本：
+  这应该是一种进阶需求，因为只在根层访问能到原始值，所以如果把一个嵌套的、没有标记的原始对象设置成一个响应式对象，然后再次访问它，你获取到的是代理的版本。这可能会导致**识别风险**，即执行一个依赖于对象标识的操作，但同时使用同一对象的原始版本和代理版本：
 
   ```js
   const foo = markRaw({
@@ -279,9 +279,9 @@
 
   :::
 
-## effectScope()  {#effectscope}
+## effectScope() {#effectscope}
 
-创建一个 effect 作用域，可以捕获其中所创建的响应式依赖（例如计算属性和侦听器），这样捕获到的作用都可以一起处理。对于该 API 的使用细节，请查阅对应的 [RFC](https://github.com/vuejs/rfcs/blob/master/active-rfcs/0041-reactivity-effect-scope.md)。
+创建一个 effect 作用域，可以捕获其中所创建的响应式副作用（即计算属性和侦听器），这样捕获到的副作用可以一起处理。对于该 API 的使用细节，请查阅对应的 [RFC](https://github.com/vuejs/rfcs/blob/master/active-rfcs/0041-reactivity-effect-scope.md)。
 
 - **类型**
 
@@ -311,7 +311,7 @@
   scope.stop()
   ```
 
-## getCurrentScope()  {#getcurrentscope}
+## getCurrentScope() {#getcurrentscope}
 
 如果有的话，返回当前活跃的 [effect 作用域](#effectscope)。
 
@@ -321,11 +321,11 @@
   function getCurrentScope(): EffectScope | undefined
   ```
 
-## onScopeDispose()  {#onscopedispose}
+## onScopeDispose() {#onscopedispose}
 
-在当前活动的 [effect 作用域](#effectscope) 上注册一个处置回调。这个回调函数会在相关的副作用范围停止时被调用。
+在当前活跃的 [effect 作用域](#effectscope) 上注册一个处理回调函数。当相关的 effect 作用域停止时会调用这个回调函数。
 
-这个方法可以作为可重用的组合式函数中 `onUnmounted` 的替代品，它并不与组件耦合，而每一个 Vue 组件的 `setup()` 函数也是在一个 effect 作用域中调用的。
+这个方法可以作为可复用的组合式函数中 `onUnmounted` 的替代品，它并不与组件耦合，因为每一个 Vue 组件的 `setup()` 函数也是在一个 effect 作用域中调用的。
 
 - **类型**
 

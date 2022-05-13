@@ -28,7 +28,7 @@
     "open": "^8.4.0",
     "patch-vue-directive-ssr": "^0.0.1",
     "simple-git": "^2.48.0",
-    "zhlint": "^0.5.3"
+    "zhlint": "^0.6.0"
   },
   "pnpm": {
     "peerDependencyRules": {

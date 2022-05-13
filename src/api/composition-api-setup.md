@@ -1,4 +1,4 @@
-# 组合式 API：setup()  {#composition-api-setup}
+# 组合式 API：setup() {#composition-api-setup}
 
 :::info 注意
 这篇文档所讲的是组件 `setup` 选项的使用方式。如果你正在搭配单文件组件使用组合式 API，建议使用更简洁易用的 [`<script setup>`](/api/sfc-script-setup.html) 语法。
@@ -44,7 +44,7 @@ export default {
 `setup()` 自身并不含对组件实例的访问权，即在 `setup()` 中访问 `this` 会是 `undefined`。你可以在选项式 API 中访问组合式 API 暴露的值，但反过来则不行。
 :::
 
-## 访问 Prop  {#accessing-props}
+## 访问 Prop {#accessing-props}
 
 `setup` 函数的第一个参数是组件的 `props`。和标准的组件一致，一个 `setup` 函数的 `props` 是响应式的，并且会在传入新的 prop 时同步更新。
 

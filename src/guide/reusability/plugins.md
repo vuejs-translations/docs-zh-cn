@@ -79,7 +79,7 @@ app.use(i18nPlugin, {
 })
 ```
 
-我们的 `$translate` 函数会接收一个例如 `greetings.hello`的字符串，在用户提供的翻译字典中查找，并返回翻译得到的值，在这里就是 `Bonjour!`：
+我们的 `$translate` 函数会接收一个例如 `greetings.hello` 的字符串，在用户提供的翻译字典中查找，并返回翻译得到的值，在这里就是 `Bonjour!`：
 
 ```vue-html
 <h1>{{ $translate('greetings.hello') }}</h1>
