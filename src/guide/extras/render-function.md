@@ -39,6 +39,10 @@ h('div', { id: 'foo' })
 // Vue 会自动将它们分配到正确的位置
 h('div', { class: 'bar', innerHTML: 'hello' })
 
+// props modifiers such as .prop and .attr can be added
+// with '.' and `^' prefixes respectively
+h('div', { '.name': 'some-name', '^width': '100' })
+
 // 类与样式可以像在模板中一样
 // 用数组或对象的形式书写
 h('div', { class: [foo, { bar }], style: { color: 'red' } })
