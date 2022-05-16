@@ -22,7 +22,7 @@
 
   当你在使用单文件组件时，组件已经会根据其文件名推导出其名称。举个例子，一个名为 `MyComponent.vue` 的文件会推导出显示名称为“MyComponent”。
 
-  另一种场景是裆一个组件通过 [`app.component`](/api/application.html#app-component) 被全局注册时，这个全局 ID 就自动被设为了其名称。
+  另一种场景是当一个组件通过 [`app.component`](/api/application.html#app-component) 被全局注册时，这个全局 ID 就自动被设为了其名称。
 
   使用 `name` 选项使你可以覆盖推导出的名称，或是在没有推导出名字时显式提供一个。（例如没有使用构建工具时，或是一个内联的非 SFC 式的组件）
 
