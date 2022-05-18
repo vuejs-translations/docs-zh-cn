@@ -1,6 +1,6 @@
 # 响应性 API：核心 {#reactivity-api-core}
 
-:::info 相关内容
+:::info 参考
 要更好地了解响应性 API，推荐阅读下面几个指南中的章节：
 
 - [响应性基础](/guide/essentials/reactivity-fundamentals.html) (with the API preference set to Composition API)
@@ -39,7 +39,7 @@
   console.log(count.value) // 1
   ```
 
-- **相关内容：**
+- **参考：**
   - [指南 - `ref()` 定义响应式变量](/guide/essentials/reactivity-fundamentals.html#reactive-variables-with-ref)
   - [指南 - 为 `ref()` 标注类型](/guide/typescript/composition-api.html#typing-ref)
 
@@ -108,7 +108,7 @@
   })
   ```
 
-- **相关内容：**
+- **参考：**
   - [指南 - 计算属性](/guide/essentials/computed.html)
   - [指南 - 计算属性调试](/guide/extras/reactivity-in-depth.html#computed-debugging)
   - [指南 - 为 `computed()` 标注类型](/guide/typescript/composition-api.html#typing-computed)
@@ -186,7 +186,7 @@
   console.log(obj.count === count.value) // true
   ```
 
-- **相关内容：**
+- **参考：**
   - [指南 - 响应式基础](/guide/essentials/reactivity-fundamentals.html)
   - [指南 - 为 `reactive()` 标注类型](/guide/typescript/composition-api.html#typing-reactive)
 
@@ -306,7 +306,7 @@
   })
   ```
 
-- **相关内容：**
+- **参考：**
   - [指南 - 侦听器](/guide/essentials/watchers.html#watcheffect)
   - [指南 - 侦听器调试](/guide/extras/reactivity-in-depth.html#watcher-debugging)
 
@@ -381,9 +381,9 @@
   第三个可选的参数是一个对象，支持以下这些选项：
 
   - **`immediate`**：在侦听器创建时立即触发回调。第一次调用时旧值是 `undefined`。
-  - **`deep`**：如果源是对象，强制深度遍历，以便在深层级变更时启动回调。相关内容请看[深层侦听器](/guide/essentials/watchers.html#deep-watchers)一节。
-  - **`flush`**：调整回调函数的刷新时机。相关内容请看[回调的刷新时机](/guide/essentials/watchers.html#callback-flush-timing)一节。
-  - **`onTrack / onTrigger`**：调试侦听器的依赖。相关内容请看[调试侦听器](/guide/extras/reactivity-in-depth.html#watcher-debugging)一节。
+  - **`deep`**：如果源是对象，强制深度遍历，以便在深层级变更时启动回调。参考请看[深层侦听器](/guide/essentials/watchers.html#deep-watchers)一节。
+  - **`flush`**：调整回调函数的刷新时机。参考请看[回调的刷新时机](/guide/essentials/watchers.html#callback-flush-timing)一节。
+  - **`onTrack / onTrigger`**：调试侦听器的依赖。参考请看[调试侦听器](/guide/extras/reactivity-in-depth.html#watcher-debugging)一节。
 
   与 [`watchEffect()`](#watcheffect) 相比，`watch()` 使我们可以：
 
@@ -455,7 +455,7 @@
   })
   ```
 
-- **相关内容：**
+- **参考：**
 
   - [指南 - 侦听器](/guide/essentials/watchers.html)
   - [指南 - 侦听器调试](/guide/extras/reactivity-in-depth.html#watcher-debugging)

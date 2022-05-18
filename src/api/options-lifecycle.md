@@ -1,6 +1,6 @@
 # 生命周期选项 {#options-lifecycle}
 
-:::info 相关内容
+:::info 参考
 对于生命周期钩子的通用使用方法，请看[指南 - 生命周期钩子](/guide/essentials/lifecycle.html)
 :::
 
@@ -228,7 +228,7 @@
   }
   ```
 
-- **相关内容**：[深入响应式系统](/guide/extras/reactivity-in-depth.html)
+- **参考**：[深入响应式系统](/guide/extras/reactivity-in-depth.html)
 
 ## renderTriggered <sup class="vt-badge dev-only" /> {#rendertriggered-sup-classvt-badge-dev-only}
 
@@ -252,7 +252,7 @@
   }
   ```
 
-- **相关内容**：[深入响应式系统](/guide/extras/reactivity-in-depth.html)
+- **参考**：[深入响应式系统](/guide/extras/reactivity-in-depth.html)
 
 ## activated {#activated}
 
@@ -268,7 +268,7 @@
   }
   ```
 
-- **相关内容**：[指南 - 被缓存实例的生命周期](/guide/built-ins/keep-alive.html#lifecycle-of-cached-instance)
+- **参考**：[指南 - 被缓存实例的生命周期](/guide/built-ins/keep-alive.html#lifecycle-of-cached-instance)
 
 ## deactivated {#deactivated}
 
@@ -284,7 +284,7 @@
   }
   ```
 
-- **相关内容**：[指南 - 被缓存实例的生命周期](/guide/built-ins/keep-alive.html#lifecycle-of-cached-instance)
+- **参考**：[指南 - 被缓存实例的生命周期](/guide/built-ins/keep-alive.html#lifecycle-of-cached-instance)
 
 ## serverPrefetch <sup class="vt-badge" data-text="SSR only" /> {#serverprefetch}
 
@@ -329,4 +329,4 @@
   }
   ```
 
-- **相关内容**：[服务端渲染](/guide/scaling-up/ssr.html)
+- **参考**：[服务端渲染](/guide/scaling-up/ssr.html)

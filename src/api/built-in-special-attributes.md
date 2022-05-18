@@ -35,7 +35,7 @@
 
   当 `text` 变化时，`<span>` 总是会被替换而不是更新，因此 transition 将会被触发。
 
-- **相关内容**：[指南——列表渲染——通过 `key` 管理状态](/guide/essentials/list.html#maintaining-state-with-key)
+- **参考**：[指南——列表渲染——通过 `key` 管理状态](/guide/essentials/list.html#maintaining-state-with-key)
 
 ## ref {#ref}
 
@@ -80,7 +80,7 @@
 
   `this.$refs` 也是非响应式的，因此你不应该尝试在模板中使用它来进行数据绑定。
 
-- **相关内容**：[模板 ref](/guide/essentials/template-refs.html)
+- **参考**：[模板 ref](/guide/essentials/template-refs.html)
 
 ## is {#is}
 
@@ -100,7 +100,7 @@
   </table>
   ```
 
-- **相关内容：**
+- **参考：**
 
   - [内置特殊元素——`<component>`](/api/built-in-special-elements.html#component)
   - [动态组件](/guide/essentials/component-basics.html#dynamic-components)

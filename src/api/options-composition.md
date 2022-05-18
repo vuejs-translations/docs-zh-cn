@@ -52,7 +52,7 @@
 
   请注意，针对上面这个例子，所供给的 `msg` 将**不会**是响应式的。请看[配合响应性](/guide/components/provide-inject.html#working-with-reactivity)一节获取更多细节。
 
-- **相关内容**：[依赖注入](/guide/components/provide-inject.html)
+- **参考**：[依赖注入](/guide/components/provide-inject.html)
 
 ## inject {#inject}
 
@@ -167,7 +167,7 @@
   }
   ```
 
-- **相关内容**：[依赖注入](/guide/components/provide-inject.html)
+- **参考**：[依赖注入](/guide/components/provide-inject.html)
 
 ## mixins {#mixins}
 

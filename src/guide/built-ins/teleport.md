@@ -196,7 +196,7 @@ let open = $ref(false)
 
 ---
 
-**相关内容**
+**参考**
 
 - [`<Teleport>` API 参考](/api/built-in-components.html#teleport)
 - [在 SSR 中处理 Teleports](/api/ssr.html#handling-teleports)

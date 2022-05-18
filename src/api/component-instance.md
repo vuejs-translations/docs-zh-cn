@@ -89,7 +89,7 @@
   })
   ```
 
-- **相关内容：** [`app.config.optionMergeStrategies`](/api/application.html#app-config-optionmergestrategies)
+- **参考：** [`app.config.optionMergeStrategies`](/api/application.html#app-config-optionmergestrategies)
 
 ## $parent {#parent}
 
@@ -137,7 +137,7 @@
 
   如果插槽是一个 [作用域插槽](/guide/components/slots.html#scoped-slots)，传递给该插槽函数的参数并作为插槽 props 对插槽中的内容可用。
 
-- **相关内容：** [渲染函数 - 渲染插槽](/guide/extras/render-function.html#rendering-slots)
+- **参考：** [渲染函数 - 渲染插槽](/guide/extras/render-function.html#rendering-slots)
 
 ## $refs {#refs}
 
@@ -151,7 +151,7 @@
   }
   ```
 
-- **相关内容：**
+- **参考：**
 
   - [模板 ref](/guide/essentials/template-refs.html)
   - [特殊 Attribute - ref](./built-in-special-attributes.md#ref)
@@ -174,7 +174,7 @@
 
   默认情况下，若是单一根节点组件，`$attrs` 中的所有属性都是直接自动继承自组件的根元素。而多根节点组件则不会如此，同时你也可以通过配置[`inheritAttrs`](./options-misc.html#inheritattrs)选项来显式地关闭该行为。
 
-- **相关内容：**
+- **参考：**
 
   - [透传 Attribute](/guide/components/attrs.html)
 
@@ -257,7 +257,7 @@
   unwatch()
   ```
 
-- **相关内容：**
+- **参考：**
   - [选项 - `watch`](/api/options-state.html#watch)
   - [指南 - 侦听器](/guide/essentials/watchers.html)
 
@@ -286,7 +286,7 @@
   }
   ```
 
-- **相关内容：**
+- **参考：**
 
   - [组件 - 事件](/guide/components/events.html)
   - [`emits` 选项](./options-state.html#emits)
@@ -323,4 +323,4 @@
 
   和全局版本的 `nextTick()` 的唯一区别就是组件传递给 `this.$nextTick()` 的回调函数会带上 `this` 上下文，其绑定了当前组件实例。
 
-- **相关内容：** [`nextTick()`](./general.html#nexttick)
+- **参考：** [`nextTick()`](./general.html#nexttick)

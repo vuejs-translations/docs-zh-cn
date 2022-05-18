@@ -98,7 +98,7 @@
 
   </div>
 
-- **相关内容：** [透传 attribute](/guide/components/attrs.html)
+- **参考：** [透传 attribute](/guide/components/attrs.html)
 
 ## components {#components}
 
@@ -128,7 +128,7 @@
   }
   ```
 
-- **相关内容：** [组件注册](/guide/components/registration.html)
+- **参考：** [组件注册](/guide/components/registration.html)
 
 ## directives {#directives}
 
@@ -163,4 +163,4 @@
 
   这个列表中的指令都在当前组件实例中可用。
 
-- **相关内容：** [自定义指令](/guide/reusability/custom-directives.html)
+- **参考：** [自定义指令](/guide/reusability/custom-directives.html)

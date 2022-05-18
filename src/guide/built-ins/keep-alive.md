@@ -135,6 +135,6 @@ export default {
 
 ---
 
-**相关内容**
+**参考**
 
 - [`<KeepAlive>` API 参考](/api/built-in-components.html#keepalive)
