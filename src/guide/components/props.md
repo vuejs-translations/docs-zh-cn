@@ -482,7 +482,7 @@ export default {
 
 - 所有 prop 默认都是可选的，除非声明了 `required: true`。
 
-- 除 `Boolean` 外的未传递的可选 prop 将会有一个缺省值 `undefined`。
+- 除 `Boolean` 外的未传递的可选 prop 将会有一个默认值 `undefined`。
   
 - `Boolean` 类型的未传递 prop 将被转换为 `false`。你应该为它设置一个 `default` 值来确保行为符合预期。
 
