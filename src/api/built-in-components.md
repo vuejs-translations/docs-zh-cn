@@ -244,7 +244,7 @@ h(Transition, {
   </KeepAlive>
 
   <!-- 数组 (使用 `v-bind`) -->
-  <keepalive :include="['a', 'b']">
+  <KeepAlive :include="['a', 'b']">
     <component :is="view"></component>
   </KeepAlive>
   ```
