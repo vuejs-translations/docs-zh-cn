@@ -50,7 +50,7 @@ footer: false
 
 你现在应该已经运行起来了你的第一个 Vue 项目！下面是一些补充提示：
 
-- 推荐的 IDE 配置是 [Visual Studio Code](https://code.visualstudio.com/) + [Volar 扩展](https://marketplace.visualstudio.com/items?itemName=johnsoncodehk.volar)，选用 [WebStorm](https://www.jetbrains.com/webstorm/) 也是可以的。
+- 推荐的 IDE 配置是 [Visual Studio Code](https://code.visualstudio.com/) + [Volar 扩展](https://marketplace.visualstudio.com/items?itemName=Vue.volar)，选用 [WebStorm](https://www.jetbrains.com/webstorm/) 也是可以的。
 - 更多工具细节，包括与后端框架的整合，我们会在[工具链指引](/guide/scaling-up/tooling.html)进行讨论。
 - 要了解构建工具 Vite 更多背后的细节，请查看 [Vite 文档](https://cn.vitejs.dev)。
 - 如果你选择使用 TypeScript，请阅读 [TypeScript 使用指南](typescript/overview.html)。
@@ -74,7 +74,9 @@ footer: false
 <div id="app">{{ message }}</div>
 
 <script>
-  Vue.createApp({
+  const { createApp } = Vue
+
+  createApp({
     data() {
       return {
         message: 'Hello Vue!'
@@ -84,7 +86,11 @@ footer: false
 </script>
 ```
 
-上面的例子使用了全局构建版的 Vue，该版本的所有 API 都暴露在了全局变量 `Vue` 上。
+上面的例子使用了全局构建版的 Vue，该版本的所有 API 都暴露在了全局变量 `Vue` 上。 For example, to also use the `ref` API, you can do:
+
+```js
+const { createApp, ref } = Vue
+```
 
 在全局构建版可用的情况下，为保持一致性，在该文档的其余部分我们会主要使用 [ES 模块](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Guide/Modules)语法。若想通过原生 ES 模块使用 Vue，请使用下面这样的 HTML：
 
@@ -112,11 +118,19 @@ footer: false
 </script>
 ```
 
-注意我们可以直接在代码中导入 `'vue'`——这是因为有代码块 `<script type="importmap">`，使用了一个名为[导入映射表 (Import Maps)](https://caniuse.com/import-maps) 的浏览器原生功能。目前只有基于 Chromium 的浏览器支持导入映射表，所以我们推荐你在学习过程中使用 Chrome 或 Edge。如果更偏爱那些还不支持导入映射表的浏览器，你可以使用 [es-module-shims](https://github.com/guybedford/es-module-shims) 来进行 polyfill。
+注意我们可以直接在代码中导入 `'vue'`——这是因为有代码块 `<script type="importmap">`，使用了一个名为[导入映射表 (Import Maps)](https://caniuse.com/import-maps) 的浏览器原生功能。
 
 你可以在映射表中添加其他的依赖——但请务必确保你使用的是该库的 ES 模块版本。
 
-:::tip 不要用在生产环境
+:::tip Import Maps Browser Support
+目前只有基于 Chromium 的浏览器支持导入映射表，所以我们推荐你在学习过程中使用 Chrome 或 Edge。
+
+If using Firefox, it is only supported in version 102+ and currently needs to be enabled via the `dom.importMaps.enabled` option in `about:config`.
+
+如果更偏爱那些还不支持导入映射表的浏览器，你可以使用 [es-module-shims](https://github.com/guybedford/es-module-shims) 来进行 polyfill。
+:::
+
+:::warning 不要用在生产环境
 基于导入映射表的配置仅用于学习——如果你想在生产环境中使用 Vue 而不借助任何构建工具，请务必阅读[生产环境部署指南](/guide/best-practices/production-deployment.html#without-build-tools)。
 :::
 

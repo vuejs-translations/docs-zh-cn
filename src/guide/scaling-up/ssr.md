@@ -229,7 +229,7 @@ server.get('/', (req, res) => {
 
 Vite 提供了内置的 [Vue 服务端渲染支持](https://vitejs.dev/guide/ssr.html)，但它在设计上是偏底层的。如果你想要直接使用 Vite，可以看看 [vite-plugin-ssr](https://vite-plugin-ssr.com/)，一个帮你抽象掉许多复杂细节的社区插件。
 
-你也可以在[这里](https://github.com/vitejs/vite/tree/main/packages/playground/ssr-vue)查看一个使用手动配置的 Vue + Vite SSR 的示例项目，以它作为基础来构建。请注意，这种方式只有在你有丰富的 SSR 和构建工具经验，且相比于更顶层的架构，你更倾向于拥有完整控制权时，才推荐使用。
+你也可以在[这里](https://github.com/vitejs/vite/tree/main/playground/ssr-vue)查看一个使用手动配置的 Vue + Vite SSR 的示例项目，以它作为基础来构建。请注意，这种方式只有在你有丰富的 SSR 和构建工具经验，且相比于更顶层的架构，你更倾向于拥有完整控制权时，才推荐使用。
 
 ## 书写 SSR 友好的代码 {#writing-ssr-friendly-code}
 
