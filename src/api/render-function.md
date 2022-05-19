@@ -93,7 +93,7 @@
   })
   ```
 
-- **相关内容**：[指南——渲染函数——创建 VNode](/guide/extras/render-function.html#creating-vnodes)
+- **参考**：[指南——渲染函数——创建 VNode](/guide/extras/render-function.html#creating-vnodes)
 
 ## mergeProps() {#mergeprops}
 
@@ -228,7 +228,7 @@
 
   </div>
 
-- **相关内容**：[指南 - 渲染函数 - 组件](/guide/extras/render-function.html#components)
+- **参考**：[指南 - 渲染函数 - 组件](/guide/extras/render-function.html#components)
 
 ## resolveDirective() {#resolvedirective}
 
@@ -248,7 +248,7 @@
 
   如果指令没有找到，会抛出一个运行时警告，并返回 `undefined`。
 
-- **相关内容**：[指南 - 渲染函数 - 自定义指令](/guide/extras/render-function.html#custom-directives)
+- **参考**：[指南 - 渲染函数 - 自定义指令](/guide/extras/render-function.html#custom-directives)
 
 ## withDirectives() {#withdirectives}
 
@@ -296,7 +296,7 @@
   ])
   ```
 
-- **相关内容**：[指南 - 渲染函数 - 自定义指令](/guide/extras/render-function.html#custom-directives)
+- **参考**：[指南 - 渲染函数 - 自定义指令](/guide/extras/render-function.html#custom-directives)
 
 ## withModifiers() {#withmodifiers}
 
@@ -321,4 +321,4 @@
   })
   ```
 
-- **相关内容**：[指南 - 渲染函数 - 事件修饰符](/guide/extras/render-function.html#event-modifiers)
+- **参考**：[指南 - 渲染函数 - 事件修饰符](/guide/extras/render-function.html#event-modifiers)

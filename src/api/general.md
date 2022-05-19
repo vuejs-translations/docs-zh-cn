@@ -92,7 +92,7 @@
 
   </div>
 
-- **相关内容**：[`this.$nextTick()`](/api/component-instance.html#nexttick)
+- **参考**：[`this.$nextTick()`](/api/component-instance.html#nexttick)
 
 ## defineComponent() {#definecomponent}
 
@@ -122,7 +122,7 @@
   type FooInstance = InstanceType<typeof Foo>
   ```
 
-- **相关内容**：[指南 - 配合 TypeScript 使用 Vue](/guide/typescript/overview.html#general-usage-notes)
+- **参考**：[指南 - 配合 TypeScript 使用 Vue](/guide/typescript/overview.html#general-usage-notes)
 
 ## defineAsyncComponent() {#defineasynccomponent}
 
@@ -153,7 +153,7 @@
   }
   ```
 
-- **相关内容**：[指南——异步组件](/guide/components/async.html)
+- **参考**：[指南——异步组件](/guide/components/async.html)
 
 ## defineCustomElement() {#definecustomelement}
 
@@ -192,7 +192,7 @@
   customElements.define('my-vue-element', MyVueElement)
   ```
 
-- **相关内容：**
+- **参考：**
 
   - [指南 - 使用 Vue 构建自定义元素](/guide/extras/web-components.html#building-custom-elements-with-vue)
 

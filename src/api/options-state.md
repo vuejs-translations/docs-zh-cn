@@ -45,7 +45,7 @@
   data: (vm) => ({ a: vm.myProp })
   ```
 
-- **相关内容：** [深入响应式系统](/guide/extras/reactivity-in-depth.html)
+- **参考：** [深入响应式系统](/guide/extras/reactivity-in-depth.html)
 
 ## props
 
@@ -125,7 +125,7 @@
   }
   ```
 
-- **相关内容：** [Props](/guide/components/props.html)
+- **参考：** [Props](/guide/components/props.html)
 
 ## computed
 
@@ -205,7 +205,7 @@
   }
   ```
 
-- **相关内容：** [计算属性](/guide/essentials/computed.html)
+- **参考：** [计算属性](/guide/essentials/computed.html)
 
 ## methods
 
@@ -364,7 +364,7 @@
   }
   ```
 
-- **相关内容：** [侦听器](/guide/essentials/watchers.html)
+- **参考：** [侦听器](/guide/essentials/watchers.html)
 
 ## emits
 
@@ -429,7 +429,7 @@
   }
   ```
 
-* **相关内容：** [透传 Attribute](/guide/components/attrs.html)
+* **参考：** [透传 Attribute](/guide/components/attrs.html)
 
 ## expose
 

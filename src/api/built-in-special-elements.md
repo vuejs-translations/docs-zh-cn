@@ -90,7 +90,7 @@
 
   如果将组件本身传递给 `is` 而不是其名称，则不需要注册，例如在 `<script setup>` 中。
 
-- **相关内容**：[动态组件](/guide/essentials/component-basics.html#dynamic-components)
+- **参考**：[动态组件](/guide/essentials/component-basics.html#dynamic-components)
 
 ## `<slot>` {#slot}
 
@@ -120,4 +120,4 @@
 
   Vue 模板里的 `<slot>` 元素会被编译到 JavaScript，因此不要与[原生 `<slot>` 元素](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/slot)进行混淆。
 
-- **相关内容**：[组件 - 插槽](/guide/components/slots.html)
+- **参考**：[组件 - 插槽](/guide/components/slots.html)

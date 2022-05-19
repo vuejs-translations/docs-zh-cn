@@ -118,7 +118,7 @@ h(Transition, {
   </Transition>
   ```
 
-- **相关内容**：[`<Transition>` 指南](/guide/built-ins/transition.html)
+- **参考**：[`<Transition>` 指南](/guide/built-ins/transition.html)
 
 ## `<TransitionGroup>`
 
@@ -164,7 +164,7 @@ h(Transition, {
   </TransitionGroup>
   ```
 
-- **相关内容**：[指南 - TransitionGroup](/guide/built-ins/transition-group.html)
+- **参考**：[指南 - TransitionGroup](/guide/built-ins/transition-group.html)
 
 ## `<KeepAlive>`
 
@@ -244,7 +244,7 @@ h(Transition, {
   </KeepAlive>
 
   <!-- 数组 (使用 `v-bind`) -->
-  <keepalive :include="['a', 'b']">
+  <KeepAlive :include="['a', 'b']">
     <component :is="view"></component>
   </KeepAlive>
   ```
@@ -257,7 +257,7 @@ h(Transition, {
   </KeepAlive>
   ```
 
-- **相关内容**：[指南 - KeepAlive](/guide/built-ins/keep-alive.html)
+- **参考**：[指南 - KeepAlive](/guide/built-ins/keep-alive.html)
 
 ## `<Teleport>`
 
@@ -299,7 +299,7 @@ h(Transition, {
   </teleport>
   ```
 
-- **相关内容**：[指南 - Teleport](/guide/built-ins/teleport.html)
+- **参考**：[指南 - Teleport](/guide/built-ins/teleport.html)
 
 ## `<Suspense>` <sup class="vt-badge experimental" />
 
@@ -325,4 +325,4 @@ h(Transition, {
 
   如果在渲染时遇到异步依赖项 ([异步组件](/guide/components/async.html)和具有 [`async setup()`](/guide/built-ins/suspense.html#async-setup) 的组件)，它将等到所有异步依赖项解析完成时再显示默认插槽。
 
-- **相关内容**：[指南 - Suspense](/guide/built-ins/suspense.html)
+- **参考**：[指南 - Suspense](/guide/built-ins/suspense.html)

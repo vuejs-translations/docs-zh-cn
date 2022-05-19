@@ -30,7 +30,7 @@
   }
   ```
 
-- **相关内容：** [指南 - 为组件 props 标注类型](/guide/typescript/options-api.html#typing-component-props)
+- **参考：** [指南 - 为组件 props 标注类型](/guide/typescript/options-api.html#typing-component-props)
 
 ## ComponentCustomProperties {#componentcustomproperties}
 
@@ -53,7 +53,7 @@
   类型扩充必须被放置在一个模块 `.ts` 或 `.d.ts` 文件中。查看 [类型扩充指南](/guide/typescript/options-api.html#augmenting-global-properties) 了解更多细节
   :::
 
-- **相关内容：** [指南 - 扩充全局属性](/guide/typescript/options-api.html#augmenting-global-properties)
+- **参考：** [指南 - 扩充全局属性](/guide/typescript/options-api.html#augmenting-global-properties)
 
 ## ComponentCustomOptions {#componentcustomoptions}
 
@@ -75,7 +75,7 @@
   类型扩充必须被放置在一个模块 `.ts` 或 `.d.ts` 文件中。查看 [类型扩充指南](/guide/typescript/options-api.html#augmenting-global-properties) 了解更多细节。
   :::
 
-- **相关内容：** [指南 - 扩充自定义选项](/guide/typescript/options-api.html#augmenting-custom-options)
+- **参考：** [指南 - 扩充自定义选项](/guide/typescript/options-api.html#augmenting-custom-options)
 
 ## ComponentCustomProps {#componentcustomprops}
 
@@ -129,7 +129,7 @@
   类型增强必须被放置在一个模块 `.ts` 或 `.d.ts` 文件中。查看 [类型增强指南](/guide/typescript/options-api.html#augmenting-global-properties) 了解更多细节。
   :::
 
-  :::info 相关内容
+  :::info 参考
 SFC `<style>` 标签支持通过 `v-bind:CSS` 函数来链接 CSS 值与组件状态。这允许在没有类型扩充的情况下自定义属性。
 
 - [CSS 中的 v-bind()](/api/sfc-css-features.html#v-bind-in-css)

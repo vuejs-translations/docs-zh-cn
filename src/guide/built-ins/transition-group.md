@@ -130,6 +130,6 @@ function onEnter(el, done) {
 
 ---
 
-**相关内容**
+**参考**
 
 - [`<TransitionGroup>` API 参考](/api/built-in-components.html#transitiongroup)
