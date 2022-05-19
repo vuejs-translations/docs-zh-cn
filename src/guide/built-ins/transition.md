@@ -578,6 +578,6 @@ export default {
 
 ---
 
-**相关内容**
+**参考**
 
 - [`<Transition>` API 参考](/api/built-in-components.html#transition)

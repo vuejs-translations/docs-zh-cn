@@ -241,7 +241,7 @@
   }
   ```
 
-- **相关内容**：[Reactivity in Depth](/guide/extras/reactivity-in-depth.html)
+- **参考**：[Reactivity in Depth](/guide/extras/reactivity-in-depth.html)
 
 ## onRenderTriggered() <sup class="vt-badge dev-only" /> {#onrendertriggered}
 
@@ -267,7 +267,7 @@
   }
   ```
 
-- **相关内容**：[Reactivity in Depth](/guide/extras/reactivity-in-depth.html)
+- **参考**：[Reactivity in Depth](/guide/extras/reactivity-in-depth.html)
 
 ## onActivated() {#onactivated}
 
@@ -281,7 +281,7 @@
   function onActivated(callback: () => void): void
   ```
 
-- **相关内容**：[指南 - 缓存实例的生命周期](/guide/built-ins/keep-alive.html#lifecycle-of-cached-instance)
+- **参考**：[指南 - 缓存实例的生命周期](/guide/built-ins/keep-alive.html#lifecycle-of-cached-instance)
 
 ## onDeactivated() {#ondeactivated}
 
@@ -295,7 +295,7 @@
   function onDeactivated(callback: () => void): void
   ```
 
-- **相关内容**：[Guide - 缓存实例的生命周期](/guide/built-ins/keep-alive.html#lifecycle-of-cached-instance)
+- **参考**：[Guide - 缓存实例的生命周期](/guide/built-ins/keep-alive.html#lifecycle-of-cached-instance)
 
 ## onServerPrefetch() <sup class="vt-badge" data-text="SSR only" /> {#onserverprefetch}
 
@@ -338,4 +338,4 @@
   </script>
   ```
 
-- **相关内容**：[服务端渲染](/guide/scaling-up/ssr.html)
+- **参考**：[服务端渲染](/guide/scaling-up/ssr.html)

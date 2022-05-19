@@ -57,7 +57,7 @@
 
   预编译的模板，例如单文件组件中的模板，会在构建时编译到 `render` 选项中。如果一个组件中同时存在 `render` 和 `template`，则 `render` 将具有更高的优先级。
 
-- **相关内容：**
+- **参考：**
   - [渲染机制](/guide/extras/rendering-mechanism.html)
   - [渲染函数](/guide/extras/render-function.html)
 
@@ -82,4 +82,4 @@
 
   这个配置选项仅在使用了完整的构建版本 (即可以在浏览器中编译模板的独立 `vue.js`) 时才有效。它支持与应用级的 [app.config.compilerOptions](/api/application.html#app-config-compileroptions) 相同的选项，并针对当前组件有更高的优先级。
 
-- **相关内容**：[app.config.compilerOptions](/api/application.html#app-config-compileroptions)
+- **参考**：[app.config.compilerOptions](/api/application.html#app-config-compileroptions)

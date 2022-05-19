@@ -32,7 +32,7 @@
   state.value = { count: 2 }
   ```
 
-- **相关内容：**
+- **参考：**
   - [指南 - 减少大型不可变结构的响应性开销](/guide/best-practices/performance.html#reduce-reactivity-overhead-for-large-immutable-structures)
   - [指南 - 与其他状态系统集成](/guide/extras/reactivity-in-depth.html#integration-with-external-state-systems)
 
