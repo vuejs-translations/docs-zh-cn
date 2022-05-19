@@ -381,9 +381,9 @@
   第三个可选的参数是一个对象，支持以下这些选项：
 
   - **`immediate`**：在侦听器创建时立即触发回调。第一次调用时旧值是 `undefined`。
-  - **`deep`**：如果源是对象，强制深度遍历，以便在深层级变更时启动回调。参考请看[深层侦听器](/guide/essentials/watchers.html#deep-watchers)一节。
-  - **`flush`**：调整回调函数的刷新时机。参考请看[回调的刷新时机](/guide/essentials/watchers.html#callback-flush-timing)一节。
-  - **`onTrack / onTrigger`**：调试侦听器的依赖。参考请看[调试侦听器](/guide/extras/reactivity-in-depth.html#watcher-debugging)一节。
+  - **`deep`**：如果源是对象，强制深度遍历，以便在深层级变更时启动回调。参考[深层侦听器](/guide/essentials/watchers.html#deep-watchers)一节。
+  - **`flush`**：调整回调函数的刷新时机。参考[回调的刷新时机](/guide/essentials/watchers.html#callback-flush-timing)一节。
+  - **`onTrack / onTrigger`**：调试侦听器的依赖。参考[调试侦听器](/guide/extras/reactivity-in-depth.html#watcher-debugging)一节。
 
   与 [`watchEffect()`](#watcheffect) 相比，`watch()` 使我们可以：
 
