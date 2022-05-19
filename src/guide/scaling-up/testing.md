@@ -434,7 +434,7 @@ test('useFoo', () => {
 })
 ```
 
-对于更复杂的组合式函数，通过使用[组件测试]编写针对这个包装器组件的测试，这会容易很多。
+对于更复杂的组合式函数，通过使用[组件测试](#component-testing)编写针对这个包装器组件的测试，这会容易很多。
 
 <!--
 TODO more testing recipes can be added in the future e.g.
