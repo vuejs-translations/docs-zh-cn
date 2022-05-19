@@ -1,14 +1,14 @@
 # 组件实例 {#component-instance}
 
 :::info
-本页文档描述了组件公共实例 (即 `this`) 上暴露的内置属性和方法，
+本页文档描述了组件公共实例 (即 `this`) 上暴露的内置 property 和方法，
 
-本页罗列的所有属性，除了 `$data` 下的嵌套属性之外，都是只读的。
+本页罗列的所有 property，除了 `$data` 下的嵌套 property 之外，都是只读的。
 :::
 
 ## $data {#data}
 
-从 [`data`](./options-state.html#data) 选项函数中返回的对象，会被组件赋为响应式。组件实例将会代理对这个数据对象的属性访问。
+从 [`data`](./options-state.html#data) 选项函数中返回的对象，会被组件赋为响应式。组件实例将会代理对其数据对象的 property 访问。
 
 - **类型**
 
@@ -32,7 +32,7 @@
 
 - **详细信息**
 
-  这里只包含通过 [`props`](./options-state.html#props) 选项声明的 prop。组件实例将会代理对这个 prop 对象的属性访问。
+  这里只包含通过 [`props`](./options-state.html#props) 选项声明的 prop。组件实例将会代理对其 prop 对象上 property 的访问。
 
 ## $el {#el}
 
@@ -172,7 +172,7 @@
 
   [透传 Attribute](/guide/components/attrs.html) 是一些由父组件传入的 attribute 和事件处理器，且没有在此子组件中声明为一个 prop 或要抛出的事件。
 
-  默认情况下，若是单一根节点组件，`$attrs` 中的所有属性都是直接自动继承自组件的根元素。而多根节点组件则不会如此，同时你也可以通过配置 [`inheritAttrs`](./options-misc.html#inheritattrs) 选项来显式地关闭该行为。
+  默认情况下，若是单一根节点组件，`$attrs` 中的所有 property 都是直接自动继承自组件的根元素。而多根节点组件则不会如此，同时你也可以通过配置 [`inheritAttrs`](./options-misc.html#inheritattrs) 选项来显式地关闭该行为。
 
 - **参考：**
 
@@ -212,18 +212,18 @@
 
 - **详细信息**
 
-  第一个参数是侦听来源。可以是一个组件属性名的字符串，一个简单的由点分隔的路径字符串，或是一个 getter 函数。
+  第一个参数是侦听来源。可以是一个组件的 property 名的字符串，一个简单的由点分隔的路径字符串，或是一个 getter 函数。
 
   第二个参数是回调函数。它接收的参数分别是侦听来源的新值、旧值。
 
   - **`immediate`**：指定在侦听器创建时是否立即触发回调。在第一次调用时旧值为 `undefined`。
-  - **`deep`**：若侦听来源是一个对象，指定是否强制深度遍历，这样回调函数就会在深层级下变更时被触发。详见[深层侦听器](/guide/essentials/watchers.html#deep-watchers) 。
+  - **`deep`**：指定在侦听来源是一个对象时，是否强制深度遍历，这样回调函数就会在深层级发生变更时被触发。详见[深层侦听器](/guide/essentials/watchers.html#deep-watchers) 。
   - **`flush`**：指定回调函数的刷新时机。详见[回调刷新时机](/guide/essentials/watchers.html#callback-flush-timing)。
   - **`onTrack / onTrigger`**：调试侦听器的依赖，详见[侦听器调试](/guide/extras/reactivity-in-depth.html#watcher-debugging)。
 
 - **示例**
 
-  侦听一个属性名：
+  侦听一个 property 名：
 
   ```js
   this.$watch('a', (newVal, oldVal) => {})
