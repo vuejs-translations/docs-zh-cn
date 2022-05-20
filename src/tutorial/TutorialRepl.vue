@@ -130,7 +130,7 @@ updateExample()
           Prev</a
         >
         <a class="next-step" v-if="nextStep" :href="`#${nextStep}`"
-          >Next <VTIconChevronRight class="vt-link-icon"
+          >下一步 <VTIconChevronRight class="vt-link-icon"
         /></a>
       </footer>
     </article>
