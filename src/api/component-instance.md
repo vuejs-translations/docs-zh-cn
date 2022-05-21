@@ -52,7 +52,7 @@
 
   - 对于单一根元素的组件，`$el` 将会指向该根元素。
   - 对于以文本节点为根的组件，`$el` 将会指向该文本节点。
-  - 对于以多个元素为根的组件，`$el` 将是一个仅作占位符的 DOM 节点，Vue 使用它来跟踪组件在 DOM 中的位置 (文本节点或 SSR 激活模式下的注释节点) 。
+  - 对于以多个元素为根的组件，`$el` 将是一个仅作占位符的 DOM 节点，Vue 使用它来跟踪组件在 DOM 中的位置 (文本节点或 SSR 激活模式下的注释节点)。
 
   :::tip
   为保持一致性，我们推荐使用[模板 ref](/guide/essentials/template-refs.html) 来直接访问元素而不是依赖 `$el`。
@@ -137,7 +137,7 @@
 
   如果插槽是一个[作用域插槽](/guide/components/slots.html#scoped-slots)，传递给该插槽函数的参数可以作为插槽的 prop 提供给插槽。
 
-- **参考：** [渲染函数 - 渲染插槽](/guide/extras/render-function.html#rendering-slots)
+- **参考**：[渲染函数 - 渲染插槽](/guide/extras/render-function.html#rendering-slots)
 
 ## $refs {#refs}
 
@@ -217,7 +217,7 @@
   第二个参数是回调函数。它接收的参数分别是侦听来源的新值、旧值。
 
   - **`immediate`**：指定在侦听器创建时是否立即触发回调。在第一次调用时旧值为 `undefined`。
-  - **`deep`**：指定在侦听来源是一个对象时，是否强制深度遍历，这样回调函数就会在深层级发生变更时被触发。详见[深层侦听器](/guide/essentials/watchers.html#deep-watchers) 。
+  - **`deep`**：指定在侦听来源是一个对象时，是否强制深度遍历，这样回调函数就会在深层级发生变更时被触发。详见[深层侦听器](/guide/essentials/watchers.html#deep-watchers)。
   - **`flush`**：指定回调函数的刷新时机。详见[回调刷新时机](/guide/essentials/watchers.html#callback-flush-timing)。
   - **`onTrack / onTrigger`**：调试侦听器的依赖，详见[侦听器调试](/guide/extras/reactivity-in-depth.html#watcher-debugging)。
 

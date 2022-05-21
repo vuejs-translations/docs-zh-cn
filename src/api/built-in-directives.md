@@ -18,7 +18,7 @@
   <span>{{msg}}</span>
   ```
 
-- **参考：** [模板语法 - 文本插值](/guide/essentials/template-syntax.html#text-interpolation)
+- **参考**：[模板语法 - 文本插值](/guide/essentials/template-syntax.html#text-interpolation)
 
 ## v-html {#v-html}
 
@@ -28,13 +28,13 @@
 
 - **详细信息**
 
-  `v-html` 的内容直接作为普通 HTML 插入—— Vue 模板语法是不会被解析的。如果你发现自己正打算用 `v-html` 来编写模板，不如重新想想怎么使用组件来代替。
+ `v-html` 的内容直接作为普通 HTML 插入—— Vue 模板语法是不会被解析的。如果你发现自己正打算用 `v-html` 来编写模板，不如重新想想怎么使用组件来代替。
 
-  ::: warning 安全说明
+ ::: warning 安全说明
  在你的站点上动态渲染任意的 HTML 是非常危险的，因为它很容易导致 [XSS 攻击](https://en.wikipedia.org/wiki/Cross-site_scripting)。请只对可信内容使用 HTML 插值，**绝不要**将用户提供的内容作为插值
   :::
 
-  在 [单文件组件](/guide/scaling-up/sfc)，`scoped` 样式将不会作用于 `v-html` 里的内容，因为 HTML 内容不会被 Vue 的模板编译器解析。如果你想让 `v-html` 的内容也支持 scoped CSS，你可以使用 [CSS modules](./sfc-css-features.html#css-modules) 或使用一个额外的全局 `<style>` 元素，手动设置类似 BEM 的作用域策略。
+ 在[单文件组件](/guide/scaling-up/sfc)，`scoped` 样式将不会作用于 `v-html` 里的内容，因为 HTML 内容不会被 Vue 的模板编译器解析。如果你想让 `v-html` 的内容也支持 scoped CSS，你可以使用 [CSS modules](./sfc-css-features.html#css-modules) 或使用一个额外的全局 `<style>` 元素，手动设置类似 BEM 的作用域策略。
 
 - **示例：**
 
@@ -42,7 +42,7 @@
   <div v-html="html"></div>
   ```
 
-- **参考：** [模板语法 - 原始 HTML](/guide/essentials/template-syntax.html#raw-html)
+- **参考**：[模板语法 - 原始 HTML](/guide/essentials/template-syntax.html#raw-html)
 
 ## v-show {#v-show}
 
@@ -54,7 +54,7 @@
 
   `v-show` 通过设置内联样式的 `display` CSS property 来工作，当元素可见时将使用初始 `display` 值。当条件改变时，也会触发过度效果。
 
-- **参考：** [条件渲染 - v-show](/guide/essentials/conditional.html#v-show)
+- **参考**：[条件渲染 - v-show](/guide/essentials/conditional.html#v-show)
 
 ## v-if {#v-if}
 
@@ -70,9 +70,9 @@
 
   当条件改变时会触发过渡效果。
 
-  当同时使用时， `v-if` 比 `v-for` 优先级更高。我们并不推荐在一元素上同时使用这两个指令 — 查看[列表渲染指南](/guide/essentials/list.html#v-for-with-v-if)详情。
+  当同时使用时，`v-if` 比 `v-for` 优先级更高。我们并不推荐在一元素上同时使用这两个指令 — 查看[列表渲染指南](/guide/essentials/list.html#v-for-with-v-if)详情。
 
-- **参考：** [条件渲染 - v-if](/guide/essentials/conditional.html#v-if)
+- **参考**：[条件渲染 - v-if](/guide/essentials/conditional.html#v-if)
 
 ## v-else {#v-else}
 
@@ -97,9 +97,9 @@
   </div>
   ```
 
-- **参考：** [条件渲染 - v-else](/guide/essentials/conditional.html#v-else)
+- **参考**：[条件渲染 - v-else](/guide/essentials/conditional.html#v-else)
 
-## v-else-if  {#v-else-if}
+## v-else-if {#v-else-if}
 
 表示 `v-if` 的“else if 块”。可以进行链式调用。
 
@@ -128,7 +128,7 @@
   </div>
   ```
 
-- **参考：** [条件渲染 - v-else-if](/guide/essentials/conditional.html#v-else-if)
+- **参考**：[条件渲染 - v-else-if](/guide/essentials/conditional.html#v-else-if)
 
 ## v-for {#v-for}
 
@@ -146,7 +146,7 @@
   </div>
   ```
 
-  或者，你也可以为索引指定别名(如果用在对象，则是键值)：
+  或者，你也可以为索引指定别名 (如果用在对象，则是键值)：
 
   ```vue-html
   <div v-for="(item, index) in items"></div>
@@ -154,7 +154,7 @@
   <div v-for="(value, name, index) in object"></div>
   ```
 
-   `v-for` 的默认方式是尝试就地更新元素而不移动它们。要强制其重新排序元素，你需要用特殊 attribute `key` 来提供一个排序提示：
+  `v-for` 的默认方式是尝试就地更新元素而不移动它们。要强制其重新排序元素，你需要用特殊 attribute `key` 来提供一个排序提示：
 
   ```vue-html
   <div v-for="item in items" :key="item.id">
@@ -194,9 +194,9 @@
 
   事件类型由参数来指定。表达式可以是一个方法名，一个内联声明，如果有修饰符则可省略。
 
-  当用于普通元素，只监听 [**原生 DOM 事件**](https://developer.mozilla.org/en-US/docs/Web/Events)。当用于自定义元素组件，则监听子组件触发的**自定义事件**。
+  当用于普通元素，只监听[**原生 DOM 事件**](https://developer.mozilla.org/en-US/docs/Web/Events)。当用于自定义元素组件，则监听子组件触发的**自定义事件**。
 
-  当监听原生 DOM 事件时，方法接收原生事件作为唯一参数。如果使用内联声明，声明可以访问一个特殊的 `$event` property： `v-on:click="handle('ok', $event)"`。
+  当监听原生 DOM 事件时，方法接收原生事件作为唯一参数。如果使用内联声明，声明可以访问一个特殊的 `$event` property：`v-on:click="handle('ok', $event)"`。
 
   `v-on` 还支持绑定不带参数的事件/监听器对的对象。请注意，当使用对象语法时，不支持任何修饰符。
 
@@ -240,7 +240,7 @@
   <button v-on="{ mousedown: doThis, mouseup: doThat }"></button>
   ```
 
-  监听子组件的自定义事件(当子组件的“my-event”事件被触发，处理函数将被调用)：
+  监听子组件的自定义事件 (当子组件的“my-event”事件被触发，处理函数将被调用)：
 
   ```vue-html
   <MyComponent @my-event="handleThis" />
@@ -255,7 +255,7 @@
 
 ## v-bind {#v-bind}
 
-动态的绑定一个或多个 attribute，也可以是组件的 prop 。
+动态的绑定一个或多个 attribute，也可以是组件的 prop。
 
 - **缩写：** `:` 或者 `.` (当使用 `.prop` 修饰符)
 
@@ -344,7 +344,7 @@
 
 在表单输入元素或组件中创建双向绑定。
 
-- **预期：** 根据表单输入元素或组件输出的值而变化
+- **预期**：根据表单输入元素或组件输出的值而变化
 
 - **仅限：**
 
@@ -370,9 +370,9 @@
 
 - **缩写：** `#`
 
-- **预期：** 在函数参数位置，JavaScript 表达式是合法的，也支持解构。可选项——只有在给插槽传 prop 才需要。
+- **预期**：在函数参数位置，JavaScript 表达式是合法的，也支持解构。可选项——只有在给插槽传 prop 才需要。
 
-- **参数：** 插槽名 (可选，默认是 `default`)
+- **参数**：插槽名 (可选，默认是 `default`)
 
 - **仅限：**
 
@@ -457,7 +457,7 @@
   </ul>
   ```
 
-  从3.2起，你也可以搭配 [`v-memo`](#v-memo) 的无效条件来缓存部分模板。
+  从 3.2 起，你也可以搭配 [`v-memo`](#v-memo) 的无效条件来缓存部分模板。
 
 - **参考：**
   - [数据绑定语法 - 插值](/guide/essentials/template-syntax.html#text-interpolation)
@@ -479,11 +479,11 @@
 
   当组件重新渲染，如果 `valueA` 和 `valueB` 都保持不变，这个 `<div>` 及其子项的所有更新都将被跳过。实际上，甚至虚拟 DOM 的 vnode 创建也将被跳过，因为缓存的子树副本可以被重新使用。
 
-  正确指定缓存数组很重要，否则应该生效的更新可能被跳过。`v-memo` 传入空依赖数组(`v-memo="[]"`)将与 `v-once` 效果相同。
+  正确指定缓存数组很重要，否则应该生效的更新可能被跳过。`v-memo` 传入空依赖数组 (`v-memo="[]"`) 将与 `v-once` 效果相同。
 
   **与 `v-for` 一起使用**
 
-  `v-memo` 仅用于性能至上场景中的微小优化，应该很少需要。最常见的情况可能是有助于渲染海量 `v-for` 列表(当 `length > 1000`)：
+  `v-memo` 仅用于性能至上场景中的微小优化，应该很少需要。最常见的情况可能是有助于渲染海量 `v-for` 列表 (当 `length > 1000`)：
 
   ```vue-html
   <div v-for="item in list" :key="item.id" v-memo="[item.id === selected]">
@@ -495,7 +495,7 @@
   当组件的 `selected` 状态改变，大量的 vnode 将会被创建，尽管大部分项都是完全一致。`v-memo` 用在这里本质上是在说“只有从未选中变为选中或者相反转变时才更新”。这使得每个未受影响的项能重用之前的 vnode 并完全跳过差异比较。注意这里我们并不需要包含 `item.id` 在 memo 依赖数组中，因为 Vue 会根据 item 的 `:key` 进行推断。
 
   :::warning 警告
-  当搭配 `v-for` 使用 `v-memo`，确保它两是用在同一个元素中。**`v-memo`不能用在 `v-for` 内。**
+  当搭配 `v-for` 使用 `v-memo`，确保它两是用在同一个元素中。**`v-memo` 不能用在 `v-for` 内。**
   :::
 
   `v-memo` 也能被用于组件来手动阻止在子组件更新检查取消优化的某些极端情况下，出现不需要的更新。但是再次说明，指定正确的依赖数组以免跳过必要更新，这是开发者的责任。
