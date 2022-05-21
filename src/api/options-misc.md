@@ -24,7 +24,7 @@
 
   另一种场景是当一个组件通过 [`app.component`](/api/application.html#app-component) 被全局注册时，这个全局 ID 就自动被设为了其名称。
 
-  使用 `name` 选项使你可以覆盖推导出的名称，或是在没有推导出名字时显式提供一个。（例如没有使用构建工具时，或是一个内联的非 SFC 式的组件）
+  使用 `name` 选项使你可以覆盖推导出的名称，或是在没有推导出名字时显式提供一个。(例如没有使用构建工具时，或是一个内联的非 SFC 式的组件)
 
   有一种场景下 `name` 必须是已显式声明的：即 [`<KeepAlive>`](/guide/built-ins/keep-alive.html) 通过其 `include / exclude` prop 来匹配其需要缓存的组件时。
 
@@ -34,13 +34,13 @@
 
   ```ts
   interface ComponentOptions {
-    inheritAttrs?: boolean // default: true
+    inheritAttrs?: boolean // 默认值：true
   }
   ```
 
 - **详细信息**
 
-  默认情况下，父组件范围内没有被识别为 prop 的 attribute 绑定将“透传"。这意味着当我们有一个单根节点的组件时，这些绑定会被应用在子组件的根节点元素上，作为一个常规的 HTML attribute。当编写一个包裹目标元素或其他组件的组件时，这不一定是所期望的行为。通过设置 `inheritAttrs` 为 `false`，可以禁用这个默认行为。attributes 可以通过 `$attrs` 这个实例属性来访问，并且可以通过 `v-bind` 来显式绑定在一个非根节点的元素上。
+  默认情况下，父组件范围内没有被识别为 prop 的 attribute 绑定将“透传”。这意味着当我们有一个单根节点的组件时，这些绑定会被作为一个常规的 HTML attribute 应用在子组件的根节点元素上。当你编写的组件想要包裹一个目标元素或其他组件时，这不一定是所期望的行为。通过设置 `inheritAttrs` 为 `false`，可以禁用这个默认行为。这些 attribute 可以通过 `$attrs` 这个实例属性来访问，并且可以通过 `v-bind` 来显式绑定在一个非根节点的元素上。
 
 - **示例**
 
@@ -98,11 +98,11 @@
 
   </div>
 
-- **参考：** [透传 attribute](/guide/components/attrs.html)
+- **参考**：[透传 attribute](/guide/components/attrs.html)
 
 ## components {#components}
 
-一个用来为当前组件注册其可用组件的对象。
+一个对象，用来注册对当前组件实例可用的组件。
 
 - **类型**
 
@@ -122,17 +122,17 @@
     components: {
       // 简写
       Foo,
-      // 使用一个不同的名称注册
+      // 注册为一个不同的名称
       RenamedBar: Bar
     }
   }
   ```
 
-- **参考：** [组件注册](/guide/components/registration.html)
+- **参考**：[组件注册](/guide/components/registration.html)
 
 ## directives {#directives}
 
-一个用来为当前组件注册其可用指令的对象。
+一个对象，用来注册对当前组件实例可用的指令。
 
 - **类型**
 
@@ -163,4 +163,4 @@
 
   这个列表中的指令都在当前组件实例中可用。
 
-- **参考：** [自定义指令](/guide/reusability/custom-directives.html)
+- **参考**：[自定义指令](/guide/reusability/custom-directives.html)
