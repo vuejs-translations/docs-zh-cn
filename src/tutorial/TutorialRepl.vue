@@ -121,13 +121,13 @@ updateExample()
       <div class="vt-doc" v-html="currentDescription"></div>
       <div class="hint" v-if="data[currentStep]?._hint">
         <button @click="toggleResult">
-          {{ showingHint ? 'Reset' : 'Show me!' }}
+          {{ showingHint ? '重置代码' : '看结果！' }}
         </button>
       </div>
       <footer>
         <a v-if="prevStep" :href="`#${prevStep}`"
           ><VTIconChevronLeft class="vt-link-icon" style="margin: 0" />
-          Prev</a
+          上一步</a
         >
         <a class="next-step" v-if="nextStep" :href="`#${nextStep}`"
           >下一步 <VTIconChevronRight class="vt-link-icon"
