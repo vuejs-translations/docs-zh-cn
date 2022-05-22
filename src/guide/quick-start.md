@@ -86,7 +86,7 @@ footer: false
 </script>
 ```
 
-上面的例子使用了全局构建版的 Vue，该版本的所有 API 都暴露在了全局变量 `Vue` 上。 例如，要同时使用 `ref` API，你可以这样做：
+上面的例子使用了全局构建版的 Vue，该版本的所有 API 都暴露在了全局变量 `Vue` 上。例如，要同时使用 `ref` API，你可以这样做：
 
 ```js
 const { createApp, ref } = Vue
