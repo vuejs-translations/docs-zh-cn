@@ -38,7 +38,7 @@
 
 ## triggerRef() {#triggerref}
 
-强制触发依赖于一个 [浅层 ref](#shallowref) 的副作用，这通常在对浅引用的内部值进行深度变更后使用。
+强制触发依赖于一个[浅层 ref](#shallowref) 的副作用，这通常在对浅引用的内部值进行深度变更后使用。
 
 - **类型**
 
@@ -143,7 +143,7 @@
 
 - **详细信息**
 
-  和 `reactive()`不同，这里没有深层级的转换：一个浅层响应式对象里只有根级别的 property 是响应式的。property 的值会被原样存储和暴露，这也意味着值为 ref 的 property **不会** 被自动解包了。
+  和 `reactive()` 不同，这里没有深层级的转换：一个浅层响应式对象里只有根级别的 property 是响应式的。property 的值会被原样存储和暴露，这也意味着值为 ref 的 property **不会**被自动解包了。
 
   :::warning 谨慎使用
   浅层数据结构应该只用于组件中的根级状态。请避免将其嵌套在深层次的响应式对象中，因为它创建的树具有不一致的响应行为，这可能很难理解和调试。
@@ -181,7 +181,7 @@
 
 - **详细信息**
 
-  和 `readonly()` 不同，这里没有深层级的转换：只有根层级的 property 变为了只读。property 的值都会被原样存储和暴露，这也意味着值为 ref 的 property **不会** 被自动解包了。
+  和 `readonly()` 不同，这里没有深层级的转换：只有根层级的 property 变为了只读。property 的值都会被原样存储和暴露，这也意味着值为 ref 的 property **不会**被自动解包了。
 
   :::warning 谨慎使用
   浅层数据结构应该只用于组件中的根级状态。请避免将其嵌套在深层次的响应式对象中，因为它创建的树具有不一致的响应行为，这可能很难理解和调试。
@@ -281,7 +281,7 @@
 
 ## effectScope() {#effectscope}
 
-创建一个 effect 作用域，可以捕获其中所创建的响应式副作用（即计算属性和侦听器），这样捕获到的副作用可以一起处理。对于该 API 的使用细节，请查阅对应的 [RFC](https://github.com/vuejs/rfcs/blob/master/active-rfcs/0041-reactivity-effect-scope.md)。
+创建一个 effect 作用域，可以捕获其中所创建的响应式副作用 (即计算属性和侦听器)，这样捕获到的副作用可以一起处理。对于该 API 的使用细节，请查阅对应的 [RFC](https://github.com/vuejs/rfcs/blob/master/active-rfcs/0041-reactivity-effect-scope.md)。
 
 - **类型**
 
@@ -323,7 +323,7 @@
 
 ## onScopeDispose() {#onscopedispose}
 
-在当前活跃的 [effect 作用域](#effectscope) 上注册一个处理回调函数。当相关的 effect 作用域停止时会调用这个回调函数。
+在当前活跃的 [effect 作用域](#effectscope)上注册一个处理回调函数。当相关的 effect 作用域停止时会调用这个回调函数。
 
 这个方法可以作为可复用的组合式函数中 `onUnmounted` 的替代品，它并不与组件耦合，因为每一个 Vue 组件的 `setup()` 函数也是在一个 effect 作用域中调用的。
 

@@ -45,7 +45,7 @@
   data: (vm) => ({ a: vm.myProp })
   ```
 
-- **参考：** [深入响应式系统](/guide/extras/reactivity-in-depth.html)
+- **参考**：[深入响应式系统](/guide/extras/reactivity-in-depth.html)
 
 ## props
 
@@ -81,19 +81,19 @@
   在 Vue 中，所有的组件 prop 都需要被显式声明。组件 prop 可以通过两种方式声明：
 
   - 使用字符串数组的简易形式。
-  - 使用对象的完整形式。该对象的每个 property 键是 prop 的名称，且值是 prop 的类型（一个构造函数）或高级选项。
+  - 使用对象的完整形式。该对象的每个 property 键是 prop 的名称，且值是 prop 的类型 (一个构造函数) 或高级选项。
 
   在基于对象的语法中，每个 prop 可以进一步定义如下选项：
 
-  - **`type`**：可以是下列原生构造函数之一： `String`、`Number`、`Boolean`、`Array`、`Object`、`Date`、`Function`、`Symbol`、任何自定义构造函数，或由上述内容组成的数组。在开发模式中，Vue 会检查一个 prop 的值是否匹配其声明的类型，如果不匹配则会抛出警告。 详见 [Prop 校验](/guide/components/props.html#prop-validation)。
+  - **`type`**：可以是下列原生构造函数之一：`String`、`Number`、`Boolean`、`Array`、`Object`、`Date`、`Function`、`Symbol`、任何自定义构造函数，或由上述内容组成的数组。在开发模式中，Vue 会检查一个 prop 的值是否匹配其声明的类型，如果不匹配则会抛出警告。详见 [Prop 校验](/guide/components/props.html#prop-validation)。
 
-    还要注意，一个 `Boolean` 类型的 prop 会影响它在开发或生产模式下的值转换行为。 详见 [Boolean 类型转换](/guide/components/props.html#boolean-casting)。
+    还要注意，一个 `Boolean` 类型的 prop 会影响它在开发或生产模式下的值转换行为。详见 [Boolean 类型转换](/guide/components/props.html#boolean-casting)。
 
   - **`default`**：为该 prop 指定一个当其没有被传入或值为 `undefined` 时的默认值。对象或数组的默认值必须从一个工厂函数返回。工厂函数也接收原始 prop 对象作为参数。
 
   - **`required`**：定义该 prop 是否必需传入。在非生产环境中，如果 required 值为 [truthy](https://developer.mozilla.org/en-US/docs/Glossary/Truthy) 且 prop 未被传入，一个控制台警告将会被抛出。
 
-  - **`validator`**：将 prop 值作为唯一参数传入的自定义验证函数。在开发模式下，如果该函数返回一个 [falsy](https://developer.mozilla.org/en-US/docs/Glossary/Falsy) 值（即验证失败），一个控制台警告将会被抛出。
+  - **`validator`**：将 prop 值作为唯一参数传入的自定义验证函数。在开发模式下，如果该函数返回一个 [falsy](https://developer.mozilla.org/en-US/docs/Glossary/Falsy) 值 (即验证失败)，一个控制台警告将会被抛出。
 
 - **示例**
 
@@ -125,7 +125,7 @@
   }
   ```
 
-- **参考：** [Props](/guide/components/props.html)
+- **参考**：[Props](/guide/components/props.html)
 
 ## computed
 
@@ -158,7 +158,7 @@
 
 - **详细信息**
 
-  该选项接收一个对象，其中键是计算属性的名称，值是一个计算属性 getter，或一个具有 `get` 和 `set` 方法的对象（用于可写的计算属性）。
+  该选项接收一个对象，其中键是计算属性的名称，值是一个计算属性 getter，或一个具有 `get` 和 `set` 方法的对象 (用于可写的计算属性)。
 
   所有的 getters 和 setters 会将它们的 `this` 上下文自动绑定为组件实例。
 
@@ -205,7 +205,7 @@
   }
   ```
 
-- **参考：** [计算属性](/guide/essentials/computed.html)
+- **参考**：[计算属性](/guide/essentials/computed.html)
 
 ## methods
 
@@ -246,7 +246,7 @@
   }
   ```
 
-- **参考：** [Event 处理](/guide/essentials/event-handling.html)
+- **参考**：[Event 处理](/guide/essentials/event-handling.html)
 
 ## watch
 
@@ -283,16 +283,16 @@
 
 - **详细信息**
 
-  `watch` 选项期望接受一个对象，其中键是需要侦听的响应式组件实例 property （例如，通过 `data` 或 `computed` 声明的 property）——值是相应的回调函数。该回调函数接受被侦听源的新值和旧值。
+  `watch` 选项期望接受一个对象，其中键是需要侦听的响应式组件实例 property (例如，通过 `data` 或 `computed` 声明的 property)——值是相应的回调函数。该回调函数接受被侦听源的新值和旧值。
 
   除了一个根级 property，键也可以是一个简单的由点分隔的路径，例如 `a.b.c`。注意，这种用法**不支持**复杂表达式——仅支持由点分隔的路径。如果你需要侦听复杂的数据源，可以使用命令式的 [`$watch()`](/api/component-instance.html#watch) API。
 
-  值也可以是一个方法名称的字符串（通过 `methods` 声明)，或包含额外选项的对象。当使用对象语法时，回调函数应被声明在 `handler` 中。额外的选项包含：
+  值也可以是一个方法名称的字符串 (通过 `methods` 声明)，或包含额外选项的对象。当使用对象语法时，回调函数应被声明在 `handler` 中。额外的选项包含：
 
   - **`immediate`**：在侦听器创建时立即触发回调。第一次调用时，旧值将为 `undefined`。
-  - **`deep`**：如果源是对象或数组，则强制深度遍历源，以便在深度变更时触发回调。详见 [深层侦听器](/guide/essentials/watchers.html#deep-watchers)。
-  - **`flush`**：调整回调的刷新时机。详见 [回调的刷新时机](/guide/essentials/watchers.html#callback-flush-timing).
-  - **`onTrack / onTrigger`**：调试侦听器的依赖关系。详见 [侦听器调试](/guide/extras/reactivity-in-depth.html#watcher-debugging).
+  - **`deep`**：如果源是对象或数组，则强制深度遍历源，以便在深度变更时触发回调。详见[深层侦听器](/guide/essentials/watchers.html#deep-watchers)。
+  - **`flush`**：调整回调的刷新时机。详见[回调的刷新时机](/guide/essentials/watchers.html#callback-flush-timing)。
+  - **`onTrack / onTrigger`**：调试侦听器的依赖关系。详见[侦听器调试](/guide/extras/reactivity-in-depth.html#watcher-debugging)。
 
   声明侦听器回调时避免使用箭头函数，因为它们将无法通过 `this` 访问组件实例。
 
@@ -364,7 +364,7 @@
   }
   ```
 
-- **参考：** [侦听器](/guide/essentials/watchers.html)
+- **参考**：[侦听器](/guide/essentials/watchers.html)
 
 ## emits
 
@@ -393,7 +393,7 @@
 
   验证函数将接受传递给组件的 `$emit` 调用的额外参数。例如，如果 `this.$emit('foo', 1)` 被调用，`foo` 相应的验证函数将接受参数 `1`。验证函数应返回布尔值，以表明事件参数是否有效。
 
-  注意，`emits` 选项决定了被触发组件的事件监听器是组件监听器，还是原生 DOM 事件监听器。声明的事件监听器不会被添加到组件的根元素中，且将从组件的 `$attrs` 对象中移除。详见 [透传 Attribute](/guide/components/attrs.html)。
+  注意，`emits` 选项决定了被触发组件的事件监听器是组件监听器，还是原生 DOM 事件监听器。声明的事件监听器不会被添加到组件的根元素中，且将从组件的 `$attrs` 对象中移除。详见[透传 Attribute](/guide/components/attrs.html)。
 
 - **示例**
 
@@ -429,7 +429,7 @@
   }
   ```
 
-* **参考：** [透传 Attribute](/guide/components/attrs.html)
+* **参考**：[透传 Attribute](/guide/components/attrs.html)
 
 ## expose
 
