@@ -30,11 +30,9 @@
   })()
   ```
 
-  ### 处理 Teleport
+  ### SSR Context
 
-  如果渲染的应用包含 Teleport，那么 teleport 的内容将不会作为渲染字符串的一部分。在大多数情况下，最佳方案是在挂载时条件式地渲染 Teleport。
-
-  如果你需要激活 teleport 内容，服务端渲染上下文对象将它们暴露在了 `teleports` property 下：
+  <!-- TODO: translation --> You can pass an optional context object, which can be used to record additional data during the render, for example [accessing content of Teleports](/guide/scaling-up/ssr.html#teleports):
 
   ```js
   const ctx = {}
@@ -42,6 +40,8 @@
 
   console.log(ctx.teleports) // { '#teleported': 'teleported content' }
   ```
+
+  Most other SSR APIs on this page also optionally accept a context object. The context object can be accessed in component code via the [useSSRContext](#usessrcontext) helper.
 
 - **参考**：[指南 - 服务端渲染 (SSR)](/guide/scaling-up/ssr.html)
 
