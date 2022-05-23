@@ -327,7 +327,7 @@ const myDirective = {
 
 ### Teleports
 
-Teleports require special handling during SSR. If the rendered app contains Teleports, the teleported content will not be part of the rendered string. An easier solution is to conditionally render the Teleport on mount.
+<!-- TODO: translation --> Teleports require special handling during SSR. If the rendered app contains Teleports, the teleported content will not be part of the rendered string. An easier solution is to conditionally render the Teleport on mount.
 
 If you do need to hydrate teleported content, they are exposed under the `teleports` property of the ssr context object:
 
