@@ -125,7 +125,7 @@ const { createApp, ref } = Vue
 :::tip Import Maps 浏览器支持
 目前只有基于 Chromium 的浏览器支持导入映射表，所以我们推荐你在学习过程中使用 Chrome 或 Edge。
 
-如果使用 Firefox 浏览器，该功能仅在 102+ 版本中受支持，且目前需要启用 `about:config` 中的 `dom.importMaps.enabled` 选项。
+如果使用了 Firefox 浏览器，则该功能仅在 102+ 版本中受支持，且目前需要启用 `about:config` 中的 `dom.importMaps.enabled` 选项。
 
 如果更偏爱那些还不支持导入映射表的浏览器，你可以使用 [es-module-shims](https://github.com/guybedford/es-module-shims) 来进行 polyfill。
 :::
