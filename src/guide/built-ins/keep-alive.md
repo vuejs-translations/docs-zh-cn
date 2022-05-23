@@ -110,7 +110,7 @@ onDeactivated(() => {
 </div>
 <div class="options-api">
 
-一个持续存在的组件可以通过 [`activated`](/api/options-lifecycle.html#activated) 和 [`deactovated`](/api/options-lifecycle.html#deactivated) 选项来注册相应的两个状态的生命周期钩子：
+一个持续存在的组件可以通过 [`activated`](/api/options-lifecycle.html#activated) 和 [`deactivated`](/api/options-lifecycle.html#deactivated) 选项来注册相应的两个状态的生命周期钩子：
 
 ```js
 export default {

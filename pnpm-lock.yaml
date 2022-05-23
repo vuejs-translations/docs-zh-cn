@@ -11,7 +11,6 @@ specifiers:
   gsap: ^3.9.0
   lodash: ^4.17.21
   open: ^8.4.0
-  patch-vue-directive-ssr: ^0.0.1
   simple-git: ^2.48.0
   vitepress: ^0.22.4
   vue: ^3.2.33
@@ -32,7 +31,6 @@ devDependencies:
   gray-matter: 4.0.3
   lodash: 4.17.21
   open: 8.4.0
-  patch-vue-directive-ssr: 0.0.1
   simple-git: 2.48.0
   zhlint: 0.6.0
 
@@ -1007,11 +1005,6 @@ packages:
       is-alphanumerical: 1.0.4
       is-decimal: 1.0.4
       is-hexadecimal: 1.0.4
-    dev: true
-
-  /patch-vue-directive-ssr/0.0.1:
-    resolution: {integrity: sha512-n84llktHah+EXUGo+RvmTJcAQJQVW0kHHHiJ34ZSLijzhHi32zCMjCc5VAFv4jmdC91bpaYGPk0cDW1D8hQ3GQ==}
-    requiresBuild: true
     dev: true
 
   /path-is-absolute/1.0.1:
