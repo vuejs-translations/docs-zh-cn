@@ -86,7 +86,7 @@ footer: false
 </script>
 ```
 
-上面的例子使用了全局构建版的 Vue，该版本的所有 API 都暴露在了全局变量 `Vue` 上。 For example, to also use the `ref` API, you can do:
+上面的例子使用了全局构建版的 Vue，该版本的所有 API 都暴露在了全局变量 `Vue` 上。例如，要同时使用 `ref` API，你可以这样做：
 
 ```js
 const { createApp, ref } = Vue
@@ -122,10 +122,10 @@ const { createApp, ref } = Vue
 
 你可以在映射表中添加其他的依赖——但请务必确保你使用的是该库的 ES 模块版本。
 
-:::tip Import Maps Browser Support
+:::tip Import Maps 浏览器支持
 目前只有基于 Chromium 的浏览器支持导入映射表，所以我们推荐你在学习过程中使用 Chrome 或 Edge。
 
-If using Firefox, it is only supported in version 102+ and currently needs to be enabled via the `dom.importMaps.enabled` option in `about:config`.
+如果使用了 Firefox 浏览器，则该功能仅在 102+ 版本中受支持，且目前需要启用 `about:config` 中的 `dom.importMaps.enabled` 选项。
 
 如果更偏爱那些还不支持导入映射表的浏览器，你可以使用 [es-module-shims](https://github.com/guybedford/es-module-shims) 来进行 polyfill。
 :::
