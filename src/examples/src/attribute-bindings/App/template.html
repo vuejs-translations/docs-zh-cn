@@ -5,14 +5,14 @@
 </p>
 
 <!--
-class bindings have special support for objects and arrays
-in addition to plain strings
+除了普通字符串之外，
+class 绑定还特别支持了对象和数组
 -->
 <p :class="{ red: isRed }" @click="toggleRed">
   This should be red... but click me to toggle it.
 </p>
 
-<!-- style bindings also support object and arrays -->
+<!-- 样式绑定也支持对象和数组 -->
 <p :style="{ color }" @click="toggleColor">
   This should be green, and should toggle between green and blue on click.
 </p>
