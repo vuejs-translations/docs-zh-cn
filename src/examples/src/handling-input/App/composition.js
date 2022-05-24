@@ -5,8 +5,8 @@ export default {
     const message = ref('Hello World!')
 
     function reverseMessage() {
-      // Access/mutate the value of a ref via
-      // its .value property.
+      // 通过其 .value property
+      // 访问/修改一个 ref 的值。
       message.value = message.value.split('').reverse().join('')
     }
 
