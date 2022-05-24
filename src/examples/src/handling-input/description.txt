@@ -1,1 +1,1 @@
-This example demonstrates handling user input with the v-on directive.
+这个示例展示了如何通过 v-on 指令处理用户输入。
