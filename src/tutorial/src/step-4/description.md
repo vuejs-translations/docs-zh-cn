@@ -1,12 +1,12 @@
-# Event Listeners
+# 事件监听 {#event-listeners}
 
-We can listen to DOM events using the `v-on` directive:
+我们可以使用 `v-on` 指令监听 DOM 事件：
 
 ```vue-html
 <button v-on:click="increment">{{ count }}</button>
 ```
 
-Due to its frequent use, `v-on` also has a shorthand syntax:
+因为其经常使用，`v-on` 也有一个简写语法：
 
 ```vue-html
 <button @click="increment">{{ count }}</button>
@@ -14,7 +14,7 @@ Due to its frequent use, `v-on` also has a shorthand syntax:
 
 <div class="options-api">
 
-Here, `increment` references a function declared using the `methods` option:
+此处，`increment` 引用了一个使用 `methods` 选项声明的函数：
 
 <div class="sfc">
 
@@ -27,7 +27,7 @@ export default {
   },
   methods: {
     increment() {
-      // update component state
+      // 更新组件状态
       this.count++
     }
   }
@@ -46,7 +46,7 @@ createApp({
   },
   methods: {
     increment() {
-      // update component state
+      // 更新组件状态
       this.count++
     }
   }
@@ -55,7 +55,7 @@ createApp({
 
 </div>
 
-Inside a method, we can access the component instance using `this`. The component instance exposes the data properties declared by `data`. We can update the component state by mutating these properties.
+在方法中，我们可以使用 `this` 来访问组件示例。组件实例通过 `data` 来暴露声明的数据 property。我们可以通过改变这些 property 来更新组件状态。
 
 </div>
 
@@ -63,7 +63,7 @@ Inside a method, we can access the component instance using `this`. The componen
 
 <div class="sfc">
 
-Here, `increment` is referencing a function declared in `<script setup>`:
+此处，`increment` 引用了一个在 `<script setup>` 中声明的函数：
 
 ```vue{6-9}
 <script setup>
@@ -72,7 +72,7 @@ import { ref } from 'vue'
 const count = ref(0)
 
 function increment() {
-  // update component state
+  // 更新组件状态
   count.value++
 }
 </script>
@@ -82,14 +82,14 @@ function increment() {
 
 <div class="html">
 
-Here, `increment` is referencing a method in the object returned from `setup()`:
+此处，`increment` 引用了一个从 `setup()` 对象返回的方法：
 
 ```js{$}
 setup() {
   const count = ref(0)
 
   function increment(e) {
-    // update component state
+    // 更新组件状态
     count.value++
   }
 
@@ -102,10 +102,10 @@ setup() {
 
 </div>
 
-Inside the function, we can update the component state by mutating refs.
+在函数中，我们可以通过操作 ref 来更新组件状态。
 
 </div>
 
-Event handlers can also use inline expressions, and can simplify common tasks with modifiers. These details are covered in <a target="_blank" href="/guide/essentials/event-handling.html">Guide - Event Handling</a>.
+事件处理函数也可以使用内置表达式，并且可以使用修饰符简化常见任务。这些细节包含在<a target="_blank" href="/guide/essentials/event-handling.html">指南 - 事件处理</a>。
 
-Now, try to implement the `increment` <span class="options-api">method</span><span class="composition-api">function</span> yourself and bind it to the button using `v-on`.
+现在，尝试自行实现 `increment` <span class="options-api">方法</span><span class="composition-api">函数</span>并通过使用 `v-on` 将其绑定到按钮上。
