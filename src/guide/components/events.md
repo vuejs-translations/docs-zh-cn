@@ -389,7 +389,7 @@ const value = computed({
 <MyComponent v-model:title="bookTitle" />
 ```
 
-在这个例子中，子组件应该有一个 `title` prop，并在变更时向父组件发射 `update:title` 事件：
+在这个例子中，子组件应该有一个 `title` prop，并通过触发 `update:title` 事件更新父组件值：
 
 <div class="composition-api">
 
