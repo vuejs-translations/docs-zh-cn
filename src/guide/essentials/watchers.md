@@ -131,7 +131,7 @@ watch([x, () => y.value], ([newX, newY]) => {
 ```js
 const obj = reactive({ count: 0 })
 
-// 这不起作用，因为你是向 watch() 传入了一个 number
+// 这不起作用，因为你向 watch() 传入了一个 number
 watch(obj.count, (count) => {
   console.log(`count is: ${count}`)
 })
