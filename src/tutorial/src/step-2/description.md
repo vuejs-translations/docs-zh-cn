@@ -2,7 +2,7 @@
 
 <div class="sfc">
 
-你在编辑器中看到的是一个 Vue 单文件组件 (SFC) 。SFC 是一个可重用的独立的代码块，它封装了 HTML、CSS 和 JavaScript，并写入一个 `.vue` 文件。
+你在编辑器中看到的是一个 Vue 单文件组件 (SFC)。SFC 是一个可重用的独立代码块，它将从属于同一个组件的 HTML、CSS 和 JavaScript 封装到了一个 `.vue` 文件中。
 
 </div>
 
@@ -23,7 +23,7 @@ console.log(counter.count) // 0
 counter.count++
 ```
 
-`reactive()` 只适用于对象 (包括数组和内置类型，如 `Map` 和 `Set`) 。此外，`ref()` 可以接受任何值类型，并创建一个对象，在 `.value` property 下暴露内部值。
+`reactive()` 只适用于对象 (包括数组和内置类型，如 `Map` 和 `Set`)。此外，`ref()` 可以接受任何值类型，并创建一个对象，在 `.value` property 下暴露内部值。
 
 ```js
 import { ref } from 'vue'
@@ -38,13 +38,13 @@ message.value = 'Changed'
 
 <div class="sfc">
 
-在组件的 `<script setup>` 块中声明的响应式状态，可以直接在模板中使用。下面展示了我们如何使用 mustache (即双括号) 语法，根据 `counter` 对象和 `message` ref 的值渲染动态文本：
+在组件的 `<script setup>` 块中声明的响应式状态，可以直接在模板中使用。下面展示了我们如何使用双花括号语法，根据 `counter` 对象和 `message` ref 的值渲染动态文本：
 
 </div>
 
 <div class="html">
 
-被传递到 `createApp()` 的对象是一个 Vue 组件。组件的状态应该在 `setup()` 函数中声明，并使用一个对象返回。
+传入 `createApp()` 的对象是一个 Vue 组件。组件的状态应该在 `setup()` 函数中声明，并使用一个对象返回。
 
 ```js{2,5}
 setup() {
@@ -57,7 +57,7 @@ setup() {
 }
 ```
 
-返回对象中的 property 可以在模板中使用。下面展示了我们如何使用 mustache 语法，根据 `message` 的值来渲染动态文本：
+返回对象中的 property 可以在模板中使用。下面展示了我们如何使用双花括号语法，根据 `message` 的值来渲染动态文本：
 
 </div>
 
@@ -103,7 +103,7 @@ createApp({
 
 </div>
 
-`message` property 可以在模板中使用。下面展示了我们如何使用 mustache (即双括号) 语法，根据 `message` 的值来渲染动态文本：
+`message` property 可以在模板中使用。下面展示了我们如何使用双花括号法，根据 `message` 的值来渲染动态文本：
 
 ```vue-html
 <h1>{{ message }}</h1>
@@ -111,7 +111,7 @@ createApp({
 
 </div>
 
-在 mustache 中的内容并不只限于标识符或路径——我们可以使用任何有效的 JavaScript 表达式。
+在双花括号中的内容并不只限于标识符或路径——我们可以使用任何有效的 JavaScript 表达式。
 
 ```vue-html
 <h1>{{ message.split('').reverse().join('') }}</h1>
