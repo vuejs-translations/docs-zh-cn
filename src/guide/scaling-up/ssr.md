@@ -324,3 +324,24 @@ const myDirective = {
   }
 }
 ```
+
+### Teleport
+
+在 SSR 的过程中 Teleport 需要特殊处理。如果渲染的应用包含 Teleport，那么 teleport 的内容将不会作为渲染字符串的一部分。在大多数情况下，最佳方案是在挂载时条件式地渲染 Teleport。
+
+如果你需要激活 teleport 内容，服务端渲染上下文对象将它们暴露在了 `teleports` property 下：
+
+```js
+const ctx = {}
+const html = await renderToString(app, ctx)
+
+console.log(ctx.teleports) // { '#teleported': 'teleported content' }
+```
+
+<!-- TODO: translation --> You need to inject the teleport markup into the correct location in your final page HTML similar to how you need to inject the main app markup.
+
+:::tip
+Avoid targeting `body` when using Teleports and SSR together - usually, `<body>` will contain other server-rendered content which makes it impossible for Teleports to determine the correct starting location for hydration.
+
+Instead, prefer a dedicated container, e.g. `<div id="teleported"></div>` which contains only teleported content.
+:::

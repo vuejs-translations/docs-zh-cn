@@ -8,7 +8,7 @@
 
 ## Prop 声明 {#props-declaration}
 
-组件需要显式声明 prop，这样 Vue 才能知道外部传入的哪些是 prop，哪些是透传 attribute (下一章中我们会讨论到它)。
+组件需要显式声明 prop，这样 Vue 才能知道外部传入的哪些是 prop，哪些是透传 attribute (我们会在[专门的章节](/guide/components/attrs)中讨论到它)。
 
 <div class="composition-api">
 
