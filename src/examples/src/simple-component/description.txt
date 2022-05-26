@@ -1,2 +1,2 @@
-Here we show the simplest possible component which accepts a prop and renders it.
-Learn more about components in the guide!
+这里展示了最简单的组件，它接收一个 prop 并渲染出来。
+在指南页面了解更多关于组件的内容！
