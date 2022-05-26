@@ -325,7 +325,7 @@ const myDirective = {
 }
 ```
 
-### Teleports
+### Teleport
 
 在 SSR 的过程中 Teleport 需要特殊处理。如果渲染的应用包含 Teleport，那么 teleport 的内容将不会作为渲染字符串的一部分。在大多数情况下，最佳方案是在挂载时条件式地渲染 Teleport。
 
