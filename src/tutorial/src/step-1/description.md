@@ -1,14 +1,14 @@
-# 入门 {#Getting Started}
+# 入门 {#getting-started}
 
 欢迎来到 Vue 教程！
 
 本教程的目标是让你在浏览器中快速体验使用 Vue 是什么感受。教程不会面面俱到，你也无需在进行下一步之前理解一切。但是，在完成之后，请务必阅读<a target="_blank" href="/guide/introduction.html">指南</a>，其中包含了每个话题更多的细节。
 
-## 前置要求 {#Prerequisites}
+## 前置要求 {#prerequisites}
 
 本教程假定你基本熟悉 HTML、CSS 和 JavaScript。对于前端开发来说，一个完全的新手也许并不适合直接学习一个框架——最好是掌握了基础知识再回来。其他框架的经验会有所帮助，但这并不是必需的。
 
-## 如何使用本教程 {#How to Use This Tutorial}
+## 如何使用本教程 {#how-to-use-this-tutorial}
 
 你可以编辑<span class="wide">右侧</span><span class="narrow">上方</span>的代码，并立即看到结果更新。教程每一步都会介绍一个 Vue 的核心功能，并期望你能够补全代码，让 demo 运行起来。如果你卡住了，会有一个“看答案！”按钮，点击它，会为你揭晓能够运行的代码。试着不要太依赖该按钮——自己解决会学得更快。
 

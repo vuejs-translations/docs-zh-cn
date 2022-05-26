@@ -1,4 +1,4 @@
-# 声明式渲染 {#Declarative Rendering}
+# 声明式渲染 {#declarative-rendering}
 
 <div class="sfc">
 
