@@ -1,2 +1,2 @@
-一个完全合规的 TodoMVC 实现
+一个完全标准的 TodoMVC 实现
 https://todomvc.com/
