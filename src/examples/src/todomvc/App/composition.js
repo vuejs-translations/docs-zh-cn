@@ -10,20 +10,20 @@ const filters = {
 
 export default {
   setup() {
-    // state
+    // 状态
     const todos = ref(JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]'))
     const visibility = ref('all')
     const editedTodo = ref()
 
-    // derived state
+    // 获取的状态
     const filteredTodos = computed(() => filters[visibility.value](todos.value))
     const remaining = computed(() => filters.active(todos.value).length)
 
-    // handle routing
+    // 处理路由
     window.addEventListener('hashchange', onHashChange)
     onHashChange()
 
-    // persist state
+    // 状态持久化
     watchEffect(() => {
       localStorage.setItem(STORAGE_KEY, JSON.stringify(todos.value))
     })

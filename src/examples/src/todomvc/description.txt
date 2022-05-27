@@ -1,2 +1,2 @@
-A fully spec-compliant TodoMVC implementation
+一个完全合规的 TodoMVC 实现
 https://todomvc.com/
