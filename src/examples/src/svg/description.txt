@@ -1,1 +1,1 @@
-Say Hello World with Vue!
+跟 Vue 说 Hello World！

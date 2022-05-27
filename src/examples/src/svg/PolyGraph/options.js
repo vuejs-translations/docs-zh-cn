@@ -9,7 +9,7 @@ export default {
     stats: Array
   },
   computed: {
-    // a computed property for the polygon's points
+    // 一个用于多边形顶点的计算属性
     points() {
       const total = this.stats.length
       return this.stats
