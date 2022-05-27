@@ -1,1 +1,1 @@
-We can render content conditionally or in a loop with the v-if and v-for directives.
+我们可以通过 v-if 和 v-for 指令条件性地或循环地渲染内容。
