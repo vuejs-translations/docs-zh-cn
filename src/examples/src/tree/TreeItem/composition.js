@@ -1,7 +1,7 @@
 import { ref, computed } from 'vue'
 
 export default {
-  name: 'TreeItem', // 在自引用的时候是必须的
+  name: 'TreeItem', // 在引用自身的时候是必须的
   props: {
     model: Object
   },
