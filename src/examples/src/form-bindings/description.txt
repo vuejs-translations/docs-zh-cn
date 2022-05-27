@@ -1,1 +1,1 @@
-We can create two-way bindings between state and form inputs using the v-model directive.
+我们可以使用 v-model 指令在状态和表单输入之间创建双向绑定。
