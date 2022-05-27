@@ -1,5 +1,5 @@
 export default {
-  name: 'TreeItem', // necessary for self-reference
+  name: 'TreeItem', // 在自引用的时候是必须的
   props: {
     model: Object
   },

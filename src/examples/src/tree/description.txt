@@ -1,2 +1,2 @@
-A nested tree component that recursively renders itself.
-You can double click on an item to turn it into a folder.
+一个可以递归渲染自己的嵌套树组件。
+你可以双击一个项目将其转变为一个文件夹。
