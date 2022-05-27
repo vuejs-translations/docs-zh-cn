@@ -61,7 +61,7 @@ function useToggleFn(
   <div v-if="show" class="preference-switch">
     <button
       class="toggle"
-      aria-label="preference switches toggle"
+      aria-label="偏好切换开关"
       aria-controls="preference-switches"
       :aria-expanded="isOpen"
       @click="toggleOpen"
@@ -78,7 +78,7 @@ function useToggleFn(
         >
         <VTSwitch
           class="api-switch"
-          aria-label="prefer composition api"
+          aria-label="偏好组合式 API"
           :aria-checked="preferComposition"
           @click="toggleCompositionAPI()"
         />
@@ -99,14 +99,14 @@ function useToggleFn(
         <label class="no-sfc-label" @click="toggleSFC(false)">HTML</label>
         <VTSwitch
           class="sfc-switch"
-          aria-label="prefer single file component"
+          aria-label="偏好单文件组件"
           :aria-checked="preferSFC"
           @click="toggleSFC()"
         />
-        <label class="sfc-label" @click="toggleSFC(true)">SFC</label>
+        <label class="sfc-label" @click="toggleSFC(true)">单文件组件</label>
         <a
           class="switch-link"
-          title="About SFC"
+          title="关于单文件组件"
           href="/guide/scaling-up/sfc.html"
           @click="closeSideBar"
           >?</a
