@@ -1,6 +1,6 @@
-# Form Bindings {#form-bindings}
+# 表单绑定 {#form-bindings}
 
-我们可以将 `v-bind` 和 `v-on` 一起使用，在表单的输入元素上创建双向绑定：
+我们可以同时使用 `v-bind` 和 `v-on` 来在表单的输入元素上创建双向绑定：
 
 ```vue-html
 <input :value="text" @input="onInput">
@@ -34,13 +34,13 @@ function onInput(e) {
 
 试着在文本框里输入——你会看到 `<p>` 里的文本也随着你的输入更新了。
 
-为了简化双向绑定，Vue 提供了一个 `v-model` 指令，它实际上是上述操作的语法题：
+为了简化双向绑定，Vue 提供了一个 `v-model` 指令，它实际上是上述操作的语法糖：
 
 ```vue-html
 <input v-model="text">
 ```
 
-`v-model` 会向 `<input>` 自动同步被绑定的值，所以我们就不必为其使用时间处理函数了。
+`v-model` 会将被绑定的值与 `<input>` 的值自动同步，所以我们就不必使用事件处理函数了。
 
 `v-model` 不仅支持文本输入框，也支持诸如多选框、单选框、下拉框之类的输入类型。我们在<a target="_blank" href="/guide/essentials/forms.html">指南 - 表单绑定</a>中涵盖了更多的细节。
 
