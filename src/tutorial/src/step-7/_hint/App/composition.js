@@ -2,7 +2,7 @@ import { ref } from 'vue'
 
 export default {
   setup() {
-    // 给每个 todo 对象一个唯一的id
+    // 给每个 todo 对象一个唯一的 id
     let id = 0
 
     const newTodo = ref('')
