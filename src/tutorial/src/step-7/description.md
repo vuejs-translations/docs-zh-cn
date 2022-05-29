@@ -1,6 +1,6 @@
-# List Rendering
+# 列表渲染
 
-We can use the `v-for` directive to render a list of elements based on a source array:
+我们可以使用 `v-for` 指令来渲染一个基于源数组的元素列表：
 
 ```vue-html
 <ul>
@@ -10,13 +10,13 @@ We can use the `v-for` directive to render a list of elements based on a source 
 </ul>
 ```
 
-Here `todo` is a local variable representing the array element currently being iterated on. It's only accessible on or inside the `v-for` element.
+这里的 `todo` 是一个局部变量，表示当前正在迭代的数组元素。它只能在 `v-for` 元素上或元素内部访问。
 
-Notice how we are also giving each todo object a unique `id`, and binding it as the <a target="_blank" href="/api/built-in-special-attributes.html#key">special `key` attribute</a> for each `<li>`. The `key` allows Vue to accurately move each `<li>` to match the position of its corresponding object in the array.
+注意，我们还给每个 todo 对象设置了唯一的 `id`，并且将它作为<a target="_blank" href="/api/built-in-special-attributes.html#key">特殊的 `key` attribute</a> 绑定到每个 `<li>`。`key` 使得 Vue 能够精确的移动每个 `<li>` ，以匹配对应的对象在数组中的位置。
 
-There are two ways to update the list:
+更新列表有两种方式：
 
-1. Call [mutating methods](https://stackoverflow.com/questions/9009879/which-javascript-array-functions-are-mutating) on the source array:
+1. 在源数组上调用 [变更方法](https://stackoverflow.com/questions/9009879/which-javascript-array-functions-are-mutating) ：
 
    <div class="composition-api">
 
@@ -33,7 +33,7 @@ There are two ways to update the list:
 
    </div>
 
-2. Replace the array with a new one:
+2. 使用新的数组代替源数组：
 
    <div class="composition-api">
 
@@ -50,6 +50,6 @@ There are two ways to update the list:
 
    </div>
 
-Here we have a simple todo list - try to implement the logic for `addTodo()` and `removeTodo()` methods to make it work!
+这里有一个简单的 todo 列表 - 尝试实现 `addTodo()` 和 `removeTodo()` 方法的逻辑，使它能够起作用！
 
-More details on `v-for`: <a target="_blank" href="/guide/essentials/list.html">Guide - List Rendering</a>
+关于 `v-for` 的更多细节：<a target="_blank" href="/guide/essentials/list.html">指南 - 列表渲染</a>
