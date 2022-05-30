@@ -81,7 +81,7 @@ outline: deep
 
 ```vue
 <script>
-// 使用普通的 <script> 来写选项的声明
+// 使用普通的 <script> 来声明选项
 export default {
   inheritAttrs: false
 }
