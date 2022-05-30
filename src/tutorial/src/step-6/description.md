@@ -1,20 +1,20 @@
-# Conditional Rendering
+# 条件渲染
 
-We can use the `v-if` directive to conditionally render an element:
+我们可以使用 `v-if` 指令来有条件地渲染元素：
 
 ```vue-html
 <h1 v-if="awesome">Vue is awesome!</h1>
 ```
 
-This `<h1>` will be rendered only if the value of `awesome` is [truthy](https://developer.mozilla.org/en-US/docs/Glossary/Truthy). If `awesome` changes to a [falsy](https://developer.mozilla.org/en-US/docs/Glossary/Falsy) value, it will be removed from the DOM.
+这个 `<h1>` 标签只会在 `awesome` 的值为 [真值（Truthy）](https://developer.mozilla.org/zh-CN/docs/Glossary/Truthy)的时候被渲染. 若 `awesome` 改变为 [虚值（Falsy）](https://developer.mozilla.org/zh-CN/docs/Glossary/Falsy) ，它将被从 DOM 中移除。
 
-We can also use `v-else` and `v-else-if` to denote other branches of the condition:
+我们也可以使用 `v-else` 和 `v-else-if` 来表示其他的条件分支：
 
 ```vue-html
 <h1 v-if="awesome">Vue is awesome!</h1>
 <h1 v-else>Oh no 😢</h1>
 ```
 
-Currently, the demo is showing both `<h1>`s at the same time, and the button does nothing. Try to add `v-if` and `v-else` directives to them, and implement the `toggle()` method so that we can use the button to toggle between them.
+现在，示例程序同时展示了两个 `<h1>`标签，并且按钮不执行任何操作。尝试给它们添加 `v-if` 和 `v-else` 指令，并实现 `toggle()` 方法，让我们可以使用按钮在它们之间切换。
 
-More details on `v-if`: <a target="_blank" href="/guide/essentials/conditional.html">Guide - Conditional Rendering</a>
+更多细节请查阅 `v-if`: <a target="_blank" href="/guide/essentials/conditional.html">指南 - 条件渲染</a>
