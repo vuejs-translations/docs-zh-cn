@@ -9,11 +9,11 @@
 </li>
 ```
 
-我们能添加的下一个改进是隐藏已经完成的 todo。我们已经有了一个能够切换 `hideCompleted` 状态的按钮。但我们应该如何基于状态渲染不同的列表项呢？
+下一个可以添加的改进是隐藏已经完成的 todo。我们已经有了一个能够切换 `hideCompleted` 状态的按钮。但是应该如何基于状态渲染不同的列表项呢？
 
 <div class="options-api">
 
-引入 <a target="_blank" href="/guide/essentials/computed.html">计算属性</a>。我们可以使用 `computed` 选项声明一个响应性的 property，它的值由其他 property 计算而来：
+引入 <a target="_blank" href="/guide/essentials/computed.html">计算属性</a>。我们可以使用 `computed` 选项声明一个响应式的 property，它的值由其他 property 计算而来：
 
 <div class="sfc">
 
