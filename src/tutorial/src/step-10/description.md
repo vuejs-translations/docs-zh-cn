@@ -1,6 +1,6 @@
-# Watchers
+# 侦听器
 
-Sometimes we may need to perform "side effects" reactively - for example, logging a number to the console when it changes. We can achieve this with watchers:
+有时我们需要响应性地执行一些“副作用” - 例如，当一个数字改变时将其输出到控制台。我们可以通过侦听器来实现它：
 
 <div class="composition-api">
 
@@ -10,12 +10,12 @@ import { ref, watch } from 'vue'
 const count = ref(0)
 
 watch(count, (newCount) => {
-  // yes, console.log() is a side effect
+  // 没错，console.log() 是一个副作用
   console.log(`new count is: ${newCount}`)
 })
 ```
 
-`watch()` can directly watch a ref, and the callback gets fired whenever `count`'s value changes. `watch()` can also watch other types of data sources - more details are covered in <a target="_blank" href="/guide/essentials/watchers.html">Guide - Watchers</a>.
+`watch()` 可以直接侦听一个 ref，并且只要 `count` 的值改变就会触发回调。`watch()` 也可以侦听其他类型的数据源 - 更多详情请参阅 <a target="_blank" href="/guide/essentials/watchers.html">指南 - 侦听器</a>.
 
 </div>
 <div class="options-api">
@@ -29,15 +29,15 @@ export default {
   },
   watch: {
     count(newCount) {
-      // yes, console.log() is a side effect
+      // 没错，console.log() 是一个副作用
       console.log(`new count is: ${newCount}`)
     }
   }
 }
 ```
 
-Here, we are using the `watch` option to watch changes to the `count` property. The watch callback is called when `count` changes, and receives the new value as the argument. More details are covered in <a target="_blank" href="/guide/essentials/watchers.html">Guide - Watchers</a>.
+这里，我们使用 `watch` 选项来侦听 `count` property 的变化。当 `count` 改变时，侦听回调将被调用，并且接收新值作为参数。更多详情请参阅 <a target="_blank" href="/guide/essentials/watchers.html">指南 - 侦听器</a>.
 
 </div>
 
-A more practical example than logging to the console would be fetching new data when an ID changes. The code we have is fetching todos data from a mock API on component mount. There is also a button that increments the todo ID that should be fetched. Try to implement a watcher that fetches a new todo when the button is clicked.
+一个比在控制在输出更加实际的例子是当 ID 改变时抓取新的数据。我们这里的代码是当组件被挂载时，从模拟 API 中抓取 todo 数据。还有一个按钮可以增加要抓取的 todo 的 ID。尝试实现一个侦听器，当按钮被点击时抓取新的 todo 项目。
