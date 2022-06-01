@@ -1,6 +1,6 @@
 # Props
 
-A child component can accept input from the parent via **props**. First, it needs to declare the props it accepts:
+子组件可以通过 **props** 从父组件接受输入。首先，需要声明它接受的 prop：
 
 <div class="composition-api">
 <div class="sfc">
@@ -14,25 +14,25 @@ const props = defineProps({
 </script>
 ```
 
-Note `defineProps()` is a compile-time macro and doesn't need to be imported. Once declared, the `msg` prop can be used in the child component's template. It can also be accessed in JavaScript via the returned object of `defineProps()`.
+注意 `defineProps()` 是一个编译时宏，并不需要导入。一旦声明，`msg` prop 就可以在子组件的模板中使用。它也可以通过 `defineProps()` 所返回的对象在 JavaScript 中访问。
 
 </div>
 
 <div class="html">
 
 ```js
-// in child component
+// 在子组件中
 export default {
   props: {
     msg: String
   },
   setup(props) {
-    // access props.msg
+    // 访问 props.msg
   }
 }
 ```
 
-Once declared, the `msg` prop is exposed on `this` and can be used in the child component's template. The received props are passed to `setup()` as the first argument.
+一旦声明，`msg` prop 就会暴露在 `this` 上，并可以在子组件的模板中使用。接收到的 prop 会作为第一个参数传递给 `setup()`。
 
 </div>
 
@@ -41,7 +41,7 @@ Once declared, the `msg` prop is exposed on `this` and can be used in the child 
 <div class="options-api">
 
 ```js
-// in child component
+// 在子组件中
 export default {
   props: {
     msg: String
@@ -49,11 +49,11 @@ export default {
 }
 ```
 
-Once declared, the `msg` prop is exposed on `this` and can be used in the child component's template.
+一旦声明，`msg` prop 就会暴露在 `this` 上，并可以在子组件的模板中使用。
 
 </div>
 
-The parent can pass the prop to the child just like attributes. To pass a dynamic value, we can also use the `v-bind` syntax:
+父组件也可以像传递 attribute 一样传递 prop。若要传递动态值，我们还可以使用 `v-bind` 语法：
 
 <div class="sfc">
 
@@ -70,4 +70,4 @@ The parent can pass the prop to the child just like attributes. To pass a dynami
 
 </div>
 
-Now try it yourself in the editor.
+现在在编辑器中自己尝试一下吧。
