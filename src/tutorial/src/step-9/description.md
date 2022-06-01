@@ -2,7 +2,7 @@
 
 目前为止，Vue 为我们处理了所有的 DOM 更新，这要归功于响应性和声明式渲染。然而，有时我们也会不可避免地需要手动操作 DOM。
 
-这时我们需要使用 **模板 ref** - 也就是在模板语法中引用一个元素 - 使用 <a target="_blank" href="/api/built-in-special-attributes.html#ref">特殊的 `ref` attribute</a>:
+这时我们需要使用 **模板 ref**——也就是在模板语法中引用一个元素——使用 <a target="_blank" href="/api/built-in-special-attributes.html#ref">特殊的 `ref` attribute</a>:
 
 ```vue-html
 <p ref="p">hello</p>
@@ -95,6 +95,6 @@ createApp({
 </div>
 </div>
 
-这被称为**生命周期钩子** - 它允许我们注册一个在组件的特定生命周期调用的回调函数。还有一些其他的钩子如 <span class="options-api">`created` 和 `updated`</span><span class="composition-api">`onUpdated` and `onUnmounted`</span>。请查阅 <a target="_blank" href="/guide/essentials/lifecycle.html#lifecycle-diagram">生命周期图示</a> 获取更多细节。
+这被称为**生命周期钩子**——它允许我们注册一个在组件的特定生命周期调用的回调函数。还有一些其他的钩子如 <span class="options-api">`created` 和 `updated`</span><span class="composition-api">`onUpdated` and `onUnmounted`</span>。请查阅 <a target="_blank" href="/guide/essentials/lifecycle.html#lifecycle-diagram">生命周期图示</a> 获取更多细节。
 
 现在，尝试添加一个 <span class="options-api">`mounted`</span><span class="composition-api">`onMounted`</span> 钩子，通过 <span class="options-api">`this.$refs.p`</span><span class="composition-api">`p.value`</span> 访问 `<p>`，并直接对其执行一些 DOM 操作。（例如修改它的 `textContent`）。
