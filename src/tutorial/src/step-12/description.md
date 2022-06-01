@@ -14,7 +14,7 @@ const props = defineProps({
 </script>
 ```
 
-注意 `defineProps()` 是一个编译时宏，并不需要导入。一旦声明，`msg` prop 就可以在子组件的模板语法中使用。也可以通过 `defineProps()` 所返回的对象在 JavaScript 中访问。
+注意 `defineProps()` 是一个编译时宏，并不需要导入。一旦声明，`msg` prop 就可以在子组件的模板中使用。它也可以通过 `defineProps()` 所返回的对象在 JavaScript 中访问。
 
 </div>
 
@@ -32,7 +32,7 @@ export default {
 }
 ```
 
-一旦声明，`msg` prop 就会暴露在 `this` 上，并可以在子组件的模板语法中使用。接收到的 prop 会作为第一个参数传递给 `setup()`。
+一旦声明，`msg` prop 就会暴露在 `this` 上，并可以在子组件的模板中使用。接收到的 prop 会作为第一个参数传递给 `setup()`。
 
 </div>
 
@@ -49,7 +49,7 @@ export default {
 }
 ```
 
-一旦声明，`msg` prop 就会暴露在 `this` 上，并可以在子组件的模板语法中使用。
+一旦声明，`msg` prop 就会暴露在 `this` 上，并可以在子组件的模板中使用。
 
 </div>
 
