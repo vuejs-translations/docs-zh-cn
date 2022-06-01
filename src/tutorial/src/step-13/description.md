@@ -1,16 +1,16 @@
 # Emits
 
-In addition to receiving props, a child component can also emit events to the parent:
+除了接收 prop，子组件还可以向父组件触发事件：
 
 <div class="composition-api">
 <div class="sfc">
 
 ```vue
 <script setup>
-// declare emitted events
+// 声明触发的事件
 const emit = defineEmits(['response'])
 
-// emit with argument
+// 带参数触发
 emit('response', 'hello from child')
 </script>
 ```
@@ -21,10 +21,10 @@ emit('response', 'hello from child')
 
 ```js
 export default {
-  // declare emitted events
+  // 声明触发的事件
   emits: ['response'],
   setup(props, { emit }) {
-    // emit with argument
+    // 带参数触发
     emit('response', 'hello from child')
   }
 }
@@ -38,10 +38,10 @@ export default {
 
 ```js
 export default {
-  // declare emitted events
+  // 声明触发的事件
   emits: ['response'],
   created() {
-    // emit with argument
+    // 带参数触发
     this.$emit('response', 'hello from child')
   }
 }
@@ -49,9 +49,9 @@ export default {
 
 </div>
 
-The first argument to <span class="options-api">`this.$emit()`</span><span class="composition-api">`emit()`</span> is the event name. Any additional arguments are passed on to the event listener.
+<span class="options-api">`this.$emit()`</span><span class="composition-api">`emit()`</span> 的第一个参数是事件的名称。其他所有参数都将传递给事件监听器。
 
-The parent can listen to child-emitted events using `v-on` - here the handler receives the extra argument from the child emit call and assigns it to local state:
+父组件可以使用 `v-on` 监听子组件触发的事件——这里的事件处理函数接收子组件触发事件时的额外参数并分配到它的本地状态：
 
 <div class="sfc">
 
@@ -68,4 +68,4 @@ The parent can listen to child-emitted events using `v-on` - here the handler re
 
 </div>
 
-Now try it yourself in the editor.
+现在在编辑器中自己尝试一下吧。
