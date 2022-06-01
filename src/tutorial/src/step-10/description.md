@@ -1,6 +1,6 @@
 # 侦听器
 
-有时我们需要响应性地执行一些“副作用” - 例如，当一个数字改变时将其输出到控制台。我们可以通过侦听器来实现它：
+有时我们需要响应性地执行一些“副作用”——例如，当一个数字改变时将其输出到控制台。我们可以通过侦听器来实现它：
 
 <div class="composition-api">
 
@@ -15,7 +15,7 @@ watch(count, (newCount) => {
 })
 ```
 
-`watch()` 可以直接侦听一个 ref，并且只要 `count` 的值改变就会触发回调。`watch()` 也可以侦听其他类型的数据源 - 更多详情请参阅 <a target="_blank" href="/guide/essentials/watchers.html">指南 - 侦听器</a>.
+`watch()` 可以直接侦听一个 ref，并且只要 `count` 的值改变就会触发回调。`watch()` 也可以侦听其他类型的数据源——更多详情请参阅 <a target="_blank" href="/guide/essentials/watchers.html">指南——侦听器</a>.
 
 </div>
 <div class="options-api">
@@ -36,7 +36,7 @@ export default {
 }
 ```
 
-这里，我们使用 `watch` 选项来侦听 `count` property 的变化。当 `count` 改变时，侦听回调将被调用，并且接收新值作为参数。更多详情请参阅 <a target="_blank" href="/guide/essentials/watchers.html">指南 - 侦听器</a>.
+这里，我们使用 `watch` 选项来侦听 `count` property 的变化。当 `count` 改变时，侦听回调将被调用，并且接收新值作为参数。更多详情请参阅 <a target="_blank" href="/guide/essentials/watchers.html">指南——侦听器</a>.
 
 </div>
 
