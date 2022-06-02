@@ -1,6 +1,6 @@
-# Slots
+# 插槽
 
-In addition to passing data via props, the parent component can also pass down template fragments to the child via **slots**:
+除了通过 prop 传递数据外，父组件还可以通过**插槽**将模板片段传递给子组件：
 
 <div class="sfc">
 
@@ -21,12 +21,12 @@ In addition to passing data via props, the parent component can also pass down t
 
 </div>
 
-In the child component, it can render the slot content from the parent using the `<slot>` element as outlet:
+在子组件中，可以使用 `<slot>` 元素作为插口渲染父组件中的插槽内容：
 
 <div class="sfc">
 
 ```vue-html
-<!-- in child template -->
+<!-- 在子组件的模板中 -->
 <slot/>
 ```
 
@@ -34,16 +34,16 @@ In the child component, it can render the slot content from the parent using the
 <div class="html">
 
 ```vue-html
-<!-- in child template -->
+<!-- 在子组件的模板中 -->
 <slot></slot>
 ```
 
 </div>
 
-Content inside the `<slot>` outlet will be treated as "fallback" content: it will be displayed if the parent did not pass down any slot content:
+`<slot>` 插口中的内容将被当作“默认”内容：它会在父组件没有传递任何插槽内容时显示：
 
 ```vue-html
 <slot>Fallback content</slot>
 ```
 
-Currently we are not passing any slot content to `<ChildComp>`, so you should see the fallback content. Let's provide some slot content to the child while making use of the parent's `msg` state.
+现在我们没有给 `<ChildComp>` 传递任何插槽内容，所以你将看到默认内容。让我们利用父组件的 `msg` 状态为子组件提供一些插槽内容吧。
