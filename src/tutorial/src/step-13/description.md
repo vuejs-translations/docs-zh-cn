@@ -51,7 +51,7 @@ export default {
 
 <span class="options-api">`this.$emit()`</span><span class="composition-api">`emit()`</span> 的第一个参数是事件的名称。其他所有参数都将传递给事件监听器。
 
-父组件可以使用 `v-on` 监听子组件触发的事件——这里的事件处理函数接收子组件触发事件时的额外参数并分配到它的本地状态：
+父组件可以使用 `v-on` 监听子组件触发的事件——这里的处理函数接收了子组件触发事件时的额外参数并将它赋值给了本地状态：
 
 <div class="sfc">
 
