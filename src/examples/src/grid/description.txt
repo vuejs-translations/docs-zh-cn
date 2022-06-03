@@ -1,1 +1,1 @@
-An example of creating a reusable grid component and using it with external data.
+该示例创建了一个可复用网格组件，并结合外部数据使用它。

@@ -7,14 +7,14 @@ const filters = {
 }
 
 export default {
-  // app initial state
+  // 初始化应用状态
   data: () => ({
     todos: JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]'),
     editedTodo: null,
     visibility: 'all'
   }),
 
-  // watch todos change for localStorage persistence
+  // 侦听 todos 的变化，以通过 localStorage 持久化
   watch: {
     todos: {
       handler(todos) {
@@ -38,8 +38,8 @@ export default {
     }
   },
 
-  // methods that implement data logic.
-  // note there's no DOM manipulation here at all.
+  // 数据逻辑的方法实现。
+  // 注意这里没有 DOM 操作。
   methods: {
     toggleAll(e) {
       this.todos.forEach((todo) => (todo.completed = e.target.checked))

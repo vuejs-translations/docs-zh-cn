@@ -8,12 +8,12 @@ export default {
   }),
 
   created() {
-    // fetch on init
+    // 在初始化的时候进行获取
     this.fetchData()
   },
 
   watch: {
-    // re-fetch whenever currentBranch changes
+    // 当 currentBranch 改变时重新获取
     currentBranch: 'fetchData'
   },
 
