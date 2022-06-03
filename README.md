@@ -17,9 +17,16 @@ This project requires Node.js to be `v14.0.0` or higher, because we use new Java
 
 ## 如何参与贡献
 
-目前网站处在集中翻译与校对的阶段，欢迎大家来[这个 issue](https://github.com/vuejs-translations/docs-zh-cn/issues/8) 查阅相关细节。
+有劳访问我们的 [wiki](https://github.com/vuejs-translations/docs-zh-cn/wiki) 了解相关注意事项。
 
-另外在参与具体的贡献之前，有劳访问我们的 [wiki](https://github.com/vuejs-translations/docs-zh-cn/wiki) 了解相关注意事项。
+目前网站处于维护状态，我们会定期同步英文版的更新，包括文档内容和前端代码等。欢迎大家：
+
+- 同步英文站点最新的改动到这里
+- 修复错别字或错误的书写格式
+- 发 issue 讨论译法或书写格式
+- 发 issue 讨论部署或协作流程上的问题
+
+同时我们的文档中可能会偶尔存在暂时未翻译的段落，这些段落通常都以 `<!-- TODO: translation -->` 开头作为标记。所以也欢迎大家在源码中搜索这些段落并贡献翻译。
 
 ## 贡献者列表
 
