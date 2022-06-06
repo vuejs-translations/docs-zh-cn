@@ -238,6 +238,26 @@ declare module 'vue' {
 
 为了利用模块扩充的优势，你需要确保将扩充的模块放在 [TypeScript 模块](https://www.typescriptlang.org/docs/handbook/modules.html) 中。 也就是说，该文件需要包含至少一个顶级的 `import` 或 `export`，即使它只是 `export {}`。如果扩充被放在模块之外，它将覆盖原始类型，而不是扩充!
 
+```ts
+// 不工作，将覆盖原始类型。
+declare module 'vue' {
+  interface ComponentCustomProperties {
+    $translate: (key: string) => string
+  }
+}
+```
+
+```ts
+// 正常工作。
+export {}
+
+declare module 'vue' {
+  interface ComponentCustomProperties {
+    $translate: (key: string) => string
+  }
+}
+```
+
 ## 扩充自定义选项 {#augmenting-custom-options}
 
 某些插件，比如 `vue-router`，提供了一些自定义的组件选项，比如 `beforeRouteEnter`：
