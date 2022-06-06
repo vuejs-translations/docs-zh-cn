@@ -338,10 +338,10 @@ const html = await renderToString(app, ctx)
 console.log(ctx.teleports) // { '#teleported': 'teleported content' }
 ```
 
-<!-- TODO: translation --> You need to inject the teleport markup into the correct location in your final page HTML similar to how you need to inject the main app markup.
+你需要在最终页面上的正确位置注入 teleport 标记，就像你需要注入主应用标记一样。
 
 :::tip
-Avoid targeting `body` when using Teleports and SSR together - usually, `<body>` will contain other server-rendered content which makes it impossible for Teleports to determine the correct starting location for hydration.
+请避免在 SSR 的同时把 Teleport 定位到 `body`——通常 `<body>` 会包含其他服务端渲染出来的内容，这会使得 Teleport 无法确定激活的正确起始位置。
 
-Instead, prefer a dedicated container, e.g. `<div id="teleported"></div>` which contains only teleported content.
+我们倾向于换用一个独立的只包含 teleport 的内容的容器，例如 `<div id="teleported"></div>`。
 :::
