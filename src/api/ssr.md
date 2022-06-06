@@ -30,9 +30,9 @@
   })()
   ```
 
-  ### SSR Context
+  ### SSR 上下文
 
-  <!-- TODO: translation --> You can pass an optional context object, which can be used to record additional data during the render, for example [accessing content of Teleports](/guide/scaling-up/ssr.html#teleports):
+  你可以传入一个可选的上下文对象用来在渲染过程中记录额外的数据，例如[访问 Teleport 的内容](/guide/scaling-up/ssr.html#teleports)：
 
   ```js
   const ctx = {}
@@ -41,7 +41,7 @@
   console.log(ctx.teleports) // { '#teleported': 'teleported content' }
   ```
 
-  Most other SSR APIs on this page also optionally accept a context object. The context object can be accessed in component code via the [useSSRContext](#usessrcontext) helper.
+  这个页面中的其他大多数 SSR API 也可以接受一个上下文对象。该上下文对象可以在组件代码里通过 [useSSRContext](#usessrcontext) 辅助函数进行访问。
 
 - **参考**：[指南 - 服务端渲染 (SSR)](/guide/scaling-up/ssr.html)
 
