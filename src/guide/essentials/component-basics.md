@@ -422,12 +422,20 @@ defineEmits(['enlarge-text'])
 
 <div class="composition-api">
 
-和 `defineProps` 类似，`defineEmits` 仅可用于 `<script setup>` 之中，并且不需要导入，返回的 `emit` 函数可以被用于在 JavaScript 代码中抛出事件：
+和 `defineProps` 类似，`defineEmits` 仅可用于 `<script setup>` 之中，并且不需要导入，返回的 `emit` 函数可以被用于抛出事件：
 
-```js
+```vue
+<!-- BlogPost.vue -->
+<script setup>
 const emit = defineEmits(['enlarge-text'])
-
-emit('enlarge-text')
+</script>
+  
+<template>
+  <div class="blog-post">
+    <h4>{{ title }}</h4>
+    <button @click="emit('enlarge-text')">Enlarge text</button>
+  </div>
+</template>
 ```
 
 你也可以看看[为组件 emits 标注类型](/guide/typescript/composition-api.html#typing-component-emits)这一章了解更多。<sup class="vt-badge ts" />
