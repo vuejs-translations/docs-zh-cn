@@ -82,7 +82,7 @@ const nav = [
         ]
       },
       {
-        text: '最新动态',
+        text: '动态',
         items: [
           { text: '博客', link: 'https://blog.vuejs.org/' },
           { text: 'Twitter', link: 'https://twitter.com/vuejs' },
