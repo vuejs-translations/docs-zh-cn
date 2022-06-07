@@ -16,7 +16,7 @@ const nav = [
       { text: '快速开始', link: '/guide/quick-start' },
       // { text: '风格指南', link: '/style-guide/' },
       {
-        text: 'Vue 2 Docs',
+        text: 'Vue 2 文档',
         link: 'https://v2.vuejs.org'
       },
       {
@@ -31,7 +31,7 @@ const nav = [
     link: '/api/'
   },
   {
-    text: 'Playground',
+    text: '演练场',
     link: 'https://sfc.vuejs.org'
   },
   {
@@ -82,7 +82,7 @@ const nav = [
         ]
       },
       {
-        text: 'News',
+        text: '最新动态',
         items: [
           { text: '博客', link: 'https://blog.vuejs.org/' },
           { text: 'Twitter', link: 'https://twitter.com/vuejs' },
@@ -93,23 +93,10 @@ const nav = [
     ]
   },
   {
-    text: '语言',
-    items: [
-      {
-        text: '简体中文',
-        link: 'https://staging-cn.vuejs.org/'
-      },
-      {
-        text: 'English',
-        link: 'https://staging.vuejs.org/'
-      }
-    ]
-  },
-  {
     text: '关于',
     activeMatch: `^/about/`,
     items: [
-      { text: 'FAQ', link: '/about/faq' },
+      { text: '常见问题', link: '/about/faq' },
       { text: '团队', link: '/about/team' },
       { text: '版本发布', link: '/about/releases' },
       {
@@ -128,7 +115,7 @@ const nav = [
     link: '/sponsor/'
   },
   {
-    text: 'Partners',
+    text: '合作伙伴',
     link: '/partners/',
     activeMatch: `^/partners/`
   }
@@ -254,7 +241,7 @@ export const sidebar = {
         },
         { text: '测试', link: '/guide/scaling-up/testing' },
         {
-          text: '服务端渲染（SSR）',
+          text: '服务端渲染 (SSR)',
           link: '/guide/scaling-up/ssr'
         }
       ]
