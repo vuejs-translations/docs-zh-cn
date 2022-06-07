@@ -42,6 +42,18 @@ index d4d144c..c384fe1 100644
      >
    </div>
  </template>
+diff --git a/node_modules/@vue/theme/src/vitepress/components/VPNavBar.vue b/node_modules/@vue/theme/src/vitepress/components/VPNavBar.vue
+index a09d739..0e1acfd 100644
+--- a/node_modules/@vue/theme/src/vitepress/components/VPNavBar.vue
++++ b/node_modules/@vue/theme/src/vitepress/components/VPNavBar.vue
+@@ -43,6 +43,7 @@ defineProps<{
+   padding: 0 12px 0 24px;
+   height: var(--vt-nav-height);
+   background-color: var(--vt-c-bg);
++  white-space: nowrap;
+   transition: border-color 0.5s, background-color 0.5s;
+ }
+ 
 diff --git a/node_modules/@vue/theme/src/vitepress/components/VPNavBarExtra.vue b/node_modules/@vue/theme/src/vitepress/components/VPNavBarExtra.vue
 index 5598a50..7c75598 100644
 --- a/node_modules/@vue/theme/src/vitepress/components/VPNavBarExtra.vue
