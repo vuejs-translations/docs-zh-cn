@@ -22,7 +22,7 @@ onMounted(() => {
     <!-- Spotlight -->
     <div class="spotlight">
       <div class="spotlight-inner">
-        <h2>合作伙伴聚光灯</h2>
+        <h2>合作伙伴聚焦</h2>
         <PartnerCard v-if="spotlighted" hero :data="spotlighted" />
       </div>
     </div>
