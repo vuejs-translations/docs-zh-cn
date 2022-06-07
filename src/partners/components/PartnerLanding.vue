@@ -22,15 +22,15 @@ onMounted(() => {
     <!-- Spotlight -->
     <div class="spotlight">
       <div class="spotlight-inner">
-        <h2>Partner Spotlight</h2>
+        <h2>合作伙伴聚光灯</h2>
         <PartnerCard v-if="spotlighted" hero :data="spotlighted" />
       </div>
     </div>
 
     <div class="featured">
-      <h2>Featured Partners</h2>
+      <h2>精选合作伙伴</h2>
       <PartnerList :filter="(p) => p.platinum" />
-      <a class="browse-all" href="./all.html">Browse All Partners</a>
+      <a class="browse-all" href="./all.html">浏览所有合作伙伴</a>
     </div>
 
     <PartnerJoin />
