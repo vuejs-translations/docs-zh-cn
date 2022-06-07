@@ -9,7 +9,8 @@
     "zhlint": "zhlint 'src/guide/**/*.md'",
     "clean": "rm -rf .vitepress/dist",
     "sync": "node scripts/sync.js",
-    "preinstall": "npx only-allow pnpm"
+    "preinstall": "npx only-allow pnpm",
+    "postinstall": "patch-package"
   },
   "dependencies": {
     "@vue/repl": "^1.0.0",
@@ -20,6 +21,7 @@
     "vue": "^3.2.33"
   },
   "devDependencies": {
+    "@milahu/patch-package": "^6.4.14",
     "@types/markdown-it": "^12.2.3",
     "@types/node": "^16.9.1",
     "chalk": "^4.1.2",
