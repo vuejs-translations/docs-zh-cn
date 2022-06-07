@@ -2,16 +2,16 @@
 
 ## 在线尝试 {#try-it-online}
 
-你不需要在机器上安装任何东西，也可以尝试单文件组件的使用。我们提供了一个在线的 Playground，可以在浏览器中访问：
+你不需要在机器上安装任何东西，也可以尝试单文件组件的使用。我们提供了一个在线的演练场，可以在浏览器中访问：
 
-- [Vue SFC Playground](https://sfc.vuejs.org)
+- [Vue SFC 演练场](https://sfc.vuejs.org)
   - 始终根据最新的提交部署
   - 用来检查编译输出的结果
 - [StackBlitz 中的 Vue + Vite](https://vite.new/vue)
   - 类似 IDE 的环境，但实际是在浏览器中运行 Vite 开发服务器
   - 和本地启动效果最接近
 
-同时在报告 Bug 时也建议使用这个在线 Playground 来提供一个最小可重现的副本。
+同时在报告 Bug 时也建议使用这个在线演练场来提供一个最小可重现的副本。
 
 ## 项目脚手架 {#project-scaffolding}
 
@@ -28,7 +28,7 @@
 - 要学习更多关于 Vite 的知识，请查看 [Vite 官方文档](https://cn.vitejs.dev)。
 - 若要了解如何为一个 Vite 项目配置 Vue 相关的特殊行为，比如向 Vue 编译器传递相关选项，请查看 [@vitejs/plugin-vue](https://github.com/vitejs/vite/tree/main/packages/plugin-vue#readme) 的文档。
 
-上面提到的两种在线 Playground 也支持下载文件为一个 Vite 项目。
+上面提到的两种在线演练场也支持下载文件为一个 Vite 项目。
 
 ### Vue CLI {#vue-cli}
 
@@ -154,7 +154,7 @@ Vue 团队维护着 [eslint-plugin-vue](https://github.com/vuejs/eslint-plugin-v
 
 为 webpack 提供 Vue SFC 支持的官方 loader。如果你正在使用 Vue CLI，也可以看看[如何在 Vue CLI 中更改 `vue-loader` 选项的文档](https://cli.vuejs.org/guide/webpack.html#modifying-options-of-a-loader)。
 
-## 其他在线 Playground {#other-online-playgrounds}
+## 其他在线演练场 {#other-online-playgrounds}
 
 - [VueUse Playground](https://play.vueuse.org)
 - [Vue + Vite on Repl.it](https://replit.com/@templates/VueJS-with-Vite)
