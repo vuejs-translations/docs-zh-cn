@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import NewsLetter from './NewsLetter.vue'
 import SponsorsGroup from './SponsorsGroup.vue';
+// NOTE: hide the home video
+// https://github.com/vuejs-translations/docs-zh-cn/issues/177
 // import VueMasteryModal from './VueMasteryModal.vue';
 </script>
 
@@ -14,6 +16,7 @@ import SponsorsGroup from './SponsorsGroup.vue';
       一款用于构建 Web 界面，易学易用，性能出色且功能丰富的框架。
     </p>
     <p class="actions">
+      <!-- NOTE: hide the home video -->
       <!-- <vue-mastery-modal /> -->
       <a class="get-started" href="/guide/introduction.html">
         快速开始
@@ -163,6 +166,37 @@ html:not(.dark) .accent,
 .dark .actions .setup:hover {
   background-color: var(--vt-c-gray-dark-3);
 }
+
+
+/* NOTE: via #vuemastery-action in VueMasteryModal.vue */
+
+.actions .get-started {
+  font-size: 16px;
+  display: inline-block;
+  border-radius: 8px;
+  transition: background-color 0.5s, color 0.5s;
+  position: relative;
+  font-weight: 600;
+  background-color: var(--vt-c-green);
+  color: #fff;
+  margin-right: 18px;
+  padding: 8px 1em;
+}
+
+.dark .actions .get-started {
+  color: var(--vt-c-indigo);
+}
+
+.actions .get-started:hover {
+  background-color: var(--vt-c-green-dark);
+  transition-duration: 0.2s;
+}
+
+.dark .actions .get-started:hover {
+  background-color: var(--vt-c-green-light);
+}
+
+/* end NOTE */
 
 #special-sponsor {
   border-top: 1px solid var(--vt-c-divider-light);
