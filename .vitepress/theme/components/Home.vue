@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import NewsLetter from './NewsLetter.vue'
 import SponsorsGroup from './SponsorsGroup.vue';
-import VueMasteryModal from './VueMasteryModal.vue';
+// import VueMasteryModal from './VueMasteryModal.vue';
 </script>
 
 <template>
@@ -14,7 +14,7 @@ import VueMasteryModal from './VueMasteryModal.vue';
       一款用于构建 Web 界面，易学易用，性能出色且功能丰富的框架。
     </p>
     <p class="actions">
-      <vue-mastery-modal />
+      <!-- <vue-mastery-modal /> -->
       <a class="get-started" href="/guide/introduction.html">
         快速开始
         <svg
