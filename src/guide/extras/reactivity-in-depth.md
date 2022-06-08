@@ -298,7 +298,7 @@ type DebuggerEvent = {
 - `onTrack` 将在响应属性或引用作为依赖项被跟踪时被调用。
 - `onTrigger` 将在侦听器回调被依赖项的变更触发时被调用。
 
-这两个回调都会作为组件组件调试的钩子，接受[相同格式](#debugger-event)的调试事件：
+这两个回调都会作为组件调试的钩子，接受[相同格式](#debugger-event)的调试事件：
 
 ```js
 const plusOne = computed(() => count.value + 1, {
