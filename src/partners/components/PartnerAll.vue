@@ -19,11 +19,11 @@ function includes(a: string, b: string) {
 </script>
 
 <template>
-  <PartnerHero title="Browser All Partners" />
+  <PartnerHero title="浏览器所有合作伙伴" />
   <div class="container">
     <VTIconSearch class="icon" />
     <input
-      placeholder="Search partners by name or region"
+      placeholder="通过名称或地区搜索合作伙伴"
       v-model="query"
     />
     <PartnerList :filter="filter" />
