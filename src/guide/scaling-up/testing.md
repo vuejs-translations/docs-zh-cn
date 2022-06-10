@@ -288,7 +288,7 @@ Vitest 和基于浏览器的运行器之间的主要区别是速度和执行上�
 在一个基于 Vite 的 Vue 项目中，运行如下命令：
 
 ```sh
-> npm install -D vitest happy-dom @testing-library/vue@next
+> npm install -D vitest happy-dom @testing-library/vue
 ```
 
 接着，更新你的 Vite 配置，添加上 `test` 选项块：

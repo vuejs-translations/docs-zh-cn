@@ -48,7 +48,7 @@ SFC 是 Vue 框架提供的一个功能，并且在下列场景中都是官方�
 - 静态站点生成 (SSG)
 - 大型的前端项目，若使用构建步骤可以获得更好的开发体验 (DX)
 
-当然，我们也意识到有些场景下使用 SFC 有些过犹不及。因此 Vue 同样也可以在无构建步骤的情况下以纯 JavaScript 方式使用。如果你正希望通过简单的交互来增强静态 HTML，你可以看看 [petite-vue](https://github.com/vuejs/petite-vue)，它是一个 6kb 左右、预优化过的 Vue 子集，更适合渐进式集成的需求。
+当然，我们也意识到有些场景下使用 SFC 有些过犹不及。因此 Vue 同样也可以在无构建步骤的情况下以纯 JavaScript 方式使用。如果你正希望通过简单的交互来增强静态 HTML，你可以看看 [petite-vue](https://github.com/vuejs/petite-vue)，它是一个 6 kB 左右、预优化过的 Vue 子集，更适合渐进式集成的需求。
 
 ## SFC 是如何工作的 {#how-it-works}
 

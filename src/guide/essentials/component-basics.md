@@ -297,7 +297,7 @@ const posts = ref([
 
 </div>
 
-请注意这里我们是怎么使用 `v-bind` 来传递动态 props 的。当事先不知道要渲染的确切内容时，这一点特别有用。
+请注意 `v-bind` 是如何用来传递动态 prop 值的。当事先不知道要渲染的确切内容时，这一点特别有用。
 
 以上就是关于 props，目前你需要了解的所有知识了，但当你顺利地完成了本页的阅读后，如果还想知道更多细节，我们推荐你继续阅读关于 props 的[完整指引](/guide/components/props.html)。
 
@@ -422,20 +422,14 @@ defineEmits(['enlarge-text'])
 
 <div class="composition-api">
 
-和 `defineProps` 类似，`defineEmits` 仅可用于 `<script setup>` 之中，并且不需要导入，返回的 `emit` 函数可以被用于抛出事件：
+和 `defineProps` 类似，`defineEmits` 仅可用于 `<script setup>` 之中，并且不需要导入，它返回一个等同于 `$emit` 方法的 `emit` 函数。它可以被用于在组件的 `<script setup>`  中抛出事件，此处无法直接访问 `$emit`：
 
 ```vue
-<!-- BlogPost.vue -->
 <script setup>
 const emit = defineEmits(['enlarge-text'])
+
+emit('enlarge-text')
 </script>
-  
-<template>
-  <div class="blog-post">
-    <h4>{{ title }}</h4>
-    <button @click="emit('enlarge-text')">Enlarge text</button>
-  </div>
-</template>
 ```
 
 你也可以看看[为组件 emits 标注类型](/guide/typescript/composition-api.html#typing-component-emits)这一章了解更多。<sup class="vt-badge ts" />
