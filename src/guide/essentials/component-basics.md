@@ -422,7 +422,7 @@ defineEmits(['enlarge-text'])
 
 <div class="composition-api">
 
-和 `defineProps` 类似，`defineEmits` 仅可用于 `<script setup>` 之中，并且不需要导入，它返回一个等同于 `$emit` 方法的 `emit` 函数。它可以被用于在组件的 `<script setup>`  中抛出事件，此处无法直接访问 `$emit`：
+和 `defineProps` 类似，`defineEmits` 仅可用于 `<script setup>` 之中，并且不需要导入，它返回一个等同于 `$emit` 方法的 `emit` 函数。它可以被用于在组件的 `<script setup>` 中抛出事件，因为此处无法直接访问 `$emit`：
 
 ```vue
 <script setup>

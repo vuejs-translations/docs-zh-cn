@@ -129,7 +129,7 @@ export default defineComponent({
 })
 ```
 
-See also:
+参考：
 
 - [Note on webpack Treeshaking](/api/general.html#note-on-webpack-treeshaking)
 - [对 `defineComponent` 的类型测试](https://github.com/vuejs/core/blob/main/test-dts/defineComponent.test-d.tsx)

@@ -109,7 +109,7 @@ function increaseCount(n) {
 defineEmits(['inFocus', 'submit'])
 </script>
 ```
-
+<!-- TODO: translation -->
 The `$emit` method that we used in the `<template>` isn't accessible within the `<script setup>` section of a component, but `defineEmits()` returns an equivalent function that we can use instead:
 
 ```vue
@@ -135,7 +135,7 @@ export default {
 }
 ```
 
-As with other properties of the `setup()` context, `emit` can safely be destructured:
+<!-- TODO: translation --> As with other properties of the `setup()` context, `emit` can safely be destructured:
 
 ```js
 export default {
