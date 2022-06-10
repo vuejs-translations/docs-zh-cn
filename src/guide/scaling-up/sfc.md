@@ -66,7 +66,7 @@ export default {
 
 SFC 中的 `<style>` 标签一般会在开发时注入成原生的 `<style>` 标签以支持热更新，而生产环境下它们会被抽取、合并成单独的 CSS 文件。
 
-你可以在 [Vue SFC Playground](https://sfc.vuejs.org/) 中实际使用一下单文件组件，同时可以看到它们最终被编译后的样子。
+你可以在 [Vue SFC 演练场](https://sfc.vuejs.org/)中实际使用一下单文件组件，同时可以看到它们最终被编译后的样子。
 
 在实际项目中，我们一般会使用集成了 SFC 编译器的构建工具，比如 [Vite](https://vitejs.dev/) 或者 [Vue CLI](http://cli.vuejs.org/) (基于 [webpack](https://webpack.js.org/))，Vue 官方也提供了脚手架工具来帮助你尽可能快速地上手开发 SFC。查看 [SFC 工具链](/guide/scaling-up/tooling)一章获取更多细节。
 

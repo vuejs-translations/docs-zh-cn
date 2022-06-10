@@ -22,7 +22,7 @@ function genMailLink(email: string) {
   <div class="partner-page">
     <div class="back">
       <a href="/partners/all.html"
-        ><VTIconChevronLeft class="icon" />Back to all partners</a
+        ><VTIconChevronLeft class="icon" />返回所有合作伙伴</a
       >
     </div>
 
@@ -34,14 +34,14 @@ function genMailLink(email: string) {
     </div>
 
     <div class="actions">
-      <a :href="p.website.url" target="_blank">Visit Website</a>
+      <a :href="p.website.url" target="_blank">访问网站</a>
       <a class="contact" :href="genMailLink(p.contact)" target="_blank"
-        >Contact</a
+        >联系方式</a
       >
     </div>
 
     <div class="hiring" v-if="p.hiring">
-      <a :href="p.hiring">{{ p.name }} is hiring!</a>
+      <a :href="p.hiring">{{ p.name }} 正在招聘中！</a>
     </div>
   </div>
 </template>

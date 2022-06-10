@@ -11,47 +11,27 @@ import type { Member } from './Member'
 <template>
   <div class="TeamPage">
     <TeamHero>
-      <template #title>Meet the Team</template>
-      <template #lead
-        >The development of Vue and its ecosystem is guided by an international
-        team, some of whom have chosen to be
-        <span class="nowrap">featured below.</span></template
-      >
+      <template #title>认识团队</template>
+      <template #lead>Vue 及其生态系统发展的背后是一个国际化的团队，以下是部分团员的个人信息。</template>
 
       <template #action>
-        <VTLink
-          href="https://github.com/vuejs/governance/blob/master/Team-Charter.md"
-          >Learn more about teams</VTLink
-        >
+        <VTLink href="https://github.com/vuejs/governance/blob/master/Team-Charter.md">了解更多团队信息</VTLink>
       </template>
     </TeamHero>
 
     <TeamList :members="membersCoreData">
-      <template #title>Core Team Members</template>
-      <template #lead
-        >Core team members are those who are actively involved in the
-        maintenance of one or more core projects. They have made significant
-        contributions to the Vue ecosystem, with a long term commitment to the
-        success of the project and its users.</template
-      >
+      <template #title>核心团队成员</template>
+      <template #lead>核心团队成员是那些积极参与维护一个或多个核心项目的人。他们对 Vue 的生态系统做出了重大贡献，并对项目及其用户的成功做出了长期的承诺。</template>
     </TeamList>
 
     <TeamList :members="membersEmeritiData as Member[]">
-      <template #title>Core Team Emeriti</template>
-      <template #lead
-        >Here we honor some no-longer-active core team members who have made
-        valuable contributions in the past.</template
-      >
+      <template #title>名誉核心团队</template>
+      <template #lead>我们在此致敬过去曾做出过突出贡献的不再活跃的团队成员。</template>
     </TeamList>
 
     <TeamList :members="membersPartnerData as Member[]">
-      <template #title>Community Partners</template>
-      <template #lead
-        >Some members of the Vue community have so enriched it, that they
-        deserve special mention. We've developed a more intimate relationship
-        with these key partners, often coordinating with them on upcoming
-        features and news.</template
-      >
+      <template #title>社区伙伴</template>
+      <template #lead>一些 Vue 的社区成员让这里变得更加丰富多彩，有必要在此特别提及。我们与这些主要合作伙伴建立了更加亲密的关系，经常与他们就即将到来的功能和新闻展开协作。</template>
     </TeamList>
   </div>
 </template>
