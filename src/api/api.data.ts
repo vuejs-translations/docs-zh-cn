@@ -4,15 +4,17 @@ import fs from 'fs'
 import path from 'path'
 import { sidebar } from '../../.vitepress/config'
 
+interface APIHeader {
+  anchor: string
+  text: string
+}
+
 export interface APIGroup {
   text: string
   items: {
     text: string
     link: string
-    headers: {
-      anchor: string
-      text: string
-    }[]
+    headers: APIHeader[]
   }[]
 }
 
@@ -37,10 +39,7 @@ export default {
 const headersCache = new Map<
   string,
   {
-    headers: {
-      anchor: string
-      text: string
-    }[]
+    headers: APIHeader[]
     timestamp: number
   }
 >()
@@ -56,19 +55,21 @@ function parsePageHeaders(link: string) {
 
   const src = fs.readFileSync(fullPath, 'utf-8')
   const h2s = src.match(/^## [^\n]+/gm)
-  let headers: { anchor: string; text: string }[] = []
+  let headers: APIHeader[] = []
   if (h2s) {
     headers = h2s.map((h) => {
-      let text = h
-        .slice(2)
-        .replace(/<sup class=.*/, '')
-        .replace(/\\</g, '<')
-        .replace(/`([^`]+)`/g, '$1')
-        .replace(/\{#([a-zA-Z0-9-]+)\}/g, '') // hidden anchor tag
+        const text = h
+          .slice(2)
+          .replace(/<sup class=.*/, '')
+          .replace(/\\</g, '<')
+          .replace(/`([^`]+)`/g, '$1')
+          .replace(/\{#([a-zA-Z0-9-]+)\}/g, '') // hidden anchor tag
+          .replace(/\{#([a-zA-Z0-9]+)\}/g, '') // hidden anchor tag
         .trim()
-      let anchor = h.match(/\{#([a-zA-Z0-9-]+)\}/)?.[1] ?? text
-      return { text, anchor }
-    })
+        const anchor = h.match(/\{#([a-zA-Z0-9-]+)\}/)?.[1] ?? text
+        return { text, anchor }
+      }
+    )
   }
   headersCache.set(fullPath, {
     timestamp,

@@ -122,6 +122,18 @@
   type FooInstance = InstanceType<typeof Foo>
   ```
 
+  ### Note on webpack Treeshaking
+
+  <!-- TODO: translation --> Because `defineComponent()` is a function call, it could look like that it would produce side-effects to some build tools, e.g. webpack. This will prevent the component from being tree-shaken even when the component is never used.
+
+  To tell webpack that this function call is safe to be tree-shaken, you can add a `/*#__PURE__*/` comment notation before the function call:
+
+  ```js
+  export default /*#__PURE__*/ defineComponent(/* ... */)
+  ```
+
+  Note this is not necessary if you are using Vite, because Rollup (the underlying production bundler used by Vite) is smart enough to determine that `defineComponent()` is in fact side-effect-free without the need for manual annotations.
+
 - **参考**：[指南 - 配合 TypeScript 使用 Vue](/guide/typescript/overview.html#general-usage-notes)
 
 ## defineAsyncComponent() {#defineasynccomponent}
