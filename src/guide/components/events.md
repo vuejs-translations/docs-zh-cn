@@ -122,7 +122,7 @@ function buttonClick() {
 </script>
 ```
 
-该 `defineEmits()` 宏**不能**在函数中使用，他必须直接放置在 `<script setup>` 中，如上面的例子所示。
+该 `defineEmits()` 宏**不能**在子函数中使用，他必须直接放置在 `<script setup>` 中，如上面的例子所示。
 
 如果你显式地使用了 `setup` 函数而不是 `<script setup>`，则事件需要通过 [`emits`](/api/options-state.html#emits) 选项来定义，`emit` 函数也被暴露在 `setup()` 的上下文对象上：
 
