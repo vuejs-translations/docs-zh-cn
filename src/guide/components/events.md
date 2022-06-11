@@ -109,8 +109,8 @@ function increaseCount(n) {
 defineEmits(['inFocus', 'submit'])
 </script>
 ```
-<!-- TODO: translation -->
-The `$emit` method that we used in the `<template>` isn't accessible within the `<script setup>` section of a component, but `defineEmits()` returns an equivalent function that we can use instead:
+
+我们在 `<template>` 中使用的 `$emit` 方法不能在组件的 `<script setup>` 部分中使用，但 `defineEmits()` 会返回一个可以用的具有相同作用的函数：
 
 ```vue
 <script setup>
@@ -135,7 +135,7 @@ export default {
 }
 ```
 
-<!-- TODO: translation --> As with other properties of the `setup()` context, `emit` can safely be destructured:
+与 `setup()` 上下文中的其他 property 一样，`emit` 可以安全地被解构：
 
 ```js
 export default {
