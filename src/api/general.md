@@ -122,7 +122,7 @@
   type FooInstance = InstanceType<typeof Foo>
   ```
 
-  ### webpack Treeshaking 的注意事项
+  ### webpack Treeshaking 的注意事项 {#note-on-webpack-treeshaking}
 
   因为 `defineComponent()` 是一个函数调用，所以它可能被某些构建工具认为会产生副作用，如 webpack。即使一个组件从未被使用，也有可能不被 tree-shake。
 
