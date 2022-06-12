@@ -2,82 +2,82 @@
 outline: deep
 ---
 
-# Community Guide
+# 社区指南 {#community-guide}
 
-Vue's community is growing incredibly fast and if you're reading this, there's a good chance you're ready to join it. So... welcome!
+Vue.js 的社区正在急速增长中，如果你正在阅读本文，这说明你大概已经准备好加入 Vue.js 社区了。欢迎！
 
-Now we'll answer both what the community can do for you and what you can do for the community.
+现在让我们来解答你能从社区中获得什么以及你能为社区做什么。
 
-## Resources
+## 资源 {#resources}
 
-### Code of Conduct
+### 行为规范 {#code-of-conduct}
 
-Our [Code of Conduct](/about/coc) is a guide to make it easier to enrich all of us and the technical communities in which we participate.
+这份[行为规范](/about/coc)是一个易于发展我们所参与的技术社区的指南。
 
-### Stay in the Know
+### 保持关注 {#stay-in-the-know}
 
-- Follow our [official Twitter account](https://twitter.com/vuejs).
-- Follow our [team members](./team) on Twitter or GitHub.
-- Follow the [RFC discussions](https://github.com/vuejs/rfcs).
-- Subscribe to the [official blog](https://blog.vuejs.org/).
+- 关注我们的[官方 Twitter 账号](https://twitter.com/vuejs)。
+- 关注我们的[团队成员](./team)的 Twitter 或 GitHub 账号。
+- 关注 [RFC 讨论](https://github.com/vuejs/rfcs)。
+- 订阅[官方博客](https://blog.vuejs.org/)。
 
-### Get Support
+### 获得帮助 {#get-support}
 
-- [Discord Chat](https://chat.vuejs.org/): A place for Vue devs to meet and chat in real time.
-- [Forum](https://forum.vuejs.org/): The best place to ask questions and get answers about Vue and its ecosystem.
-- [DEV Community](https://dev.to/t/vue): Share and discuss Vue related topics on Dev.to.
-- [Meetups](https://events.vuejs.org/meetups): Want to find local Vue enthusiasts like yourself? Interested in becoming a community leader? We have the help and support you need right here!
-- [GitHub](https://github.com/vuejs): If you have a bug to report or feature to request, that's what the GitHub issues are for. Please respect the rules specified in each repository's issue template.
-- [Twitter Community (unofficial)](https://twitter.com/i/communities/1516368750634840064): A Twitter community, where you can meet other Vue enthusiasts, get help, or just chat about Vue.
+- [Discord 聊天室](https://chat.vuejs.org/)：一个 Vue 开发者相互认识和实时聊天的地方。
+- [论坛](https://forum.vuejs.org/)：咨询与 Vue 及其生态的相关问题的最佳地点。
+- [DEV 社区](https://dev.to/t/vue)：在 Dev.to 分享与讨论 Vue 的相关话题。
+- [Meetup](https://events.vuejs.org/meetups)：想在当地找到像你一样的 Vue.js 爱好者吗？有兴趣成为社区领袖吗？这里就有你所需要的支持和帮助！
+- [GitHub](https://github.com/vuejs)：如果你想报告 bug 或者提出新特性需求，欢迎来 GitHub 提交 issue。我们也非常欢迎 pull request！
+- [Twitter 社区 (非官方)](https://twitter.com/i/communities/1516368750634840064)：一个 Twitter 社区，在那里你可以认识其他 Vue 爱好者、获得帮助或讨论 Vue 的相关话题。
 
-### Explore the Ecosystem
+### 探索生态 {#explore-the-ecosystem}
 
-- [The Awesome Vue Page](https://github.com/vuejs/awesome-vue): See what other awesome resources have been published by other awesome people.
-- [Vue Telescope Explorer](https://vuetelescope.com/explore): Explore websites made with Vue, with insights on what framework / libraries they use.
-- [Made with Vue.js](https://madewithvuejs.com/): showcases of projects and libraries made with Vue.
-- [The "Show and Tell" Subforum](https://forum.vuejs.org/c/show-and-tell): Another great place to check out what others have built with and for the growing Vue ecosystem.
+- [The Awesome Vue 页面](https://github.com/vuejs/awesome-vue)：一览其他牛人发布的优秀资源。
+- [Vue Telescope Explorer](https://vuetelescope.com/explore)：浏览器用 Vue 创建的网站，并洞悉它们具体使用的框架和库。
+- [Made with Vue.js](https://madewithvuejs.com/)：展示用 Vue 创建的项目和库。
+- [“Show and Tell”子论坛](https://forum.vuejs.org/c/show-and-tell)：又一个好地方，可以看看他人借助 Vue 生态完成的作品，以及他人为不断壮大的 Vue 生态的贡献。
 
-## What You Can Do
+## 参与方式 {#what-you-can-do}
 
-### Help Fellow Users
+### 帮助同伴用户 {#help-fellow-users}
 
-Code contribution is not the only form of contribution to the Vue community. Answering a question for a fellow Vue user on Discord or the forum is also considered a valuable contribution.
+贡献代码并不是对 Vue 社区的唯一贡献形式。在 Discord 或论坛上为 Vue 的同伴回答问题也是一种非常有价值的贡献。
 
-### Help Triage Issues
+### 协助分流 Issue {#help-triage-issues}
 
-Triaging an issue means gathering missing information, running the reproduction, verifying the issue's validity, and investigating the cause of the issue.
+分流 issue 意味着收集缺失的信息、重现问题、验证问题的有效性并调查问题的原因等。
 
-We receive many issues in [our repositories on GitHub](https://github.com/vuejs) every single day. Our bandwidth is limited compared to the amount of users we have, so issue triaging alone can take an enormous amount of effort from the team. By helping us traige the issues, you are helping us become more efficient, allowing us to spend time on higher priority work.
+我们每天都会在 [GitHub 仓库](https://github.com/vuejs)收到许多 issue。和我们的用户数量相比，我们的精力是非常有限的，所以光是 issue 的分流就会花费团队大量的精力。通过帮助我们分流这些 issue，你可以帮助我们变得更有效率，使我们能够把时间花在更优先的工作上。
 
-You don't have to triage an issue with the goal of fixing it (although that would be nice too). Sharing the result of your investigation, for example the commit that led to the bug, can already save us a ton of time.
+你不必以修复问题为目的来分流这些 issue (尽管那也很好)。分享你的调查结果，例如导致该错误的提交记录，已经为我们节省了大量的时间。
 
-### Contribute Code
+### 贡献代码 {#contribute-code}
 
-Contributing bug fixes or new features is the most direct form of contribution you can make.
+贡献错误修复或新特性是你能做出的最直接的贡献形式。
 
-The Vue core repository provides a [contributing guide](https://github.com/vuejs/core/blob/main/.github/contributing.md), which contains pull request guidelines and information regarding build setup and high-level architecture. Other sub-project repositories may also contain its own contribution guide - please make sure to read them before submitting pull requests.
+Vue 核心库提供了一份[贡献指南](https://github.com/vuejs/core/blob/main/.github/contributing.md)，其中包含 pull request 指南以及有关构建设置和上层架构的信息。其他子项目的仓库也可能会包含它们自己的贡献指南——请确保在提交 pull request 之前阅读它们。
 
-Bug fixes are welcome at any time. For new features, it is best to discuss the use case and implementation details first in the [RFC repo](https://github.com/vuejs/rfcs/discussions).
+错误修复是我们随时欢迎的。而对于新特性来说，最好先在 [RFC 仓库](https://github.com/vuejs/rfcs/discussions)中讨论用例和实现细节。
 
-### Share (and Build) Your Experience
+### 分享 (并积累) 经验 {#share-and-build-your-experience}
 
-Apart from answering questions and sharing resources in the forum and chat, there are a few other less obvious ways to share and expand what you know:
+除了在论坛或聊天室回答问题、分享资源外，还有一些其它的方式可以分享并增长你的见识：
 
-- **Develop learning materials.** It's often said that the best way to learn is to teach. If there's something interesting you're doing with Vue, strengthen your expertise by writing a blog post, developing a workshop, or even publishing a gist that you share on social media.
-- **Watch a repo you care about.** This will send you notifications whenever there's activity in that repository, giving you insider knowledge about ongoing discussions and upcoming features. It's a fantastic way to build expertise so that you're eventually able to help address issues and pull requests.
+- **开发学习资料**。我们常说教学相长。如果你正在用 Vue 做一些有趣的事情，你可以写一篇博客、组织研讨会、甚至创建一个 gist 分享到社交平台上：这些都能加强你的专项知识。
+- **关注 (watch) 你关心的仓库**。这样无论何时该仓库有新的动静，你都会第一时间收到通知，得到关于正在进行的讨论以及即将到来的新特性的新鲜情报。这是超棒的积累专业知识的方法，你最终将会有能力来解决问题 (issue) 并提交 pull request。
 
-### Translate Docs
+### 翻译文档 {#translate-docs}
 
-I hope that right now, you're reading this sentence in your preferred language. If not, would you like to help us get there?
+我希望现在你正在使用你的首选语言阅读这篇文档，如果不是，你愿意帮助我们翻译它吗？
 
-See the [Translations guide](/translations/) for more details on how you can get involved.
+请参阅[翻译指南](/translations/)，了解如何参与的细节。
 
-### Become a Community Leader
+### 领导社区 {#become-a-community-leader}
 
-There's a lot you can do to help Vue grow in your community:
+在社区中，你可以做很多事情来帮助 Vue 的发展：
 
-- **Present at your local meetup.** Whether it's giving a talk or running a workshop, you can bring a lot of value to your community by helping both new and experienced Vue developers continue to grow.
-- **Start your own meetup.** If there's not already a Vue meetup in your area, you can start your own! Use the [resources at events.vuejs.org](https://events.vuejs.org/resources/#getting-started) to help you succeed!
-- **Help meetup organizers.** There can never be too much help when it comes to running an event, so offer a hand to help out local organizers to help make every event a success.
+- **参加当地的 meetup**。不论是准备一个话题还是组织一个 workshop，你都可以通过帮助新老 Vue 开发者的发展来为社区带来很多价值。
+- **自己组织 meetup**。如果你所在的地方没有人组织 meetup，你可以自己组织起来！要善用 [events.vuejs.org 的资源](https://events.vuejs.org/resources/#getting-started)！
+- **帮助 meetup 组织者**。在举办活动时，帮助永远不嫌多，所以请帮助当地组织者让每个活动都能够成功举办。
 
-If you have any questions on how you can get more involved with your local Vue community, reach out on Twitter at [@vuejs_events](https://www.twitter.com/vuejs_events)!
+对于如何参与当地的 Vue 社区，如果你有任何问题，请联系 [@Vuejs_Events](https://www.twitter.com/vuejs_events)！
