@@ -110,7 +110,7 @@ defineEmits(['inFocus', 'submit'])
 </script>
 ```
 
-我们在 `<template>` 中使用的 `$emit` 方法不能在组件的 `<script setup>` 部分中使用，但 `defineEmits()` 会返回一个可以用的具有相同作用的函数：
+我们在 `<template>` 中使用的 `$emit` 方法不能在组件的 `<script setup>` 部分中使用，但 `defineEmits()` 会返回一个相同作用的函数供我们使用：
 
 ```vue
 <script setup>
