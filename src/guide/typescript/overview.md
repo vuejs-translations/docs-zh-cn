@@ -131,7 +131,7 @@ export default defineComponent({
 
 参考：
 
-- [Note on webpack Treeshaking](/api/general.html#note-on-webpack-treeshaking) <!-- TODO: translation -->
+- [webpack Treeshaking 的注意事项](/api/general.html#note-on-webpack-treeshaking)
 - [对 `defineComponent` 的类型测试](https://github.com/vuejs/core/blob/main/test-dts/defineComponent.test-d.tsx)
 
 :::tip
