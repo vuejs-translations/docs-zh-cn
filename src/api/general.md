@@ -124,7 +124,7 @@
 
   ### webpack Treeshaking 的注意事项
 
-  因为 `defineComponent()` 是一个函数调用，它有可能会对某些构建工具产生副作用，如 webpack。即使一个组件从未被使用，也有可能不被 webpack tree-shake。
+  因为 `defineComponent()` 是一个函数调用，所以它可能被某些构建工具认为会产生副作用，如 webpack。即使一个组件从未被使用，也有可能不被 tree-shake。
 
   为了告诉 webpack 这个函数调用可以被安全地 tree-shake，我们可以在函数调用之前添加一个 `/*#__PURE__*/` 形式的注释：
 
@@ -132,7 +132,7 @@
   export default /*#__PURE__*/ defineComponent(/* ... */)
   ```
 
-  请注意，如果你的项目中使用了 Vite，就不需要这么做，因为 Rollup (Vite 使用的生产环境打包器) 足够聪明，可以自动确定 `defineComponent()` 实际上并没有副作用，所以无需手动注释。
+  请注意，如果你的项目中使用的是 Vite，就不需要这么做，因为 Rollup (Vite 背后在生产环境使用的打包器) 可以智能地确定 `defineComponent()` 实际上并没有副作用，所以无需手动注释。
 
 - **参考**：[指南 - 配合 TypeScript 使用 Vue](/guide/typescript/overview.html#general-usage-notes)
 
