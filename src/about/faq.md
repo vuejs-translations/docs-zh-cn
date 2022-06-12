@@ -74,7 +74,7 @@ Vue 2 将在 2022 年发布最后一个小版本 (2.7)。这个小版本将带�
 
 如果你是 Vue 的新手，我们在[这里](/guide/introduction.html#which-to-choose)提供了一个两者之间宏观的比较。
 
-如果你过去使用过选项式 API 且正在评估组合式 API，可以查阅[这份常见问题](/guide/extras/composition-api-faq)。
+如果你过去使用过选项式 API 且正在评估组合式 API，可以查阅[常见问题](/guide/extras/composition-api-faq)。
 
 ## 我应该结合 JavaScript 还是 TypeScript 使用 Vue？ {#should-i-use-javascript-or-typescript-with-vue}
 
