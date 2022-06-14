@@ -1,6 +1,6 @@
 # Class 与 Style 绑定 {#class-and-style-bindings}
 
-数据绑定的一个常见需求场景是操纵元素的 CSS class 列表和内联样式。因为它们都是 attribute，我们可以使用 `v-bind` 来做这件事：我们只需要通过表达式计算出一个字符串作为最终结果即可。然而频繁地连接字符串让人很闹心，也很容易出错。因此，Vue 专门为 `class` 和 `style` 的 `v-bind` 用法提供了特殊的功能增强。除了字符串外，表达式的结果还可以是对象或数组。
+数据绑定的一个常见需求场景是操纵元素的 CSS class 列表和内联样式。因为 `class` 和 `style` 都是 attribute，我们可以和其他 attribute 一样使用 `v-bind` 把一个动态的字符串赋值给它们。然而通过字符串拼接生成这些值是麻烦且易出错的。因此，Vue 专门为 `class` 和 `style` 的 `v-bind` 用法提供了特殊的功能增强。除了字符串外，表达式的结果还可以是对象或数组。
 
 ## 绑定 HTML class {#binding-html-classes}
 

@@ -102,7 +102,7 @@ import ListStagger from './transition-demos/ListStagger.vue'
 </TransitionGroup>
 ```
 
-接着，在 JavaScript 钩子中，我们基于这个 data attribute 对该元素执行一个延迟动画：
+接着，在 JavaScript 钩子中，我们基于这个 data attribute 对该元素执行一个延迟动画。以下是一个基于 [GreenSock library](https://greensock.com/) 的动画示例：
 
 ```js{5}
 function onEnter(el, done) {
