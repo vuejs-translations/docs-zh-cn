@@ -69,7 +69,7 @@ whenDepsChange(update)
 
 在 JavaScript 中有两种劫持属性访问的方式：[getter](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/get)/[setters](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/set) 和 [Proxies](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy)。Vue 2 使用 getter/setters 完全由于需支持更旧版本浏览器的限制。而在 Vue 3 中使用了 Proxy 来创建响应式对象，将 getter/setter 用于 ref。下面的伪代码将会说明它们是如何工作的：
 
-```js{4,8,17,21}
+```js{4,9,17,22}
 function reactive(obj) {
   return new Proxy(obj, {
     get(target, key) {
@@ -77,8 +77,8 @@ function reactive(obj) {
       return target[key]
     },
     set(target, key, value) {
-      trigger(target, key)
       target[key] = value
+      trigger(target, key)
     }
   })
 }
@@ -90,8 +90,8 @@ function ref(value) {
       return value
     },
     set value(newValue) {
-      trigger(refObject, 'value')
       value = newValue
+      trigger(refObject, 'value')
     }
   }
   return refObject

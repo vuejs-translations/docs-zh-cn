@@ -199,7 +199,7 @@ data() {
 </div>
 
 :::tip 注意
-当遍历一个对象时，顺序是依据 `Object.keys()` 的枚举顺序，由于不同的 JavaScript 引擎可能会有不同的实现，所以顺序可能会不一致。
+当遍历一个对象时，顺序是依据 `Object.keys()` 的枚举顺序，该顺序仅在现代版本的 ECMAScript 引擎中被良好地定义，而对更老版本的 JavaScript 引擎来说则可能会不一致。
 :::
 
 ## 在 `v-for` 里使用值范围 {#v-for-with-a-range}

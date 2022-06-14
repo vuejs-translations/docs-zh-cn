@@ -18,9 +18,7 @@ Vue 本身就是用 TypeScript 编写的，并对 TypeScript 提供了头等的�
 
 - 在开发阶段，我们推荐你依赖一个好的 [IDE 配置](#ide-support)来获取即时的类型错误反馈。
 
-- 对于单文件组件，你可以使用工具 [`vue-tsc`](https://github.com/johnsoncodehk/volar/tree/master/packages/vue-tsc) 在命令行检查类型和生成类型声明文件。`vue-tsc` 是对 TypeScript 自身命令行界面 `tsc` 的一个封装。它的工作方式基本和 `tsc` 一致。除了 TypeScript 文件，它还支持 Vue 的单文件组件。
-
-- `vue-tsc` 目前还不支持 watch 模式，但这已经在计划之中。与此同时，如果你想要类型检查成为 dev 命令的一部分，可以看看 [vite-plugin-checker](https://github.com/fi3ework/vite-plugin-checker)。
+- 对于单文件组件，你可以使用工具 [`vue-tsc`](https://github.com/johnsoncodehk/volar/tree/master/packages/vue-tsc) 在命令行检查类型和生成类型声明文件。`vue-tsc` 是对 TypeScript 自身命令行界面 `tsc` 的一个封装。它的工作方式基本和 `tsc` 一致。除了 TypeScript 文件，它还支持 Vue 的单文件组件。你可以在开启 Vite 开发服务器的同时以侦听模式运行 `vue-tsc`。
 
 - Vue CLI 也提供了对 TypeScript 的支持，但是已经不推荐了。详见[下方的说明](#note-on-vue-cli-and-ts-loader)。
 
