@@ -405,7 +405,7 @@ console.log(app.config)
 - 对于 `vite`：[通过 `@vitejs/plugin-vue` 的选项传递](https://github.com/vitejs/vite/tree/main/packages/plugin-vue#options)。
 :::
 
-### app.compilerOptions.isCustomElement {#app-compileroptions-iscustomelement}
+### app.config.compilerOptions.isCustomElement {#app-config-compileroptions-iscustomelement}
 
 用于指定一个检查方法来识别原生自定义元素。
 
@@ -428,7 +428,7 @@ console.log(app.config)
 
 - **参考**：[Vue 与 Web Components](/guide/extras/web-components.html)
 
-### app.compilerOptions.whitespace {#app-compileroptions-whitespace}
+### app.config.compilerOptions.whitespace {#app-config-compileroptions-whitespace}
 
 用于调整模板中空格的处理行为。
 
@@ -452,7 +452,7 @@ console.log(app.config)
   app.config.compilerOptions.whitespace = 'preserve'
   ```
 
-### app.compilerOptions.delimiters {#app-compileroptions-delimiters}
+### app.config.compilerOptions.delimiters {#app-config-compileroptions-delimiters}
 
 用于调整模板内文本插值的分隔符。
 
@@ -471,7 +471,7 @@ console.log(app.config)
   app.config.compilerOptions.delimiters = ['${', '}']
   ```
 
-### app.compilerOptions.comments {#app-compileroptions-comments}
+### app.config.compilerOptions.comments {#app-config-compileroptions-comments}
 
 用于调整是否移除模板中的 HTML 注释。
 
