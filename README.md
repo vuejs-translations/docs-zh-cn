@@ -13,7 +13,7 @@ pnpm i
 pnpm run dev
 ```
 
-This project requires Node.js to be `v14.0.0` or higher, because we use new JavaScript features in our code, such as optional chaining.
+本项目要求 Node.js 为 `v14.0.0` 或更高版本，因为我们在代码中使用了新的 JavaScript 功能，例如可选链。
 
 ## 如何参与贡献
 
