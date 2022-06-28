@@ -95,7 +95,7 @@ const posts = await res.json()
 
 ## 事件 {#events}
 
-除了 `pending` 事件之外，`<suspense>` 组件还有 `resolve` 和 `fallback` 事件。`pending` 事件是在进入挂起状态时触发。`resolve` 事件是在 `default` 插槽完成获取新内容时触发。`fallback` 事件则是在 `fallback` 插槽展示时触发。
+`<Suspense>` 组件会触发三个事件：`pending`、`resolve` 和 `fallback`。`pending` 事件是在进入挂起状态时触发。`resolve` 事件是在 `default` 插槽完成获取新内容时触发。`fallback` 事件则是在 `fallback` 插槽的内容显示时触发。
 
 例如，可以使用这些事件在加载新组件时在之前的 DOM 最上层显示一个加载指示器。
 
