@@ -15,7 +15,7 @@ const awesome = ref(true)
 
 ## `v-if` {#v-if}
 
-`v-if` 指令被用于按条件渲染一个区块。这个区块只会在指令的表达式为真时才被渲染。
+`v-if` 指令用于条件性地渲染一块内容。这块内容只会在指令的表达式返回真值时才被渲染。
 
 ```vue-html
 <h1 v-if="awesome">Vue is awesome!</h1>
@@ -49,7 +49,7 @@ const awesome = ref(true)
 
 </div>
 
-一个 `v-else` 元素必须跟在一个 `v-if` 或者 `v-else-if` 元素后面，否则将不会识别它。
+一个 `v-else` 元素必须跟在一个 `v-if` 或者 `v-else-if` 元素后面，否则它将不会被识别。
 
 ### `v-else-if` {#v-else-if}
 
@@ -70,7 +70,7 @@ const awesome = ref(true)
 </div>
 ```
 
-和 `v-else` 相似，一个使用 `v-else-if` 的元素必须紧跟在一个 `v-if` 或一个 `v-else-if` 元素后面。
+和 `v-else` 类似，一个使用 `v-else-if` 的元素必须紧跟在一个 `v-if` 或一个 `v-else-if` 元素后面。
 
 ## `<template>` 上的 `v-if` {#v-if-on-template}
 
@@ -96,17 +96,17 @@ const awesome = ref(true)
 
 不同之处在于 `v-show` 会在 DOM 渲染中保留该元素；`v-show` 仅切换了该元素上名为 `display` 的 CSS 属性。
 
-`v-show` 不支持在 `<template>` 元素上使用，也没有 `v-else` 来配合。
+`v-show` 不支持在 `<template>` 元素上使用，也不能和 `v-else` 搭配使用。
 
 ## `v-if` vs `v-show` {#v-if-vs-v-show}
 
-`v-if` 是“真实的”按条件渲染，因为它确保了条件区块内的事件监听器和子组件都会在切换时被销毁与重建。
+`v-if` 是“真实的”按条件渲染，因为它确保了在切换时，条件区块内的事件监听器和子组件都会被销毁与重建。
 
-`v-if` 也是**懒加载**的：如果在初次渲染时条件值为 false，则不会做任何事。条件区块会直到条件首次变为 true 时才渲染。
+`v-if` 也是**惰性**的：如果在初次渲染时条件值为 false，则不会做任何事。条件区块只有当条件首次变为 true 时才被渲染。
 
-相比之下，`v-show` 简单许多，元素无论初始条件如何，始终会被渲染，仅作 CSS class 的切换。
+相比之下，`v-show` 简单许多，元素无论初始条件如何，始终会被渲染，只有 CSS `display` 属性会被切换。
 
-总的来说，`v-if` 在首次渲染时的切换成本比 `v-show` 更高。因此当你需要非常频繁切换时 `v-show` 会更好，而运行时不常改变的时候 `v-if` 会更合适。
+总的来说，`v-if` 有更高的切换开销，而 `v-show` 有更高的初始渲染开销。因此，如果需要频繁切换，则使用 `v-show` 较好；如果在运行时绑定条件很少改变，则 `v-if` 会更合适。
 
 ## `v-if` 和 `v-for` {#v-if-with-v-for}
 
