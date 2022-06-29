@@ -12,7 +12,7 @@ outline: deep
 
 <div class="options-api">
 
-选用选项式 API 时，会用 `data` 选项来声明组件的响应式状态。此选项的值应为返回一个对象的函数。Vue 将在创建新组件实例的时候调用此函数，并将函数返回的对象封装到其响应式系统中。此对象的任何顶层属性都被代理到组件实例 (即方法和生命周期钩子中的 `this`) 上。
+选用选项式 API 时，会用 `data` 选项来声明组件的响应式状态。此选项的值应为返回一个对象的函数。Vue 将在创建新组件实例的时候调用此函数，并将函数返回的对象用响应式系统进行包装。此对象的所有顶层属性都会被代理到组件实例 (即方法和生命周期钩子中的 `this`) 上。
 
 ```js{2-6}
 export default {
@@ -37,9 +37,9 @@ export default {
 
 这些实例上的属性仅在实例首次创建时被添加，因此你需要确保它们都出现在 `data` 函数返回的对象上。若所需的值还未准备好，在必要时也可以使用 `null`、`undefined` 或者其他一些值占位。
 
-也可以不在 `data` 上定义，直接向组件实例添加新属性。但这个属性将无法触发响应式更新。
+虽然也可以不在 `data` 上定义，直接向组件实例添加新属性，但这个属性将无法触发响应式更新。
 
-Vue 在组件实例上暴露的内置 API 使用 `$` 作为前缀。它同时也为内部属性保留 `_` 前缀。你应该避免在顶层 `data` 上使用任何以这些字符作前缀的属性。
+Vue 在组件实例上暴露的内置 API 使用 `$` 作为前缀。它同时也为内部属性保留 `_` 前缀。因此，你应该避免在顶层 `data` 上使用任何以这些字符作前缀的属性。
 
 ### 响应式代理 vs. 原始值 \* {#reactive-proxy-vs-original}
 
@@ -77,15 +77,15 @@ const state = reactive({ count: 0 })
 
 响应式对象其实是 [JavaScript Proxy](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy)，其行为表现与一般对象相似。不同之处在于 Vue 能够跟踪对响应式对象属性的访问与更改操作。如果你对这其中的细节感到好奇，我们在 [深入响应式系统](/guide/extras/reactivity-in-depth.html) 一章中会进行解释，但我们推荐你先读完这里的主要指南。
 
-你也可以看看：[为响应式对象标注类型](/guide/typescript/composition-api.html#typing-reactive) <sup class="vt-badge ts" />
+TypeScript 用户请参阅：[为响应式对象标注类型](/guide/typescript/composition-api.html#typing-reactive) <sup class="vt-badge ts" />
 
-要在组件模板中使用响应式状态，请在 `setup()` 函数中定义并返回。
+要在组件模板中使用响应式状态，需要在 `setup()` 函数中定义并返回。
 
 ```js{5,9-11}
 import { reactive } from 'vue'
 
 export default {
-  // `setup` 是一个专门用于组合式 API 的特殊钩子
+  // `setup` 是一个专门用于组合式 API 的特殊钩子函数
   setup() {
     const state = reactive({ count: 0 })
 
@@ -101,7 +101,7 @@ export default {
 <div>{{ state.count }}</div>
 ```
 
-相似地，我们也可以在这个作用域下定义可更改响应式 state 的函数，并作为一个方法与 state 一起暴露出去：
+自然，我们也可以在同一个作用域下定义一个更新 `state` 的函数，并作为一个方法与 `state` 一起暴露出去：
 
 ```js{7-9,14}
 import { reactive } from 'vue'
@@ -133,7 +133,7 @@ export default {
 
 ### `<script setup>` \*\*
 
-在 `setup()` 函数中手动暴露状态和方法可能非常繁琐。幸运的是，你可以通过使用构建工具来简化该操作。当使用单文件组件（SFC）时，我们可以使用 `<script setup>` 来简化大量样板代码。
+在 `setup()` 函数中手动暴露大量的状态和方法非常繁琐。幸运的是，我们可以通过使用构建工具来简化该操作。当使用单文件组件（SFC）时，我们可以使用 `<script setup>` 来大幅度地简化代码。
 
 ```vue
 <script setup>
@@ -155,7 +155,7 @@ function increment() {
 
 [在演练场中尝试一下](https://sfc.vuejs.org/#eyJBcHAudnVlIjoiPHNjcmlwdCBzZXR1cD5cbmltcG9ydCB7IHJlYWN0aXZlIH0gZnJvbSAndnVlJ1xuXG5jb25zdCBzdGF0ZSA9IHJlYWN0aXZlKHsgY291bnQ6IDAgfSlcblxuZnVuY3Rpb24gaW5jcmVtZW50KCkge1xuICBzdGF0ZS5jb3VudCsrXG59XG48L3NjcmlwdD5cblxuPHRlbXBsYXRlPlxuICA8YnV0dG9uIEBjbGljaz1cImluY3JlbWVudFwiPlxuICAgIHt7IHN0YXRlLmNvdW50IH19XG4gIDwvYnV0dG9uPlxuPC90ZW1wbGF0ZT4iLCJpbXBvcnQtbWFwLmpzb24iOiJ7XG4gIFwiaW1wb3J0c1wiOiB7XG4gICAgXCJ2dWVcIjogXCJodHRwczovL3NmYy52dWVqcy5vcmcvdnVlLnJ1bnRpbWUuZXNtLWJyb3dzZXIuanNcIlxuICB9XG59In0=)
 
-`<script setup>` 中的顶层的导入和变量声明可在同一组件的模板中自动使用。
+`<script setup>` 中的顶层的导入和变量声明可在同一组件的模板中直接使用。你可以理解为模版中的表达式和 `<scrip setup>` 中的代码处在同一个作用域中。
 
 > 在指南的后续章节中，我们基本上都会在组合式 API 示例中使用单文件组件 + `<script setup>` 的语法，因为大多数 Vue 开发者都会这样使用。
 
@@ -188,7 +188,7 @@ export default {
 }
 ```
 
-Vue 自动为 `methods` 中的方法绑定了永远指向组件实例的 `this`。这确保了方法在作为事件监听器或回调函数时始终保持正确的 `this`。你不应该在定义 `methods` 时使用箭头函数，因为这会阻止 Vue 的自动绑定。
+Vue 自动为 `methods` 中的方法绑定了永远指向组件实例的 `this`。这确保了方法在作为事件监听器或回调函数时始终保持正确的 `this`。你不应该在定义 `methods` 时使用箭头函数，因为箭头函数没有自己的 `this` 上下文。
 
 ```js
 export default {
@@ -310,13 +310,13 @@ function mutateDeeply() {
 const raw = {}
 const proxy = reactive(raw)
 
-// 代理和原始对象不是全等的
+// 代理对象和原始对象不是全等的
 console.log(proxy === raw) // false
 ```
 
-只有代理是响应式的，更改原始对象不会触发更新。因此，使用 Vue 的响应式系统的最佳实践是 **仅使用你声明对象的代理版本**。
+只有代理对象是响应式的，更改原始对象不会触发更新。因此，使用 Vue 的响应式系统的最佳实践是 **仅使用你声明对象的代理版本**。
 
-为保证访问代理的一致性，对同一个对象调用 `reactive()` 会总是返回同样的代理，而对一个已存在代理调用 `reactive()` 也是返回同样的代理：
+为保证访问代理的一致性，对同一个原始对象调用 `reactive()` 会总是返回同样的代理对象，而对一个已存在的代理对象调用 `reactive()` 会返回其本身：
 
 ```js
 // 在同一个对象上调用 reactive() 会返回相同的代理
@@ -373,9 +373,9 @@ console.log(proxy.nested === raw) // false
    callSomeFunction(state.count)
    ```
 
-## `ref()` 定义响应式变量 \*\* {#reactive-variables-with-ref}
+## 用 `ref()` 定义响应式变量 \*\* {#reactive-variables-with-ref}
 
-为了解决 `reactive()` 带来的限制，Vue 也提供了一个 [`ref()`](/api/reactivity-core.html#ref) 方法来允许我们创建可以使用任何值类型的响应式 **ref**：
+`reactive()` 的种种限制归根结底是因为 JavaScript 没有可以作用于所有值类型的 “引用” 机制。为此，Vue 提供了一个 [`ref()`](/api/reactivity-core.html#ref) 方法来允许我们创建可以使用任何值类型的响应式 **ref**：
 
 ```js
 import { ref } from 'vue'
@@ -383,7 +383,7 @@ import { ref } from 'vue'
 const count = ref(0)
 ```
 
-`ref()` 从参数中获取到值，将其包装为一个带 `.value` 属性的 ref 对象：
+`ref()` 将传入参数的值包装为一个带 `.value` 属性的 ref 对象：
 
 ```js
 const count = ref(0)
@@ -395,7 +395,7 @@ count.value++
 console.log(count.value) // 1
 ```
 
-你也可以看看：[为 ref 标注类型](/guide/typescript/composition-api.html#typing-ref) <sup class="vt-badge ts" />
+TypeScript 用户请参阅：[为 ref 标注类型](/guide/typescript/composition-api.html#typing-ref) <sup class="vt-badge ts" />
 
 和响应式对象的属性类似，ref 的 `.value` 属性也是响应式的。同时，当值为对象类型时，会用 `reactive()` 自动转换它的 `.value`。
 
@@ -425,7 +425,7 @@ callSomeFunction(obj.foo)
 const { foo, bar } = obj
 ```
 
-一言以蔽之，`ref()` 使我们能创造一种任意值的 “引用” 并能够不丢失响应性地随意传递。这个功能非常重要，因为它经常用于将逻辑提取到 [组合函数](/guide/reusability/composables.html) 中。
+简言之，`ref()` 让我们能创造一种对任意值的 “引用”，并能够在不丢失响应性的前提下传递这些引用。这个功能很重要，因为它经常用于将逻辑提取到 [组合函数](/guide/reusability/composables.html) 中。
 
 ### ref 在模板中的解包 \*\* {#ref-unwrapping-in-templates}
 
@@ -487,7 +487,7 @@ const { foo } = object
 
 ### ref 在响应式对象中的解包 \*\* {#ref-unwrapping-in-reactive-objects}
 
-当一个 `ref` 作为一个响应式对象的属性被访问或更改时，它会自动解包，因此会表现得和一般的属性一样：
+当一个 `ref` 被嵌套在一个响应式对象中，作为属性被访问或更改时，它会自动解包，因此会表现得和一般的属性一样：
 
 ```js
 const count = ref(0)
@@ -516,7 +516,7 @@ console.log(count.value) // 1
 
 #### 数组和集合类型的 ref 解包 {#ref-unwrapping-in-arrays-and-collections}
 
-不像响应式对象，当 ref 作为响应式数组或像 `Map` 这种原生集合类型的元素被访问时，不会进行解包。
+跟响应式对象不同，当 ref 作为响应式数组或像 `Map` 这种原生集合类型的元素被访问时，不会进行解包。
 
 ```js
 const books = reactive([ref('Vue 3 Guide')])
@@ -578,7 +578,7 @@ export default {
 
 ## 响应性语法糖 <sup class="vt-badge experimental" /> \*\* {#reactivity-transform}
 
-不得不对 ref 使用 `.value` 是一个受限于 JavaScript 语言限制的缺点。然而，通过编译时转换，我们可以在适当的位置自动添加 `.value` 来提升开发体验。Vue 提供了一种编译时转换，使得可以像这样书写之前的“计数器”示例：
+相对于普通的 JavaScript 变量，我们不得不用相对繁琐的 `.value` 来获取 ref 的值。这是一个受限于 JavaScript 语言限制的缺点。然而，通过编译时转换，我们可以让编译器帮我们省去使用 `.value` 的麻烦。Vue 提供了一种编译时转换，使得我们可以像这样书写之前的“计数器”示例：
 
 ```vue
 <script setup>
