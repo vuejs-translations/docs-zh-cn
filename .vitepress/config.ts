@@ -171,7 +171,7 @@ export const sidebar = {
           link: '/guide/essentials/lifecycle'
         },
         { text: '侦听器', link: '/guide/essentials/watchers' },
-        { text: '模板 ref', link: '/guide/essentials/template-refs' },
+        { text: '模板引用', link: '/guide/essentials/template-refs' },
         {
           text: '组件基础',
           link: '/guide/essentials/component-basics'
