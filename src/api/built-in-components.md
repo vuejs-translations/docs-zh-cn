@@ -152,7 +152,7 @@ h(Transition, {
 
   注意，每个 `<transition-group>` 的子节点必须有[**独立的 key**](/guide/essentials/list.html#maintaining-state-with-key)，动画才能正常工作。
 
-  `<TransitionGroup>` 支持通过 CSS transform 过渡移动。当一个子节点在屏幕上的位置在更新之后发生变化时，它会被应用一个使其移动的 CSS class (通过 `name` attribute 自动生成或使用 `move-class` prop 配置)。如果使其移动的 class 被应用时 CSS `transform` property 是“可过渡的”，该元素会通过 [FLIP 技术](https://aerotwist.com/blog/flip-your-animations/)平滑地到达动画终点。
+  `<TransitionGroup>` 支持通过 CSS transform 过渡移动。当一个子节点在屏幕上的位置在更新之后发生变化时，它会被应用一个使其移动的 CSS class (通过 `name` attribute 自动生成或使用 `move-class` prop 配置)。如果使其移动的 class 被应用时 CSS `transform` 属性是“可过渡的”，该元素会通过 [FLIP 技术](https://aerotwist.com/blog/flip-your-animations/)平滑地到达动画终点。
 
 - **示例**
 

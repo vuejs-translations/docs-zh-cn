@@ -23,7 +23,7 @@ console.log(counter.count) // 0
 counter.count++
 ```
 
-`reactive()` 只适用于对象 (包括数组和内置类型，如 `Map` 和 `Set`)。此外，`ref()` 可以接受任何值类型，并创建一个对象，在 `.value` property 下暴露内部值。
+`reactive()` 只适用于对象 (包括数组和内置类型，如 `Map` 和 `Set`)。此外，`ref()` 可以接受任何值类型，并创建一个对象，在 `.value` 属性下暴露内部值。
 
 ```js
 import { ref } from 'vue'
@@ -57,7 +57,7 @@ setup() {
 }
 ```
 
-返回对象中的 property 可以在模板中使用。下面展示了我们如何使用双花括号语法，根据 `message` 的值来渲染动态文本：
+返回对象中的属性可以在模板中使用。下面展示了我们如何使用双花括号语法，根据 `message` 的值来渲染动态文本：
 
 </div>
 
@@ -103,7 +103,7 @@ createApp({
 
 </div>
 
-`message` property 可以在模板中使用。下面展示了我们如何使用双花括号法，根据 `message` 的值来渲染动态文本：
+`message` 属性可以在模板中使用。下面展示了我们如何使用双花括号法，根据 `message` 的值来渲染动态文本：
 
 ```vue-html
 <h1>{{ message }}</h1>
@@ -125,6 +125,6 @@ createApp({
 
 <div class="options-api">
 
-现在，试着自己创建一个数据 property，用它来为模板中的 `<h1>` 渲染动态的文本内容。
+现在，试着自己创建一个数据属性，用它来为模板中的 `<h1>` 渲染动态的文本内容。
 
 </div>

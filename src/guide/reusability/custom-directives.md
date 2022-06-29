@@ -137,7 +137,7 @@ const myDirective = {
 
 - `el`：指令绑定到的元素。这可以用于直接操作 DOM。
 
-- `binding`：一个对象，包含以下 property。
+- `binding`：一个对象，包含以下属性。
 
   - `value`：传递给指令的值。例如在 `v-my-directive="1 + 1"` 中，值是 `2`。
   - `oldValue`：之前的值，仅在 `beforeUpdate` 和 `updated` 中可用。无论值是否更改，它都可用。
@@ -172,7 +172,7 @@ const myDirective = {
 <div v-example:[arg]="value"></div>
 ```
 
-这里指令的参数会基于组件状态 `arg` property 响应式地更新。
+这里指令的参数会基于组件的 `arg` 数据属性响应式地更新。
 
 :::tip Note
 除了 `el` 外，你应该将这些参数都视为只读的，并一律不更改它们。若你需要在不同的钩子间共享信息，推荐通过元素的 [dataset](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/dataset) attribute 实现。

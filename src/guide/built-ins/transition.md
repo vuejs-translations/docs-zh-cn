@@ -125,7 +125,7 @@ Vue 提供了两个内置组件，可以帮助你制作基于状态变化的过�
 
 `<Transition>` 一般都会搭配[原生 CSS 过渡](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Transitions/Using_CSS_transitions)一起使用，正如你在上面的例子中所看到的那样。这个 `transition` CSS 属性是一个简写形式，使我们可以一次定义一个过渡的各个方面，包括需要执行动画的属性、持续时间和[速度曲线](https://developer.mozilla.org/en-US/docs/Web/CSS/easing-function)。
 
-下面是一个更高级的例子，它使用了不同的持续时间和速度曲线来过渡多个 property：
+下面是一个更高级的例子，它使用了不同的持续时间和速度曲线来过渡多个属性：
 
 ```vue-html
 <Transition name="slide-fade">

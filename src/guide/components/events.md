@@ -135,7 +135,7 @@ export default {
 }
 ```
 
-与 `setup()` 上下文中的其他 property 一样，`emit` 可以安全地被解构：
+与 `setup()` 上下文对象中的其他属性一样，`emit` 可以安全地被解构：
 
 ```js
 export default {
@@ -358,7 +358,7 @@ defineEmits(['update:modelValue'])
 
 </div>
 
-另一种在组件内实现 `v-model` 的方式是使用一个可写的 `computed` property，给出 getter 和 setter。`get` 方法需返回 `modelValue` property 而 `set` 方法需触发相应的事件：
+另一种在组件内实现 `v-model` 的方式是使用一个可写的，同时具有 getter 和 setter 的计算属性。`get` 方法需返回 `modelValue` 属性而 `set` 方法需触发相应的事件：
 
 <div class="options-api">
 

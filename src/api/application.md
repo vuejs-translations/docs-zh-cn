@@ -491,7 +491,7 @@ console.log(app.config)
 
 ## app.config.globalProperties {#app-config-globalproperties}
 
-一个用于注册能够被应用内所有组件实例访问到的全局 property 的对象。
+一个用于注册能够被应用内所有组件实例访问到的全局属性的对象。
 
 - **类型**
 

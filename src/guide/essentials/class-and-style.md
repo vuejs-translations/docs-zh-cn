@@ -224,7 +224,7 @@ Class 的绑定也是同样的：
 <p class="foo bar active">Hi</p>
 ```
 
-如果你的组件有多个根元素，你将需要指定哪个根元素来接收这个 class。你可以通过组件的 `$attrs` property 来实现指定：
+如果你的组件有多个根元素，你将需要指定哪个根元素来接收这个 class。你可以通过组件的 `$attrs` 属性来实现指定：
 
 ```vue-html
 <!-- MyComponent 模板使用 $attrs 时 -->

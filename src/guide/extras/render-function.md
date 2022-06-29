@@ -73,7 +73,7 @@ vnode.key // null
 ```
 
 ::: warning 注意事项
-完整的 `VNode` 接口包含其他内部 property，但是强烈建议避免使用这些没有在这里列举出的 property。这样能够避免因内部 property 变更而导致的不兼容性问题。
+完整的 `VNode` 接口包含其他内部属性，但是强烈建议避免使用这些没有在这里列举出的属性。这样能够避免因内部属性变更而导致的不兼容性问题。
 :::
 
 ### 声明渲染函数 {#declaring-render-function}
@@ -674,11 +674,11 @@ function MyComponent(props, context) {
 }
 ```
 
-第二个参数 `context` 包含三个 property：`attrs`、 `emit` 和 `slots`。它们分别相当于实例的 [`$attrs`](/api/component-instance.html#attrs)、[`$emit`](/api/component-instance.html#emit) 和 [`$slots`](/api/component-instance.html#slots) 这几个 property。
+第二个参数 `context` 包含三个属性：`attrs`、 `emit` 和 `slots`。它们分别相当于组件实例的 [`$attrs`](/api/component-instance.html#attrs)、[`$emit`](/api/component-instance.html#emit) 和 [`$slots`](/api/component-instance.html#slots) 这几个属性。
 
 </div>
 
-大多数常规组件的配置选项在函数式组件中都不可用。然而我们还是可以把 [`props`](/api/options-state.html#props) 和 [`emits`](/api/options-state.html#emits) 作为 property 加入，以达到定义它们的目的：
+大多数常规组件的配置选项在函数式组件中都不可用，除了 [`props`](/api/options-state.html#props) 和 [`emits`](/api/options-state.html#emits)。我们可以给函数式组件添加对应的属性来声明它们：
 
 ```js
 MyComponent.props = ['value']

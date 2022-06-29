@@ -137,7 +137,7 @@ Vue 模板会被编译成 JavaScript，而模板内的表达式将作为渲染�
 <style>{{ userProvidedStyles }}</style>
 ```
 
-为了避免用户的点击被劫持，我们建议仅在沙盒环境的 iframe 中允许用户控制 CSS。或者，当用户控制样式绑定时，我们建议使用其[对象值形式](/guide/essentials/class-and-style.html#object-syntax-2)并仅允许用户提供能够安全控制的、特定的 property，就像这样：
+为了避免用户的点击被劫持，我们建议仅在沙盒环境的 iframe 中允许用户控制 CSS。或者，当用户控制样式绑定时，我们建议使用其[对象值形式](/guide/essentials/class-and-style.html#object-syntax-2)并仅允许用户提供能够安全控制的、特定的属性，就像这样：
 
 ```vue-html
 <a

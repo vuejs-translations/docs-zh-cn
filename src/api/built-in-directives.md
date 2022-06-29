@@ -8,7 +8,7 @@
 
 - **详细信息**
 
-  `v-text` 通过设置元素的 [textContent](https://developer.mozilla.org/en-US/docs/Web/API/Node/textContent) property 来工作，因此它将覆盖元素中所有现有的内容。如果你需要更新 `textContent` 的部分，应该使用 [mustache interpolations](/guide/essentials/template-syntax.html#text-interpolation) 代替。
+  `v-text` 通过设置元素的 [textContent](https://developer.mozilla.org/en-US/docs/Web/API/Node/textContent) 属性来工作，因此它将覆盖元素中所有现有的内容。如果你需要更新 `textContent` 的部分，应该使用 [mustache interpolations](/guide/essentials/template-syntax.html#text-interpolation) 代替。
 
 - **示例**
 
@@ -52,7 +52,7 @@
 
 - **详细信息**
 
-  `v-show` 通过设置内联样式的 `display` CSS property 来工作，当元素可见时将使用初始 `display` 值。当条件改变时，也会触发过度效果。
+  `v-show` 通过设置内联样式的 `display` CSS 属性来工作，当元素可见时将使用初始 `display` 值。当条件改变时，也会触发过度效果。
 
 - **参考**：[条件渲染 - v-show](/guide/essentials/conditional.html#v-show)
 
@@ -196,7 +196,7 @@
 
   当用于普通元素，只监听[**原生 DOM 事件**](https://developer.mozilla.org/en-US/docs/Web/Events)。当用于自定义元素组件，则监听子组件触发的**自定义事件**。
 
-  当监听原生 DOM 事件时，方法接收原生事件作为唯一参数。如果使用内联声明，声明可以访问一个特殊的 `$event` property：`v-on:click="handle('ok', $event)"`。
+  当监听原生 DOM 事件时，方法接收原生事件作为唯一参数。如果使用内联声明，声明可以访问一个特殊的 `$event` 变量：`v-on:click="handle('ok', $event)"`。
 
   `v-on` 还支持绑定不带参数的事件/监听器对的对象。请注意，当使用对象语法时，不支持任何修饰符。
 
@@ -323,7 +323,7 @@
 
   ```vue-html
   <div :someProperty.prop="someObject"></div>
-  
+
   <!-- 等同于 -->
   <div .someProperty="someObject"></div>
   ```

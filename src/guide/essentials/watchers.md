@@ -6,7 +6,7 @@
 
 <div class="options-api">
 
-在该选项式 API 中，我们可以使用 [`watch` 选项](/api/options-state.html#watch)在每次响应式 property 发生变化时触发一个函数。
+在选项式 API 中，我们可以使用 [`watch` 选项](/api/options-state.html#watch)在每次响应式属性发生变化时触发一个函数。
 
 ```js
 export default {
@@ -126,12 +126,12 @@ watch([x, () => y.value], ([newX, newY]) => {
 })
 ```
 
-注意，你不能侦听响应式对象的 property，例如:
+注意，你不能直接侦听响应式对象的属性值，例如:
 
 ```js
 const obj = reactive({ count: 0 })
 
-// 这不起作用，因为你向 watch() 传入了一个 number
+// 错误，因为 watch() 得到的参数是一个 number
 watch(obj.count, (count) => {
   console.log(`count is: ${count}`)
 })
@@ -155,7 +155,7 @@ watch(
 
 <div class="options-api">
 
-`watch` 默认是浅层的：被侦听的 property，仅在被赋新值时，才会触发回调函数——而嵌套 property 的变化不会触发。如果想侦听所有嵌套的变更，你需要深层侦听器：
+`watch` 默认是浅层的：被侦听的属性，仅在被赋新值时，才会触发回调函数——而嵌套属性的变化不会触发。如果想侦听所有嵌套的变更，你需要深层侦听器：
 
 ```js
 export default {
@@ -182,7 +182,7 @@ export default {
 const obj = reactive({ count: 0 })
 
 watch(obj, (newValue, oldValue) => {
-  // 在嵌套的 property 变更时触发
+  // 在嵌套的属性变更时触发
   // 注意：`newValue` 此处和 `oldValue` 是相等的
   // 因为它们是同一个对象！
 })
@@ -217,7 +217,7 @@ watch(
 </div>
 
 :::warning 谨慎使用
-深度侦听需要遍历被侦听对象中的所有嵌套的 property，当用于大型数据结构时，开销很大。因此请只在必要时才使用它，并且要留意性能。
+深度侦听需要遍历被侦听对象中的所有嵌套的属性，当用于大型数据结构时，开销很大。因此请只在必要时才使用它，并且要留意性能。
 :::
 
 <div class="options-api">
@@ -281,7 +281,7 @@ watchEffect(async () => {
 你可以上手体验[这个例子](/examples/#fetching-data)，它用了 `watchEffect`，还涉及如何做响应式的数据请求。
 
 :::tip
-`watchEffect` 仅会在其**同步**执行期间，才追踪依赖。在使用异步回调时，只有在第一个 `await` 正常工作前访问到的 property 才会被追踪。
+`watchEffect` 仅会在其**同步**执行期间，才追踪依赖。在使用异步回调时，只有在第一个 `await` 正常工作前访问到的属性才会被追踪。
 :::
 
 ### `watch` vs. `watchEffect` {#watch-vs-watcheffect}
@@ -290,7 +290,7 @@ watchEffect(async () => {
 
 - `watch` 只追踪明确侦听的源。它不会追踪任何在回调中访问到的东西。另外，仅在响应源确实改变时才会触发回调。`watch` 会避免在发生副作用时追踪依赖，因此，我们能更加精确地控制回调函数的触发时机。
 
-- `watchEffect`，则会在副作用发生期间追踪依赖。它会在同步执行过程中，自动追踪所有能访问到的响应式 property。这更方便，而且代码往往更简洁，但其响应性依赖关系不那么明确。
+- `watchEffect`，则会在副作用发生期间追踪依赖。它会在同步执行过程中，自动追踪所有能访问到的响应式属性。这更方便，而且代码往往更简洁，但其响应性依赖关系不那么明确。
 
 </div>
 

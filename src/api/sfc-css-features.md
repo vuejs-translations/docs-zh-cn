@@ -124,7 +124,7 @@
 
 ### 自定义注入名称 {#custom-inject-name}
 
-你可以通过给 `module` attribute 一个值来自定义注入 class 对象的 property 键：
+你可以通过给 `module` attribute 一个值来自定义注入 class 对象的属性名：
 
 ```vue
 <template>
@@ -146,10 +146,10 @@
 import { useCssModule } from 'vue'
 
 // 在 setup() 作用域中...
-// 默认情况下, 返回 <style module> 的 class 
+// 默认情况下, 返回 <style module> 的 class
 useCssModule()
 
-// 具名情况下, 返回 <style module="classes"> 的 class 
+// 具名情况下, 返回 <style module="classes"> 的 class
 useCssModule('classes')
 ```
 
@@ -199,4 +199,4 @@ p {
 </style>
 ```
 
-实际的值会被编译成哈希化的 CSS 自定义 property，因此 CSS 本身仍然是静态的。自定义 property 会通过内联样式的方式应用到组件的根元素上，并且在源值变更的时候响应式地更新。
+实际的值会被编译成哈希化的 CSS 自定义属性，因此 CSS 本身仍然是静态的。自定义属性会通过内联样式的方式应用到组件的根元素上，并且在源值变更的时候响应式地更新。

@@ -216,7 +216,7 @@
   // https://vitejs.dev/guide/ssr.html#conditional-logic
   if (import.meta.env.SSR) {
     const ctx = useSSRContext()
-    // ...附加 property 给上下文
+    // ...给上下文对象添加属性
   }
   </script>
   ```

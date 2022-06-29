@@ -199,7 +199,7 @@ export default defineComponent({
 </template>
 ```
 
-没有类型标注时，这个 `event` 参数会隐式地标注为 `any` 类型。这也会在 `tsconfig.json` 中配置了 `"strict": true` 或 `"noImplicitAny": true` 时抛出一个 TS 错误。因此，建议显式地为事件处理器的参数标注类型。此外，你可能需要显式地强制转换 `event` 上的 property：
+没有类型标注时，这个 `event` 参数会隐式地标注为 `any` 类型。这也会在 `tsconfig.json` 中配置了 `"strict": true` 或 `"noImplicitAny": true` 时抛出一个 TS 错误。因此，建议显式地为事件处理器的参数标注类型。此外，你可能需要显式地强制转换 `event` 上的属性：
 
 ```ts
 import { defineComponent } from 'vue'
@@ -213,9 +213,9 @@ export default defineComponent({
 })
 ```
 
-## 扩充全局 property {#augmenting-global-properties}
+## 扩充全局属性 {#augmenting-global-properties}
 
-某些插件通过 [`app.config.globalProperties`](/api/application.html#app-config-globalproperties) 为所有组件都安装了全局可用的 property。举个例子，我们可能为了请求数据而安装了 `this.$http`，或者为了国际化而安装了 `this.$translate`。为了使 TypeScript 更好地支持这个行为，Vue 暴露了一个被设计为可以通过 [TypeScript 模块扩充](https://www.typescriptlang.org/docs/handbook/declaration-merging.html#module-augmentation)来扩充的 `ComponentCustomProperties` 接口：
+某些插件通过 [`app.config.globalProperties`](/api/application.html#app-config-globalproperties) 为所有组件都安装了全局可用的属性。举个例子，我们可能为了请求数据而安装了 `this.$http`，或者为了国际化而安装了 `this.$translate`。为了使 TypeScript 更好地支持这个行为，Vue 暴露了一个被设计为可以通过 [TypeScript 模块扩充](https://www.typescriptlang.org/docs/handbook/declaration-merging.html#module-augmentation)来扩充的 `ComponentCustomProperties` 接口：
 
 ```ts
 import axios from 'axios'
@@ -234,7 +234,7 @@ declare module 'vue' {
 
 ### 类型扩充的位置 {#type-augmentation-placement}
 
-我们可以将这些类型扩充放在一个 `.ts` 文件，或是一个以整个项目为范围的 `*.d.ts` 文件中。无论哪一种，确保在 `tsconfig.json` 中将其引入。对于库或插件作者，这个文件应该在 `package.json` 的 `types` property 中被列出。
+我们可以将这些类型扩充放在一个 `.ts` 文件，或是一个以整个项目为范围的 `*.d.ts` 文件中。无论哪一种，确保在 `tsconfig.json` 中将其引入。对于库或插件作者，这个文件应该在 `package.json` 的 `types` 属性中被列出。
 
 为了利用模块扩充的优势，你需要确保将扩充的模块放在 [TypeScript 模块](https://www.typescriptlang.org/docs/handbook/modules.html) 中。 也就是说，该文件需要包含至少一个顶级的 `import` 或 `export`，即使它只是 `export {}`。如果扩充被放在模块之外，它将覆盖原始类型，而不是扩充!
 
@@ -286,7 +286,7 @@ declare module 'vue' {
 
 现在这个 `beforeRouteEnter` 选项会被准确地标注类型。注意这只是一个例子——像 `vue-router` 这种类型完备的库应该在它们自己的类型定义中自动执行这些扩充。
 
-这种类型扩充和全局 property 扩充受到[相同的限制](#type-augmentation-placement)。
+这种类型扩充和全局属性扩充受到[相同的限制](#type-augmentation-placement)。
 
 参考：
 

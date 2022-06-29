@@ -13,7 +13,7 @@ Vue.js 是一个用于构建客户端应用的框架。默认情况下，Vue 组
 一个由服务端渲染的 Vue.js 应用也可以被认为是“同构的”或“通用的”，因为应用的大部分代码同时运行在服务端**和**客户端。
 
 ### 为什么要用 SSR？ {#why-ssr}
- 
+
 与客户端的单页应用 (SPA) 相比，SSR 的优势主要在于：
 
 - **更快的内容到达时间**：这一点在慢网速或者运行缓慢的设备上尤为重要。服务端渲染的 HTML 无需等到所有的 JavaScript 都下载并执行完成之后才显示，所以你的用户将会更快地看到完整渲染的页面。除此之外，数据获取过程在首次访问时在服务端完成，相比于从客户端获取，可能有更快的数据库连接。这通常可以带来更高的[核心 Web 指标](https://web.dev/vitals/)评分、更好的用户体验，而对于那些“内容到达时间与转化率直接相关”的应用来说，这点可能至关重要。
@@ -241,7 +241,7 @@ Vite 提供了内置的 [Vue 服务端渲染支持](https://vitejs.dev/guide/ssr
 
 ### 组件生命周期钩子 {#component-lifecycle-hooks}
 
-因为没有任何动态更新，所以像 <span class="options-api">`mounted`</span><span class="composition-api">`onMounted`</span> 或者 <span class="options-api">`updated`</span><span class="composition-api">`onUpdated`</span> 这样的生命周期钩子**不会**在 SSR 期间被调用，并且只会在客户端运行。<span class="options-api">只有 `beforeCreate` 和 `created` 这两个钩子会在 SSR 期间被调用。</span> 
+因为没有任何动态更新，所以像 <span class="options-api">`mounted`</span><span class="composition-api">`onMounted`</span> 或者 <span class="options-api">`updated`</span><span class="composition-api">`onUpdated`</span> 这样的生命周期钩子**不会**在 SSR 期间被调用，并且只会在客户端运行。<span class="options-api">只有 `beforeCreate` 和 `created` 这两个钩子会在 SSR 期间被调用。</span>
 
 你应该避免在 <span class="options-api">`beforeCreate` 和 `created`</span><span class="composition-api">`setup()` 或者 `<script setup>` 的根作用域</span>中使用会产生副作用且需要被清理的代码。这类副作用的常见例子是使用 `setInterval` 设置定时器。我们可能会在客户端特有的代码中设置定时器，然后在 <span class="options-api">`beforeUnmount`</span><span class="composition-api">`onBeforeUnmount`</span> 或 <span class="options-api">`unmounted`</span><span class="composition-api">`onUnmounted`</span> 中清除。然而，由于 unmount 钩子不会在 SSR 期间被调用，所以定时器会永远存在。为了避免这种情况，请将含有副作用的代码放到 <span class="options-api">`mounted`</span><span class="composition-api">`onMounted`</span> 中。
 
@@ -329,7 +329,7 @@ const myDirective = {
 
 在 SSR 的过程中 Teleport 需要特殊处理。如果渲染的应用包含 Teleport，那么 teleport 的内容将不会作为渲染字符串的一部分。在大多数情况下，最佳方案是在挂载时条件式地渲染 Teleport。
 
-如果你需要激活 teleport 内容，服务端渲染上下文对象将它们暴露在了 `teleports` property 下：
+如果你需要激活 teleport 内容，服务端渲染上下文对象将它们暴露在了 `teleports` 属性下：
 
 ```js
 const ctx = {}

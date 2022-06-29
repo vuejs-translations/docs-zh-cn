@@ -199,7 +199,7 @@ import { reactive } from 'vue'
 const book = reactive({ title: 'Vue 3 指引' })
 ```
 
-要显式地标注一个 `reactive` property 的类型，我们可以使用接口：
+要显式地标注一个 `reactive` 变量的类型，我们可以使用接口：
 
 ```ts
 import { reactive } from 'vue'
@@ -257,7 +257,7 @@ function handleChange(event) {
 </template>
 ```
 
-没有类型标注时，这个 `event` 参数会隐式地标注为 `any` 类型。这也会在 `tsconfig.json` 中配置了 `"strict": true` 或 `"noImplicitAny": true` 时报出一个 TS 错误。因此，建议显式地为事件处理器的参数标注类型。此外，你可能需要显式地强制转换 `event` 上的 property：
+没有类型标注时，这个 `event` 参数会隐式地标注为 `any` 类型。这也会在 `tsconfig.json` 中配置了 `"strict": true` 或 `"noImplicitAny": true` 时报出一个 TS 错误。因此，建议显式地为事件处理器的参数标注类型。此外，你可能需要显式地强制转换 `event` 上的属性：
 
 ```ts
 function handleChange(event: Event) {

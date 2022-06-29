@@ -12,7 +12,7 @@ outline: deep
 
 <div class="options-api">
 
-选用选项式 API 时，会用 `data` 选项来声明组件的响应式状态。此选项的值应为返回一个对象的函数。Vue 将在创建新组件实例的时候调用此函数，并将函数返回的对象封装到其响应式系统中。此对象的任何顶层 property 都被代理到组件实例 (即方法和生命周期钩子中的 `this`) 上。
+选用选项式 API 时，会用 `data` 选项来声明组件的响应式状态。此选项的值应为返回一个对象的函数。Vue 将在创建新组件实例的时候调用此函数，并将函数返回的对象封装到其响应式系统中。此对象的任何顶层属性都被代理到组件实例 (即方法和生命周期钩子中的 `this`) 上。
 
 ```js{2-6}
 export default {
@@ -35,11 +35,11 @@ export default {
 
 [在演练场中尝试一下](https://sfc.vuejs.org/#eyJBcHAudnVlIjoiPHNjcmlwdD5cbmV4cG9ydCBkZWZhdWx0IHtcbiAgZGF0YSgpIHtcbiAgICByZXR1cm4ge1xuICAgICAgY291bnQ6IDFcbiAgICB9XG4gIH0sXG5cbiAgLy8gYG1vdW50ZWRgIGlzIGEgbGlmZWN5Y2xlIGhvb2sgd2hpY2ggd2Ugd2lsbCBleHBsYWluIGxhdGVyXG4gIG1vdW50ZWQoKSB7XG4gICAgLy8gYHRoaXNgIHJlZmVycyB0byB0aGUgY29tcG9uZW50IGluc3RhbmNlLlxuICAgIGNvbnNvbGUubG9nKHRoaXMuY291bnQpIC8vID0+IDFcblxuICAgIC8vIGRhdGEgY2FuIGJlIG11dGF0ZWQgYXMgd2VsbFxuICAgIHRoaXMuY291bnQgPSAyXG4gIH1cbn1cbjwvc2NyaXB0PlxuXG48dGVtcGxhdGU+XG4gIENvdW50IGlzOiB7eyBjb3VudCB9fVxuPC90ZW1wbGF0ZT4iLCJpbXBvcnQtbWFwLmpzb24iOiJ7XG4gIFwiaW1wb3J0c1wiOiB7XG4gICAgXCJ2dWVcIjogXCJodHRwczovL3NmYy52dWVqcy5vcmcvdnVlLnJ1bnRpbWUuZXNtLWJyb3dzZXIuanNcIlxuICB9XG59In0=)
 
-这些实例上的 property 仅在实例首次创建时被添加，因此你需要确保它们都出现在 `data` 函数返回的对象上。若所需的值还未准备好，在必要时也可以使用 `null`、`undefined` 或者其他一些值占位。
+这些实例上的属性仅在实例首次创建时被添加，因此你需要确保它们都出现在 `data` 函数返回的对象上。若所需的值还未准备好，在必要时也可以使用 `null`、`undefined` 或者其他一些值占位。
 
 也可以不在 `data` 上定义，直接向组件实例添加新属性。但这个属性将无法触发响应式更新。
 
-Vue 在组件实例上暴露的内置 API 使用 `$` 作为前缀。它同时也为内部 property 保留 `_` 前缀。你应该避免在顶层 `data` 上使用任何以这些字符作前缀的 property。
+Vue 在组件实例上暴露的内置 API 使用 `$` 作为前缀。它同时也为内部属性保留 `_` 前缀。你应该避免在顶层 `data` 上使用任何以这些字符作前缀的属性。
 
 ### 响应式代理 vs. 原始值 \* {#reactive-proxy-vs-original}
 
@@ -75,7 +75,7 @@ import { reactive } from 'vue'
 const state = reactive({ count: 0 })
 ```
 
-响应式对象其实是 [JavaScript Proxy](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy)，其行为表现与一般对象相似。不同之处在于 Vue 能够跟踪对响应式对象 property 的访问与更改操作。如果你对这其中的细节感到好奇，我们在 [深入响应式系统](/guide/extras/reactivity-in-depth.html) 一章中会进行解释，但我们推荐你先读完这里的主要指南。
+响应式对象其实是 [JavaScript Proxy](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy)，其行为表现与一般对象相似。不同之处在于 Vue 能够跟踪对响应式对象属性的访问与更改操作。如果你对这其中的细节感到好奇，我们在 [深入响应式系统](/guide/extras/reactivity-in-depth.html) 一章中会进行解释，但我们推荐你先读完这里的主要指南。
 
 你也可以看看：[为响应式对象标注类型](/guide/typescript/composition-api.html#typing-reactive) <sup class="vt-badge ts" />
 
@@ -200,7 +200,7 @@ export default {
 }
 ```
 
-和组件实例上的其他 property 一样，方法也可以在模板上被访问。在模板中它们常常被用作事件监听器：
+和组件实例上的其他属性一样，方法也可以在模板上被访问。在模板中它们常常被用作事件监听器：
 
 ```vue-html
 <button @click="increment">{{ count }}</button>
@@ -302,7 +302,7 @@ function mutateDeeply() {
 
 <div class="composition-api">
 
-### 响应式代理 vs. 原始对象 \*\* {#reactive-proxy-vs-original-1} 
+### 响应式代理 vs. 原始对象 \*\* {#reactive-proxy-vs-original-1}
 
 值得注意的是，`reactive()` 返回的是一个原始对象的 [Proxy](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy)，它和原始对象是不相等的：
 
@@ -343,7 +343,7 @@ console.log(proxy.nested === raw) // false
 
 1. 仅对对象类型有效（对象、数组和 `Map`、`Set` 这样的[集合类型](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects#%E4%BD%BF%E7%94%A8%E9%94%AE%E7%9A%84%E9%9B%86%E5%90%88%E5%AF%B9%E8%B1%A1)），而对 `string`、`number` 和 `boolean` 这样的 [原始类型](https://developer.mozilla.org/zh-CN/docs/Glossary/Primitive) 无效。
 
-2. 因为 Vue 的响应式系统是通过 property 访问进行追踪的，因此我们必须始终保持对该响应式对象的相同引用。这意味着我们不可以随意地“替换”一个响应式对象，因为这将导致对初始引用的响应性连接丢失：
+2. 因为 Vue 的响应式系统是通过属性访问进行追踪的，因此我们必须始终保持对该响应式对象的相同引用。这意味着我们不可以随意地“替换”一个响应式对象，因为这将导致对初始引用的响应性连接丢失：
 
    ```js
    let state = reactive({ count: 0 })
@@ -352,7 +352,7 @@ console.log(proxy.nested === raw) // false
    state = reactive({ count: 1 })
    ```
 
-  同时这也意味着当我们将响应式对象的 property 赋值或解构至本地变量时，或是将该 property 传入一个函数时，我们会失去响应性：
+  同时这也意味着当我们将响应式对象的属性赋值或解构至本地变量时，或是将该属性传入一个函数时，我们会失去响应性：
 
    ```js
    const state = reactive({ count: 0 })
@@ -383,7 +383,7 @@ import { ref } from 'vue'
 const count = ref(0)
 ```
 
-`ref()` 从参数中获取到值，将其包装为一个带 `.value` property 的 ref 对象：
+`ref()` 从参数中获取到值，将其包装为一个带 `.value` 属性的 ref 对象：
 
 ```js
 const count = ref(0)
@@ -397,7 +397,7 @@ console.log(count.value) // 1
 
 你也可以看看：[为 ref 标注类型](/guide/typescript/composition-api.html#typing-ref) <sup class="vt-badge ts" />
 
-和响应式对象的 property 类似，ref 的 `.value` property 也是响应式的。同时，当值为对象类型时，会用 `reactive()` 自动转换它的 `.value`。
+和响应式对象的属性类似，ref 的 `.value` 属性也是响应式的。同时，当值为对象类型时，会用 `reactive()` 自动转换它的 `.value`。
 
 一个包含对象类型值的 ref 可以响应式地替换整个对象：
 
@@ -429,7 +429,7 @@ const { foo, bar } = obj
 
 ### ref 在模板中的解包 \*\* {#ref-unwrapping-in-templates}
 
-当 ref 在模板中作为顶层 property 被访问时，它们会被自动“解包”，所以不需要使用  `.value`。下面是之前的计数器例子，用 `ref()` 代替：
+当 ref 在模板中作为顶层属性被访问时，它们会被自动“解包”，所以不需要使用  `.value`。下面是之前的计数器例子，用 `ref()` 代替：
 
 ```vue{13}
 <script setup>
@@ -451,7 +451,7 @@ function increment() {
 
 [在演练场中尝试一下](https://sfc.vuejs.org/#eyJBcHAudnVlIjoiPHNjcmlwdCBzZXR1cD5cbmltcG9ydCB7IHJlZiB9IGZyb20gJ3Z1ZSdcblxuY29uc3QgY291bnQgPSByZWYoMClcblxuZnVuY3Rpb24gaW5jcmVtZW50KCkge1xuICBjb3VudC52YWx1ZSsrXG59XG48L3NjcmlwdD5cblxuPHRlbXBsYXRlPlxuICA8YnV0dG9uIEBjbGljaz1cImluY3JlbWVudFwiPnt7IGNvdW50IH19PC9idXR0b24+XG48L3RlbXBsYXRlPiIsImltcG9ydC1tYXAuanNvbiI6IntcbiAgXCJpbXBvcnRzXCI6IHtcbiAgICBcInZ1ZVwiOiBcImh0dHBzOi8vc2ZjLnZ1ZWpzLm9yZy92dWUucnVudGltZS5lc20tYnJvd3Nlci5qc1wiXG4gIH1cbn0ifQ==)
 
-请注意，仅当 ref 是模板渲染上下文的顶层 property 时才适用自动“解包”。 例如， foo 是顶层 property，但 object.foo 不是。
+请注意，仅当 ref 是模板渲染上下文的顶层属性时才适用自动“解包”。 例如， foo 是顶层属性，但 object.foo 不是。
 
 所以我们给出以下 object：
 
@@ -465,7 +465,7 @@ const object = { foo: ref(1) }
 {{ object.foo + 1 }}
 ```
 
-渲染的结果会是一个 `[object Object]`，因为 `object.foo` 是一个 ref 对象。我们可以通过让 `foo` 成为顶级 property 来解决这个问题：
+渲染的结果会是一个 `[object Object]`，因为 `object.foo` 是一个 ref 对象。我们可以通过将 `foo` 改成顶层属性来解决这个问题：
 
 ```js
 const { foo } = object
@@ -487,7 +487,7 @@ const { foo } = object
 
 ### ref 在响应式对象中的解包 \*\* {#ref-unwrapping-in-reactive-objects}
 
-当一个 `ref` 作为一个响应式对象的 property 被访问或更改时，它会自动解包，因此会表现得和一般的 property 一样：
+当一个 `ref` 作为一个响应式对象的属性被访问或更改时，它会自动解包，因此会表现得和一般的属性一样：
 
 ```js
 const count = ref(0)
@@ -501,7 +501,7 @@ state.count = 1
 console.log(count.value) // 1
 ```
 
-如果将一个新的 ref 赋值给一个关联了已有 ref 的 property，那么它会替换掉旧的 ref：
+如果将一个新的 ref 赋值给一个关联了已有 ref 的属性，那么它会替换掉旧的 ref：
 
 ```js
 const otherCount = ref(2)
@@ -512,7 +512,7 @@ console.log(state.count) // 2
 console.log(count.value) // 1
 ```
 
-只有当嵌套在一个深层响应式对象内时，才会发生 ref 解包。当其作为[浅层响应式对象](/api/reactivity-advanced.html#shallowreactive)的 property 被访问时不会解包。
+只有当嵌套在一个深层响应式对象内时，才会发生 ref 解包。当其作为[浅层响应式对象](/api/reactivity-advanced.html#shallowreactive)的属性被访问时不会解包。
 
 #### 数组和集合类型的 ref 解包 {#ref-unwrapping-in-arrays-and-collections}
 
