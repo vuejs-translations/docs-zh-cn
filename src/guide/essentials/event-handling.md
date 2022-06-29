@@ -10,13 +10,13 @@
 
 ## 监听事件 {#listening-to-events}
 
-你可以使用 `v-on` 指令 (简写为 `@`) 来监听 DOM 事件和运行 JavaScript 代码。用法：`v-on:click="methodName"` 或 `@click="handler"`。
+我们可以使用 `v-on` 指令 (简写为 `@`) 来监听 DOM 事件，并在事件触发时执行对应的 JavaScript。用法：`v-on:click="methodName"` 或 `@click="handler"`。
 
 事件处理器的值可以是：
 
 1. **内联事件处理器**：事件被触发时执行的内联 JavaScript 语句 (与 `onclick` 类似)。
 
-2. **方法事件处理器**：一个组件的属性名、或对某个方法的访问。
+2. **方法事件处理器**：一个指向组件上定义的方法的属性名或是路径。
 
 ## 内联事件处理器 {#inline-handlers}
 
@@ -131,7 +131,7 @@ methods: {
 
 ### 方法与内联事件判断 {#method-vs-inline-detection}
 
-模板编译器会通过检查 `v-on` 的值是否是合法的 JavaScript 标识符或属性访问来断定是何种形式的事件处理器。举个例子，`foo`、`foo.bar` 和 `foo['bar']` 会被视为方法事件处理器，而 `foo()` 和 `count++` 会被视为内联事件处理器。
+模板编译器会通过检查 `v-on` 的值是否是合法的 JavaScript 标识符或属性访问路径来断定是何种形式的事件处理器。举个例子，`foo`、`foo.bar` 和 `foo['bar']` 会被视为方法事件处理器，而 `foo()` 和 `count++` 会被视为内联事件处理器。
 
 ## 在内联处理器中调用方法 {#methods-in-inline-handlers}
 
@@ -223,7 +223,7 @@ methods: {
 
 在处理事件时调用 `event.preventDefault()` 或 `event.stopPropagation()` 是很常见的。尽管我们可以直接在方法内调用，但如果方法能更专注于数据逻辑而不用去处理 DOM 事件的细节会更好。
 
-为解决这一问题，Vue 为 `v-on` 提供了**事件修饰符**。修饰符是用点表示的指令后缀。
+为解决这一问题，Vue 为 `v-on` 提供了**事件修饰符**。修饰符是用 `.` 表示的指令后缀，包含以下这些：
 
 - `.stop`
 - `.prevent`
@@ -254,7 +254,7 @@ methods: {
 使用修饰符时需要注意调用顺序，因为相关代码是以相同的顺序生成的。因此使用 `@click.prevent.self` 会阻止**元素及其子元素的所有点击事件的默认行为**而 `@click.self.prevent` 则只会阻止对元素本身的点击事件的默认行为。
 :::
 
-`.capture`、`.once` 和 `.passive` 修饰符与[原生 `addEventListener` 事件](https://developer.mozilla.org/zh-CN/docs/Web/API/EventTarget/addEventListener#options)相同：
+`.capture`、`.once` 和 `.passive` 修饰符与[原生 `addEventListener` 事件](https://developer.mozilla.org/zh-CN/docs/Web/API/EventTarget/addEventListener#options)相对应：
 
 ```vue-html
 <!-- 添加事件监听器时，使用 `capture` 捕获模式 -->
@@ -272,7 +272,7 @@ methods: {
 `.passive` 修饰符一般用于触摸事件的监听器，可以用来[改善移动端设备的滚屏性能](https://developer.mozilla.org/zh-CN/docs/Web/API/EventTarget/addEventListener#%E4%BD%BF%E7%94%A8_passive_%E6%94%B9%E5%96%84%E7%9A%84%E6%BB%9A%E5%B1%8F%E6%80%A7%E8%83%BD)。
 
 ::: tip
-请勿同时使用 `.passive` 和 `.prevent`，因为 `.prevent` 会被忽略并且你的浏览器可能会抛出警告。请记住，`.passive` 是向浏览器表明你*不想*阻止事件的默认行为。并且如果你这样做，可能在浏览器中收到一个警告。
+请勿同时使用 `.passive` 和 `.prevent`，因为 `.passive` 已经向浏览器表明了你*不想*阻止事件的默认行为。如果你这么做了，则 `.prevent` 会被忽略，并且浏览器会抛出警告。
 :::
 
 ## 按键修饰符 {#key-modifiers}
@@ -316,7 +316,7 @@ Vue 为一些常用的按键提供了别名：
 - `.meta`
 
 ::: tip 注意
-在 Macintosh 键盘上，meta 是 Command 键 (⌘)。在 Windows 键盘上，meta 键是 Windows 键 (⊞)。在 Sun 微机系统键盘上，meta 是钻石键 (◆)。在某些键盘上，特别是 MIT 和 Lisp 机器的键盘及其后代版本的键盘，如 Knight 键盘，space-cadet 键盘，meta 都被标记为“META”。在 Symbolics 键盘上，meta 也被标识为“META”或“Meta”。
+在 Mac 键盘上，meta 是 Command 键 (⌘)。在 Windows 键盘上，meta 键是 Windows 键 (⊞)。在 Sun 微机系统键盘上，meta 是钻石键 (◆)。在某些键盘上，特别是 MIT 和 Lisp 机器的键盘及其后代版本的键盘，如 Knight 键盘，space-cadet 键盘，meta 都被标记为“META”。在 Symbolics 键盘上，meta 也被标识为“META”或“Meta”。
 :::
 
 举个例子：
