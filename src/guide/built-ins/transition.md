@@ -378,7 +378,7 @@ function onLeave(el, done) {
 function onAfterLeave(el) {}
 
 // 仅在 v-show 过渡中可用
-function leaveCancelled(el) {}
+function onLeaveCancelled(el) {}
 ```
 
 </div>
@@ -421,7 +421,7 @@ export default {
     onAfterLeave(el) {},
 
     // 仅在 v-show 过渡中可用
-    leaveCancelled(el) {}
+    onLeaveCancelled(el) {}
   }
 }
 ```

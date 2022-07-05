@@ -94,6 +94,14 @@ onMounted(() => {
 
 ## 与选项式 API 的关系 {#relationship-with-options-api}
 
+### Trade-offs
+
+<!-- TODO: translation --> Some users moving from Options API found their Composition API code less organized, and concluded that Composition API is "worse" in terms of code organization. We recommend users with such opinions to look that problem from a different perspective.
+
+It is true that Composition API no longer provides the "guard rails" that guide you to put your code into respective buckets. In return, you get to author component code like how you would write normal JavaScript. This means **you can and should apply any code organization best practices to your Composition API code as you would when writing normal JavaScript**. If you can write well-organized JavaScript, you should also be able to write well-organized Composition API code.
+
+Options API does allow you to "think less" when writing component code, which is why many users love it. However, in reducing the mental overhead, it also locks you into the prescribed code organization pattern with no escape hatch, which can make it difficult to refactor or improve code quality in larger scale projects. In this regard, Composition API provides better long term scalability.
+
 ### 组合式 API 是否覆盖了所有场景？ {#does-composition-api-cover-all-use-cases}
 
 对于有状态的逻辑来说，的确如此。当使用组合式 API 时，只需要用到一小部分选项：`props`，`emits`，`name` 和 `inheritAttrs`。如果使用 `<script setup>`，那么 `inheritAttrs` 应该是唯一一个需要用额外的 `<script>` 块书写的选项了。
