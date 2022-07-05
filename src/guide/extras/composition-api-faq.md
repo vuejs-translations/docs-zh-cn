@@ -94,13 +94,13 @@ onMounted(() => {
 
 ## 与选项式 API 的关系 {#relationship-with-options-api}
 
-### Trade-offs
+### 权衡 {#trade-offs}
 
-<!-- TODO: translation --> Some users moving from Options API found their Composition API code less organized, and concluded that Composition API is "worse" in terms of code organization. We recommend users with such opinions to look that problem from a different perspective.
+一些从选项式 API 迁移来的用户发现，他们用组合式 API 写的代码缺乏组织性，并得出结论，组合式 API 在代码组织方面“更糟糕”。我们建议持有这类观点的用户从不同的角度看待这个问题。
 
-It is true that Composition API no longer provides the "guard rails" that guide you to put your code into respective buckets. In return, you get to author component code like how you would write normal JavaScript. This means **you can and should apply any code organization best practices to your Composition API code as you would when writing normal JavaScript**. If you can write well-organized JavaScript, you should also be able to write well-organized Composition API code.
+诚然，组合式 API 不再提供“护栏”来指导你把自己的代码放进相应的“桶”中。但有利的回报是，你可以像编写普通的 JavaScript 那样来编写组件代码。这意味着**你能够且应该将任何代码组织的最佳实践应用于你的组合式 API 的代码，就像你编写普通的 JavaScript 时那样**。如果你可以编写组织良好的 JavaScript，你也应该有能力编写组织良好的组合式 API 代码。
 
-Options API does allow you to "think less" when writing component code, which is why many users love it. However, in reducing the mental overhead, it also locks you into the prescribed code organization pattern with no escape hatch, which can make it difficult to refactor or improve code quality in larger scale projects. In this regard, Composition API provides better long term scalability.
+选项式 API 确实允许你在编写组件代码时“少思考”，这是许多用户喜欢它的原因。然而，在减少费神思考的同时，它也将你锁定在规定的代码组织模式中，没有摆脱的余地，这会导致在更大规模的项目中难以进行重构或提高代码质量。在这方面，组合式 API 提供了更好的长期可扩展性。
 
 ### 组合式 API 是否覆盖了所有场景？ {#does-composition-api-cover-all-use-cases}
 
