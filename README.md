@@ -26,7 +26,7 @@ pnpm run dev
 - 发 issue 讨论译法或书写格式
 - 发 issue 讨论部署或协作流程上的问题
 
-同时我们的文档中可能会偶尔存在暂时未翻译的段落，这些段落通常都以 `<!-- TODO: translation -->` 开头作为标记。所以也欢迎大家在源码中搜索这些段落并贡献翻译。
+同时我们的文档中可能会偶尔存在暂时未翻译的段落，这些段落通常都以 `<!-- TODO: translation -->` 开头作为标记。所以也欢迎大家在源码中搜索这些段落并贡献翻译。你也可以通过[这个链接](https://github.com/vuejs-translations/docs-zh-cn/search?q=TODO%3A+translation)快速找到尚未翻译好的内容。
 
 ## 贡献者列表
 
