@@ -450,7 +450,7 @@
     <p>{{msg}}</p>
   </div>
   <!-- 组件 -->
-  <my-component v-once :comment="msg"></my-component>
+  <MyComponent v-once :comment="msg"></MyComponent>
   <!-- `v-for` 指令 -->
   <ul>
     <li v-for="i in list" v-once>{{i}}</li>

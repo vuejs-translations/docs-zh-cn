@@ -284,6 +284,8 @@ Vue 需要附加事件监听器，以便知道过渡何时结束。可以是 `tr
   transform: translateX(30px);
   opacity: 0;
 }
+
+/* ... other necessary CSS omitted */
 ```
 
 我们甚至可以在嵌套元素上添加一个过渡延迟，这会创建一个交错进入动画序列：
@@ -347,7 +349,7 @@ Vue 需要附加事件监听器，以便知道过渡何时结束。可以是 `tr
 ```js
 // 在元素被插入到 DOM 之前被调用
 // 用这个来设置元素的 "enter-from" 状态
-function onBeforeEnter(el) {},
+function onBeforeEnter(el) {}
 
 // 在元素被插入到 DOM 之后的下一帧被调用
 // 用这个来开始进入动画

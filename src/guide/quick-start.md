@@ -48,7 +48,7 @@ footer: false
 <span class="line"><span style="color:var(--vt-c-green);">&gt; </span><span style="color:#A6ACCD;">npm run dev</span></span>
 <span class="line"></span></code></pre></div>
 
-你现在应该已经运行起来了你的第一个 Vue 项目！下面是一些补充提示：
+你现在应该已经运行起来了你的第一个 Vue 项目！请注意，生成的项目中的示例组件是使用[组合式 API](/guide/introduction.html#composition-api) 和 `<script setup>` 编写的，而非[选项式 API](/guide/introduction.html#options-api)。下面是一些补充提示：
 
 - 推荐的 IDE 配置是 [Visual Studio Code](https://code.visualstudio.com/) + [Volar 扩展](https://marketplace.visualstudio.com/items?itemName=Vue.volar)。如果使用其它编辑器，参考 [IDE 支持章节](/guide/scaling-up/tooling.html#ide-support)。
 - 更多工具细节，包括与后端框架的整合，我们会在[工具链指引](/guide/scaling-up/tooling.html)进行讨论。

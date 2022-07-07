@@ -192,7 +192,7 @@ data() {
 
 对于只有一个根元素的组件，当你使用了 `class` attribute 时，这些 class 会被添加到根元素上，并与该元素上已有的 class 合并。
 
-举个例子，如果你声明了一个组件名叫 `my-component`，模板如下：
+举个例子，如果你声明了一个组件名叫 `MyComponent`，模板如下：
 
 ```vue-html
 <!-- 子组件模板 -->
@@ -203,7 +203,7 @@ data() {
 
 ```vue-html
 <!-- 在使用组件时 -->
-<my-component class="baz boo"></my-component>
+<MyComponent class="baz boo" />
 ```
 
 渲染出的 HTML 为：
@@ -215,7 +215,7 @@ data() {
 Class 的绑定也是同样的：
 
 ```vue-html
-<my-component :class="{ active: isActive }"></my-component>
+<MyComponent :class="{ active: isActive }" />
 ```
 
 当 `isActive` 为真时，被渲染的 HTML 会是：
@@ -227,13 +227,13 @@ Class 的绑定也是同样的：
 如果你的组件有多个根元素，你将需要指定哪个根元素来接收这个 class。你可以通过组件的 `$attrs` property 来实现指定：
 
 ```vue-html
-<!-- my-component 模板使用 $attrs 时 -->
+<!-- MyComponent 模板使用 $attrs 时 -->
 <p :class="$attrs.class">Hi!</p>
 <span>This is a child component</span>
 ```
 
 ```vue-html
-<my-component class="baz"></my-component>
+<MyComponent class="baz" />
 ```
 
 这将被渲染为：

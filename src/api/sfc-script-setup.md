@@ -295,7 +295,7 @@ const emit = defineEmits<{
 针对类型的 `defineProps` 声明的不足之处在于，它没有可以给 prop 提供默认值的方式。为了解决这个问题，提供了 `withDefaults` 编译器宏：
 
 ```ts
-interface Props {
+export interface Props {
   msg?: string
   labels?: string[]
 }

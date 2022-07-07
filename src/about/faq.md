@@ -26,7 +26,7 @@ Vue 3 是性能最强的主流前端框架之一，可以轻松处理大多数 w
 
 关于压力测试，Vue 在 [js-framework-benchmark](https://rawgit.com/krausest/js-framework-benchmark/master/webdriver-ts-results/table.html) 中的表现比 React 和 Angular 等框架要好得多。在该基准测试中，它还与一些生产环境下最快级别的非虚拟 DOM 框架并驾齐驱。
 
-请注意，像上面这样的合成基准测试的侧重点在于原始渲染性能的专属优化，可能不能完全代表真实世界的性能结果。如果你更关心页面加载性能，以下是通过 [WebPageTest](https://www.webpagetest.org/lighthouse) 生成的 [Lighthouse 审计结果](https://www.webpagetest.org/result/210818_BiDcYB_4a83d7a1f2a7f6fdc76db16a00b4882d/)，该网站由 Vue 驱动，具有静态站点生成器的预渲染、全页面激活和单页应用客户端导航功能。它在模拟 3G 网络和 4 倍 CPU 节流的 Moto G4 上的性能得分为 98 分。
+请注意，像上面这样的合成基准测试的侧重点在于原始渲染性能的专属优化，可能不能完全代表真实世界的性能结果。如果你更关心页面加载性能，欢迎使用 [WebPageTest](https://www.webpagetest.org/lighthouse) 或 [PageSpeed Insights](https://pagespeed.web.dev/) 来审核这个网站。该网站由 Vue 驱动，具有静态站点生成器的预渲染、全页面激活和单页应用客户端导航功能。它在模拟较慢的 4G 网络和 4 倍 CPU 节流的 Moto G4 上的性能得分为 100 分。
 
 你可以在[渲染机制](/guide/extras/rendering-mechanism.html)章节了解更多关于 Vue 如何自动优化运行时性能的信息，也可以在[性能优化指南](/guide/best-practices/performance.html)中了解如何在特别苛刻的情况下优化 Vue 应用。
 
@@ -68,7 +68,7 @@ Vue 3 是 Vue 当前的最新主版本。它包含了 Vue 2 中没有的新特�
 
 如果你打算将现有的 Vue 2 应用迁移到 Vue 3，请查阅我们特别整理的 [Vue 3 迁移指南](https://v3-migration.vuejs.org/)。
 
-Vue 2 将在 2022 年发布最后一个小版本 (2.7)。这个小版本将带回一些选定的 Vue 3 新特性子集。在此之后，Vue 2 将进入维护模式：它将不再提供新特性，但将继续针对重大错误修复和安全更新进行发布，为期 18 个月。
+Vue 2 已经在 2022 年 7 月发布了最后一个小版本 (2.7)。这个小版本带回了一些选定的 Vue 3 新特性子集。Vue 2 现在已经进入维护模式：它将不再提供新特性，但将继续针对重大错误修复和安全更新进行发布，直到 2023 年底。
 
 ## 我应该使用选项式 API 还是组合式 API？ {#should-i-use-options-api-or-composition-api}
 

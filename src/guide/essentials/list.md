@@ -134,7 +134,7 @@ items.forEach((item, index) => {
 
 ## `v-for` 与对象 {#v-for-with-an-object}
 
-你也可以使用 `v-for` 来遍历一个对象的所有属性。
+你也可以使用 `v-for` 来遍历一个对象的所有 property。迭代顺序将基于对该对象调用 `Object.keys()` 的结果:
 
 <div class="composition-api">
 
@@ -198,11 +198,7 @@ data() {
 
 </div>
 
-:::tip 注意
-当遍历一个对象时，顺序是依据 `Object.keys()` 的枚举顺序，该顺序仅在现代版本的 ECMAScript 引擎中被良好地定义，而对更老版本的 JavaScript 引擎来说则可能会不一致。
-:::
-
-## 在 `v-for` 里使用值范围 {#v-for-with-a-range}
+## `v-for` with a Range
 
 可以直接传给 `v-for` 一个整数值。在这种用例中，会将该模板基于 `1...n` 的取值范围重复多次。
 
@@ -290,18 +286,18 @@ Vue 默认按照“就地更新”的策略来更新通过 `v-for` 渲染的元�
 可以直接在组件上使用 `v-for`，和其他任何一般的元素没有区别 (别忘记提供一个 `key`)：
 
 ```vue-html
-<my-component v-for="item in items" :key="item.id"></my-component>
+<MyComponent v-for="item in items" :key="item.id" />
 ```
 
 但是，这不会自动将任何数据传递给组件，因为组件有自己独立的作用域。为了将迭代后的数据传递到组件中，我们还是应该使用 prop：
 
 ```vue-html
-<my-component
+<MyComponent
   v-for="(item, index) in items"
   :item="item"
   :index="index"
   :key="item.id"
-></my-component>
+/>
 ```
 
 不自动将 `item` 注入组件的原因是，这会使组件与 `v-for` 的工作方式紧密耦合。明确其数据的来源可以使组件在其他情况下重用。
@@ -321,7 +317,7 @@ Vue 默认按照“就地更新”的策略来更新通过 `v-for` 渲染的元�
 
 ### 变更方法 {#mutation-methods}
 
-Vue 包装了一批侦听数组的变更方法，以至于这些方法可以触发视图更新。被包装的变更方法如下：
+Vue 能够检测到响应式数组的变更方法何时被调用并触发必要的更新。这些变更方法如下：
 
 - `push()`
 - `pop()`
