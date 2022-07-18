@@ -64,7 +64,7 @@ export default {
 
 <div class="composition-api">
 
-They can also be defined directly inside their parent component:
+也可以直接在父组件中直接定义它们：
 
 ```vue
 <script setup>

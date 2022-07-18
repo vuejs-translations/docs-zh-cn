@@ -278,7 +278,7 @@ watch(
 
 占位符的缺陷之一是默认情况下它们不符合[颜色对比度标准](https://www.w3.org/WAI/WCAG21/Understanding/contrast-minimum.html)；应当修改其颜色，让它看起来像是预先填入 input 框中的数据一样。查看以下示例，可以看到满足颜色对比度条件的姓氏占位符看起来像预填充的数据：
 
-![Accessible placeholder](./images/AccessiblePlaceholder.png)
+![可访问的占位文本](./images/AccessiblePlaceholder.png)
 
 ```vue-html
 <form
