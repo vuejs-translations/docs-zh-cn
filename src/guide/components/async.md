@@ -28,23 +28,56 @@ const AsyncComp = defineAsyncComponent(() =>
 )
 ```
 
-最后得到的 `AsyncComp` 是一个包装器组件，仅在页面需要它渲染时才调用加载函数。另外，它还会将 props 传给内部的组件，所以你可以使用这个异步的包装器组件无缝地替换原始组件，同时实现延迟加载。
+最后得到的 `AsyncComp` 是一个包装器组件，仅在页面需要它渲染时才调用加载函数。另外，它还会将 prop 和插槽传给内部的组件，所以你可以使用这个异步的包装器组件无缝地替换原始组件，同时实现延迟加载。
+
+与普通组件一样，异步组件可以使用 `app.component()` [全局注册](/guide/components/registration.html#global-registration)：
+
+```js
+app.component('MyComponent', defineAsyncComponent(() =>
+  import('./components/MyComponent.vue')
+))
+```
 
 <div class="options-api">
 
 你也可以在[局部注册组件](/guide/components/registration.html#local-registration)时使用 `defineAsyncComponent`：
 
-```js
+```vue
+<script>
 import { defineAsyncComponent } from 'vue'
 
 export default {
-  // ...
   components: {
-    AsyncComponent: defineAsyncComponent(() =>
-      import('./components/AsyncComponent.vue')
+    AdminPage: defineAsyncComponent(() =>
+      import('./components/AdminPageComponent.vue')
     )
   }
 }
+</script>
+
+<template>
+  <AdminPage />
+</template>
+```
+
+</div>
+
+<div class="composition-api">
+
+也可以直接在父组件中直接定义它们：
+
+```vue
+<script setup>
+import { defineAsyncComponent } from 'vue'
+
+const AdminPage = defineAsyncComponent(() =>
+  import('./components/AdminPageComponent.vue')
+)
+</script>
+
+<template>
+  <AdminPage />
+</template>
 ```
 
 </div>
