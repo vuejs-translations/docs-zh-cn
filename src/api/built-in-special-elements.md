@@ -106,7 +106,7 @@
   </template>
   ```
 
-  在实践中，这种极端情况并不常见，因为原生表单字段通常包裹在实际的应用程序组件中。如果确实需要直接使用原生元素，那么你可以手动将 `v-model` 拆分为 attribute 和事件。
+  在实践中，这种极端情况并不常见，因为原生表单字段通常包裹在实际应用的组件中。如果确实需要直接使用原生元素，那么你可以手动将 `v-model` 拆分为 attribute 和事件。
 
 - **参考**：[动态组件](/guide/essentials/component-basics.html#dynamic-components)
 
