@@ -89,8 +89,8 @@
   ```
 
   如果将组件本身传递给 `is` 而不是其名称，则不需要注册，例如在 `<script setup>` 中。
-<!-- TODO: translation -->
-  If `v-model` is used on a `<component>` tag, the template compiler will expand it to a `modelValue` prop and `update:modelValue` event listener, much like it would for any other component. However, this won't be compatible with native HTML elements, such as `<input>` or `<select>`. As a result, using `v-model` with a dynamically created native element won't work: 
+
+  如果在 `<component>` 标签上使用 `v-model`，模板编译器会将其扩展为 `modelValue` prop 和 `update:modelValue` 事件监听器，就像对任何其他组件一样。但是，这与原生 HTML 元素不兼容，例如 `<input>` 或 `<select>`。因此，在动态创建的原生元素上使用 `v-model` 将不起作用:
 
   ```vue
   <script setup>
@@ -101,12 +101,12 @@
   </script>
 
   <template>
-    <!-- This won't work as 'input' is a native HTML element -->
+    <!-- 由于 'input' 是原生 HTML 元素，因此这个 v-model 不起作用 -->
     <component :is="tag" v-model="username" />
   </template>
   ```
 
-  In practice, this edge case isn't common as native form fields are typically wrapped in components in real applications. If you do need to use a native element directly then you can split the `v-model` into an attribute and event manually.
+  在实践中，这种极端情况并不常见，因为原生表单字段通常包裹在实际的应用程序组件中。如果确实需要直接使用原生元素，那么你可以手动将 `v-model` 拆分为 attribute 和事件。
 
 - **参考**：[动态组件](/guide/essentials/component-basics.html#dynamic-components)
 
