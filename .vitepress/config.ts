@@ -12,7 +12,7 @@ const nav = [
     items: [
       { text: '指南', link: '/guide/introduction' },
       { text: '教程', link: '/tutorial/' },
-      { text: '范例', link: '/examples/' },
+      { text: '示例', link: '/examples/' },
       { text: '快速开始', link: '/guide/quick-start' },
       // { text: '风格指南', link: '/style-guide/' },
       {
