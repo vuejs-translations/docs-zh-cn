@@ -22,7 +22,7 @@
 
 ## 使用构建工具 {#with-build-tools}
 
-通过 `create-vue` 搭建的项目（基于 Vite）或者 Vue CLI（基于 Vue CLI）都会为生产环境发布作预配置。
+通过 `create-vue` 搭建的项目（基于 Vite）或者 Vue CLI（基于 webpack）都会为生产环境发布作预配置。
 
 如果使用了自定义的构建，请确保：
 
