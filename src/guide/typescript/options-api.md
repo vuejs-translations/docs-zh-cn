@@ -67,7 +67,7 @@ export default defineComponent({
 
 ### 注意事项 {#caveats}
 
-因为一个 TypeScript 的 [设计限制](https://github.com/microsoft/TypeScript/issues/38845)，你在使用函数作为 prop 的 `validator` 和 `default` 选项值时需要格外小心——确保使用箭头函数：
+如果你的 TypeScript 版本低于 `4.7`，在使用函数作为 prop 的 `validator` 和 `default` 选项值时需要格外小心——确保使用箭头函数：
 
 ```ts
 import { defineComponent } from 'vue'
@@ -82,7 +82,7 @@ export default defineComponent({
   props: {
     bookA: {
       type: Object as PropType<Book>,
-      // 确保使用箭头函数
+      // 如果你的 TypeScript 版本低于 4.7，确保使用箭头函数
       default: () => ({
         title: 'Arrow Function Expression'
       }),
@@ -92,7 +92,7 @@ export default defineComponent({
 })
 ```
 
-这会防止 Typescript 将 `this` 根据函数内的环境作出不符合我们期望的类型推导。
+这会防止 TypeScript 将 `this` 根据函数内的环境作出不符合我们期望的类型推导。这是之前版本的一个[设计限制](https://github.com/microsoft/TypeScript/issues/38845)，不过现在已经在 [TypeScript 4.7](https://www.typescriptlang.org/docs/handbook/release-notes/typescript-4-7.html#improved-function-inference-in-objects-and-methods) 中解决了。
 
 ## 为组件的 emit 标注类型 {#typing-component-emits}
 
