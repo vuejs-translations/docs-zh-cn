@@ -50,7 +50,7 @@ export default {
 </div>
 
 ```vue-html
-<div :class="{ shake: notActivated }">
+<div :class="{ shake: disabled }">
   <button @click="warnDisabled">Click me</button>
   <span v-if="disabled">This feature is disabled!</span>
 </div>
