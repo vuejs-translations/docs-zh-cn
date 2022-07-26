@@ -82,7 +82,7 @@ export default defineComponent({
   props: {
     bookA: {
       type: Object as PropType<Book>,
-      // 如果 TypeScript 版本低于 4.7，确保使用箭头函数
+      // 如果你的 TypeScript 版本低于 4.7，确保使用箭头函数
       default: () => ({
         title: 'Arrow Function Expression'
       }),
@@ -92,7 +92,7 @@ export default defineComponent({
 })
 ```
 
-这会防止 TypeScript 将 `this` 根据函数内的环境作出不符合我们期望的类型推导。这是由于之前版本的一个 [设计限制](https://github.com/microsoft/TypeScript/issues/38845) 导致的，不过这个问题已经在 [TypeScript 4.7](https://www.typescriptlang.org/docs/handbook/release-notes/typescript-4-7.html#improved-function-inference-in-objects-and-methods) 版本被解决了。
+这会防止 TypeScript 将 `this` 根据函数内的环境作出不符合我们期望的类型推导。这是之前版本的一个[设计限制](https://github.com/microsoft/TypeScript/issues/38845)，不过现在已经在 [TypeScript 4.7](https://www.typescriptlang.org/docs/handbook/release-notes/typescript-4-7.html#improved-function-inference-in-objects-and-methods) 中解决了。
 
 ## 为组件的 emit 标注类型 {#typing-component-emits}
 
