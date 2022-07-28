@@ -1,9 +1,15 @@
 <script setup lang="ts">
+import { onMounted } from 'vue';
 import NewsLetter from './NewsLetter.vue'
+import { load, data, base } from './sponsors';
 import SponsorsGroup from './SponsorsGroup.vue';
 // NOTE: hide the home video
 // https://github.com/vuejs-translations/docs-zh-cn/issues/177
 // import VueMasteryModal from './VueMasteryModal.vue';
+
+onMounted(async () => {
+  await load()
+})
 </script>
 
 <template>
@@ -36,21 +42,20 @@ import SponsorsGroup from './SponsorsGroup.vue';
     </p>
   </section>
 
-  <!-- TODO make dynamic based on data -->
   <section id="special-sponsor">
     <span>特别赞助</span>
-    <a href="https://www.dcloud.io/hbuilderx.html?hmsr=vue-en&hmpl=&hmcu=&hmkw=&hmci=">
-      <picture>
-        <source type="image/avif" srcset="/images/sponsors/hbuilder.avif" />
-        <img
-          alt="hbuilder logo"
-          width="97"
-          height="36"
-          src="/images/sponsors/hbuilder.png"
-        />
-      </picture>
-    </a>
-    <span>为 Vue 打造的先进 IDE</span>
+    <template v-if="data && data.special">
+      <template v-for="{ url, img, name, description } of data.special">
+        <a :href="url" target="_blank" rel="sponsored noopener">
+          <picture v-if="img.endsWith('png')">
+            <source type="image/avif" :srcset="`${base}/images/${img.replace(/\.png$/, '.avif')}`" />
+            <img :src="`${base}/images/${img}`" :alt="name" />
+          </picture>
+          <img v-else :src="`${base}/images/${img}`" :alt="name" />
+        </a>
+        <span v-if="description">{{ description }}</span>
+      </template>
+    </template>
   </section>
 
   <section id="highlights" class="vt-box-container">
@@ -210,13 +215,14 @@ html:not(.dark) .accent,
   font-weight: 500;
   font-size: 13px;
   vertical-align: middle;
-  margin: 0 24px;
+  margin-right: 24px;
 }
 
 #special-sponsor img {
   display: inline-block;
   vertical-align: middle;
   height: 36px;
+  margin-right: 24px;
 }
 
 .dark #special-sponsor img {

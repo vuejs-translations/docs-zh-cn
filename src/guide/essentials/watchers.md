@@ -6,7 +6,7 @@
 
 <div class="options-api">
 
-在选项式 API 中，我们可以使用 [`watch` 选项](/api/options-state.html#watch)在每次响应式 property 发生变化时触发一个函数。
+在该选项式 API 中，我们可以使用 [`watch` 选项](/api/options-state.html#watch)在每次响应式 property 发生变化时触发一个函数。
 
 ```js
 export default {

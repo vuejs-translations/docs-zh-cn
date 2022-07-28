@@ -74,7 +74,7 @@ const multiSelected = ref([])
 
 <span id="vmodel-ime-tip"></span>
 ::: tip 注意
-对于需要使用 [IME](https://en.wikipedia.org/wiki/Input_method) 的语言 (中文，日文和韩文等)，你会发现 `v-model` 不会在 IME 输入的组合状态时触发更新。如果你的确想在此时也触发更新，请使用 `input` 事件监听器和 `value` 绑定值而不要使用 `v-model`。
+对于需要使用 [IME](https://en.wikipedia.org/wiki/Input_method) 的语言 (中文，日文和韩文等)，你会发现 `v-model` 不会在 IME 输入的组合状态时触发更新。如果你的确想在此时也触发更新，请使用你自己的 `input` 事件监听器和 `value` 绑定值而不要使用 `v-model`。
 :::
 
 ### 多行文本 {#multiline-text}
