@@ -33,5 +33,5 @@ pnpm run dev
 最新的文档/翻译贡献情况可以参阅 GitHub 提供的 [contributors](https://github.com/vuejs-translations/docs-zh-cn/graphs/contributors) 页面。
 
 <p align="center">
-  <img src="https://cdn.jsdelivr.net/gh/ShenQingchuan/github-contributor-svg-generator/dist/all-contributors.svg" />
+  <img src="https://cdn.jsdelivr.net/gh/ShenQingchuan/github-contributor-svg-generator/dist/vuejs-translations/docs-zh-cn.png" />
 </p>
