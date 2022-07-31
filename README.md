@@ -31,3 +31,9 @@ pnpm run dev
 ## 贡献者列表
 
 最新的文档/翻译贡献情况可以参阅 GitHub 提供的 [contributors](https://github.com/vuejs-translations/docs-zh-cn/graphs/contributors) 页面。
+
+以下是基于该仓库中 PR 和 commit 统计并按总数量排序的所有贡献者，[生成逻辑可在此查阅](https://github.com/ShenQingchuan/github-contributor-svg-generator)。
+
+<p align="center">
+  <img src="https://cdn.jsdelivr.net/gh/ShenQingchuan/github-contributor-svg-generator/dist/vuejs-translations/docs-zh-cn.png" />
+</p>
