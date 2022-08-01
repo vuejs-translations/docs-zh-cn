@@ -2,13 +2,13 @@
 
 <VueSchoolLink href="https://vueschool.io/lessons/vue-3-global-vs-local-vue-components" title="组件注册 - 免费 Vue.js 课程"/>
 
-> 阅读此章节时，我们假设你已经读过[组件基础](/guide/essentials/component-basics)，若你对组件还完全不了解，请先阅读它。
+> 此章节假设你已经看过了[组件基础](/guide/essentials/component-basics)。若你还不了解组件是什么，请先阅读该章节。
 
-一个 Vue 组件需要被“注册”使得 Vue 在渲染模板时能找到其实现。有两种方式来注册组件：全局注册和局部注册。
+一个 Vue 组件在使用前需要先被“注册”，这样 Vue 才能在渲染模板时找到其对应的实现。组件注册有两种方式：全局注册和局部注册。
 
 ## 全局注册 {#global-registration}
 
-我们可以使用 `app.component()` 方法，让组件在当前 [Vue 应用](/guide/essentials/application)中全局可用。
+我们可以使用 [Vue 应用实例](/guide/essentials/application)的 `app.component()` 方法，让组件在当前 Vue 应用中全局可用。
 
 ```js
 import { createApp } from 'vue'
@@ -55,17 +55,17 @@ app
 
 ## 局部注册 {#local-registration}
 
-全局注册虽然很方便，但有以下几个短板：
+全局注册虽然很方便，但有以下几个问题：
 
-1. 全局注册使构建系统无法移除未使用的组件 (也叫“tree-shaking”)。如果你全局注册了一个组件，却一次都没有使用，它仍然会出现在最终的构建产物中。
+1. 全局注册，但并没有被使用的组件无法在生产打包时被自动移除 (也叫“tree-shaking”)。如果你全局注册了一个组件，即使它并没有被实际使用，它仍然会出现在打包后的 JS 文件中。
 
-2. 全局注册在大型项目中使项目的依赖关系变得不那么明确。在父组件中使用子组件时，很难定位子组件的实现。这可能会影响未来长期的可维护性，类似于使用过多的全局变量。
+2. 全局注册在大型项目中使项目的依赖关系变得不那么明确。在父组件中使用子组件时，不太容易定位子组件的实现。和使用过多的全局变量一样，这可能会影响应用长期的可维护性。
 
-局部注册将注册组件的可用性限定在当前组件的范围内。它使依赖关系更加明确，并且对 tree-shaking 更加友好。
+相比之下，局部注册的组件需要在使用它的父组件中显式导入，并且只能在该父组件中使用。它的优点是使组件之间的依赖关系更加明确，并且对 tree-shaking 更加友好。
 
 <div class="composition-api">
 
-当你在单文件组件中使用了 `<script setup>`，导入的组件可以在本地使用而无需注册：
+在使用 `<script setup>` 的单文件组件中，导入的组件可以直接在模版中使用，无需注册：
 
 ```vue
 <script setup>
@@ -77,7 +77,7 @@ import ComponentA from './ComponentA.vue'
 </template>
 ```
 
-如果不在 `<script setup>` 中，你将需要使用 `components` 选项：
+如果没有使用 `<script setup>`，则需要使用 `components` 选项来显式注册：
 
 ```js
 import ComponentA from './ComponentA.js'
@@ -126,7 +126,7 @@ export default {
 }
 ```
 
-请注意：**局部注册组件在后代组件中并<i>不</i>可用**。在这个例子中，`ComponentA` 注册后仅在当前组件可用，而在任何的子组件或后代组件中都不可用。
+请注意：**局部注册的组件在后代组件中并<i>不</i>可用**。在这个例子中，`ComponentA` 注册后仅在当前组件可用，而在任何的子组件或更深层的子组件中都不可用。
 
 ## 组件名格式 {#component-name-casing}
 
@@ -138,4 +138,4 @@ export default {
 
 在单文件组件和内联字符串模板中，我们都推荐这样做。但是，PascalCase 的标签名在 DOM 模板中是不可用的，详情参见 [DOM 模板解析注意事项](/guide/essentials/component-basics.html#dom-template-parsing-caveats)。
 
-幸运的是，Vue 支持将使用 kebab-case 的标签解析为使用 PascalCase 注册的组件。这意味着一个以 `MyComponent` 为名注册的组件，在模板中可以通过 `<MyComponent>` 或 `<my-component>` 引用。这允许我们在不同来源的模板中始终使用同一份 JavaScript 组件注册代码。
+为了方便，Vue 支持将模版中使用 kebab-case 的标签解析为使用 PascalCase 注册的组件。这意味着一个以 `MyComponent` 为名注册的组件，在模板中可以通过 `<MyComponent>` 或 `<my-component>` 引用。这让我们能够使用同样的 JavaScript 组件注册代码来配合不同来源的模板。
