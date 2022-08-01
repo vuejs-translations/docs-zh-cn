@@ -121,7 +121,7 @@ defineProps<{
 
 ### Prop 名字格式 {#prop-name-casing}
 
-如果一个 prop 的名字很长，应使用 camelCase 格式，因为它们是合法的 JavaScript 标识符，可以直接在模板的表达式中使用，也可以避免在作为属性 key 名时必须加上引号。
+如果一个 prop 的名字很长，应使用 camelCase 形式，因为它们是合法的 JavaScript 标识符，可以直接在模板的表达式中使用，也可以避免在作为属性 key 名时必须加上引号。
 
 <div class="composition-api">
 
@@ -148,7 +148,7 @@ export default {
 <span>{{ greetingMessage }}</span>
 ```
 
-虽然理论上你也可以在子组件传递 props 时使用 camelCase 格式 (使用 [DOM 模板](/guide/essentials/component-basics.html#dom-template-parsing-caveats)时例外)，但实际上为了和 HTML attribute 对齐，我们通常会将其写为 kebab-case 格式：
+虽然理论上你也可以在子组件传递 props 时使用 camelCase 形式 (使用 [DOM 模板](/guide/essentials/component-basics.html#dom-template-parsing-caveats)时例外)，但实际上为了和 HTML attribute 对齐，我们通常会将其写为 kebab-case 形式：
 
 ```vue-html
 <MyComponent greeting-message="hello" />
