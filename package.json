@@ -1,6 +1,7 @@
 {
   "engines": {
-    "node": ">=14.0.0"
+    "node": ">=14.0.0",
+    "pnpm": ">=7.4.0"
   },
   "scripts": {
     "dev": "vitepress",
@@ -9,19 +10,17 @@
     "zhlint": "zhlint 'src/guide/**/*.md'",
     "clean": "rm -rf .vitepress/dist",
     "sync": "node scripts/sync.js",
-    "preinstall": "npx only-allow pnpm",
-    "postinstall": "patch-package"
+    "preinstall": "npx only-allow pnpm"
   },
   "dependencies": {
     "@vue/repl": "^1.2.4",
-    "@vue/theme": "1.0.2",
+    "@vue/theme": "^1.1.0",
     "dynamics.js": "^1.1.5",
     "gsap": "^3.9.0",
     "vitepress": "^0.22.4",
     "vue": "^3.2.37"
   },
   "devDependencies": {
-    "@milahu/patch-package": "^6.4.14",
     "@types/markdown-it": "^12.2.3",
     "@types/node": "^16.9.1",
     "chalk": "^4.1.2",
