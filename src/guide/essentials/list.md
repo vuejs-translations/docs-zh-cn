@@ -353,7 +353,7 @@ this.items = this.items.filter((item) => item.message.match(/Foo/))
 
 有时，我们希望显示数组经过过滤或排序后的内容，而不实际变更或重置原始数据。在这种情况下，你可以创建返回已过滤或已排序数组的计算属性。
 
-举个例子：
+举例来说：
 
 <div class="composition-api">
 

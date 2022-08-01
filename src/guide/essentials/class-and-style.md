@@ -61,7 +61,7 @@ data() {
 <div class="static active"></div>
 ```
 
-当 `isActive` 或者 `hasError` 改变时，class 列表会随之更新。举个例子，如果 `hasError` 变为 `true`，class 列表也会变成 `"static active text-danger"`。
+当 `isActive` 或者 `hasError` 改变时，class 列表会随之更新。举例来说，如果 `hasError` 变为 `true`，class 列表也会变成 `"static active text-danger"`。
 
 绑定的对象并不一定需要写成内联字面量的形式，也可以直接绑定一个对象：
 
@@ -192,7 +192,7 @@ data() {
 
 对于只有一个根元素的组件，当你使用了 `class` attribute 时，这些 class 会被添加到根元素上，并与该元素上已有的 class 合并。
 
-举个例子，如果你声明了一个组件名叫 `MyComponent`，模板如下：
+举例来说，如果你声明了一个组件名叫 `MyComponent`，模板如下：
 
 ```vue-html
 <!-- 子组件模板 -->
@@ -331,7 +331,7 @@ data() {
 
 ### 样式多值 {#multiple-values}
 
-你可以对一个样式属性提供多个 (不同前缀的) 值，举个例子：
+你可以对一个样式属性提供多个 (不同前缀的) 值，举例来说：
 
 ```vue-html
 <div :style="{ display: ['-webkit-box', '-ms-flexbox', 'flex'] }"></div>

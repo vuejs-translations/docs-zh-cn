@@ -149,7 +149,7 @@ const myDirective = {
 - `vnode`：代表绑定元素的底层 VNode。
 - `prevNode`：之前的渲染中代表指令所绑定元素的 VNode。仅在 `beforeUpdate` 和 `updated` 钩子中可用。
 
-举个例子，像下面这样使用指令：
+举例来说，像下面这样使用指令：
 
 ```vue-html
 <div v-example:foo.bar="baz">
@@ -166,7 +166,7 @@ const myDirective = {
 }
 ```
 
-和内置指令类似，自定义指令的参数也可以是动态的。举个例子：
+和内置指令类似，自定义指令的参数也可以是动态的。举例来说：
 
 ```vue-html
 <div v-example:[arg]="value"></div>

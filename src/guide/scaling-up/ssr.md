@@ -287,7 +287,7 @@ export function createApp() {
 
 ### 激活异常 {#hydration-mismatch}
 
-如果预渲染的 HTML 的 DOM 结构不符合客户端应用的期望，就会出现激活异常。在大多数场景中，这是由于浏览器原生的 HTML 解析行为试图纠正 HTML 字符串中的非法结构。举个例子，一个常见的错误是 [`<div>` 不能被放在 `<p>` 中](https://stackoverflow.com/questions/8397852/why-cant-the-p-tag-contain-a-div-tag-inside-it)：
+如果预渲染的 HTML 的 DOM 结构不符合客户端应用的期望，就会出现激活异常。在大多数场景中，这是由于浏览器原生的 HTML 解析行为试图纠正 HTML 字符串中的非法结构。举例来说，一个常见的错误是 [`<div>` 不能被放在 `<p>` 中](https://stackoverflow.com/questions/8397852/why-cant-the-p-tag-contain-a-div-tag-inside-it)：
 
 ```html
 <p><div>hi</div></p>

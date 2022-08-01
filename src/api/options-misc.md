@@ -20,7 +20,7 @@
   - 在 Vue 开发者工具中的组件树显示时
   - 在组件抛出的警告追踪栈信息中显示时
 
-  当你在使用单文件组件时，组件已经会根据其文件名推导出其名称。举个例子，一个名为 `MyComponent.vue` 的文件会推导出显示名称为“MyComponent”。
+  当你在使用单文件组件时，组件已经会根据其文件名推导出其名称。举例来说，一个名为 `MyComponent.vue` 的文件会推导出显示名称为“MyComponent”。
 
   另一种场景是当一个组件通过 [`app.component`](/api/application.html#app-component) 被全局注册时，这个全局 ID 就自动被设为了其名称。
 

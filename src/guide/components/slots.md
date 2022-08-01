@@ -1,14 +1,14 @@
 # 插槽 {#slots}
 
-> 阅读此章节时，我们假设你已经读过[组件基础](/guide/essentials/component-basics)，若你对组件还完全不了解，请先阅读它。
+> 此章节假设你已经看过了[组件基础](/guide/essentials/component-basics)。若你还不了解组件是什么，请先阅读该章节。
 
 <VueSchoolLink href="https://vueschool.io/lessons/vue-3-component-slots" title="Slots - 免费 Vue.js 课程"/>
 
-## 插槽内容与插口 {#slot-content-and-outlet}
+## 插槽内容与出口 {#slot-content-and-outlet}
 
-我们已经学习过组件能够接收任意类型的 JavaScript 值作为 props，但组件要如何接收模板内容呢？在某些场景中，我们可能想要为子组件传递一些模板片段，让子组件在它们的组件中渲染这些片段。
+在之前的章节中，我们已经了解到组件能够接收任意类型的 JavaScript 值作为 props，但组件要如何接收模板内容呢？在某些场景中，我们可能想要为子组件传递一些模板片段，让子组件在它们的组件中渲染这些片段。
 
-举个例子，这里有一个 `<FancyButton>` 组件，可以像这样使用：
+举例来说，这里有一个 `<FancyButton>` 组件，可以像这样使用：
 
 ```vue-html{2}
 <FancyButton>
@@ -20,11 +20,11 @@
 
 ```vue-html{2}
 <button class="fancy-btn">
-  <slot></slot> <!-- 插槽插口 -->
+  <slot></slot> <!-- 插槽出口 -->
 </button>
 ```
 
-`<slot>` 元素是一个**插槽的插口**，标示了父元素提供的**插槽内容**将在哪里被渲染。
+`<slot>` 元素是一个**插槽的出口**，标示了父元素提供的**插槽内容**将在哪里被渲染。
 
 ![插槽图示](./images/slots.png)
 
@@ -93,7 +93,7 @@ Vue 组件的插槽机制是受[原生 Web Component `<slot>` 元素](https://de
 
 ## 渲染作用域 {#render-scope}
 
-插槽内容可以访问到父组件的数据作用域，因为插槽内容本身是在父组件模板中定义的。举个例子：
+插槽内容可以访问到父组件的数据作用域，因为插槽内容本身是在父组件模板中定义的。举例来说：
 
 ```vue-html
 <span>{{ message }}</span>
@@ -163,7 +163,7 @@ Vue 组件的插槽机制是受[原生 Web Component `<slot>` 元素](https://de
 
 ## 具名插槽 {#named-slots}
 
-有时在一个组件中包含多个插槽的插口是很有用的。举个例子，在一个 `<BaseLayout>` 组件中，有如下这样的模板：
+有时在一个组件中包含多个插槽的出口是很有用的。举例来说，在一个 `<BaseLayout>` 组件中，有如下这样的模板：
 
 ```vue-html
 <div class="container">
@@ -195,9 +195,9 @@ Vue 组件的插槽机制是受[原生 Web Component `<slot>` 元素](https://de
 </div>
 ```
 
-没有提供 `name` 的 `<slot>` 插口会隐式地命名为“default”。
+没有提供 `name` 的 `<slot>` 出口会隐式地命名为“default”。
 
-在父组件中使用 `<BaseLayout>` 时，我们需要一种方式将多个插槽内容传入到各自目标插槽的插口。此时就需要用到**具名插槽**了：
+在父组件中使用 `<BaseLayout>` 时，我们需要一种方式将多个插槽内容传入到各自目标插槽的出口。此时就需要用到**具名插槽**了：
 
 要为具名插槽传入内容，我们需要使用一个含 `v-slot` 指令的 `<template>` 元素，并将目标插槽的名字传给该指令：
 
@@ -327,7 +327,7 @@ function BaseLayout(slots) {
 
 然而在某些场景下插槽的内容可能想要同时使用父组件域内和子组件域内的数据。要做到这一点，我们需要一种方法来让子组件在渲染时将一部分数据提供给插槽。
 
-我们也确实有办法这么做！可以像对组件传递 prop 那样，向一个插槽的插口上传递 attribute：
+我们也确实有办法这么做！可以像对组件传递 prop 那样，向一个插槽的出口上传递 attribute：
 
 ```vue-html
 <!-- <MyComponent> 的模板 -->

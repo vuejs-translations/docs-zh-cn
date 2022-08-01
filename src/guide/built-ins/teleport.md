@@ -160,7 +160,7 @@ let open = $ref(false)
 
 ## 禁用传送门 {#disabling-teleport}
 
-在某些场景中，你们可能需要视情况禁用 `<Teleport>`。举个例子，我们想要在桌面端将一个组件当做浮层来渲染，但在移动端则当作行内组件。可以对 `<Teleport>` 动态地传入一个 `disabled` prop 来处理这两种不同情况。
+在某些场景中，你们可能需要视情况禁用 `<Teleport>`。举例来说，我们想要在桌面端将一个组件当做浮层来渲染，但在移动端则当作行内组件。可以对 `<Teleport>` 动态地传入一个 `disabled` prop 来处理这两种不同情况。
 
 ```vue-html
 <Teleport :disabled="isMobile">

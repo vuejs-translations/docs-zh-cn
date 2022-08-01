@@ -61,7 +61,7 @@ data() {
 
 随着事件处理器的逻辑变得愈发复杂，内联代码方式变得不够灵活。因此 `v-on` 也可以接受一个方法名或对某个方法的调用。
 
-举个例子：
+举例来说：
 
 <div class="composition-api">
 
@@ -131,7 +131,7 @@ methods: {
 
 ### 方法与内联事件判断 {#method-vs-inline-detection}
 
-模板编译器会通过检查 `v-on` 的值是否是合法的 JavaScript 标识符或属性访问路径来断定是何种形式的事件处理器。举个例子，`foo`、`foo.bar` 和 `foo['bar']` 会被视为方法事件处理器，而 `foo()` 和 `count++` 会被视为内联事件处理器。
+模板编译器会通过检查 `v-on` 的值是否是合法的 JavaScript 标识符或属性访问路径来断定是何种形式的事件处理器。举例来说，`foo`、`foo.bar` 和 `foo['bar']` 会被视为方法事件处理器，而 `foo()` 和 `count++` 会被视为内联事件处理器。
 
 ## 在内联处理器中调用方法 {#methods-in-inline-handlers}
 
@@ -319,7 +319,7 @@ Vue 为一些常用的按键提供了别名：
 在 Mac 键盘上，meta 是 Command 键 (⌘)。在 Windows 键盘上，meta 键是 Windows 键 (⊞)。在 Sun 微机系统键盘上，meta 是钻石键 (◆)。在某些键盘上，特别是 MIT 和 Lisp 机器的键盘及其后代版本的键盘，如 Knight 键盘，space-cadet 键盘，meta 都被标记为“META”。在 Symbolics 键盘上，meta 也被标识为“META”或“Meta”。
 :::
 
-举个例子：
+举例来说：
 
 ```vue-html
 <!-- Alt + Enter -->
