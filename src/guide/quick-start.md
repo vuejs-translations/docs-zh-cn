@@ -2,7 +2,7 @@
 footer: false
 ---
 
-# 快速开始 {#quick-start}
+# 快速上手 {#quick-start}
 
 根据你的使用场景和个人偏好，在使用 Vue 时，你可以选择是否采用构建流程。
 
@@ -169,10 +169,10 @@ export default {
 <div class="vt-box-container next-steps">
   <a class="vt-box" href="/guide/essentials/application.html">
     <p class="next-steps-link">继续阅读该指南</p>
-    <p class="next-steps-caption">该指南会带你了解框架的每个方面的细节。</p>
+    <p class="next-steps-caption">该指南会带你深入了解框架所有方面的细节。</p>
   </a>
   <a class="vt-box" href="/tutorial/">
-    <p class="next-steps-link">尝试教程</p>
+    <p class="next-steps-link">尝试互动教程</p>
     <p class="next-steps-caption">适合喜欢边动手边学的读者。</p>
   </a>
   <a class="vt-box" href="/examples/">
