@@ -19,7 +19,7 @@ footer: false
 :::tip 前提条件
 
 - 熟悉命令行
-- 已安装 [Node.js](https://nodejs.org/)
+- 已安装 15.0 或更高版本的 [Node.js](https://nodejs.org/)
 :::
 
 为了在机器上创建一个启用构建工具的 Vue 项目，请在命令行中运行下面的指令 (不要带上 `>` 符号)：

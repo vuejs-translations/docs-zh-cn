@@ -115,19 +115,19 @@ const myDirective = {
     // 下面会介绍各个参数的细节
   },
   // 在元素被插入到 DOM 前调用
-  beforeMount() {},
+  beforeMount(el, binding, vnode, prevVnode) {},
   // 在绑定元素的父组件
   // 及他自己的所有子节点都挂载完成后调用
-  mounted() {},
+  mounted(el, binding, vnode, prevVnode) {},
   // 绑定元素的父组件更新前调用
-  beforeUpdate() {},
+  beforeUpdate(el, binding, vnode, prevVnode) {},
   // 在绑定元素的父组件
   // 及他自己的所有子节点都更新后调用
-  updated() {},
+  updated(el, binding, vnode, prevVnode) {},
   // 绑定元素的父组件卸载前调用
-  beforeUnmount() {},
+  beforeUnmount(el, binding, vnode, prevVnode) {},
   // 绑定元素的父组件卸载后调用
-  unmounted() {}
+  unmounted(el, binding, vnode, prevVnode) {}
 }
 ```
 
