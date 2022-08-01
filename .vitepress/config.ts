@@ -549,6 +549,41 @@ export const sidebar = {
   ]
 }
 
+const i18n = {
+  search: '搜索',
+  menu: '菜单',
+  returnToTop: '返回顶部',
+  appearance: '外观',
+  previous: '前一篇',
+  next: '下一篇',
+  pageNotFound: '页面未找到',
+  deadLinkFound: {
+    before: '你打开了一个不存在的链接：',
+    after: '。'
+  },
+  deadLinkReport: {
+    before: '不介意的话请提交到',
+    content: '这里',
+    after: '，我们会跟进修复。'
+  },
+  footerLicense: {
+    before: '基于',
+    after: '发布。'
+  },
+
+  // aria labels
+  ariaAnnouncer: {
+    before: '',
+    after: '已经加载完毕'
+  },
+  ariaDarkMode: '切换深色模式',
+  ariaSkip: '直接跳到内容',
+  ariaTOC: '当前页面的目录',
+  ariaMainNav: '主导航',
+  ariaMobileNav: '移动版导航',
+  ariaSidebarNav: '侧边栏导航',
+}
+
 export default defineConfigWithTheme<ThemeConfig>({
   extends: baseConfig,
 
@@ -599,6 +634,7 @@ export default defineConfigWithTheme<ThemeConfig>({
   themeConfig: {
     nav,
     sidebar,
+    i18n,
 
     algolia: {
       indexName: 'vuejs',
