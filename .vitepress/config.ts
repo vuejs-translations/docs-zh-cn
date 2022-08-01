@@ -103,7 +103,7 @@ const nav = [
         text: '社区指南',
         link: '/about/community-guide'
       },
-      { text: '行为准则', link: '/about/coc' },
+      { text: '行为准则', link: 'https://vuejs.org/about/coc.html' },
       {
         text: '纪录片',
         link: 'https://www.youtube.com/watch?v=OrxmtDw4pVI'

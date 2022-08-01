@@ -12,7 +12,7 @@ Vue.js 的社区正在急速增长中，如果你正在阅读本文，这说明�
 
 ### 行为规范 {#code-of-conduct}
 
-这份[行为规范](/about/coc)是一个易于发展我们所参与的技术社区的指南。
+这份[行为规范](https://vuejs.org/about/coc.html)是一个易于发展我们所参与的技术社区的指南。
 
 ### 保持关注 {#stay-in-the-know}
 
