@@ -4,17 +4,17 @@ import SwitchComponent from './keep-alive-demos/SwitchComponent.vue'
 
 # KeepAlive {#keepalive}
 
-`<KeepAlive>` 是一个内置组件，使我们可以在动态切换多个组件时视情况缓存组件实例。
+`<KeepAlive>` 是一个内置组件，它的功能是在多个组件间动态切换时缓存被移除的组件实例。
 
 ## 基本使用 {#basic-usage}
 
-在组件基础章节中，我们已经介绍了[动态组件](/guide/essentials/component-basics.html#dynamic-components)的用法，即使用特殊的 `<component>` 元素：
+在组件基础章节中，我们已经介绍了通过特殊的 `<component>` 元素来实现[动态组件](/guide/essentials/component-basics.html#dynamic-components)的用法：
 
 ```vue-html
 <component :is="activeComponent" />
 ```
 
-默认情况下，一个活跃的组件实例会在切走后被卸载。这会导致它丢失其中所有已变化的状态。
+默认情况下，一个组件实例在被替换掉后会被销毁。这会导致它丢失其中所有已变化的状态 —— 当这个组件再一次被显示时，会创建一个只带有初始状态的新实例。
 
 在下面的例子中，你会看到两个有状态的组件——A 有一个计数器，而 B 有一个通过 `v-model` 同步 input 框输入内容的文字展示。尝试先更改一下任意一个组件的状态，然后切走，再切回来：
 
@@ -22,7 +22,7 @@ import SwitchComponent from './keep-alive-demos/SwitchComponent.vue'
 
 你会发现在切回来之后，之前已更改的状态都被重置了。
 
-在切换时创建新的组件实例通常是有用的行为，但在这个例子中，我们是的确想要组件能在非活跃状态时保留它们的状态。要解决这个问题，我们可以用内置的 `<KeepAlive>` 组件将这些动态组件包装起来：
+在切换时创建新的组件实例通常是有意义的，但在这个例子中，我们的确想要组件能在被“切走”的时候保留它们的状态。要解决这个问题，我们可以用 `<KeepAlive>` 内置组件将这些动态组件包装起来：
 
 ```vue-html
 <!-- 非活跃的组件将会被缓存！ -->
@@ -52,7 +52,7 @@ import SwitchComponent from './keep-alive-demos/SwitchComponent.vue'
 
 ## 包含/排除 {#include-exclude}
 
-默认情况下，`<KeepAlive>` 会缓存内部的任何组件实例。但我们可以通过 `include` 和 `exclude` prop 来定制该行为。这两个 prop 的值都可以是一个以英文逗号分隔的字符串、一个正则表达式，或是包含这两种类型的一个数组：
+`<KeepAlive>` 默认会缓存内部的所有组件实例，但我们可以通过 `include` 和 `exclude` prop 来定制该行为。这两个 prop 的值都可以是一个以英文逗号分隔的字符串、一个正则表达式，或是包含这两种类型的一个数组：
 
 ```vue-html
 <!-- 以英文逗号分隔的字符串 -->
@@ -72,6 +72,10 @@ import SwitchComponent from './keep-alive-demos/SwitchComponent.vue'
 ```
 
 它会根据组件的 [`name`](/api/options-misc.html#name) 选项进行匹配，所以组件如果想要条件性地被 `KeepAlive` 缓存，就必须显式声明一个 `name` 选项。
+
+:::tip
+在 3.2.34 或以上的版本中, 使用 `<script setup>` 的单文件组件会自动根据文件名生成对应的 `name` 选项，无需再手动声明。
+:::
 
 ## 最大缓存实例数 {#max-cached-instances}
 
