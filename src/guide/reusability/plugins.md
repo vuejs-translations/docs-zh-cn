@@ -2,7 +2,7 @@
 
 ## 介绍 {#introduction}
 
-插件是一种能为 Vue 添加全局功能的工具代码。我们会这样安装一个插件：
+插件是一种能为 Vue 添加全局功能的工具代码。下面是如何安装一个插件的示例：
 
 ```js
 import { createApp } from 'vue'
@@ -14,7 +14,7 @@ app.use(myPlugin, {
 })
 ```
 
-它可以是一个拥有 `install()` 方法的对象，或者就简单地只是一个函数，它自己就是安装函数。安装函数接收[应用实例](/api/application.html)和传递给 `app.use()` 的额外选项：
+一个插件可以是一个拥有 `install()` 方法的对象，也可以直接是一个安装函数本身。安装函数会接收到安装它的[应用实例](/api/application.html)和传递给 `app.use()` 的额外选项作为参数：
 
 ```js
 const myPlugin = {
@@ -49,7 +49,13 @@ export default {
 }
 ```
 
-我们想让整个应用程序有一个按 key 名翻译文本内容的函数，因此我们将它暴露在 `app.config.globalProperties` 上。这个函数接收一个以 `.` 作为分隔符的 `key` 字符串，用来在用户提供的翻译字典中查找对应语言的文本。
+我们希望有一个翻译函数，这个函数接收一个以 `.` 作为分隔符的 `key` 字符串，用来在用户提供的翻译字典中查找对应语言的文本。期望的使用方式如下：
+
+```vue-html
+<h1>{{ $translate('greetings.hello') }}</h1>
+```
+
+这个函数应当能够在任意模版中被全局调用。这一点可以通过在插件中将它添加到 `app.config.globalProperties` 上来实现：
 
 ```js{4-11}
 // plugins/i18n.js
@@ -67,7 +73,9 @@ export default {
 }
 ```
 
-该插件希望用户在使用该插件时通过选项传入一个翻译字典对象，所以应该这样使用：
+我们的 `$translate` 函数会接收一个例如 `greetings.hello` 的字符串，在用户提供的翻译字典中查找，并返回翻译得到的值。
+
+用于查找的翻译字典对象则应当在插件被安装时作为 `app.use()` 的额外参数被传入：
 
 ```js
 import i18nPlugin from './plugins/i18n'
@@ -79,21 +87,17 @@ app.use(i18nPlugin, {
 })
 ```
 
-我们的 `$translate` 函数会接收一个例如 `greetings.hello` 的字符串，在用户提供的翻译字典中查找，并返回翻译得到的值，在这里就是 `Bonjour!`：
+这样，我们一开始的表达式 `$translate('greetings.hello')` 就会在运行时被替换为 `Bonjour!` 了。
 
-```vue-html
-<h1>{{ $translate('greetings.hello') }}</h1>
-```
-
-另请参阅：[Augmenting Global Properties](/guide/typescript/options-api.html#augmenting-global-properties) <sup class="vt-badge ts" />
+TypeScript 用户请参考：[扩充全局属性](/guide/typescript/options-api.html#augmenting-global-properties) <sup class="vt-badge ts" />
 
 :::tip
-请谨慎使用全局属性，如果在整个应用程序中使用不同插件注入的太多全局属性，很容易令开发者困惑。
+请谨慎使用全局属性，如果在整个应用程序中使用不同插件注入的太多全局属性，很容易让应用变得难以理解和维护。
 :::
 
-### 插件中的供给 / 注入
+### 插件中的 Provide / Inject
 
-在插件中，我们可以通过 `provide` 来为插件用户供给一些内容。举例来说，我们可以将 `options` 参数提供给整个应用，以便各个组件都能使用这个翻译字典对象。
+在插件中，我们可以通过 `provide` 来为插件用户供给一些内容。举例来说，我们可以将插件接收到的 `options` 参数提供给整个应用，让任何组件都能使用这个翻译字典对象。
 
 ```js{10}
 // plugins/i18n.js
