@@ -37,7 +37,7 @@ onMounted(() => window.addEventListener('mousemove', update))
 onUnmounted(() => window.removeEventListener('mousemove', update))
 </script>
 
-<template>鼠标位置: {{ x }}, {{ y }}</template>
+<template>Mouse position is at: {{ x }}, {{ y }}</template>
 ```
 
 但是，如果我们想在多个组件中复用这个相同的逻辑呢？我们可以把这个逻辑以一个组合式函数的形式提取到外部文件中：
@@ -77,14 +77,14 @@ import { useMouse } from './mouse.js'
 const { x, y } = useMouse()
 </script>
 
-<template>鼠标位置: {{ x }}, {{ y }}</template>
+<template>Mouse position is at: {{ x }}, {{ y }}</template>
 ```
 
 <div class="demo">
-  鼠标位置: {{ x }}, {{ y }}
+  Mouse position is at: {{ x }}, {{ y }}
 </div>
 
-[在演练场中尝试一下](https://sfc.vuejs.org/#eNqNkk1OwzAQha9iZdNUSh3WVVuJBTtYIoGUTWimJVUztmwnTRVlzYo79AScgN4GgbgFM0kawo8Qm8QzHn+e98aVd661LHLwpt7MLk2qnbDgcr2IMM20Mk5UIrdwpegjarEyKhMjGWYcy40dRRjhUqHlujIQe6qZ9wf8cYSzsMUSkAIHmd7GDigS4v358Hp4eDk+vh2fpqIigKjrgBeEqfloX+4FXtvOJIs13auQGq4YEnUbNvKIwRnOkSKOI+/eOW2nYWhXS5a5sVKZdUgraXJ0aQYSbDa5M2pnwRA48oIBI6RkAWZiABMwYP5ifiv9wWUsiapJysk90tCbbGAVCIXkGzpIeHmNVMdB7ztd1hgOZXNolePSpQoHfrcOtAMpaRJE9c9oCqfcfpDj7CdCJ+SzDwWg6yhClLKItznQmSYvdbyGm3Zr/8vWbSeRf70Sn5qaL8QuxUTtZJwkF1x/mVoHCMYfNV5kqoBR0DUxbvod6P+KME31vyjMMfSaDfavkwdQfwAAIAtS)
+[在演练场中尝试一下](https://sfc.vuejs.org/#eNqNkk1vgzAMhv+KxQUm0bBz1VbaYbftOGmTuDAwHVVxoiRQKsR/nw2Udh+adoHYcZ74fZ0+eDBGtQ0G62DjclsZDw59Y3YpVbXR1kMPjcNnzR8YoLS6hlAltcTq4MKUUso1OanrYjhzzXY5EN2ltEkmLAM58FibY+aRI4AJarSrfKUJKgeZX0PPIBiGWBaMGwSxHAviYGprVWeG79fEjfcCS+cNlwbMkIzkWJnEafDhvXHrJHFlLnIPTmm7T3ilbEO+qlGhq1fvVp8cWganQXzDSDjZol1ZpAIt2r+Y30p/cAXLogaWcnGRNSxmWyxj0MTekMdCli/EdRIs/vNlo/HYjYfKhvLRwavvkwPTYDqeCFOje57GJXe+yUn2ijAF+xxhi+RnCkCn2uzYIJ8Z88pke3ydts6/bL3NEuW3KIm4qe0OThUV+qSyoniU+qfKeSS0UTh6UesWw3hu4m7s90b/V4Qdq/9FEY7lV21peaUygOETZrwKDw==)
 
 如你所见，核心逻辑完全没变，我们做的只是把它移到一个外部函数中去，并返回需要暴露的状态。和在组件中一样，你也可以在组合式函数中使用所有的[组合式 API](/api/#composition-api)。现在，`useMouse()` 的功能可以在任何组件中轻易复用了。
 
@@ -264,7 +264,7 @@ console.log(mouse.x)
 ```
 
 ```vue-html
-鼠标位置: {{ mouse.x }}, {{ mouse.y }}
+Mouse position is at: {{ mouse.x }}, {{ mouse.y }}
 ```
 
 ### 副作用 {#side-effects}
