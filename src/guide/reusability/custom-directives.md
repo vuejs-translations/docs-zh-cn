@@ -14,7 +14,7 @@ const vFocus = {
 
 我们已经介绍了两种在 Vue 中重用代码的方式：[组件](/guide/essentials/component-basics.html)和[组合式函数](./composables)。组件是主要的构建模块，而组合式函数则侧重于有状态的逻辑。另一方面，自定义指令主要是为了重用涉及普通元素的底层 DOM 访问的逻辑。
 
-一个自定义指令被定义为一个包含类似于组件的生命周期钩子的对象。钩子接收指令绑定到的元素。下面是一个自定义指令的例子，当一个 input 元素被 Vue 插入到 DOM 中后，它将被聚焦：
+一个自定义指令由一个包含类似组件生命周期钩子的对象来定义。钩子函数会接收到指令所绑定元素作为其参数。下面是一个自定义指令的例子，当一个 input 元素被 Vue 插入到 DOM 中后，它会被自动聚焦：
 
 <div class="composition-api">
 
@@ -58,13 +58,13 @@ export default {
   <input v-focus placeholder="This should be focused" />
 </div>
 
-假设你还未点击页面中的其他地方，那么上面这个 input 元素应该会被自动聚焦。该指令比 `autofocus` attribute 更有用，因为它不仅仅可以在页面加载完成后运行，还可以在 Vue 动态插入元素后运行。
+假设你还未点击页面中的其他地方，那么上面这个 input 元素应该会被自动聚焦。该指令比 `autofocus` attribute 更有用，因为它不仅仅可以在页面加载完成后生效，还可以在 Vue 动态插入元素后生效。
 
 <div class="composition-api">
 
 在 `<script setup>` 中，任何以 `v` 开头的驼峰式命名的变量都可以被用作一个自定义指令。在上面的例子中，`vFocus` 即可以在模板中以 `v-focus` 的形式使用。
 
-如果不使用 `<script setup>`，自定义指令可以通过 `directives` 选项注册：
+在没有使用 `<script setup>` 的情况下，自定义指令需要通过 `directives` 选项注册：
 
 ```js
 export default {
@@ -88,7 +88,7 @@ export default {
 
 </div>
 
-将一个自定义指令全局注册到应用层级也是一种通用的做法：
+将一个自定义指令全局注册到应用层级也是一种常见的做法：
 
 ```js
 const app = createApp({})
@@ -100,7 +100,7 @@ app.directive('focus', {
 ```
 
 :::tip
-只有当所需功能只能通过直接的 DOM 操作来实现时，才应该使用自定义指令。应该尽可能地通过像 `v-bind` 这样的内置指令以使用声明式的模板，因为这更高效，且对服务端渲染也更友好。
+只有当所需功能只能通过直接的 DOM 操作来实现时，才应该使用自定义指令。其他情况下应该尽可能地使用 `v-bind` 这样的内置指令来声明式地使用模板，这样更高效，也对服务端渲染更友好。
 :::
 
 ## 指令钩子 {#directive-hooks}
@@ -175,12 +175,12 @@ const myDirective = {
 这里指令的参数会基于组件的 `arg` 数据属性响应式地更新。
 
 :::tip Note
-除了 `el` 外，你应该将这些参数都视为只读的，并一律不更改它们。若你需要在不同的钩子间共享信息，推荐通过元素的 [dataset](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/dataset) attribute 实现。
+除了 `el` 外，其他参数都是只读的，不要更改它们。若你需要在不同的钩子间共享信息，推荐通过元素的 [dataset](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/dataset) attribute 实现。
 :::
 
 ## 简化形式 {#function-shorthand}
 
-对于自定义指令来说，需要在 `mounted` 和 `updated` 上实现相同的行为、又并不关心其他钩子的情况很常见。此时我们可以将指令定义成一个下面这样的函数：
+对于自定义指令来说，一个很常见的情况是仅仅需要在 `mounted` 和 `updated` 上实现相同的行为，除此之外并不需要其他钩子。这种情况下我们可以直接用一个函数来定义指令，如下所示：
 
 ```vue-html
 <div v-color="color"></div>
@@ -195,7 +195,7 @@ app.directive('color', (el, binding) => {
 
 ## 对象字面量 {#object-literals}
 
-如果你的指令需要多个值，你可以向它传递一个 JavaScript 对象字面量。请记住，指令也可以接收任何合法的 JavaScript 表达式。
+如果你的指令需要多个值，你可以向它传递一个 JavaScript 对象字面量。别忘了，指令也可以接收任何合法的 JavaScript 表达式。
 
 ```vue-html
 <div v-demo="{ color: 'white', text: 'hello!' }"></div>
@@ -224,4 +224,4 @@ app.directive('demo', (el, binding) => {
 </div>
 ```
 
-需要注意的是组件可能含有多个根节点。当应用到一个多根组件时，指令将会被忽略且抛出一个警告。和 attribute 不同，指令不能通过 `v-bind="$attrs"` 来传递给一个不同的元素。总而言之，**不**推荐在组件上使用自定义指令。
+需要注意的是组件可能含有多个根节点。当应用到一个多根组件时，指令将会被忽略且抛出一个警告。和 attribute 不同，指令不能通过 `v-bind="$attrs"` 来传递给一个不同的元素。总的来说，**不**推荐在组件上使用自定义指令。
