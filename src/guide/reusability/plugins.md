@@ -89,7 +89,7 @@ app.use(i18nPlugin, {
 
 这样，我们一开始的表达式 `$translate('greetings.hello')` 就会在运行时被替换为 `Bonjour!` 了。
 
-TypeScript 用户请参考：[扩充全局属性](/guide/typescript/options-api.html#augmenting-global-properties) <sup class="vt-badge ts" />
+TypeScript 用户请参考：[扩展全局属性](/guide/typescript/options-api.html#augmenting-global-properties) <sup class="vt-badge ts" />
 
 :::tip
 请谨慎使用全局属性，如果在整个应用程序中使用不同插件注入的太多全局属性，很容易让应用变得难以理解和维护。
