@@ -38,5 +38,5 @@ pnpm run dev
 以下是基于该仓库中 PR 和 commit 统计并按总数量排序的所有贡献者，[生成逻辑可在此查阅](https://github.com/ShenQingchuan/github-contributor-svg-generator)。
 
 <p align="center">
-  <img src="https://cdn.jsdelivr.net/gh/ShenQingchuan/github-contributor-svg-generator@latest/dist/vuejs-translations/docs-zh-cn.png" />
+  <img src="https://cdn.jsdelivr.net/gh/ShenQingchuan/github-contributor-svg-generator@main/dist/vuejs-translations/docs-zh-cn.png" />
 </p>
