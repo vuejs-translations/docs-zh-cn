@@ -43,7 +43,7 @@ const nav = [
         items: [
           { text: '合作伙伴', link: '/partners/' },
           { text: '主题', link: '/ecosystem/themes' },
-          { text: '工作', link: 'https://vuejobs.com/?ref=vuejs' },
+          { text: '找工作', link: 'https://vuejobs.com/?ref=vuejs' },
           { text: 'T-Shirt 商店', link: 'https://vue.threadless.com/' }
         ]
       },
@@ -111,7 +111,7 @@ const nav = [
     ]
   },
   {
-    text: '赞助者',
+    text: '赞助',
     link: '/sponsor/'
   },
   {
@@ -230,7 +230,7 @@ export const sidebar = {
       ]
     },
     {
-      text: '升级规模',
+      text: '应用规模化',
       items: [
         { text: '单文件组件', link: '/guide/scaling-up/sfc' },
         { text: '工具链', link: '/guide/scaling-up/tooling' },
