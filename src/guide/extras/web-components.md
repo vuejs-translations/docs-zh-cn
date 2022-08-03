@@ -81,7 +81,7 @@ module.exports = {
 
 ### defineCustomElement {#definecustomelement}
 
-Vue 提供了一个和定义一般 Vue 组件几乎完全一致的 [`defineCustomElment`](/api/general.html#definecustomelement) 方法来支持创建自定义元素。这个方法接收的参数和 [`defineComponent`](/api/general.html#definecomponent) 完全相同。但它会返回一个继承自 `HTMLElement` 的自定义元素构造器：
+Vue 提供了一个和定义一般 Vue 组件几乎完全一致的 [`defineCustomElement`](/api/general.html#definecustomelement) 方法来支持创建自定义元素。这个方法接收的参数和 [`defineComponent`](/api/general.html#definecomponent) 完全相同。但它会返回一个继承自 `HTMLElement` 的自定义元素构造器：
 
 ```vue-html
 <my-vue-element></my-vue-element>
