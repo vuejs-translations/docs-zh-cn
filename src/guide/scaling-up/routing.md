@@ -1,5 +1,13 @@
 # 路由 {#routing}
 
+## 客户端 vs. 服务端路由 {#client-side-vs-server-side-routing}
+
+服务端路由时指的是服务器根据用户访问的 URL 路径返回不同的响应结果。当我们在一个传统的服务端渲染的 web 应用中点击一个链接时，浏览器会从服务端获得全新的 HTML，然后重新加载整个页面。
+
+然而，在[单页面应用](https://developer.mozilla.org/en-US/docs/Glossary/SPA)中，客户端的 JavaScript 可以拦截导航请求，动态获取新的数据，然后在无需重新加载的情况下更新当前页面。这样通常可以带来更顺滑的用户体验，尤其是在更偏向“应用”的场景下，因为这类场景下用户通常会在很长的一段时间中做出多次交互。
+
+在这类单页应用中，“路由”是在客户端执行的。一个客户端路由器的职责就是利用诸如 [History API](https://developer.mozilla.org/en-US/docs/Web/API/History) 或是 [`hashchange` 事件](https://developer.mozilla.org/en-US/docs/Web/API/Window/hashchange_event) 这样的浏览器 API 来管理应用当前应该渲染的视图。
+
 ## 官方路由 {#official-router}
 
 <!-- TODO update links -->
@@ -9,7 +17,7 @@
   </VueSchoolLink>
 </div>
 
-对于大多数的单页面应用，都推荐使用官方支持的[路由库](https://github.com/vuejs/router)。要了解更多细节，请查看 vue-router 的[文档](https://router.vuejs.org/zh/index.html)。
+Vue 很适合用来构建单页面应用。对于大多数此类应用，都推荐使用官方支持的[路由库](https://github.com/vuejs/router)。要了解更多细节，请查看 [Vue Router 的文档](https://router.vuejs.org/zh/index.html)。
 
 ## 从头开始实现一个简单的路由 {#simple-routing-from-scratch}
 
