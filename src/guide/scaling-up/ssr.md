@@ -8,15 +8,17 @@ outline: deep
 
 ### 什么是 SSR？ {#what-is-ssr}
 
-Vue.js 是一个用于构建客户端应用的框架。默认情况下，Vue 组件在浏览器中生成和操作 DOM 作为输出。然而，我们也可以将相同的组件在服务端渲染成 HTML 字符串，直接返回给浏览器，最后再将静态的 HTML“激活” (hydrate) 为完全交互式的客户端应用。
+SSR 是 Server-Side Rendering，即服务端渲染的英文缩写。
 
-一个由服务端渲染的 Vue.js 应用也可以被认为是“同构的”或“通用的”，因为应用的大部分代码同时运行在服务端**和**客户端。
+Vue.js 是一个用于构建客户端应用的框架。默认情况下，Vue 组件的职责是在浏览器中生成和操作 DOM。然而，Vue 也支持将组件在服务端直接渲染成 HTML 字符串，作为服务端响应返回给浏览器，最后在浏览器端将静态的 HTML“激活” (hydrate) 为能够交互的客户端应用。
+
+一个由服务端渲染的 Vue.js 应用也可以被认为是“同构的” (Isomorphic) 或“通用的” (Universal)，因为应用的大部分代码同时运行在服务端**和**客户端。
 
 ### 为什么要用 SSR？ {#why-ssr}
 
 与客户端的单页应用 (SPA) 相比，SSR 的优势主要在于：
 
-- **更快的内容到达时间**：这一点在慢网速或者运行缓慢的设备上尤为重要。服务端渲染的 HTML 无需等到所有的 JavaScript 都下载并执行完成之后才显示，所以你的用户将会更快地看到完整渲染的页面。除此之外，数据获取过程在首次访问时在服务端完成，相比于从客户端获取，可能有更快的数据库连接。这通常可以带来更高的[核心 Web 指标](https://web.dev/vitals/)评分、更好的用户体验，而对于那些“内容到达时间与转化率直接相关”的应用来说，这点可能至关重要。
+- **让用户更快看到内容**：这一点在慢网速或者运行缓慢的设备上尤为重要。服务端渲染的 HTML 无需等到所有的 JavaScript 都下载并执行完成之后才显示，所以你的用户将会更快地看到完整渲染的页面。除此之外，数据获取过程在首次访问时在服务端完成，相比于从客户端获取，可能有更快的数据库连接。这通常可以带来更高的[核心 Web 指标](https://web.dev/vitals/)评分、更好的用户体验，而对于那些“内容展示速度与转化率直接相关”的应用来说，这点可能至关重要。
 
 - **统一的心智模型**：你可以使用相同的语言以及相同的声明式、面向组件的心智模型来开发整个应用，而不需要在后端模板系统和前端框架之间来回切换。
 
@@ -34,13 +36,13 @@ Vue.js 是一个用于构建客户端应用的框架。默认情况下，Vue 组
 
 - 更高的服务端负载。在 Node.js 中渲染一个完整的应用要比仅仅托管静态文件更加占用 CPU 资源，因此如果你预期有高流量，请为相应的服务器负载做好准备，并采用合理的缓存策略。
 
-在为你的应用使用 SSR 之前，你首先应该问自己是否真的需要它。这主要取决于内容到达时间对应用的重要程度。例如，如果你正在构建一个内部的仪表盘，初始加载时的那额外几百毫秒对你来说并不重要，这种情况下使用 SSR 就有点小题大作了。然而，在内容到达时间极其重要的场景下，SSR 可以尽可能地帮你实现最优的初始加载性能。
+在为你的应用使用 SSR 之前，你首先应该问自己是否真的需要它。这主要取决于内容到达时间对应用的重要程度。例如，如果你正在开发一个内部的管理面板，初始加载时的那额外几百毫秒对你来说并不重要，这种情况下使用 SSR 就没有太多必要了。然而，在内容展示速度极其重要的场景下，SSR 可以尽可能地帮你实现最优的初始加载性能。
 
 ### SSR vs. SSG {#ssr-vs-ssg}
 
-**静态站点生成 (SSG)**，也被称为预渲染，是另一种流行的构建快速网站的技术。如果用服务端渲染一个页面所需的数据对每个用户来说都是相同的，那么我们可以只渲染一次，提前在构建过程中完成，而不是每次请求进来就重新渲染页面。预渲染的页面生成后作为静态 HTML 文件被服务器托管。
+**静态站点生成** (Static-Site Generation，缩写为 SSG)，也被称为预渲染，是另一种流行的构建快速网站的技术。如果用服务端渲染一个页面所需的数据对每个用户来说都是相同的，那么我们可以只渲染一次，提前在构建过程中完成，而不是每次请求进来都重新渲染页面。预渲染的页面生成后作为静态 HTML 文件被服务器托管。
 
-SSG 保留了和 SSR 应用相同的性能表现：它带来了优秀的内容到达耗时性能。同时，它比 SSR 应用的花销更小，也更容易部署，因为它输出的是静态 HTML 和资源文件。这里的关键词是**静态**：SSG 仅可以用于消费静态数据的页面，即数据在构建期间就是已知的，并且在多次部署期间不会改变。每当数据变化时，都需要重新部署。
+SSG 保留了和 SSR 应用相同的性能表现：它带来了优秀的内容展示速度。同时，它比 SSR 应用的花销更小，也更容易部署，因为它输出的是静态 HTML 和资源文件。这里的关键词是**静态**：SSG 仅可以用于消费静态数据的页面，即数据在构建期间就是已知的，并且在多次部署期间不会改变。每当数据变化时，都需要重新部署。
 
 如果你调研 SSR 只是为了优化为数不多的营销页面的 SEO (例如 `/`、`/about` 和 `/contact` 等)，那么你可能需要 SSG 而不是 SSR。SSG 也非常适合构建基于内容的网站，比如文档站点或者博客。事实上，你现在正在阅读的这个网站就是使用 [VitePress](https://vitepress.vuejs.org/) 静态生成的，它是一个由 Vue 驱动的静态站点生成器。
 
@@ -168,7 +170,7 @@ export function createApp() {
 }
 ```
 
-该文件及其依赖项在服务器和客户端之间共享——我们称它们为**通用代码**。编写通用代码时需要注意许多事项，我们将[在下面讨论](#writing-ssr-friendly-code)。
+该文件及其依赖项在服务器和客户端之间共享——我们称它们为**通用代码**。编写通用代码时有一些注意事项，我们将[在下面讨论](#writing-ssr-friendly-code)。
 
 我们在客户端入口导入通用代码，创建应用程序并执行挂载：
 
@@ -205,21 +207,21 @@ server.get('/', (req, res) => {
 
 从上面的例子到一个生产就绪的 SSR 应用还需要很多工作。我们将需要：
 
-- 支持 Vue SFC 且满足其他构建步骤要求。事实上，我们需要为同一个应用协调两个构建过程：一个用于客户端，一个用于服务器。
+- 支持 Vue SFC 且满足其他构建步骤要求。事实上，我们需要为同一个应用执行两次构建过程：一次用于客户端，一次用于服务器。
 
   :::tip
-  Vue 组件用在 SSR 时的编译产物不同——模板被编译为字符串而不是 render 函数，以此提高渲染性能。
+  Vue 组件用在 SSR 时的编译产物不同——模板被编译为字符串拼接而不是 render 函数，以此提高渲染性能。
   :::
 
 - 在服务器请求处理函数中，确保返回的 HTML 包含正确的客户端资源链接和最优的资源加载提示 (如 prefetch 和 preload)。我们可能还需要在 SSR 和 SSG 模式之间切换，甚至在同一个应用中混合使用这两种模式。
 
 - 以一种通用的方式管理路由、数据获取和状态存储。
 
-完整的实现会非常复杂，并且取决于你选择使用的构建工具链。因此，我们强烈建议你使用一种更通用的、偏好明显的 (opinionated) 解决方案，帮你抽象掉那些复杂的东西。下面推荐几个 Vue 生态中的 SSR 解决方案。
+完整的实现会非常复杂，并且取决于你选择使用的构建工具链。因此，我们强烈建议你使用一种更通用的、更集成化的解决方案，帮你抽象掉那些复杂的东西。下面推荐几个 Vue 生态中的 SSR 解决方案。
 
 ### Nuxt {#nuxt}
 
-[Nuxt](https://v3.nuxtjs.org/) 是一个构建于 Vue 生态系统之上的通用型框架，它为编写通用 Vue 应用提供了一种流线型的开发体验。更棒的是，你还可以把它当作一个静态站点生成器来用！我们强烈建议你试一试。
+[Nuxt](https://v3.nuxtjs.org/) 是一个构建于 Vue 生态系统之上的全栈框架，它为编写 Vue SSR 应用提供了丝滑的开发体验。更棒的是，你还可以把它当作一个静态站点生成器来用！我们强烈建议你试一试。
 
 ### Quasar {#quasar}
 
@@ -229,7 +231,7 @@ server.get('/', (req, res) => {
 
 Vite 提供了内置的 [Vue 服务端渲染支持](https://vitejs.dev/guide/ssr.html)，但它在设计上是偏底层的。如果你想要直接使用 Vite，可以看看 [vite-plugin-ssr](https://vite-plugin-ssr.com/)，一个帮你抽象掉许多复杂细节的社区插件。
 
-你也可以在[这里](https://github.com/vitejs/vite/tree/main/playground/ssr-vue)查看一个使用手动配置的 Vue + Vite SSR 的示例项目，以它作为基础来构建。请注意，这种方式只有在你有丰富的 SSR 和构建工具经验，且相比于更顶层的架构，你更倾向于拥有完整控制权时，才推荐使用。
+你也可以在[这里](https://github.com/vitejs/vite/tree/main/playground/ssr-vue)查看一个使用手动配置的 Vue + Vite SSR 的示例项目，以它作为基础来构建。请注意，这种方式只有在你有丰富的 SSR 和构建工具经验，并希望对应用的架构做深入的定制时才推荐使用。
 
 ## 书写 SSR 友好的代码 {#writing-ssr-friendly-code}
 
@@ -241,7 +243,7 @@ Vite 提供了内置的 [Vue 服务端渲染支持](https://vitejs.dev/guide/ssr
 
 ### 组件生命周期钩子 {#component-lifecycle-hooks}
 
-因为没有任何动态更新，所以像 <span class="options-api">`mounted`</span><span class="composition-api">`onMounted`</span> 或者 <span class="options-api">`updated`</span><span class="composition-api">`onUpdated`</span> 这样的生命周期钩子**不会**在 SSR 期间被调用，并且只会在客户端运行。<span class="options-api">只有 `beforeCreate` 和 `created` 这两个钩子会在 SSR 期间被调用。</span>
+因为没有任何动态更新，所以像 <span class="options-api">`mounted`</span><span class="composition-api">`onMounted`</span> 或者 <span class="options-api">`updated`</span><span class="composition-api">`onUpdated`</span> 这样的生命周期钩子**不会**在 SSR 期间被调用，而只会在客户端运行。<span class="options-api">只有 `beforeCreate` 和 `created` 这两个钩子会在 SSR 期间被调用。</span>
 
 你应该避免在 <span class="options-api">`beforeCreate` 和 `created`</span><span class="composition-api">`setup()` 或者 `<script setup>` 的根作用域</span>中使用会产生副作用且需要被清理的代码。这类副作用的常见例子是使用 `setInterval` 设置定时器。我们可能会在客户端特有的代码中设置定时器，然后在 <span class="options-api">`beforeUnmount`</span><span class="composition-api">`onBeforeUnmount`</span> 或 <span class="options-api">`unmounted`</span><span class="composition-api">`onUnmounted`</span> 中清除。然而，由于 unmount 钩子不会在 SSR 期间被调用，所以定时器会永远存在。为了避免这种情况，请将含有副作用的代码放到 <span class="options-api">`mounted`</span><span class="composition-api">`onMounted`</span> 中。
 
@@ -272,6 +274,7 @@ Vite 提供了内置的 [Vue 服务端渲染支持](https://vitejs.dev/guide/ssr
 import { createSSRApp } from 'vue'
 import { createStore } from './store.js'
 
+// 每次请求时调用
 export function createApp() {
   const app = createSSRApp(/* ... */)
   // 对每个请求都创建新的 store 实例
@@ -285,9 +288,9 @@ export function createApp() {
 
 像 Pinia 这样的状态管理库在设计时就考虑到了这一点。请参考 [Pinia 的 SSR 指南](https://pinia.vuejs.org/ssr/)以了解更多细节。
 
-### 激活异常 {#hydration-mismatch}
+### 激活不匹配 {#hydration-mismatch}
 
-如果预渲染的 HTML 的 DOM 结构不符合客户端应用的期望，就会出现激活异常。在大多数场景中，这是由于浏览器原生的 HTML 解析行为试图纠正 HTML 字符串中的非法结构。举例来说，一个常见的错误是 [`<div>` 不能被放在 `<p>` 中](https://stackoverflow.com/questions/8397852/why-cant-the-p-tag-contain-a-div-tag-inside-it)：
+如果预渲染的 HTML 的 DOM 结构不符合客户端应用的期望，就会出现激活不匹配。在大多数场景中，这是由于浏览器原生的 HTML 解析行为试图纠正 HTML 字符串中的非法结构。举例来说，一个常见的错误是 [`<div>` 不能被放在 `<p>` 中](https://stackoverflow.com/questions/8397852/why-cant-the-p-tag-contain-a-div-tag-inside-it)：
 
 ```html
 <p><div>hi</div></p>
@@ -301,7 +304,7 @@ export function createApp() {
 <p></p>
 ```
 
-当 Vue 遇到激活异常时，它将尝试自动恢复并调整预渲染的 DOM 以匹配客户端的状态。这将导致一些渲染性能的损失，因为不正确的节点被丢弃，新的节点被加载，但在大多数情况下，应用程序应该会如预期一样继续工作。尽管如此，最好还是在开发过程中去避免激活异常。
+当 Vue 遇到激活不匹配时，它将尝试自动恢复并调整预渲染的 DOM 以匹配客户端的状态。这将导致一些渲染性能的损失，因为需要丢弃不匹配的节点并渲染新的节点，但大多数情况下，应用程序应该会如预期一样继续工作。尽管如此，最好还是在开发过程中发现并避免激活不匹配。
 
 ### 自定义指令 {#custom-directives}
 
@@ -327,9 +330,9 @@ const myDirective = {
 
 ### Teleport
 
-在 SSR 的过程中 Teleport 需要特殊处理。如果渲染的应用包含 Teleport，那么 teleport 的内容将不会作为渲染字符串的一部分。在大多数情况下，最佳方案是在挂载时条件式地渲染 Teleport。
+在 SSR 的过程中 Teleport 需要特殊处理。如果渲染的应用包含 Teleport，那么其传送的内容将不会包含在主应用渲染出的字符串中。在大多数情况下，更推荐的方案是在客户端挂载时条件式地渲染 Teleport。
 
-如果你需要激活 teleport 内容，服务端渲染上下文对象将它们暴露在了 `teleports` 属性下：
+如果你需要激活 Teleport 内容，它们会暴露在服务端渲染上下文对象的 `teleports` 属性下：
 
 ```js
 const ctx = {}
@@ -338,10 +341,10 @@ const html = await renderToString(app, ctx)
 console.log(ctx.teleports) // { '#teleported': 'teleported content' }
 ```
 
-你需要在最终页面上的正确位置注入 teleport 标记，就像你需要注入主应用标记一样。
+跟主应用的 HTML 一样，你需要自己将 Teleport 对应的 HTML 嵌入到最终页面上的正确位置处。
 
 :::tip
-请避免在 SSR 的同时把 Teleport 定位到 `body`——通常 `<body>` 会包含其他服务端渲染出来的内容，这会使得 Teleport 无法确定激活的正确起始位置。
+请避免在 SSR 的同时把 Teleport 的目标设为 `body`——通常 `<body>` 会包含其他服务端渲染出来的内容，这会使得 Teleport 无法确定激活的正确起始位置。
 
-我们倾向于换用一个独立的只包含 teleport 的内容的容器，例如 `<div id="teleported"></div>`。
+推荐用一个独立的只包含 teleport 的内容的容器，例如 `<div id="teleported"></div>`。
 :::
