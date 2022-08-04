@@ -5,12 +5,12 @@ outline: deep
 # 组合式 API FAQ {#composition-api-faq}
 
 :::tip
-这个 FAQ 假定你有一些使用 Vue 的经验，特别是使用 Vue 2 的经验，同时主要使用选项式 API。
+这个 FAQ 假定你已经有一些使用 Vue 的经验，特别是用选项式 API 使用 Vue 2 的经验。
 :::
 
 ## 什么是组合式 API？ {#what-is-composition-api}
 
-组合式 API 是一系列 API 的集合，使我们可以使用函数而不是声明选项的方式书写 Vue 组件。它是一个概括性的术语，涵盖了以下方面的 API：
+组合式 API (Composition API) 是一系列 API 的集合，使我们可以使用函数而不是声明选项的方式书写 Vue 组件。它是一个概括性的术语，涵盖了以下方面的 API：
 
 - [响应性 API](/api/reactivity-core.html)：例如 `ref()` 和 `reactive()`，使我们可以直接创建响应式状态、计算属性和侦听器。
 

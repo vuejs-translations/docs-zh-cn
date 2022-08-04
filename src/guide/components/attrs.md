@@ -2,7 +2,7 @@
 outline: deep
 ---
 
-# 透传 Attribute {#fallthrough-attributes}
+# 透传 Attributes {#fallthrough-attributes}
 
 > 此章节假设你已经看过了[组件基础](/guide/essentials/component-basics)。若你还不了解组件是什么，请先阅读该章节。
 

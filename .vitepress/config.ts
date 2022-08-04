@@ -185,10 +185,10 @@ export const sidebar = {
           text: '注册',
           link: '/guide/components/registration'
         },
-        { text: 'Prop', link: '/guide/components/props' },
+        { text: 'Props', link: '/guide/components/props' },
         { text: '事件', link: '/guide/components/events' },
         {
-          text: '透传 Attribute',
+          text: '透传 Attributes',
           link: '/guide/components/attrs'
         },
         { text: '插槽', link: '/guide/components/slots' },
@@ -254,7 +254,7 @@ export const sidebar = {
           link: '/guide/best-practices/production-deployment'
         },
         {
-          text: '性能',
+          text: '性能优化',
           link: '/guide/best-practices/performance'
         },
         {

@@ -1,4 +1,4 @@
-# 插槽 {#slots}
+# 插槽 Slots {#slots}
 
 > 此章节假设你已经看过了[组件基础](/guide/essentials/component-basics)。若你还不了解组件是什么，请先阅读该章节。
 
@@ -24,7 +24,7 @@
 </button>
 ```
 
-`<slot>` 元素是一个**插槽出口**，标示了父元素提供的**插槽内容**将在哪里被渲染。
+`<slot>` 元素是一个**插槽出口** (slot outlet)，标示了父元素提供的**插槽内容** (slot content) 将在哪里被渲染。
 
 ![插槽图示](./images/slots.png)
 
@@ -195,7 +195,7 @@ Vue 组件的插槽机制是受[原生 Web Component `<slot>` 元素](https://de
 </div>
 ```
 
-没有提供 `name` 的 `<slot>` 出口会隐式地命名为“default”。
+这类带 `name` 的插槽被称为具名插槽 (named slots)。没有提供 `name` 的 `<slot>` 出口会隐式地命名为“default”。
 
 在父组件中使用 `<BaseLayout>` 时，我们需要一种方式将多个插槽内容传入到各自目标插槽的出口。此时就需要用到**具名插槽**了：
 
@@ -343,6 +343,8 @@ function BaseLayout(slots) {
   {{ slotProps.text }} {{ slotProps.count }}
 </MyComponent>
 ```
+
+这类能够接受参数的插槽被称为作用域插槽 (scoped slots)，因为它们接受的参数只在该插槽作用域内有效。
 
 ![scoped slots diagram](./images/scoped-slots.svg)
 

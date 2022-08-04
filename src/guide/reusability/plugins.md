@@ -2,7 +2,7 @@
 
 ## 介绍 {#introduction}
 
-插件是一种能为 Vue 添加全局功能的工具代码。下面是如何安装一个插件的示例：
+插件 (Plugins) 是一种能为 Vue 添加全局功能的工具代码。下面是如何安装一个插件的示例：
 
 ```js
 import { createApp } from 'vue'
