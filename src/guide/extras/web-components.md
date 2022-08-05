@@ -1,8 +1,8 @@
 # Vue 与 Web Components {#vue-and-web-components}
 
-[Web Components](https://developer.mozilla.org/en-US/docs/Web/Web_Components) 是一组 web 原生 API 的总称，允许开发者创建可重用的定制元素。
+[Web Components](https://developer.mozilla.org/en-US/docs/Web/Web_Components) 是一组 web 原生 API 的统称，允许开发者创建可复用的自定义元素 (custom elements)。
 
-我们认为 Vue 和 Web Components 主要是互补的技术。Vue 为使用和创建定制元素提供了出色的支持。无论你是将自定义元素集成到现有的 Vue 应用程序中，还是使用 Vue 来构建和分发自定义元素都很方便。
+我们认为 Vue 和 Web Components 是互补的技术。Vue 为使用和创建自定义元素提供了出色的支持。无论你是将自定义元素集成到现有的 Vue 应用程序中，还是使用 Vue 来构建和分发自定义元素都很方便。
 
 ## 在 Vue 中使用自定义元素 {#using-custom-elements-in-vue}
 
@@ -10,7 +10,7 @@ Vue [在 Custom Elements Everywhere 测试中取得了 100% 的分数](https://c
 
 ### 跳过组件解析 {#skipping-component-resolution}
 
-默认情况下，Vue 会倾向于解析一个非原生的 HTML 标签为一个注册过的 Vue 组件，而将“渲染一个自定义元素”作为后备选项。这会在开发时导致 Vue 抛出一个“解析组件失败”的警告。要让 Vue 知晓特定元素应该被视为自定义元素并跳过组件解析，我们可以指定 [`compilerOptions.isCustomElement` 这个选项](/api/application.html#app-config-compileroptions)。
+默认情况下，Vue 会将任何非原生的 HTML 标签优先当作 Vue 组件处理，而将“渲染一个自定义元素”作为后备选项。这会在开发时导致 Vue 抛出一个“解析组件失败”的警告。要让 Vue 知晓特定元素应该被视为自定义元素并跳过组件解析，我们可以指定 [`compilerOptions.isCustomElement` 这个选项](/api/application.html#app-config-compileroptions)。
 
 如果在开发 Vue 应用时进行了构建配置，则应该在构建配置中传递该选项，因为它是一个编译时选项。
 
@@ -77,7 +77,7 @@ module.exports = {
 
 ## 使用 Vue 构建自定义元素 {#building-custom-elements-with-vue}
 
-自定义元素的主要好处是，它们可以与任何框架一起使用，甚至可以不使用框架。当终端用户可能使用了不同的前端技术栈时，或者当你希望将终端应用程序与它使用的组件实现细节隔离时，它们将成为理想的选择。
+自定义元素的主要好处是，它们可以在使用任何框架，甚至是在不使用框架的场景下使用。当你面向的最终用户可能使用了不同的前端技术栈，或是当你希望将最终的应用与它使用的组件实现细节解耦时，它们会是理想的选择。
 
 ### defineCustomElement {#definecustomelement}
 
@@ -118,11 +118,11 @@ document.body.appendChild(
 
 - 当该元素的 [`connectedCallback`](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_custom_elements#using_the_lifecycle_callbacks) 初次调用时，一个 Vue 自定义元素会在内部挂载一个 Vue 组件实例到它的 shadow root 上。
 
-- 当此元素的 `disconnectedCallback` 被调用时，Vue 会在一个微任务后检查元素是否从文档中脱离。
+- 当此元素的 `disconnectedCallback` 被调用时，Vue 会在一个微任务后检查元素是否还留在文档中。
 
-  - 如果元素仍然在文档中，那么说明它是一次移动，组件实例将被保留；
+  - 如果元素仍然在文档中，那么说明它是一次移动操作，组件实例将被保留；
 
-  - 如果该元素从文档中脱离，那么说明它是一次移除，组件实例将被解除挂载。
+  - 如果该元素不再存在于文档中，那么说明这是一次移除操作，组件实例将被销毁。
 
 #### Props {#props}
 
@@ -157,7 +157,7 @@ document.body.appendChild(
 
 在一个组件中，插槽将会照常使用 `<slot/>` 渲染。然而，当使用最终的元素时，它只接受[原生插槽的语法](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_templates_and_slots)：
 
-- [作用域插槽](/guide/components/slots.html#scoped-slots)是不支持的。
+- 不支持[作用域插槽](/guide/components/slots.html#scoped-slots)。
 
 - 当传递具名插槽时，应使用 `slot` attribute 而不是 `v-slot` 指令：
 
@@ -167,11 +167,11 @@ document.body.appendChild(
   </my-element>
   ```
 
-#### 供给 / 注入 {#provide-inject}
+#### 依赖注入 {#provide-inject}
 
-[供给 / 注入 API](/guide/components/provide-inject.html#provide-inject) 和[相应的组合式 API](/api/composition-api-dependency-injection.html#provide-inject) 在 Vue 定义的自定义元素中都可以正常工作。但是请注意，**只会在自定义元素之间**使用。例如一个 Vue 定义的自定义元素就无法注入一个由 Vue 组件所供给的属性。
+[Provide / Inject API](/guide/components/provide-inject.html#provide-inject) 和[相应的组合式 API](/api/composition-api-dependency-injection.html#provide-inject) 在 Vue 定义的自定义元素中都可以正常工作。但是请注意，依赖关系**只在自定义元素之间**起作用。例如一个 Vue 定义的自定义元素就无法注入一个由常规 Vue 组件所提供的属性。
 
-### SFC 用作自定义元素 {#sfc-as-custom-element}
+### 将 SFC 编译为自定义元素 {#sfc-as-custom-element}
 
 `defineCustomElement` 也可以搭配 Vue 单文件组件 (SFC) 使用。但是，根据默认的工具链配置，SFC 中的 `<style>` 在生产环境构建时仍然会被抽取和合并到一个单独的 CSS 文件中。当正在使用 SFC 编写自定义元素时，通常需要改为注入 `<style>` 标签到自定义元素的 shadow root 上。
 
@@ -192,16 +192,16 @@ const ExampleElement = defineCustomElement(Example)
 customElements.define('my-example', ExampleElement)
 ```
 
-如果你想要在自定义元素模式下指定需要导入的文件 (例如将所有的 SFC 都视为用作自定义元素)，你可以通过给构建插件传递相应插件的 `customElement` 选项来实现：
+如果你想要自定义如何判断是否将文件作为自定义元素导入 (例如将所有的 SFC 都视为用作自定义元素)，你可以通过给构建插件传递相应插件的 `customElement` 选项来实现：
 
 - [@vitejs/plugin-vue](https://github.com/vitejs/vite/tree/main/packages/plugin-vue#using-vue-sfcs-as-custom-elements)
 - [vue-loader](https://github.com/vuejs/vue-loader/tree/next#v16-only-options)
 
-### 对 Vue 自定义元素库的说明 {#tips-for-a-vue-custom-elements-library}
+### 基于 Vue 构建自定义元素库 {#tips-for-a-vue-custom-elements-library}
 
-当使用 Vue 构建自定义元素时，该元素将依赖于 Vue 的运行时。这会有大约 16kb 的基线体积增长，并视功能的使用情况而增长。这意味着如果只编写一个定制元素，那么使用 Vue 并不理想。你可能想要使用原生 JavaScript、[petite-vue](https://github.com/vuejs/petite-vue)，或其他框架以追求更小的运行时体积。但是，如果你需要编写的是一组具有复杂逻辑的定制元素，那么这个基本体积是非常合理的，因为 Vue 允许用更少的代码编写每个组件。在一起发布的元素越多，收益就会越高。
+当使用 Vue 构建自定义元素时，该元素将依赖于 Vue 的运行时。这会有大约 16kb 的基本打包大小，并视功能的使用情况而增长。这意味着如果只编写一个自定义元素，那么使用 Vue 并不是理想的选择。你可能想要使用原生 JavaScript、[petite-vue](https://github.com/vuejs/petite-vue)，或其他框架以追求更小的运行时体积。但是，如果你需要编写的是一组具有复杂逻辑的自定义元素，那么这个基本体积是非常合理的，因为 Vue 允许用更少的代码编写每个组件。在一起发布的元素越多，收益就会越高。
 
-如果定制元素将在同样使用 Vue 的应用程序中使用，那么你可以选择将构建包中的 Vue 外部化，这样这些自定义元素将与宿主应用程序使用同一份 Vue。
+如果自定义元素将在同样使用 Vue 的应用程序中使用，那么你可以选择将构建包中的 Vue 外部化 (externalize)，这样这些自定义元素将与宿主应用程序使用同一份 Vue。
 
 建议按元素分别导出构造函数，以便用户可以灵活地按需导入它们，并使用期望的标签名称注册它们。你还可以导出一个函数来方便用户自动注册所有元素。下面是一个 Vue 自定义元素库的入口文件示例：
 
@@ -226,26 +226,26 @@ export function register() {
 
 ## Web Components vs. Vue 组件 {#web-components-vs-vue-components}
 
-一些开发者认为应该避免使用框架专有的组件模型，并且认为使用自定义元素可以使应用“永不过时”。在这里，我们将解释为什么我们认为这样的想法过于简单。
+一些开发者认为应该避免使用框架专有的组件模型，而改为全部使用自定义元素来构建应用，因为这样可以使应用“永不过时”。在这里，我们将解释为什么我们认为这样的想法过于简单。
 
 自定义元素和 Vue 组件之间确实存在一定程度的功能重叠：它们都允许我们定义具有数据传递、事件发射和生命周期管理的可重用组件。然而，Web Components 的 API 相对来说是更底层的和更基础的。要构建一个实际的应用程序，我们需要相当多平台没有涵盖的附加功能：
 
 - 一个声明式的、高效的模板系统；
 
-- 一个响应式状态管理系统，促进跨组件逻辑提取和重用；
+- 一个响应式的，利于跨组件逻辑提取和重用的状态管理系统；
 
 - 一种在服务器上呈现组件并在客户端“激活” (hydrate) 组件的高性能方法 (SSR)，这对 SEO 和 [LCP 这样的 Web 关键指标](https://web.dev/vitals/)非常重要。原生自定义元素 SSR 通常需要在 Node.js 中模拟 DOM，然后序列化更改后的 DOM，而 Vue SSR 则尽可能地将其编译为拼接起来的字符串，这会高效得多。
 
-Vue 的组件模型在设计时考虑到这些需求，将其作为一个更聚合的系统。
+Vue 的组件模型在设计时同时兼顾了这些需求，因此是一个更内聚的系统。
 
-当团队中有足够的技术水平时，你可能可以在原生自定义元素的基础上构建等效的组件。但这也意味着你将承担长期维护内部框架的负担，同时失去了像 Vue 这样成熟的框架生态社区所带来的收益。
+当你的团队有足够的技术水平时，可能可以在原生自定义元素的基础上构建具备同等功能的组件。但这也意味着你将承担长期维护内部框架的负担，同时失去了像 Vue 这样成熟的框架生态社区所带来的收益。
 
-也有一些别的框架使用自定义元素作为其组件模型的基础，但它们都不可避免地要引入自己的专有解决方案来解决上面列出的问题。使用这些框架通常需要购买他们关于如何解决这些问题的技术决策。不管其广告上怎么宣传，也无法保证之后不会陷入潜在的问题之中。
+也有一些框架使用自定义元素作为其组件模型的基础，但它们都不可避免地要引入自己的专有解决方案来解决上面列出的问题。使用这些框架便意味着对它们针对这些问题的技术决策买单。不管这类框架怎么宣传它们“永不过时”，它们其实都无法保证你以后永远不需要重构。
 
-我们还发现自定义元素在某些领域会受到限制：
+除此之外，我们还发现自定义元素存在以下限制：
 
-- 贪婪的插槽计算会阻碍组件之间的组合。Vue 的[作用域插槽](/guide/components/slots.html#scoped-slots)是一套强有力的组件组合机制，而由于原生插槽的贪婪性质，自定义元素无法支持这些。贪婪插槽也意味着接收组件时不能控制何时或是否呈现插槽内容。
+- 贪婪 (eager) 的插槽求值会阻碍组件之间的可组合性。Vue 的[作用域插槽](/guide/components/slots.html#scoped-slots)是一套强大的组件组合机制，而由于原生插槽的贪婪求值性质，自定义元素无法支持这样的设计。贪婪求值的插槽也意味着接收组件时不能控制何时或是否创建插槽内容的节点。
 
-- 在当下要想使用 shadow DOM 局部范围的 CSS，必须将样式嵌入到 JavaScript 中才可以在运行时将其注入到 shadow root 上。这也导致了 SSR 场景下标记中的样式重复。虽然有一些[平台功能](https://github.com/whatwg/html/pull/4898/)在尝试解决这一领域的问题，但是直到现在还没有达到通用支持状态，而且仍有生产性能/ SSR 方面的问题需要解决。可与此同时，Vue 的 SFC 本身就提供了 [CSS 局域化机制](/api/sfc-css-features.html)，并支持抽取样式到纯 CSS 文件中。
+- 在当下要想使用 shadow DOM 书写局部作用域的 CSS，必须将样式嵌入到 JavaScript 中才可以在运行时将其注入到 shadow root 上。这也导致了 SSR 场景下需要渲染大量重复的样式标签。虽然有一些[平台功能](https://github.com/whatwg/html/pull/4898/)在尝试解决这一领域的问题，但是直到现在还没有达到通用支持的状态，而且仍有生产性能 / SSR 方面的问题需要解决。可与此同时，Vue 的 SFC 本身就提供了 [CSS 局域化机制](/api/sfc-css-features.html)，并支持抽取样式到纯 CSS 文件中。
 
-Vue 将始终紧跟 Web 平台的最新标准，如果这个平台能让我们的工作变得更简单，我们将乐于利用它的原生功能。但是，我们的目标是提供“当下能办到且办得好”的解决方案。这意味着我们必须以一种批判性的心态来整合新的平台功能，包括补足标准不完善的地方，这是一个不争的事实。
+Vue 将始终紧跟 Web 平台的最新标准，如果平台的新功能能让我们的工作变得更简单，我们将非常乐于利用它们。但是，我们的目标是提供“好用，且现在就能用”的解决方案。这意味着我们在采用新的原生功能时需要保持客观、批判性的态度，并在原生功能完成度不足的时候选择更适当的解决方案。
