@@ -2,7 +2,7 @@
 
 ## 谁在维护 Vue？ {#who-maintains-vue}
 
-Vue 是一个独立的社区驱动的项目。它是由[尤雨溪](https://twitter.com/yuxiyou)在 2014 年作为其个人项目创建的。今天，Vue 由[来自世界各地的全职成员和志愿者组成的团队](/about/team)积极活跃地维护着，且尤雨溪担任其项目负责人。你可以在[这部纪录片](https://www.youtube.com/watch?v=OrxmtDw4pVI)中了解更多关于 Vue 的故事。
+Vue 是一个独立的社区驱动的项目。它是由[尤雨溪](https://twitter.com/yuxiyou)在 2014 年作为其个人项目创建的。今天，Vue 由[来自世界各地的全职成员和志愿者组成的团队](/about/team)积极活跃地维护着，并由尤雨溪担任项目负责人。你可以在[这部纪录片](https://www.youtube.com/watch?v=OrxmtDw4pVI)中了解更多关于 Vue 的故事。
 
 自 2016 年以来，Vue 的发展主要是通过赞助来保障的，我们在财务上是可维续的。如果你或你的企业从 Vue 中受益，请考虑[赞助](/sponsor/)我们，以支持 Vue 的发展！
 
@@ -40,21 +40,21 @@ Vue 3 是性能最强的主流前端框架之一，可以轻松处理大多数 w
 
 一些诸如 Svelte 的框架使用了一种为单个组件产生极轻量级输出的编译策略。然而，[我们的研究](https://github.com/yyx990803/vue-svelte-size-analysis)表明，包大小的差异在很大程度上取决于应用程序中的组件数量。虽然 Vue 的基线大小更重，但它生成的每个组件的代码更少。在现实的场景中，Vue 应用很可能最终会更轻。
 
-## Vue 的规模扩展性如何？ {#does-vue-scale}
+## Vue 能胜任大规模场景吗？ {#does-vue-scale}
 
-是的。尽管人们普遍认为 Vue 只适用于简单的用例，但 Vue 完全有能力处理大规模的应用：
+是的。尽管有一种误解是 Vue 只适用于简单的场景，但其实 Vue 完全有能力处理大规模的应用：
 
-- [单文件组件](/guide/scaling-up/sfc)提供了一个模块化的开发模型，允许应用程序的不同部分被隔离开发。
+- [单文件组件](/guide/scaling-up/sfc)提供了一个模块化的开发模型，让应用程序的不同部分能够被隔离开发。
 
 - [组合式 API](/guide/reusability/composables) 提供一流的 TypeScript 集成，并为组织、提取和重用复杂逻辑提供了简洁的模式。
 
 - [全面的工具链支持](/guide/scaling-up/tooling.html)使得开发体验在应用增长的过程中依然可以保持平滑。
 
-- 我们通过较低的入门门槛和优秀的文档降低了新手开发者的入职和培训成本。
+- 较低的入门门槛和优秀的文档能够显著降低新手开发者的入职和培训成本。
 
 ## 我可以为 Vue 做贡献吗？ {#how-do-i-contribute-to-vue}
 
-我们非常感激你的兴趣！请阅读我们的[社区指南](/about/community-guide.html)。
+非常欢迎！请阅读我们的[社区指南](/about/community-guide.html)。
 
 ## Vue 2 和 Vue 3 之间的区别是什么？ {#what-s-the-difference-between-vue-2-and-vue-3}
 
@@ -74,13 +74,13 @@ Vue 2 在 2022 年 6 月发布了最后一个小版本 (2.7)。这个小版本�
 
 如果你是 Vue 的新手，我们在[这里](/guide/introduction.html#which-to-choose)提供了一个两者之间宏观的比较。
 
-如果你过去使用过选项式 API 且正在评估组合式 API，可以查阅[常见问题](/guide/extras/composition-api-faq)。
+如果你过去使用过选项式 API 且正在评估组合式 API，可以查阅[组合式 API 常见问题](/guide/extras/composition-api-faq)。
 
-## 我应该结合 JavaScript 还是 TypeScript 使用 Vue？ {#should-i-use-javascript-or-typescript-with-vue}
+## 用 Vue 的时候应该选 JS 还是 TS？ {#should-i-use-javascript-or-typescript-with-vue}
 
 虽然 Vue 本身是用 TypeScript 实现的，并提供一流的 TypeScript 支持，但它并不强制要求用户使用 TypeScript。
 
-在向 Vue 添加新特性时，对 TypeScript 对支持是一个重要的考虑因素。基于 TypeScript 考量的 API 设计通常更容易被 IDE 和 lint 工具理解，即使你自己不使用 TypeScript。这是一种双赢。Vue 的 API 设计也尽可能在 JavaScript 和 TypeScript 中以相同的方式工作。
+在向 Vue 添加新特性时，对 TypeScript 对支持是一个重要的考虑因素。即使你自己不使用 TypeScript，考虑了 TypeScript 支持的 API 设计也通常更容易被 IDE 和静态分析工具分析，因此这对大家都有好处。Vue 的 API 设计也尽可能在 JavaScript 和 TypeScript 中以相同的方式工作。
 
 选用 TypeScript 会涉及在上手复杂性和长期可维护性收益之间作出权衡。这种权衡是否合理取决于你的团队背景和项目规模，但 Vue 并不会真正成为影响这一决定的因素。
 
