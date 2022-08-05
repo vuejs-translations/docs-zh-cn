@@ -10,10 +10,10 @@ const nav = [
     text: '文档',
     activeMatch: `^/(guide|style-guide|cookbook|examples)/`,
     items: [
-      { text: '指南', link: '/guide/introduction' },
-      { text: '教程', link: '/tutorial/' },
+      { text: '深度指南', link: '/guide/introduction' },
+      { text: '互动教程', link: '/tutorial/' },
       { text: '示例', link: '/examples/' },
-      { text: '快速开始', link: '/guide/quick-start' },
+      { text: '快速上手', link: '/guide/quick-start' },
       // { text: '风格指南', link: '/style-guide/' },
       {
         text: 'Vue 2 文档',
@@ -43,7 +43,7 @@ const nav = [
         items: [
           { text: '合作伙伴', link: '/partners/' },
           { text: '主题', link: '/ecosystem/themes' },
-          { text: '工作', link: 'https://vuejobs.com/?ref=vuejs' },
+          { text: '找工作', link: 'https://vuejobs.com/?ref=vuejs' },
           { text: 'T-Shirt 商店', link: 'https://vue.threadless.com/' }
         ]
       },
@@ -111,7 +111,7 @@ const nav = [
     ]
   },
   {
-    text: '赞助者',
+    text: '赞助',
     link: '/sponsor/'
   },
   {
@@ -171,7 +171,7 @@ export const sidebar = {
           link: '/guide/essentials/lifecycle'
         },
         { text: '侦听器', link: '/guide/essentials/watchers' },
-        { text: '模板 ref', link: '/guide/essentials/template-refs' },
+        { text: '模板引用', link: '/guide/essentials/template-refs' },
         {
           text: '组件基础',
           link: '/guide/essentials/component-basics'
@@ -185,10 +185,10 @@ export const sidebar = {
           text: '注册',
           link: '/guide/components/registration'
         },
-        { text: 'Prop', link: '/guide/components/props' },
+        { text: 'Props', link: '/guide/components/props' },
         { text: '事件', link: '/guide/components/events' },
         {
-          text: '透传 Attribute',
+          text: '透传 Attributes',
           link: '/guide/components/attrs'
         },
         { text: '插槽', link: '/guide/components/slots' },
@@ -230,7 +230,7 @@ export const sidebar = {
       ]
     },
     {
-      text: '升级规模',
+      text: '应用规模化',
       items: [
         { text: '单文件组件', link: '/guide/scaling-up/sfc' },
         { text: '工具链', link: '/guide/scaling-up/tooling' },
@@ -254,7 +254,7 @@ export const sidebar = {
           link: '/guide/best-practices/production-deployment'
         },
         {
-          text: '性能',
+          text: '性能优化',
           link: '/guide/best-practices/performance'
         },
         {
@@ -289,7 +289,7 @@ export const sidebar = {
           link: '/guide/extras/ways-of-using-vue'
         },
         {
-          text: '组合式 API FAQ',
+          text: '组合式 API 常见问答',
           link: '/guide/extras/composition-api-faq'
         },
         {

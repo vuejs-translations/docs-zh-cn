@@ -1,6 +1,6 @@
 # 组件事件 {#component-events}
 
-> 阅读此章节时，我们假设你已经读过[组件基础](/guide/essentials/component-basics)，若你对组件还完全不了解，请先阅读它。
+> 此章节假设你已经看过了[组件基础](/guide/essentials/component-basics)。若你还不了解组件是什么，请先阅读该章节。
 
 <div class="options-api">
   <VueSchoolLink href="https://vueschool.io/lessons/defining-custom-events-emits" title="定义自定义事件 - 免费 Vue.js 课程"/>
@@ -43,15 +43,15 @@ export default {
 <MyComponent @some-event.once="callback" />
 ```
 
-像组件与 prop 一样，事件的名字也提供了自动的转换。请注意，我们触发了一个以 camelCase 形式命名的事件，但在父组件中可以使用 kebab-case 形式来监听。与 [prop 大小写格式](/guide/components/props.html#prop-name-casing)一样，在模板中我们也推荐使用 kebab-case 形式来编写监听器。
+像组件与 prop 一样，事件的名字也提供了自动的格式转换。注意这里我们触发了一个以 camelCase 形式命名的事件，但在父组件中可以使用 kebab-case 形式来监听。与 [prop 大小写格式](/guide/components/props.html#prop-name-casing)一样，在模板中我们也推荐使用 kebab-case 形式来编写监听器。
 
 :::tip
-和原生 DOM 事件不太一样，组件触发的事件**不会冒泡**。你只能监听直接子组件触发的事件。
+和原生 DOM 事件不一样，组件触发的事件**没有冒泡机制**。你只能监听直接子组件触发的事件。平级组件或是跨越多层嵌套的组件间通信，应使用一个外部的事件总线，或是使用一个[全局状态管理方案](/guide/scaling-up/state-management.html)。
 :::
 
 ## 事件参数 {#event-arguments}
 
-有时候我们会需要在触发事件时附带一个特定的值。举个例子，我们想要 `<BlogPost>` 组件来管理文本会缩放得多大。在这个场景下，我们可以给 `$emit` 提供一个值作为额外的参数：
+有时候我们会需要在触发事件时附带一个特定的值。举例来说，我们想要 `<BlogPost>` 组件来管理文本会缩放得多大。在这个场景下，我们可以给 `$emit` 提供一个额外的参数：
 
 ```vue-html
 <button @click="$emit('increaseBy', 1)">
@@ -59,19 +59,19 @@ export default {
 </button>
 ```
 
-然后我们在父组件中监听事件，我们可以先简单写一个内联的箭头函数作为监听器，此时可以访问到事件附带的参数：
+然后我们在父组件中监听事件，我们可以先简单写一个内联的箭头函数作为监听器，此函数会接收到事件附带的参数：
 
 ```vue-html
 <MyButton @increase-by="(n) => count += n" />
 ```
 
-或者用一个方法来作为事件处理函数：
+或者，也可以用一个组件方法来作为事件处理函数：
 
 ```vue-html
 <MyButton @increase-by="increaseCount" />
 ```
 
-然后，可以从方法的第一个参数上取到这个值：
+该方法也会接收到事件所传递的参数：
 
 <div class="options-api">
 
@@ -95,7 +95,7 @@ function increaseCount(n) {
 </div>
 
 :::tip
-所有传入 `$emit()` 的额外参数都会被直接传向监听器。举个例子，`$emit('foo', 1, 2, 3)` 触发后，监听器函数将会收到这三个参数值。
+所有传入 `$emit()` 的额外参数都会被直接传向监听器。举例来说，`$emit('foo', 1, 2, 3)` 触发后，监听器函数将会收到这三个参数值。
 :::
 
 ## 声明触发的事件 {#declaring-emitted-events}
@@ -122,7 +122,7 @@ function buttonClick() {
 </script>
 ```
 
-该 `defineEmits()` 宏**不能**在子函数中使用，他必须直接放置在 `<script setup>` 中，如上面的例子所示。
+`defineEmits()` 宏**不能**在子函数中使用。如上所示，它必须直接放置在 `<script setup>` 的顶级作用域下。
 
 如果你显式地使用了 `setup` 函数而不是 `<script setup>`，则事件需要通过 [`emits`](/api/options-state.html#emits) 选项来定义，`emit` 函数也被暴露在 `setup()` 的上下文对象上：
 
@@ -135,7 +135,7 @@ export default {
 }
 ```
 
-与 `setup()` 上下文中的其他 property 一样，`emit` 可以安全地被解构：
+与 `setup()` 上下文对象中的其他属性一样，`emit` 可以安全地被解构：
 
 ```js
 export default {
@@ -172,7 +172,7 @@ const emit = defineEmits({
 </script>
 ```
 
-如果你正在搭配 `<script setup>` 使用 TypeScript，也可以使用纯类型标注来声明触发的事件：
+如果你正在搭配 TypeScript 使用 `<script setup>`，也可以使用纯类型标注来声明触发的事件：
 
 ```vue
 <script setup lang="ts">
@@ -183,7 +183,7 @@ const emit = defineEmits<{
 </script>
 ```
 
-更多细节：[如何为组件所抛出事件标注类型](/guide/typescript/composition-api.html#typing-component-emits) <sup class="vt-badge ts" />
+TypeScript 用户请参考：[如何为组件所抛出事件标注类型](/guide/typescript/composition-api.html#typing-component-emits) <sup class="vt-badge ts" />
 
 </div>
 <div class="options-api">
@@ -199,11 +199,11 @@ export default {
 }
 ```
 
-你也可以看看这一章了解[如何为组件所抛出的事件标注类型](/guide/typescript/options-api.html#typing-component-emits)。<sup class="vt-badge ts" />
+TypeScript 用户请参考：[如何为组件所抛出的事件标注类型](/guide/typescript/options-api.html#typing-component-emits)。<sup class="vt-badge ts" />
 
 </div>
 
-尽管是可选的，我们还是推荐你定义所有要触发的事件，以此更好地在代码中描述和呈现组件的作用。这也使得 Vue 能更好地将事件和[透传 attribute](/guide/components/attrs.html#v-on-listener-inheritance) 作出区分。
+尽管事件声明是可选的，我们还是推荐你完整地声明所有要触发的事件，以此在代码中作为文档记录组件的用法。同时，事件声明能让 Vue 更好地将事件和[透传 attribute](/guide/components/attrs.html#v-on-listener-inheritance) 作出区分，从而避免一些由第三方代码触发的自定义 DOM 事件所导致的边界情况。
 
 :::tip
 如果一个原生事件的名字 (例如 `click`) 被定义在 `emits` 选项中，则监听器只会监听组件触发的 `click` 事件而不会再响应原生的 `click` 事件。
@@ -211,7 +211,7 @@ export default {
 
 ## 事件校验 {#events-validation}
 
-和对 prop 添加类型校验的方式类似，所有触发的事件也可以使用对象形式来描述。
+和对 props 添加类型校验的方式类似，所有触发的事件也可以使用对象形式来描述。
 
 要为事件添加校验，那么事件可以被赋值为一个函数，接受的参数就是抛出事件时传入 <span class="options-api">`this.$emit`</span><span class="composition-api">`emit`</span> 的内容，返回一个布尔值来表明事件是否合法。
 
@@ -271,13 +271,13 @@ export default {
 
 ## 配合 `v-model` 使用 {#usage-with-v-model}
 
-自定义事件可以用来创建对应 `v-model` 的自定义输入：
+自定义事件可以用于开发支持 `v-model` 的自定义表单组件。回忆一下 `v-model` 的用法：
 
 ```vue-html
 <input v-model="searchText" />
 ```
 
-和下面这段代码是等价的：
+上面的代码其实等价于下面这段（编译器会对 `v-model` 进行展开）：
 
 ```vue-html
 <input
@@ -286,7 +286,7 @@ export default {
 />
 ```
 
-当使用在一个组件上时，`v-model` 是这样做的：
+而当使用在一个组件上时，`v-model` 会被展开为如下的形式：
 
 ```vue-html
 <CustomInput
@@ -295,10 +295,10 @@ export default {
 />
 ```
 
-为了使组件能像这样工作，内部的 `<input>` 组件必须：
+要让这个例子实际工作起来，`<CustomInput>` 组件内部需要做两件事：
 
-- 绑定 `value` attribute 到 `modelValue` prop
-- 输入新的值时在 `input` 元素上触发 `update:modelValue` 事件
+1. 将内部原生 `input` 元素的 `value` attribute 绑定到 `modelValue` prop
+2. 输入新的值时在 `input` 元素上触发 `update:modelValue` 事件
 
 这里是相应的代码：
 
@@ -358,7 +358,7 @@ defineEmits(['update:modelValue'])
 
 </div>
 
-另一种在组件内实现 `v-model` 的方式是使用一个可写的 `computed` property，给出 getter 和 setter。`get` 方法需返回 `modelValue` property 而 `set` 方法需触发相应的事件：
+另一种在组件内实现 `v-model` 的方式是使用一个可写的，同时具有 getter 和 setter 的计算属性。`get` 方法需返回 `modelValue` prop，而 `set` 方法需触发相应的事件：
 
 <div class="options-api">
 
@@ -416,13 +416,13 @@ const value = computed({
 
 ### `v-model` 的参数 {#v-model-arguments}
 
-默认情况下，`v-model` 在组件上都是使用 `modelValue` 作为 prop，以 `update:modelValue` 作为对应的事件。我们可以通过给 `v-model` 指定一个参数来更改这些名字：
+默认情况下，`v-model` 在组件上都是使用 `modelValue` 作为 prop，并以 `update:modelValue` 作为对应的事件。我们可以通过给 `v-model` 指定一个参数来更改这些名字：
 
 ```vue-html
 <MyComponent v-model:title="bookTitle" />
 ```
 
-在这个例子中，子组件应该有一个 `title` prop，并通过触发 `update:title` 事件更新父组件值：
+在这个例子中，子组件应声明一个 `title` prop，并通过触发 `update:title` 事件更新父组件值：
 
 <div class="composition-api">
 
@@ -471,9 +471,7 @@ export default {
 
 ### 多个 `v-model` 绑定 {#multiple-v-model-bindings}
 
-通过我们刚才在 [`v-model` 参数](#v-model-arguments)小节中学到的，利用一个特定的 prop 和一个特定事件，可以在一个组件上创建多个 `v-model` 双向绑定：
-
-每一个 `v-model` 都会同步不同的 prop，而不需要在组件上写更多额外的选项：
+利用刚才在 [`v-model` 参数](#v-model-arguments)小节中学到的技巧，我们可以在一个组件上创建多个 `v-model` 双向绑定，每一个 `v-model` 都会同步不同的 prop：
 
 ```vue-html
 <UserName
@@ -544,15 +542,15 @@ export default {
 
 ### 处理 `v-model` 修饰符 {#handling-v-model-modifiers}
 
-当我们在学习输入绑定时，我们知道了 `v-model` 有一些[内置的修饰符](/guide/essentials/forms.html#modifiers)，例如 `.trim`，`.number` 和 `.lazy`。然而在某些场景下，你可能想要添加自定义的修饰符。
+在学习输入绑定时，我们知道了 `v-model` 有一些[内置的修饰符](/guide/essentials/forms.html#modifiers)，例如 `.trim`，`.number` 和 `.lazy`。在某些场景下，你可能想要一个自定义组件的 `v-model` 支持自定义的修饰符。
 
-我们一起来创建一个自定义的修饰符 `capitalize`，它会自动将 `v-model` 绑定输入的字符串值第一个字母转为大写：
+我们来创建一个自定义的修饰符 `capitalize`，它会自动将 `v-model` 绑定输入的字符串值第一个字母转为大写：
 
 ```vue-html
 <MyComponent v-model.capitalize="myText" />
 ```
 
-要给组件的 `v-model` 添加修饰符，都可以通过 `modelModifiers` prop 在组件内访问到。在下面的例子中，我们会创建一个包含 `modelModifiers` prop 的组件，它的默认值是一个空对象：
+组件的 `v-model` 上所添加的修饰符，可以通过 `modelModifiers` prop 在组件内访问到。在下面的组件中，我们声明了 `modelModifiers` 这个 prop，它的默认值是一个空对象：
 
 <div class="composition-api">
 
@@ -609,7 +607,7 @@ export default {
 
 注意这里组件的 `modelModifiers` prop 包含了 `capitalize` 且其值为 `true`，因为它在模板中的 `v-model` 绑定上被使用了。
 
-此时和 prop 相关的已经准备完毕，我们可以开始检索 `modelModifiers` 对象的 key 并写一个处理函数来改变抛出事件附带的值。在下面的代码里我们就是在每次 `<input/>` 元素抛出 `input` 事件时执行大写首字母：
+有了 `modelModifiers` 这个 prop，我们就可以在原生事件侦听函数中检查它的值，然后决定触发的自定义事件中要向父组件传递什么值。在下面的代码里，我们就是在每次 `<input>` 元素触发 `input` 事件时将值的首字母大写：
 
 <div class="composition-api">
 
@@ -672,13 +670,13 @@ export default {
 
 </div>
 
-对于又有参数又有修饰符的 `v-model` 绑定，生成的 prop 名将是 `arg + "Modifiers"`。举个例子：
+对于又有参数又有修饰符的 `v-model` 绑定，生成的 prop 名将是 `arg + "Modifiers"`。举例来说：
 
 ```vue-html
 <MyComponent v-model:title.capitalize="myText">
 ```
 
-则相应的声明应该是：
+相应的声明应该是：
 
 <div class="composition-api">
 

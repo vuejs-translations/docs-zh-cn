@@ -1,6 +1,6 @@
 # Class 与 Style 绑定 {#class-and-style-bindings}
 
-数据绑定的一个常见需求场景是操纵元素的 CSS class 列表和内联样式。因为 `class` 和 `style` 都是 attribute，我们可以和其他 attribute 一样使用 `v-bind` 把一个动态的字符串赋值给它们。然而通过字符串拼接生成这些值是麻烦且易出错的。因此，Vue 专门为 `class` 和 `style` 的 `v-bind` 用法提供了特殊的功能增强。除了字符串外，表达式的结果还可以是对象或数组。
+数据绑定的一个常见需求场景是操纵元素的 CSS class 列表和内联样式。因为 `class` 和 `style` 都是 attribute，我们可以和其他 attribute 一样使用 `v-bind` 将它们和动态的字符串绑定。但是，在处理比较复杂的绑定时，通过拼接生成字符串是麻烦且易出错的。因此，Vue 专门为 `class` 和 `style` 的 `v-bind` 用法提供了特殊的功能增强。除了字符串外，表达式的值也可以是对象或数组。
 
 ## 绑定 HTML class {#binding-html-classes}
 
@@ -22,7 +22,7 @@
 
 上面的语法表示 `active` 是否存在取决于数据属性 `isActive` 的[真假值](https://developer.mozilla.org/en-US/docs/Glossary/Truthy)。
 
-你可以在对象中写多个字段来操作多个 class。此外，`:class` 指令也可以和一般的 `class` attribute 共存。所以可以有下面这样的状态：
+你可以在对象中写多个字段来操作多个 class。此外，`:class` 指令也可以和一般的 `class` attribute 共存。举例来说，下面这样的状态：
 
 <div class="composition-api">
 
@@ -46,7 +46,7 @@ data() {
 
 </div>
 
-使用的模板如下：
+配合以下模版：
 
 ```vue-html
 <div
@@ -55,15 +55,15 @@ data() {
 ></div>
 ```
 
-它将会被渲染成：
+渲染的结果会是：
 
 ```vue-html
 <div class="static active"></div>
 ```
 
-当 `isActive` 或者 `hasError` 改变时，class 列表会随之更新。举个例子，如果 `hasError` 变为 `true`，class 列表也会变成 `"static active text-danger"`。
+当 `isActive` 或者 `hasError` 改变时，class 列表会随之更新。举例来说，如果 `hasError` 变为 `true`，class 列表也会变成 `"static active text-danger"`。
 
-绑定的对象也不一定写成内联的形式：
+绑定的对象并不一定需要写成内联字面量的形式，也可以直接绑定一个对象：
 
 <div class="composition-api">
 
@@ -95,7 +95,7 @@ data() {
 <div :class="classObject"></div>
 ```
 
-这也会渲染出相同的结果。我们也可以绑定一个返回对象的[计算属性](./computed)。这才是一个通用且好用的实践。
+这也会渲染出相同的结果。我们也可以绑定一个返回对象的[计算属性](./computed)。这是一个常见且很有用的技巧：
 
 <div class="composition-api">
 
@@ -138,7 +138,7 @@ computed: {
 
 ### 绑定数组 {#binding-to-arrays}
 
-我们可以给 `:class` 绑定一个数组以应用一系列 CSS class：
+我们可以给 `:class` 绑定一个数组来渲染多个 CSS class：
 
 <div class="composition-api">
 
@@ -172,7 +172,7 @@ data() {
 <div class="active text-danger"></div>
 ```
 
-如果你也想在数组中按条件触发某个 class，你可以使用三元表达式：
+如果你也想在数组中有条件地渲染某个 class，你可以使用三元表达式：
 
 ```vue-html
 <div :class="[isActive ? activeClass : '', errorClass]"></div>
@@ -180,19 +180,19 @@ data() {
 
 `errorClass` 会一直存在，但 `activeClass` 只会在 `isActive` 为真时才存在。
 
-然而，这可能在有多个依赖条件的 class 时会有些冗长。因此也可以在数组中使用对象语法：
+然而，这可能在有多个依赖条件的 class 时会有些冗长。因此也可以在数组中嵌套对象：
 
 ```vue-html
 <div :class="[{ active: isActive }, errorClass]"></div>
 ```
 
-### 和组件配合 {#with-components}
+### 在组件上使用 {#with-components}
 
 > 本节假设你已经有 [Vue 组件](/guide/essentials/component-basics)的知识基础。如果没有，你也可以暂时跳过，以后再阅读。
 
 对于只有一个根元素的组件，当你使用了 `class` attribute 时，这些 class 会被添加到根元素上，并与该元素上已有的 class 合并。
 
-举个例子，如果你声明了一个组件名叫 `MyComponent`，模板如下：
+举例来说，如果你声明了一个组件名叫 `MyComponent`，模板如下：
 
 ```vue-html
 <!-- 子组件模板 -->
@@ -224,7 +224,7 @@ Class 的绑定也是同样的：
 <p class="foo bar active">Hi</p>
 ```
 
-如果你的组件有多个根元素，你将需要指定哪个根元素来接收这个 class。你可以通过组件的 `$attrs` property 来实现指定：
+如果你的组件有多个根元素，你将需要指定哪个根元素来接收这个 class。你可以通过组件的 `$attrs` 属性来实现指定：
 
 ```vue-html
 <!-- MyComponent 模板使用 $attrs 时 -->
@@ -243,7 +243,7 @@ Class 的绑定也是同样的：
 <span>This is a child component</span>
 ```
 
-你可以在[透传 Attribute](/guide/components/attrs.html) 一章中学习到更多组件的 attribute 继承的细节。
+你可以在[透传 Attribute](/guide/components/attrs.html) 一章中了解更多组件的 attribute 继承的细节。
 
 ## 绑定内联样式 {#binding-inline-styles}
 
@@ -277,7 +277,7 @@ data() {
 <div :style="{ color: activeColor, fontSize: fontSize + 'px' }"></div>
 ```
 
-尽管推荐使用 camelCase，但 `:style` 也支持 kebab-cased 形式的 CSS 属性 key (对应其 CSS 中的实际名称)，举个例子：
+尽管推荐使用 camelCase，但 `:style` 也支持 kebab-cased 形式的 CSS 属性 key (对应其 CSS 中的实际名称)，例如：
 
 ```vue-html
 <div :style="{ 'font-size': fontSize + 'px' }"></div>
@@ -319,7 +319,7 @@ data() {
 
 ### 绑定数组 {#binding-to-arrays-2}
 
-我们还可以给 `:style` 绑定一个包含多个样式对象的数组。这些对象会被合并和应用到同一元素上：
+我们还可以给 `:style` 绑定一个包含多个样式对象的数组。这些对象会被合并后渲染到同一元素上：
 
 ```vue-html
 <div :style="[baseStyles, overridingStyles]"></div>
@@ -331,10 +331,10 @@ data() {
 
 ### 样式多值 {#multiple-values}
 
-你可以对一个样式属性提供多个 (不同前缀的) 值，举个例子：
+你可以对一个样式属性提供多个 (不同前缀的) 值，举例来说：
 
 ```vue-html
 <div :style="{ display: ['-webkit-box', '-ms-flexbox', 'flex'] }"></div>
 ```
 
-数组仅会渲染浏览器支持的最后一个值。在这个示例中，在支持不需要特别加前缀的浏览器中都会渲染为 `display: flex` 的弹性盒子。
+数组仅会渲染浏览器支持的最后一个值。在这个示例中，在支持不需要特别前缀的浏览器中都会渲染为 `display: flex`。

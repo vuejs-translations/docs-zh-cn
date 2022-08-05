@@ -54,7 +54,7 @@ const author = reactive({
 <span>{{ author.books.length > 0 ? 'Yes' : 'No' }}</span>
 ```
 
-这里的模板看起来有些复杂。我们必须认真看好一会儿才能明白它的计算依赖于 `author.books`。更重要的是，如果在模板中需要不止一次这样的计算，我们可能不想写重复的代码。
+这里的模板看起来有些复杂。我们必须认真看好一会儿才能明白它的计算依赖于 `author.books`。更重要的是，如果在模板中需要不止一次这样的计算，我们可不想将这样的代码在模版里重复好多遍。
 
 因此我们推荐使用**计算属性**来描述依赖响应式状态的复杂逻辑。这是重构后的示例：
 
@@ -95,7 +95,7 @@ export default {
 
 更改此应用的 `data` 中 `books` 数组的值后，可以看到 `publishedBooksMessage` 也会随之改变。
 
-在模板中使用计算属性的方式和一般的 property 并无二致。Vue 会检测到 `this.publishedBooksMessage` 依赖于 `this.author.books`，所以当 `this.author.books` 改变时，任何依赖于 `this.publishedBooksMessage` 的绑定都将同时更新。
+在模板中使用计算属性的方式和一般的属性并无二致。Vue 会检测到 `this.publishedBooksMessage` 依赖于 `this.author.books`，所以当 `this.author.books` 改变时，任何依赖于 `this.publishedBooksMessage` 的绑定都将同时更新。
 
 也可参考：[为计算属性标记类型](/guide/typescript/options-api.html#typing-computed) <sup class="vt-badge ts" />
 
@@ -172,7 +172,7 @@ function calculateBooksMessage() {
 
 若我们将同样的函数定义为一个方法而不是计算属性，两种方式在结果上确实是完全相同的，然而，不同之处在于**计算属性值会基于其响应式依赖被缓存**。一个计算属性仅会在其响应式依赖更新时才重新计算。这意味着只要 `author.books` 不改变，无论多少次访问 `publishedBooksMessage` 都会立即返回先前的计算结果，而不用重复执行 getter 函数。
 
-这也意味着下面的计算属性永远不会更新，因为 `Date.now()` 并不是一个响应式依赖：
+这也解释了为什么下面的计算属性永远不会更新，因为 `Date.now()` 并不是一个响应式依赖：
 
 <div class="options-api">
 
@@ -263,7 +263,7 @@ const fullName = computed({
 
 ### 计算函数不应有副作用 {#getters-should-be-side-effect-free}
 
-计算属性的计算函数应只做计算而没有任何其他的副作用，这一点非常重要，请务必牢记。举个例子，**不要在计算函数中做异步请求或者更改 DOM**！一个计算属性的声明中描述的是如何根据其他值派生一个值。因此计算函数的职责应该仅为计算和返回该值。在之后的指引中我们会讨论如何使用[监听器](./watchers)根据其他响应式状态的变更来创建副作用。
+计算属性的计算函数应只做计算而没有任何其他的副作用，这一点非常重要，请务必牢记。举例来说，**不要在计算函数中做异步请求或者更改 DOM**！一个计算属性的声明中描述的是如何根据其他值派生一个值。因此计算函数的职责应该仅为计算和返回该值。在之后的指引中我们会讨论如何使用[监听器](./watchers)根据其他响应式状态的变更来创建副作用。
 
 ### 避免直接修改计算属性值 {#avoid-mutating-computed-value}
 

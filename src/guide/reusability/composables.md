@@ -6,16 +6,16 @@ const { x, y } = useMouse()
 </script>
 
 :::tip
-这一章假设你已经对组合式 API 有了一个基本的了解。如果你只学习过选项式 API，你可以使用左侧边栏上方的切换按钮将 API 风格切换为组合式 API 后，重新阅读[响应性基础](/guide/essentials/reactivity-fundamentals.html)和[生命周期钩子](/guide/essentials/lifecycle.html)两个章节。
+此章节假设你已经对组合式 API 有了基本的了解。如果你只学习过选项式 API，你可以使用左侧边栏上方的切换按钮将 API 风格切换为组合式 API 后，重新阅读[响应性基础](/guide/essentials/reactivity-fundamentals.html)和[生命周期钩子](/guide/essentials/lifecycle.html)两个章节。
 :::
 
 ## 什么是“组合式函数”？ {#what-is-a-composable}
 
-在 Vue 应用的概念中，“组合式函数”是一个利用 Vue 组合式 API 来封装和复用**有状态逻辑**的函数。
+在 Vue 应用的概念中，“组合式函数” (Composables) 是一个利用 Vue 组合式 API 来封装和复用**有状态逻辑**的函数。
 
-当构建前端应用时，我们常常需要复用公共任务的逻辑。例如为了在不同地方格式化时间而抽取一个可复用的函数。这个格式化函数封装了**无状态的逻辑**：它在接收一些输入后立刻返回所期望的输出。复用无状态逻辑的库有很多，诸如你可能听到过的 [lodash](https://lodash.com/) 和 [date-fns](https://date-fns.org/)。
+当构建前端应用时，我们常常需要复用公共任务的逻辑。例如为了在不同地方格式化时间，我们可能会抽取一个可复用的日期格式化函数。这个函数封装了**无状态的逻辑**：它在接收一些输入后立刻返回所期望的输出。复用无状态逻辑的库有很多，比如你可能已经用过的 [lodash](https://lodash.com/) 或是 [date-fns](https://date-fns.org/)。
 
-相比之下，有状态逻辑负责管理会随时间而变化的状态。一个简单的例子是跟踪当前鼠标在页面中的位置。在真实应用中，它也可以是像触摸手势或与数据库的连接状态这样的更复杂的逻辑。
+相比之下，有状态逻辑负责管理会随时间而变化的状态。一个简单的例子是跟踪当前鼠标在页面中的位置。在实际应用中，也可能是像触摸手势或与数据库的连接状态这样的更复杂的逻辑。
 
 ## 鼠标跟踪器示例 {#mouse-tracker-example}
 
@@ -84,13 +84,13 @@ const { x, y } = useMouse()
   Mouse position is at: {{ x }}, {{ y }}
 </div>
 
-[在演练场中尝试一下](https://sfc.vuejs.org/#eyJBcHAudnVlIjoiPHNjcmlwdCBzZXR1cD5cbmltcG9ydCB7IHVzZU1vdXNlIH0gZnJvbSAnLi9tb3VzZS5qcydcblxuY29uc3QgeyB4LCB5IH0gPSB1c2VNb3VzZSgpXG48L3NjcmlwdD5cblxuPHRlbXBsYXRlPlxuICBNb3VzZSBwb3NpdGlvbiBpcyBhdDoge3sgeCB9fSwge3sgeSB9fVxuPC90ZW1wbGF0ZT4iLCJpbXBvcnQtbWFwLmpzb24iOiJ7XG4gIFwiaW1wb3J0c1wiOiB7XG4gICAgXCJ2dWVcIjogXCJodHRwczovL3NmYy52dWVqcy5vcmcvdnVlLnJ1bnRpbWUuZXNtLWJyb3dzZXIuanNcIlxuICB9XG59IiwibW91c2UuanMiOiJpbXBvcnQgeyByZWYsIG9uTW91bnRlZCwgb25Vbm1vdW50ZWQgfSBmcm9tICd2dWUnXG5cbmV4cG9ydCBmdW5jdGlvbiB1c2VNb3VzZSgpIHtcbiAgY29uc3QgeCA9IHJlZigwKVxuICBjb25zdCB5ID0gcmVmKDApXG5cbiAgZnVuY3Rpb24gdXBkYXRlKGV2ZW50KSB7XG4gICAgeC52YWx1ZSA9IGV2ZW50LnBhZ2VYXG4gICAgeS52YWx1ZSA9IGV2ZW50LnBhZ2VZXG4gIH1cblxuICBvbk1vdW50ZWQoKCkgPT4gd2luZG93LmFkZEV2ZW50TGlzdGVuZXIoJ21vdXNlbW92ZScsIHVwZGF0ZSkpXG4gIG9uVW5tb3VudGVkKCgpID0+IHdpbmRvdy5yZW1vdmVFdmVudExpc3RlbmVyKCdtb3VzZW1vdmUnLCB1cGRhdGUpKVxuXG4gIHJldHVybiB7IHgsIHkgfVxufSJ9)
+[在演练场中尝试一下](https://sfc.vuejs.org/#eNqNkk1vgzAMhv+KxQUm0bBz1VbaYbftOGmTuDAwHVVxoiRQKsR/nw2Udh+adoHYcZ74fZ0+eDBGtQ0G62DjclsZDw59Y3YpVbXR1kMPjcNnzR8YoLS6hlAltcTq4MKUUso1OanrYjhzzXY5EN2ltEkmLAM58FibY+aRI4AJarSrfKUJKgeZX0PPIBiGWBaMGwSxHAviYGprVWeG79fEjfcCS+cNlwbMkIzkWJnEafDhvXHrJHFlLnIPTmm7T3ilbEO+qlGhq1fvVp8cWganQXzDSDjZol1ZpAIt2r+Y30p/cAXLogaWcnGRNSxmWyxj0MTekMdCli/EdRIs/vNlo/HYjYfKhvLRwavvkwPTYDqeCFOje57GJXe+yUn2ijAF+xxhi+RnCkCn2uzYIJ8Z88pke3ydts6/bL3NEuW3KIm4qe0OThUV+qSyoniU+qfKeSS0UTh6UesWw3hu4m7s90b/V4Qdq/9FEY7lV21peaUygOETZrwKDw==)
 
-如你所见，核心逻辑一点都没有被改变，我们做的只是把它移到一个外部函数中去，并返回需要暴露的状态。和在组件中一样，你也可以在组合式函数中使用所有的[组合式 API 函数](/api/#composition-api)。现在，在任何组件中都可以使用 `useMouse()` 功能了。
+如你所见，核心逻辑完全没变，我们做的只是把它移到一个外部函数中去，并返回需要暴露的状态。和在组件中一样，你也可以在组合式函数中使用所有的[组合式 API](/api/#composition-api)。现在，`useMouse()` 的功能可以在任何组件中轻易复用了。
 
-然而更酷的一点是，你还可以嵌套多个组合式函数：一个组合式函数可以调用一个或多个其他的组合式函数。这使得我们可以像使用多个组件组合成整个应用一样，用多个较小且逻辑独立的单元来组合形成复杂的逻辑。实际上，这正是我们决定将实现了这一设计模式的 API 集合命名为组合式 API 的原因。
+更酷的是，你还可以嵌套多个组合式函数：一个组合式函数可以调用一个或多个其他的组合式函数。这使得我们可以像使用多个组件组合成整个应用一样，用多个较小且逻辑独立的单元来组合形成复杂的逻辑。实际上，这正是为什么我们决定将实现了这一设计模式的 API 集合命名为组合式 API。
 
-举个例子，我们可以将添加和清除 DOM 事件监听器的逻辑放入一个组合式函数中：
+举例来说，我们可以将添加和清除 DOM 事件监听器的逻辑也封装进一个组合式函数中：
 
 ```js
 // event.js
@@ -104,7 +104,7 @@ export function useEventListener(target, event, callback) {
 }
 ```
 
-现在，`useMouse()` 可以被简化为：
+有了它，之前的 `useMouse()` 可以被简化为：
 
 ```js{3,9-12}
 // mouse.js
@@ -246,7 +246,7 @@ function useFeature(maybeRef) {
 
 ### 返回值 {#return-values}
 
-你可能已经注意到了，我们一直在组合式函数中使用 `ref()` 而不是 `reactive()`。我们推荐的约定是组合式函数始终返回一个 ref 对象，这样该函数在组件中解构之后仍可以保持响应性：
+你可能已经注意到了，我们一直在组合式函数中使用 `ref()` 而不是 `reactive()`。我们推荐的约定是组合式函数始终返回一个包含多个 ref 的普通的非响应式对象，这样该对象在组件中被解构为 ref 之后仍可以保持响应性：
 
 ```js
 // x 和 y 是两个 ref
@@ -255,7 +255,7 @@ const { x, y } = useMouse()
 
 从组合式函数返回一个响应式对象会导致在对象解构过程中丢失与组合式函数内状态的响应性连接。与之相反，ref 则可以维持这一响应性连接。
 
-如果你更希望以对象 property 的形式从组合式函数中返回状态，你可以将要返回的对象用 `reactive()` 包装，这样其中的 ref 会被自动解包，例如：
+如果你更希望以对象属性的形式来使用组合式函数中返回的状态，你可以将返回的对象用 `reactive()` 包装一次，这样其中的 ref 会被自动解包，例如：
 
 ```js
 const mouse = reactive(useMouse())
@@ -271,25 +271,25 @@ Mouse position is at: {{ mouse.x }}, {{ mouse.y }}
 
 在组合式函数中的确可以执行副作用 (例如：添加 DOM 事件监听器或者请求数据)，但请注意以下规则：
 
-- 如果你在一个应用中使用了[服务器端渲染](/guide/scaling-up/ssr.html) (SSR)，请确保在后置加载的声明钩子上执行 DOM 相关的副作用，例如：`onMounted()`。这些钩子仅会在浏览器中使用，因此可以确保能访问到 DOM。
+- 如果你的应用用到了[服务端渲染](/guide/scaling-up/ssr.html) (SSR)，请确保在组件挂载后才调用的生命周期钩子中执行 DOM 相关的副作用，例如：`onMounted()`。这些钩子仅会在浏览器中被调用，因此可以确保能访问到 DOM。
 
-- 确保在 `onUnmounted()` 时清理副作用。举个例子，如果一个组合式函数设置了一个事件监听器，它就应该在 `onUnmounted()` 中被移除 (就像我们在 `useMouse()` 示例中看到的一样)。当然也可以像之前的 `useEventListener()` 示例那样，使用一个组合式函数来自动帮你做这些事。
+- 确保在 `onUnmounted()` 时清理副作用。举例来说，如果一个组合式函数设置了一个事件监听器，它就应该在 `onUnmounted()` 中被移除 (就像我们在 `useMouse()` 示例中看到的一样)。当然也可以像之前的 `useEventListener()` 示例那样，使用一个组合式函数来自动帮你做这些事。
 
 ### 使用限制 {#usage-restrictions}
 
 组合式函数在 `<script setup>` 或 `setup()` 钩子中，应始终被**同步地**调用。在某些场景下，你也可以在像 `onMounted()` 这样的生命周期钩子中使用他们。
 
-这些是 Vue 得以确定当前活跃的组件实例的条件。有能力对活跃的组件实例进行访问是必要的，以便：
+这个限制是为了让 Vue 能够确定当前正在被执行的到底是哪个组件实例，只有能确认当前组件实例，才能够：
 
-1. 可以在组合式函数中注册生命周期钩子
+1. 将生命周期钩子注册到该组件实例上
 
-2. 计算属性和监听器可以连接到当前组件实例，以便在组件卸载时处理掉。
+2. 将计算属性和监听器注册到该组件实例上，以便在该组件被卸载时停止监听，避免内存泄漏。
 
 :::tip
-`<script setup>` 是唯一在调用 `await` **之后**仍可调用组合式函数的地方。编译器会在异步操作之后自动为你恢复当前活跃的组件实例。
+`<script setup>` 是唯一在调用 `await` **之后**仍可调用组合式函数的地方。编译器会在异步操作之后自动为你恢复当前的组件实例。
 :::
 
-## 为更好的代码组织抽取组合式函数 {#extracting-composables-for-code-organization}
+## 通过抽取组合式函数改善代码结构 {#extracting-composables-for-code-organization}
 
 抽取组合式函数不仅是为了复用，也是为了代码组织。随着组件复杂度的增高，你可能会最终发现组件多得难以查询和理解。组合式 API 会给予你足够的灵活性，让你可以基于逻辑问题将组件代码拆分成更小的函数：
 
@@ -322,28 +322,28 @@ export default {
     return { x, y, data, error }
   },
   mounted() {
-    // setup() 暴露的 property 可以在通过 `this` 访问到
+    // setup() 暴露的属性可以在通过 `this` 访问到
     console.log(this.x)
   }
   // ...其他选项
 }
 ```
 
-## 与其他技巧的比较 {#comparisons-with-other-techniques}
+## 与其他模式的比较 {#comparisons-with-other-techniques}
 
-### 相比于 Mixin {#vs-mixins}
+### 和 Mixin 的对比 {#vs-mixins}
 
 Vue 2 的用户可能会对 [mixins](/api/options-composition.html#mixins) 选项比较熟悉。它也让我们能够把组件逻辑提取到可复用的单元里。然而 mixins 有三个主要的短板：
 
-1. **不清晰的 property 来源**：当使用了多个 mixin 时，实例 property 来自哪个 mixin 变得不清晰，这使追溯实现和理解组件行为变得困难。这也是我们推荐在组合式函数中使用 ref + 解构模式的理由：让 property 的来源在消费组件时一目了然。
+1. **不清晰的数据来源**：当使用了多个 mixin 时，实例上的数据属性来自哪个 mixin 变得不清晰，这使追溯实现和理解组件行为变得困难。这也是我们推荐在组合式函数中使用 ref + 解构模式的理由：让 属性的来源在消费组件时一目了然。
 
-2. **命名空间冲突**：多个来自不同作者的 mixin 可能会注册相同的 property 键名，造成命名冲突。若使用组合式函数，你可以通过在解构变量时对变量进行重命名来避免相同的键名。
+2. **命名空间冲突**：多个来自不同作者的 mixin 可能会注册相同的属性名，造成命名冲突。若使用组合式函数，你可以通过在解构变量时对变量进行重命名来避免相同的键名。
 
-3. **隐式的跨 mixin 交流**：多个 mixin 需要依赖共享的 property 键名来进行相互作用，这使得它们隐性地耦合在一起。而一个组合式函数的返回值可以作为另一个组合式函数的参数被传入，像普通函数那样。
+3. **隐式的跨 mixin 交流**：多个 mixin 需要依赖共享的属性名来进行相互作用，这使得它们隐性地耦合在一起。而一个组合式函数的返回值可以作为另一个组合式函数的参数被传入，像普通函数那样。
 
 基于上述理由，我们不再推荐在 Vue 3 中继续使用 mixin。保留该功能只是为了项目迁移的需求和照顾熟悉它的用户。
 
-### 相比于无渲染组件 {#vs-renderless-components}
+### 和无渲染组件的对比 {#vs-renderless-components}
 
 在组件插槽一章中，我们讨论过了基于作用域插槽的[无渲染组件](/guide/components/slots.html#renderless-components)。我们甚至用它实现了一样的鼠标追踪器示例。
 
@@ -351,9 +351,9 @@ Vue 2 的用户可能会对 [mixins](/api/options-composition.html#mixins) 选�
 
 我们推荐在纯逻辑复用时使用组合式函数，在需要同时复用逻辑和视图布局时使用无渲染组件。
 
-### 相比于 React Hook {#vs-react-hooks}
+### 和 React Hooks 的对比 {#vs-react-hooks}
 
-如果你有 React 的开发经验，你可能注意到组合式函数和自定义 React hook 非常相似。组合式 API 的一部分灵感正来自于 React hook，Vue 的组合式函数也的确在逻辑组合能力上与 React hook 相近。然而，Vue 的组合式函数是基于 Vue 细粒度的响应性系统，这和 React hook 的执行模型有本质上的不同。这一话题在[组合式 API 的常见问题](/guide/extras/composition-api-faq#comparison-with-react-hooks)中有更细致的讨论。
+如果你有 React 的开发经验，你可能注意到组合式函数和自定义 React hooks 非常相似。组合式 API 的一部分灵感正来自于 React hooks 的组合式函数也的确在逻辑组合能力上与 React hooks 相近。然而，Vue 的组合式函数是基于 Vue 细粒度的响应性系统，这和 React hooks 的执行模型有本质上的不同。这一话题在[组合式 API 的常见问题](/guide/extras/composition-api-faq#comparison-with-react-hooks)中有更细致的讨论。
 
 ## 延伸阅读 {#further-reading}
 

@@ -11,7 +11,7 @@
 
 ## 基本使用 {#basic-usage}
 
-我们可以使用[响应性 API](./reactivity-core.html) 来声明响应式的状态，在 `setup()` 函数中返回的对象会暴露给模板。在其他的选项中，返回值对象中的 property 在组件实例上同样可用：<!-- 译者备注：（原文问题）这里是否使用选项和是否在组件实例上可用并没有因果关系，因此对 if 从句作了意译 -->
+我们可以使用[响应性 API](./reactivity-core.html) 来声明响应式的状态，在 `setup()` 函数中返回的对象会暴露给模板。在其他的选项中，返回值对象中的属性在组件实例上同样可用：<!-- 译者备注：（原文问题）这里是否使用选项和是否在组件实例上可用并没有因果关系，因此对 if 从句作了意译 -->
 
 ```vue
 <script>
@@ -73,7 +73,7 @@ export default {
     // `title` 是一个追踪着 `props.title` 的 ref
     console.log(title.value)
 
-    // 或者，将 `props` 的单个 property 转为一个 ref
+    // 或者，将 `props` 的单个属性转为一个 ref
     const title = toRef(props, 'title')
   }
 }
@@ -95,7 +95,7 @@ export default {
     // 触发事件（函数，等价于 $emit）
     console.log(context.emit)
 
-    // 暴露公共 property（函数）
+    // 暴露公共属性（函数）
     console.log(context.expose)
   }
 }
@@ -111,11 +111,11 @@ export default {
 }
 ```
 
-`attrs` 和 `slots` 都是有状态的对象，它们总是会随着组件自身的更新而更新。这意味着你应当避免解构它们，并始终通过 `attrs.x` 或 `slots.x` 的形式使用其中的 property。此外还需注意，和 `props` 不同，`attrs` 和 `slots` 的 property 都**不是**响应式的。如果你想要基于 `attrs` 或 `slots` 的改变来执行副作用，那么你应该在 `onBeforeUpdate` 生命周期钩子中编写相关逻辑。
+`attrs` 和 `slots` 都是有状态的对象，它们总是会随着组件自身的更新而更新。这意味着你应当避免解构它们，并始终通过 `attrs.x` 或 `slots.x` 的形式使用其中的属性。此外还需注意，和 `props` 不同，`attrs` 和 `slots` 的属性都**不是**响应式的。如果你想要基于 `attrs` 或 `slots` 的改变来执行副作用，那么你应该在 `onBeforeUpdate` 生命周期钩子中编写相关逻辑。
 
-### 暴露公共 Property {#exposing-public-properties}
+### 暴露公共属性 {#exposing-public-properties}
 
-`expose` 函数用于显式地限制该组件暴露出的 property，当父组件通过[模板 ref](/guide/essentials/template-refs.html#ref-on-component) 访问该组件的实例时，将仅能访问 `expose` 函数暴露出的内容：
+`expose` 函数用于显式地限制该组件暴露出的属性，当父组件通过[模板 ref](/guide/essentials/template-refs.html#ref-on-component) 访问该组件的实例时，将仅能访问 `expose` 函数暴露出的内容：
 
 ```js{5,10}
 export default {

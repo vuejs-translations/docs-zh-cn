@@ -1,14 +1,14 @@
-# 插槽 {#slots}
+# 插槽 Slots {#slots}
 
-> 阅读此章节时，我们假设你已经读过[组件基础](/guide/essentials/component-basics)，若你对组件还完全不了解，请先阅读它。
+> 此章节假设你已经看过了[组件基础](/guide/essentials/component-basics)。若你还不了解组件是什么，请先阅读该章节。
 
 <VueSchoolLink href="https://vueschool.io/lessons/vue-3-component-slots" title="Slots - 免费 Vue.js 课程"/>
 
-## 插槽内容与插口 {#slot-content-and-outlet}
+## 插槽内容与出口 {#slot-content-and-outlet}
 
-我们已经学习过组件能够接收任意类型的 JavaScript 值作为 props，但组件要如何接收模板内容呢？在某些场景中，我们可能想要为子组件传递一些模板片段，让子组件在它们的组件中渲染这些片段。
+在之前的章节中，我们已经了解到组件能够接收任意类型的 JavaScript 值作为 props，但组件要如何接收模板内容呢？在某些场景中，我们可能想要为子组件传递一些模板片段，让子组件在它们的组件中渲染这些片段。
 
-举个例子，这里有一个 `<FancyButton>` 组件，可以像这样使用：
+举例来说，这里有一个 `<FancyButton>` 组件，可以像这样使用：
 
 ```vue-html{2}
 <FancyButton>
@@ -20,11 +20,11 @@
 
 ```vue-html{2}
 <button class="fancy-btn">
-  <slot></slot> <!-- 插槽插口 -->
+  <slot></slot> <!-- 插槽出口 -->
 </button>
 ```
 
-`<slot>` 元素是一个**插槽的插口**，标示了父元素提供的**插槽内容**将在哪里被渲染。
+`<slot>` 元素是一个**插槽出口** (slot outlet)，标示了父元素提供的**插槽内容** (slot content) 将在哪里被渲染。
 
 ![插槽图示](./images/slots.png)
 
@@ -51,7 +51,7 @@
 
 通过使用插槽，`<FancyButton>` 仅负责渲染外层的 `<button>` (以及相应的样式)，而其内部的内容由父组件提供。
 
-理解插槽的另一种方式是和下面的 JavaScript 函数作对比：
+理解插槽的另一种方式是和下面的 JavaScript 函数作类比，其概念是类似的：
 
 ```js
 // 父元素传入插槽内容
@@ -67,7 +67,7 @@ function FancyButton(slotContent) {
 }
 ```
 
-除了文本以外，插槽内容还可以是任意合法的模板内容。例如我们可以传入多个元素，甚至是组件：
+插槽内容可以是任意合法的模板内容，不局限于文本。例如我们可以传入多个元素，甚至是组件：
 
 ```vue-html
 <FancyButton>
@@ -93,7 +93,7 @@ Vue 组件的插槽机制是受[原生 Web Component `<slot>` 元素](https://de
 
 ## 渲染作用域 {#render-scope}
 
-插槽内容可以访问到父组件的数据作用域，因为插槽内容本身是在父组件模板中定义的。举个例子：
+插槽内容可以访问到父组件的数据作用域，因为插槽内容本身是在父组件模板中定义的。举例来说：
 
 ```vue-html
 <span>{{ message }}</span>
@@ -102,13 +102,13 @@ Vue 组件的插槽机制是受[原生 Web Component `<slot>` 元素](https://de
 
 这里的两个 <span v-pre>`{{ message }}`</span> 插值表达式渲染的内容都是一样的。
 
-插槽内容**无法访问**子组件的数据，请牢记一条规则：
+插槽内容**无法访问**子组件的数据。Vue 模版中的表达式只能访问其定义时所处的作用域，这和 JavaScript 的词法作用域规则是一致的。换言之：
 
-> 任何父组件模板中的东西都只被编译到父组件的作用域中；而任何子组件模板中的东西都只被编译到子组件的作用域中。
+> 父组件模板中的表达式只能访问父组件的作用域；子组件模板中的表达式只能访问子组件的作用域。
 
 ## 默认内容 {#fallback-content}
 
-在外部没有提供任何内容的情况下，为插槽指定默认内容用于渲染是很有用的。比如在 `<SubmitButton>` 组件中：
+在外部没有提供任何内容的情况下，可以为插槽指定默认内容。比如有这样一个 `<SubmitButton>` 组件：
 
 ```vue-html
 <button type="submit">
@@ -116,7 +116,7 @@ Vue 组件的插槽机制是受[原生 Web Component `<slot>` 元素](https://de
 </button>
 ```
 
-如果我们想在父组件没有提供任何插槽内容时，把“Submit”文本渲染到 `<button>` 内。需要将“Submit”写在 `<slot>` 标签之间，使其成为默认内容：
+如果我们想在父组件没有提供任何插槽内容时在 `<button>` 内渲染“Submit”，只需要将“Submit”写在 `<slot>` 标签之间来作为默认内容：
 
 ```vue-html{3}
 <button type="submit">
@@ -126,25 +126,25 @@ Vue 组件的插槽机制是受[原生 Web Component `<slot>` 元素](https://de
 </button>
 ```
 
-当我们在父组件中使用 `<SubmitButton>` 但不提供任何插槽内容：
+现在，当我们在父组件中使用 `<SubmitButton>` 且没有提供任何插槽内容时：
 
 ```vue-html
 <SubmitButton />
 ```
 
-那么将渲染默认的“Submit”单词：
+“Submit”将会被作为默认内容渲染：
 
 ```html
 <button type="submit">Submit</button>
 ```
 
-但如果我们提供了别的内容：
+但如果我们提供了插槽内容：
 
 ```vue-html
 <SubmitButton>Save</SubmitButton>
 ```
 
-那么将渲染提供的内容：
+那么被显式提供的内容会取代默认内容：
 
 ```html
 <button type="submit">Save</button>
@@ -163,7 +163,7 @@ Vue 组件的插槽机制是受[原生 Web Component `<slot>` 元素](https://de
 
 ## 具名插槽 {#named-slots}
 
-有时在一个组件中包含多个插槽的插口是很有用的。举个例子，在一个 `<BaseLayout>` 组件中，有如下这样的模板：
+有时在一个组件中包含多个插槽出口是很有用的。举例来说，在一个 `<BaseLayout>` 组件中，有如下模板：
 
 ```vue-html
 <div class="container">
@@ -195,9 +195,9 @@ Vue 组件的插槽机制是受[原生 Web Component `<slot>` 元素](https://de
 </div>
 ```
 
-没有提供 `name` 的 `<slot>` 插口会隐式地命名为“default”。
+这类带 `name` 的插槽被称为具名插槽 (named slots)。没有提供 `name` 的 `<slot>` 出口会隐式地命名为“default”。
 
-在父组件中使用 `<BaseLayout>` 时，我们需要一种方式将多个插槽内容传入到各自目标插槽的插口。此时就需要用到**具名插槽**了：
+在父组件中使用 `<BaseLayout>` 时，我们需要一种方式将多个插槽内容传入到各自目标插槽的出口。此时就需要用到**具名插槽**了：
 
 要为具名插槽传入内容，我们需要使用一个含 `v-slot` 指令的 `<template>` 元素，并将目标插槽的名字传给该指令：
 
@@ -280,7 +280,7 @@ Vue 组件的插槽机制是受[原生 Web Component `<slot>` 元素](https://de
 
 </div>
 
-使用 JavaScript 函数可能更有助于你来理解具名插槽：
+使用 JavaScript 函数来类比可能更有助于你来理解具名插槽：
 
 ```js
 // 传入不同的内容给不同名字的插槽
@@ -327,7 +327,7 @@ function BaseLayout(slots) {
 
 然而在某些场景下插槽的内容可能想要同时使用父组件域内和子组件域内的数据。要做到这一点，我们需要一种方法来让子组件在渲染时将一部分数据提供给插槽。
 
-我们也确实有办法这么做！可以像对组件传递 prop 那样，向一个插槽的插口上传递 attribute：
+我们也确实有办法这么做！可以像对组件传递 props 那样，向一个插槽的出口上传递 attributes：
 
 ```vue-html
 <!-- <MyComponent> 的模板 -->
@@ -336,13 +336,15 @@ function BaseLayout(slots) {
 </div>
 ```
 
-当需要接收插槽 prop 时，默认插槽和具名插槽的使用方式有一些小区别。下面我们将先展示默认插槽如何接受 prop，通过子组件标签上的 `v-slot` 指令，直接接收到了一个插槽 prop 对象：
+当需要接收插槽 props 时，默认插槽和具名插槽的使用方式有一些小区别。下面我们将先展示默认插槽如何接受 props，通过子组件标签上的 `v-slot` 指令，直接接收到了一个插槽 props 对象：
 
 ```vue-html
 <MyComponent v-slot="slotProps">
   {{ slotProps.text }} {{ slotProps.count }}
 </MyComponent>
 ```
+
+这类能够接受参数的插槽被称为作用域插槽 (scoped slots)，因为它们接受的参数只在该插槽作用域内有效。
 
 ![scoped slots diagram](./images/scoped-slots.svg)
 
@@ -361,7 +363,7 @@ function BaseLayout(slots) {
 
 子组件传入插槽的 props 作为了 `v-slot` 指令的值，可以在插槽内的表达式中访问。
 
-你可以将作用域插槽类比为一个传入子组件的函数。子组件会将相应的 prop 作为参数去调用它：
+你可以将作用域插槽类比为一个传入子组件的函数。子组件会将相应的 props 作为参数传给它：
 
 ```js
 MyComponent({
@@ -418,12 +420,12 @@ function MyComponent(slots) {
 <slot name="header" message="hello"></slot>
 ```
 
-注意插槽上的 `name` 是由 Vue 保留的，不会作为 props 传递给插槽。因此最终 `headerProps` 的结果是 `{ message: 'hello' }`。
+注意插槽上的 `name` 是一个 Vue 特别保留的 attribute，不会作为 props 传递给插槽。因此最终 `headerProps` 的结果是 `{ message: 'hello' }`。
 
 
-### 一个漂亮的列表示例 {#fancy-list-example}
+### 高级列表组件示例 {#fancy-list-example}
 
-想要了解作用域插槽怎么样使用更加优雅吗？不妨看看这个 `<FancyList>` 组件的例子，它会渲染一个列表，其中会封装一些加载远端数据的逻辑、使用数据进行列表渲染、或者是像分页或无限滚动这样更进阶的功能。然而我们希望它能够灵活处理每一项的外观，并将对每一项样式的控制权留给使用它的父组件。我们期望的用法可能是这样的：
+你可能想问什么样的场景才适合用到作用域插槽，这里我们来看一个 `<FancyList>` 组件的例子。它会渲染一个列表，并同时会封装一些加载远端数据的逻辑、使用数据进行列表渲染、或者是像分页或无限滚动这样更进阶的功能。然而我们希望它能够保留足够的灵活性，将对单个列表元素内容和样式的控制权留给使用它的父组件。我们期望的用法可能是这样的：
 
 ```vue-html
 <FancyList :api-url="url" :per-page="10">

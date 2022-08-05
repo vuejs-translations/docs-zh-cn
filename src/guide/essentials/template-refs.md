@@ -1,4 +1,4 @@
-# 模板 ref {#template-refs}
+# 模板引用 {#template-refs}
 
 虽然 Vue 的声明性渲染模型为你抽象了大部分对 DOM 的直接操作，但在某些情况下，我们仍然需要直接访问底层 DOM 元素。要实现这一点，我们可以使用特殊的 `ref` attribute：
 
@@ -6,20 +6,20 @@
 <input ref="input">
 ```
 
-`ref` 是一个特殊的 attribute，和 `v-for` 章节中提到的 `key` 类似。它允许我们在一个特定的 DOM 元素或子组件实例被挂载后，获得对它的直接引用。这可能很有用，比如说在组件挂载时编程式地聚焦到一个 input 元素上，或在一个元素上初始化一个第三方库。
+`ref` 是一个特殊的 attribute，和 `v-for` 章节中提到的 `key` 类似。它允许我们在一个特定的 DOM 元素或子组件实例被挂载后，获得对它的直接引用。这可能很有用，比如说在组件挂载时将焦点设置到一个 input 元素上，或在一个元素上初始化一个第三方库。
 
-## 访问模板 ref {#accessing-the-refs}
+## 访问模板引用 {#accessing-the-refs}
 
 <div class="composition-api">
 
-为了通过组合式 API 获得该模板 ref，我们需要声明一个同名的 ref：
+为了通过组合式 API 获得该模板引用，我们需要声明一个同名的 ref：
 
 ```vue
 <script setup>
 import { ref, onMounted } from 'vue'
 
 // 声明一个 ref 来存放该元素的引用
-// 必须和模板 ref 同名
+// 必须和模板里的 ref 同名
 const input = ref(null)
 
 onMounted(() => {
@@ -49,7 +49,7 @@ export default {
 </div>
 <div class="options-api">
 
-挂载结束后 ref 都会被暴露在 `this.$refs` 之上：
+挂载结束后引用都会被暴露在 `this.$refs` 之上：
 
 ```vue
 <script>
@@ -67,11 +67,11 @@ export default {
 
 </div>
 
-注意，你只可以**在组件挂载后**才能访问 ref。如果你想在模板中的表达式上访问 <span class="options-api">`$refs.input`</span><span class="composition-api">`input`</span>，在初次渲染时会是 `null`。这是因为在初次渲染前这个元素还压根不存在呢！
+注意，你只可以**在组件挂载后**才能访问模版引用。如果你想在模板中的表达式上访问 <span class="options-api">`$refs.input`</span><span class="composition-api">`input`</span>，在初次渲染时会是 `null`。这是因为在初次渲染前这个元素还不存在呢！
 
 <div class="composition-api">
 
-如果你正试图观察一个模板 ref 的变化，确保考虑到 ref 的值为 `null` 的情况：
+如果你需要侦听一个模板引用 ref 的变化，确保考虑到其值为 `null` 的情况：
 
 ```js
 watchEffect(() => {
@@ -87,13 +87,13 @@ watchEffect(() => {
 
 </div>
 
-## `v-for` 中的 ref {#refs-inside-v-for}
+## `v-for` 中的模版引用 {#refs-inside-v-for}
 
 > 需要 v3.2.25 及以上版本
 
 <div class="composition-api">
 
-当 `ref` 在 `v-for` 中使用时，相应的 ref 中包含的值是一个数组，它将在元素被挂载后填充：
+当在 `v-for` 中使用模版引用时，对应的 ref 中包含的值是一个数组，它将在元素被挂载后包含对应整个列表的所有元素：
 
 ```vue
 <script setup>
@@ -122,7 +122,7 @@ onMounted(() => console.log(itemRefs.value))
 </div>
 <div class="options-api">
 
-当 `ref` 在 `v-for` 中使用时，相应的 ref 中包含的值是一个数组：
+当在 `v-for` 中使用模版引用时，相应的引用中包含的值是一个数组：
 
 ```vue
 <script>
@@ -153,23 +153,23 @@ export default {
 
 </div>
 
-应该注意的是，ref 数组**不能**保证与源数组相同的顺序。
+应该注意的是，ref 数组**并不**保证与源数组相同的顺序。
 
-## 函数型 ref {#function-refs}
+## 函数模版引用 {#function-refs}
 
-除了使用字符串值作名字，`ref` attribute 还可以绑定为一个函数，会在每次组件更新时都被调用。函数接受该元素引用作为第一个参数：
+除了使用字符串值作名字，`ref` attribute 还可以绑定为一个函数，会在每次组件更新时都被调用。该函数会收到元素引用作为其第一个参数：
 
 ```vue-html
-<input :ref="(el) => { /* 将 el 分配给 property 或 ref */ }">
+<input :ref="(el) => { /* 将 el 赋值给一个数据属性或 ref 变量 */ }">
 ```
 
-如果你正在使用一个动态的 `:ref` 绑定，我们也可以传一个函数。当元素卸载时，这个 `el` 参数会是 `null`。你当然也可以使用一个方法而不是内联函数。
+注意我们这里需要使用动态的 `:ref` 绑定才能够传入一个函数。当绑定的元素被卸载时，函数也会被调用一次，此时的 `el` 参数会是 `null`。你当然也可以绑定一个组件方法而不是内联函数。
 
 ## 组件上的 ref {#ref-on-component}
 
 > 这一小节假设你已了解[组件](/guide/essentials/component-basics)的相关知识，或者你也可以先跳过这里，之后再回来看。
 
-`ref` 也可以被用在一个子组件上。此时 ref 中引用的是组件实例：
+模版引用也可以被用在一个子组件上。这种情况下引用中获得的值的是组件实例：
 
 <div class="composition-api">
 
@@ -236,7 +236,7 @@ defineExpose({
 
 当父组件通过模板 ref 获取到了该组件的实例时，得到的实例类型为 `{ a: number, b: number }` (ref 都会自动解包，和一般的实例一样)。
 
-你也可以看看：[为组件的模板 ref 标注类型](/guide/typescript/composition-api.html#typing-component-template-refs) <sup class="vt-badge ts" />
+TypeScript 用户请参考：[为组件的模板引用标注类型](/guide/typescript/composition-api.html#typing-component-template-refs) <sup class="vt-badge ts" />
 
 </div>
 <div class="options-api">

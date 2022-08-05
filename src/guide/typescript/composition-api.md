@@ -2,11 +2,11 @@
 
 > 这一章假设你已经阅读了[搭配 TypeScript 使用 Vue](./overview) 的概览。
 
-## 为组件的 prop 标注类型 {#typing-component-props}
+## 为组件的 props 标注类型 {#typing-component-props}
 
 ### 使用 `<script setup>` {#using-script-setup}
 
-当使用 `<script setup>` 时，这个 `defineProps()` 宏函数支持从它的参数中推导类型：
+当使用 `<script setup>` 时，`defineProps()` 宏函数支持从它的参数中推导类型：
 
 ```vue
 <script setup lang="ts">
@@ -22,7 +22,7 @@ props.bar // number | undefined
 
 这被称之为“运行时声明”，因为传递给 `defineProps()` 的参数会作为运行时的 `props` 选项使用。
 
-然而，通过泛型参数来定义 prop 的类型通常更直接：
+然而，通过泛型参数来定义 props 的类型通常更直接：
 
 ```vue
 <script setup lang="ts">
@@ -35,9 +35,9 @@ const props = defineProps<{
 
 这被称之为“基于类型的声明”。编译器会尽可能地尝试根据类型参数推导出等价的运行时选项。在这种场景下，我们第二个例子中编译出的运行时选项和第一个是完全一致的。
 
-基于类型的声明或者运行时声明都可以使用，但是你不能同时使用两者。
+基于类型的声明或者运行时声明可以择一使用，但是不能同时使用。
 
-我们也可以将 prop 的类型移入一个单独的接口中：
+我们也可以将 props 的类型移入一个单独的接口中：
 
 ```vue
 <script setup lang="ts">
@@ -77,11 +77,11 @@ import { Props } from './other-file'
 defineProps<Props>()
 ```
 
-这是因为 Vue 组件是单独编译的，编译器目前不会抓取导入的文件以分析源类型。这个限制可能会在未来的版本中被解除。
+这是因为 Vue 组件是单独编译的，编译器目前不会抓取导入的文件以分析源类型。我们计划在未来的版本中解决这个限制。
 
-### Prop 默认值 <sup class="vt-badge experimental" /> {#props-default-values}
+### Props 解构默认值 <sup class="vt-badge experimental" /> {#props-default-values}
 
-当使用基于类型的声明时，我们失去了对 prop 定义默认值的能力。这可以通过目前实验性的[响应性语法糖](/guide/extras/reactivity-transform.html#reactive-props-destructure)来解决：
+当使用基于类型的声明时，我们失去了对 props 定义默认值的能力。这可以通过目前实验性的[响应性语法糖](/guide/extras/reactivity-transform.html#reactive-props-destructure)来解决：
 
 ```vue
 <script setup lang="ts">
@@ -98,9 +98,9 @@ const { foo, bar = 100 } = defineProps<Props>()
 
 这个行为目前需要[显式地选择开启](/guide/extras/reactivity-transform.html#explicit-opt-in)。
 
-### 不使用 `<script setup>` {#without-script-setup}
+### 非 `<script setup>` 场景下 {#without-script-setup}
 
-如果没有使用 `<script setup>`，那么为了开启 prop 的类型推导，必须使用 `defineComponent()`。传入 `setup()` 的 prop 对象类型是从 `props` 选项中推导而来。
+如果没有使用 `<script setup>`，那么为了开启 props 的类型推导，必须使用 `defineComponent()`。传入 `setup()` 的 props 对象类型是从 `props` 选项中推导而来。
 
 ```ts
 import { defineComponent } from 'vue'
@@ -115,9 +115,9 @@ export default defineComponent({
 })
 ```
 
-## 为组件的 emit 标注类型 {#typing-component-emits}
+## 为组件的 emits 标注类型 {#typing-component-emits}
 
-在 `<script setup>` 中，`emit` 函数的类型标注可以通过运行时声明或类型声明进行：
+在 `<script setup>` 中，`emit` 函数的类型标注也可以通过运行时声明或是类型声明进行：
 
 ```vue
 <script setup lang="ts">
@@ -199,7 +199,7 @@ import { reactive } from 'vue'
 const book = reactive({ title: 'Vue 3 指引' })
 ```
 
-要显式地标注一个 `reactive` property 的类型，我们可以使用接口：
+要显式地标注一个 `reactive` 变量的类型，我们可以使用接口：
 
 ```ts
 import { reactive } from 'vue'
@@ -218,7 +218,7 @@ const book: Book = reactive({ title: 'Vue 3 指引' })
 
 ## 为 `computed()` 标注类型 {#typing-computed}
 
-`computed()` 会从其计算函数的返回值上推导出类型：
+`computed()` 会自动从其计算函数的返回值上推导出类型：
 
 ```ts
 import { ref, computed } from 'vue'
@@ -240,9 +240,9 @@ const double = computed<number>(() => {
 })
 ```
 
-## 为事件处理器标注类型 {#typing-event-handlers}
+## 为事件处理函数标注类型 {#typing-event-handlers}
 
-在处理原生 DOM 事件时，应该为我们传递给事件处理器的参数正确地标注类型。让我们看一下这个例子：
+在处理原生 DOM 事件时，应该为我们传递给事件处理函数的参数正确地标注类型。让我们看一下这个例子：
 
 ```vue
 <script setup lang="ts">
@@ -257,7 +257,7 @@ function handleChange(event) {
 </template>
 ```
 
-没有类型标注时，这个 `event` 参数会隐式地标注为 `any` 类型。这也会在 `tsconfig.json` 中配置了 `"strict": true` 或 `"noImplicitAny": true` 时报出一个 TS 错误。因此，建议显式地为事件处理器的参数标注类型。此外，你可能需要显式地强制转换 `event` 上的 property：
+没有类型标注时，这个 `event` 参数会隐式地标注为 `any` 类型。这也会在 `tsconfig.json` 中配置了 `"strict": true` 或 `"noImplicitAny": true` 时报出一个 TS 错误。因此，建议显式地为事件处理函数的参数标注类型。此外，你可能需要显式地强制转换 `event` 上的属性：
 
 ```ts
 function handleChange(event: Event) {
@@ -265,7 +265,7 @@ function handleChange(event: Event) {
 }
 ```
 
-## 为 provide/inject 标注类型 {#typing-provide-inject}
+## 为 provide / inject 标注类型 {#typing-provide-inject}
 
 provide 和 inject 通常会在不同的组件中运行。要正确地为注入的值标记类型，Vue 提供了一个 `InjectionKey` 接口，它是一个继承自 `Symbol` 的泛型类型，可以用来在提供者和消费者之间同步注入值的类型：
 
@@ -302,7 +302,7 @@ const foo = inject<string>('foo', 'bar') // 类型：string
 const foo = inject('foo') as string
 ```
 
-## 为模板 ref 标注类型 {#typing-template-refs}
+## 为模板引用标注类型 {#typing-template-refs}
 
 模板 ref 需要通过一个显式指定的泛型参数和一个初始值 `null` 来创建：
 
@@ -324,9 +324,9 @@ onMounted(() => {
 
 注意为了严格的类型安全，有必要在访问 `el.value` 时使用可选链或类型守卫。这是因为直到组件被挂载前，这个 ref 的值都是初始的 `null`，并且在由于 `v-if` 的行为将引用的元素卸载时也可以被设置为 `null`。
 
-## 为组件模板 ref 标注类型 {#typing-component-template-refs}
+## 为组件模板引用标注类型 {#typing-component-template-refs}
 
-有时，你可能需要为一个子组件添加一个模板 ref，以便调用它公开的方法。举个例子，我们有一个 `MyModal` 子组件，它有一个打开模态框的方法：
+有时，你可能需要为一个子组件添加一个模板 ref，以便调用它公开的方法。举例来说，我们有一个 `MyModal` 子组件，它有一个打开模态框的方法：
 
 ```vue
 <!-- MyModal.vue -->
@@ -357,4 +357,4 @@ const openModal = () => {
 </script>
 ```
 
-注意，如果你想在 TypeScript 文件而不是在 Vue SFC 中使用这种技巧，需要开启 Volar 的[托管模式](./overview.html#takeover-mode)。
+注意，如果你想在 TypeScript 文件而不是在 Vue SFC 中使用这种技巧，需要开启 Volar 的[Takeover 模式](./overview.html#takeover-mode)。

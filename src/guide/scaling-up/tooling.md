@@ -2,16 +2,16 @@
 
 ## 在线尝试 {#try-it-online}
 
-你不需要在机器上安装任何东西，也可以尝试单文件组件的使用。我们提供了一个在线的演练场，可以在浏览器中访问：
+你不需要在机器上安装任何东西，也可以尝试基于单文件组件的 Vue 开发体验。我们提供了一个在线的演练场，可以在浏览器中访问：
 
 - [Vue SFC 演练场](https://sfc.vuejs.org)
-  - 始终根据最新的提交部署
-  - 用来检查编译输出的结果
+  - 自动随着 Vue 仓库最新的提交更新
+  - 支持检查编译输出的结果
 - [StackBlitz 中的 Vue + Vite](https://vite.new/vue)
   - 类似 IDE 的环境，但实际是在浏览器中运行 Vite 开发服务器
-  - 和本地启动效果最接近
+  - 和本地开发效果更接近
 
-同时在报告 Bug 时也建议使用这个在线演练场来提供一个最小可重现的副本。
+在报告 Bug 时，我们也建议使用这些在线演练场来提供最小化重现。
 
 ## 项目脚手架 {#project-scaffolding}
 
@@ -19,20 +19,20 @@
 
 [Vite](https://vitejs.dev/) 是一个轻量级的、速度极快的构建工具，对 Vue SFC 提供第一优先级支持。作者是尤雨溪，同时也是 Vue 的作者！
 
-要使用 Vite 来启动一个 Vue 项目，非常简单：
+要使用 Vite 来创建一个 Vue 项目，非常简单：
 
 <div class="language-sh"><pre><code><span class="line"><span style="color:var(--vt-c-green);">$</span> <span style="color:#A6ACCD;">npm init vue@latest</span></span></code></pre></div>
 
-这个命令同时还会安装和执行 [create-vue](https://github.com/vuejs/create-vue)，它是 Vue 提供的官方脚手架工具。
+这个命令会安装和执行 [create-vue](https://github.com/vuejs/create-vue)，它是 Vue 提供的官方脚手架工具。跟随命令行的提示继续操作即可。
 
 - 要学习更多关于 Vite 的知识，请查看 [Vite 官方文档](https://cn.vitejs.dev)。
 - 若要了解如何为一个 Vite 项目配置 Vue 相关的特殊行为，比如向 Vue 编译器传递相关选项，请查看 [@vitejs/plugin-vue](https://github.com/vitejs/vite/tree/main/packages/plugin-vue#readme) 的文档。
 
-上面提到的两种在线演练场也支持下载文件为一个 Vite 项目。
+上面提到的两种在线演练场也支持将文件作为一个 Vite 项目下载。
 
 ### Vue CLI {#vue-cli}
 
-[Vue CLI](https://cli.vuejs.org/) 是官方提供的基于 Webpack 的 Vue 工具链。它现在处于维护模式，我们建议使用 Vite 开始新的项目，除非你依赖特定的 Webpack 的特性。在大多数情况下，Vite 将提供更优秀的开发体验。
+[Vue CLI](https://cli.vuejs.org/) 是官方提供的基于 Webpack 的 Vue 工具链，它现在处于维护模式。我们建议使用 Vite 开始新的项目，除非你依赖特定的 Webpack 的特性。在大多数情况下，Vite 将提供更优秀的开发体验。
 
 关于从 Vue CLI 迁移到 Vite 的资源：
 
@@ -41,39 +41,39 @@
 
 ### 浏览器内模板编译注意事项 {#note-on-in-browser-template-compilation}
 
-当以无构建步骤方式使用 Vue 时，组件模板要么是写在页面的 HTML 中，或者是内联的 JavaScript 字符串。在这些场景中，为了执行动态模板编译，Vue 需要将模板编译器运行在浏览器中。相对的，如果我们使用了构建步骤，由于提前编译了模板，那么就无须再在浏览器中运行了。要减小打包出的客户端代码体积，Vue 提供了[不同的“构建版本”](https://unpkg.com/browse/vue@3/dist/)以适配不同场景下的优化需求。
+当以无构建步骤方式使用 Vue 时，组件模板要么是写在页面的 HTML 中，或者是内联的 JavaScript 字符串。在这些场景中，为了执行动态模板编译，Vue 需要将模板编译器运行在浏览器中。相对的，如果我们使用了构建步骤，由于提前编译了模板，那么就无须再在浏览器中运行了。为了减小打包出的客户端代码体积，Vue 提供了[多种格式的“构建文件”](https://unpkg.com/browse/vue@3/dist/)以适配不同场景下的优化需求。
 
-- 前缀为 `vue.runtime.*` 的构建版本是**只包含运行时的版本**：不包含编译器，当使用这个版本时，所有的模板都必须由构建步骤预先编译。
+- 前缀为 `vue.runtime.*` 的文件是**只包含运行时的版本**：不包含编译器，当使用这个版本时，所有的模板都必须由构建步骤预先编译。
 
-- 名称中不包含 `.runtime` 的版本则是**完全版**：即包含了编译器，并支持在浏览器中直接编译模板。然而，体积也会因此增长大约 14kb。
+- 名称中不包含 `.runtime` 的文件则是**完全版**：即包含了编译器，并支持在浏览器中直接编译模板。然而，体积也会因此增长大约 14kb。
 
 默认的工具链中都会使用仅含运行时的版本，因为所有 SFC 中的模板都已经被预编译了。如果因为某些原因，在有构建步骤时，你仍需要浏览器内的模板编译，你可以更改构建工具配置，将 `vue` 改为相应的版本 `vue/dist/vue.esm-bundler.js`。
 
-如果你正需要一种更轻量级的替代方案，不含构建步骤，那么不妨看看 [petite-vue](https://github.com/vuejs/petite-vue)。
+如果你需要一种更轻量级，不依赖构建步骤的替代方案，也可以看看 [petite-vue](https://github.com/vuejs/petite-vue)。
 
 ## IDE 支持 {#ide-support}
 
-- 推荐使用的 IDE 是 [VSCode](https://code.visualstudio.com/)+ 配备 [Volar](https://github.com/johnsoncodehk/volar) 插件。Volar 提供了语法高亮、TypeScript 支持，和模板内表达式与组件 props 的智能提示。
+- 推荐使用的 IDE 是 [VSCode](https://code.visualstudio.com/)，配合 [Volar](https://github.com/johnsoncodehk/volar) 插件。Volar 提供了语法高亮、TypeScript 支持，以及模板内表达式与组件 props 的智能提示。
 
   :::tip
-  Volar 替代了 [Vetur](https://marketplace.visualstudio.com/items?itemName=octref.vetur)，那是我们之前为 Vue 2 提供的官方 VSCode 扩展。如果你之前已经安装了 Vetur，请确保在 Vue 3 的项目中禁用它。
+  Volar 取代了我们之前为 Vue 2 提供的官方 VSCode 扩展 [Vetur](https://marketplace.visualstudio.com/items?itemName=octref.vetur)。如果你之前已经安装了 Vetur，请确保在 Vue 3 的项目中禁用它。
   :::
 
 - [WebStorm](https://www.jetbrains.com/webstorm/) 同样也为 Vue 的单文件组件提供了很好的内置支持。
 
 - 其他支持[语言服务协议](https://microsoft.github.io/language-server-protocol/) (LSP) 的 IDE 也可以通过 LSP 享受到 Volar 所提供的的核心功能：
 
-  - Sublime Text 支持，通过 [LSP-Volar](https://github.com/sublimelsp/LSP-volar)。
+  - Sublime Text 通过 [LSP-Volar](https://github.com/sublimelsp/LSP-volar) 支持。
 
-  - vim / Neovim 支持，通过 [coc-volar](https://github.com/yaegassy/coc-volar)。
+  - vim / Neovim 通过 [coc-volar](https://github.com/yaegassy/coc-volar) 支持。
 
-  - emacs 支持，通过 [lsp-mode](https://emacs-lsp.github.io/lsp-mode/page/lsp-volar/)
+  - emacs 通过 [lsp-mode](https://emacs-lsp.github.io/lsp-mode/page/lsp-volar/) 支持。
 
 ## 浏览器开发者插件 {#browser-devtools}
 
 <VueSchoolLink href="https://vueschool.io/lessons/using-vue-dev-tools-with-vuejs-3" title="开发者工具 - 免费 Vue.js 课程"/>
 
-Vue 的浏览器开发者插件使我们可以浏览一个 Vue 应用的组件树，查看各个组件的状态，追踪状态管理的事件，还有测评性能表现。
+Vue 的浏览器开发者插件使我们可以浏览一个 Vue 应用的组件树，查看各个组件的状态，追踪状态管理的事件，还可以进行组件性能分析。
 
 ![devtools 截图](https://raw.githubusercontent.com/vuejs/devtools/main/media/screenshot-shadow.png)
 
@@ -84,21 +84,21 @@ Vue 的浏览器开发者插件使我们可以浏览一个 Vue 应用的组件�
 
 ## TypeScript {#typescript}
 
-请见主要介绍这个的文章：[配合 TypeScript 使用 Vue](/guide/typescript/overview)。
+具体细节请参考章节：[配合 TypeScript 使用 Vue](/guide/typescript/overview)。
 
-- [Volar](https://github.com/johnsoncodehk/volar) 为 `<script lang="ts">` 块提供类型检查，还包括对模板内表达式和组件之间 props 的验证。
+- [Volar](https://github.com/johnsoncodehk/volar) 插件能够为 `<script lang="ts">` 块提供类型检查，也能对模板内表达式和组件之间 props 提供自动补全和类型验证。
 
 - 使用 [`vue-tsc`](https://github.com/johnsoncodehk/volar/tree/master/packages/vue-tsc) 可以在命令行中执行相同的类型检查，通常用来生成单文件组件的 `d.ts` 文件。
 
 ## 测试 {#testing}
 
-请见主要介绍这个的文章：[Testing Guide](/guide/scaling-up/testing)。
+具体细节请参考章节：[测试指南](/guide/scaling-up/testing)。
 
 - [Cypress](https://www.cypress.io/) 推荐用于 E2E 测试。也可以通过 [Cypress 组件测试运行器](https://docs.cypress.io/guides/component-testing/introduction)来给 Vue SFC 作单文件组件测试。
 
 - [Vitest](https://vitest.dev/) 是一个追求更快运行速度的测试运行器，由 Vue / Vite 团队成员开发。主要针对基于 Vite 的应用设计，可以为组件提供即时响应的测试反馈。
 
-- [Jest](https://jestjs.io/) 可以通过 [vite-jest](https://github.com/sodatea/vite-jest) 配合 Vite 使用。不过只推荐在你已经有一套基于 Jest 的测试集、且想要迁移到基于 Vite 的开发配置时使用，因为 Vitest 会提供类似的功能，但集成更方便高效。
+- [Jest](https://jestjs.io/) 可以通过 [vite-jest](https://github.com/sodatea/vite-jest) 配合 Vite 使用。不过只推荐在你已经有一套基于 Jest 的测试集、且想要迁移到基于 Vite 的开发配置时使用，因为 Vitest 也能够提供类似的功能，且后者与 Vite 的集成更方便高效。
 
 ## 代码规范 {#linting}
 

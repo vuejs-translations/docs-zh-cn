@@ -36,7 +36,7 @@ export default {
 }
 ```
 
-这里，我们使用 `watch` 选项来侦听 `count` property 的变化。当 `count` 改变时，侦听回调将被调用，并且接收新值作为参数。更多详情请参阅 <a target="_blank" href="/guide/essentials/watchers.html">指南——侦听器</a>.
+这里，我们使用 `watch` 选项来侦听 `count` 属性的变化。当 `count` 改变时，侦听回调将被调用，并且接收新值作为参数。更多详情请参阅 <a target="_blank" href="/guide/essentials/watchers.html">指南——侦听器</a>.
 
 </div>
 

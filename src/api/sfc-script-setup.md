@@ -113,7 +113,7 @@ import { FooBar as FooBarChild } from './components'
 
 ### 命名空间组件 {#namespaced-components}
 
-可以使用带点的组件标记，例如 `<Foo.Bar>` 来引用嵌套在对象 property 中的组件。这在需要从单个文件中导入多个组件的时候非常有用：
+可以使用带点的组件标记，例如 `<Foo.Bar>` 来引用嵌套在对象属性中的组件。这在需要从单个文件中导入多个组件的时候非常有用：
 
 ```vue
 <script setup>
@@ -181,7 +181,7 @@ const emit = defineEmits(['change', 'delete'])
 
 使用 `<script setup>` 的组件是**默认关闭**的——即通过模板 ref 或者 `$parent` 链获取到的组件的公开实例，**不会**暴露任何在 `<script setup>` 中声明的绑定。
 
-通过 `defineExpose` 编译器宏来显式指定在 `<script setup>` 组件中要暴露出去的 property：
+通过 `defineExpose` 编译器宏来显式指定在 `<script setup>` 组件中要暴露出去的属性：
 
 ```vue
 <script setup>
@@ -306,7 +306,7 @@ const props = withDefaults(defineProps<Props>(), {
 })
 ```
 
-上面代码会被编译为等价的运行时 prop 的 `default` 选项。此外，`withDefaults` 辅助函数提供了对默认值的类型检查，并确保返回的 `props` 的类型删除了已声明默认值的 property 的可选标志。
+上面代码会被编译为等价的运行时 prop 的 `default` 选项。此外，`withDefaults` 辅助函数提供了对默认值的类型检查，并确保返回的 `props` 的类型删除了已声明默认值的属性的可选标志。
 
 ## 限制  {#restrictions}
 

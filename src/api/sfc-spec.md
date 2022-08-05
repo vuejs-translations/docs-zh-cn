@@ -62,7 +62,7 @@ export default {
 
 ### 自定义块 {#custom-blocks}
 
-在一个 `*.vue` 文件中可以为任何项目特定需求使用额外的自定义块。举个例子，一个用作写文档的 `<docs>` 块。这里是一些自定义块的真实用例：
+在一个 `*.vue` 文件中可以为任何项目特定需求使用额外的自定义块。举例来说，一个用作写文档的 `<docs>` 块。这里是一些自定义块的真实用例：
 
 - [Gridsome：`<page-query>`](https://gridsome.org/docs/querying-data/)
 - [vite-plugin-vue-gql：`<gql>`](https://github.com/wheatjs/vite-plugin-vue-gql)

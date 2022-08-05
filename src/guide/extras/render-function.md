@@ -4,7 +4,7 @@ outline: deep
 
 # 渲染函数 & JSX {#render-functions-jsx}
 
-在绝大多数情况下，Vue 推荐使用模板语法来搭建 HTML。然而在某些使用场景下，我们真的需要用到 JavaScript 完全的编程能力。这时**渲染函数**就派上用场了。
+在绝大多数情况下，Vue 推荐使用模板语法来创建应用。然而在某些使用场景下，我们真的需要用到 JavaScript 完全的编程能力。这时**渲染函数**就派上用场了。
 
 > 如果你还不熟悉虚拟 DOM 和渲染函数的概念的话，请确保先阅读[渲染机制](/guide/extras/rendering-mechanism.html)章节。
 
@@ -26,7 +26,7 @@ const vnode = h(
 )
 ```
 
-`h()` 是 **hyperscript** 的简称——意思是“能生成 HTML (超文本标记语言) 的 JavaScript”。这个名字来源于许多虚拟 DOM 实现时共享的约定。一个更准确的名称应该是 `createVnode()`，但当你需要多次使用渲染函数时，一个简短的名字能更好地帮到你。
+`h()` 是 **hyperscript** 的简称——意思是“能生成 HTML (超文本标记语言) 的 JavaScript”。这个名字来源于许多虚拟 DOM 实现默认形成的约定。一个更准确的名称应该是 `createVnode()`，但当你需要多次使用渲染函数时，一个简短的名字会更省力。
 
 `h()` 函数的使用方式非常的灵活：
 
@@ -73,7 +73,7 @@ vnode.key // null
 ```
 
 ::: warning 注意事项
-完整的 `VNode` 接口包含其他内部 property，但是强烈建议避免使用这些没有在这里列举出的 property。这样能够避免因内部 property 变更而导致的不兼容性问题。
+完整的 `VNode` 接口包含其他内部属性，但是强烈建议避免使用这些没有在这里列举出的属性。这样能够避免因内部属性变更而导致的不兼容性问题。
 :::
 
 ### 声明渲染函数 {#declaring-render-function}
@@ -186,7 +186,7 @@ function Hello() {
 }
 ```
 
-没错，这就是一个有效的 Vue 组件！参阅[函数式组件](#functional-components)来了解更多语法细节。
+没错，这就是一个合法的 Vue 组件！参阅[函数式组件](#functional-components)来了解更多语法细节。
 
 ### Vnodes 必须唯一 {#vnodes-must-be-unique}
 
@@ -628,7 +628,7 @@ export default {
 
 ### 自定义指令 {#custom-directives}
 
-可以使用 [`withDirectives`](/api/render-function.html#withdirectives) 将自定义指令应用于 VNode：
+可以使用 [`withDirectives`](/api/render-function.html#withdirectives) 将自定义指令应用于 vnode：
 
 ```js
 import { h, withDirectives } from 'vue'
@@ -649,9 +649,9 @@ const vnode = withDirectives(h('div'), [
 
 ## 函数式组件 {#functional-components}
 
-函数式组件是自身没有任何状态的组件的另一种形式。它们在渲染过程中不会创建组件实例，并跳过常规的组件生命周期。
+函数式组件是一种定义自身没有任何状态的组件的方式。它们很像纯函数：接收 props，返回 vnodes。函数式组件在渲染过程中不会创建组件实例（也就是说，没有 `this`），也不会触发常规的组件生命周期钩子。
 
-我们使用的是一个简单函数，而不是一个选项对象，来创建函数式组件。该函数实际上就是该组件的 `render` 函数。
+我们用一个普通的函数而不是一个选项对象来创建函数式组件。该函数实际上就是该组件的渲染函数。
 
 <div class="composition-api">
 
@@ -674,11 +674,11 @@ function MyComponent(props, context) {
 }
 ```
 
-第二个参数 `context` 包含三个 property：`attrs`、 `emit` 和 `slots`。它们分别相当于实例的 [`$attrs`](/api/component-instance.html#attrs)、[`$emit`](/api/component-instance.html#emit) 和 [`$slots`](/api/component-instance.html#slots) 这几个 property。
+第二个参数 `context` 包含三个属性：`attrs`、 `emit` 和 `slots`。它们分别相当于组件实例的 [`$attrs`](/api/component-instance.html#attrs)、[`$emit`](/api/component-instance.html#emit) 和 [`$slots`](/api/component-instance.html#slots) 这几个属性。
 
 </div>
 
-大多数常规组件的配置选项在函数式组件中都不可用。然而我们还是可以把 [`props`](/api/options-state.html#props) 和 [`emits`](/api/options-state.html#emits) 作为 property 加入，以达到定义它们的目的：
+大多数常规组件的配置选项在函数式组件中都不可用，除了 [`props`](/api/options-state.html#props) 和 [`emits`](/api/options-state.html#emits)。我们可以给函数式组件添加对应的属性来声明它们：
 
 ```js
 MyComponent.props = ['value']

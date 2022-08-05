@@ -4,29 +4,29 @@ import ListMove from './transition-demos/ListMove.vue'
 import ListStagger from './transition-demos/ListStagger.vue'
 </script>
 
-# TransitionGroup·过渡组 {#transitiongroup}
+# TransitionGroup
 
-`<TransitionGroup>` 是一个内置组件，设计用于呈现一个列表中的元素或组件的插入、移除和顺序改变的动画效果。
+`<TransitionGroup>` 是一个内置组件，用于对 `v-for` 列表中的元素或组件的插入、移除和顺序改变添加动画效果。
 
 ## 和 `<Transition>` 的区别 {#differences-from-transition}
 
-`<TransitionGroup>` 支持和 `<Transition>` 基本相同的 prop、CSS 过渡 class 和 JavaScript 钩子监听器，但有以下几点区别：
+`<TransitionGroup>` 支持和 `<Transition>` 基本相同的 props、CSS 过渡 class 和 JavaScript 钩子监听器，但有以下几点区别：
 
-- 默认情况下，它不会渲染一个包装器元素。但你可以通过传入 `tag` prop 来指定一个元素作为包装器元素来渲染。
+- 默认情况下，它不会渲染一个容器元素。但你可以通过传入 `tag` prop 来指定一个元素作为容器元素来渲染。
 
 - [过渡模式](./transition.html#transition-modes)在这里不可用，因为我们不再是在互斥的元素之间进行切换。
 
-- 其中的元素**总是必须**有一个独一无二的 `key` attribute。
+- 列表中的每个元素都**必须**有一个独一无二的 `key` attribute。
 
-- CSS 过渡 class 会被应用在其中的每一个元素上，**而不是**这个组的容器上。
+- CSS 过渡 class 会被应用在列表内的元素上，**而不是**容器元素上。
 
 :::tip
-当你是在 [DOM 模板](/guide/essentials/component-basics.html#dom-template-parsing-caveats)中使用时，组件名需要写为 `<transition-group>`。
+当在 [DOM 模板](/guide/essentials/component-basics.html#dom-template-parsing-caveats)中使用时，组件名需要写为 `<transition-group>`。
 :::
 
-## 进入 / 离开过渡 {#enter-leave-transitions}
+## 进入 / 离开动画 {#enter-leave-transitions}
 
-这里是 `<TransitionGroup>` 对一个 `v-for` 列表应用进入 / 离开过渡的示例：
+这里是 `<TransitionGroup>` 对一个 `v-for` 列表添加进入 / 离开动画的示例：
 
 ```vue-html
 <TransitionGroup name="list" tag="ul">
@@ -50,7 +50,7 @@ import ListStagger from './transition-demos/ListStagger.vue'
 
 <ListBasic />
 
-## 移动过渡 {#move-transitions}
+## 移动动画 {#move-transitions}
 
 上面的示例有一些明显的缺陷：当某一项被插入或移除时，它周围的元素会立即发生“跳跃”而不是平稳地移动。我们可以通过添加一些额外的 CSS 规则来解决这个问题：
 
@@ -80,9 +80,9 @@ import ListStagger from './transition-demos/ListStagger.vue'
 
 [完整的示例](/examples/#list-transition)
 
-## 交错的列表过渡 {#staggering-list-transitions}
+## 渐进延迟列表动画 {#staggering-list-transitions}
 
-如果通过 data attribute 用 JavaScript 来执行过渡时，那么我们也可以实现列表中的交错过渡。首先，我们把某一项的索引作为 DOM 元素上的一个 data attribute 呈现出来。
+通过在 JavaScript 钩子中读取元素的 data attribute，我们可以实现带渐进延迟的列表动画。首先，我们把每一个元素的索引渲染为该元素上的一个 data attribute：
 
 ```vue-html{11}
 <TransitionGroup
@@ -102,7 +102,7 @@ import ListStagger from './transition-demos/ListStagger.vue'
 </TransitionGroup>
 ```
 
-接着，在 JavaScript 钩子中，我们基于这个 data attribute 对该元素执行一个延迟动画。以下是一个基于 [GreenSock library](https://greensock.com/) 的动画示例：
+接着，在 JavaScript 钩子中，我们基于当前元素的 data attribute 对该元素的进场动画添加一个延迟。以下是一个基于 [GreenSock library](https://greensock.com/) 的动画示例：
 
 ```js{5}
 function onEnter(el, done) {

@@ -50,14 +50,14 @@
   ```
 
   :::tip
-  类型扩充必须被放置在一个模块 `.ts` 或 `.d.ts` 文件中。查看[类型扩充指南](/guide/typescript/options-api.html#augmenting-global-properties)了解更多细节
+  类型扩展必须被放置在一个模块 `.ts` 或 `.d.ts` 文件中。查看[类型扩展指南](/guide/typescript/options-api.html#augmenting-global-properties)了解更多细节
   :::
 
-- **参考**：[指南 - 扩充全局属性](/guide/typescript/options-api.html#augmenting-global-properties)
+- **参考**：[指南 - 扩展全局属性](/guide/typescript/options-api.html#augmenting-global-properties)
 
 ## ComponentCustomOptions {#componentcustomoptions}
 
-用来扩充组件选项类型以支持自定义选项。
+用来扩展组件选项类型以支持自定义选项。
 
 - **示例**
 
@@ -72,14 +72,14 @@
   ```
 
   :::tip
-  类型扩充必须被放置在一个模块 `.ts` 或 `.d.ts` 文件中。查看[类型扩充指南](/guide/typescript/options-api.html#augmenting-global-properties)了解更多细节。
+  类型扩展必须被放置在一个模块 `.ts` 或 `.d.ts` 文件中。查看[类型扩展指南](/guide/typescript/options-api.html#augmenting-global-properties)了解更多细节。
   :::
 
-- **参考**：[指南 - 扩充自定义选项](/guide/typescript/options-api.html#augmenting-custom-options)
+- **参考**：[指南 - 扩展自定义选项](/guide/typescript/options-api.html#augmenting-custom-options)
 
 ## ComponentCustomProps {#componentcustomprops}
 
-用于扩充允许的 TSX prop，以便在 TSX 元素上使用没有在组件选项上定义过的 prop。
+用于扩展允许的 TSX prop，以便在 TSX 元素上使用没有在组件选项上定义过的 prop。
 
 - **示例**
 
@@ -99,12 +99,12 @@
   ```
 
   :::tip
-  类型扩充必须被放置在一个模块 `.ts` 或 `.d.ts` 文件中。查看[类型扩充指南](/guide/typescript/options-api.html#augmenting-global-properties)了解更多细节。
+  类型扩展必须被放置在一个模块 `.ts` 或 `.d.ts` 文件中。查看[类型扩展指南](/guide/typescript/options-api.html#augmenting-global-properties)了解更多细节。
   :::
 
 ## CSSProperties {#cssproperties}
 
-用于扩充在样式属性绑定上允许的值的类型。
+用于扩展在样式属性绑定上允许的值的类型。
 
 - **示例**
 
@@ -130,7 +130,7 @@
   :::
 
 :::info 参考
-SFC `<style>` 标签支持通过 `v-bind:CSS` 函数来链接 CSS 值与组件状态。这允许在没有类型扩充的情况下自定义属性。
+SFC `<style>` 标签支持通过 `v-bind:CSS` 函数来链接 CSS 值与组件状态。这允许在没有类型扩展的情况下自定义属性。
 
 - [CSS 中的 v-bind()](/api/sfc-css-features.html#v-bind-in-css)
   :::

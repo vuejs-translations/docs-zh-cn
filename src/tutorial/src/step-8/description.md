@@ -1,6 +1,6 @@
 # 计算属性
 
-让我们从上一步的 todo 列表上继续构建。现在，我们已经给每一个 todo 添加了切换功能。这是通过给每一个 todo 对象添加 `done` property 来实现的，并且使用了 `v-model` 将其绑定到复选框上：
+让我们从上一步的 todo 列表上继续构建。现在，我们已经给每一个 todo 添加了切换功能。这是通过给每一个 todo 对象添加 `done` 属性来实现的，并且使用了 `v-model` 将其绑定到复选框上：
 
 ```vue-html{2}
 <li v-for="todo in todos">
@@ -13,7 +13,7 @@
 
 <div class="options-api">
 
-引入 <a target="_blank" href="/guide/essentials/computed.html">计算属性</a>。我们可以使用 `computed` 选项声明一个响应式的 property，它的值由其他 property 计算而来：
+引入 <a target="_blank" href="/guide/essentials/computed.html">计算属性</a>。我们可以使用 `computed` 选项声明一个响应式的属性，它的值由其他属性计算而来：
 
 <div class="sfc">
 

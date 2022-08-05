@@ -155,7 +155,7 @@
 
   Vnode 被认为是一旦创建就不能修改的，你不应该修改已创建的 vnode 的 prop，而应该附带不同的/额外的 prop 来克隆它。
 
-  Vnode 具有特殊的内部 property，因此克隆它并不像 object spread 一样简单。`cloneVNode()` 处理了大部分这样的内部逻辑。
+  Vnode 具有特殊的内部属性，因此克隆它并不像 object spread 一样简单。`cloneVNode()` 处理了大部分这样的内部逻辑。
 
 - **示例**
 

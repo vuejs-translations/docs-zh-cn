@@ -1,12 +1,12 @@
 # 组件基础 {#components-basics}
 
-组件允许我们将 UI 划分为独立的、可重用的部分来思考。组件在应用程序中常常被组织成层层嵌套的树状结构：
+组件允许我们将 UI 划分为独立的、可重用的部分，并且可以对每个部分进行单独的思考。在实际应用程序中，组件常常被组织成层层嵌套的树状结构：
 
 ![组件树](./images/components.png)
 
 <!-- https://www.figma.com/file/qa7WHDQRWuEZNRs7iZRZSI/components -->
 
-这和我们嵌套 HTML 元素的方式类似，Vue 实现了自己的组件数据模型，使我们可以在每个组件内封装自定义内容与逻辑。Vue 同样也能很好地配合原生 Web Component。如果你想知道 Vue 组件与原生 Web Components 之间的关系，可以[阅读此章节](/guide/extras/web-components.html)。
+这和我们嵌套 HTML 元素的方式类似，Vue 实现了自己的组件模型，使我们可以在每个组件内封装自定义内容与逻辑。Vue 同样也能很好地配合原生 Web Component。如果你想知道 Vue 组件与原生 Web Components 之间的关系，可以[阅读此章节](/guide/extras/web-components.html)。
 
 ## 定义一个组件 {#defining-a-component}
 
@@ -138,7 +138,7 @@ import ButtonCounter from './ButtonCounter.vue'
 
 </div>
 
-当然，你也可以全局地注册一个组件，使得它在当前应用中的任何组件上都可以使用，而不需要额外再导入。关于组件的全局注册和局部注册两种方式利弊的讨论，我们放在了[组件注册](/guide/components/registration.html)这一章节中讨论。
+当然，你也可以全局地注册一个组件，使得它在当前应用中的任何组件上都可以使用，而不需要额外再导入。关于组件的全局注册和局部注册两种方式的利弊，我们放在了[组件注册](/guide/components/registration.html)这一章节中专门讨论。
 
 组件可以被重用任意多次：
 
@@ -164,7 +164,7 @@ import ButtonCounter from './ButtonCounter.vue'
 
 在单文件组件中，推荐为子组件使用 `PascalCase` 的标签名，以此来和原生的 HTML 元素作区分。虽然原生 HTML 标签名是不区分大小写的，但 Vue 单文件组件是可以在编译中区分大小写的。我们也可以使用 `/>` 来关闭一个标签。
 
-如果你是直接在 DOM 中书写模板 (例如原生 `<template>` 元素的内容)，模板的编译将服从于原生 HTML 的解析行为。在这种情况下，你应该需要使用 `kebab-case` 形式并显式地关闭这些组件的标签。
+如果你是直接在 DOM 中书写模板 (例如原生 `<template>` 元素的内容)，模板的编译需要遵从浏览器中 HTML 的解析行为。在这种情况下，你应该需要使用 `kebab-case` 形式并显式地关闭这些组件的标签。
 
 ```vue-html
 <!-- 如果是在 DOM 中书写该模板 -->
@@ -179,7 +179,7 @@ import ButtonCounter from './ButtonCounter.vue'
 
 如果我们正在构建一个博客，我们可能需要一个表示博客文章的组件。我们希望所有的博客文章分享相同的视觉布局，但有不同的内容。要实现这样的效果自然必须向组件中传递数据，例如每篇文章标题和内容，这就会使用到 props。
 
-Props 是一种特别的 attributes，你可以在组件上声明注册。要传递给博客文章组件一个标题，我们必须在组件的 props 列表上声明它，使用 <span class="options-api">[`props`](/api/options-state.html#props) 选项</span><span class="composition-api">[`defineProps`](/api/sfc-script-setup.html#defineprops-defineemits) 宏</span>：
+Props 是一种特别的 attributes，你可以在组件上声明注册。要传递给博客文章组件一个标题，我们必须在组件的 props 列表上声明它。这里要用到 <span class="options-api">[`props`](/api/options-state.html#props) 选项</span><span class="composition-api">[`defineProps`](/api/sfc-script-setup.html#defineprops-defineemits) 宏</span>：
 
 <div class="options-api">
 
@@ -212,16 +212,16 @@ defineProps(['title'])
 </template>
 ```
 
-`defineProps` 是一个仅 `<script setup>` 中可用的编译宏命令，并不需要显式地导入。声明的 props 会自动暴露给模板。`defineProps` 会返回一个对象，其中包含了可以传递给组件的所有 props，因此我们在 JavaScript 中使用：
+`defineProps` 是一个仅 `<script setup>` 中可用的编译宏命令，并不需要显式地导入。声明的 props 会自动暴露给模板。`defineProps` 会返回一个对象，其中包含了可以传递给组件的所有 props：
 
 ```js
 const props = defineProps(['title'])
 console.log(props.title)
 ```
 
-你也可以看看[为组件 props 标注类型](/guide/typescript/composition-api.html#typing-component-props)这一章了解更多。<sup class="vt-badge ts" />
+TypeScript 用户请参考：[为组件 props 标注类型](/guide/typescript/composition-api.html#typing-component-props)<sup class="vt-badge ts" />
 
-如果你没有使用 `<script setup>`，props 必须以 `props` 选项的方式声明，props 对象会作为 `setup()` 函数的第一个参数：
+如果你没有使用 `<script setup>`，props 必须以 `props` 选项的方式声明，props 对象会作为 `setup()` 函数的第一个参数被传入：
 
 ```js
 export default {
@@ -234,7 +234,7 @@ export default {
 
 </div>
 
-一个组件可以有任意多的 props，默认情况下，任何值都可以传递给任何 prop。
+一个组件可以有任意多的 props，默认情况下，所有 prop 都接受任意类型的值。
 
 当一个 prop 被注册后，可以像这样以自定义 attribute 的形式传递数据给它：
 
@@ -244,7 +244,7 @@ export default {
 <BlogPost title="Why Vue is so fun" />
 ```
 
-然而在某些应用中，你也许在父组件中有如下的一个博客文章数组：
+在实际应用中，我们可能在父组件中会有如下的一个博客文章数组：
 
 <div class="options-api">
 
@@ -276,7 +276,7 @@ const posts = ref([
 
 </div>
 
-则可以使用 `v-for` 来渲染它们：
+这种情况下，我们可以使用 `v-for` 来渲染它们：
 
 ```vue-html
 <BlogPost
@@ -297,15 +297,15 @@ const posts = ref([
 
 </div>
 
-请注意 `v-bind` 是如何用来传递动态 prop 值的。当事先不知道要渲染的确切内容时，这一点特别有用。
+留意我们是如何使用 `v-bind` 来传递动态 prop 值的。当事先不知道要渲染的确切内容时，这一点特别有用。
 
-以上就是关于 props，目前你需要了解的所有知识了，但当你顺利地完成了本页的阅读后，如果还想知道更多细节，我们推荐你继续阅读关于 props 的[完整指引](/guide/components/props.html)。
+以上就是目前你需要了解的关于 props 的全部了。如果你看完本章节后还想知道更多细节，我们推荐你深入阅读关于 props 的[完整指引](/guide/components/props.html)。
 
 ## 监听事件 {#listening-to-events}
 
-继续开发我们的 `<BlogPost>` 组件，我们会发现有时候需要与父组件进行交互。例如，要在此处实现 A11y 的需求，将博客文章的文字能够放大，而页面的其余部分仍使用默认字号。
+让我们继续关注我们的 `<BlogPost>` 组件。我们会发现有时候它需要与父组件进行交互。例如，要在此处实现 A11y 的需求，将博客文章的文字能够放大，而页面的其余部分仍使用默认字号。
 
-在父组件中，我们可以添加一个 `postFontSize` <span class="options-api">数据 property</span><span class="composition-api">ref</span> 来实现这个效果：
+在父组件中，我们可以添加一个 `postFontSize` <span class="options-api">数据属性</span><span class="composition-api">ref</span> 来实现这个效果：
 
 <div class="options-api">
 
@@ -333,7 +333,7 @@ const postFontSize = ref(1)
 
 </div>
 
-可以在模板中用来控制所有博客文章的字体大小：
+在模板中用它来控制所有博客文章的字体大小：
 
 ```vue-html{1,7}
 <div :style="{ fontSize: postFontSize + 'em' }">
@@ -345,7 +345,7 @@ const postFontSize = ref(1)
 </div>
 ```
 
-现在，让我们给 `<BlogPost>` 组件添加一个按钮：
+然后，给 `<BlogPost>` 组件添加一个按钮：
 
 ```vue{5}
 <!-- BlogPost.vue, 省略了 <script> -->
@@ -391,7 +391,7 @@ const postFontSize = ref(1)
 
 </div>
 
-我们可以通过 <span class="options-api">[`emits`](/api/options-state.html#emits) 选项</span><span class="composition-api">[`defineEmits`](/api/sfc-script-setup.html#defineprops-defineemits) 宏</span>来选择性地声明需要抛出的事件：
+我们可以通过 <span class="options-api">[`emits`](/api/options-state.html#emits) 选项</span><span class="composition-api">[`defineEmits`](/api/sfc-script-setup.html#defineprops-defineemits) 宏</span>来声明需要抛出的事件：
 
 <div class="options-api">
 
@@ -418,7 +418,7 @@ defineEmits(['enlarge-text'])
 
 </div>
 
-这记录了一个组件发出的所有事件，并可选择对其进行[验证](/guide/components/events.html#validate-emitted-events)。这还使得 Vue 避免了将它们作为原生事件监听器隐式地应用于子组件的根元素。
+这声明了一个组件可能触发的所有事件，还可以对事件的参数进行[验证](/guide/components/events.html#validate-emitted-events)。同时，这还可以让 Vue 避免将它们作为原生事件监听器隐式地应用于子组件的根元素。
 
 <div class="composition-api">
 
@@ -432,7 +432,7 @@ emit('enlarge-text')
 </script>
 ```
 
-你也可以看看[为组件 emits 标注类型](/guide/typescript/composition-api.html#typing-component-emits)这一章了解更多。<sup class="vt-badge ts" />
+TypeScript 用户请参考：[为组件 emits 标注类型](/guide/typescript/composition-api.html#typing-component-emits)<sup class="vt-badge ts" />
 
 如果你没有在使用 `<script setup>`，你可以通过 `emits` 选项定义组件会抛出的事件。你可以从 `setup()` 函数的第二个参数，即 setup 上下文对象上访问到 `emit` 函数：
 
@@ -447,11 +447,11 @@ export default {
 
 </div>
 
-以上就是关于组件自定义事件，目前你需要了解的所有知识了。但当你顺利地完成了本页的阅读后，如果还想知道更多细节，我们推荐你继续阅读组件的[自定义事件](/guide/components/events)。
+以上就是目前你需要了解的关于组件自定义事件的所有知识了。如果你看完本章节后还想知道更多细节，请深入阅读[组件事件](/guide/components/events)章节。
 
 ## 通过插槽来分配内容 {#content-distribution-with-slots}
 
-和 HTML 元素一样，像这样能够向组件中传递内容是非常有用的：
+一些情况下我们会希望能和 HTML 元素一样向组件中传递内容：
 
 ```vue-html
 <AlertBox>
@@ -459,7 +459,7 @@ export default {
 </AlertBox>
 ```
 
-这会渲染成这样：
+我们期望能渲染成这样：
 
 :::danger This is an Error for Demo Purposes
 Something bad happened.
@@ -482,7 +482,7 @@ Something bad happened.
 </style>
 ```
 
-正如你上面所看到的，我们使用 `<slot>` 作为一个占位符，之后的内容就会放在这里。
+如上所示，我们使用 `<slot>` 作为一个占位符，父组件传递进来的内容就会渲染在这里。
 
 <div class="options-api">
 
@@ -495,11 +495,11 @@ Something bad happened.
 
 </div>
 
-以上就是关于插槽，目前你需要了解的所有知识了。但当你顺利地完成了本页的阅读后，如果还想知道更多细节，我们推荐你继续阅读组件的[插槽](/guide/components/slots)。
+以上就是目前你需要了解的关于插槽的所有知识了。如果你看完本章节后还想知道更多细节，请深入阅读[组件插槽](/guide/components/slots)章节。
 
 ## 动态组件 {#dynamic-components}
 
-有的需求会想要在两个组件间来回切换，比如 Tab 界面：
+有些场景会需要在两个组件间来回切换，比如 Tab 界面：
 
 <div class="options-api">
 
@@ -538,14 +538,14 @@ Something bad happened.
 
 你也可以使用 `is` attribute 来创建一般的 HTML 元素。
 
-当使用 `<component :is="...">` 来在多个组件间作切换时，组件会在被切换掉后卸载。我们可以通过 [`<KeepAlive>` 组件](/guide/built-ins/keep-alive.html)强制不活跃的组件仍然保持“存活”的状态。
+当使用 `<component :is="...">` 来在多个组件间作切换时，被切换掉的组件会被卸载。我们可以通过 [`<KeepAlive>` 组件](/guide/built-ins/keep-alive.html)强制被切换掉的组件仍然保持“存活”的状态。
 
 ## DOM 模板解析注意事项 {#dom-template-parsing-caveats}
 
-如果你想在 DOM 中直接书写 Vue 模板，Vue 则必须从 DOM 中获取模板字符串。因为浏览器的原生 HTML 解析行为，因此有一些需要注意的事项。
+如果你想在 DOM 中直接书写 Vue 模板，Vue 则必须从 DOM 中获取模板字符串。由于浏览器的原生 HTML 解析行为限制，有一些需要注意的事项。
 
 :::tip
-请注意下面讨论只适用于直接在 DOM 中编写模板的情况。如果你使用来自以下来源的字符串模板，它们不适用：
+请注意下面讨论只适用于直接在 DOM 中编写模板的情况。如果你使用来自以下来源的字符串模板，就不需要顾虑这些限制了：
 
 - 单文件组件
 - 内联模板字符串 (例如 `template: '...'`)
@@ -580,7 +580,7 @@ const BlogPost = {
 <MyComponent />
 ```
 
-这是因为 Vue 的模板解析器将 `/>` 作为标签关闭的标志，无关其类型。
+这是因为 Vue 的模板解析器支持任意标签使用 `/>` 作为标签关闭的标志。
 
 然而在 DOM 模板中，我们必须显式地写出关闭标签：
 
@@ -588,7 +588,7 @@ const BlogPost = {
 <my-component></my-component>
 ```
 
-这是由于 HTML 只允许[一小部分特殊的元素](https://html.spec.whatwg.org/multipage/syntax.html#void-elements)省略其关闭标签，最常见的就是 `<input>` 和 `<img>`。对于其他的元素来说，如果你省略了关闭标签，原生的 HTML 解析器会认为开启的标签永远没有结束，用下面这个代码片段举个例子：
+这是由于 HTML 只允许[一小部分特殊的元素](https://html.spec.whatwg.org/multipage/syntax.html#void-elements)省略其关闭标签，最常见的就是 `<input>` 和 `<img>`。对于其他的元素来说，如果你省略了关闭标签，原生的 HTML 解析器会认为开启的标签永远没有结束，用下面这个代码片段举例来说：
 
 ```vue-html
 <my-component /> <!-- 我们想要在这里关闭标签... -->
@@ -627,6 +627,6 @@ const BlogPost = {
 当使用在原生 HTML 元素上时，`is` 的值必须加上前缀 `vue:` 才可以被解析为一个 Vue 组件。这一点是必要的，为了避免和原生的[自定义内置元素](https://html.spec.whatwg.org/multipage/custom-elements.html#custom-elements-customized-builtin-example)相混淆。
 :::
 
-以上就是你需要了解的关于 DOM 模板解析的所有注意事项，同时也是 Vue *基础*部分的所有内容。祝贺你！虽然还有很多需要学习的，但你可以先暂停一下，去用 Vue 构造一些有趣的东西，或者看看一些[示例](/examples/)。
+以上就是你需要了解的关于 DOM 模板解析的所有注意事项，同时也是 Vue *基础*部分的所有内容。祝贺你！虽然还有很多需要学习的，但你可以先暂停一下，去用 Vue 做一些有趣的东西，或者研究一些[示例](/examples/)。
 
 完成了本页的阅读后，回顾一下你刚才所学到的知识，如果还想知道更多细节，我们推荐你继续阅读关于组件的完整指引。

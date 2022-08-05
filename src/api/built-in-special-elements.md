@@ -67,7 +67,7 @@
   <component :is="href ? 'a' : 'span'"></component>
   ```
 
-  [内置组件](./built-in-components.html)都可以传递给 `is`，但是如果想通过名称传递则必须先对其进行注册。举个例子：
+  [内置组件](./built-in-components.html)都可以传递给 `is`，但是如果想通过名称传递则必须先对其进行注册。举例来说：
 
   ```vue
   <script>
@@ -95,7 +95,7 @@
   ```vue
   <script setup>
   import { ref } from 'vue'
-  
+
   const tag = ref('input')
   const username = ref('')
   </script>
