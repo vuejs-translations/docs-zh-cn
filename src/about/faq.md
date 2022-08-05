@@ -26,11 +26,7 @@ Vue 3 是性能最强的主流前端框架之一，可以轻松处理大多数 w
 
 跑分方面，Vue 在 [js-framework-benchmark](https://rawgit.com/krausest/js-framework-benchmark/master/webdriver-ts-results/table.html) 中的表现比 React 和 Angular 要好得多。在该基准测试中，它还与一些生产环境下最快级别的非虚拟 DOM 框架并驾齐驱。
 
-<<<<<<< HEAD
-请注意，像上面这样的合成基准测试的侧重点在于原始渲染性能的专属优化，可能不能完全代表真实世界的性能结果。如果你更关心页面加载性能，欢迎使用 [WebPageTest](https://www.webpagetest.org/lighthouse) 或 [PageSpeed Insights](https://pagespeed.web.dev/) 来审核本网站。本网站由 Vue 驱动，具有静态站点生成器的预渲染、全页面激活和单页应用客户端导航功能。它在模拟较慢的 4G 网络和 4 倍 CPU 节流的 Moto G4 上的性能得分为 100 分。
-=======
 请注意，像上面这样的跑分的侧重点在于原始渲染性能在特定情况下的优化，因此不能完全代表真实世界的性能结果。如果你更关心页面加载性能，欢迎用 [WebPageTest](https://www.webpagetest.org/lighthouse) 或是 [PageSpeed Insights](https://pagespeed.web.dev/) 来测试本站。本文档站是一个完全由 Vue 本身构建，通过静态生成预渲染，并在客户端进行 hydration 的单页应用。它在模拟 4 倍 CPU 降速的 Moto G4 + 低速 4G 网络的情况下依然能获得 100 分的性能得分。
->>>>>>> 434ab0c8 (review: faq)
 
 你可以在[渲染机制](/guide/extras/rendering-mechanism.html)章节了解更多关于 Vue 如何自动优化运行时性能的信息，也可以在[性能优化指南](/guide/best-practices/performance.html)中了解如何在特别苛刻的情况下优化 Vue 应用。
 
