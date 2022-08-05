@@ -289,7 +289,7 @@ export const sidebar = {
           link: '/guide/extras/ways-of-using-vue'
         },
         {
-          text: '组合式 API FAQ',
+          text: '组合式 API 常见问答',
           link: '/guide/extras/composition-api-faq'
         },
         {
