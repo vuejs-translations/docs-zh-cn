@@ -52,7 +52,7 @@
 
 - **详细信息**
 
-  `v-show` 通过设置内联样式的 `display` CSS 属性来工作，当元素可见时将使用初始 `display` 值。当条件改变时，也会触发过度效果。
+  `v-show` 通过设置内联样式的 `display` CSS 属性来工作，当元素可见时将使用初始 `display` 值。当条件改变时，也会触发过渡效果。
 
 - **参考**：[条件渲染 - v-show](/guide/essentials/conditional.html#v-show)
 
