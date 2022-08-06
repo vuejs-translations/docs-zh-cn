@@ -1,4 +1,4 @@
-# 工具类型 {#utility-types}
+# TypeScript 工具类 {#utility-types}
 
 :::info
 此页面仅列出了一些可能需要解释其使用方式的常用工具类型。有关导出类型的完整列表，请查看[源代码](https://github.com/vuejs/core/blob/main/packages/runtime-core/src/index.ts#L131)。
@@ -6,7 +6,7 @@
 
 ## PropType\<T> {#proptypet}
 
-在定义运行时 props 时用更高阶的类型定义来标注一个 prop。
+用于在用运行时 props 声明时给一个 prop 标注更复杂的类型定义。
 
 - **示例**
 
@@ -79,7 +79,7 @@
 
 ## ComponentCustomProps {#componentcustomprops}
 
-用于扩展允许的 TSX prop，以便在 TSX 元素上使用没有在组件选项上定义过的 prop。
+用于扩展全局可用的 TSX props，以便在 TSX 元素上使用没有在组件选项上定义过的 props。
 
 - **示例**
 

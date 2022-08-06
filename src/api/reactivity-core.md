@@ -1,10 +1,10 @@
-# 响应性 API：核心 {#reactivity-api-core}
+# 响应式 API：核心 {#reactivity-api-core}
 
 :::info 参考
-要更好地了解响应性 API，推荐阅读下面几个指南中的章节：
+要更好地了解响应式 API，推荐阅读下面几个指南中的章节：
 
-- [响应性基础](/guide/essentials/reactivity-fundamentals.html) (with the API preference set to Composition API)
-- [深入响应性系统](/guide/extras/reactivity-in-depth.html)
+- [响应式基础](/guide/essentials/reactivity-fundamentals.html) (with the API preference set to Composition API)
+- [深入响应式系统](/guide/extras/reactivity-in-depth.html)
   :::
 
 ## ref() {#ref}

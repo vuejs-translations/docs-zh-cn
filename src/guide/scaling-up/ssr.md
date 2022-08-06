@@ -259,7 +259,7 @@ Vite 提供了内置的 [Vue 服务端渲染支持](https://vitejs.dev/guide/ssr
 
 ### 跨请求状态污染 {#cross-request-state-pollution}
 
-在状态管理一章中，我们介绍了一种[使用响应性 API 的简单状态管理模式](state-management.html#simple-state-management-with-reactivity-api)。而在 SSR 环境中，这种模式需要一些额外的调整。
+在状态管理一章中，我们介绍了一种[使用响应式 API 的简单状态管理模式](state-management.html#simple-state-management-with-reactivity-api)。而在 SSR 环境中，这种模式需要一些额外的调整。
 
 上述模式在一个 JavaScript 模块的根作用域中声明共享的状态。这是一种**单例模式**——即在应用的整个生命周期中只有一个响应式对象的实例。这在纯客户端的 Vue 应用中是可以的，因为对于浏览器的每一个页面访问，应用模块都会重新初始化。
 

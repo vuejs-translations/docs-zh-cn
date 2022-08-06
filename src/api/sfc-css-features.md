@@ -1,8 +1,8 @@
 # 单文件组件 CSS 功能 {#sfc-css-features}
 
-## CSS 作用域 {#scoped-css}
+## 组件作用域 CSS {#scoped-css}
 
-当 `<style>` 标签带有 `scoped` attribute 的时候，它的 CSS 只会应用到当前组件的元素上。这类似于 Shadow DOM 中的样式封装。它带有一些注意事项，不过好处是不需要任何的 polyfill。它的实现方式是通过 PostCSS 将以下内容：
+当 `<style>` 标签带有 `scoped` attribute 的时候，它的 CSS 只会影响当前组件的元素，和 Shadow DOM 中的样式封装类似。使用时有一些注意事项，不过好处是不需要任何的 polyfill。它的实现方式是通过 PostCSS 将以下内容：
 
 ```vue
 <style scoped>
@@ -96,7 +96,7 @@
 </style>
 ```
 
-### 作用域样式提示 {#scoped-style-tips}
+### 作用域样式须知 {#scoped-style-tips}
 
 - **作用域样式并没有消除对 class 的需求**。由于浏览器渲染各种各样 CSS 选择器的方式，`p { color: red }` 结合作用域样式使用时 (即当与 attribute 选择器组合的时候) 会慢很多倍。如果你使用 class 或者 id 来替代，例如 `.example { color: red }`，那你几乎就可以避免性能的损失。
 

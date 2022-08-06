@@ -97,7 +97,7 @@
 
 ## mergeProps() {#mergeprops}
 
-合并多个 prop 对象，用于处理含有特定的 prop 参数的情况。
+合并多个 props 对象，用于处理含有特定的 props 参数的情况。
 
 - **类型**
 
@@ -107,7 +107,7 @@
 
 - **详细信息**
 
-  `mergeProps()` 支持以下特定 prop 参数的处理，将它们合并成一个对象。
+  `mergeProps()` 支持以下特定 props 参数的处理，将它们合并成一个对象。
 
   - `class`
   - `style`

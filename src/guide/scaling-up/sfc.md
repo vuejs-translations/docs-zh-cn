@@ -36,7 +36,7 @@ export default {
 - 使用熟悉的 HTML、CSS 和 JavaScript 语法编写模块化的组件
 - [让本来就强相关的关注点自然内聚](#what-about-separation-of-concerns)
 - 预编译模板，避免运行时的编译开销
-- [组件级隔离的 CSS](/api/sfc-css-features)
+- [组件作用域的 CSS](/api/sfc-css-features)
 - [在使用组合式 API 时语法更简单](/api/sfc-script-setup)
 - 通过交叉分析模板和逻辑代码能进行更多编译时优化
 - [更好的 IDE 支持](/guide/scaling-up/tooling.html#ide-support)，提供自动补全和对模板中表达式的类型检查

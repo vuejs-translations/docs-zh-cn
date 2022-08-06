@@ -47,7 +47,7 @@
 
 ## renderToNodeStream()
 
-[Node.js Readable stream](https://nodejs.org/api/stream.html#stream_class_stream_readable) 形式的渲染输入。
+将输入渲染为一个 [Node.js Readable stream](https://nodejs.org/api/stream.html#stream_class_stream_readable) 实例。
 
 - **导出自 `vue/server-renderer`**
 
@@ -73,7 +73,7 @@
 
 ## pipeToNodeWritable()
 
-渲染和传输到现有的 [Node.js Writable stream](https://nodejs.org/api/stream.html#stream_writable_streams) 实例。
+将输入渲染并 pipe 到一个 [Node.js Writable stream](https://nodejs.org/api/stream.html#stream_writable_streams) 实例。
 
 - **导出自 `vue/server-renderer`**
 
@@ -96,7 +96,7 @@
 
 ## renderToWebStream()
 
-[Web ReadableStream](https://developer.mozilla.org/en-US/docs/Web/API/Streams_API) 形式的渲染输入。
+将输入渲染为一个 [Web ReadableStream](https://developer.mozilla.org/en-US/docs/Web/API/Streams_API) 实例。
 
 - **导出自 `vue/server-renderer`**
 
@@ -122,7 +122,7 @@
 
 ## pipeToWebWritable()
 
-渲染和传输到现有的 [Web WritableStream](https://developer.mozilla.org/en-US/docs/Web/API/WritableStream) 实例。
+将输入渲染并 pipe 到一个 [Web WritableStream](https://developer.mozilla.org/en-US/docs/Web/API/WritableStream) 实例。
 
 - **导出自 `vue/server-renderer`**
 
@@ -151,7 +151,7 @@
 
 ## renderToSimpleStream()
 
-在流模式中使用一个简单的可读接口进行渲染输入。
+通过一个简单的接口，将输入以 stream 模式进行渲染。
 
 - **导出自 `vue/server-renderer`**
 

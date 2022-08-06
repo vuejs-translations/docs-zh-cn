@@ -332,9 +332,9 @@ export const sidebar = {
     {
       text: '全局 API',
       items: [
-        { text: '引用', link: '/api/application' },
+        { text: '应用实例', link: '/api/application' },
         {
-          text: '概要',
+          text: '通用',
           link: '/api/general'
         }
       ]

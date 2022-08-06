@@ -1,4 +1,4 @@
-# 响应性 API：进阶 {#reactivity-api-advanced}
+# 响应式 API：进阶 {#reactivity-api-advanced}
 
 ## shallowRef() {#shallowref}
 

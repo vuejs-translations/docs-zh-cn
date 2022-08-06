@@ -4,7 +4,7 @@
 
 一个 Vue 单文件组件 (SFC)，通常使用 `*.vue` 作为文件扩展名，它是一种使用了类似 HTML 语法的自定义文件格式，用于定义 Vue 组件。一个 Vue 单文件组件在语法上是兼容 HTML 的。
 
-每一个 `*.vue` 文件都由三种顶层语块构成：`<template>`、`<script>` 和 `<style>`，以及一些其他的自定义块：
+每一个 `*.vue` 文件都由三种顶层语言块构成：`<template>`、`<script>` 和 `<style>`，以及一些其他的自定义块：
 
 ```vue
 <template>
@@ -74,13 +74,13 @@ export default {
 
 SFC 在以下场景中会根据**文件名**自动推导其组件名：
 
-- 开发警告信息格式
-- DevTools 审阅
-- 递归组件自引用。例如一个名为 `FooBar.vue` 的组件可以在模板中通过 `<FooBar/>` 引用自己。(同名情况下) 这比明确注册/导入的组件优先级低。
+- 开发警告信息中需要格式化组件名时；
+- DevTools 中观察组件时；
+- 递归组件自引用时。例如一个名为 `FooBar.vue` 的组件可以在模板中通过 `<FooBar/>` 引用自己。(同名情况下) 这比明确注册/导入的组件优先级低。
 
 ## 预处理器 {#pre-processors}
 
-代码块可以使用 `lang` 这个 attribute 来声明预处理器语言，最常见的用例就是对 `<script>` 块使用 TypeScript：
+代码块可以使用 `lang` 这个 attribute 来声明预处理器语言，最常见的用例就是在 `<script>` 中使用 TypeScript：
 
 ```vue-html
 <script lang="ts">
@@ -88,7 +88,7 @@ SFC 在以下场景中会根据**文件名**自动推导其组件名：
 </script>
 ```
 
-`lang` 在任意块上都能使用，比如我们可以在 `<style>` 标签上使用 [SASS](https://sass-lang.com/) 或是 `<template>` 上使用 [Pug](https://pugjs.org/api/getting-started.html)：
+`lang` 在任意块上都能使用，比如我们可以在 `<style>` 标签中使用 [SASS](https://sass-lang.com/) 或是 `<template>` 中使用 [Pug](https://pugjs.org/api/getting-started.html)：
 
 ```vue-html
 <template lang="pug">
@@ -103,7 +103,7 @@ p {{ msg }}
 </style>
 ```
 
-注意对各种不同的预处理的集成会导致工具链的不同，你应该查看相应的工具链文档了解细节：
+注意对不同预处理器的集成会根据你所使用的工具链而有所不同，具体细节请查看相应的工具链文档来确认：
 
 - [Vite](https://vitejs.dev/guide/features.html#css-pre-processors)
 - [Vue CLI](https://cli.vuejs.org/guide/css.html#pre-processors)
@@ -119,7 +119,7 @@ p {{ msg }}
 <script src="./script.js"></script>
 ```
 
-请注意 `src` 导入和 Webpack 的模块请求遵循相同的路径解析规则，这意味着：
+请注意 `src` 导入和 JS 模块导入遵循相同的路径解析规则，这意味着：
 
 - 相对路径需要以 `./` 开头
 - 你也可以从 npm 依赖中导入资源

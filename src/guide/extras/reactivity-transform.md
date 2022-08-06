@@ -46,7 +46,7 @@ function increment() {
 }
 ```
 
-每一个会返回 ref 的响应性 API 都有一个相对应的、以 `$` 为前缀的宏函数。包括以下这些 API：
+每一个会返回 ref 的响应式 API 都有一个相对应的、以 `$` 为前缀的宏函数。包括以下这些 API：
 
 - [`ref`](/api/reactivity-core.html#ref) -> `$ref`
 - [`computed`](/api/reactivity-core.html#computed) -> `$computed`

@@ -1,4 +1,4 @@
-# 响应性 API：工具函数 {#reactivity-api-utilities}
+# 响应式 API：工具函数 {#reactivity-api-utilities}
 
 ## isRef() {#isref}
 
