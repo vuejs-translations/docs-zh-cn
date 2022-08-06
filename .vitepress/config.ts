@@ -557,13 +557,13 @@ const i18n = {
   previous: '前一篇',
   next: '下一篇',
   pageNotFound: '页面未找到',
-  deadLinkFound: {
+  deadLink: {
     before: '你打开了一个不存在的链接：',
     after: '。'
   },
   deadLinkReport: {
     before: '不介意的话请提交到',
-    content: '这里',
+    link: '这里',
     after: '，我们会跟进修复。'
   },
   footerLicense: {
