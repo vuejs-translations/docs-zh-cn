@@ -40,8 +40,8 @@ function onInput(e) {
 <input v-model="text">
 ```
 
-`v-model` 会将被绑定的值与 `<input>` 的值自动同步，所以我们就不必使用事件处理函数了。
+`v-model` 会将被绑定的值与 `<input>` 的值自动同步，这样我们就不必再使用事件处理函数了。
 
-`v-model` 不仅支持文本输入框，也支持诸如多选框、单选框、下拉框之类的输入类型。我们在<a target="_blank" href="/guide/essentials/forms.html">指南 - 表单绑定</a>中涵盖了更多的细节。
+`v-model` 不仅支持文本输入框，也支持诸如多选框、单选框、下拉框之类的输入类型。我们在<a target="_blank" href="/guide/essentials/forms.html">指南 - 表单绑定</a>中讨论了更多的细节。
 
 现在，试着用 `v-model` 把代码重构一下吧。

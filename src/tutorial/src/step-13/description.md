@@ -1,6 +1,6 @@
 # Emits
 
-除了接收 prop，子组件还可以向父组件触发事件：
+除了接收 props，子组件还可以向父组件触发事件：
 
 <div class="composition-api">
 <div class="sfc">

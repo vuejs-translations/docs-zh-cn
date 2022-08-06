@@ -1,6 +1,6 @@
 # Attribute 绑定 {#attribute-bindings}
 
-在 Vue 中，mustache 语法 (即双大括号) 只能用于文本插值。为了给 attribute 绑定一个动态值，我们使用 `v-bind` 指令：
+在 Vue 中，mustache 语法 (即双大括号) 只能用于文本插值。为了给 attribute 绑定一个动态值，需要使用 `v-bind` 指令：
 
 ```vue-html
 <div v-bind:id="dynamicId"></div>
