@@ -237,7 +237,7 @@ const vnode = <div id={dynamicId}>hello, {userName}</div>
 - 可以使用 HTML attributes 比如 `class` 和 `for` 作为 props - 不需要使用 `className` 或 `htmlFor`。
 - 传递子元素给组件 (比如 slots) 的[方式不同](#passing-slots)。
 
-Vue 的类型定义也提供了 TSX 语法的类型推断支持。当使用 TSX 语法时，确保在 `tsconfig.json` 中配置了 `"jsx": "preserve"`，这样的 TypeScript 就能保证 Vue JSX 语法编译过程中的完整性。
+Vue 的类型定义也提供了 TSX 语法的类型推导支持。当使用 TSX 语法时，确保在 `tsconfig.json` 中配置了 `"jsx": "preserve"`，这样的 TypeScript 就能保证 Vue JSX 语法编译过程中的完整性。
 
 ## 渲染函数案例 {#render-function-recipes}
 

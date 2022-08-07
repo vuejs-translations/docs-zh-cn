@@ -154,7 +154,7 @@ import { myDirective as vMyDirective } from './MyDirective.js'
 
 ## `defineProps()` 和 `defineEmits()` {#defineprops-defineemits}
 
-为了在声明 `props` 和 `emits` 选项时获得完整的类型推断支持，我们可以使用 `defineProps` 和 `defineEmits` API，它们将自动地在 `<script setup>` 中可用：
+为了在声明 `props` 和 `emits` 选项时获得完整的类型推导支持，我们可以使用 `defineProps` 和 `defineEmits` API，它们将自动地在 `<script setup>` 中可用：
 
 ```vue
 <script setup>
@@ -171,7 +171,7 @@ const emit = defineEmits(['change', 'delete'])
 
 - `defineProps` 接收与 `props` 选项相同的值，`defineEmits` 接收与 `emits` 选项相同的值。
 
-- `defineProps` 和 `defineEmits` 在选项传入后，会提供恰当的类型推断。
+- `defineProps` 和 `defineEmits` 在选项传入后，会提供恰当的类型推导。
 
 - 传入到 `defineProps` 和 `defineEmits` 的选项会从 setup 中提升到模块的作用域。因此，传入的选项不能引用在 setup 作用域中声明的局部变量。这样做会引起编译错误。但是，它*可以*引用导入的绑定，因为它们也在模块作用域内。
 
