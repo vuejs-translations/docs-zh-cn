@@ -12,7 +12,7 @@
 
 - **详细信息**
 
-  第一个参数是根组件。第二个参数可选，它是要传递给根组件的 prop。
+  第一个参数是根组件。第二个参数可选，它是要传递给根组件的 props。
 
 - **示例**
 
@@ -59,7 +59,7 @@
 
   如果该组件有模板或定义了渲染函数，它将替换容器内所有现存的 DOM 节点。否则在运行时编译器可用的情况下，容器元素的 `innerHTML` 将被用作模板。
 
-  在 SSR 激活模式下，它将激活容器内现有的 DOM 节点。如果出现了[激活异常](/guide/scaling-up/ssr.html#hydration-mismatch)，那么现有的 DOM 节点将会经过变形来匹配预期的输出结果。
+  在 SSR 激活模式下，它将激活容器内现有的 DOM 节点。如果出现了[激活不匹配](/guide/scaling-up/ssr.html#hydration-mismatch)，那么现有的 DOM 节点将会被修改以匹配客户端的实际渲染结果。
 
   对于每个应用实例，`mount()` 仅能调用一次。
 
@@ -80,7 +80,7 @@
 
 ## app.unmount() {#app-unmount}
 
-卸载一个已经挂载好的应用实例，会触发应用组件树上所有组件的卸载生命周期钩子。
+卸载一个已挂载的应用实例。卸载一个应用会触发该应用组件树内所有组件的卸载生命周期钩子。
 
 - **类型**
 
@@ -92,7 +92,7 @@
 
 ## app.provide() {#app-provide}
 
-提供一个值，可以在应用中的所有后代组件注入使用。
+提供一个值，可以在应用中的所有后代组件中注入使用。
 
 - **类型**
 
@@ -104,7 +104,7 @@
 
 - **详细信息**
 
-  希望将注入的 key 作为第一个参数，并将供给的值作为第二个参数。返回应用实例本身。
+  第一个参数应当是注入的 key，第二个参数则是提供的值。返回应用实例本身。
 
 - **示例**
 
@@ -150,7 +150,7 @@
 
 ## app.component() {#app-component}
 
-如果同时传递一个组件名字符串及其定义，则注册一个全局组件；如果只传递一个名字，则会得到一个已经注册的组件。
+如果同时传递一个组件名字符串及其定义，则注册一个全局组件；如果只传递一个名字，则会返回用该名字注册组件（如果存在的话）。
 
 - **类型**
 
@@ -181,7 +181,7 @@
 
 ## app.directive() {#app-directive}
 
-如果同时传递一个名字和一个指令定义，则注册一个全局指令；如果只传递一个名字，则会得到一个已经注册的指令。
+如果同时传递一个名字和一个指令定义，则注册一个全局指令；如果只传递一个名字，则会返回用该名字注册的指令（如果存在的话）。
 
 - **类型**
 
@@ -231,11 +231,11 @@
 
 - **详细信息**
 
-  希望将插件作为第一个参数，将插件选项作为可选的第二个参数。
+  第一个参数应是插件本身，可选的第二个参数是要传递给插件的选项。
 
   插件可以是一个带 `install()` 方法的对象，亦或直接是一个将被用作 `install()` 方法的函数。插件选项 (`app.use()` 的第二个参数) 将会传递给插件的 `install()` 方法。
 
-  若 `app.use()` 对同一个插件多次调用，该插件将只被安装一次。
+  若 `app.use()` 对同一个插件多次调用，该插件只会被安装一次。
 
 - **示例**
 
@@ -254,12 +254,12 @@
 
 ## app.mixin() {#app-mixin}
 
-应用一个全局 mixin (适用于该应用的范围)。一个全局的 mixin 会将其包含的选项应用于应用中的每个组件实例。
+应用一个全局 mixin (适用于该应用程序的范围)。一个全局的 mixin 会作用于应用中的每个组件实例。
 
 :::warning 不推荐
-Mixins 在 Vue 3 支持主要是为了向后兼容，因为生态中有许多库使用到。目前 mixin，特别是全局 mixin，都应避免在应用代码中使用。
+Mixins 在 Vue 3 支持主要是为了向后兼容，因为生态中有许多库使用到。在新的应用中应尽量避免使用 mixin，特别是全局 mixin。
 
-若要进行逻辑重用，推荐采用[组合式函数](/guide/reusability/composables.html)来替代。
+若要进行逻辑复用，推荐用[组合式函数](/guide/reusability/composables.html)来替代。
 :::
 
 - **类型**
@@ -272,7 +272,7 @@ Mixins 在 Vue 3 支持主要是为了向后兼容，因为生态中有许多库
 
 ## app.version {#app-version}
 
-提供当前应用所使用的 Vue 版本号。这在[插件](/guide/reusability/plugins.html)中很有用，因为可能需要在不同的 Vue 版本上有不同的逻辑。
+提供当前应用所使用的 Vue 版本号。这在[插件](/guide/reusability/plugins.html)中很有用，因为可能需要根据不同的 Vue 版本执行不同的逻辑。
 
 - **类型**
 
@@ -301,7 +301,7 @@ Mixins 在 Vue 3 支持主要是为了向后兼容，因为生态中有许多库
 
 ## app.config {#app-config}
 
-每个应用实例都会暴露一个 `config` 对象，其中包含了对这个应用的配置设定。你可以在挂载应用前更改这些属性 (相关文档在下方)。
+每个应用实例都会暴露一个 `config` 对象，其中包含了对这个应用的配置设定。你可以在挂载应用前更改这些属性 (下面列举了每个属性的对应文档)。
 
 ```js
 import { createApp } from 'vue'
@@ -313,7 +313,7 @@ console.log(app.config)
 
 ## app.config.errorHandler {#app-config-errorhandler}
 
-用于为应用内传递的未捕获的错误指定一个全局处理函数。
+用于为应用内抛出的未捕获错误指定一个全局处理函数。
 
 - **类型**
 
@@ -387,7 +387,7 @@ console.log(app.config)
 
 ## app.config.performance {#app-config-performance}
 
-设置此项为 `true` 可以在浏览器开发工具的“性能/时间线”页中启用对组件初始化、编译、渲染和修补的性能表现追踪。仅在开发模式和支持 [performance.mark] API 的浏览器中工作。
+设置此项为 `true` 可以在浏览器开发工具的“性能/时间线”页中启用对组件初始化、编译、渲染和修补的性能表现追踪。仅在开发模式和支持 [performance.mark](https://developer.mozilla.org/en-US/docs/Web/API/Performance/mark) API 的浏览器中工作。
 
 - **类型** `boolean`
 
@@ -395,14 +395,14 @@ console.log(app.config)
 
 ## app.config.compilerOptions {#app-config-compileroptions}
 
-配置运行时编译器的选项。设置在此对象上的值都会被传入该“浏览器内”模板编译器之中，并会影响到所配置应用的所有组件。另外你也可以通过 [`compilerOptions` 选项](/api/options-rendering.html#compileroptions)在每个组件的基础上覆盖这些选项。
+配置运行时编译器的选项。设置在此对象上的值将会在浏览器内进行模板编译时使用，并会影响到所配置应用的所有组件。另外你也可以通过 [`compilerOptions` 选项](/api/options-rendering.html#compileroptions)在每个组件的基础上覆盖这些选项。
 
 ::: warning 重要
-此配置项仅在完整发行版中可用 (即得到的 `vue.js` 可以在浏览器中编译模板)。如果你目前是通过搭配构建配置使用仅含运行时的发行版，那么编译器选项必须通过构建工具传递给 `@vue/compiler-dom`。
+此配置项仅在完整发行版，即可以在浏览器中编译模板的 `vue.js` 文件中可用。如果你用的是带构建的项目配置，且使用的是仅含运行时的 Vue 文件版本，那么编译器选项必须通过构建工具的相关配置传递给 `@vue/compiler-dom`。
 
-- 对于 `vue-loader`：[通过 `compilerOptions` loader 的选项传递](https://vue-loader.vuejs.org/options.html#compileroptions)。并请阅读[如何在 `vue-cli` 中配置它](https://cli.vuejs.org/guide/webpack.html#modifying-options-of-a-loader)。
+- `vue-loader`：[通过 `compilerOptions` loader 的选项传递](https://vue-loader.vuejs.org/options.html#compileroptions)。并请阅读[如何在 `vue-cli` 中配置它](https://cli.vuejs.org/guide/webpack.html#modifying-options-of-a-loader)。
 
-- 对于 `vite`：[通过 `@vitejs/plugin-vue` 的选项传递](https://github.com/vitejs/vite/tree/main/packages/plugin-vue#options)。
+- `vite`：[通过 `@vitejs/plugin-vue` 的选项传递](https://github.com/vitejs/vite/tree/main/packages/plugin-vue#options)。
 :::
 
 ### app.config.compilerOptions.isCustomElement {#app-config-compileroptions-iscustomelement}
