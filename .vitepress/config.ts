@@ -413,7 +413,7 @@ export const sidebar = {
       items: [
         { text: '渲染函数', link: '/api/render-function' },
         { text: '服务端渲染', link: '/api/ssr' },
-        { text: 'TypeScript 工具类', link: '/api/utility-types' },
+        { text: 'TypeScript 工具类型', link: '/api/utility-types' },
         { text: '自定义渲染', link: '/api/custom-renderer' }
       ]
     }
