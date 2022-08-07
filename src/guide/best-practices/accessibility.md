@@ -82,11 +82,11 @@ watch(
 
 ## 内容结构 {#content-structure}
 
-确保设计可以支持易于访问的实现是无障碍访问最重要的部分之一。设计不仅要考虑颜色对比度、字体选择、文本大小和语言，还要考虑应用程序中的内容是如何组织的。
+确保设计可以支持易于访问的实现是无障碍访问最重要的部分之一。设计不仅要考虑颜色对比度、字体选择、文本大小和语言，还要考虑应用中的内容是如何组织的。
 
 ### 标题 {#headings}
 
-用户可以通过标题在应用程序中进行导航。为应用程序的每个部分设置描述性标题，这可以让用户更容易地预测每个部分的内容。说到标题，有几个推荐的无障碍访问实践：
+用户可以通过标题在应用中进行导航。为应用的每个部分设置描述性标题，这可以让用户更容易地预测每个部分的内容。说到标题，有几个推荐的无障碍访问实践：
 
 - 按级别顺序嵌套标题：`<h1>` - `<h6>`
 - 不要在一个章节内跳跃标题的级别
@@ -114,7 +114,7 @@ watch(
 
 ### Landmark {#landmarks}
 
-[Landmark](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/landmark_role) 会为应用中的章节提供访问规划。依赖辅助技术的用户可以跳过内容直接导航到应用程序的每个部分。你可以使用 [ARIA role](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles) 帮助你实现这个目标。
+[Landmark](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/landmark_role) 会为应用中的章节提供访问规划。依赖辅助技术的用户可以跳过内容直接导航到应用的每个部分。你可以使用 [ARIA role](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles) 帮助你实现这个目标。
 
 | HTML            | ARIA Role            | 地标的目的 |
 | --------------- | -------------------- | --------- |
@@ -478,11 +478,11 @@ watch(
 - [健壮性](https://www.w3.org/TR/WCAG21/#robust)
   - 随着技术的进步，用户必须能够访问内容
 
-#### Web 无障碍倡议 – 无障碍访问丰富的互联网应用程序 (WAI-ARIA) {#web-accessibility-initiative-accessible-rich-internet-applications-wai-aria}
+#### Web 无障碍倡议 – 无障碍访问丰富的互联网应用 (WAI-ARIA) {#web-accessibility-initiative-accessible-rich-internet-applications-wai-aria}
 
 W3C 的 WAI-ARIA 为如何构建动态内容和高阶用户界面控件提供了指导。
 
-- [可便捷访问的丰富互联网应用程序 (WAI-ARIA) 1.2](https://www.w3.org/TR/wai-aria-1.2/)
+- [可便捷访问的丰富互联网应用 (WAI-ARIA) 1.2](https://www.w3.org/TR/wai-aria-1.2/)
 - [WAI-ARIA 实践 1.2](https://www.w3.org/TR/wai-aria-practices-1.2/)
 
 ## 资源 {#resources}
