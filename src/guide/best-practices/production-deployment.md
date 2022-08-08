@@ -13,12 +13,12 @@
 
 ## 不使用构建工具 {#without-build-tools}
 
-如果你没有使用任何构建工具，而是从 CDN 或其他源来加载 Vue，请确保在部署时使用的是生产环境版本（以 `.prod.js` 结尾的发行文件）。生产环境版本会被最小化，并移除了所有仅用于开发环境的代码分支。
+如果你没有使用任何构建工具，而是从 CDN 或其他源来加载 Vue，请确保在部署时使用的是生产环境版本（以 `.prod.js` 结尾的构建文件）。生产环境版本会被最小化，并移除了所有仅用于开发环境的代码分支。
 
 - 如果需要使用全局变量版本（通过 `Vue` 全局变量访问）：请使用 `vue.global.prod.js`。
 - 如果需要 ESM 版本（通过原生 ESM 导入访问）：请使用 `vue.esm-browser.prod.js`。
 
-更多细节请参考[发行文件指南](https://github.com/vuejs/core/tree/main/packages/vue#which-dist-file-to-use)。
+更多细节请参考[构建文件指南](https://github.com/vuejs/core/tree/main/packages/vue#which-dist-file-to-use)。
 
 ## 使用构建工具 {#with-build-tools}
 
