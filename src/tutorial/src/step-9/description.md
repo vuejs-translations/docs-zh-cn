@@ -2,7 +2,7 @@
 
 目前为止，Vue 为我们处理了所有的 DOM 更新，这要归功于响应性和声明式渲染。然而，有时我们也会不可避免地需要手动操作 DOM。
 
-这时我们需要使用**模板引用**——也就是指向模板中一个 DOM 元素的 ref。我们需要通过 <a target="_blank" href="/api/built-in-special-attributes.html#ref">这个特殊的 `ref` attribute</a> 来实现模版引用:
+这时我们需要使用**模板引用**——也就是指向模板中一个 DOM 元素的 ref。我们需要通过 <a target="_blank" href="/api/built-in-special-attributes.html#ref">这个特殊的 `ref` attribute</a> 来实现模板引用:
 
 ```vue-html
 <p ref="p">hello</p>

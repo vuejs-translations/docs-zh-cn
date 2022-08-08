@@ -55,7 +55,7 @@ export default {
 <h1>{{ $translate('greetings.hello') }}</h1>
 ```
 
-这个函数应当能够在任意模版中被全局调用。这一点可以通过在插件中将它添加到 `app.config.globalProperties` 上来实现：
+这个函数应当能够在任意模板中被全局调用。这一点可以通过在插件中将它添加到 `app.config.globalProperties` 上来实现：
 
 ```js{4-11}
 // plugins/i18n.js

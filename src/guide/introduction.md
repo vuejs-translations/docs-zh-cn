@@ -63,7 +63,7 @@ const count = ref(0)
 
 上面的示例展示了 Vue 的两个核心功能：
 
-- **声明式渲染**：Vue 基于标准 HTML 拓展了一套模版语法，使得我们可以声明式地描述最终输出的 HTML 和 JavaScript 状态之间的关系。
+- **声明式渲染**：Vue 基于标准 HTML 拓展了一套模板语法，使得我们可以声明式地描述最终输出的 HTML 和 JavaScript 状态之间的关系。
 
 - **响应性**：Vue 会自动跟踪 JavaScript 状态变化并在改变发生时响应式地更新 DOM。
 
