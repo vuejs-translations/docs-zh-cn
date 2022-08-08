@@ -32,7 +32,7 @@ jobs:
           git config user.name "Evan You"
           git add .
           git commit -m "update docs"
-          git remote add github https://yyx990803:${{ secrets.GITHUB_TOKEN }}@github.com/vuejs-translations/docs-zh-cn.git
+          git remote add github https://yyx990803:${{ secrets.GITHUB_TOKEN }}@github.com:vuejs/cn.vuejs.org-deploy.git
           git push github HEAD:gh-pages --force
           git remote add origin https://yyx990803:${{ secrets.GITEE_TOKEN }}@gitee.com/vuejs-cn/vue3-docs-cn.git
           git push origin HEAD:master --force

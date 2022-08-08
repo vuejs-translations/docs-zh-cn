@@ -40,5 +40,3 @@ pnpm run dev
 <p align="center">
   <img src="https://cdn.jsdelivr.net/gh/ShenQingchuan/github-contributor-svg-generator@main/dist/vuejs-translations/docs-zh-cn.png" />
 </p>
-
-test deploy
