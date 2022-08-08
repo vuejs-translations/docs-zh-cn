@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import { onMounted } from 'vue';
+import { onMounted } from 'vue'
 import NewsLetter from './NewsLetter.vue'
-import { load, data, base } from './sponsors';
-import SponsorsGroup from './SponsorsGroup.vue';
+import { load, data, base } from './sponsors'
+import SponsorsGroup from './SponsorsGroup.vue'
 // NOTE: hide the home video
 // https://github.com/vuejs-translations/docs-zh-cn/issues/177
 // import VueMasteryModal from './VueMasteryModal.vue';
@@ -43,13 +43,28 @@ onMounted(async () => {
   </section>
 
   <section id="special-sponsor">
-    <span>特别赞助</span>
-    <template v-if="data && data.special">
-      <template v-for="{ url, img, name, description } of data.special">
+    <span>中国区铂金赞助</span>
+    <template v-if="data && data.platinum_china">
+      <template
+        v-for="{
+          url,
+          img,
+          name,
+          height,
+          description
+        } of data.platinum_china"
+      >
         <a :href="url" target="_blank" rel="sponsored noopener">
           <picture v-if="img.endsWith('png')">
-            <source type="image/avif" :srcset="`${base}/images/${img.replace(/\.png$/, '.avif')}`" />
-            <img :src="`${base}/images/${img}`" :alt="name" />
+            <source
+              type="image/avif"
+              :srcset="`${base}/images/${img.replace(/\.png$/, '.avif')}`"
+            />
+            <img
+              :src="`${base}/images/${img}`"
+              :alt="name"
+              :style="{ height: height || '55px' }"
+            />
           </picture>
           <img v-else :src="`${base}/images/${img}`" :alt="name" />
         </a>
@@ -62,14 +77,13 @@ onMounted(async () => {
     <div class="vt-box">
       <h2>易学易用</h2>
       <p>
-        基于标准 HTML、CSS 和 JavaScript 构建，提供容易上手的 API 和一流的文档。
+        基于标准 HTML、CSS 和 JavaScript 构建，提供容易上手的 API
+        和一流的文档。
       </p>
     </div>
     <div class="vt-box">
       <h2>性能出色</h2>
-      <p>
-        经过编译器优化、完全响应式的渲染系统，几乎不需要手动优化。
-      </p>
+      <p>经过编译器优化、完全响应式的渲染系统，几乎不需要手动优化。</p>
     </div>
     <div class="vt-box">
       <h2>灵活多变</h2>
@@ -172,7 +186,6 @@ html:not(.dark) .accent,
   background-color: var(--vt-c-gray-dark-3);
 }
 
-
 /* NOTE: via #vuemastery-action in VueMasteryModal.vue */
 
 .actions .get-started {
@@ -221,7 +234,7 @@ html:not(.dark) .accent,
 #special-sponsor img {
   display: inline-block;
   vertical-align: middle;
-  height: 36px;
+  height: 55px;
   margin-right: 24px;
 }
 

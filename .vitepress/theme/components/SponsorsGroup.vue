@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { onMounted, onUnmounted } from 'vue'
-import { SponsorData, data, base, load } from './sponsors';
+import { SponsorData, data, base, load } from './sponsors'
 
 const { tier, placement = 'aside' } = defineProps<{
   tier: keyof SponsorData
@@ -33,7 +33,7 @@ onMounted(async () => {
   <div
     ref="container"
     class="sponsor-container"
-    :class="[tier.startsWith('plat') ? 'platinum' : tier, placement]"
+    :class="[tier === 'platinum_china' ? 'special' : tier, placement]"
   >
     <template v-if="data && visible">
       <a
@@ -138,7 +138,7 @@ onMounted(async () => {
 }
 .aside .special .sponsor-item {
   width: 100%;
-  height: 60px;
+  height: 70px;
 }
 .aside .special .sponsor-item img {
   width: 120px;
