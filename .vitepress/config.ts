@@ -17,7 +17,7 @@ const nav = [
       // { text: '风格指南', link: '/style-guide/' },
       {
         text: 'Vue 2 文档',
-        link: 'https://v2.vuejs.org'
+        link: 'https://v2.cn.vuejs.org'
       },
       {
         text: '从 Vue 2 迁移',
