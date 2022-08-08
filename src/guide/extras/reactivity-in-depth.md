@@ -385,7 +385,7 @@ export function useImmer(baseState) {
 
 ### 状态机 {#state-machines}
 
-[状态机](https://en.wikipedia.org/wiki/Finite-state_machine)是一种数据模型，用于描述应用程序可能处于的所有可能状态，以及从一种状态转换到另一种状态的所有可能方式。虽然对于简单的组件来说，这可能有些小题大做了，但它的确可以使得复杂的状态流更加健壮和易于管理。
+[状态机](https://en.wikipedia.org/wiki/Finite-state_machine)是一种数据模型，用于描述应用可能处于的所有可能状态，以及从一种状态转换到另一种状态的所有可能方式。虽然对于简单的组件来说，这可能有些小题大做了，但它的确可以使得复杂的状态流更加健壮和易于管理。
 
 [XState](https://xstate.js.org/) 是 JavaScript 中一个比较常用的状态机实现方案。这里是集成它的一个例子：
 

@@ -1,4 +1,4 @@
 export default {
-  // component options
-  // declare some reactive state here.
+  // 组件选项
+  // 此处声明一些响应式状态
 }

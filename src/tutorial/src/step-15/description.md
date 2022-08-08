@@ -6,7 +6,7 @@
 
 - 参考[快速上手](/guide/quick-start.html)，在你的机器上创建一个真实的 Vue 项目。
 
-- 阅读[深入指南](/guide/essentials/application.html)——它更详细地探讨了我们目前学过的所有话题，并且还有许多其它更深入的内容。
+- 阅读[深入指南](/guide/essentials/application.html)——它更详细地探讨了我们目前学过的所有话题，并且还有许多其他更深入的内容。
 
 - 查看一些更加实际的[示例](/examples/)。
 

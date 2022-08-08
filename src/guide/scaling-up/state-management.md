@@ -223,7 +223,7 @@ export function useCount() {
 
 ## SSR 相关细节 {#ssr-considerations}
 
-如果你正在构建一个需要利用[服务端渲染 (SSR)](./ssr) 的应用程序，由于 store 是跨多个请求共享的单例，上述模式可能会导致问题。这在 SSR 指引那一章节会讨论[更多细节](./ssr#cross-request-state-pollution)。
+如果你正在构建一个需要利用[服务端渲染 (SSR)](./ssr) 的应用，由于 store 是跨多个请求共享的单例，上述模式可能会导致问题。这在 SSR 指引那一章节会讨论[更多细节](./ssr#cross-request-state-pollution)。
 
 ## Pinia {#pinia}
 
