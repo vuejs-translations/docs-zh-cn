@@ -17,7 +17,7 @@ onMounted(() => {
 
 <style>
 .wwads-container {
-  padding: 15px 20px;
+  padding: 1px 15px 10px;
   margin-top: 20px;
   background-color: var(--vt-c-bg-soft);
 }
