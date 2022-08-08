@@ -39,7 +39,7 @@
 
 ## ref {#ref}
 
-表示[模板 ref](/guide/essentials/template-refs.html)。
+表示[模板引用](/guide/essentials/template-refs.html)。
 
 - **预期**：`string | Function`
 
@@ -80,7 +80,7 @@
 
   `this.$refs` 也是非响应式的，因此你不应该尝试在模板中使用它来进行数据绑定。
 
-- **参考**：[模板 ref](/guide/essentials/template-refs.html)
+- **参考**：[模板引用](/guide/essentials/template-refs.html)
 
 ## is {#is}
 

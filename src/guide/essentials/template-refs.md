@@ -83,7 +83,7 @@ watchEffect(() => {
 })
 ```
 
-也可参考：[为模板 ref 标注类型](/guide/typescript/composition-api.html#typing-template-refs) <sup class="vt-badge ts" />
+也可参考：[为模板引用标注类型](/guide/typescript/composition-api.html#typing-template-refs) <sup class="vt-badge ts" />
 
 </div>
 
@@ -234,7 +234,7 @@ defineExpose({
 </script>
 ```
 
-当父组件通过模板 ref 获取到了该组件的实例时，得到的实例类型为 `{ a: number, b: number }` (ref 都会自动解包，和一般的实例一样)。
+当父组件通过模板引用获取到了该组件的实例时，得到的实例类型为 `{ a: number, b: number }` (ref 都会自动解包，和一般的实例一样)。
 
 TypeScript 用户请参考：[为组件的模板引用标注类型](/guide/typescript/composition-api.html#typing-component-template-refs) <sup class="vt-badge ts" />
 
@@ -263,6 +263,6 @@ export default {
 }
 ```
 
-在上面这个例子中，父组件通过模板 ref 访问到子组件实例后，仅能访问 `publicData` 和 `publicMethod`。
+在上面这个例子中，父组件通过模板引用访问到子组件实例后，仅能访问 `publicData` 和 `publicMethod`。
 
 </div>

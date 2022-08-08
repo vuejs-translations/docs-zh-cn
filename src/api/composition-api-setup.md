@@ -113,7 +113,7 @@ export default {
 
 ### 暴露公共属性 {#exposing-public-properties}
 
-`expose` 函数用于显式地限制该组件暴露出的属性，当父组件通过[模板 ref](/guide/essentials/template-refs.html#ref-on-component) 访问该组件的实例时，将仅能访问 `expose` 函数暴露出的内容：
+`expose` 函数用于显式地限制该组件暴露出的属性，当父组件通过[模板引用](/guide/essentials/template-refs.html#ref-on-component)访问该组件的实例时，将仅能访问 `expose` 函数暴露出的内容：
 
 ```js{5,10}
 export default {
@@ -145,7 +145,7 @@ export default {
 }
 ```
 
-返回一个渲染函数将会阻止我们返回其他东西。对于组件内部来说，这样没有问题，但如果我们想通过模板 ref 将这个组件的方法暴露给父组件，那就有问题了。
+返回一个渲染函数将会阻止我们返回其他东西。对于组件内部来说，这样没有问题，但如果我们想通过模板引用将这个组件的方法暴露给父组件，那就有问题了。
 
 我们可以通过调用 [`expose()`](#exposing-public-properties) 解决这个问题：
 
@@ -166,4 +166,4 @@ export default {
 }
 ```
 
-此时父组件可以通过模板 ref 来访问这个 `increment` 方法。
+此时父组件可以通过模板引用来访问这个 `increment` 方法。
