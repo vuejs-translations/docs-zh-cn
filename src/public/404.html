@@ -1,5 +1,7 @@
-<h1>Test custom 404</h1>
+<h1>404 Page Not Found</h1>
 
 <script>
-  console.log(location.pathname)
+  if (location.pathname.startsWith('/v2/')) {
+    location.replace(`https://v2.cn.vuejs.org${location.pathname}`)
+  }
 </script>
