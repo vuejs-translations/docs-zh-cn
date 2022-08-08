@@ -5,11 +5,26 @@ onMounted(() => {
   const s = document.createElement('script')
   s.async = true
   s.src = `https://cdn.wwads.cn/js/makemoney.js`
-  const el = document.querySelector('.wwads-cn')!
-  el?.parentElement?.insertBefore(s, el)
+  document.querySelector('.wwads-container')!.appendChild(s)
 })
 </script>
 
 <template>
-  <div class="wwads-cn wwads-vertical" data-id="53"></div>
+  <div class="wwads-container">
+    <div class="wwads-cn wwads-vertical" data-id="53"></div>
+  </div>
 </template>
+
+<style>
+.wwads-container {
+  padding: 15px 20px;
+  margin-top: 20px;
+  background-color: var(--vt-c-bg-soft);
+}
+.wwads-vertical {
+  background-color: transparent !important;
+}
+.wwads-text {
+  color: var(--vt-c-text-2) !important;
+}
+</style>
