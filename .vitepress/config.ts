@@ -395,7 +395,7 @@ export const sidebar = {
           link: '/api/built-in-special-elements'
         },
         {
-          text: '特殊 Attribute',
+          text: '特殊 Attributes',
           link: '/api/built-in-special-attributes'
         }
       ]

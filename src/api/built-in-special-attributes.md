@@ -1,4 +1,4 @@
-# 内置的特殊 Attribute {#built-in-special-attributes}
+# 内置的特殊 Attributes {#built-in-special-attributes}
 
 ## key {#key}
 
@@ -39,7 +39,7 @@
 
 ## ref {#ref}
 
-表示[模板引用](/guide/essentials/template-refs.html)。
+用于注册[模板引用](/guide/essentials/template-refs.html)。
 
 - **预期**：`string | Function`
 
