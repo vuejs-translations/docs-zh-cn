@@ -203,7 +203,7 @@ export const sidebar = {
       ]
     },
     {
-      text: '可重用性',
+      text: '逻辑复用',
       items: [
         {
           text: '组合式函数',
