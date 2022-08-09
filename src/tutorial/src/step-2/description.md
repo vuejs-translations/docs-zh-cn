@@ -34,7 +34,7 @@ console.log(message.value) // "Hello World!"
 message.value = 'Changed'
 ```
 
-`reactive()` 和 `ref()` 的细节在<a target="_blank" href="/guide/essentials/reactivity-fundamentals.html">指南 - 响应式基础</a>一节中有进一步讨论。
+`reactive()` 和 `ref()` 的细节在<a target="_blank" href="/guide/essentials/reactivity-fundamentals.html">指南——响应式基础</a>一节中有进一步讨论。
 
 <div class="sfc">
 
