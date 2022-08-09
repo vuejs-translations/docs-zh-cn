@@ -353,7 +353,7 @@ Vue 2 的用户可能会对 [mixins](/api/options-composition.html#mixins) 选�
 
 ### 和 React Hooks 的对比 {#vs-react-hooks}
 
-如果你有 React 的开发经验，你可能注意到组合式函数和自定义 React hooks 非常相似。组合式 API 的一部分灵感正来自于 React hooks 的组合式函数也的确在逻辑组合能力上与 React hooks 相近。然而，Vue 的组合式函数是基于 Vue 细粒度的响应性系统，这和 React hooks 的执行模型有本质上的不同。这一话题在[组合式 API 的常见问题](/guide/extras/composition-api-faq#comparison-with-react-hooks)中有更细致的讨论。
+如果你有 React 的开发经验，你可能注意到组合式函数和自定义 React hooks 非常相似。组合式 API 的一部分灵感正来自于 React hooks，Vue 的组合式函数也的确在逻辑组合能力上与 React hooks 相近。然而，Vue 的组合式函数是基于 Vue 细粒度的响应性系统，这和 React hooks 的执行模型有本质上的不同。这一话题在[组合式 API 的常见问题](/guide/extras/composition-api-faq#comparison-with-react-hooks)中有更细致的讨论。
 
 ## 延伸阅读 {#further-reading}
 
