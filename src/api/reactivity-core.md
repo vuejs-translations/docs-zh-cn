@@ -41,11 +41,11 @@
 
 - **参考：**
   - [指南 - `ref()` 定义响应式变量](/guide/essentials/reactivity-fundamentals.html#reactive-variables-with-ref)
-  - [指南 - 为 `ref()` 标注类型](/guide/typescript/composition-api.html#typing-ref)
+  - [指南 - 为 `ref()` 标注类型](/guide/typescript/composition-api.html#typing-ref) <sup class="vt-badge ts" />
 
 ## computed () {#computed}
 
-接受一个 getter 函数，返回一个只读的响应式 [ref](#ref) 对象，即 getter 函数的返回值。它也可以接受一个带有 `get` 和 `set` 函数的对象来创建一个可写的 ref 对象。
+接受一个 getter 函数，返回一个只读的响应式 [ref](#ref) 对象。该 ref 通过 `.value` 暴露 getter 函数的返回值。它也可以接受一个带有 `get` 和 `set` 函数的对象来创建一个可写的 ref 对象。
 
 - **类型**
 
@@ -111,7 +111,7 @@
 - **参考：**
   - [指南 - 计算属性](/guide/essentials/computed.html)
   - [指南 - 计算属性调试](/guide/extras/reactivity-in-depth.html#computed-debugging)
-  - [指南 - 为 `computed()` 标注类型](/guide/typescript/composition-api.html#typing-computed)
+  - [指南 - 为 `computed()` 标注类型](/guide/typescript/composition-api.html#typing-computed) <sup class="vt-badge ts" />
 
 ## reactive() {#reactive}
 
@@ -131,7 +131,7 @@
 
   若要避免深层响应式转换，只想保留对这个对象顶层次访问的响应性，请使用 [shallowReactive()](./reactivity-advanced.html#shallowreactive) 作替代。
 
-  返回的对象以及其中嵌套的对象都会通过 [ES Proxy](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy) 包裹，因此**不等于**源对象，建议只使用响应式代理，避免依赖于原始对象。
+  返回的对象以及其中嵌套的对象都会通过 [ES Proxy](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy) 包裹，因此**不等于**源对象，建议只使用响应式代理，避免使用原始对象。
 
 - **示例**
 
@@ -188,11 +188,11 @@
 
 - **参考：**
   - [指南 - 响应式基础](/guide/essentials/reactivity-fundamentals.html)
-  - [指南 - 为 `reactive()` 标注类型](/guide/typescript/composition-api.html#typing-reactive)
+  - [指南 - 为 `reactive()` 标注类型](/guide/typescript/composition-api.html#typing-reactive) <sup class="vt-badge ts" />
 
 ## readonly() {#readonly}
 
-接受一个对象 (不论是响应式还是一般的) 或是一个 [ref](#ref)，返回一个原值的只读代理。
+接受一个对象 (不论是响应式还是普通的) 或是一个 [ref](#ref)，返回一个原值的只读代理。
 
 - **类型**
 
@@ -381,7 +381,7 @@
   第三个可选的参数是一个对象，支持以下这些选项：
 
   - **`immediate`**：在侦听器创建时立即触发回调。第一次调用时旧值是 `undefined`。
-  - **`deep`**：如果源是对象，强制深度遍历，以便在深层级变更时启动回调。参考[深层侦听器](/guide/essentials/watchers.html#deep-watchers)一节。
+  - **`deep`**：如果源是对象，强制深度遍历，以便在深层级变更时触发回调。参考[深层侦听器](/guide/essentials/watchers.html#deep-watchers)一节。
   - **`flush`**：调整回调函数的刷新时机。参考[回调的刷新时机](/guide/essentials/watchers.html#callback-flush-timing)一节。
   - **`onTrack / onTrigger`**：调试侦听器的依赖。参考[调试侦听器](/guide/extras/reactivity-in-depth.html#watcher-debugging)一节。
 
@@ -422,7 +422,7 @@
   })
   ```
 
-  当使用 getter 函数作为源时，侦听器只在此函数的返回值变化时才会启动。如果你想让回调在深层级变更时也能启动，你需要使用 `{ deep: true }` 强制侦听器进入深层级模式。在深层级模式时，如果回调函数由于深层级的变更而被触发，那么新值和旧值将是同一个对象。
+  当使用 getter 函数作为源时，回调只在此函数的返回值变化时才会触发。如果你想让回调在深层级变更时也能触发，你需要使用 `{ deep: true }` 强制侦听器进入深层级模式。在深层级模式时，如果回调函数由于深层级的变更而被触发，那么新值和旧值将是同一个对象。
 
   ```js
   const state = reactive({ count: 0 })
@@ -435,7 +435,7 @@
   )
   ```
 
-  当直接侦听一个响应式对象时，侦听器自动处于深层级模式：
+  当直接侦听一个响应式对象时，侦听器会自动启用深层模式：
 
   ```js
   const state = reactive({ count: 0 })

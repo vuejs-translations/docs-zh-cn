@@ -1,4 +1,4 @@
-# TypeScript 工具类 {#utility-types}
+# TypeScript 工具类型 {#utility-types}
 
 :::info
 此页面仅列出了一些可能需要解释其使用方式的常用工具类型。有关导出类型的完整列表，请查看[源代码](https://github.com/vuejs/core/blob/main/packages/runtime-core/src/index.ts#L131)。

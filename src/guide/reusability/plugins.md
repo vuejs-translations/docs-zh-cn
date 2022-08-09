@@ -55,7 +55,7 @@ export default {
 <h1>{{ $translate('greetings.hello') }}</h1>
 ```
 
-这个函数应当能够在任意模版中被全局调用。这一点可以通过在插件中将它添加到 `app.config.globalProperties` 上来实现：
+这个函数应当能够在任意模板中被全局调用。这一点可以通过在插件中将它添加到 `app.config.globalProperties` 上来实现：
 
 ```js{4-11}
 // plugins/i18n.js
@@ -92,7 +92,7 @@ app.use(i18nPlugin, {
 TypeScript 用户请参考：[扩展全局属性](/guide/typescript/options-api.html#augmenting-global-properties) <sup class="vt-badge ts" />
 
 :::tip
-请谨慎使用全局属性，如果在整个应用程序中使用不同插件注入的太多全局属性，很容易让应用变得难以理解和维护。
+请谨慎使用全局属性，如果在整个应用中使用不同插件注入的太多全局属性，很容易让应用变得难以理解和维护。
 :::
 
 ### 插件中的 Provide / Inject

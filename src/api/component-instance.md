@@ -20,7 +20,7 @@
 
 ## $props {#props}
 
-表示组件当前已解析的 prop 对象。
+表示组件当前已解析的 props 对象。
 
 - **类型**
 
@@ -32,7 +32,7 @@
 
 - **详细信息**
 
-  这里只包含通过 [`props`](./options-state.html#props) 选项声明的 prop。组件实例将会代理对其 prop 对象上属性的访问。
+  这里只包含通过 [`props`](./options-state.html#props) 选项声明的 props。组件实例将会代理对其 props 对象上属性的访问。
 
 ## $el {#el}
 
@@ -55,7 +55,7 @@
   - 对于以多个元素为根的组件，`$el` 将是一个仅作占位符的 DOM 节点，Vue 使用它来跟踪组件在 DOM 中的位置 (文本节点或 SSR 激活模式下的注释节点)。
 
   :::tip
-  为保持一致性，我们推荐使用[模板 ref](/guide/essentials/template-refs.html) 来直接访问元素而不是依赖 `$el`。
+  为保持一致性，我们推荐使用[模板引用](/guide/essentials/template-refs.html) 来直接访问元素而不是依赖 `$el`。
   :::
 
 ## $options {#options}
@@ -141,7 +141,7 @@
 
 ## $refs {#refs}
 
-一个包含 DOM 元素和组件实例的对象，通过[模板 ref](/guide/essentials/template-refs.html) 注册。
+一个包含 DOM 元素和组件实例的对象，通过[模板引用](/guide/essentials/template-refs.html) 注册。
 
 - **类型**
 
@@ -153,12 +153,12 @@
 
 - **参考：**
 
-  - [模板 ref](/guide/essentials/template-refs.html)
+  - [模板引用](/guide/essentials/template-refs.html)
   - [特殊 Attribute - ref](./built-in-special-attributes.md#ref)
 
 ## $attrs {#attrs}
 
-一个包含了组件所有透传 attribute 的对象。
+一个包含了组件所有透传 attributes 的对象。
 
 - **类型**
 
@@ -170,7 +170,7 @@
 
 - **详细信息**
 
-  [透传 Attribute](/guide/components/attrs.html) 是一些由父组件传入的 attribute 和事件处理器，且没有在此子组件中声明为一个 prop 或要抛出的事件。
+  [透传 Attributes](/guide/components/attrs.html) 是指由父组件传入，且没有被子组件声明为 props 或是组件自定义事件的 attributes 和事件处理函数。
 
   默认情况下，若是单一根节点组件，`$attrs` 中的所有属性都是直接自动继承自组件的根元素。而多根节点组件则不会如此，同时你也可以通过配置 [`inheritAttrs`](./options-misc.html#inheritattrs) 选项来显式地关闭该行为。
 
@@ -180,7 +180,7 @@
 
 ## $watch() {#watch}
 
-用于创建侦听器的命令式 API。
+用于命令式地创建侦听器的 API。
 
 - **类型**
 

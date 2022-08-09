@@ -6,7 +6,7 @@ outline: deep
 
 > 此章节假设你已经看过了[组件基础](/guide/essentials/component-basics)。若你还不了解组件是什么，请先阅读该章节。
 
-## Attribute 继承 {#attribute-inheritance}
+## Attributes 继承 {#attribute-inheritance}
 
 “透传 attribute”指的是传递给一个组件，却没有被该组件声明为 [props](./props) 或 [emits](./events.html#defining-custom-events) 的 attribute 或者 `v-on` 事件监听器。最常见的例子就是 `class`、`style` 和 `id`。
 
@@ -73,7 +73,7 @@ outline: deep
 
 2. 透传的 attribute 若符合声明，也可以作为 props 传入 `<BaseButton>`。
 
-## 禁用 Attribute 继承 {#disabling-attribute-inheritance}
+## 禁用 Attributes 继承 {#disabling-attribute-inheritance}
 
 如果你**不想要**一个组件自动地继承 attribute，你可以在组件选项中设置 `inheritAttrs: false`。
 
@@ -130,7 +130,7 @@ export default {
 
 小提示：[没有参数的 `v-bind`](/guide/essentials/template-syntax.html#dynamically-binding-multiple-attributes) 会将一个对象的所有属性都作为 attribute 应用到目标元素上。
 
-## 多根节点的 Attribute 继承 {#attribute-inheritance-on-multiple-root-nodes}
+## 多根节点的 Attributes 继承 {#attribute-inheritance-on-multiple-root-nodes}
 
 和单根节点组件有所不同，有着多个根节点的组件没有自动 attribute 透传行为。如果 `$attrs` 没有被显式绑定，将会抛出一个运行时警告。
 
@@ -154,7 +154,7 @@ export default {
 <footer>...</footer>
 ```
 
-## 在 JavaScript 中访问透传 Attribute {#accessing-fallthrough-attributes-in-javascript}
+## 在 JavaScript 中访问透传 Attributes {#accessing-fallthrough-attributes-in-javascript}
 
 <div class="composition-api">
 

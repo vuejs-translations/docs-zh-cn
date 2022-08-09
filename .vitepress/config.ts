@@ -17,7 +17,7 @@ const nav = [
       // { text: '风格指南', link: '/style-guide/' },
       {
         text: 'Vue 2 文档',
-        link: 'https://v2.vuejs.org'
+        link: 'https://v2.cn.vuejs.org'
       },
       {
         text: '从 Vue 2 迁移',
@@ -203,7 +203,7 @@ export const sidebar = {
       ]
     },
     {
-      text: '可重用性',
+      text: '逻辑复用',
       items: [
         {
           text: '组合式函数',
@@ -395,7 +395,7 @@ export const sidebar = {
           link: '/api/built-in-special-elements'
         },
         {
-          text: '特殊 Attribute',
+          text: '特殊 Attributes',
           link: '/api/built-in-special-attributes'
         }
       ]
@@ -413,7 +413,7 @@ export const sidebar = {
       items: [
         { text: '渲染函数', link: '/api/render-function' },
         { text: '服务端渲染', link: '/api/ssr' },
-        { text: 'TypeScript 工具类', link: '/api/utility-types' },
+        { text: 'TypeScript 工具类型', link: '/api/utility-types' },
         { text: '自定义渲染', link: '/api/custom-renderer' }
       ]
     }
@@ -645,10 +645,10 @@ export default defineConfigWithTheme<ThemeConfig>({
       }
     },
 
-    carbonAds: {
-      code: 'CEBDT27Y',
-      placement: 'vuejsorg'
-    },
+    // carbonAds: {
+    //   code: 'CEBDT27Y',
+    //   placement: 'vuejsorg'
+    // },
 
     socialLinks: [
       { icon: 'languages', link: '/translations/' },

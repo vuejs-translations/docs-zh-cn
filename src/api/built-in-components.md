@@ -126,7 +126,7 @@ h(Transition, {
 
 - **Props**
 
-  `<TransitionGroup>` 拥有与 `<Transition>` 除了 `mode` 以外所有的 prop，并增加了两个额外的 prop：
+  `<TransitionGroup>` 拥有与 `<Transition>` 除了 `mode` 以外所有的 props，并增加了两个额外的 props：
 
   ```ts
   interface TransitionGroupProps extends Omit<TransitionProps, 'mode'> {
@@ -148,11 +148,11 @@ h(Transition, {
 
 - **详细信息**
 
-  默认情况下，`<TransitionGroup>` 不会渲染一个 DOM 元素包裹器，但是可以通过 `tag` prop 定义。
+  默认情况下，`<TransitionGroup>` 不会渲染一个容器 DOM 元素，但是可以通过 `tag` prop 启用。
 
   注意，每个 `<transition-group>` 的子节点必须有[**独立的 key**](/guide/essentials/list.html#maintaining-state-with-key)，动画才能正常工作。
 
-  `<TransitionGroup>` 支持通过 CSS transform 过渡移动。当一个子节点在屏幕上的位置在更新之后发生变化时，它会被应用一个使其移动的 CSS class (通过 `name` attribute 自动生成或使用 `move-class` prop 配置)。如果使其移动的 class 被应用时 CSS `transform` 属性是“可过渡的”，该元素会通过 [FLIP 技术](https://aerotwist.com/blog/flip-your-animations/)平滑地到达动画终点。
+  `<TransitionGroup>` 支持通过 CSS transform 控制移动效果。当一个子节点在屏幕上的位置在更新之后发生变化时，它会被添加一个使其位移的 CSS class (基于 `name` attribute 推导，或使用 `move-class` prop 显式配置)。如果使其位移的 class 被添加时 CSS 的 `transform` 属性是“可过渡的”，那么该元素会基于 [FLIP 技巧](https://aerotwist.com/blog/flip-your-animations/)平滑地到达动画终点。
 
 - **示例**
 
@@ -261,7 +261,7 @@ h(Transition, {
 
 ## `<Teleport>`
 
-将插槽内容渲染到 DOM 的另一个部分。
+将其插槽内容渲染到 DOM 中的另一个位置。
 
 - **Props**
 
@@ -303,7 +303,7 @@ h(Transition, {
 
 ## `<Suspense>` <sup class="vt-badge experimental" />
 
-用于在组件树中编排嵌套的异步依赖项。
+用于协调对组件树中嵌套的异步依赖的处理。
 
 - **Props**
 

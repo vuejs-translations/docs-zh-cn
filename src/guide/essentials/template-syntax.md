@@ -251,7 +251,7 @@ data() {
 <a :[someAttr]="value"> ... </a>
 ```
 
-上面的例子将会在 DOM 内嵌模板中被转换为 `:[someattr]`。如果你的组件拥有 “someAttr” 属性而非 “someattr”，这段代码将不会工作。单文件组件内的模版**不**受此限制。
+上面的例子将会在 DOM 内嵌模板中被转换为 `:[someattr]`。如果你的组件拥有 “someAttr” 属性而非 “someattr”，这段代码将不会工作。单文件组件内的模板**不**受此限制。
 
 ### 修饰符 Modifiers {#modifiers}
 

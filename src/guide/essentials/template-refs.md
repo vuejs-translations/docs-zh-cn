@@ -67,7 +67,7 @@ export default {
 
 </div>
 
-注意，你只可以**在组件挂载后**才能访问模版引用。如果你想在模板中的表达式上访问 <span class="options-api">`$refs.input`</span><span class="composition-api">`input`</span>，在初次渲染时会是 `null`。这是因为在初次渲染前这个元素还不存在呢！
+注意，你只可以**在组件挂载后**才能访问模板引用。如果你想在模板中的表达式上访问 <span class="options-api">`$refs.input`</span><span class="composition-api">`input`</span>，在初次渲染时会是 `null`。这是因为在初次渲染前这个元素还不存在呢！
 
 <div class="composition-api">
 
@@ -83,17 +83,17 @@ watchEffect(() => {
 })
 ```
 
-也可参考：[为模板 ref 标注类型](/guide/typescript/composition-api.html#typing-template-refs) <sup class="vt-badge ts" />
+也可参考：[为模板引用标注类型](/guide/typescript/composition-api.html#typing-template-refs) <sup class="vt-badge ts" />
 
 </div>
 
-## `v-for` 中的模版引用 {#refs-inside-v-for}
+## `v-for` 中的模板引用 {#refs-inside-v-for}
 
 > 需要 v3.2.25 及以上版本
 
 <div class="composition-api">
 
-当在 `v-for` 中使用模版引用时，对应的 ref 中包含的值是一个数组，它将在元素被挂载后包含对应整个列表的所有元素：
+当在 `v-for` 中使用模板引用时，对应的 ref 中包含的值是一个数组，它将在元素被挂载后包含对应整个列表的所有元素：
 
 ```vue
 <script setup>
@@ -122,7 +122,7 @@ onMounted(() => console.log(itemRefs.value))
 </div>
 <div class="options-api">
 
-当在 `v-for` 中使用模版引用时，相应的引用中包含的值是一个数组：
+当在 `v-for` 中使用模板引用时，相应的引用中包含的值是一个数组：
 
 ```vue
 <script>
@@ -155,7 +155,7 @@ export default {
 
 应该注意的是，ref 数组**并不**保证与源数组相同的顺序。
 
-## 函数模版引用 {#function-refs}
+## 函数模板引用 {#function-refs}
 
 除了使用字符串值作名字，`ref` attribute 还可以绑定为一个函数，会在每次组件更新时都被调用。该函数会收到元素引用作为其第一个参数：
 
@@ -169,7 +169,7 @@ export default {
 
 > 这一小节假设你已了解[组件](/guide/essentials/component-basics)的相关知识，或者你也可以先跳过这里，之后再回来看。
 
-模版引用也可以被用在一个子组件上。这种情况下引用中获得的值的是组件实例：
+模板引用也可以被用在一个子组件上。这种情况下引用中获得的值的是组件实例：
 
 <div class="composition-api">
 
@@ -234,7 +234,7 @@ defineExpose({
 </script>
 ```
 
-当父组件通过模板 ref 获取到了该组件的实例时，得到的实例类型为 `{ a: number, b: number }` (ref 都会自动解包，和一般的实例一样)。
+当父组件通过模板引用获取到了该组件的实例时，得到的实例类型为 `{ a: number, b: number }` (ref 都会自动解包，和一般的实例一样)。
 
 TypeScript 用户请参考：[为组件的模板引用标注类型](/guide/typescript/composition-api.html#typing-component-template-refs) <sup class="vt-badge ts" />
 
@@ -263,6 +263,6 @@ export default {
 }
 ```
 
-在上面这个例子中，父组件通过模板 ref 访问到子组件实例后，仅能访问 `publicData` 和 `publicMethod`。
+在上面这个例子中，父组件通过模板引用访问到子组件实例后，仅能访问 `publicData` 和 `publicMethod`。
 
 </div>

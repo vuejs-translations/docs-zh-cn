@@ -1,17 +1,15 @@
 # 组合式 API：setup() {#composition-api-setup}
 
-:::info 注意
-这篇文档所讲的是组件 `setup` 选项的使用方式。如果你正在搭配单文件组件使用组合式 API，建议使用更简洁易用的 [`<script setup>`](/api/sfc-script-setup.html) 语法。
-:::
+`setup()` 钩子是在组件中使用组合式 API 的入口，通常只在以下情况下使用：
 
-`setup()` 这个钩子在以下情况下，作为组件中使用组合式 API 的入口。
+1. 需要在非单文件组件中使用组合式 API 时。
+2. 需要在基于选项式 API 的组件中集成基于组合式 API 的代码时。
 
-1. 不搭配构建步骤使用组合式 API。
-2. 在选项式 API 组件中集成基于组合式 API 的代码。
+**其他情况下，都应优先使用 [`<script setup>`](/api/sfc-script-setup.html) 语法。**
 
 ## 基本使用 {#basic-usage}
 
-我们可以使用[响应式 API](./reactivity-core.html) 来声明响应式的状态，在 `setup()` 函数中返回的对象会暴露给模板。在其他的选项中，返回值对象中的属性在组件实例上同样可用：<!-- 译者备注：（原文问题）这里是否使用选项和是否在组件实例上可用并没有因果关系，因此对 if 从句作了意译 -->
+我们可以使用[响应式 API](./reactivity-core.html) 来声明响应式的状态，在 `setup()` 函数中返回的对象会暴露给模板和组件实例。其它的选项也可以通过组件实例来获取 `setup()` 暴露的属性：
 
 ```vue
 <script>
@@ -44,9 +42,9 @@ export default {
 `setup()` 自身并不含对组件实例的访问权，即在 `setup()` 中访问 `this` 会是 `undefined`。你可以在选项式 API 中访问组合式 API 暴露的值，但反过来则不行。
 :::
 
-## 访问 Prop {#accessing-props}
+## 访问 Props {#accessing-props}
 
-`setup` 函数的第一个参数是组件的 `props`。和标准的组件一致，一个 `setup` 函数的 `props` 是响应式的，并且会在传入新的 prop 时同步更新。
+`setup` 函数的第一个参数是组件的 `props`。和标准的组件一致，一个 `setup` 函数的 `props` 是响应式的，并且会在传入新的 props 时同步更新。
 
 ```js
 export default {
@@ -59,9 +57,9 @@ export default {
 }
 ```
 
-请注意如果你解构了 `props` 对象，解构出的变量将会丢失响应性。因此我们推荐通过 `props.xxx` 的形式来使用其中的 prop。
+请注意如果你解构了 `props` 对象，解构出的变量将会丢失响应性。因此我们推荐通过 `props.xxx` 的形式来使用其中的 props。
 
-如果你确实需要解构 `props` 对象，或者需要将某个 prop 传到一个外部函数中并保持响应性，那么你可以使用 [toRefs()](./reactivity-utilities.html#torefs) 和 [toRef()](/api/reactivity-utilities.html#toref) 这两个工具 API：
+如果你确实需要解构 `props` 对象，或者需要将某个 prop 传到一个外部函数中并保持响应性，那么你可以使用 [toRefs()](./reactivity-utilities.html#torefs) 和 [toRef()](/api/reactivity-utilities.html#toref) 这两个工具函数：
 
 ```js
 import { toRefs, toRef } from 'vue'
@@ -79,14 +77,14 @@ export default {
 }
 ```
 
-## Setup 的上下文 {#setup-context}
+## Setup 上下文 {#setup-context}
 
 传入 `setup` 函数的第二个参数是一个 **Setup 上下文**对象。上下文对象暴露了其他一些在 `setup` 中可能会用到的值：
 
 ```js
 export default {
   setup(props, context) {
-    // Attribute（非响应式的对象，等价于 $attrs）
+    // 透传 Attributes（非响应式的对象，等价于 $attrs）
     console.log(context.attrs)
 
     // 插槽（非响应式的对象，等价于 $slots）
@@ -115,7 +113,7 @@ export default {
 
 ### 暴露公共属性 {#exposing-public-properties}
 
-`expose` 函数用于显式地限制该组件暴露出的属性，当父组件通过[模板 ref](/guide/essentials/template-refs.html#ref-on-component) 访问该组件的实例时，将仅能访问 `expose` 函数暴露出的内容：
+`expose` 函数用于显式地限制该组件暴露出的属性，当父组件通过[模板引用](/guide/essentials/template-refs.html#ref-on-component)访问该组件的实例时，将仅能访问 `expose` 函数暴露出的内容：
 
 ```js{5,10}
 export default {
@@ -147,7 +145,7 @@ export default {
 }
 ```
 
-返回一个渲染函数将会阻止我们返回其他东西。对于组件内部来说，这样没有问题，但如果我们想通过模板 ref 将这个组件的方法暴露给父组件，那就有问题了。
+返回一个渲染函数将会阻止我们返回其他东西。对于组件内部来说，这样没有问题，但如果我们想通过模板引用将这个组件的方法暴露给父组件，那就有问题了。
 
 我们可以通过调用 [`expose()`](#exposing-public-properties) 解决这个问题：
 
@@ -168,4 +166,4 @@ export default {
 }
 ```
 
-此时父组件可以通过模板 ref 来访问这个 `increment` 方法。
+此时父组件可以通过模板引用来访问这个 `increment` 方法。

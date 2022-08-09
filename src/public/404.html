@@ -1,0 +1,11 @@
+<h1 id="title"></h1>
+
+<script>
+  if (location.pathname.startsWith('/v2/')) {
+    document.getElementById('title').textContent =
+      '重定向到 v2 文档中...'
+    location.replace(`https://v2.cn.vuejs.org${location.pathname}`)
+  } else {
+    document.getElementById('title').textContent = '404 Not Found'
+  }
+</script>

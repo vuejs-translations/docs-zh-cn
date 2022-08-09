@@ -65,7 +65,7 @@ app
 
 <div class="composition-api">
 
-在使用 `<script setup>` 的单文件组件中，导入的组件可以直接在模版中使用，无需注册：
+在使用 `<script setup>` 的单文件组件中，导入的组件可以直接在模板中使用，无需注册：
 
 ```vue
 <script setup>
@@ -138,4 +138,4 @@ export default {
 
 在单文件组件和内联字符串模板中，我们都推荐这样做。但是，PascalCase 的标签名在 DOM 模板中是不可用的，详情参见 [DOM 模板解析注意事项](/guide/essentials/component-basics.html#dom-template-parsing-caveats)。
 
-为了方便，Vue 支持将模版中使用 kebab-case 的标签解析为使用 PascalCase 注册的组件。这意味着一个以 `MyComponent` 为名注册的组件，在模板中可以通过 `<MyComponent>` 或 `<my-component>` 引用。这让我们能够使用同样的 JavaScript 组件注册代码来配合不同来源的模板。
+为了方便，Vue 支持将模板中使用 kebab-case 的标签解析为使用 PascalCase 注册的组件。这意味着一个以 `MyComponent` 为名注册的组件，在模板中可以通过 `<MyComponent>` 或 `<my-component>` 引用。这让我们能够使用同样的 JavaScript 组件注册代码来配合不同来源的模板。

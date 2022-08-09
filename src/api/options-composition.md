@@ -2,7 +2,7 @@
 
 ## provide {#provide}
 
-供给一些值给后代组件用来注入。
+用于提供可以被后代组件注入的值。
 
 - **类型**
 
@@ -50,13 +50,13 @@
   }
   ```
 
-  请注意，针对上面这个例子，所供给的 `msg` 将**不会**是响应式的。请看[配合响应性](/guide/components/provide-inject.html#working-with-reactivity)一节获取更多细节。
+  请注意，针对上面这个例子，所供给的 `msg` 将**不会**是响应式的。请查看[和响应式数据配合使用](/guide/components/provide-inject.html#working-with-reactivity)一节获取更多细节。
 
 - **参考**：[依赖注入](/guide/components/provide-inject.html)
 
 ## inject {#inject}
 
-通过 key 的索引，声明要从祖先供给方那里注入进当前组件的属性。
+用于声明要通过从上层提供方匹配并注入进当前组件的属性。
 
 - **类型**
 
@@ -81,9 +81,9 @@
 
   - 一个字符串数组
   - 一个对象，其 key 名就是在当前组件中的本地绑定名称，而它的值应该是以下两种之一：
-    - 索引可用注入的 key (string 或者 Symbol)
+    - 匹配可用注入的 key (string 或者 Symbol)
     - 一个对象
-      - 它的 `from` 属性是一个 key (string 或者 Symbol)，用于索引可用的注入
+      - 它的 `from` 属性是一个 key (string 或者 Symbol)，用于匹配可用的注入
       - 它的 `default` 属性用作候补值。和 props 的默认值类似，如果它是一个对象，那么应该使用一个工厂函数来创建，以避免多个组件共享同一个对象。
 
   如果没有供给相匹配的属性、也没有提供默认值，那么注入的属性将为 `undefined`。
@@ -103,7 +103,7 @@
   }
   ```
 
-  使用注入的值作为 prop 的默认值：
+  使用注入的值作为 props 的默认值：
 
   ```js
   const Child = {
@@ -154,7 +154,7 @@
   }
   ```
 
-  和 prop 默认值类似，对于非原始数据类型的值，你需要使用工厂函数：
+  和 props 默认值类似，对于非原始数据类型的值，你需要使用工厂函数：
 
   ```js
   const Child = {
@@ -171,7 +171,7 @@
 
 ## mixins {#mixins}
 
-一个选项对象的数组，这些对象都将被混入到当前组件的实例中。
+一个包含组件选项对象的数组，这些选项都将被混入到当前组件的实例中。
 
 - **类型**
 
@@ -188,7 +188,7 @@
   Mixin 钩子的调用顺序与提供它们的选项顺序相同，且会在组件自身的钩子前被调用。
 
   :::warning 不再推荐
-  在 Vue 2 中，mixins 是创建可重用组件逻辑的主要方式。尽管 mixins 在 Vue 3 中保留了支持，但对于组件间的逻辑复用，[Composition API](/guide/reusability/composables.html) 是现在更推荐的方式。
+  在 Vue 2 中，mixins 是创建可重用组件逻辑的主要方式。尽管在 Vue 3 中保留了 mixins 支持，但对于组件间的逻辑复用，[Composition API](/guide/reusability/composables.html) 是现在更推荐的方式。
   :::
 
 - **示例：**

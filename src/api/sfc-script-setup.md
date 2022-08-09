@@ -154,7 +154,7 @@ import { myDirective as vMyDirective } from './MyDirective.js'
 
 ## `defineProps()` 和 `defineEmits()` {#defineprops-defineemits}
 
-为了在声明 `props` 和 `emits` 选项时获得完整的类型推断支持，我们可以使用 `defineProps` 和 `defineEmits` API，它们将自动地在 `<script setup>` 中可用：
+为了在声明 `props` 和 `emits` 选项时获得完整的类型推导支持，我们可以使用 `defineProps` 和 `defineEmits` API，它们将自动地在 `<script setup>` 中可用：
 
 ```vue
 <script setup>
@@ -171,7 +171,7 @@ const emit = defineEmits(['change', 'delete'])
 
 - `defineProps` 接收与 `props` 选项相同的值，`defineEmits` 接收与 `emits` 选项相同的值。
 
-- `defineProps` 和 `defineEmits` 在选项传入后，会提供恰当的类型推断。
+- `defineProps` 和 `defineEmits` 在选项传入后，会提供恰当的类型推导。
 
 - 传入到 `defineProps` 和 `defineEmits` 的选项会从 setup 中提升到模块的作用域。因此，传入的选项不能引用在 setup 作用域中声明的局部变量。这样做会引起编译错误。但是，它*可以*引用导入的绑定，因为它们也在模块作用域内。
 
@@ -281,14 +281,14 @@ const emit = defineEmits<{
 
   - 在生产模式下，编译器会生成数组格式的声明来减少打包体积 (这里的 props 会被编译成 `['foo', 'bar']`)。
 
-  - 生成的代码仍然是有着合法类型的 Typescript 代码，它可以在后续的流程中被其它工具处理。
+  - 生成的代码仍然是有着合法类型的 Typescript 代码，它可以在后续的流程中被其他工具处理。
 
 - 截至目前，类型声明参数必须是以下内容之一，以确保正确的静态分析：
 
   - 类型字面量
   - 在同一文件中的接口或类型字面量的引用
 
-  现在还不支持复杂的类型和从其它文件进行类型导入，但我们有计划在将来支持。
+  现在还不支持复杂的类型和从其他文件进行类型导入，但我们有计划在将来支持。
 
 ### 使用类型声明时的默认 props 值 {#default-props-values-when-using-type-declaration}
 
