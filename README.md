@@ -1,8 +1,8 @@
 # Vuejs.org 新版中文文档
 
-这里是即将焕然一新的 [cn.vuejs.org](https://staging-cn.vuejs.org)。
+这里是焕然一新的 [cn.vuejs.org](https://cn.vuejs.org)。
 
-你也可以预览对应的英文原文文档 [https://staging.vuejs.org](https://staging.vuejs.org) 及其代码仓库 [vuejs/docs](https://github.com/vuejs/docs)。
+你也可以预览对应的英文原文文档 [https://vuejs.org](https://vuejs.org) 及其代码仓库 [vuejs/docs](https://github.com/vuejs/docs)。
 
 ## 如何在本地编辑和预览该网站
 
