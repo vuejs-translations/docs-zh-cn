@@ -209,7 +209,7 @@ Vue 组件的插槽机制是受[原生 Web Component `<slot>` 元素](https://de
 </BaseLayout>
 ```
 
-`v-slot` 有对应的简写 `#`，因此 `<template v-slot:header>` 可以简写为 `<template #header>`。其意思就是“将这部分模板片段传入子组件的 header 插槽中”。
+`v-slot` 有对应的简写 `#`，因此 `<template v-slot:header>` 可以简写为 `<template #header>`。其意思就是“将这部分模板片段传入父组件的 header 插槽中”。
 
 ![具名插槽图示](./images/named-slots.png)
 
