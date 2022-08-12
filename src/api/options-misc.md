@@ -29,7 +29,7 @@
   有一种场景下 `name` 必须是已显式声明的：即 [`<KeepAlive>`](/guide/built-ins/keep-alive.html) 通过其 `include / exclude` prop 来匹配其需要缓存的组件时。
 
   :::tip
-  在 3.2.34 或以上的版本中, 使用 `<script setup>` 的单文件组件会自动根据文件名生成对应的 `name` 选项，即使是在配合 `<KeepAlive>` 使用时也无需再手动声明。
+  在 3.2.34 或以上的版本中，使用 `<script setup>` 的单文件组件会自动根据文件名生成对应的 `name` 选项，即使是在配合 `<KeepAlive>` 使用时也无需再手动声明。
   :::
 
 ## inheritAttrs {#inheritattrs}

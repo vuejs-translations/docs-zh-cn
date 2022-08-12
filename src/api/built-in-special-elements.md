@@ -90,7 +90,7 @@
 
   如果将组件本身传递给 `is` 而不是其名称，则不需要注册，例如在 `<script setup>` 中。
 
-  如果在 `<component>` 标签上使用 `v-model`，模板编译器会将其扩展为 `modelValue` prop 和 `update:modelValue` 事件监听器，就像对任何其他组件一样。但是，这与原生 HTML 元素不兼容，例如 `<input>` 或 `<select>`。因此，在动态创建的原生元素上使用 `v-model` 将不起作用:
+  如果在 `<component>` 标签上使用 `v-model`，模板编译器会将其扩展为 `modelValue` prop 和 `update:modelValue` 事件监听器，就像对任何其他组件一样。但是，这与原生 HTML 元素不兼容，例如 `<input>` 或 `<select>`。因此，在动态创建的原生元素上使用 `v-model` 将不起作用：
 
   ```vue
   <script setup>

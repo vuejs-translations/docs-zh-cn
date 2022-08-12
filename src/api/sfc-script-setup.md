@@ -19,7 +19,7 @@ console.log('hello script setup')
 
 里面的代码会被编译成组件 `setup()` 函数的内容。这意味着与普通的 `<script>` 只在组件被首次引入的时候执行一次不同，`<script setup>` 中的代码会在**每次组件实例被创建的时候执行**。
 
-### 顶层的绑定会被暴露给模板  {#top-level-bindings-are-exposed-to-template}
+### 顶层的绑定会被暴露给模板 {#top-level-bindings-are-exposed-to-template}
 
 当使用 `<script setup>` 的时候，任何在 `<script setup>` 声明的顶层的绑定 (包括变量，函数声明，以及 import 导入的内容) 都能在模板中直接使用：
 
@@ -252,7 +252,7 @@ const post = await fetch(`/api/post/1`).then((r) => r.json())
 另外，await 的表达式会自动编译成在 `await` 之后保留当前组件实例上下文的格式。
 
 :::warning 注意
-`async setup()` 必须与 [`Suspense` 内置组件](/guide/built-ins/suspense.html) 组合使用，`Suspense` 目前还是处于实验阶段的特性，会在将来的版本中稳定。
+`async setup()` 必须与 [`Suspense` 内置组件](/guide/built-ins/suspense.html)组合使用，`Suspense` 目前还是处于实验阶段的特性，会在将来的版本中稳定。
 :::
 
 ## 针对 TypeScript 的功能 {#typescript-only-features}
@@ -308,6 +308,6 @@ const props = withDefaults(defineProps<Props>(), {
 
 上面代码会被编译为等价的运行时 props 的 `default` 选项。此外，`withDefaults` 辅助函数提供了对默认值的类型检查，并确保返回的 `props` 的类型删除了已声明默认值的属性的可选标志。
 
-## 限制  {#restrictions}
+## 限制 {#restrictions}
 
 由于模块执行语义的差异，`<script setup>` 中的代码依赖单文件组件的上下文。当将其移动到外部的 `.js` 或者 `.ts` 文件中的时候，对于开发者和工具来说都会感到混乱。因此，**`<script setup>`** 不能和 `src` attribute 一起使用。

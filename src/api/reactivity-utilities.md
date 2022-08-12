@@ -159,7 +159,7 @@
   const { foo, bar } = useFeatureX()
   ```
 
-  `toRefs` 在调用时只会为源对象上可以枚举的属性创建 ref。如果要为可能还不存在的属性创建 ref，请改用 [`toRef`](#toref) 。
+  `toRefs` 在调用时只会为源对象上可以枚举的属性创建 ref。如果要为可能还不存在的属性创建 ref，请改用 [`toRef`](#toref)。
 
 ## isProxy() {#isproxy}
 

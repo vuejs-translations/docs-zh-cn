@@ -20,7 +20,7 @@ Vue.js 是采用 MIT 许可的开源项目，使用完全免费。
 
 你可以通过 [GitHub Sponsors](https://github.com/sponsors/yyx990803) 或 [OpenCollective](https://opencollective.com/vuejs) 进行赞助。赞助发票可以通过 GitHub 的支付系统获得。我们同时接受每月定期的赞助和一次性的捐赠。定期的赞助有权获得[赞助等级](#tier-benefits)中提供的 logo 展示位。
 
-中国区的赞助商也可以通过致信 sponsor@vuejs.org 咨询中国区铂金赞助的具体赞助事宜（该赞助等级的详情见下）。
+中国区的赞助商也可以通过致信 sponsor@vuejs.org 咨询中国区铂金赞助的具体赞助事宜 (该赞助等级的详情见下)。
 
 ## 以企业名义赞助 Vue {#sponsoring-vue-as-a-business}
 
@@ -38,31 +38,31 @@ Vue.js 是采用 MIT 许可的开源项目，使用完全免费。
 
 ## 赞助等级 {#tier-benefits}
 
-- **中国区铂金赞助商**:
+- **中国区铂金赞助商**：
   - [cn.vuejs.org](/) 首屏无需滚动可见的 logo 展示位。
   - 所有内容页面的侧边栏上的明显的 logo 展示位。
   - 在 [`vuejs/core`](https://github.com/vuejs/core) 和 [`vuejs/vue`](https://github.com/vuejs/core) 的 README 上明显的 logo 展示位。
 
 **以下赞助等级均仅针对我们面向国际用户的英文版网站 vuejs.org。**
 
-- **全球特别赞助商**:
+- **全球特别赞助商**：
   - 全球独家赞助商 (目前已经满员)。
   - [vuejs.org](https://vuejs.org) 首屏无需滚动可见的独家 logo 展示位。
   - 所有级别的 logo 展示位中最显眼的位置。
-- **铂金赞助商 (2,000 美元/月)**:
+- **铂金赞助商 (2,000 美元/月)**：
   - [vuejs.org](https://vuejs.org) 首页明显的 logo 展示位。
   - 所有内容页面的侧边栏上的明显的 logo 展示位。
   - 在 [`vuejs/core`](https://github.com/vuejs/core) 和 [`vuejs/vue`](https://github.com/vuejs/core) 的 README 上明显的 logo 展示位。
-- **金牌赞助商 (500 美元/月)**:
+- **金牌赞助商 (500 美元/月)**：
   - [vuejs.org](https://vuejs.org) 首页大号的 logo 展示位。
   - 在 `vuejs/core` 和 `vuejs/vue` 的 README 上大号的 logo 展示位。
-- **银牌赞助商 (250 美元/月)**:
+- **银牌赞助商 (250 美元/月)**：
   - 在 `vuejs/core` 和 `vuejs/vue` 的 `BACKERS.md` 文件上中号的 logo 展示位。
-- **铜牌赞助商 (100 美元/月)**:
+- **铜牌赞助商 (100 美元/月)**：
   - 在 `vuejs/core` 和 `vuejs/vue` 的 `BACKERS.md` 文件上小号的 logo 展示位。
-- **慷慨支持者 (50 美元/月)**:
+- **慷慨支持者 (50 美元/月)**：
   - 在 `vuejs/core` 和 `vuejs/vue` 的 `BACKERS.md` 文件上的名单上，且在其他个人支持者的位置之前。
-- **个人支持者 (5 美元/月)**:
+- **个人支持者 (5 美元/月)**：
   - 在 `vuejs/core` 和 `vuejs/vue` 的 `BACKERS.md` 文件上的名单上。
 
 ## 当前赞助商 {#current-sponsors}

@@ -33,7 +33,7 @@ setup() {
 
 </div>
 
-注意这个 ref 使用 `null` 值来初始化。这是因为当<span class="sfc">`<script setup>`</span><span class="html">`setup()`</span> 执行时，DOM 元素还不存在。模板引用 ref 只能在组件**挂载**后访问。
+注意这个 ref 使用 `null` 值来初始化。这是因为当 <span class="sfc">`<script setup>`</span><span class="html">`setup()`</span> 执行时，DOM 元素还不存在。模板引用 ref 只能在组件**挂载**后访问。
 
 要在挂载之后执行代码，我们可以使用 `onMounted()` 函数：
 

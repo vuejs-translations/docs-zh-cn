@@ -55,7 +55,7 @@
   - 对于以多个元素为根的组件，`$el` 将是一个仅作占位符的 DOM 节点，Vue 使用它来跟踪组件在 DOM 中的位置 (文本节点或 SSR 激活模式下的注释节点)。
 
   :::tip
-  为保持一致性，我们推荐使用[模板引用](/guide/essentials/template-refs.html) 来直接访问元素而不是依赖 `$el`。
+  为保持一致性，我们推荐使用[模板引用](/guide/essentials/template-refs.html)来直接访问元素而不是依赖 `$el`。
   :::
 
 ## $options {#options}
@@ -89,7 +89,7 @@
   })
   ```
 
-- **参考：** [`app.config.optionMergeStrategies`](/api/application.html#app-config-optionmergestrategies)
+- **参考：**[`app.config.optionMergeStrategies`](/api/application.html#app-config-optionmergestrategies)
 
 ## $parent {#parent}
 
@@ -141,7 +141,7 @@
 
 ## $refs {#refs}
 
-一个包含 DOM 元素和组件实例的对象，通过[模板引用](/guide/essentials/template-refs.html) 注册。
+一个包含 DOM 元素和组件实例的对象，通过[模板引用](/guide/essentials/template-refs.html)注册。
 
 - **类型**
 
@@ -323,4 +323,4 @@
 
   和全局版本的 `nextTick()` 的唯一区别就是组件传递给 `this.$nextTick()` 的回调函数会带上 `this` 上下文，其绑定了当前组件实例。
 
-- **参考：** [`nextTick()`](./general.html#nexttick)
+- **参考：**[`nextTick()`](./general.html#nexttick)
