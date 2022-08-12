@@ -277,7 +277,7 @@ export default {
 <input v-model="searchText" />
 ```
 
-上面的代码其实等价于下面这段（编译器会对 `v-model` 进行展开）：
+上面的代码其实等价于下面这段 (编译器会对 `v-model` 进行展开)：
 
 ```vue-html
 <input

@@ -274,7 +274,7 @@ const { location, updateLocation } = inject('location')
 </template>
 ```
 
-最后，如果你想确保提供的数据不能被注入方的组件更改，你可以使用[`readonly()`](/api/reactivity-core.html#readonly) 来包装提供的值。
+最后，如果你想确保提供的数据不能被注入方的组件更改，你可以使用 [`readonly()`](/api/reactivity-core.html#readonly) 来包装提供的值。
 
 ```vue
 <script setup>

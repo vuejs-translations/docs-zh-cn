@@ -31,7 +31,7 @@ export default {
 
 </div>
 
-还有其他一些钩子，会在实例生命周期的不同阶段被调用，最常用的是 <span class="composition-api">[`onMounted`](/api/composition-api-lifecycle.html#onmounted)，[`onUpdated`](/api/composition-api-lifecycle.html#onupdated) 和 [`onUnmounted`](/api/composition-api-lifecycle.html#onunmounted)。所有生命周期钩子的完整参考及其用法请参考[API 索引](/api/composition-api-lifecycle.html)。</span><span class="options-api">[`mounted`](/api/options-lifecycle.html#mounted)，[`updated`](/api/options-lifecycle.html#updated) 和 [`unmounted`](/api/options-lifecycle.html#unmounted)。</span>
+还有其他一些钩子，会在实例生命周期的不同阶段被调用，最常用的是 <span class="composition-api">[`onMounted`](/api/composition-api-lifecycle.html#onmounted)、[`onUpdated`](/api/composition-api-lifecycle.html#onupdated) 和 [`onUnmounted`](/api/composition-api-lifecycle.html#onunmounted)。所有生命周期钩子的完整参考及其用法请参考 [API 索引](/api/composition-api-lifecycle.html)。</span><span class="options-api">[`mounted`](/api/options-lifecycle.html#mounted)、[`updated`](/api/options-lifecycle.html#updated) 和 [`unmounted`](/api/options-lifecycle.html#unmounted)。</span>
 
 <div class="options-api">
 
