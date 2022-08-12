@@ -499,7 +499,7 @@ export default {
 
 ## 出现时过渡 {#transition-on-appear}
 
-如果你想在某个节点初次渲染时应用一个过渡效果，你可以添加 `appear` prop:
+如果你想在某个节点初次渲染时应用一个过渡效果，你可以添加 `appear` prop：
 
 ```vue-html
 <Transition appear>

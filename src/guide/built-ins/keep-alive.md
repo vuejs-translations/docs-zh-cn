@@ -74,7 +74,7 @@ import SwitchComponent from './keep-alive-demos/SwitchComponent.vue'
 它会根据组件的 [`name`](/api/options-misc.html#name) 选项进行匹配，所以组件如果想要条件性地被 `KeepAlive` 缓存，就必须显式声明一个 `name` 选项。
 
 :::tip
-在 3.2.34 或以上的版本中, 使用 `<script setup>` 的单文件组件会自动根据文件名生成对应的 `name` 选项，无需再手动声明。
+在 3.2.34 或以上的版本中，使用 `<script setup>` 的单文件组件会自动根据文件名生成对应的 `name` 选项，无需再手动声明。
 :::
 
 ## 最大缓存实例数 {#max-cached-instances}

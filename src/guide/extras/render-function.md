@@ -363,7 +363,7 @@ h(
 
 ### 事件修饰符 {#event-modifiers}
 
-对于 `.passive` 、`.capture` 和 `.once` 事件修饰符，可以使用驼峰写法将他们拼接在事件名后面：
+对于 `.passive`、`.capture` 和 `.once` 事件修饰符，可以使用驼峰写法将他们拼接在事件名后面：
 
 实例：
 
@@ -649,7 +649,7 @@ const vnode = withDirectives(h('div'), [
 
 ## 函数式组件 {#functional-components}
 
-函数式组件是一种定义自身没有任何状态的组件的方式。它们很像纯函数：接收 props，返回 vnodes。函数式组件在渲染过程中不会创建组件实例（也就是说，没有 `this`），也不会触发常规的组件生命周期钩子。
+函数式组件是一种定义自身没有任何状态的组件的方式。它们很像纯函数：接收 props，返回 vnodes。函数式组件在渲染过程中不会创建组件实例 (也就是说，没有 `this`)，也不会触发常规的组件生命周期钩子。
 
 我们用一个普通的函数而不是一个选项对象来创建函数式组件。该函数实际上就是该组件的渲染函数。
 
@@ -674,7 +674,7 @@ function MyComponent(props, context) {
 }
 ```
 
-第二个参数 `context` 包含三个属性：`attrs`、 `emit` 和 `slots`。它们分别相当于组件实例的 [`$attrs`](/api/component-instance.html#attrs)、[`$emit`](/api/component-instance.html#emit) 和 [`$slots`](/api/component-instance.html#slots) 这几个属性。
+第二个参数 `context` 包含三个属性：`attrs`、`emit` 和 `slots`。它们分别相当于组件实例的 [`$attrs`](/api/component-instance.html#attrs)、[`$emit`](/api/component-instance.html#emit) 和 [`$slots`](/api/component-instance.html#slots) 这几个属性。
 
 </div>
 
