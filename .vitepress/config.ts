@@ -50,7 +50,7 @@ const nav = [
       {
         text: '官方库',
         items: [
-          { text: 'Vue Router', link: 'https://router.vuejs.org/' },
+          { text: 'Vue Router', link: 'https://router.vuejs.org/zh/' },
           { text: 'Pinia', link: 'https://pinia.vuejs.org/' },
           { text: '工具链指南', link: '/guide/scaling-up/tooling.html' }
         ]
@@ -104,7 +104,7 @@ const nav = [
         text: '社区指南',
         link: '/about/community-guide'
       },
-      { text: '行为准则', link: 'https://vuejs.org/about/coc.html' },
+      { text: '行为规范', link: 'https://vuejs.org/about/coc.html' },
       {
         text: '纪录片',
         link: 'https://www.youtube.com/watch?v=OrxmtDw4pVI'

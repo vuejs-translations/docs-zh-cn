@@ -213,7 +213,7 @@
   import { useSSRContext } from 'vue'
 
   // 确保只在服务端渲染时调用
-  // https://vitejs.dev/guide/ssr.html#conditional-logic
+  // https://cn.vitejs.dev/guide/ssr.html#conditional-logic
   if (import.meta.env.SSR) {
     const ctx = useSSRContext()
     // ...给上下文对象添加属性

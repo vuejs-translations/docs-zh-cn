@@ -17,7 +17,7 @@
   </VueSchoolLink>
 </div>
 
-Vue 很适合用来构建单页面应用。对于大多数此类应用，都推荐使用官方支持的[路由库](https://github.com/vuejs/router)。要了解更多细节，请查看 [Vue Router 的文档](https://router.vuejs.org/zh/index.html)。
+Vue 很适合用来构建单页面应用。对于大多数此类应用，都推荐使用官方支持的[路由库](https://github.com/vuejs/router)。要了解更多细节，请查看 [Vue Router 的文档](https://router.vuejs.org/zh/)。
 
 ## 从头开始实现一个简单的路由 {#simple-routing-from-scratch}
 

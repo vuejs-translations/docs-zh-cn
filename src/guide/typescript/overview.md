@@ -10,7 +10,7 @@ Vue 本身就是用 TypeScript 编写的，并对 TypeScript 提供了一等公�
 
 ## 项目配置 {#project-setup}
 
-[`create-vue`](https://github.com/vuejs/create-vue)，即官方的项目脚手架工具，提供了搭建基于 [Vite](https://vitejs.dev/) 且 TypeScript 就绪的 Vue 项目的选项。
+[`create-vue`](https://github.com/vuejs/create-vue)，即官方的项目脚手架工具，提供了搭建基于 [Vite](https://cn.vitejs.dev/) 且 TypeScript 就绪的 Vue 项目的选项。
 
 ### 总览 {#overview}
 

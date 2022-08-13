@@ -105,9 +105,9 @@ p {{ msg }}
 
 注意对不同预处理器的集成会根据你所使用的工具链而有所不同，具体细节请查看相应的工具链文档来确认：
 
-- [Vite](https://vitejs.dev/guide/features.html#css-pre-processors)
-- [Vue CLI](https://cli.vuejs.org/guide/css.html#pre-processors)
-- [webpack + vue-loader](https://vue-loader.vuejs.org/guide/pre-processors.html#using-pre-processors)
+- [Vite](https://cn.vitejs.dev/guide/features.html#css-pre-processors)
+- [Vue CLI](https://cli.vuejs.org/zh/guide/css.html#%E9%A2%84%E5%A4%84%E7%90%86%E5%99%A8)
+- [webpack + vue-loader](https://vue-loader.vuejs.org/zh/guide/pre-processors.html#%E4%BD%BF%E7%94%A8%E9%A2%84%E5%A4%84%E7%90%86%E5%99%A8)
 
 ## Src 导入 {#src-imports}
 
