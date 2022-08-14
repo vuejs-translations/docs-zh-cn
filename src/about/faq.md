@@ -80,7 +80,7 @@ Vue 2 在 2022 年 6 月发布了最后一个小版本 (2.7)。这个小版本�
 
 虽然 Vue 本身是用 TypeScript 实现的，并提供一流的 TypeScript 支持，但它并不强制要求用户使用 TypeScript。
 
-在向 Vue 添加新特性时，对 TypeScript 对支持是一个重要的考虑因素。即使你自己不使用 TypeScript，考虑了 TypeScript 支持的 API 设计也通常更容易被 IDE 和静态分析工具分析，因此这对大家都有好处。Vue 的 API 设计也尽可能在 JavaScript 和 TypeScript 中以相同的方式工作。
+在向 Vue 添加新特性时，对 TypeScript 的支持是一个重要的考虑因素。即使你自己不使用 TypeScript，考虑了 TypeScript 支持的 API 设计也通常更容易被 IDE 和静态分析工具分析，因此这对大家都有好处。Vue 的 API 设计也尽可能在 JavaScript 和 TypeScript 中以相同的方式工作。
 
 选用 TypeScript 会涉及在上手复杂性和长期可维护性收益之间作出权衡。这种权衡是否合理取决于你的团队背景和项目规模，但 Vue 并不会真正成为影响这一决定的因素。
 
