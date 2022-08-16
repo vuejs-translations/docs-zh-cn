@@ -112,7 +112,7 @@ const Foo = defineAsyncComponent(() => import('./Foo.vue'))
   :active="item.id === activeId" />
 ```
 
-现在，对与大多数的组件来说，`activeId` 改变时，它们的 `active` prop 都会保持不变，因此它们无需再更新。总结一下，这个技巧的核心思想就是让传给子组件的 props 尽量保持稳定。
+现在，对于大多数的组件来说，`activeId` 改变时，它们的 `active` prop 都会保持不变，因此它们无需再更新。总结一下，这个技巧的核心思想就是让传给子组件的 props 尽量保持稳定。
 
 ### `v-once` {#v-once}
 
