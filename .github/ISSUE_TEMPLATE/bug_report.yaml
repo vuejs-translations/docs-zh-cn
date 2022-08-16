@@ -8,15 +8,14 @@ body:
       value: |
         报告本站点相关的问题。请认真阅读并填写，否则 issue 将可能被直接关闭。
 
-        本仓库是 Vue 3 文档中文翻译站 [cn.vuejs.org](https://cn.vuejs.org/)。这里仅受理以下类型的问题：
+        本仓库是 Vue 3 文档中文翻译站 [cn.vuejs.org](https://cn.vuejs.org/)。这里仅处理以下类型的问题：
         1. 文档翻译相关；
         2. 英文文档同步相关；
-        3. 其它与本仓库直接相关的问题，如译法讨论、流程优化等；
+        3. 其他与本仓库直接相关的问题，如译法讨论、流程优化等。
 
         若问题涉及文档内容以及文档中的代码块，请先确认该问题是中文仓库本身的问题，还是来自于[英文仓库](https://github.com/vuejs/docs)的问题。如果是来自英文仓库的问题，请向英文仓库提出 issue，本仓库会定期同步来自英文仓库的改动。
 
-        下列问题**不在**本仓库的受理范围内，因此内容涉及以下类型的 issue 将可能被直接关闭：
-        1. Vue 使用问题答疑；
+        请注意，Vue (包括相关的核心库 Vue Router、Pinia 等) 在使用上的答疑**不在**本仓库的处理范围内，相关 issue 将可能被直接关闭。此类问题请在我们的[论坛](https://forum.vuejs.org/c/chinese/7)、[Discord 聊天室](https://chat.vuejs.org/) 或 [StackOverflow](https://stackoverflow.com/tags/vue.js) 上发帖求助。
 
 
   - type: checkboxes
@@ -38,7 +37,7 @@ body:
         - 英文文档同步相关
         - 译法讨论
         - 流程优化
-        - 其它
+        - 其他
     validations:
       required: true
 
