@@ -1,6 +1,6 @@
 name: 问题报告
 description: 报告本站点相关的问题。请认真阅读并填写，否则 issue 将可能被直接关闭。
-title: ""
+title: "[Bug]: "
 labels: []
 assignees: []
 body:
