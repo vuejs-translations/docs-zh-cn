@@ -41,4 +41,6 @@ pnpm run dev
   <img src="https://cdn.jsdelivr.net/gh/ShenQingchuan/github-contributor-svg-generator@main/dist/vuejs-translations/docs-zh-cn.png" />
 </p>
 
-/deploy
+## 版权声明
+
+本仓库所包含的中文翻译内容（即所有 `.md` 文件），其版权为 Vue 团队以及官方中文翻译团队所有。除官方中文文档 [cn.vuejs.org](https://cn.vuejs.org) 之外，不得在其它域名下进行未经授权的转载或部署。
