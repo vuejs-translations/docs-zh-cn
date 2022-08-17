@@ -6,6 +6,22 @@ Vue 是一个独立的社区驱动的项目。它是由[尤雨溪](https://twitt
 
 自 2016 年以来，Vue 的发展主要是通过赞助来保障的，我们在财务上是可维续的。如果你或你的企业从 Vue 中受益，请考虑[赞助](/sponsor/)我们，以支持 Vue 的发展！
 
+## Vue 2 和 Vue 3 之间的区别是什么？ {#what-s-the-difference-between-vue-2-and-vue-3}
+
+<!-- TODO: translation --> Vue 3 is the current, latest major version of Vue. It contains new features that are not present in Vue 2, for example Teleport, Suspense, and multiple root elements per template. It also contains breaking changes that makes it incompatible with Vue 2. Full details are documented in the [Vue 3 Migration Guide](https://v3-migration.vuejs.org/).
+
+Despite the differences, the majority of Vue APIs are shared between the two major versions, so most of your Vue 2 knowledge will continue to work in Vue 3. Notably, Composition API was originally a Vue-3-only feature, but has now been backported to Vue 2 and is available in [Vue 2.7](https://github.com/vuejs/vue/blob/main/CHANGELOG.md#270-2022-07-01).
+
+总的来说，Vue 3 提供了更小的包体积、更好的性能、更好的可扩展性和更好的 TypeScript/IDE 支持。如果你现在要开始一个新项目，我们推荐你选择 Vue 3。但也仍然存在一些考虑使用 Vue 2 的理由：
+
+- 你需要支持 IE11。Vue 3 用到了一些 IE11 不支持的现代 JavaScript 特性。
+
+- 你还在等待 Nuxt 或 Vuetify 等主要生态系统项目为 Vue 3 发布稳定版本。如果你不希望使用 beta 阶段的软件，这也是合理的。然而请注意这里还有一些其他已经稳定的 Vue 3 的组件库，如 [Quasar](https://quasar.dev/)、[Naive UI](https://www.naiveui.com/) 以及 [Element Plus](https://element-plus.org/)。
+
+如果你打算将现有的 Vue 2 应用迁移到 Vue 3，请查阅我们特别整理的 [Vue 3 迁移指南](https://v3-migration.vuejs.org/)。
+
+Vue 2 在 2022 年 6 月发布了最后一个小版本 (2.7)。这个小版本将一些 Vue 3 的新特性，如组合式 API 移植回了 Vue 2。目前 Vue 2 已经进入维护模式：它将不再提供新特性，但将继续针对重大错误修复和安全更新进行发布，为期 18 个月，到 2023 年年底为止。2023 年年底，Vue 2 将正式停止维护进入 End of Life。如果您的团队预期届时仍然需要维护基于 Vue 2 的项目，我们建议您在[这里](https://airtable.com/shrj37Zf4ZIfrxFzh)注册——我们可能会考虑到时提供付费的延长支持服务。
+
 ## Vue 使用什么开源协议？ {#what-license-does-vue-use}
 
 Vue 是完全免费的开源项目，且基于 [MIT License](https://opensource.org/licenses/MIT) 发布。
@@ -56,21 +72,7 @@ Vue 3 是性能最强的主流前端框架之一，可以轻松处理大多数 w
 
 非常欢迎！请阅读我们的[社区指南](/about/community-guide.html)。
 
-## Vue 2 和 Vue 3 之间的区别是什么？ {#what-s-the-difference-between-vue-2-and-vue-3}
-
-Vue 3 是 Vue 当前的最新主版本。它包含了一些 Vue 2 中没有的新特性 (比如 Fragment 和 Teleport)，同时也包含了一些与 Vue 2 非兼容性的变更。尽管存在差异，但大多数 Vue API 在两个大版本之间是共享的，尤其是在 Vue 2.7 引入组合式 API 之后，两个版本的差异变得更小，所以你的大部分 Vue 2 知识将继续在 Vue 3 中发挥作用。
-
-总的来说，Vue 3 提供了更小的包体积、更好的性能、更好的可扩展性和更好的 TypeScript/IDE 支持。如果你现在要开始一个新项目，我们推荐你选择 Vue 3。但也仍然存在一些考虑使用 Vue 2 的理由：
-
-- 你需要支持 IE11。Vue 3 用到了一些 IE11 不支持的现代 JavaScript 特性。
-
-- 你还在等待 Nuxt 或 Vuetify 等主要生态系统项目为 Vue 3 发布稳定版本。如果你不希望使用 beta 阶段的软件，这也是合理的。然而请注意这里还有一些其他已经稳定的 Vue 3 的组件库，如 [Quasar](https://quasar.dev/)、[Naive UI](https://www.naiveui.com/) 以及 [Element Plus](https://element-plus.org/)。
-
-如果你打算将现有的 Vue 2 应用迁移到 Vue 3，请查阅我们特别整理的 [Vue 3 迁移指南](https://v3-migration.vuejs.org/)。
-
-Vue 2 在 2022 年 6 月发布了最后一个小版本 (2.7)。这个小版本将一些 Vue 3 的新特性，如组合式 API 移植回了 Vue 2。目前 Vue 2 已经进入维护模式：它将不再提供新特性，但将继续针对重大错误修复和安全更新进行发布，为期 18 个月，到 2023 年年底为止。2023 年年底，Vue 2 将正式停止维护进入 End of Life。如果您的团队预期届时仍然需要维护基于 Vue 2 的项目，我们建议您在[这里](https://airtable.com/shrj37Zf4ZIfrxFzh)注册——我们可能会考虑到时提供付费的延长支持服务。
-
-## 我应该使用选项式 API 还是组合式 API？ {#should-i-use-options-api-or-composition-api}
+## Should I use Options API or Composition API?
 
 如果你是 Vue 的新手，我们在[这里](/guide/introduction.html#which-to-choose)提供了一个两者之间宏观的比较。
 

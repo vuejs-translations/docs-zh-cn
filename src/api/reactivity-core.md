@@ -256,6 +256,8 @@
 
   第二个参数是一个可选的选项，可以用来调整副作用的刷新时机或调试副作用的依赖。
 
+  <!-- TODO: translation --> By default, watchers will run just prior to component rendering. Setting `flush: 'post'` will defer the watcher until after component rendering. See [Callback Flush Timing](/guide/essentials/watchers.html#callback-flush-timing) for more information. In rare cases, it might be necessary to trigger a watcher immediately when a reactive dependency changes, e.g. to invalidate a cache. This can be achieved using `flush: 'sync'`. However, this setting should be used with caution, as it can lead to problems with performance and data consistency if multiple properties are being updated at the same time.
+
   返回值是一个用来停止该副作用的函数。
 
 - **示例**
@@ -381,9 +383,9 @@
   第三个可选的参数是一个对象，支持以下这些选项：
 
   - **`immediate`**：在侦听器创建时立即触发回调。第一次调用时旧值是 `undefined`。
-  - **`deep`**：如果源是对象，强制深度遍历，以便在深层级变更时触发回调。参考[深层侦听器](/guide/essentials/watchers.html#deep-watchers)一节。
-  - **`flush`**：调整回调函数的刷新时机。参考[回调的刷新时机](/guide/essentials/watchers.html#callback-flush-timing)一节。
-  - **`onTrack / onTrigger`**：调试侦听器的依赖。参考[调试侦听器](/guide/extras/reactivity-in-depth.html#watcher-debugging)一节。
+  - **`deep`**：如果源是对象，强制深度遍历，以便在深层级变更时触发回调。参考[深层侦听器](/guide/essentials/watchers.html#deep-watchers)。
+  - **`flush`**：调整回调函数的刷新时机。参考[回调的刷新时机](/guide/essentials/watchers.html#callback-flush-timing)及 [`watchEffect()`](/api/reactivity-core.html#watcheffect)。
+  - **`onTrack / onTrigger`**：调试侦听器的依赖。参考[调试侦听器](/guide/extras/reactivity-in-depth.html#watcher-debugging)。
 
   与 [`watchEffect()`](#watcheffect) 相比，`watch()` 使我们可以：
 

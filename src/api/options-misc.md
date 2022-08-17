@@ -32,6 +32,10 @@
   在 3.2.34 或以上的版本中，使用 `<script setup>` 的单文件组件会自动根据文件名生成对应的 `name` 选项，即使是在配合 `<KeepAlive>` 使用时也无需再手动声明。
   :::
 
+  :::tip
+  <!-- TODO: translation --> Since version 3.2.34, a single-file component using `<script setup>` will automatically infer its `name` option based on the filename, removing the need to manually declare the name even when used with `<KeepAlive>`.
+  :::
+
 ## inheritAttrs {#inheritattrs}
 
 用于控制是否启用默认的组件 attribute 透传行为。
