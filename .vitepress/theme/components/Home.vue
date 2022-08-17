@@ -235,7 +235,7 @@ html:not(.dark) .accent,
   display: inline-block;
   vertical-align: middle;
   height: 55px;
-  margin-right: 24px;
+  margin: 0 24px;
 }
 
 .dark #special-sponsor img {
@@ -307,9 +307,12 @@ html:not(.dark) .accent,
     font-size: 16px;
     margin: 18px 0 30px;
   }
+  #special-sponsor span {
+    margin: 0;
+  }
   #special-sponsor img {
     display: block;
-    margin: 2px auto 1px;
+    margin: 10px auto 20px;
   }
   #highlights h3 {
     margin-bottom: 0.6em;
