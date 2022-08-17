@@ -6,8 +6,6 @@ body:
   - type: markdown
     attributes:
       value: |
-        报告本站点相关的问题。请认真阅读并填写，否则 issue 将可能被直接关闭。
-
         本仓库是 Vue 3 文档中文翻译站 [cn.vuejs.org](https://cn.vuejs.org/)。这里仅处理以下类型的问题：
         1. 文档翻译相关；
         2. 英文文档同步相关；
