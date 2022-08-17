@@ -6,7 +6,7 @@ body:
   - type: markdown
     attributes:
       value: |
-        本仓库是 Vue 3 文档中文翻译站 [cn.vuejs.org](https://cn.vuejs.org/)。这里仅处理以下类型的问题：
+        这里是 Vue.js 3 官方中文 [cn.vuejs.org](https://cn.vuejs.org/) 仓库，仅处理：
         1. 文档翻译相关；
         2. 网络环境和本地化；
         3. 其他与本仓库直接相关的问题，如译法讨论、流程优化等。
@@ -49,7 +49,7 @@ body:
     id: desc
     attributes:
       label: 问题描述
-      description: 请描述你所遇到的问题，如果存在复现路径请一并描述。
+      description: 请描述问题，**截图+有效链接更佳**。
     validations:
       required: true
 
