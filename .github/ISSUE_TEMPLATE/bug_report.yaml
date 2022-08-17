@@ -28,7 +28,7 @@ body:
           required: true
         - label: 我确定这是翻译问题，而不是英文原文的问题 (英文原文的问题请移步至英文文档的仓库讨论)
           required: true
-        - label: 我确定这不是 Vue.js 使用方面的问题 (此类问题请在我们的论坛、Discord 聊天室 或 StackOverflow 上发帖求助)
+        - label: 我确定这不是 Vue.js 使用方面的问题 (此类问题请在我们的[论坛](https://forum.vuejs.org/c/chinese/7)、[Discord 聊天室](https://chat.vuejs.org/) 或 [StackOverflow](https://stackoverflow.com/tags/vue.js) 上发帖求助)
           required: true
 
   - type: dropdown
