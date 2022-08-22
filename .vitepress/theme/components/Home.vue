@@ -25,7 +25,7 @@ onMounted(async () => {
       <!-- NOTE: hide the home video -->
       <!-- <vue-mastery-modal /> -->
       <a class="get-started" href="/guide/introduction.html">
-        快速开始
+        快速上手
         <svg
           class="icon"
           xmlns="http://www.w3.org/2000/svg"

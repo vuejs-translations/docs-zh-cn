@@ -129,7 +129,7 @@ export const sidebar = {
       items: [
         { text: '简介', link: '/guide/introduction' },
         {
-          text: '快速开始',
+          text: '快速上手',
           link: '/guide/quick-start'
         }
       ]
