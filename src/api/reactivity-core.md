@@ -125,7 +125,7 @@
 
 - **详细信息**
 
-  响应式转换是“深层”的：它会影响到所有嵌套的属性。一个响应式对象也将深层地解包任何 [ref](#ref) 属性，同时保持响应性。
+  响应式转换是 “深层” 的：它会影响到所有嵌套的属性。一个响应式对象也将深层地解包任何 [ref](#ref) 属性，同时保持响应性。
 
   值得注意的是，当访问到某个响应式数组或 `Map` 这样的原生集合类型中的 ref 元素时，不会执行 ref 的解包。
 
@@ -242,7 +242,7 @@
   type OnCleanup = (cleanupFn: () => void) => void
 
   interface WatchEffectOptions {
-    flush?: 'pre' | 'post' | 'sync' // default: 'pre'
+    flush?: 'pre' | 'post' | 'sync' // 默认: 'pre'
     onTrack?: (event: DebuggerEvent) => void
     onTrigger?: (event: DebuggerEvent) => void
   }
@@ -256,7 +256,7 @@
 
   第二个参数是一个可选的选项，可以用来调整副作用的刷新时机或调试副作用的依赖。
 
-  <!-- TODO: translation -->By default, watchers will run just prior to component rendering. Setting `flush: 'post'` will defer the watcher until after component rendering. See [Callback Flush Timing](/guide/essentials/watchers.html#callback-flush-timing) for more information. In rare cases, it might be necessary to trigger a watcher immediately when a reactive dependency changes, e.g. to invalidate a cache. This can be achieved using `flush: 'sync'`. However, this setting should be used with caution, as it can lead to problems with performance and data consistency if multiple properties are being updated at the same time.
+  默认情况下，侦听器将在组件渲染之前执行。设置 `flush: 'post'` 将会使侦听器延迟到组件渲染之后再执行。查看[回调的触发时机](/guide/essentials/watchers.html#callback-flush-timing)了解更多信息。在某些特殊情况下，例如缓存失效，当一个响应式依赖发生改变时立即触发一个侦听器可能是有必要的。然而，如果有多个属性同时更新，这将导致性能和数据一致性出现问题，因此这个设置需要小心使用。
 
   返回值是一个用来停止该副作用的函数。
 
