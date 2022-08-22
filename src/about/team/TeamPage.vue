@@ -1,3 +1,25 @@
+<script lang="ts">
+const shuffleMembers = (members: Member[], pinTheFirstMember = false): void => {
+  let offset = pinTheFirstMember ? 1 : 0
+  // `i` is between `1` and `length - offset`
+  // `j` is between `0` and `length - offset - 1`
+  // `offset + i - 1` is between `offset` and `length - 1`
+  // `offset + j` is between `offset` and `length - 1`
+  let i = members.length - offset
+  while (i > 0) {
+    const j = Math.floor(Math.random() * i);
+    [
+      members[offset + i - 1],
+      members[offset + j]
+    ] = [
+      members[offset + j],
+      members[offset + i - 1]
+    ]
+    i--
+  }
+}
+</script>
+
 <script setup lang="ts">
 import { VTLink } from '@vue/theme'
 import membersCoreData from './members-core.json'
@@ -6,6 +28,9 @@ import membersPartnerData from './members-partner.json'
 import TeamHero from './TeamHero.vue'
 import TeamList from './TeamList.vue'
 import type { Member } from './Member'
+shuffleMembers(membersCoreData as Member[], true)
+shuffleMembers(membersEmeritiData as Member[])
+shuffleMembers(membersPartnerData as Member[])
 </script>
 
 <template>
@@ -19,7 +44,7 @@ import type { Member } from './Member'
       </template>
     </TeamHero>
 
-    <TeamList :members="membersCoreData">
+    <TeamList :members="membersCoreData as Member[]">
       <template #title>核心团队成员</template>
       <template #lead>核心团队成员是那些积极参与维护一个或多个核心项目的人。他们对 Vue 的生态系统做出了重大贡献，并对项目及其用户的成功做出了长期的承诺。</template>
     </TeamList>

@@ -33,9 +33,7 @@
 最终渲染出的 DOM 是这样：
 
 ```html
-<button class="fancy-btn">
-  Click me!
-</button>
+<button class="fancy-btn">Click me!</button>
 ```
 
 <div class="composition-api">
@@ -59,11 +57,9 @@ FancyButton('Click me!')
 
 // FancyButton 在自己的模板中渲染插槽内容
 function FancyButton(slotContent) {
-  return (
-    `<button class="fancy-btn">
+  return `<button class="fancy-btn">
       ${slotContent}
     </button>`
-  )
 }
 ```
 
@@ -292,13 +288,11 @@ BaseLayout({
 
 // <BaseLayout> 渲染插槽内容到对应位置
 function BaseLayout(slots) {
-  return (
-    `<div class="container">
+  return `<div class="container">
       <header>${slots.header}</header>
       <main>${slots.default}</main>
       <footer>${slots.footer}</footer>
     </div>`
-  )
 }
 ```
 
@@ -375,12 +369,10 @@ MyComponent({
 
 function MyComponent(slots) {
   const greetingMessage = 'hello'
-  return (
-    `<div>${
-      // 在插槽函数调用时传入 props
-      slots.default({ text: greetingMessage, count: 1 })
-    }</div>`
-  )
+  return `<div>${
+    // 在插槽函数调用时传入 props
+    slots.default({ text: greetingMessage, count: 1 })
+  }</div>`
 }
 ```
 
@@ -421,7 +413,6 @@ function MyComponent(slots) {
 ```
 
 注意插槽上的 `name` 是一个 Vue 特别保留的 attribute，不会作为 props 传递给插槽。因此最终 `headerProps` 的结果是 `{ message: 'hello' }`。
-
 
 ### 高级列表组件示例 {#fancy-list-example}
 

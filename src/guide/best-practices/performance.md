@@ -71,7 +71,7 @@ function loadLazy() {
 }
 ```
 
-懒加载对于页面初次加载时的优化帮助极大，它帮助应用暂时略过了那些不是立即需要的功能。在 Vue 应用中，这常常与 Vue 的[异步组件](/guide/components/async.html)搭配使用，为组件树创建分离的代码块：
+懒加载对于页面初次加载时的优化帮助极大，它帮助应用暂时略过了那些不是立即需要的功能。在 Vue 应用中，这可以与 Vue 的[异步组件](/guide/components/async.html)搭配使用，为组件树创建分离的代码块：
 
 ```js
 import { defineAsyncComponent } from 'vue'
@@ -82,7 +82,7 @@ import { defineAsyncComponent } from 'vue'
 const Foo = defineAsyncComponent(() => import('./Foo.vue'))
 ```
 
-如果在客户端侧通过 Vue Router 构建了路由，那么强烈建议使用异步组件作为路由组件。查看[懒加载路由](https://router.vuejs.org/zh/guide/advanced/lazy-loading.html)了解更多细节。
+对于使用了 Vue Router 的应用，强烈建议使用异步组件作为路由组件。Vue Router 已经显性地支持了独立于 `defineAsyncComponent` 的懒加载。查看[懒加载路由](https://router.vuejs.org/zh/guide/advanced/lazy-loading.html)了解更多细节。
 
 ### SSR / SSG {#ssr-ssg}
 

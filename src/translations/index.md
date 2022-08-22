@@ -6,8 +6,8 @@ aside: false
 
 ## 多语言版本
 
-- [英文版 (English)](https://vuejs.org/)
-- [简体中文版](https://cn.vuejs.org/)
+- [✅ English](https://vuejs.org/)
+- [✅ 简体中文](https://cn.vuejs.org/)
 
 ## 翻译
 
@@ -15,8 +15,8 @@ aside: false
 
 我们正在 [vuejs-translations](https://github.com/vuejs-translations/) GitHub organization 进行文档翻译的相关工作。如果你想贡献翻译，可以创建 issue 表达你的兴趣和意愿。
 
-- [简体中文](https://github.com/vuejs-translations/docs-zh-cn)
-- [日文](https://github.com/vuejs-translations/docs-ja)
+- [🚧 简体中文](https://github.com/vuejs-translations/docs-zh-cn)
+- [🚧 日文](https://github.com/vuejs-translations/docs-ja)
 
 ## 启动新的翻译
 

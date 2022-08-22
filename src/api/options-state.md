@@ -291,7 +291,7 @@
 
   - **`immediate`**：在侦听器创建时立即触发回调。第一次调用时，旧值将为 `undefined`。
   - **`deep`**：如果源是对象或数组，则强制深度遍历源，以便在深度变更时触发回调。详见[深层侦听器](/guide/essentials/watchers.html#deep-watchers)。
-  - **`flush`**：调整回调的刷新时机。详见[回调的触发时机](/guide/essentials/watchers.html#callback-flush-timing)。
+  - **`flush`**：调整回调的刷新时机。详见[回调的触发时机](/guide/essentials/watchers.html#callback-flush-timing)及 [`watchEffect()`](/api/reactivity-core.html#watcheffect)。
   - **`onTrack / onTrigger`**：调试侦听器的依赖关系。详见[侦听器调试](/guide/extras/reactivity-in-depth.html#watcher-debugging)。
 
   声明侦听器回调时避免使用箭头函数，因为它们将无法通过 `this` 访问组件实例。

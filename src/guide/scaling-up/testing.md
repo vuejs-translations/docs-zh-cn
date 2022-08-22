@@ -133,13 +133,11 @@ describe('increment', () => {
 <div class="testing-library-api">
 
 ```js
-render(Stepper, {
+const { getByText } = render(Stepper, {
   props: {
     max: 1
   }
 })
-
-const { getByText } = render(Component)
 
 getByText('0') // 隐式断言 "0" 在这个组件中
 

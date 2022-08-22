@@ -271,7 +271,7 @@ export default {
 
 ## 配合 `v-model` 使用 {#usage-with-v-model}
 
-自定义事件可以用于开发支持 `v-model` 的自定义表单组件。回忆一下 `v-model` 的用法：
+自定义事件可以用于开发支持 `v-model` 的自定义表单组件。回忆一下 `v-model` 在原生元素上的用法：
 
 ```vue-html
 <input v-model="searchText" />

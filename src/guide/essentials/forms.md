@@ -87,8 +87,8 @@ const multiSelected = ref([])
 
 <div class="demo">
   <span>Multiline message is:</span>
-  <p style="white-space: pre-line;">{{ message }}</p>
-  <textarea v-model="message" placeholder="add multiple lines"></textarea>
+  <p style="white-space: pre-line;">{{ multilineText }}</p>
+  <textarea v-model="multilineText" placeholder="add multiple lines"></textarea>
 </div>
 
 <div class="composition-api">
