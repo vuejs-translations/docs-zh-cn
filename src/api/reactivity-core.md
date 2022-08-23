@@ -242,7 +242,7 @@
   type OnCleanup = (cleanupFn: () => void) => void
 
   interface WatchEffectOptions {
-    flush?: 'pre' | 'post' | 'sync' // 默认: 'pre'
+    flush?: 'pre' | 'post' | 'sync' // 默认：'pre'
     onTrack?: (event: DebuggerEvent) => void
     onTrigger?: (event: DebuggerEvent) => void
   }
