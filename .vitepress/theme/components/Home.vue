@@ -68,7 +68,7 @@ onMounted(async () => {
           </picture>
           <img v-else :src="`${base}/images/${img}`" :alt="name" />
         </a>
-        <span v-if="description">{{ description }}</span>
+        <!-- <span v-if="description">{{ description }}</span> -->
       </template>
     </template>
   </section>

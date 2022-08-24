@@ -3,11 +3,10 @@ sidebar: false
 ads: false
 editLink: false
 sponsors: false
-vuejobs: false
 ---
 
 <script setup>
-import SponsorsGroup from '/@theme/components/SponsorsGroup.vue'
+import SponsorsGroup from '@theme/components/SponsorsGroup.vue'
 </script>
 
 # 成为 Vue.js 的赞助者 {#become-a-vue-js-sponsor}

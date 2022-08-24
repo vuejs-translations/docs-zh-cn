@@ -39,6 +39,12 @@ Vue 在大多数常见场景下性能都是很优秀的，通常不需要手动�
 
 页面加载优化有许多跟框架无关的方面 - 这份 [web.dev 指南](https://web.dev/fast/)提供了一个全面的总结。这里，我们将主要关注和 Vue 相关的技巧。
 
+### Choosing the Right Architecture
+
+<!-- TODO: translation -->If your use case is sensitive to page load performance, avoid shipping it as a pure client-side SPA. You want your server to be directly sending HTML containing the content the users want to see. Pure client-side rendering suffers from slow time-to-content. This can be mitigated with [Server-Side Rendering (SSR)](https://vuejs.org/guide/extras/ways-of-using-vue.html#fullstack-ssr) or [Static Site Generation (SSG)](https://vuejs.org/guide/extras/ways-of-using-vue.html#jamstack-ssg). Check out the [SSR Guide](/guide/scaling-up/ssr.html) to learn about performing SSR with Vue. If your app doesn't have rich interactivity requirements, you can also use a traditional backend server to render the HTML and enhance it with Vue on the client.
+
+If your main application has to be an SPA, but has marketing pages (landing, about, blog), ship them separately! Your marketing pages should ideally be deployed as static HTML with minimal JS, by using SSG.
+
 ### 包体积与 Tree-shaking 优化 {#bundle-size-and-tree-shaking}
 
 一个最有效的提升页面加载速度的方法就是压缩 JavaScript 打包产物的体积。当使用 Vue 时有下面一些办法来减小打包产物体积：
@@ -84,11 +90,7 @@ const Foo = defineAsyncComponent(() => import('./Foo.vue'))
 
 对于使用了 Vue Router 的应用，强烈建议使用异步组件作为路由组件。Vue Router 已经显性地支持了独立于 `defineAsyncComponent` 的懒加载。查看[懒加载路由](https://router.vuejs.org/zh/guide/advanced/lazy-loading.html)了解更多细节。
 
-### SSR / SSG {#ssr-ssg}
-
-纯粹的客户端渲染存在内容到达时间缓慢的问题。这可以通过采用服务端渲染 (SSR) 或者静态站点生成 (SSG) 来进行优化。你可以查看 [SSR 指引](/guide/scaling-up/ssr.html)了解更多细节。
-
-## 更新优化 {#update-optimizations}
+## Update Optimizations
 
 ### Props 稳定性 {#props-stability}
 
