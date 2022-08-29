@@ -39,11 +39,11 @@ Vue 在大多数常见场景下性能都是很优秀的，通常不需要手动�
 
 页面加载优化有许多跟框架无关的方面 - 这份 [web.dev 指南](https://web.dev/fast/)提供了一个全面的总结。这里，我们将主要关注和 Vue 相关的技巧。
 
-### Choosing the Right Architecture
+### 选用正确的架构 {#choosing-the-right-architecture}
 
-<!-- TODO: translation -->If your use case is sensitive to page load performance, avoid shipping it as a pure client-side SPA. You want your server to be directly sending HTML containing the content the users want to see. Pure client-side rendering suffers from slow time-to-content. This can be mitigated with [Server-Side Rendering (SSR)](https://vuejs.org/guide/extras/ways-of-using-vue.html#fullstack-ssr) or [Static Site Generation (SSG)](https://vuejs.org/guide/extras/ways-of-using-vue.html#jamstack-ssg). Check out the [SSR Guide](/guide/scaling-up/ssr.html) to learn about performing SSR with Vue. If your app doesn't have rich interactivity requirements, you can also use a traditional backend server to render the HTML and enhance it with Vue on the client.
+如果你的用例对页面加载性能很敏感，请避免将其部署为纯客户端的 SPA，而是让你的服务器直接发送包含用户想要查看的内容的 HTML 代码。纯客户端渲染存在内容生成时间缓慢的问题，这可以通过[服务器端渲染 (SSR)](/guide/extras/ways-of-using-vue.html#fullstack-ssr) 或[静态站点生成 (SSG)](/guide/extras/ways-of-using-vue.html#jamstack-ssg) 来缓解。查看 [SSR 指南](/guide/scaling-up/ssr.html)以了解如何使用 Vue 实现 SSR。如果你的应用没有丰富的交互性要求，你还可以使用传统的后端服务器来渲染 HTML，并在客户端使用 Vue 对其进行增强。
 
-If your main application has to be an SPA, but has marketing pages (landing, about, blog), ship them separately! Your marketing pages should ideally be deployed as static HTML with minimal JS, by using SSG.
+如果你的主应用必须是 SPA，但还有其他的营销相关页面（专题、关于、博客等），单独部署这些页面！理想情况下，你的营销页面应用 SSG 部署为具有尽量少包含 JS 的静态 HTML。
 
 ### 包体积与 Tree-shaking 优化 {#bundle-size-and-tree-shaking}
 
