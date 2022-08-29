@@ -81,7 +81,7 @@ export default {
 
 </div>
 
-如果你有一部分状态需要在多个组件实例间共享，你可以使用 [`reactive()`](/api/reactivity-core.html#reactive) 来创建一个响应式对象，并在不同组件中导入它：
+如果你有一部分状态需要在多个组件实例间共享，你可以使用 [`reactive()`](/api/reactivity-core.html#reactive) 来创建一个响应式对象，并将它导入到多个组件中：
 
 ```js
 // store.js

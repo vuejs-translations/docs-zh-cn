@@ -14,7 +14,7 @@ Vue 也提供了另一个更适用于此类无构建步骤场景的版本 [petit
 
 ## 单页面应用 (SPA) {#single-page-application-spa}
 
-一些应用在前端需要具有丰富的交互性和复杂的状态逻辑。构建这类应用的最佳方法是使用这样一种架构：Vue 不仅控制整个页面，还负责处理抓取新数据，并在无需重新加载的前提下处理页面切换。这种类型的应用通常称为单页应用 (Single-Page application，缩写为 SPA)。
+一些应用在前端需要具有丰富的交互性、较深的会话和复杂的状态逻辑。构建这类应用的最佳方法是使用这样一种架构：Vue 不仅控制整个页面，还负责处理抓取新数据，并在无需重新加载的前提下处理页面切换。这种类型的应用通常称为单页应用 (Single-Page application，缩写为 SPA)。
 
 Vue 提供了核心功能库和[全面的工具链支持](/guide/scaling-up/tooling)，为现代 SPA 提供了极佳的开发体验，覆盖以下方面：
 
@@ -39,7 +39,15 @@ Vue 生态中有一些针对此类场景的、基于 Vue 的上层框架，比�
 
 如果所需的数据是静态的，那么服务端渲染可以提前完成。这意味着我们可以将整个应用预渲染为 HTML，并将其作为静态文件部署。这增强了站点的性能表现，也使部署变得更容易，因为我们无需根据请求动态地渲染页面。Vue 仍可通过激活在客户端提供交互。这一技术通常被称为静态站点生成 (SSG)，也被称为 [JAMStack](https://jamstack.org/what-is-jamstack/)。
 
-Vue 团队维护了一个静态站点生成器 [VitePress](https://vitepress.vuejs.org/)，你正在阅读的文档也是基于它构建的！另外，[NuxtJS](https://v3.nuxtjs.org/) 也支持 SSG。你甚至可以在同一个 Nuxt 应用中通过不同的路由提供 SSR 和 SSG。
+<!-- TODO: translation -->There are two flavors of SSG: single-page and multi-page. Both flavors pre-render the site into static HTML, the difference is that:
+
+- After the initial page load, a single-page SSG "hydrates" the page into an SPA. This requires more upfront JS payload and hydration cost, but subsequent navigations will be faster, since it only needs to partially update the page content instead of reloading the entire page.
+
+- A multi-page SSG loads a new page on every navigation. The upside is that it can ship minimal JS - or no JS at all if the page requires no interaction! Some multi-page SSG frameworks such as [Astro](https://astro.build/) also support "partial hydration" - which allows you to use Vue components to create interactive "islands" inside static HTML.
+
+Single-page SSGs are better suited if you expect non-trivial interactivity, deep session lengths, or persisted elements / state across navigations. Otherwise, multi-page SSG would be the better choice.
+
+Vue 团队也维护了一个名为 [VitePress](https://vitepress.vuejs.org/) 的静态站点生成器，你正在阅读的文档就是基于它构建的！VitePress 支持两种形式的 SSG。另外，[NuxtJS](https://v3.nuxtjs.org/) 也支持 SSG。你甚至可以在同一个 Nuxt 应用中通过不同的路由提供 SSR 和 SSG。
 
 ## Web 之外...{#beyond-the-web}
 
