@@ -90,7 +90,7 @@ const Foo = defineAsyncComponent(() => import('./Foo.vue'))
 
 对于使用了 Vue Router 的应用，强烈建议使用异步组件作为路由组件。Vue Router 已经显性地支持了独立于 `defineAsyncComponent` 的懒加载。查看[懒加载路由](https://router.vuejs.org/zh/guide/advanced/lazy-loading.html)了解更多细节。
 
-## Update Optimizations
+## 更新优化 {#update-optimizations}
 
 ### Props 稳定性 {#props-stability}
 
