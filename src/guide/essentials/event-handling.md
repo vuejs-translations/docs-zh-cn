@@ -280,7 +280,7 @@ methods: {
 在监听键盘事件时，我们经常需要检查特定的按键。Vue 允许在 `v-on` 或 `@` 监听按键事件时添加按键修饰符。
 
 ```vue-html
-<!-- 仅在 `key` 为 `Enter` 时调用 `vm.submit()` -->
+<!-- 仅在 `key` 为 `Enter` 时调用 `submit` -->
 <input @keyup.enter="submit" />
 ```
 

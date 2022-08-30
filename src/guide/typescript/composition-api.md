@@ -357,4 +357,4 @@ const openModal = () => {
 </script>
 ```
 
-注意，如果你想在 TypeScript 文件而不是在 Vue SFC 中使用这种技巧，需要开启 Volar 的 [Takeover 模式](./overview.html#takeover-mode)。
+注意，如果你想在 TypeScript 文件而不是在 Vue SFC 中使用这种技巧，需要开启 Volar 的 [Takeover 模式](./overview.html#volar-takeover-mode)。
