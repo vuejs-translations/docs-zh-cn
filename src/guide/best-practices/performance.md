@@ -43,7 +43,7 @@ Vue 在大多数常见场景下性能都是很优秀的，通常不需要手动�
 
 如果你的用例对页面加载性能很敏感，请避免将其部署为纯客户端的 SPA，而是让服务器直接发送包含用户想要查看的内容的 HTML 代码。纯客户端渲染存在首屏加载缓慢的问题，这可以通过[服务器端渲染 (SSR)](/guide/extras/ways-of-using-vue.html#fullstack-ssr) 或[静态站点生成 (SSG)](/guide/extras/ways-of-using-vue.html#jamstack-ssg) 来缓解。查看 [SSR 指南](/guide/scaling-up/ssr.html)以了解如何使用 Vue 实现 SSR。如果应用对交互性要求不高，你还可以使用传统的后端服务器来渲染 HTML，并在客户端使用 Vue 对其进行增强。
 
-如果你的主应用必须是 SPA，但还有其他的营销相关页面（专题、关于、博客等），单独部署这些页面！理想情况下，你的营销页面应用 SSG 部署为具有尽量少包含 JS 的静态 HTML。
+如果你的主应用必须是 SPA，但还有其他的营销相关页面 (落地页、关于页、博客等)，请单独部署这些页面！理想情况下，营销页面应该是包含尽可能少 JS 的静态 HTML，并用 SSG 方式部署。
 
 ### 包体积与 Tree-shaking 优化 {#bundle-size-and-tree-shaking}
 
