@@ -107,7 +107,7 @@ Vue 提供了两个内置组件，可以帮助你制作基于状态变化的过�
 </Transition>
 ```
 
-对于一个有名字的过渡效果，对它起作用的过渡 class 会以其名字而不是 `v` 作为前缀。比如，上方例子中被应用的 class 将会是 `fade-enter-active` 而不是 `v-enter-active`。这个“fade”过渡的 class 应该是这样：
+对于一个有名字的过渡效果，对它起作用的过渡 class 会以其名字而不是 `v` 作为前缀。比如，上方例子中被应用的 class 将会是 `fade-enter-active` 而不是 `v-enter-active`。这个 “fade” 过渡的 class 应该是这样：
 
 ```css
 .fade-enter-active,

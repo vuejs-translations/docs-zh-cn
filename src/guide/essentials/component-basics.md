@@ -538,7 +538,7 @@ Something bad happened.
 
 你也可以使用 `is` attribute 来创建一般的 HTML 元素。
 
-当使用 `<component :is="...">` 来在多个组件间作切换时，被切换掉的组件会被卸载。我们可以通过 [`<KeepAlive>` 组件](/guide/built-ins/keep-alive.html)强制被切换掉的组件仍然保持“存活”的状态。
+当使用 `<component :is="...">` 来在多个组件间作切换时，被切换掉的组件会被卸载。我们可以通过 [`<KeepAlive>` 组件](/guide/built-ins/keep-alive.html)强制被切换掉的组件仍然保持 “存活” 的状态。
 
 ## DOM 模板解析注意事项 {#dom-template-parsing-caveats}
 

@@ -156,7 +156,7 @@ export default {
 
 ## 保持在函数间传递时的响应性 {#retaining-reactivity-across-function-boundaries}
 
-虽然响应式变量使我们可以不再受 `.value` 的困扰，但它也使得我们在函数间传递响应式变量时可能造成“响应性丢失”的问题。这可能在以下两种场景中出现：
+虽然响应式变量使我们可以不再受 `.value` 的困扰，但它也使得我们在函数间传递响应式变量时可能造成 “响应性丢失” 的问题。这可能在以下两种场景中出现：
 
 ### 以参数形式传入函数 {#passing-into-function-as-argument}
 

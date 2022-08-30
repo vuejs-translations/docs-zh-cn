@@ -31,7 +31,7 @@ Vue 在大多数常见场景下性能都是很优秀的，通常不需要手动�
 
 用于本地开发期间的性能分析：
 
-- [Chrome 开发者工具“性能”面板](https://developer.chrome.com/docs/devtools/evaluate-performance/)
+- [Chrome 开发者工具 “性能” 面板](https://developer.chrome.com/docs/devtools/evaluate-performance/)
   - [`app.config.performance`](/api/application.html#app-config-performance) 将会开启 Vue 特有的性能标记，标记在 Chrome 开发者工具的性能时间线上。
 - [Vue 开发者扩展](/guide/scaling-up/tooling.html#browser-devtools)也提供了性能分析的功能。
 

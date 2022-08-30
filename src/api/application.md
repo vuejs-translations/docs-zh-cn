@@ -387,7 +387,7 @@ console.log(app.config)
 
 ## app.config.performance {#app-config-performance}
 
-设置此项为 `true` 可以在浏览器开发工具的“性能/时间线”页中启用对组件初始化、编译、渲染和修补的性能表现追踪。仅在开发模式和支持 [performance.mark](https://developer.mozilla.org/en-US/docs/Web/API/Performance/mark) API 的浏览器中工作。
+设置此项为 `true` 可以在浏览器开发工具的 “性能/时间线” 页中启用对组件初始化、编译、渲染和修补的性能表现追踪。仅在开发模式和支持 [performance.mark](https://developer.mozilla.org/en-US/docs/Web/API/Performance/mark) API 的浏览器中工作。
 
 - **类型** `boolean`
 
@@ -438,7 +438,7 @@ console.log(app.config)
 
 - **详细信息**
 
-  Vue 移除/缩短了模板中的空格以求更高效的模板输出。默认的策略是“缩短”，表现行为如下：
+  Vue 移除/缩短了模板中的空格以求更高效的模板输出。默认的策略是 “缩短”，表现行为如下：
 
   1. 元素中开头和结尾的空格字符将被缩短为一个空格。
   2. 包含换行的元素之间的空白字符会被删除。

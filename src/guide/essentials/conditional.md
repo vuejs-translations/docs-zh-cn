@@ -23,7 +23,7 @@ const awesome = ref(true)
 
 ## `v-else` {#v-else}
 
-你也可以使用 `v-else` 为 `v-if` 添加一个“else 区块”。
+你也可以使用 `v-else` 为 `v-if` 添加一个 “else 区块”。
 
 ```vue-html
 <button @click="awesome = !awesome">Toggle</button>
@@ -53,7 +53,7 @@ const awesome = ref(true)
 
 ### `v-else-if` {#v-else-if}
 
-顾名思义，`v-else-if` 提供的是相应于 `v-if` 的“else if 区块”。它可以连续多次重复使用：
+顾名思义，`v-else-if` 提供的是相应于 `v-if` 的 “else if 区块”。它可以连续多次重复使用：
 
 ```vue-html
 <div v-if="type === 'A'">
@@ -100,7 +100,7 @@ const awesome = ref(true)
 
 ## `v-if` vs `v-show` {#v-if-vs-v-show}
 
-`v-if` 是“真实的”按条件渲染，因为它确保了在切换时，条件区块内的事件监听器和子组件都会被销毁与重建。
+`v-if` 是 “真实的” 按条件渲染，因为它确保了在切换时，条件区块内的事件监听器和子组件都会被销毁与重建。
 
 `v-if` 也是**惰性**的：如果在初次渲染时条件值为 false，则不会做任何事。条件区块只有当条件首次变为 true 时才被渲染。
 

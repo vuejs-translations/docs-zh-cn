@@ -9,9 +9,9 @@ const { x, y } = useMouse()
 此章节假设你已经对组合式 API 有了基本的了解。如果你只学习过选项式 API，你可以使用左侧边栏上方的切换按钮将 API 风格切换为组合式 API 后，重新阅读[响应性基础](/guide/essentials/reactivity-fundamentals.html)和[生命周期钩子](/guide/essentials/lifecycle.html)两个章节。
 :::
 
-## 什么是“组合式函数”？ {#what-is-a-composable}
+## 什么是 “组合式函数”？ {#what-is-a-composable}
 
-在 Vue 应用的概念中，“组合式函数”(Composables) 是一个利用 Vue 的组合式 API 来封装和复用**有状态逻辑**的函数。
+在 Vue 应用的概念中，“组合式函数” (Composables) 是一个利用 Vue 的组合式 API 来封装和复用**有状态逻辑**的函数。
 
 当构建前端应用时，我们常常需要复用公共任务的逻辑。例如为了在不同地方格式化时间，我们可能会抽取一个可复用的日期格式化函数。这个函数封装了**无状态的逻辑**：它在接收一些输入后立刻返回所期望的输出。复用无状态逻辑的库有很多，比如你可能已经用过的 [lodash](https://lodash.com/) 或是 [date-fns](https://date-fns.org/)。
 
@@ -226,7 +226,7 @@ export function useFetch(url) {
 
 ### 命名 {#naming}
 
-组合式函数约定用驼峰命名法命名，并以“use”作为开头。
+组合式函数约定用驼峰命名法命名，并以 “use” 作为开头。
 
 ### 输入参数 {#input-arguments}
 

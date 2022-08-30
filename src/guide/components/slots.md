@@ -112,7 +112,7 @@ Vue 组件的插槽机制是受[原生 Web Component `<slot>` 元素](https://de
 </button>
 ```
 
-如果我们想在父组件没有提供任何插槽内容时在 `<button>` 内渲染“Submit”，只需要将“Submit”写在 `<slot>` 标签之间来作为默认内容：
+如果我们想在父组件没有提供任何插槽内容时在 `<button>` 内渲染 “Submit”，只需要将 “Submit” 写在 `<slot>` 标签之间来作为默认内容：
 
 ```vue-html{3}
 <button type="submit">
@@ -128,7 +128,7 @@ Vue 组件的插槽机制是受[原生 Web Component `<slot>` 元素](https://de
 <SubmitButton />
 ```
 
-“Submit”将会被作为默认内容渲染：
+“Submit” 将会被作为默认内容渲染：
 
 ```html
 <button type="submit">Submit</button>
@@ -191,7 +191,7 @@ Vue 组件的插槽机制是受[原生 Web Component `<slot>` 元素](https://de
 </div>
 ```
 
-这类带 `name` 的插槽被称为具名插槽 (named slots)。没有提供 `name` 的 `<slot>` 出口会隐式地命名为“default”。
+这类带 `name` 的插槽被称为具名插槽 (named slots)。没有提供 `name` 的 `<slot>` 出口会隐式地命名为 “default”。
 
 在父组件中使用 `<BaseLayout>` 时，我们需要一种方式将多个插槽内容传入到各自目标插槽的出口。此时就需要用到**具名插槽**了：
 
@@ -205,7 +205,7 @@ Vue 组件的插槽机制是受[原生 Web Component `<slot>` 元素](https://de
 </BaseLayout>
 ```
 
-`v-slot` 有对应的简写 `#`，因此 `<template v-slot:header>` 可以简写为 `<template #header>`。其意思就是“将这部分模板片段传入子组件的 header 插槽中”。
+`v-slot` 有对应的简写 `#`，因此 `<template v-slot:header>` 可以简写为 `<template #header>`。其意思就是 “将这部分模板片段传入子组件的 header 插槽中”。
 
 ![具名插槽图示](./images/named-slots.png)
 
