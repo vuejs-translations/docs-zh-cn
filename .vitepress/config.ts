@@ -554,6 +554,7 @@ export const sidebar = {
 const i18n = {
   search: '搜索',
   menu: '菜单',
+  toc: '本页目录',
   returnToTop: '返回顶部',
   appearance: '外观',
   previous: '前一篇',
@@ -675,8 +676,7 @@ export default defineConfigWithTheme<ThemeConfig>({
 
   markdown: {
     config(md) {
-      md.use(headerPlugin)
-        .use(jobsPlugin)
+      md.use(headerPlugin).use(jobsPlugin)
     }
   },
 
