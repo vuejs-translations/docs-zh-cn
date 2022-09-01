@@ -19,7 +19,8 @@ export default Object.assign({}, VPTheme, {
     return h(VPTheme.Layout, null, {
       // banner: () => h(Banner),
       'sidebar-top': () => h(PreferenceSwitch),
-      'aside-mid': () => h(SponsorsAside)
+      'aside-mid': () => h(SponsorsAside),
+      'aside-bottom': () => h(WwAds)
     })
   },
   enhanceApp({ app }: { app: App }) {
