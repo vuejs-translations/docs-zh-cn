@@ -1,0 +1,12 @@
+@font-face {
+  font-family: Quotes;
+  src: local('PingFang SC Regular'), local('PingFang SC'),
+    local('Microsoft YaHei'), local('Source Han Sans SC');
+  unicode-range: U+201C, U+201D;
+}
+
+body {
+  --vt-font-family-base: Quotes, Inter, -apple-system, BlinkMacSystemFont,
+    'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Fira Sans',
+    'Droid Sans', 'Helvetica Neue', sans-serif;
+}
