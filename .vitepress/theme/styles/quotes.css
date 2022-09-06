@@ -11,3 +11,14 @@ body {
     'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Fira Sans',
     'Droid Sans', 'Helvetica Neue', sans-serif;
 }
+
+/**
+ * 不用 --vt-font-family-base 因为如果元素本身没有设置 font-family，会继承外部的 font-family，
+ * 在这里设置 --vt-font-family-base 是无效的。不用 :lang(en) 因为这样可以把 font-family 设置范
+ * 围控制得小一点。
+ */
+[lang|='en'] {
+  font-family: Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+    Oxygen, Ubuntu, Cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+}
