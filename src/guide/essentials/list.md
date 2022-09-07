@@ -198,7 +198,7 @@ data() {
 
 </div>
 
-## 在 `v-for` 里使用值范围 {#v-for-with-a-range}
+## 在 `v-for` 里使用范围值 {#v-for-with-a-range}
 
 `v-for` 可以直接接受一个整数值。在这种用例中，会将该模板基于 `1...n` 的取值范围重复多次。
 
