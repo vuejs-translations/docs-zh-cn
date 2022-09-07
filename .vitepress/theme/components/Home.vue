@@ -221,6 +221,10 @@ html:not(.dark) .accent,
   border-bottom: 1px solid var(--vt-c-divider-light);
   padding: 12px 24px;
   display: flex;
+  /* China sponsor temporary style start */
+  align-items: center;
+  justify-content: center;
+  /* China sponsor temporary style end */
 }
 
 #special-sponsor span {
@@ -228,7 +232,8 @@ html:not(.dark) .accent,
   font-weight: 500;
   font-size: 13px;
   vertical-align: middle;
-  flex: 1;
+  /* China sponsor remove this flex 1 temporary */
+  /*flex: 1;*/
 }
 
 #special-sponsor span:first-child {
