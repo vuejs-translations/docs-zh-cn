@@ -5,7 +5,7 @@ import { load, data, base } from './sponsors'
 import SponsorsGroup from './SponsorsGroup.vue'
 // NOTE: hide the home video
 // https://github.com/vuejs-translations/docs-zh-cn/issues/177
-// import VueMasteryModal from './VueMasteryModal.vue';
+// import VueMasteryModal from './VueMasteryModal.vue'
 
 onMounted(async () => {
   await load()
@@ -43,7 +43,7 @@ onMounted(async () => {
   </section>
 
   <section id="special-sponsor">
-    <span>中国区铂金赞助</span>
+    <span class="lead">中国区铂金赞助</span>
     <template v-if="data && data.platinum_china">
       <template
         v-for="{
@@ -68,7 +68,7 @@ onMounted(async () => {
           </picture>
           <img v-else :src="`${base}/images/${img}`" :alt="name" />
         </a>
-        <!-- <span v-if="description">{{ description }}</span> -->
+        <span v-if="description">{{ description }}</span>
       </template>
     </template>
   </section>
@@ -220,7 +220,11 @@ html:not(.dark) .accent,
   border-top: 1px solid var(--vt-c-divider-light);
   border-bottom: 1px solid var(--vt-c-divider-light);
   padding: 12px 24px;
-  text-align: center;
+  display: flex;
+  /* China sponsor temporary style start */
+  align-items: center;
+  justify-content: center;
+  /* China sponsor temporary style end */
 }
 
 #special-sponsor span {
@@ -228,14 +232,23 @@ html:not(.dark) .accent,
   font-weight: 500;
   font-size: 13px;
   vertical-align: middle;
-  margin-right: 24px;
+  /* China sponsor remove this flex 1 temporary */
+  /*flex: 1;*/
+}
+
+#special-sponsor span:first-child {
+  text-align: right;
+}
+
+#special-sponsor a {
+  display: flex;
+  justify-content: center;
+  padding: 0 24px;
 }
 
 #special-sponsor img {
-  display: inline-block;
-  vertical-align: middle;
-  height: 55px;
-  margin: 0 24px;
+  height: 42px;
+  margin: -6px 0;
 }
 
 .dark #special-sponsor img {
@@ -307,12 +320,15 @@ html:not(.dark) .accent,
     font-size: 16px;
     margin: 18px 0 30px;
   }
-  #special-sponsor span {
-    margin: 0;
+  #special-sponsor {
+    flex-direction: column;
   }
   #special-sponsor img {
-    display: block;
-    margin: 10px auto 20px;
+    height: 36px;
+    margin: 8px 0;
+  }
+  #special-sponsor span {
+    text-align: center !important;
   }
   #highlights h3 {
     margin-bottom: 0.6em;
