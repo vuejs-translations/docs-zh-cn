@@ -81,7 +81,7 @@ defineProps<Props>()
 
 ### Props 解构默认值 {#props-default-values}
 
-当使用基于类型的声明时，我们失去了为道具声明默认值的能力。这可以通过 `withDefaults` 编译器宏解决：
+当使用基于类型的声明时，我们失去了为 props 声明默认值的能力。这可以通过 `withDefaults` 编译器宏解决：
 
 ```ts
 export interface Props {
