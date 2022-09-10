@@ -97,7 +97,7 @@ const props = withDefaults(defineProps<Props>(), {
 
 这将被编译为等效的运行时 props `default` 选项。此外，`withDefaults` 帮助程序为默认值提供类型检查，并确保返回的 props 类型删除了声明默认值的属性的可选标志。
 
-或者,您可以使用当前的实验性的[响应性语法糖](/guide/extras/reactivity-transform.html)：
+或者,您可以使用当前的实验性的 [响应性语法糖](/guide/extras/reactivity-transform.html)
 
 
 ```vue
