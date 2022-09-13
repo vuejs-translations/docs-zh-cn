@@ -18,7 +18,7 @@ Vue 使用一种基于 HTML 的模板语法，使我们能够声明式地将其�
 
 ## 原始 HTML {#raw-html}
 
-双大括号将会将数据插值为纯文本，而不是 HTML。若想插入 HTML，你需要使用 [`v-html` 指令](/api/built-in-directives.html#v-html)：
+双大括号会将数据解释为纯文本，而不是 HTML。若想插入 HTML，你需要使用 [`v-html` 指令](/api/built-in-directives.html#v-html)：
 
 ```vue-html
 <p>Using text interpolation: {{ rawHtml }}</p>
