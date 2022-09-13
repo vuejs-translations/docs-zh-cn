@@ -20,7 +20,7 @@ footer: false
 - 已安装 16.0 或更高版本的 [Node.js](https://nodejs.org/)
 :::
 
-在本节中，我们将介绍如何在本地搭建 Vue [单页应用程序](http://localhost:5173/guide/extras/ways-of-using-vue.html#single-page-application-spa)。创建的项目将使用基于 [Vite](https://vitejs.dev) 的构建设置，并使用 Vue 的[单文件组件](/guide/scaling-up/sfc)(SFC)。
+在本节中，我们将介绍如何在本地搭建 Vue [单页应用程序](/guide/extras/ways-of-using-vue.html#single-page-application-spa)。创建的项目将使用基于 [Vite](https://vitejs.dev) 的构建设置，并使用 Vue 的[单文件组件](/guide/scaling-up/sfc)(SFC)。
 
 确保你安装了最新版本的 [Node.js](https://nodejs.org/)，然后在命令行中运行以下命令(不要带上 `>` 符号)：
 
