@@ -172,9 +172,7 @@ import { createApp } from 'vue'
 :::
 
 :::warning 生产环境中的注意事项
-
 到目前为止示例使用的都是 Vue 的开发构建版本——如果你打算在生产中通过 CDN 使用 Vue，请务必查看[生产环境部署指南](/guide/best-practices/production-deployment.html#without-build-tools)。
-
 :::
 
 ### 拆分模块 {#splitting-up-the-modules}
