@@ -4,15 +4,15 @@ footer: false
 
 # 快速上手 {#quick-start}
 
-## 线上尝试 Vue {#online}
+## 线上尝试 Vue {#try-vue-online}
 
 - 要快速体验 Vue，你可以直接在我们的 [Playground](https://sfc.vuejs.org/#eNo9j01qAzEMha+iapMWOjbdDm6gu96gG2/cjJJM8B+2nBaGuXvlpBMwtj4/JL234EfO6toIRzT1UObMexvpN6fCMNHRNc+w2AgwOXbPL/caoBC3EjcCCPU0wu6TvE/wlYqfnnZ3ae2PXHKMfiwQYArZOyYhAHN+2y9LnwLrarTQ7XeOuTFch5Am8u8WRbcoktGPbnzFOXS3Q3BZXWqKkuRmy/4L1eK4GbUoUTtbPDPnOmpdj4ee/1JVKictlSot8hxIUQ3Dd0k/lYoMtrglwfUPkXdoJg==) 进行尝试。
 
-- 如果你更喜欢原始的 HTML，而不需要任何的构建步骤，你可以使用这里的 [JSFiddle](https://jsfiddle.net/yyx990803/2ke1ab0z/) 来作为你的起点。
+- 如果你更喜欢不带任何构建步骤的原始 HTML，可以使用这个 [JSFiddle](https://jsfiddle.net/yyx990803/2ke1ab0z/) 来作为起点。
 
-- 如果你熟悉 Node.js 和构建工具的概念，还可以在 [StackBlitz](https://vite.new/vue) 上尝试完整的构建设置。
+- 如果你对 Node.js 和构建工具的概念已经较为熟悉，还可以直接在浏览器中打开 [StackBlitz](https://vite.new/vue) 以尝试完整的构建设置。
 
-## 创建一个 Vue 应用 {#create-a-vue-application}
+## 创建一个 Vue 应用 {#creating-a-vue-application}
 
 :::tip 前提条件
 
@@ -20,9 +20,9 @@ footer: false
 - 已安装 16.0 或更高版本的 [Node.js](https://nodejs.org/)
 :::
 
-在本节中，我们将介绍如何在本地搭建 Vue [单页应用程序](/guide/extras/ways-of-using-vue.html#single-page-application-spa)。创建的项目将使用基于 [Vite](https://vitejs.dev) 的构建设置，并使用 Vue 的[单文件组件](/guide/scaling-up/sfc)(SFC)。
+在本节中，我们将介绍如何在本地搭建 Vue [单页应用](/guide/extras/ways-of-using-vue.html#single-page-application-spa)。创建的项目将使用基于 [Vite](https://vitejs.dev) 的构建设置，并允许我们使用 Vue 的[单文件组件](/guide/scaling-up/sfc) (SFC)。
 
-确保你安装了最新版本的 [Node.js](https://nodejs.org/)，然后在命令行中运行以下命令(不要带上 `>` 符号)：
+确保你安装了最新版本的 [Node.js](https://nodejs.org/)，然后在命令行中运行以下命令 (不要带上 `>` 符号)：
 
 <div class="language-sh"><pre><code><span class="line"><span style="color:var(--vt-c-green);">&gt;</span> <span style="color:#A6ACCD;">npm init vue@latest</span></span></code></pre></div>
 
@@ -64,21 +64,21 @@ footer: false
 
 [下一步>](#next-steps)
 
-## 从 CDN 使用 Vue {#cdn}
+## 通过 CDN 使用 Vue {#using-vue-from-cdn}
 
-你可以通过 script 标签直接从 CDN 使用 Vue：
+你可以借助 script 标签直接通过 CDN 来使用 Vue：
 
 ```html
 <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
 ```
 
-这里我们使用 [unpkg](https://unpkg.com/)，但你也可以使用任何提供 npm 包的 CDN，例如 [jsdelivr](https://www.jsdelivr.com/package/npm/vue) 或 [cdnjs](https://cdnjs.com/libraries/vue)。当然，你也可以下载此文件并自行提供服务。
+这里我们使用了 [unpkg](https://unpkg.com/)，但你也可以使用任何提供 npm 包服务的 CDN，例如 [jsdelivr](https://www.jsdelivr.com/package/npm/vue) 或 [cdnjs](https://cdnjs.com/libraries/vue)。当然，你也可以下载此文件并自行提供服务。
 
-从 CDN 使用 Vue 时，不涉及“构建步骤”。这使得设置更加简单，并且可以用于增强静态的 HTML 或与后端框架集成。但是，你将无法使用单文件组件 (SFC) 语法。
+通过 CDN 使用 Vue 时，不涉及“构建步骤”。这使得设置更加简单，并且可以用于增强静态的 HTML 或与后端框架集成。但是，你将无法使用单文件组件 (SFC) 语法。
 
-### 使用全局构建 {#global-build}  
+### 使用全局构建版本 {#using-the-global-build}  
 
-上面的例子使用了全局构建版的 Vue，该版本的所有 API 都暴露在了全局变量 `Vue` 上。这里有一个使用全局构建的例子：
+上面的例子使用了_全局构建版本_的 Vue，该版本的所有顶层 API 都以属性的形式暴露在了全局的 `Vue` 对象上。这里有一个使用全局构建版本的例子：
 
 ```html
 <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
@@ -100,9 +100,9 @@ footer: false
 
 [JSFiddle 中的示例](https://jsfiddle.net/yyx990803/nw1xg8Lj/)
 
-### 使用 ES 模块进行构建 {#module-build}
+### 使用 ES 模块构建版本 {#using-the-es-module-build}
 
-在该文档的其余部分我们会主要使用 [ES 模块](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Guide/Modules)语法。大多数现代的浏览器现在都支持原生的 ES 模块。若想通过原生 ES 模块使用 Vue，我们可以像这样使用 CDN：
+在该文档的其余部分我们会主要使用 [ES 模块](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Guide/Modules)语法。大多数的现代浏览器现在都已原生支持 ES 模块。因此我们可以像这样通过 CDN 以及原生 ES 模块使用 Vue：
 
 ```html{3,4}
 <div id="app">{{ message }}</div>
@@ -120,20 +120,20 @@ footer: false
 </script>
 ```
 
-注意我们使用 `<script type="module">`，导入的 CDN URL 指向的是 Vue 的 **ES 模块**。
+注意我们使用了 `<script type="module">`，且导入的 CDN URL 指向的是 Vue 的 **ES 模块构建版本**。
 
 [JSFiddle 中的示例](https://jsfiddle.net/yyx990803/vo23c470/)
 
-### 启用 Import maps {#import-maps}
+### 启用 Import maps {#enabling-import-maps}
 
 
-在上面的示例中，我们使用完整的 CDN URL 导入，但在文档的其余部分中，你将看到如下代码：
+在上面的示例中，我们使用了完整的 CDN URL 来导入，但在文档的其余部分中，你将看到如下代码：
 
 ```js
 import { createApp } from 'vue'
 ```
 
-我们可以使用 [Import Maps](https://caniuse.com/import-maps) 告诉浏览器在哪里找到 `vue` 进行导入：
+我们可以使用 [导入映射表 (Import Maps)](https://caniuse.com/import-maps) 来告诉浏览器如何定位到导入的 `vue`：
 
 ```html{1-7,12}
 <script type="importmap">
@@ -173,11 +173,11 @@ import { createApp } from 'vue'
 
 :::warning 生产环境中的注意事项
 
-到目前为止的示例都是使用 Vue 的开发版本 - 如果你打算在生产中使用 CDN 中的 Vue，请务必查看[生产部署指南](/guide/best-practices/production-deployment.html#without-build-tools)。
+到目前为止示例使用的都是 Vue 的开发构建版本——如果你打算在生产中通过 CDN 使用 Vue，请务必查看[生产环境部署指南](/guide/best-practices/production-deployment.html#without-build-tools)。
 
 :::
 
-### 拆分模块 {#split-module}
+### 拆分模块 {#splitting-up-the-modules}
 
 随着对这份指南的逐步深入，我们可能需要将代码分割成单独的 JavaScript 文件，以便更容易管理。例如：
 
@@ -201,9 +201,9 @@ export default {
 }
 ```
 
-如果你直接在浏览器中打开上面的 `index.html`，你会发现它会抛出一个错误，因为 ES 模块不能通过 `file://` 协议工作。为了使其工作，你需要通过 `http://` 协议使用本地 HTTP 服务器提供`index.html`。
+如果直接在浏览器中打开了上面的 `index.html`，你会发现它会抛出了一个错误，因为 ES 模块不能通过 `file://` 协议工作。为了使其工作，你需要使用本地 HTTP 服务器通过 `http://` 协议提供`index.html`。
 
-想启动一个本地的 HTTP 服务器，请先安装 [Node.js](https://nodejs.org/zh/)，然后从命令行在 HTML 文件所在文件夹下运行 `npx serve`。你也可以使用其他任何可以基于正确的 MIME 类型服务静态文件的 HTTP 服务器。
+要启动一个本地的 HTTP 服务器，请先安装 [Node.js](https://nodejs.org/zh/)，然后从命令行在 HTML 文件所在文件夹下运行 `npx serve`。你也可以使用其他任何可以基于正确的 MIME 类型服务静态文件的 HTTP 服务器。
 
 可能你也注意到了，这里导入的组件模板是内联的 JavaScript 字符串。如果你正在使用 VSCode，你可以安装 [es6-string-html](https://marketplace.visualstudio.com/items?itemName=Tobermory.es6-string-html) 扩展，然后在字符串前加上一个前缀注释 `/*html*/` 以高亮语法。
 
