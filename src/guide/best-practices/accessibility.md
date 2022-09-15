@@ -129,7 +129,7 @@ watch(
 
 
 :::tip 提示：
-建议同时使用 Landmark HTML 元素和 role 属性，以最大程度兼容 [不支持 HTML5 语义元素的传统浏览器](https://caniuse.com/#feat=html5semantic)。
+建议同时使用 landmark HTML 元素和 role 属性，以最大程度地兼容[不支持 HTML5 语义元素的传统浏览器](https://caniuse.com/#feat=html5semantic)。
 :::
 
 [阅读更多有关标题的细节](https://www.w3.org/TR/wai-aria-1.2/#landmark_roles)
