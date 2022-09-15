@@ -54,7 +54,7 @@ SSG 保留了和 SSR 应用相同的性能表现：它带来了优秀的首屏�
 
 1. 创建一个新的文件夹，`cd` 进入
 2. 执行 `npm init -y`
-3. 在 `package.json` 中添加 `"type"："module"` 使 Node.js 以 [ES modules mode](https://nodejs.org/api/esm.html#modules-ecmascript-modules) 运行
+3. 在 `package.json` 中添加 `"type": "module"` 使 Node.js 以 [ES modules mode](https://nodejs.org/api/esm.html#modules-ecmascript-modules) 运行
 4. 执行 `npm install vue`
 5. 创建一个 `example.js` 文件：
 
