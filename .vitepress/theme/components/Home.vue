@@ -229,8 +229,7 @@ html:not(.dark) .accent,
   font-weight: 500;
   font-size: 13px;
   vertical-align: middle;
-  /* China sponsor remove this flex 1 temporary */
-  /*flex: 1;*/
+  flex: 1;
 }
 
 #special-sponsor span:first-child {
