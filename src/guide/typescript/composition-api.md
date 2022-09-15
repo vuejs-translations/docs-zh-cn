@@ -99,7 +99,6 @@ const props = withDefaults(defineProps<Props>(), {
 
 或者，你可以使用目前为实验性的[响应性语法糖](/guide/extras/reactivity-transform.html)：
 
-
 ```vue
 <script setup lang="ts">
 interface Props {
