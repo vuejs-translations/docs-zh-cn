@@ -126,7 +126,6 @@ footer: false
 
 ### 启用 Import maps {#enabling-import-maps}
 
-
 在上面的示例中，我们使用了完整的 CDN URL 来导入，但在文档的其余部分中，你将看到如下代码：
 
 ```js
