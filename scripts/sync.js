@@ -15,7 +15,7 @@ async function getLatestSyncHash () {
   return latestSync.match(/#(\w{7}\w?)/)[1];
 }
 
-async function getLatestUpstreamHash() {
+async function getLatestUpstreamHash () {
   const git = SimpleGit();
   const latestUpstreamHash = await git.show(['-s', '--format="%h"', 'origin/upstream']);
   return latestUpstreamHash.trim().replace(/"/g, '');
@@ -23,8 +23,7 @@ async function getLatestUpstreamHash() {
 
 program
   .name('sync')
-  .description('The sync helper CLI')
-  .version('0.8.0');
+  .description('The sync helper CLI');
 
 program.command('compare')
   .description('Open the github website to compare diffs to sync.')
