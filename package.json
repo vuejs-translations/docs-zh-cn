@@ -9,6 +9,7 @@
     "serve": "vitepress serve",
     "zhlint": "zhlint 'src/{api,about,guide,sponsor,translations,tutorial}/**/*.md'",
     "clean": "rm -rf .vitepress/dist",
+    "sync": "node scripts/sync.js",
     "preinstall": "npx only-allow pnpm"
   },
   "dependencies": {
