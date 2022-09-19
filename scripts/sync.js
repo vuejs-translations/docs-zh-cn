@@ -34,7 +34,7 @@ program.command('compare')
 
 program.command('pr')
   .description('Generate sync PR\'s title and content.')
-  .option('--open', 'directly open link to create pr (sync branch->main branch)')
+  .option('-o, --open', 'directly open link to create pr (sync branch->main branch)')
   .action(async (options) => {
     const latestUpstreamHash = await getLatestUpstreamHash();
     const latestSyncHash = await getLatestSyncHash();
