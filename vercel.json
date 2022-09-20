@@ -18,5 +18,16 @@
         }
       ]
     }
+  ],
+  "redirects": [
+    {
+      "source": "/v2/guide/",
+      "destination": "/guide/introduction.html"
+    },
+    {
+      "source": "/v2/:path",
+      "destination": "https://v2.vuejs.org/v2/:path?redirect=true",
+      "permanent": false
+    }
   ]
 }
