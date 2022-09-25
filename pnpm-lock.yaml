@@ -6,6 +6,7 @@ specifiers:
   '@vue/repl': ^1.2.4
   '@vue/theme': ^1.2.2
   chalk: ^4.1.2
+  commander: ^9.4.0
   dynamics.js: ^1.1.5
   gray-matter: ^4.0.3
   gsap: ^3.9.0
@@ -29,6 +30,7 @@ devDependencies:
   '@types/markdown-it': 12.2.3
   '@types/node': 16.10.3
   chalk: 4.1.2
+  commander: 9.4.0
   gray-matter: 4.0.3
   lodash: 4.17.21
   open: 8.4.0
@@ -567,6 +569,11 @@ packages:
 
   /commander/2.20.3:
     resolution: {integrity: sha512-GpVkmM8vF2vQUkj2LvZmD35JxeJOLCwJ9cUkugyk2nuhbv3+mJvpLYYt+0+USMxE+oj+ey/lJEnhZw75x/OMcQ==}
+
+  /commander/9.4.0:
+    resolution: {integrity: sha512-sRPT+umqkz90UA8M1yqYfnHlZA7fF6nSphDtxeywPZ49ysjxDQybzk13CL+mXekDRG92skbcqCLVovuCusNmFw==}
+    engines: {node: ^12.20.0 || >=14}
+    dev: true
 
   /concat-map/0.0.1:
     resolution: {integrity: sha1-2Klr13/Wjfd5OnMDajug1UBdR3s=}

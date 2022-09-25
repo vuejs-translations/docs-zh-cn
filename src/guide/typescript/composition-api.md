@@ -79,20 +79,36 @@ defineProps<Props>()
 
 这是因为 Vue 组件是单独编译的，编译器目前不会抓取导入的文件以分析源类型。我们计划在未来的版本中解决这个限制。
 
-### Props 解构默认值 <sup class="vt-badge experimental" /> {#props-default-values}
+### Props 解构默认值 {#props-default-values}
 
-当使用基于类型的声明时，我们失去了对 props 定义默认值的能力。这可以通过目前实验性的[响应性语法糖](/guide/extras/reactivity-transform.html#reactive-props-destructure)来解决：
+当使用基于类型的声明时，我们失去了为 props 声明默认值的能力。这可以通过 `withDefaults` 编译器宏解决：
+
+```ts
+export interface Props {
+  msg?: string
+  labels?: string[]
+}
+
+const props = withDefaults(defineProps<Props>(), {
+  msg: 'hello',
+  labels: () => ['one', 'two']
+})
+```
+
+这将被编译为等效的运行时 props `default` 选项。此外，`withDefaults` 帮助程序为默认值提供类型检查，并确保返回的 props 类型删除了已声明默认值的属性的可选标志。
+
+或者，你可以使用目前为实验性的[响应性语法糖](/guide/extras/reactivity-transform.html)：
 
 ```vue
 <script setup lang="ts">
 interface Props {
-  foo: string
-  bar?: number
+  name: string
+  count?: number
 }
 
 // 对 defineProps() 的响应性解构
 // 默认值会被编译为等价的运行时选项
-const { foo, bar = 100 } = defineProps<Props>()
+const { name, count = 100 } = defineProps<Props>()
 </script>
 ```
 

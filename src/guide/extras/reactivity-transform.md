@@ -111,7 +111,7 @@ let count = $(myCreateRef())
 
 2. 当使用[基于类型的 props 的声明](https://v3.vuejs.org/api/sfc-script-setup.html#typescript-only-features)时，无法很方便地声明这些 prop 的默认值。为此我们提供了 `withDefaults()` 这个 API，但使用起来仍然很笨拙。
 
-而有了响应性语法糖，我们就也可以在使用 `defineProps` 时像响应式变量一样进行解构了：
+当 `defineProps` 与解构一起使用时，我们可以通过应用编译时转换来解决这些问题，类似于我们之前看到的 `$()` ：
 
 ```html
 <script setup lang="ts">

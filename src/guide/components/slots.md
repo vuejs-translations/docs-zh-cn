@@ -338,8 +338,6 @@ function BaseLayout(slots) {
 </MyComponent>
 ```
 
-这类能够接受参数的插槽被称为作用域插槽 (scoped slots)，因为它们接受的参数只在该插槽作用域内有效。
-
 ![scoped slots diagram](./images/scoped-slots.svg)
 
 <!-- https://www.figma.com/file/QRneoj8eIdL1kw3WQaaEyc/scoped-slot -->
@@ -413,6 +411,38 @@ function MyComponent(slots) {
 ```
 
 注意插槽上的 `name` 是一个 Vue 特别保留的 attribute，不会作为 props 传递给插槽。因此最终 `headerProps` 的结果是 `{ message: 'hello' }`。
+
+如果你混用了具名插槽与默认插槽，则需要为默认插槽使用显式的 `<template>` 标签。尝试直接为组件添加 `v-slot` 指令将导致编译错误。这是为了避免因默认插槽的 props 的作用域而困惑。举例：
+
+```vue-html
+<!-- 该模板无法编译 -->
+<template>
+  <MyComponent v-slot="{ message }">
+    <p>{{ message }}</p>
+    <template #footer>
+      <!-- message 属于默认插槽，此处不可用 -->
+      <p>{{ message }}</p>
+    </template>
+  </MyComponent>
+</template>
+```
+
+为默认插槽使用显式的 `<template>` 标签有助于更清晰地指出 `message` 属性在其它插槽中不可用：
+
+```vue-html
+<template>
+  <MyComponent>
+    <!-- 使用显式的默认插槽 -->
+    <template #default="{ message }">
+      <p>{{ message }}</p>
+    </template>
+
+    <template #footer>
+      <p>Here's some contact info</p>
+    </template>
+  </MyComponent>
+</template>
+```
 
 ### 高级列表组件示例 {#fancy-list-example}
 

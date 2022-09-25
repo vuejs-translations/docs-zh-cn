@@ -24,12 +24,13 @@
     "@types/markdown-it": "^12.2.3",
     "@types/node": "^16.9.1",
     "chalk": "^4.1.2",
+    "commander": "^9.4.0",
     "gray-matter": "^4.0.3",
     "lodash": "^4.17.21",
     "open": "^8.4.0",
     "simple-git": "^2.48.0",
-    "zhlint": "^0.6.1",
-    "terser": "^5.14.2"
+    "terser": "^5.14.2",
+    "zhlint": "^0.6.1"
   },
   "pnpm": {
     "peerDependencyRules": {
