@@ -169,7 +169,7 @@ export default {
 
 > 这一小节假设你已了解[组件](/guide/essentials/component-basics)的相关知识，或者你也可以先跳过这里，之后再回来看。
 
-模板引用也可以被用在一个子组件上。这种情况下引用中获得的值的是组件实例：
+模板引用也可以被用在一个子组件上。这种情况下引用中获得的值是组件实例：
 
 <div class="composition-api">
 
