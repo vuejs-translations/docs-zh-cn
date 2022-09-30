@@ -153,7 +153,7 @@ const shallowArray = shallowRef([
 // 这不会触发更新...
 shallowArray.value.push(newObject)
 // 这才会触发更新
-shallowArray.value = [...shallowArr.value, newObject]
+shallowArray.value = [...shallowArray.value, newObject]
 
 // 这不会触发更新...
 shallowArray.value[0].foo = 1
