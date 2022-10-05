@@ -72,7 +72,7 @@ Vue 3 是性能最强的主流前端框架之一，可以轻松处理大多数 w
 
 非常欢迎！请阅读我们的[社区指南](/about/community-guide.html)。
 
-## Should I use Options API or Composition API?
+## 我应该使用选项式 API 还是组合式 API？ {#should-i-use-options-api-or-composition-api}
 
 如果你是 Vue 的新手，我们在[这里](/guide/introduction.html#which-to-choose)提供了一个两者之间宏观的比较。
 
