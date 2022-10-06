@@ -415,7 +415,7 @@
 - **参考：**
   - [组件 - 插槽](/guide/components/slots.html)
 
-## v-pre
+## v-pre {#v-pre}
 
 跳过该元素及其所有子元素的编译。
 
