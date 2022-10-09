@@ -78,7 +78,7 @@ footer: false
 
 ### 使用全局构建版本 {#using-the-global-build}  
 
-上面的例子使用了_全局构建版本_的 Vue，该版本的所有顶层 API 都以属性的形式暴露在了全局的 `Vue` 对象上。这里有一个使用全局构建版本的例子：
+上面的例子使用了*全局构建版本*的 Vue，该版本的所有顶层 API 都以属性的形式暴露在了全局的 `Vue` 对象上。这里有一个使用全局构建版本的例子：
 
 ```html
 <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
