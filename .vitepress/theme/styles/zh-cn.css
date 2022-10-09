@@ -10,6 +10,10 @@ body {
   --vt-font-family-base: Quotes, Inter, -apple-system, BlinkMacSystemFont,
     'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Fira Sans',
     'Droid Sans', 'Helvetica Neue', sans-serif;
+  /**
+   * 修复斜体不生效
+   */
+  text-rendering: unset !important;
 }
 
 /**
