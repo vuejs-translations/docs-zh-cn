@@ -7,9 +7,12 @@
 }
 
 body {
-  --vt-font-family-base: Quotes, Inter, -apple-system, BlinkMacSystemFont,
+  --vt-font-family-base: Quotes, 'Inter var experimental', 'Inter var', -apple-system, BlinkMacSystemFont,
     'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Fira Sans',
     'Droid Sans', 'Helvetica Neue', sans-serif;
+
+  text-rendering: unset !important;
+  font-synthesis: unset !important;
 }
 
 /**
