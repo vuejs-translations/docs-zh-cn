@@ -7,11 +7,13 @@
 }
 
 body {
-  /* 先删除 Inter 等 vuejs/theme 修复后使用 'Inter var experimental', 'Inter var' */
+  /* 1. 添加 Quotes 字体以修改引号 */
+  /* 2. 暂时删除 Inter 以修复斜体不生效问题，等 vuejs/theme 同步 https://github.com/vuejs/vitepress/pull/777 后观察是否可使用 'Inter var experimental', 'Inter var' 替代 */
   --vt-font-family-base: Quotes, -apple-system, BlinkMacSystemFont,
     'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Fira Sans',
     'Droid Sans', 'Helvetica Neue', sans-serif;
 
+  /* 修复斜体不生效问题 #574 */
   text-rendering: unset !important;
   font-synthesis: unset !important;
 }
