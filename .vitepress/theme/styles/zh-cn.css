@@ -7,7 +7,8 @@
 }
 
 body {
-  --vt-font-family-base: Quotes, 'Inter var experimental', 'Inter var', -apple-system, BlinkMacSystemFont,
+  /* 先删除 Inter 等 vuejs/theme 修复后使用 'Inter var experimental', 'Inter var' */
+  --vt-font-family-base: Quotes, -apple-system, BlinkMacSystemFont,
     'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Fira Sans',
     'Droid Sans', 'Helvetica Neue', sans-serif;
 
