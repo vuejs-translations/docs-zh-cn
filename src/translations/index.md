@@ -2,24 +2,20 @@
 aside: false
 ---
 
-# 多语言及翻译 <sup class="vt-badge wip" />
+# 多语言及翻译
 
 ## 多语言版本
 
-- [✅ English](https://vuejs.org/)
-- [✅ 简体中文](https://cn.vuejs.org/)
+- [English](https://vuejs.org/) [[source](https://github.com/vuejs/docs)]
+- [简体中文 / Simplified Chinese](https://cn.vuejs.org/) [[source](https://github.com/vuejs-translations/docs-zh-cn)]
+- [日本語 / Japanese](https://ja.vuejs.org/) [[source](https://github.com/vuejs-translations/docs-ja)]
 
-## 翻译
+## 翻译中的语言
 
-近期 Vue 的文档经历了一次大的版本升级，所以其他语言的翻译版本并不多。
-
-我们正在 [vuejs-translations](https://github.com/vuejs-translations/) GitHub organization 进行文档翻译的相关工作。如果你想贡献翻译，可以创建 issue 表达你的兴趣和意愿。
-
-- [🚧 简体中文](https://github.com/vuejs-translations/docs-zh-cn)
-- [🚧 日文](https://github.com/vuejs-translations/docs-ja)
+- [Українська / Ukrainian](https://ua.vuejs.org) [[source](https://github.com/vuejs-translations/docs-ua)]
 
 ## 启动新的翻译
 
-我们希望为社区的翻译爱好者建立一个标准的流程，以便更好的协作。请留意[翻译指南仓库](https://github.com/vuejs-translations/guidelines/blob/main/README.md)的更新。
+近期 Vue 的文档经历了一次大的版本升级，所以其他语言的翻译版本仍不可用或进行中。
 
-同时，如果你有兴趣为一门新的语言开启翻译工作，请在这个 [Discussions](https://github.com/vuejs-translations/guidelines/discussions) 创建一个帖子 (在此之前也务必确认该语言的翻译是否已经存在)。这会帮助你找到其他人一起协作同时避免重复的劳动。
+我们希望通过社区的努力提供更多语言的翻译。这些工作是在 [vuejs-translations](https://github.com/vuejs-translations/) GitHub 组织进行的。如果你对此感兴趣，请查看[翻译指南](https://github.com/vuejs-translations/guidelines/blob/main/README.md)。
