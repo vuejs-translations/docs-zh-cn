@@ -21,7 +21,7 @@
 </div>
 ```
 
-接下来我们来看看 `modal-button` 的实现。
+接下来我们来看看 `<MyModal>` 的实现：
 
 <div class="composition-api">
 
