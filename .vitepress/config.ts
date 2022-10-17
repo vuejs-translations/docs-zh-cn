@@ -6,7 +6,7 @@ import baseConfig from '@vue/theme/config'
 import { headerPlugin } from './headerMdPlugin'
 import { jobsPlugin } from './jobsMdPlugin'
 
-const nav = [
+const nav: ThemeConfig['nav'] = [
   {
     text: '文档',
     activeMatch: `^/(guide|style-guide|cookbook|examples)/`,
@@ -123,7 +123,7 @@ const nav = [
   }
 ]
 
-export const sidebar = {
+export const sidebar: ThemeConfig['sidebar'] = {
   '/guide/': [
     {
       text: '开始',
@@ -551,7 +551,7 @@ export const sidebar = {
   ]
 }
 
-const i18n = {
+const i18n: ThemeConfig['i18n'] = {
   search: '搜索',
   menu: '菜单',
   toc: '本页目录',
@@ -575,13 +575,16 @@ const i18n = {
   },
 
   // aria labels
-  ariaAnnouncer: {
+  // TODO:
+  // update the key to `ariaAnnouncer` after new `@vue/theme` released
+  // https://github.com/vuejs/theme/issues/75
+  ariaAnnouner: {
     before: '',
     after: '已经加载完毕'
   },
   ariaDarkMode: '切换深色模式',
-  ariaSkip: '直接跳到内容',
-  ariaTOC: '当前页面的目录',
+  ariaSkipToContent: '直接跳到内容',
+  ariaToC: '当前页面的目录',
   ariaMainNav: '主导航',
   ariaMobileNav: '移动版导航',
   ariaSidebarNav: '侧边栏导航',
