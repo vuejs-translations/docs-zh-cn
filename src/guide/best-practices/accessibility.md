@@ -390,7 +390,7 @@ watch(
 
 #### `aria-hidden="true"` {#aria-hiddentrue}
 
-添加 `aria-hidden="true"` 在无障碍访问时被隐藏，但对其他可视用户仍然是可见的。不要在可聚焦的元素上使用它，请只在装饰性的、重复的的或屏幕外的内容上使用它。
+添加 `aria-hidden="true"` 在无障碍访问时被隐藏，但对其他可视用户仍然是可见的。不要在可聚焦的元素上使用它，请只在装饰性的、重复的或屏幕外的内容上使用它。
 
 ```vue-html
 <p>This is not hidden from screen readers.</p>
