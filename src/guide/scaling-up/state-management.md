@@ -234,7 +234,7 @@ export function useCount() {
 - 模块热更新 (HMR)
 - 服务端渲染支持
 
-[Pinia](https://pinia.vuejs.org) 就是一个实现了上述需求的状态管理库，由 Vue 核心团队维护，对 Vue 2 和 Vue 3 都可用。
+[Pinia](https://pinia.vuejs.org/zh/) 就是一个实现了上述需求的状态管理库，由 Vue 核心团队维护，对 Vue 2 和 Vue 3 都可用。
 
 现有用户可能对 [Vuex](https://vuex.vuejs.org/zh/) 更熟悉，它是 Vue 之前的官方状态管理库。由于 Pinia 在生态系统中能够承担相同的职责且能做得更好，因此 Vuex 现在处于维护模式。它仍然可以工作，但不再接受新的功能。对于新的应用，建议使用 Pinia。
 
