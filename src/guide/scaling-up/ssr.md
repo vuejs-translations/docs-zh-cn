@@ -286,7 +286,7 @@ export function createApp() {
 }
 ```
 
-像 Pinia 这样的状态管理库在设计时就考虑到了这一点。请参考 [Pinia 的 SSR 指南](https://pinia.vuejs.org/ssr/)以了解更多细节。
+像 Pinia 这样的状态管理库在设计时就考虑到了这一点。请参考 [Pinia 的 SSR 指南](https://pinia.vuejs.org/zh/ssr/)以了解更多细节。
 
 ### 激活不匹配 {#hydration-mismatch}
 
