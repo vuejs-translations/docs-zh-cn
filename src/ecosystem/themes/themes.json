@@ -1,7 +1,7 @@
 [
   {
     "name": "Creative Tim",
-    "description": "With the examples below built by our partners from [Creative Tim](https://creative-tim.com?affiliate_id=116187) you can see how a real world application is built, the technology stack behind it and how most of the concepts you've learned so far apply in a real world application.",
+    "description": "通过下面由我们的合作伙伴 [Creative Tim](https://creative-tim.com?affiliate_id=116187) 建立的例子，你可以看到一个真实世界的应用是如何建立的，它背后的技术栈，以及你迄今为止学到的大多数概念是如何应用于真实世界的应用。",
     "seeMoreUrl": "https://www.creative-tim.com/bootstrap-themes/vuejs-themes?affiliate_id=116187",
     "products": [
       {
@@ -92,7 +92,7 @@
   },
   {
     "name": "MDBootstrap",
-    "description": "Check out the themes, UI Kits and plugins below built by our partners from [MDBootstrap](https://mdbootstrap.com/?utm_ref_id=82665). Learn how to use Vue in professional projects along such technologies as Bootstrap. Templates & ready components make your development faster and more efficient.`",
+    "description": "看看下面这些由我们的合作伙伴 [MDBootstrap](https://mdbootstrap.com/?utm_ref_id=82665) 打造的主题、UI Kits 和插件吧。学习如何在专业项目中使用 Vue 以及诸如 Bootstrap 等技术。模板和准备好的组件使你的开发更快、更有效率。",
     "seeMoreUrl": "https://mdbootstrap.com/docs/vue?utm_ref_id=82665",
     "products": [
       {
@@ -127,7 +127,7 @@
   },
   {
     "name": "PrimeVue",
-    "description": "The open-source UI component library [PrimeVue](https://www.primefaces.org/primevue/#/?af_id=4218) offers over 80 flexible components to build your apps with! They have a ton of different component themes and Vue-CLI application templates available to get the look & feel that suits you best.`",
+    "description": "开源UI组件库 [PrimeVue](https://www.primefaces.org/primevue/#/?af_id=4218) 提供了超过 80 个灵活的组件来构建你的应用程序！他们有大量不同的组件主题和 Vue-CLI 应用程序模板，以获得最适合你的外观和感受。",
     "seeMoreUrl": "https://www.primefaces.org/primevue/#/?af_id=4218",
     "products": [
       {
@@ -232,7 +232,7 @@
   },
   {
     "name": "Flatlogic",
-    "description": "Check out the admin dashboard templates built by our partners from [Flatlogic](https://flatlogic.com/templates?ref=x-fdkuTAVW). With these themes you can see how real applications are built. Additionally, these templates will help you to start a new application and save you time and money.`",
+    "description": "看看我们来自 [Flatlogic](https://flatlogic.com/templates?ref=x-fdkuTAVW) 的合作伙伴建立的管理仪表板模板。通过这些主题，你可以看到真正的应用程序是如何建立的。此外，这些模板将帮助你开始一个新的应用程序，并节省你的时间和金钱。",
     "seeMoreUrl": "https://flatlogic.com/templates?ref=x-fdkuTAVW",
     "products": [
       {
