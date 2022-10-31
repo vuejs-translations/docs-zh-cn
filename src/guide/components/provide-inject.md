@@ -187,7 +187,7 @@ export default {
 }
 ```
 
-这里，组件本地化了原注入名 `"message"` 所提供的的属性，并将其暴露为 `this.localMessage`。
+这里，组件本地化了原注入名 `"message"` 所提供的属性，并将其暴露为 `this.localMessage`。
 
 </div>
 

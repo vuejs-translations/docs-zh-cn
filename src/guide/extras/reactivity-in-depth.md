@@ -355,7 +355,7 @@ watchEffect(callback, {
 
 ## 与外部状态系统集成 {#integration-with-external-state-systems}
 
-Vue 的响应性系统是通过深度转换普通 JavaScript 对象为响应式代理来实现的。这种深度转换在一些情况下是不必要的，在和一些外部状态管理系统时集成时，甚至是需要避免的 (例如，当一个外部的解决方案也用了 Proxy 时)。
+Vue 的响应性系统是通过深度转换普通 JavaScript 对象为响应式代理来实现的。这种深度转换在一些情况下是不必要的，在和一些外部状态管理系统集成时，甚至是需要避免的 (例如，当一个外部的解决方案也用了 Proxy 时)。
 
 将 Vue 的响应性系统与外部状态管理方案集成的大致思路是：将外部状态放在一个 [`shallowRef`](/api/reactivity-advanced.html#shallowref) 中。一个浅层的 ref 中只有它的 `.value` 属性本身被访问时才是有响应性的，而不关心它内部的值。当外部状态改变时，替换此 ref 的 `.value` 才会触发更新。
 

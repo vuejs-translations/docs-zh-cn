@@ -61,7 +61,7 @@
 
 - [WebStorm](https://www.jetbrains.com/webstorm/) 同样也为 Vue 的单文件组件提供了很好的内置支持。
 
-- 其他支持[语言服务协议](https://microsoft.github.io/language-server-protocol/) (LSP) 的 IDE 也可以通过 LSP 享受到 Volar 所提供的的核心功能：
+- 其他支持[语言服务协议](https://microsoft.github.io/language-server-protocol/) (LSP) 的 IDE 也可以通过 LSP 享受到 Volar 所提供的核心功能：
 
   - Sublime Text 通过 [LSP-Volar](https://github.com/sublimelsp/LSP-volar) 支持。
 

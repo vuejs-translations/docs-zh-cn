@@ -52,7 +52,7 @@ const nav: ThemeConfig['nav'] = [
         text: '官方库',
         items: [
           { text: 'Vue Router', link: 'https://router.vuejs.org/zh/' },
-          { text: 'Pinia', link: 'https://pinia.vuejs.org/' },
+          { text: 'Pinia', link: 'https://pinia.vuejs.org/zh/' },
           { text: '工具链指南', link: '/guide/scaling-up/tooling.html' }
         ]
       },
