@@ -6,11 +6,11 @@ footer: false
 
 ## 线上尝试 Vue {#try-vue-online}
 
-- 要快速体验 Vue，你可以直接在我们的 [Playground](https://sfc.vuejs.org/#eNo9j01qAzEMha+iapMWOjbdDm6gu96gG2/cjJJM8B+2nBaGuXvlpBMwtj4/JL234EfO6toIRzT1UObMexvpN6fCMNHRNc+w2AgwOXbPL/caoBC3EjcCCPU0wu6TvE/wlYqfnnZ3ae2PXHKMfiwQYArZOyYhAHN+2y9LnwLrarTQ7XeOuTFch5Am8u8WRbcoktGPbnzFOXS3Q3BZXWqKkuRmy/4L1eK4GbUoUTtbPDPnOmpdj4ee/1JVKictlSot8hxIUQ3Dd0k/lYoMtrglwfUPkXdoJg==) 进行尝试。
+- 想要快速体验 Vue，你可以直接试试我们的[演练场](https://sfc.vuejs.org/#eNo9j01qAzEMha+iapMWOjbdDm6gu96gG2/cjJJM8B+2nBaGuXvlpBMwtj4/JL234EfO6toIRzT1UObMexvpN6fCMNHRNc+w2AgwOXbPL/caoBC3EjcCCPU0wu6TvE/wlYqfnnZ3ae2PXHKMfiwQYArZOyYhAHN+2y9LnwLrarTQ7XeOuTFch5Am8u8WRbcoktGPbnzFOXS3Q3BZXWqKkuRmy/4L1eK4GbUoUTtbPDPnOmpdj4ee/1JVKictlSot8hxIUQ3Dd0k/lYoMtrglwfUPkXdoJg==)。
 
-- 如果你更喜欢不带任何构建步骤的原始 HTML，可以使用这个 [JSFiddle](https://jsfiddle.net/yyx990803/2ke1ab0z/) 来作为起点。
+- 如果你更喜欢不用任何构建的原始 HTML，可以使用 [JSFiddle](https://jsfiddle.net/yyx990803/2ke1ab0z/) 入门。
 
-- 如果你对 Node.js 和构建工具的概念已经较为熟悉，还可以直接在浏览器中打开 [StackBlitz](https://vite.new/vue) 以尝试完整的构建设置。
+- 如果你已经比较熟悉 Node.js 和构建工具等概念，还可以直接在浏览器中打开 [StackBlitz](https://vite.new/vue) 来尝试完整的构建设置。
 
 ## 创建一个 Vue 应用 {#creating-a-vue-application}
 
@@ -48,7 +48,7 @@ footer: false
 <span class="line"><span style="color:var(--vt-c-green);">&gt; </span><span style="color:#A6ACCD;">npm run dev</span></span>
 <span class="line"></span></code></pre></div>
 
-你现在应该已经运行起来了你的第一个 Vue 项目！请注意，生成的项目中的示例组件是使用[组合式 API](/guide/introduction.html#composition-api) 和 `<script setup>` 编写的，而非[选项式 API](/guide/introduction.html#options-api)。下面是一些补充提示：
+你现在应该已经运行起来了你的第一个 Vue 项目！请注意，生成的项目中的示例组件使用的是[组合式 API](/guide/introduction.html#composition-api) 和 `<script setup>`，而非[选项式 API](/guide/introduction.html#options-api)。下面是一些补充提示：
 
 - 推荐的 IDE 配置是 [Visual Studio Code](https://code.visualstudio.com/) + [Volar 扩展](https://marketplace.visualstudio.com/items?itemName=Vue.volar)。如果使用其他编辑器，参考 [IDE 支持章节](/guide/scaling-up/tooling.html#ide-support)。
 - 更多工具细节，包括与后端框架的整合，我们会在[工具链指南](/guide/scaling-up/tooling.html)进行讨论。
@@ -102,7 +102,7 @@ footer: false
 
 ### 使用 ES 模块构建版本 {#using-the-es-module-build}
 
-在该文档的其余部分我们会主要使用 [ES 模块](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Guide/Modules)语法。大多数的现代浏览器现在都已原生支持 ES 模块。因此我们可以像这样通过 CDN 以及原生 ES 模块使用 Vue：
+在本文档的其余部分我们使用的主要是 [ES 模块](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Guide/Modules)语法。现代浏览器大多都已原生支持 ES 模块。因此我们可以像这样通过 CDN 以及原生 ES 模块使用 Vue：
 
 ```html{3,4}
 <div id="app">{{ message }}</div>
@@ -162,16 +162,16 @@ import { createApp } from 'vue'
 
 你也可以在映射表中添加其他的依赖——但请务必确保你使用的是该库的 ES 模块版本。
 
-:::tip Import Maps 浏览器支持
+:::tip 导入映射表的浏览器支持情况
 目前只有基于 Chromium 的浏览器支持导入映射表，所以我们推荐你在学习过程中使用 Chrome 或 Edge。
 
-如果使用了 Firefox 浏览器，则该功能仅在 102+ 版本中受支持，且目前需要启用 `about:config` 中的 `dom.importMaps.enabled` 选项。
+如果你使用的是 Firefox 浏览器，则该功能仅在 102+ 版本中受支持，且目前需要启用 `about:config` 中的 `dom.importMaps.enabled` 选项。
 
-如果更偏爱那些还不支持导入映射表的浏览器，你可以使用 [es-module-shims](https://github.com/guybedford/es-module-shims) 来进行 polyfill。
+如果你更喜欢那些还不支持导入映射表的浏览器，你可以使用 [es-module-shims](https://github.com/guybedford/es-module-shims) 来进行 polyfill。
 :::
 
 :::warning 生产环境中的注意事项
-到目前为止示例使用的都是 Vue 的开发构建版本——如果你打算在生产中通过 CDN 使用 Vue，请务必查看[生产环境部署指南](/guide/best-practices/production-deployment.html#without-build-tools)。
+到目前为止示例中使用的都是 Vue 的开发构建版本——如果你打算在生产中通过 CDN 使用 Vue，请务必查看[生产环境部署指南](/guide/best-practices/production-deployment.html#without-build-tools)。
 :::
 
 ### 拆分模块 {#splitting-up-the-modules}
@@ -204,9 +204,9 @@ export default {
 
 可能你也注意到了，这里导入的组件模板是内联的 JavaScript 字符串。如果你正在使用 VSCode，你可以安装 [es6-string-html](https://marketplace.visualstudio.com/items?itemName=Tobermory.es6-string-html) 扩展，然后在字符串前加上一个前缀注释 `/*html*/` 以高亮语法。
 
-### 无构建步骤地使用组合式 API {#using-composition-api-without-a-build-step}
+### 无需构建的组合式 API 用法 {#using-composition-api-without-a-build-step}
 
-组合式 API 的许多示例将使用 `<script setup>` 语法。如果你打算在没有构建步骤的情况下使用组合式 API，请参阅 [`setup()` 选项](/api/composition-api-setup.html)。
+组合式 API 的许多示例将使用 `<script setup>` 语法。如果你想在无需构建的情况下使用组合式 API，请参阅 [`setup()` 选项](/api/composition-api-setup.html)。
 
 ## 下一步 {#next-steps}
 
