@@ -110,7 +110,7 @@ onMounted(() => {
 
 ### 可以同时使用两种 API 吗？ {#can-i-use-both-apis-together}
 
-可以。你可以在一个选项式 API 组件中使用 [`setup()`](/api/composition-api-setup.html#setup) 选项。
+可以。你可以在一个组合式 API 组件中使用 [`setup()`](/api/composition-api-setup.html#setup) 选项。
 
 然而，我们只推荐你在一个已经基于选项式 API 开发了很久、但又需要和基于组合式 API 的新代码或是第三方库整合的项目中这样做。
 
