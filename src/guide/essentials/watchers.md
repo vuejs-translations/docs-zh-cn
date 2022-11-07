@@ -244,6 +244,7 @@ export default {
 }
 ```
 
+<!-- TODO: translation -->
 The initial execution of the handler function will happen just before the `created` hook. Vue will have already processed the `data`, `computed`, and `methods` options, so those properties will be available on the first invocation.
 </div>
 
