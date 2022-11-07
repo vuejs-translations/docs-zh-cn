@@ -138,6 +138,7 @@ const Foo = defineAsyncComponent(() => import('./Foo.vue'))
 
 - [vue-virtual-scroller](https://github.com/Akryum/vue-virtual-scroller)
 - [vue-virtual-scroll-grid](https://github.com/rocwang/vue-virtual-scroll-grid)
+- [vueuc/VVirtualList](https://github.com/07akioni/vueuc)
 
 ### 减少大型不可变数据的响应性开销 {#reduce-reactivity-overhead-for-large-immutable-structures}
 

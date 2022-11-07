@@ -310,7 +310,7 @@ export default defineConfig({
 // tsconfig.json
 
 {
- "compileroptions": {
+ "compilerOptions": {
     "types": ["vitest/globals"]
   }
 }
