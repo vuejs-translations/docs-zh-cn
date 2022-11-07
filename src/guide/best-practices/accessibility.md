@@ -478,7 +478,7 @@ watch(
 - [健壮性](https://www.w3.org/TR/WCAG21/#robust)
   - 随着技术的进步，用户必须能够访问内容
 
-#### Web 无障碍倡议 – 无障碍访问丰富的互联网应用 (WAI-ARIA) {#web-accessibility-initiative-accessible-rich-internet-applications-wai-aria}
+#### Web 无障碍倡议 – 无障碍访问丰富的互联网应用 (WAI-ARIA) {#web-accessibility-initiative-–-accessible-rich-internet-applications-wai-aria}
 
 W3C 的 WAI-ARIA 为如何构建动态内容和高阶用户界面控件提供了指导。
 
