@@ -1,4 +1,4 @@
-# 单文件组件 `<script setup>` {#script-setup}
+# \<script setup> {#script-setup}
 
 `<script setup>` 是在单文件组件 (SFC) 中使用组合式 API 的编译时语法糖。当同时使用 SFC 与组合式 API 时该语法是默认推荐。相比于普通的 `<script>` 语法，它具有更多优势：
 
@@ -152,7 +152,7 @@ import { myDirective as vMyDirective } from './MyDirective.js'
 </script>
 ```
 
-## `defineProps()` 和 `defineEmits()` {#defineprops-defineemits}
+## defineProps() 和 defineEmits() {#defineprops-defineemits}
 
 为了在声明 `props` 和 `emits` 选项时获得完整的类型推导支持，我们可以使用 `defineProps` 和 `defineEmits` API，它们将自动地在 `<script setup>` 中可用：
 
@@ -177,7 +177,7 @@ const emit = defineEmits(['change', 'delete'])
 
 如果使用了 TypeScript，[使用纯类型声明来声明 prop 和 emit](#typescript-only-features) 也是可以的。
 
-## `defineExpose` {#defineexpose}
+## defineExpose() {#defineexpose}
 
 使用 `<script setup>` 的组件是**默认关闭**的——即通过模板引用或者 `$parent` 链获取到的组件的公开实例，**不会**暴露任何在 `<script setup>` 中声明的绑定。
 
@@ -257,7 +257,7 @@ const post = await fetch(`/api/post/1`).then((r) => r.json())
 
 ## 针对 TypeScript 的功能 {#typescript-only-features}
 
-### 针对类型的 props/emit 声明 {#type-only-propsemit-declarations}
+### 针对类型的 props/emit 声明 {#type-only-props-emit-declarations}
 
 props 和 emit 都可以通过给 `defineProps` 和 `defineEmits` 传递纯类型参数的方式来声明：
 

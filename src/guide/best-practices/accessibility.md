@@ -112,7 +112,7 @@ watch(
 </main>
 ```
 
-### Landmark {#landmarks}
+### Landmarks {#landmarks}
 
 [Landmark](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/landmark_role) 会为应用中的章节提供访问规划。依赖辅助技术的用户可以跳过内容直接导航到应用的每个部分。你可以使用 [ARIA role](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles) 帮助你实现这个目标。
 
@@ -388,7 +388,7 @@ watch(
 
 <!-- <common-codepen-snippet title="Form Search" slug="QWdMqWy" :height="265" tab="js,result" theme="light" :preview="false" :editable="false" /> -->
 
-#### `aria-hidden="true"` {#aria-hiddentrue}
+#### `aria-hidden="true"` {#aria-hidden-true}
 
 添加 `aria-hidden="true"` 在无障碍访问时被隐藏，但对其他可视用户仍然是可见的。不要在可聚焦的元素上使用它，请只在装饰性的、重复的或屏幕外的内容上使用它。
 
@@ -467,7 +467,7 @@ watch(
 
 [WCAG 2.1](https://www.w3.org/TR/WCAG21/) 继承自 [WCAG 2.0](https://www.w3.org/TR/WCAG20/)，接纳 Web 演进过程中的新技术。W3C 鼓励在开发或更新 Web 无障碍访问策略时使用 WCAG 的最新版本。
 
-#### WCAG 2.1 2.1 四大指导原则 (缩写 POUR)：{#wcag-21-four-main-guiding-principles-abbreviated-as-pour}
+#### WCAG 2.1 四大指导原则 (缩写 POUR)：{#wcag-2-1-four-main-guiding-principles-abbreviated-as-pour}
 
 - [可感知性](https://www.w3.org/TR/WCAG21/#perceivable)
   - 用户必须能够感知所渲染的信息

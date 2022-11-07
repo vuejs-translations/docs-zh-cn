@@ -97,7 +97,7 @@ describe('increment', () => {
 
    黑盒测试不知晓一个组件的实现细节。这些测试尽可能少地模拟，以测试组件在整个系统中的集成情况。它们通常会渲染所有子组件，因而会被认为更像一种“集成测试”。请查看下方的[组件测试建议](#component-testing)作进一步了解。
 
-### 推荐方案 {#recommendation-3}
+### 推荐方案 {#recommendation}
 
 - [Vitest](https://vitest.dev/)
 

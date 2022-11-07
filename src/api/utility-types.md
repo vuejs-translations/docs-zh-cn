@@ -4,7 +4,7 @@
 此页面仅列出了一些可能需要解释其使用方式的常用工具类型。有关导出类型的完整列表，请查看[源代码](https://github.com/vuejs/core/blob/main/packages/runtime-core/src/index.ts#L131)。
 :::
 
-## PropType\<T> {#proptypet}
+## PropType\<T> {#proptype-t}
 
 用于在用运行时 props 声明时给一个 prop 标注更复杂的类型定义。
 

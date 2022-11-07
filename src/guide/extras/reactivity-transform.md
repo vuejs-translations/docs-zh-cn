@@ -246,7 +246,7 @@ function useMouse() {
 }
 ```
 
-### 在已解构的 props 上使用 `$$()` {#usage-on-destructured-props}
+### 在已解构的 props 上使用 `$$()` {#using-on-destructured-props}
 
 `$$()` 也适用于已解构的 props，因为它们也是响应式的变量。编译器会高效地通过 `toRef` 来做转换：
 

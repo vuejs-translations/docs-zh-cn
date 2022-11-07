@@ -1,4 +1,4 @@
-# Teleport
+# Teleport {#teleport}
 
 <VueSchoolLink href="https://vueschool.io/lessons/vue-3-teleport" title="Teleport - 免费的 Vue.js 课程"/>
 

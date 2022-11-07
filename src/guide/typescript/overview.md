@@ -36,7 +36,7 @@ Vue 本身就是用 TypeScript 编写的，并对 TypeScript 提供了一等公�
 
 - [WebStorm](https://www.jetbrains.com/webstorm/) 对 TypeScript 和 Vue 也都提供了开箱即用的支持。其他的 JetBrains IDE 也同样可以通过一个[免费插件](https://plugins.jetbrains.com/plugin/9442-vue-js)支持。
 
-### 配置 `tsconfig.json` {#configuring-tsconfigjson}
+### 配置 `tsconfig.json` {#configuring-tsconfig-json}
 
 通过 `create-vue` 搭建的项目包含了预先配置好的 `tsconfig.json`。其底层配置抽象于 [`@vue/tsconfig`](https://github.com/vuejs/tsconfig) 包中。在项目内我们使用 [Project References](https://www.typescriptlang.org/docs/handbook/project-references.html) 来确保运行在不同环境下的代码的类型正确 (比如应用代码和测试代码应该有不同的全局变量)。
 

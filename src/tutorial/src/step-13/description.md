@@ -1,4 +1,4 @@
-# Emits
+# Emits {#emits}
 
 除了接收 props，子组件还可以向父组件触发事件：
 

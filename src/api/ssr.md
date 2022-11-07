@@ -1,6 +1,6 @@
-# 服务端渲染 API
+# 服务端渲染 API {#server-side-rendering-api}
 
-## renderToString()
+## renderToString() {#rendertostring}
 
 - **导出自 `vue/server-renderer`**
 
@@ -45,7 +45,7 @@
 
 - **参考**：[指南 - 服务端渲染 (SSR)](/guide/scaling-up/ssr.html)
 
-## renderToNodeStream()
+## renderToNodeStream() {#rendertonodestream}
 
 将输入渲染为一个 [Node.js Readable stream](https://nodejs.org/api/stream.html#stream_class_stream_readable) 实例。
 
@@ -71,7 +71,7 @@
   `vue/server-renderer` 的 ESM 构建不支持此方法，因为它是与 Node.js 环境分离的。请换为使用 [`pipeToNodeWritable`](#pipetonodewritable)。
   :::
 
-## pipeToNodeWritable()
+## pipeToNodeWritable() {#pipetonodewritable}
 
 将输入渲染并 pipe 到一个 [Node.js Writable stream](https://nodejs.org/api/stream.html#stream_writable_streams) 实例。
 
@@ -94,7 +94,7 @@
   pipeToNodeWritable(app, {}, res)
   ```
 
-## renderToWebStream()
+## renderToWebStream() {#rendertowebstream}
 
 将输入渲染为一个 [Web ReadableStream](https://developer.mozilla.org/en-US/docs/Web/API/Streams_API) 实例。
 
@@ -120,7 +120,7 @@
   在不能全局暴露 `ReadableStream` 构造函数的环境下，请换为使用 [`pipeToWebWritable()`](#pipetowebwritable)。
   :::
 
-## pipeToWebWritable()
+## pipeToWebWritable() {#pipetowebwritable}
 
 将输入渲染并 pipe 到一个 [Web WritableStream](https://developer.mozilla.org/en-US/docs/Web/API/WritableStream) 实例。
 
@@ -149,7 +149,7 @@
   return new Response(readable)
   ```
 
-## renderToSimpleStream()
+## renderToSimpleStream() {#rendertosimplestream}
 
 通过一个简单的接口，将输入以 stream 模式进行渲染。
 
@@ -194,7 +194,7 @@
   )
   ```
 
-## useSSRContext()
+## useSSRContext() {#usessrcontext}
 
 一个运行时 API，用于获取已传递给 `renderToString()` 或其他服务端渲染 API 的上下文对象。
 
