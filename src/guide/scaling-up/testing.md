@@ -205,7 +205,7 @@ cy.get(valueSelector).should('be.visible').and('contain.text', '0')
 
   如果一个方法需要测试，把它提取到一个独立的实用函数中，并为它写一个专门的单元测试。如果它不能被直截了当地抽离出来，那么对它的调用应该作为交互测试的一部分。
 
-### 推荐方案 {#recommendation-2}
+### 推荐方案 {#recommendation-1}
 
 - [Vitest](https://vitest.dev/) 对于组件和组合式函数都采用无头渲染的方式 (例如 VueUse 中的 [`useFavicon`](https://vueuse.org/core/useFavicon/#usefavicon) 函数)。组件和 DOM 都可以通过 [@testing-library/vue](https://testing-library.com/docs/vue-testing-library/intro) 来测试。
 
@@ -263,7 +263,7 @@ Vitest 和基于浏览器的运行器之间的主要区别是速度和执行上�
 
 当端到端测试在 CI/CD 管道中运行时，它们通常在无头浏览器（即不带界面的浏览器）中运行。因此，当错误发生时，现代端到端测试框架的一个关键特性是能够在不同的测试阶段查看应用的快照、视频，从而深入了解错误的原因。而在很早以前，要手动维护这些集成是非常繁琐的。
 
-### 推荐方案 {#recommendation}
+### 推荐方案 {#recommendation-2}
 
 - [Cypress](https://www.cypress.io/)
 
