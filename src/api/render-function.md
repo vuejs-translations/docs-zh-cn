@@ -1,4 +1,4 @@
-# 渲染函数 API {#render-function-APIs}
+# 渲染函数 API {#render-function-apis}
 
 ## h() {#h}
 

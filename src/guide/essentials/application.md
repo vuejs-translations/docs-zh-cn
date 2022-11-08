@@ -1,6 +1,6 @@
 # 创建一个 Vue 应用 {#creating-a-vue-application}
 
-## 应用实例 {#the-app-instance}
+## 应用实例 {#the-application-instance}
 
 每个 Vue 应用都是通过 [`createApp`](/api/application#createapp) 函数创建一个新的 **应用实例**：
 
@@ -103,7 +103,7 @@ app.component('TodoDeleteButton', TodoDeleteButton)
 
 确保在挂载应用实例之前完成所有应用配置！
 
-## 多个应用实例 {#multiple-app-instances}
+## 多个应用实例 {#multiple-application-instances}
 
 应用实例并不只限于一个。`createApp` API 允许你在同一个页面中创建多个共存的 Vue 应用，而且每个应用都拥有自己的用于配置和全局资源的作用域。
 

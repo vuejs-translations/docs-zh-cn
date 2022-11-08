@@ -1,6 +1,6 @@
 # 应用实例 API {#application-api}
 
-## createApp() {#create-app}
+## createApp() {#createapp}
 
 创建一个应用实例。
 
@@ -37,7 +37,7 @@
 
 - **参考**：[指南 - 创建一个 Vue 应用实例](/guide/essentials/application.html)
 
-## createSSRApp() {#create-ssr-app}
+## createSSRApp() {#createssrapp}
 
 以 [SSR 激活](/guide/scaling-up/ssr.html#client-hydration)模式创建一个应用实例。用法与 `createApp()` 完全相同。
 

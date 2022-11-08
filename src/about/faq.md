@@ -1,4 +1,4 @@
-# 常见问题
+# 常见问题 {#frequently-asked-questions}
 
 ## 谁在维护 Vue？ {#who-maintains-vue}
 

@@ -232,7 +232,7 @@
 
 - **参考**：[深入响应式系统](/guide/extras/reactivity-in-depth.html)
 
-## renderTriggered <sup class="vt-badge dev-only" /> {#rendertriggered-sup-classvt-badge-dev-only}
+## renderTriggered <sup class="vt-badge dev-only" /> {#rendertriggered}
 
 在一个响应式依赖被组件触发了重新渲染之后调用。
 

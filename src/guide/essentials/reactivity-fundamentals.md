@@ -101,7 +101,7 @@ export default {
 <div>{{ state.count }}</div>
 ```
 
-自然，我们也可以在同一个作用域下定义一个更新 `state` 的函数，并作为一个方法与 `state` 一起暴露出去：
+自然，我们也可以在同一个作用域下定义一个更新响应式状态的函数，并作为一个方法与状态一起暴露出去：
 
 ```js{7-9,14}
 import { reactive } from 'vue'
@@ -131,7 +131,7 @@ export default {
 </button>
 ```
 
-### `<script setup>` \*\*
+### `<script setup>` \*\* {#script-setup}
 
 在 `setup()` 函数中手动暴露大量的状态和方法非常繁琐。幸运的是，我们可以通过使用构建工具来简化该操作。当使用单文件组件（SFC）时，我们可以使用 `<script setup>` 来大幅度地简化代码。
 

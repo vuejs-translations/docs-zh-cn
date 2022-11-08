@@ -1,6 +1,6 @@
 # 自定义渲染器 API {#custom-renderer-api}
 
-## createRenderer() {#create-renderer}
+## createRenderer() {#createrenderer}
 
 创建一个自定义渲染器。通过提供平台特定的节点创建以及更改 API，你可以在非 DOM 环境中也享受到 Vue 核心运行时的特性。
 

@@ -95,7 +95,7 @@ TypeScript 用户请参考：[扩展全局属性](/guide/typescript/options-api.
 请谨慎使用全局属性，如果在整个应用中使用不同插件注入的太多全局属性，很容易让应用变得难以理解和维护。
 :::
 
-### 插件中的 Provide / Inject
+### 插件中的 Provide / Inject {#provide-inject-with-plugins}
 
 在插件中，我们可以通过 `provide` 来为插件用户供给一些内容。举例来说，我们可以将插件接收到的 `options` 参数提供给整个应用，让任何组件都能使用这个翻译字典对象。
 

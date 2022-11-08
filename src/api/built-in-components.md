@@ -2,7 +2,7 @@
 pageClass: api
 ---
 
-# 内置组件
+# 内置组件 {#built-in-components}
 
 :::info 组件注册和使用
 内置组件无需注册便可以直接在模板中使用。它们也是 tree-shakeable 的：仅在使用时才会包含在构建中。
@@ -19,7 +19,7 @@ h(Transition, {
 
 :::
 
-## `<Transition>`
+## `<Transition>` {#transition}
 
 为**单个**元素或组件提供动画过渡效果。
 
@@ -120,7 +120,7 @@ h(Transition, {
 
 - **参考**：[`<Transition>` 指南](/guide/built-ins/transition.html)
 
-## `<TransitionGroup>`
+## `<TransitionGroup>` {#transitiongroup}
 
 为列表中的**多个**元素或组件提供过渡效果。
 
@@ -166,7 +166,7 @@ h(Transition, {
 
 - **参考**：[指南 - TransitionGroup](/guide/built-ins/transition-group.html)
 
-## `<KeepAlive>`
+## `<KeepAlive>` {#keepalive}
 
 缓存包裹在其中的动态切换组件。
 
@@ -259,7 +259,7 @@ h(Transition, {
 
 - **参考**：[指南 - KeepAlive](/guide/built-ins/keep-alive.html)
 
-## `<Teleport>`
+## `<Teleport>` {#teleport}
 
 将其插槽内容渲染到 DOM 中的另一个位置。
 
@@ -301,7 +301,7 @@ h(Transition, {
 
 - **参考**：[指南 - Teleport](/guide/built-ins/teleport.html)
 
-## `<Suspense>` <sup class="vt-badge experimental" />
+## `<Suspense>` <sup class="vt-badge experimental" /> {#suspense}
 
 用于协调对组件树中嵌套的异步依赖的处理。
 

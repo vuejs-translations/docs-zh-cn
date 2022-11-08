@@ -8,7 +8,7 @@ import BetweenElements from './transition-demos/BetweenElements.vue'
 import BetweenComponents from './transition-demos/BetweenComponents.vue'
 </script>
 
-# Transition
+# Transition {#transition}
 
 Vue 提供了两个内置组件，可以帮助你制作基于状态变化的过渡和动画：
 

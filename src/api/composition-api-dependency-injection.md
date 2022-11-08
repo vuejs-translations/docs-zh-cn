@@ -1,4 +1,4 @@
-# 组合式 API：依赖注入 {#composition-api-brdependency-injection}
+# 组合式 API：依赖注入 {#composition-api-dependency-injection}
 
 ## provide() {#provide}
 

@@ -8,8 +8,6 @@ outline: deep
 
 ### 什么是 SSR？ {#what-is-ssr}
 
-SSR 是 Server-Side Rendering，即服务端渲染的英文缩写。
-
 Vue.js 是一个用于构建客户端应用的框架。默认情况下，Vue 组件的职责是在浏览器中生成和操作 DOM。然而，Vue 也支持将组件在服务端直接渲染成 HTML 字符串，作为服务端响应返回给浏览器，最后在浏览器端将静态的 HTML“激活”(hydrate) 为能够交互的客户端应用。
 
 一个由服务端渲染的 Vue.js 应用也可以被认为是“同构的”(Isomorphic) 或“通用的”(Universal)，因为应用的大部分代码同时运行在服务端**和**客户端。
@@ -338,7 +336,7 @@ const myDirective = {
 }
 ```
 
-### Teleport
+### Teleports {#teleports}
 
 在 SSR 的过程中 Teleport 需要特殊处理。如果渲染的应用包含 Teleport，那么其传送的内容将不会包含在主应用渲染出的字符串中。在大多数情况下，更推荐的方案是在客户端挂载时条件式地渲染 Teleport。
 

@@ -244,11 +244,13 @@ export default {
 }
 ```
 
+<!-- TODO: translation -->
+The initial execution of the handler function will happen just before the `created` hook. Vue will have already processed the `data`, `computed`, and `methods` options, so those properties will be available on the first invocation.
 </div>
 
 <div class="composition-api">
 
-## `watchEffect()` \*\*
+## `watchEffect()` \*\* {#watcheffect}
 
 `watch()` 是懒执行的：仅当数据源变化时，才会执行回调。但在某些场景中，我们希望在创建侦听器时，立即执行一遍回调。举例来说，我们想请求一些初始数据，然后在相关状态更改时重新请求数据。我们可以这样写：
 

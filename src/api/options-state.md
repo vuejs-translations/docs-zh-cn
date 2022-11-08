@@ -1,6 +1,6 @@
 # 状态选项 {#options-state}
 
-## data
+## data {#data}
 
 用于声明组件初始响应式状态的函数。
 
@@ -47,7 +47,7 @@
 
 - **参考**：[深入响应式系统](/guide/extras/reactivity-in-depth.html)
 
-## props
+## props {#props}
 
 用于声明一个组件的 props。
 
@@ -127,7 +127,7 @@
 
 - **参考**：[Props](/guide/components/props.html)
 
-## computed
+## computed {#computed}
 
 用于声明要在组件实例上暴露的计算属性。
 
@@ -207,7 +207,7 @@
 
 - **参考**：[计算属性](/guide/essentials/computed.html)
 
-## methods
+## methods {#methods}
 
 用于声明要混入到组件实例中的方法。
 
@@ -248,7 +248,7 @@
 
 - **参考**：[Event 处理](/guide/essentials/event-handling.html)
 
-## watch
+## watch {#watch}
 
 用于声明在数据更改时调用的侦听回调。
 
@@ -366,7 +366,7 @@
 
 - **参考**：[侦听器](/guide/essentials/watchers.html)
 
-## emits
+## emits {#emits}
 
 用于声明由组件触发的自定义事件。
 
@@ -431,7 +431,7 @@
 
 * **参考**：[透传 Attributes](/guide/components/attrs.html)
 
-## expose
+## expose {#expose}
 
 用于声明当组件实例被父组件通过模板引用访问时暴露的公共属性。
 

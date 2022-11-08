@@ -48,7 +48,7 @@ Vue 的发布会遵循[语义化版本控制](https://semver.org/)，同时伴�
 
 如果你正在使用 TypeScript，则可以使用一个语义化版本的范围来锁住当前的小版本，并在 Vue 新的小版本发布时进行手动升级。
 
-### 编译后的代码和旧版运行时之间的兼容性 {#compile-code-compatibility-with-older-runtime}
+### 编译后的代码和旧版运行时之间的兼容性 {#compiled-code-compatibility-with-older-runtime}
 
 较新**小版本**的 Vue 编译器可能会生成与较旧小版本的 Vue 运行时不兼容的代码。例如，由 Vue 3.2 编译器生成的代码可能不完全兼容 Vue 3.1 的运行时。
 

@@ -2,19 +2,19 @@
 aside: false
 ---
 
-# 多语言及翻译
+# 多语言及翻译 {#translations}
 
-## 多语言版本
+## 多语言版本 {#available-languages}
 
 - [English](https://vuejs.org/) [[source](https://github.com/vuejs/docs)]
 - [简体中文 / Simplified Chinese](https://cn.vuejs.org/) [[source](https://github.com/vuejs-translations/docs-zh-cn)]
 - [日本語 / Japanese](https://ja.vuejs.org/) [[source](https://github.com/vuejs-translations/docs-ja)]
 
-## 翻译中的语言
+## 翻译中的语言 {#work-in-progress-languages}
 
 - [Українська / Ukrainian](https://ua.vuejs.org) [[source](https://github.com/vuejs-translations/docs-ua)]
 
-## 启动新的翻译
+## 启动新的翻译 {#starting-a-new-translation}
 
 近期 Vue 的文档经历了一次大的版本升级，所以其他语言的翻译版本仍不可用或进行中。
 
