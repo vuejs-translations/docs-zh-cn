@@ -244,8 +244,7 @@ export default {
 }
 ```
 
-<!-- TODO: translation -->
-The initial execution of the handler function will happen just before the `created` hook. Vue will have already processed the `data`, `computed`, and `methods` options, so those properties will be available on the first invocation.
+回调函数的初次执行就发生在 `created` 钩子之前。Vue 此时已经处理了 `data`、`computed` 和 `methods` 选项，所以这些属性在第一次调用时就是可用的。
 </div>
 
 <div class="composition-api">
