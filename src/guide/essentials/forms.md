@@ -52,7 +52,7 @@ const multiSelected = ref([])
 ### 文本 {#text}
 
 ```vue-html
-<p>Message is: {{ message }}</p>
+<p style="word-break:break-word;">Message is: {{ message }}</p>
 <input v-model="message" placeholder="edit me" />
 ```
 
@@ -87,7 +87,7 @@ const multiSelected = ref([])
 
 <div class="demo">
   <span>Multiline message is:</span>
-  <p style="white-space: pre-line;">{{ multilineText }}</p>
+  <p style="white-space: pre-line; word-break:break-word;">{{ multilineText }}</p>
   <textarea v-model="multilineText" placeholder="add multiple lines"></textarea>
 </div>
 
