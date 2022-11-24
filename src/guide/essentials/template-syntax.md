@@ -170,7 +170,7 @@ data() {
 
 指令是带有 `v-` 前缀的特殊 attribute。Vue 提供了许多[内置指令](/api/built-in-directives.html)，包括上面我们所介绍的 `v-bind` 和 `v-html`。
 
-指令 attribute 的期望值为一个 JavaScript 表达式 (除了少数几个例外，即之后要讨论到的 `v-for`、`v-on` 和 `v-slot`)。一个指令的任务是在其表达式的值变化时响应式地更新 DOM。以 [`v-if`](/api/built-in-directives.html#v-if) 为例：
+指令 attribute 的期望值为一个 JavaScript 表达式 (除了少数的几个个例外，即之后要讨论到的 `v-for`、`v-on` 和 `v-slot`)。一个指令的任务是在其表达式的值变化时响应式地更新 DOM。以 [`v-if`](/api/built-in-directives.html#v-if) 为例：
 
 ```vue-html
 <p v-if="seen">Now you see me</p>
