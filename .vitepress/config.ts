@@ -644,9 +644,9 @@ export default defineConfigWithTheme<ThemeConfig>({
 
     localeLinks: [
       {
-        link: 'https://cn.vuejs.org',
-        text: '简体中文',
-        repo: 'https://github.com/vuejs-translations/docs-zh-cn'
+        link: 'https://vuejs.org',
+        text: 'English',
+        repo: 'https://github.com/vuejs/docs'
       },
       {
         link: 'https://ja.vuejs.org',
@@ -655,7 +655,7 @@ export default defineConfigWithTheme<ThemeConfig>({
       },
       {
         link: '/translations/',
-        text: 'Help Us Translate!',
+        text: '帮助我们翻译！',
         isTranslationsDesc: true
       }
     ],
