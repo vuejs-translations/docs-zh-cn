@@ -642,6 +642,24 @@ export default defineConfigWithTheme<ThemeConfig>({
     sidebar,
     i18n,
 
+    localeLinks: [
+      {
+        link: 'https://vuejs.org',
+        text: 'English',
+        repo: 'https://github.com/vuejs/docs'
+      },
+      {
+        link: 'https://ja.vuejs.org',
+        text: '日本語',
+        repo: 'https://github.com/vuejs-translations/docs-ja'
+      },
+      {
+        link: '/translations/',
+        text: '帮助我们翻译！',
+        isTranslationsDesc: true
+      }
+    ],
+
     algolia: {
       indexName: 'vuejs_cn2',
       appId: 'UURH1MHAF7',
@@ -657,7 +675,6 @@ export default defineConfigWithTheme<ThemeConfig>({
     // },
 
     socialLinks: [
-      { icon: 'languages', link: '/translations/' },
       { icon: 'github', link: 'https://github.com/vuejs/' },
       { icon: 'twitter', link: 'https://twitter.com/vuejs' },
       { icon: 'discord', link: 'https://discord.com/invite/HBherRA' }
