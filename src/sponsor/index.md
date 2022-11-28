@@ -15,11 +15,25 @@ Vue.js 是采用 MIT 许可的开源项目，使用完全免费。
 
 维护这样一个庞大的生态系统和为项目开发新功能所需的巨大努力，只有在我们的赞助者慷慨的财务支持下才得以持续。
 
-## 如何赞助 {#how-to-sponsor}
+## 中国区铂金赞助
 
-你可以通过 [GitHub Sponsors](https://github.com/sponsors/yyx990803) 或 [OpenCollective](https://opencollective.com/vuejs) 进行赞助。赞助发票可以通过 GitHub 的支付系统获得。我们同时接受每月定期的赞助和一次性的捐赠。定期的赞助有权获得[赞助等级](#tier-benefits)中提供的 logo 展示位。
+中国区铂金赞助商是仅针对本站 (cn.vuejs.org) 的赞助位级别，包含以下权益：
 
-中国区的赞助商也可以通过致信 sponsor@vuejs.org 咨询中国区铂金赞助的具体赞助事宜 (该赞助等级的详情见下)。
+1. [cn.vuejs.org](/) 首屏无需滚动可见的 logo 展示位：
+
+![首页放置位](./sponsor-placement-1.png)
+
+2. 所有内容页面的侧边栏上的明显的 logo 展示位:
+
+![内页放置位](./sponsor-placement-2.png)
+
+3. 在 [`vuejs/core`](https://github.com/vuejs/core) 和 [`vuejs/vue`](https://github.com/vuejs/core) 的 README 上明显的 logo 展示位。
+
+如果您对此赞助位感兴趣，请致信 sponsor@vuejs.org 咨询具体事宜。
+
+## 国际站赞助 {#how-to-sponsor}
+
+如果您想要在国际站放置赞助 logo，则需要通过 [GitHub Sponsors](https://github.com/sponsors/yyx990803) 或 [OpenCollective](https://opencollective.com/vuejs) 用美元进行赞助。赞助发票可以通过 GitHub 的支付系统获得。我们同时接受每月定期的赞助和一次性的捐赠。定期的赞助有权获得[赞助等级](#tier-benefits)中提供的 logo 展示位。
 
 ## 以企业名义赞助 Vue {#sponsoring-vue-as-a-business}
 
@@ -36,11 +50,6 @@ Vue.js 是采用 MIT 许可的开源项目，使用完全免费。
 你也可以尝试说服你的雇主以企业的名义赞助 Vue。这可能并不容易，但企业赞助通常会对开放源码软件项目的可持续性产生比个人捐赠大得多的影响，所以如果你能够做到，这对我们的帮助会更大。
 
 ## 赞助等级 {#tier-benefits}
-
-- **中国区铂金赞助商**：
-  - [cn.vuejs.org](/) 首屏无需滚动可见的 logo 展示位。
-  - 所有内容页面的侧边栏上的明显的 logo 展示位。
-  - 在 [`vuejs/core`](https://github.com/vuejs/core) 和 [`vuejs/vue`](https://github.com/vuejs/core) 的 README 上明显的 logo 展示位。
 
 **以下赞助等级均仅针对我们面向国际用户的英文版网站 vuejs.org。**
 

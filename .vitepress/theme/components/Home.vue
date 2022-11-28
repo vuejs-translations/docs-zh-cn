@@ -42,9 +42,12 @@ onMounted(async () => {
     </p>
   </section>
 
-  <section id="special-sponsor">
-    <span class="lead">中国区铂金赞助</span>
+  <section
+    id="special-sponsor"
+    :class="{ center: !data || !data.platinum_china }"
+  >
     <template v-if="data && data.platinum_china">
+      <span>中国区铂金赞助</span>
       <template
         v-for="{
           url,
@@ -71,6 +74,9 @@ onMounted(async () => {
         <span>{{ description }}</span>
       </template>
     </template>
+    <a v-else class="lead" href="/sponsor/"
+      >中国区铂金赞助位 点击了解更多</a
+    >
   </section>
 
   <section id="highlights" class="vt-box-container">
@@ -245,6 +251,10 @@ html:not(.dark) .accent,
 #special-sponsor img {
   height: 42px;
   margin: -6px 0;
+}
+
+#special-sponsor.center {
+  justify-content: center;
 }
 
 .dark #special-sponsor img {
