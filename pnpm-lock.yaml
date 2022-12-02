@@ -16,7 +16,7 @@ specifiers:
   terser: ^5.14.2
   vitepress: ^1.0.0-alpha.29
   vue: ^3.2.45
-  zhlint: ^0.7.0
+  zhlint: ^0.7.1
 
 dependencies:
   '@vue/repl': 1.3.2_vue@3.2.45
@@ -36,7 +36,7 @@ devDependencies:
   open: 8.4.0
   simple-git: 2.48.0
   terser: 5.14.2
-  zhlint: 0.7.0_terser@5.14.2
+  zhlint: 0.7.1_terser@5.14.2
 
 packages:
 
@@ -2248,8 +2248,8 @@ packages:
     engines: {node: '>=10'}
     dev: true
 
-  /zhlint/0.7.0_terser@5.14.2:
-    resolution: {integrity: sha512-2oc5M5Dd97M7pkkc1Z2UYGek9HPLl875d86VVPAhytryMED1KZGhjrfpv9qSevt9D3McjokAqhDppZUHY7+mhA==}
+  /zhlint/0.7.1_terser@5.14.2:
+    resolution: {integrity: sha512-FwwBm1JKyvIBm16exTqyG5gfnvp1fCKn9hIkjXj3cmbCn3aWE6FQaPTkmJfrLR0JNP1CIZjBDdD5Wkbts2r8PA==}
     hasBin: true
     dependencies:
       chalk: 4.1.2
