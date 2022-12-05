@@ -194,7 +194,7 @@ customElements.define('my-example', ExampleElement)
 
 如果你想要自定义如何判断是否将文件作为自定义元素导入 (例如将所有的 SFC 都视为用作自定义元素)，你可以通过给构建插件传递相应插件的 `customElement` 选项来实现：
 
-- [@vitejs/plugin-vue](https://github.com/vitejs/vite/tree/main/packages/plugin-vue#using-vue-sfcs-as-custom-elements)
+- [@vitejs/plugin-vue](https://github.com/vitejs/vite-plugin-vue/tree/main/packages/plugin-vue#using-vue-sfcs-as-custom-elements)
 - [vue-loader](https://github.com/vuejs/vue-loader/tree/next#v16-only-options)
 
 ### 基于 Vue 构建自定义元素库 {#tips-for-a-vue-custom-elements-library}

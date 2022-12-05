@@ -26,7 +26,7 @@
 这个命令会安装和执行 [create-vue](https://github.com/vuejs/create-vue)，它是 Vue 提供的官方脚手架工具。跟随命令行的提示继续操作即可。
 
 - 要学习更多关于 Vite 的知识，请查看 [Vite 官方文档](https://cn.vitejs.dev)。
-- 若要了解如何为一个 Vite 项目配置 Vue 相关的特殊行为，比如向 Vue 编译器传递相关选项，请查看 [@vitejs/plugin-vue](https://github.com/vitejs/vite/tree/main/packages/plugin-vue#readme) 的文档。
+- 若要了解如何为一个 Vite 项目配置 Vue 相关的特殊行为，比如向 Vue 编译器传递相关选项，请查看 [@vitejs/plugin-vue](https://github.com/vitejs/vite-plugin-vue/tree/main/packages/plugin-vue#readme) 的文档。
 
 上面提到的两种在线演练场也支持将文件作为一个 Vite 项目下载。
 
@@ -144,7 +144,7 @@ Vue 团队维护着 [eslint-plugin-vue](https://github.com/vuejs/eslint-plugin-v
 
 ### `@vitejs/plugin-vue` {#vitejs-plugin-vue}
 
-- [文档](https://github.com/vitejs/vite/tree/main/packages/plugin-vue)
+- [文档](https://github.com/vitejs/vite-plugin-vue/tree/main/packages/plugin-vue)
 
 为 Vite 提供 Vue SFC 支持的官方插件。
 
