@@ -23,7 +23,7 @@ Vue.js 是采用 MIT 许可的开源项目，使用完全免费。
 
 ![首页放置位](./sponsor-placement-1.png)
 
-2. 所有内容页面的侧边栏上的明显的 logo 展示位:
+2. 所有内容页面的侧边栏上的明显的 logo 展示位：
 
 ![内页放置位](./sponsor-placement-2.png)
 

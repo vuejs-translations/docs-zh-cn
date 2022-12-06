@@ -30,7 +30,7 @@
     "open": "^8.4.0",
     "simple-git": "^2.48.0",
     "terser": "^5.14.2",
-    "zhlint": "^0.6.1"
+    "zhlint": "^0.7.1"
   },
   "pnpm": {
     "peerDependencyRules": {
