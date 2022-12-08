@@ -1,11 +1,13 @@
 # 组合式 API：setup() {#composition-api-setup}
 
+:::info 注意
+该文档页说明了 `setup` 组件选项的用法。对于结合单文件组件使用的组合式 API，推荐通过 [`<script setup>`](/api/sfc-script-setup.html) 以获得更加简洁及符合人体工程学的语法。
+:::
+
 `setup()` 钩子是在组件中使用组合式 API 的入口，通常只在以下情况下使用：
 
 1. 需要在非单文件组件中使用组合式 API 时。
 2. 需要在基于选项式 API 的组件中集成基于组合式 API 的代码时。
-
-**其他情况下，都应优先使用 [`<script setup>`](/api/sfc-script-setup.html) 语法。**
 
 ## 基本使用 {#basic-usage}
 
@@ -36,11 +38,11 @@ export default {
 </template>
 ```
 
-请注意在模板中访问从 `setup` 返回的 [ref](/api/reactivity-core.html#ref) 时，它会[自动浅层解包](/guide/essentials/reactivity-fundamentals.html#deep-reactivity)，因此你无须再在模板中为它写 `.value`。当通过 `this` 访问时也会同样如此解包。
+在模板中访问从 `setup` 返回的 [ref](/api/reactivity-core.html#ref) 时，它会[自动浅层解包](/guide/essentials/reactivity-fundamentals.html#deep-reactivity)，因此你无须再在模板中为它写 `.value`。当通过 `this` 访问时也会同样如此解包。
 
-:::tip
 `setup()` 自身并不含对组件实例的访问权，即在 `setup()` 中访问 `this` 会是 `undefined`。你可以在选项式 API 中访问组合式 API 暴露的值，但反过来则不行。
-:::
+
+`setup()` 应该*同步地*返回一个对象。唯一可以使用 `async setup()` 的情况是，该组件是 [Suspense](../guide/built-ins/suspense.html) 组件的后裔。
 
 ## 访问 Props {#accessing-props}
 
