@@ -219,7 +219,7 @@ server.get('/', (req, res) => {
 
 ### Nuxt {#nuxt}
 
-[Nuxt](https://v3.nuxtjs.org/) 是一个构建于 Vue 生态系统之上的全栈框架，它为编写 Vue SSR 应用提供了丝滑的开发体验。更棒的是，你还可以把它当作一个静态站点生成器来用！我们强烈建议你试一试。
+[Nuxt](https://nuxt.com/) 是一个构建于 Vue 生态系统之上的全栈框架，它为编写 Vue SSR 应用提供了丝滑的开发体验。更棒的是，你还可以把它当作一个静态站点生成器来用！我们强烈建议你试一试。
 
 ### Quasar {#quasar}
 
