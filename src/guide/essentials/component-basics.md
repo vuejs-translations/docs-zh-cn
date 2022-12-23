@@ -470,7 +470,8 @@ Something bad happened.
 ```vue{4}
 <template>
   <div class="alert-box">
-    <strong>This is an Error for Demo Purposes</strong>
+    <slot>
+      <strong>This is an Error for Demo Purposes</strong>
     <slot />
   </div>
 </template>
