@@ -5,9 +5,11 @@ footer: false
 # 简介 {#introduction}
 
 :::info 你正在阅读的是 Vue 3 的文档！
+
+- Vue 2 将于 2023 年 12 月 31 日停止维护。详见 [Vue 2 拓展 LTS](https://v2.vuejs.org/lts/)。
 - Vue 2 中文文档已迁移至 [v2.cn.vuejs.org](https://v2.cn.vuejs.org/)。
 - 想从 Vue 2 升级？请参考[迁移指南](https://v3-migration.vuejs.org/)。
-:::
+  :::
 
 <style src="@theme/styles/vue-mastery.css"></style>
 <div class="vue-mastery-link">

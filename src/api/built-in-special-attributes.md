@@ -80,7 +80,10 @@
 
   `this.$refs` 也是非响应式的，因此你不应该尝试在模板中使用它来进行数据绑定。
 
-- **参考**：[模板引用](/guide/essentials/template-refs.html)
+- **参考:**
+  - [指南——模板引用](/guide/essentials/template-refs.html)
+  - [指南——为模板引用标注类型](/guide/typescript/composition-api.html#typing-template-refs) <sup class="vt-badge ts" />
+  - [指南——为组件模板引用标注类型](/guide/typescript/composition-api.html#typing-component-template-refs) <sup class="vt-badge ts" />
 
 ## is {#is}
 
