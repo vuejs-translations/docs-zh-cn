@@ -227,7 +227,7 @@ import { ref } from 'vue'
 const a = 1
 const b = ref(2)
 
-// Compiler macros, such as defineExpose, don't need to be imported
+// 像 defineExpose 这样的编译器宏不需要导入
 defineExpose({
   a,
   b

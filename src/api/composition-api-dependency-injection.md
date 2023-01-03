@@ -38,8 +38,8 @@
   ```
 
 - **参考：**
-  - [指南——依赖注入](/guide/components/provide-inject.html)
-  - [指南——为 provide/inject 标注类型](/guide/typescript/composition-api.html#typing-provide-inject) <sup class="vt-badge ts" />
+  - [指南 - 依赖注入](/guide/components/provide-inject.html)
+  - [指南 - 为 provide/inject 标注类型](/guide/typescript/composition-api.html#typing-provide-inject) <sup class="vt-badge ts" />
 
 ## inject() {#inject}
 
@@ -102,5 +102,5 @@
   ```
 
 - **参考：**
-  - [指南——依赖注入](/guide/components/provide-inject.html)
-  - [指南——为 provide/inject 标注类型](/guide/typescript/composition-api.html#typing-provide-inject) <sup class="vt-badge ts" />
+  - [指南 - 依赖注入](/guide/components/provide-inject.html)
+  - [指南 - 为 provide/inject 标注类型](/guide/typescript/composition-api.html#typing-provide-inject) <sup class="vt-badge ts" />
