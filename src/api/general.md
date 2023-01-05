@@ -165,7 +165,7 @@
   }
   ```
 
-- **参考**：[指南——异步组件](/guide/components/async.html)
+- **参考**：[指南 - 异步组件](/guide/components/async.html)
 
 ## defineCustomElement() {#definecustomelement}
 

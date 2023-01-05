@@ -106,6 +106,6 @@ setup() {
 
 </div>
 
-事件处理函数也可以使用内置表达式，并且可以使用修饰符简化常见任务。这些细节包含在<a target="_blank" href="/guide/essentials/event-handling.html">指南——事件处理</a>。
+事件处理函数也可以使用内置表达式，并且可以使用修饰符简化常见任务。这些细节包含在<a target="_blank" href="/guide/essentials/event-handling.html">指南 - 事件处理</a>。
 
 现在，尝试自行实现 `increment` <span class="options-api">方法</span><span class="composition-api">函数</span>并通过使用 `v-on` 将其绑定到按钮上。

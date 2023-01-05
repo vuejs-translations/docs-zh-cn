@@ -35,7 +35,7 @@
 
   当 `text` 变化时，`<span>` 总是会被替换而不是更新，因此 transition 将会被触发。
 
-- **参考**：[指南——列表渲染——通过 `key` 管理状态](/guide/essentials/list.html#maintaining-state-with-key)
+- **参考**：[指南- 列表渲染 - 通过 `key` 管理状态](/guide/essentials/list.html#maintaining-state-with-key)
 
 ## ref {#ref}
 
@@ -102,5 +102,5 @@
 
 - **参考：**
 
-  - [内置特殊元素——`<component>`](/api/built-in-special-elements.html#component)
+  - [内置特殊元素 - `<component>`](/api/built-in-special-elements.html#component)
   - [动态组件](/guide/essentials/component-basics.html#dynamic-components)

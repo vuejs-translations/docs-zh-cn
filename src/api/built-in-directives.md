@@ -179,16 +179,16 @@
 
 - **修饰符：**
 
-  - `.stop` ——调用 `event.stopPropagation()`。
-  - `.prevent` ——调用 `event.preventDefault()`。
-  - `.capture` ——在捕获模式添加事件监听器。
-  - `.self` ——只有事件从元素本身发出才触发处理函数。
-  - `.{keyAlias}` ——只在某些按键下触发处理函数。
-  - `.once` ——最多触发一次处理函数。
-  - `.left` ——只在鼠标左键事件触发处理函数。
-  - `.right` ——只在鼠标右键事件触发处理函数。
-  - `.middle` ——只在鼠标中键事件触发处理函数。
-  - `.passive` ——通过 `{ passive: true }` 附加一个 DOM 事件。
+  - `.stop` - 调用 `event.stopPropagation()`。
+  - `.prevent` - 调用 `event.preventDefault()`。
+  - `.capture` - 在捕获模式添加事件监听器。
+  - `.self` - 只有事件从元素本身发出才触发处理函数。
+  - `.{keyAlias}` - 只在某些按键下触发处理函数。
+  - `.once` - 最多触发一次处理函数。
+  - `.left` - 只在鼠标左键事件触发处理函数。
+  - `.right` - 只在鼠标右键事件触发处理函数。
+  - `.middle` - 只在鼠标中键事件触发处理函数。
+  - `.passive` - 通过 `{ passive: true }` 附加一个 DOM 事件。
 
 - **详细信息**
 
@@ -265,9 +265,9 @@
 
 - **修饰符：**
 
-  - `.camel` ——将短横线命名的 attribute 转变为驼峰式命名。
-  - `.prop` ——强制绑定为 DOM property。<sup class="vt-badge">3.2+</sup>
-  - `.attr` ——强制绑定为 DOM attribute。<sup class="vt-badge">3.2+</sup>
+  - `.camel` - 将短横线命名的 attribute 转变为驼峰式命名。
+  - `.prop` - 强制绑定为 DOM property。<sup class="vt-badge">3.2+</sup>
+  - `.attr` - 强制绑定为 DOM attribute。<sup class="vt-badge">3.2+</sup>
 
 - **用途：**
 
@@ -355,9 +355,9 @@
 
 - **修饰符：**
 
-  - [`.lazy`](/guide/essentials/forms.html#lazy) ——监听 `change` 事件而不是 `input`
-  - [`.number`](/guide/essentials/forms.html#number) ——将输入的合法符串转为数字
-  - [`.trim`](/guide/essentials/forms.html#trim) ——移除输入内容两端空格
+  - [`.lazy`](/guide/essentials/forms.html#lazy) - 监听 `change` 事件而不是 `input`
+  - [`.number`](/guide/essentials/forms.html#number) - 将输入的合法符串转为数字
+  - [`.trim`](/guide/essentials/forms.html#trim) - 移除输入内容两端空格
 
 - **参考：**
 
