@@ -52,4 +52,4 @@
 
 这里有一个简单的 todo 列表——试着实现一下 `addTodo()` 和 `removeTodo()` 这两个方法的逻辑，使列表能够正常工作！
 
-关于 `v-for` 的更多细节：<a target="_blank" href="/guide/essentials/list.html">指南——列表渲染</a>
+关于 `v-for` 的更多细节：<a target="_blank" href="/guide/essentials/list.html">指南 - 列表渲染</a>

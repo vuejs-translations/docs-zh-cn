@@ -17,4 +17,4 @@
 
 现在，示例程序同时展示了两个 `<h1>` 标签，并且按钮不执行任何操作。尝试给它们添加 `v-if` 和 `v-else` 指令，并实现 `toggle()` 方法，让我们可以使用按钮在它们之间切换。
 
-更多细节请查阅 `v-if`：<a target="_blank" href="/guide/essentials/conditional.html">指南——条件渲染</a>
+更多细节请查阅 `v-if`：<a target="_blank" href="/guide/essentials/conditional.html">指南 - 条件渲染</a>
