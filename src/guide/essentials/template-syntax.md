@@ -125,7 +125,7 @@ data() {
 <div :id="`list-${id}`"></div>
 ```
 
-这些表达式都会被作为 JavaScript ，以组件为作用域解析执行。
+这些表达式都会被作为 JavaScript ，以当前组件实例为作用域解析执行。
 
 在 Vue 模板内，JavaScript 表达式可以被使用在如下场景上：
 
