@@ -292,7 +292,7 @@ Vue 需要附加事件监听器，以便知道过渡何时结束。可以是 `tr
 
 ```css{3}
 /* 延迟嵌套元素的进入以获得交错效果 */
-.nested-enter-active .inner {
+.nested-enter-active {
   transition-delay: 0.25s;
 }
 ```
