@@ -125,7 +125,9 @@
   }
   ```
 
-- **参考**：[Props](/guide/components/props.html)
+- **参考**：
+  - [指南 - Props](/guide/components/props.html)
+  - [指南 - 为组件的 props 标注类型](/guide/typescript/options-api.html#typing-component-props) <sup class="vt-badge ts" />
 
 ## computed {#computed}
 
@@ -205,7 +207,9 @@
   }
   ```
 
-- **参考**：[计算属性](/guide/essentials/computed.html)
+- **参考**：
+  - [指南 - 计算属性](/guide/essentials/computed.html)
+  - [指南 - 为计算属性标记类型](/guide/typescript/options-api.html#typing-computed-properties) <sup class="vt-badge ts" />
 
 ## methods {#methods}
 
@@ -429,7 +433,9 @@
   }
   ```
 
-* **参考**：[透传 Attributes](/guide/components/attrs.html)
+- **参考**：
+  - [指南 - 透传 Attributes](/guide/components/attrs.html)
+  - [指南 - 为组件的 emits 标注类型](/guide/typescript/options-api.html#typing-component-emits) <sup class="vt-badge ts" />
 
 ## expose {#expose}
 

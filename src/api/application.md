@@ -522,6 +522,8 @@ console.log(app.config)
     }
   }
   ```
+  
+- **参考**：[指南 - 扩展全局属性](/guide/typescript/options-api.html#augmenting-global-properties) <sup class="vt-badge ts" />
 
 ## app.config.optionMergeStrategies {#app-config-optionmergestrategies}
 

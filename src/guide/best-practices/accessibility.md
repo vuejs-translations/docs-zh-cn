@@ -15,7 +15,7 @@ Web 无障碍访问 (也称为 a11y) 是指创建可供任何人使用的网站�
 ```vue-html
 <ul class="skip-links">
   <li>
-    <a href="#main" ref="skipLink">Skip to main content</a>
+    <a href="#main" ref="skipLink" class="skip-link">Skip to main content</a>
   </li>
 </ul>
 ```
@@ -23,7 +23,7 @@ Web 无障碍访问 (也称为 a11y) 是指创建可供任何人使用的网站�
 若想在非聚焦状态下隐藏该链接，可以添加以下样式：
 
 ```css
-.skipLink {
+.skip-link {
   white-space: nowrap;
   margin: 1em auto;
   top: 0;
@@ -32,7 +32,7 @@ Web 无障碍访问 (也称为 a11y) 是指创建可供任何人使用的网站�
   margin-left: -72px;
   opacity: 0;
 }
-.skipLink:focus {
+.skip-link:focus {
   opacity: 1;
   background-color: white;
   padding: 0.5em;
