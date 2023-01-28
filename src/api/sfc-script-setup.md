@@ -239,7 +239,8 @@ export default {
 </script>
 ```
 
-<!-- TODO: translation --> Support for combining `<script setup>` and `<script>` in the same component is limited to the scenarios described above. Specifically:
+<!-- TODO: translation -->
+Support for combining `<script setup>` and `<script>` in the same component is limited to the scenarios described above. Specifically:
 
 - Do **NOT** use a separate `<script>` section for options that can already be defined using `<script setup>`, such as `props` and `emits`.
 - Variables created inside `<script setup>` are not added as properties to the component instance, making them inaccessible from the Options API. Mixing APIs in this way is strongly discouraged.

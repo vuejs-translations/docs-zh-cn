@@ -142,6 +142,7 @@
 
 ## `<template>` {#template}
 
+<!-- TODO: translation -->
 The `<template>` tag is used as a placeholder when we want to use a built-in directive without rendering an element in the DOM.
 
 - **Details:**

@@ -1,5 +1,6 @@
 # Community Newsletters {#community-newsletters}
 
+<!-- TODO: translation -->
 There are many great newsletters / Vue-dedicated blogs from the community bringing you latest news and happenings in the Vue ecosystem. Here is a non-exhaustive list of active ones that we have come across:
 
 - [Vue.js Feed](https://vuejsfeed.com/)

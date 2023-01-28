@@ -1,5 +1,6 @@
 # Component v-model {#component-v-model}
 
+<!-- TODO: translation -->
 `v-model` can be used on a component to implement a two-way binding.
 
 First let's revisit how `v-model` is used on a native element:

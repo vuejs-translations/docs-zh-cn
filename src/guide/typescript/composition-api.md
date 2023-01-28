@@ -133,7 +133,8 @@ export default defineComponent({
 
 ### 复杂的 prop 类型 {#complex-prop-types}
 
-<!-- TODO: translation --> With type-based declaration, a prop can use a complex type much like any other type:
+<!-- TODO: translation -->
+With type-based declaration, a prop can use a complex type much like any other type:
 
 ```vue
 <script setup lang="ts">

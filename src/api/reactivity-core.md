@@ -460,22 +460,22 @@
   })
   ```
 
-  Stopping the watcher:
+  停止侦听器：
 
   ```js
   const stop = watch(source, callback)
 
-  // when the watcher is no longer needed:
+  // 当已不再需要该侦听器时：
   stop()
   ```
 
-  Side effect cleanup:
+  副作用清理：
 
   ```js
   watch(id, async (newId, oldId, onCleanup) => {
     const { response, cancel } = doAsyncWork(newId)
-    // `cancel` will be called if `id` changes, cancelling
-    // the previous request if it hasn't completed yet
+    // 当 `id` 变化时，`cancel` 将被调用，
+    // 取消之前的未完成的请求
     onCleanup(cancel)
     data.value = await response
   })
