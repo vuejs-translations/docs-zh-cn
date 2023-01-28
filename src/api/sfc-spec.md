@@ -88,7 +88,7 @@ SFC 在以下场景中会根据**文件名**自动推导其组件名：
 </script>
 ```
 
-`lang` 在任意块上都能使用，比如我们可以在 `<style>` 标签中使用 [SASS](https://sass-lang.com/) 或是 `<template>` 中使用 [Pug](https://pugjs.org/api/getting-started.html)：
+`lang` 在任意块上都能使用，比如我们可以在 `<style>` 标签中使用 [Sass](https://sass-lang.com/) 或是 `<template>` 中使用 [Pug](https://pugjs.org/api/getting-started.html)：
 
 ```vue-html
 <template lang="pug">

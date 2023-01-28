@@ -239,6 +239,14 @@ export default {
 </script>
 ```
 
+<!-- TODO: translation -->
+Support for combining `<script setup>` and `<script>` in the same component is limited to the scenarios described above. Specifically:
+
+- Do **NOT** use a separate `<script>` section for options that can already be defined using `<script setup>`, such as `props` and `emits`.
+- Variables created inside `<script setup>` are not added as properties to the component instance, making them inaccessible from the Options API. Mixing APIs in this way is strongly discouraged.
+
+If you find yourself in one of the scenarios that is not supported then you should consider switching to an explicit [`setup()`](/api/composition-api-setup.html) function, instead of using `<script setup>`.
+
 ## 顶层 `await` {#top-level-await}
 
 `<script setup>` 中可以使用顶层 `await`。结果代码会被编译成 `async setup()`：

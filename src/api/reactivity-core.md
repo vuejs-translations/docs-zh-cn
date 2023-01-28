@@ -453,7 +453,31 @@
     flush: 'post',
     onTrack(e) {
       debugger
+    },
+    onTrigger(e) {
+      debugger
     }
+  })
+  ```
+
+  停止侦听器：
+
+  ```js
+  const stop = watch(source, callback)
+
+  // 当已不再需要该侦听器时：
+  stop()
+  ```
+
+  副作用清理：
+
+  ```js
+  watch(id, async (newId, oldId, onCleanup) => {
+    const { response, cancel } = doAsyncWork(newId)
+    // 当 `id` 变化时，`cancel` 将被调用，
+    // 取消之前的未完成的请求
+    onCleanup(cancel)
+    data.value = await response
   })
   ```
 

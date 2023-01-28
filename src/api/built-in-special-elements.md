@@ -1,7 +1,7 @@
 # 内置特殊元素 {#built-in-special-elements}
 
 :::info 不是组件
-`<component>` 和 `<slot>` 具有类似组件的特性，也是模板语法的一部分。但它们并非真正的组件，同时在模板编译期间会被编译掉。因此，它们通常在模板中用小写字母书写。
+`<component>`、`<slot>` 和 `<template>` 具有类似组件的特性，也是模板语法的一部分。但它们并非真正的组件，同时在模板编译期间会被编译掉。因此，它们通常在模板中用小写字母书写。
 :::
 
 ## `<component>` {#component}
@@ -139,3 +139,27 @@
   Vue 模板里的 `<slot>` 元素会被编译到 JavaScript，因此不要与[原生 `<slot>` 元素](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/slot)进行混淆。
 
 - **参考**：[组件 - 插槽](/guide/components/slots.html)
+
+## `<template>` {#template}
+
+<!-- TODO: translation -->
+The `<template>` tag is used as a placeholder when we want to use a built-in directive without rendering an element in the DOM.
+
+- **Details:**
+
+  The special handling for `<template>` is only triggered if it is used with one of these directives:
+
+  - `v-if`, `v-else-if`, or `v-else`
+  - `v-for`
+  - `v-slot`
+  
+  If none of those directives are present then it will be rendered as a [native `<template>` element](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/template) instead.
+
+  A `<template>` with a `v-for` can also have a [`key` attribute](/api/built-in-special-attributes.html#key). All other attributes and directives will be discarded, as they aren't meaningful without a corresponding element.
+
+  Single-file components use a [top-level `<template>` tag](/api/sfc-spec.html#language-blocks) to wrap the entire template. That usage is separate from the use of `<template>` described above. That top-level tag is not part of the template itself and doesn't support template syntax, such as directives.  
+
+- **See also:**
+  - [Guide - `v-if` on `<template>`](/guide/essentials/conditional.html#v-if-on-template) 
+  - [Guide - `v-for` on `<template>`](/guide/essentials/list.html#v-for-on-template) 
+  - [Guide - Named slots](/guide/components/slots.html#named-slots) 

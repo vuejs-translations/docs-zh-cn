@@ -362,7 +362,7 @@
 - **参考：**
 
   - [表单输入绑定](/guide/essentials/forms.html)
-  - [组件事件 - 配合 `v-model` 使用](/guide/components/events.html#usage-with-v-model)
+  - [组件事件 - 配合 `v-model` 使用](/guide/components/v-model.html)
 
 ## v-slot {#v-slot}
 
