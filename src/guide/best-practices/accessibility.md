@@ -511,6 +511,7 @@ W3C 的 WAI-ARIA 为如何构建动态内容和高阶用户界面控件提供了
 - 自动化相关的工具
   - [Lighthouse](https://chrome.google.com/webstore/detail/lighthouse/blipmdconlkpinefehnmjammfjpmpbjk)
   - [WAVE](https://chrome.google.com/webstore/detail/wave-evaluation-tool/jbbplnpkjmmeebjpijfedlgcdilocofh)
+  - [ARC Toolkit](https://chrome.google.com/webstore/detail/arc-toolkit/chdkkkccnlfncngelccgbgfmjebmkmce?hl=en-US)
 - 颜色相关的工具
   - [WebAim Color Contrast](https://webaim.org/resources/contrastchecker/)
   - [WebAim Link Color Contrast](https://webaim.org/resources/linkcontrastchecker)
@@ -519,6 +520,8 @@ W3C 的 WAI-ARIA 为如何构建动态内容和高阶用户界面控件提供了
   - [Color Oracle](https://colororacle.org)
   - [Focus Indicator](https://chrome.google.com/webstore/detail/focus-indicator/heeoeadndnhebmfebjccbhmccmaoedlf?hl=en-US…)
   - [NerdeFocus](https://chrome.google.com/webstore/detail/nerdefocus/lpfiljldhgjecfepfljnbjnbjfhennpd?hl=en-US…)
+  - [Visual Aria](https://chrome.google.com/webstore/detail/visual-aria/lhbmajchkkmakajkjenkchhnhbadmhmk?hl=en-US)
+  - [Silktide Website Accessibility Simulator](https://chrome.google.com/webstore/detail/silktide-website-accessib/okcpiimdfkpkjcbihbmhppldhiebhhaf?hl=en-US)
 
 ### 用户 {#users}
 

@@ -1,4 +1,4 @@
-﻿# 插件 {#plugins}
+# 插件 {#plugins}
 
 ## 介绍 {#introduction}
 

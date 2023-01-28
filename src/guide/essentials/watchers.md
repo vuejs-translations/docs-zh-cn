@@ -220,11 +220,11 @@ watch(
 深度侦听需要遍历被侦听对象中的所有嵌套的属性，当用于大型数据结构时，开销很大。因此请只在必要时才使用它，并且要留意性能。
 :::
 
-<div class="options-api">
-
 ## 即时回调的侦听器 \* {#eager-watchers}
 
 `watch` 默认是懒执行的：仅当数据源变化时，才会执行回调。但在某些场景中，我们希望在创建侦听器时，立即执行一遍回调。举例来说，我们想请求一些初始数据，然后在相关状态更改时重新请求数据。
+
+<div class="options-api">
 
 我们可以用一个对象来声明侦听器，这个对象有 `handler` 方法和 `immediate: true` 选项，这样便能强制回调函数立即执行：
 
@@ -245,41 +245,57 @@ export default {
 ```
 
 回调函数的初次执行就发生在 `created` 钩子之前。Vue 此时已经处理了 `data`、`computed` 和 `methods` 选项，所以这些属性在第一次调用时就是可用的。
+
+</div>
+
+<div class="composition-api">
+
+我们可以通过传入 `immediate: true` 选项来强制侦听器的回调立即执行：
+
+```js
+watch(source, (newValue, oldValue) => {
+  // 立即执行，且当 `source` 改变时再次执行
+}, { immediate: true })
+```
+
 </div>
 
 <div class="composition-api">
 
 ## `watchEffect()` \*\* {#watcheffect}
 
-`watch()` 是懒执行的：仅当数据源变化时，才会执行回调。但在某些场景中，我们希望在创建侦听器时，立即执行一遍回调。举例来说，我们想请求一些初始数据，然后在相关状态更改时重新请求数据。我们可以这样写：
+`watch()` is lazy: the callback won't be called until the watched source has changed. But in some cases we may want the same callback logic to be run eagerly - for example, we may want to fetch some initial data, and then re-fetch the data whenever relevant state changes. We may find ourselves doing this:
 
 ```js
-const url = ref('https://...')
+const todoId = ref(1)
 const data = ref(null)
 
-async function fetchData() {
-  const response = await fetch(url.value)
+watch(todoId, async () => {
+  const response = await fetch(
+    `https://jsonplaceholder.typicode.com/todos/${todoId.value}`
+  )
   data.value = await response.json()
-}
-
-// 立即获取
-fetchData()
-// ...再侦听 url 变化
-watch(url, fetchData)
+}, { immediate: true })
 ```
 
-我们可以用 [`watchEffect` 函数](/api/reactivity-core.html#watcheffect) 来简化上面的代码。`watchEffect()` 会立即执行一遍回调函数，如果这时函数产生了副作用，Vue 会自动追踪副作用的依赖关系，自动分析出响应源。上面的例子可以重写为：
+特别是注意侦听器是如何两次使用 `todoId` 的，一次是作为源，另一次是在回调中。
+
+我们可以用 [`watchEffect` 函数](/api/reactivity-core.html#watcheffect) 来简化上面的代码。`watchEffect()` 允许我们自动跟踪回调的响应式依赖。上面的侦听器可以重写为：
 
 ```js
 watchEffect(async () => {
-  const response = await fetch(url.value)
+  const response = await fetch(
+    `https://jsonplaceholder.typicode.com/todos/${todoId.value}`
+  )
   data.value = await response.json()
 })
 ```
 
-这个例子中，回调会立即执行。在执行期间，它会自动追踪 `url.value` 作为依赖（和计算属性的行为类似）。每当 `url.value` 变化时，回调会再次执行。
+这个例子中，回调会立即执行，不需要指定 `immediate: true`。在执行期间，它会自动追踪 `todoId.value` 作为依赖（和计算属性类似）。每当 `todoId.value` 变化时，回调会再次执行。有了 `watchEffect()`，我们不再需要明确传递 `todoId` 作为源值。
 
-你可以参考一下[这个例子](/examples/#fetching-data)：它用了 `watchEffect`，还展示了如何做响应式的数据请求。
+你可以参考一下[这个例子](/examples/#fetching-data) 的 `watchEffect` 和响应式的数据请求的操作。
+
+<!-- TODO: translation --> For examples like these, with only one dependency, the benefit of `watchEffect()` is relatively small. But for watchers that have multiple dependencies, using `watchEffect()` removes the burden of having to maintain the list of dependencies manually. In addition, if you need to watch several properties in a nested data structure, `watchEffect()` may prove more efficient than a deep watcher, as it will only track the properties that are used in the callback, rather than recursively tracking all of them.
 
 :::tip
 `watchEffect` 仅会在其**同步**执行期间，才追踪依赖。在使用异步回调时，只有在第一个 `await` 正常工作前访问到的属性才会被追踪。

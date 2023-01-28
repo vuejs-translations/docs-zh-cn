@@ -274,7 +274,7 @@
   },
   {
     "name": "PrimeVue",
-    "description": "开源UI组件库 [PrimeVue](https://www.primefaces.org/primevue/#/?af_id=4218) 提供了超过 80 个灵活的组件来构建你的应用程序！他们有大量不同的组件主题和 Vue-CLI 应用程序模板，以获得最适合你的外观和感受。",
+    "description": "开源UI组件库 [PrimeVue](https://www.primefaces.org/primevue/#/?af_id=4218) 提供了超过 90 个灵活的组件来构建你的应用程序！他们有大量不同的组件主题和 Vue-CLI 应用程序模板，以获得最适合你的外观和感受。",
     "seeMoreUrl": "https://www.primefaces.org/primevue/#/?af_id=4218",
     "products": [
       {
@@ -283,6 +283,13 @@
         "description": "Free Admin Template",
         "url": "https://www.primefaces.org/sakai-vue/#/?af_id=4218",
         "image": "https://www.primefaces.org/vue-templates/sakai.jpg"
+      },
+      {
+        "name": "Apollo",
+        "price": 59,
+        "description": "Next-Gen Application Template",
+        "url": "https://www.primefaces.org/layouts/apollo-vue?af_id=4218",
+        "image": "https://www.primefaces.org/vue-templates/apollo.jpg"
       },
       {
         "name": "Atlantis",
@@ -346,13 +353,6 @@
         "description": "Material Design Admin Template",
         "url": "https://www.primefaces.org/layouts/serenity-vue?af_id=4218",
         "image": "https://www.primefaces.org/vue-templates/serenity.jpg"
-      },
-      {
-        "name": "Apollo",
-        "price": 49,
-        "description": "Admin Template with a Dark Mode",
-        "url": "https://www.primefaces.org/layouts/apollo-vue?af_id=4218",
-        "image": "https://www.primefaces.org/vue-templates/apollo.jpg"
       },
       {
         "name": "Babylon",

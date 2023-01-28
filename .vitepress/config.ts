@@ -4,7 +4,6 @@ import { defineConfigWithTheme } from 'vitepress'
 import type { Config as ThemeConfig } from '@vue/theme'
 import baseConfig from '@vue/theme/config'
 import { headerPlugin } from './headerMdPlugin'
-import { jobsPlugin } from './jobsMdPlugin'
 
 const nav: ThemeConfig['nav'] = [
   {
@@ -88,8 +87,8 @@ const nav: ThemeConfig['nav'] = [
         items: [
           { text: '博客', link: 'https://blog.vuejs.org/' },
           { text: 'Twitter', link: 'https://twitter.com/vuejs' },
-          { text: '新闻', link: 'https://news.vuejs.org/' },
-          { text: '活动', link: 'https://events.vuejs.org/' }
+          { text: '活动', link: 'https://events.vuejs.org/' },
+          { text: '新闻', link: '/ecosystem/newsletters' }
         ]
       }
     ]
@@ -189,6 +188,7 @@ export const sidebar: ThemeConfig['sidebar'] = {
         },
         { text: 'Props', link: '/guide/components/props' },
         { text: '事件', link: '/guide/components/events' },
+        { text: '组件 v-model', link: '/guide/components/v-model' },
         {
           text: '透传 Attributes',
           link: '/guide/components/attrs'
@@ -696,7 +696,7 @@ export default defineConfigWithTheme<ThemeConfig>({
 
   markdown: {
     config(md) {
-      md.use(headerPlugin).use(jobsPlugin)
+      md.use(headerPlugin)
     }
   },
 
