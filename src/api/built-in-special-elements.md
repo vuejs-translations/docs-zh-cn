@@ -142,24 +142,23 @@
 
 ## `<template>` {#template}
 
-<!-- TODO: translation -->
-The `<template>` tag is used as a placeholder when we want to use a built-in directive without rendering an element in the DOM.
+当我们想要使用内置指令而不在 DOM 中渲染元素时，`<template>` 标签可以作为占位符使用。
 
-- **Details:**
+- **详细信息:**
 
-  The special handling for `<template>` is only triggered if it is used with one of these directives:
+  对 `<template>` 的特殊处理只有在它与以下任一指令一起使用时才会被触发：
 
-  - `v-if`, `v-else-if`, or `v-else`
+  - `v-if`、`v-else-if` 或 `v-else`
   - `v-for`
   - `v-slot`
-  
-  If none of those directives are present then it will be rendered as a [native `<template>` element](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/template) instead.
 
-  A `<template>` with a `v-for` can also have a [`key` attribute](/api/built-in-special-attributes.html#key). All other attributes and directives will be discarded, as they aren't meaningful without a corresponding element.
+  如果这些指令都不存在，那么取而代之的是它将被渲染成一个[原生的 `<template>` 元素](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/template)。
 
-  Single-file components use a [top-level `<template>` tag](/api/sfc-spec.html#language-blocks) to wrap the entire template. That usage is separate from the use of `<template>` described above. That top-level tag is not part of the template itself and doesn't support template syntax, such as directives.  
+  带有 `v-for` 的 `<template>` 也可以有一个 [`key` 属性](/api/built-in-special-attributes.html#key)。所有其他的属性和指令都将被丢弃，因为没有相应的元素，它们就没有意义。
 
-- **See also:**
-  - [Guide - `v-if` on `<template>`](/guide/essentials/conditional.html#v-if-on-template) 
-  - [Guide - `v-for` on `<template>`](/guide/essentials/list.html#v-for-on-template) 
-  - [Guide - Named slots](/guide/components/slots.html#named-slots) 
+  单文件组件使用[顶层的 `<template>` 标签](/api/sfc-spec.html#language-blocks)来包裹整个模板。这种用法与上面描述的 `<template>` 使用方式是有区别的。该顶层标签不是模板本身的一部分，不支持指令等模板语法。
+
+- **参考:**
+  - [指南 - `<template>` 上的 `v-if`](/guide/essentials/conditional.html#v-if-on-template) 
+  - [指南 - `<template>` 上的 `v-for`](/guide/essentials/list.html#v-for-on-template) 
+  - [指南 - 具名插槽](/guide/components/slots.html#named-slots) 
