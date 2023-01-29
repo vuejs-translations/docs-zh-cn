@@ -295,8 +295,7 @@ watchEffect(async () => {
 
 你可以参考一下[这个例子](/examples/#fetching-data) 的 `watchEffect` 和响应式的数据请求的操作。
 
-<!-- TODO: translation -->
-For examples like these, with only one dependency, the benefit of `watchEffect()` is relatively small. But for watchers that have multiple dependencies, using `watchEffect()` removes the burden of having to maintain the list of dependencies manually. In addition, if you need to watch several properties in a nested data structure, `watchEffect()` may prove more efficient than a deep watcher, as it will only track the properties that are used in the callback, rather than recursively tracking all of them.
+对于这种只有一个依赖的例子来说，`watchEffect()` 的好处相对较小。但是对于有多个依赖关系的侦听器来说，使用 `watchEffect()` 可以消除手动维护依赖列表的负担。此外，如果你需要侦听一个嵌套数据结构中的几个属性，`watchEffect()` 可能会比深度侦听器更有效，因为它将只跟踪回调中使用的属性，而不是递归地跟踪所有的属性。
 
 :::tip
 `watchEffect` 仅会在其**同步**执行期间，才追踪依赖。在使用异步回调时，只有在第一个 `await` 正常工作前访问到的属性才会被追踪。
