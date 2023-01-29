@@ -1,7 +1,6 @@
-# Community Newsletters {#community-newsletters}
+# 社区新闻 {#community-newsletters}
 
-<!-- TODO: translation -->
-There are many great newsletters / Vue-dedicated blogs from the community bringing you latest news and happenings in the Vue ecosystem. Here is a non-exhaustive list of active ones that we have come across:
+有许多来自社区的优秀新闻 / Vue 相关博客可以为你带来 Vue 生态系统中的最新消息和事件。以下是我们收集到的一些活跃博客的非详尽列表：
 
 - [Vue.js Feed](https://vuejsfeed.com/)
 - [Michael Thiessen](https://michaelnthiessen.com/newsletter)
@@ -10,4 +9,4 @@ There are many great newsletters / Vue-dedicated blogs from the community bringi
 - [Vue.js Developers Newsletter](https://vuejsdevelopers.com/newsletter/)
 - [VueDose](https://vuedose.tips/articles#newsletter)
 
-If you know a great one that isn't already included, please submit a pull request using the link below!
+如果你知道有尚未包括在内的优秀内容，请使用[该链接](https://github.com/vuejs/docs/edit/main/src/ecosystem/newsletters.md)提交一个 pull request！
