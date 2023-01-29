@@ -144,7 +144,7 @@
 
 当我们想要使用内置指令而不在 DOM 中渲染元素时，`<template>` 标签可以作为占位符使用。
 
-- **详细信息:**
+- **详细信息**：
 
   对 `<template>` 的特殊处理只有在它与以下任一指令一起使用时才会被触发：
 
@@ -158,7 +158,7 @@
 
   单文件组件使用[顶层的 `<template>` 标签](/api/sfc-spec.html#language-blocks)来包裹整个模板。这种用法与上面描述的 `<template>` 使用方式是有区别的。该顶层标签不是模板本身的一部分，不支持指令等模板语法。
 
-- **参考:**
+- **参考**：
   - [指南 - `<template>` 上的 `v-if`](/guide/essentials/conditional.html#v-if-on-template) 
   - [指南 - `<template>` 上的 `v-for`](/guide/essentials/list.html#v-for-on-template) 
   - [指南 - 具名插槽](/guide/components/slots.html#named-slots) 
