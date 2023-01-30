@@ -152,7 +152,7 @@
   - `v-for`
   - `v-slot`
 
-  如果这些指令都不存在，那么取而代之的是它将被渲染成一个[原生的 `<template>` 元素](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/template)。
+  如果这些指令都不存在，那么它将被渲染成一个[原生的 `<template>` 元素](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/template)。
 
   带有 `v-for` 的 `<template>` 也可以有一个 [`key` 属性](/api/built-in-special-attributes.html#key)。所有其他的属性和指令都将被丢弃，因为没有相应的元素，它们就没有意义。
 
