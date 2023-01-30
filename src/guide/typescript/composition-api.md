@@ -133,7 +133,7 @@ export default defineComponent({
 
 ### 复杂的 prop 类型 {#complex-prop-types}
 
-通过基于类型的声明，一个 prop 可以像其他任何类型一样使用一个复杂类型：
+通过基于类型的声明，一个 prop 可以像使用其他任何类型一样使用一个复杂类型：
 
 ```vue
 <script setup lang="ts">
