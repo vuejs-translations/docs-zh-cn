@@ -274,7 +274,7 @@
   },
   {
     "name": "PrimeVue",
-    "description": "开源UI组件库 [PrimeVue](https://www.primefaces.org/primevue/?af_id=4218) 提供了超过 90 个灵活的组件来构建你的应用程！他们有大量不同的组件主题和应用程模板，以获得最适合你的外观和感受。",
+    "description": "开源 UI 组件库 [PrimeVue](https://www.primefaces.org/primevue/?af_id=4218) 提供了超过 90 个灵活的组件来构建你的应用！他们有大量不同的组件主题和应用模板，以获得最适合你的外观和感受。",
     "seeMoreUrl": "https://www.primefaces.org/primevue/?af_id=4218",
     "products": [
       {
