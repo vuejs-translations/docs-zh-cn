@@ -427,7 +427,7 @@ function MyComponent(slots) {
 </template>
 ```
 
-为默认插槽使用显式的 `<template>` 标签有助于更清晰地指出 `message` 属性在其它插槽中不可用：
+为默认插槽使用显式的 `<template>` 标签有助于更清晰地指出 `message` 属性在其他插槽中不可用：
 
 ```vue-html
 <template>
