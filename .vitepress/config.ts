@@ -88,7 +88,7 @@ const nav: ThemeConfig['nav'] = [
           { text: '博客', link: 'https://blog.vuejs.org/' },
           { text: 'Twitter', link: 'https://twitter.com/vuejs' },
           { text: '活动', link: 'https://events.vuejs.org/' },
-          { text: '新闻', link: '/ecosystem/newsletters' }
+          { text: '新闻简报', link: '/ecosystem/newsletters' }
         ]
       }
     ]
