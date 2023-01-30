@@ -92,7 +92,7 @@
   },
   {
     "name": "MDBootstrap",
-    "description": "Check out the themes, UI Kits and plugins below built by our partners from [MDBootstrap](https://mdbootstrap.com/?utm_ref_id=82665). Learn how to use Vue in professional projects along such technologies as Bootstrap. Templates & ready components make your development faster and more efficient.`",
+    "description": "查看下面由我们的合作伙伴 [MDBootstrap](https://mdbootstrap.com/?utm_ref_id=82665) 构建的主题、UI 工具包和插件，了解如何在专业项目中使用 Vue 以及 Bootstrap 等技术。模板和现成的组件可以使你的开发更快、更高效。",
     "seeMoreUrl": "https://mdbootstrap.com/docs/vue/?utm_ref_id=82665",
     "products": [
       {
@@ -274,7 +274,7 @@
   },
   {
     "name": "PrimeVue",
-    "description": "开源UI组件库 [PrimeVue](https://www.primefaces.org/primevue/?af_id=4218) 提供了超过 90 个灵活的组件来构建你的应用程序！他们有大量不同的组件主题和应用程序模板，以获得最适合你的外观和感受。",
+    "description": "开源 UI 组件库 [PrimeVue](https://www.primefaces.org/primevue/?af_id=4218) 提供了超过 90 个灵活的组件来构建你的应用！他们有大量不同的组件主题和应用模板，以获得最适合你的外观和感受。",
     "seeMoreUrl": "https://www.primefaces.org/primevue/?af_id=4218",
     "products": [
       {
@@ -379,7 +379,7 @@
   },
   {
     "name": "Flatlogic",
-    "description": "看看我们来自 [Flatlogic](https://flatlogic.com/templates?ref=x-fdkuTAVW) 的合作伙伴建立的管理仪表板模板。通过这些主题，你可以看到真正的应用程序是如何建立的。此外，这些模板将帮助你开始一个新的应用程序，并节省你的时间和金钱。",
+    "description": "看看我们来自 [Flatlogic](https://flatlogic.com/templates?ref=x-fdkuTAVW) 的合作伙伴建立的管理仪表板模板。通过这些主题，你可以看到真正的应用是如何建立的。此外，这些模板将帮助你开始一个新的应用，并节省你的时间和金钱。",
     "seeMoreUrl": "https://flatlogic.com/templates?ref=x-fdkuTAVW",
     "products": [
       {
