@@ -133,8 +133,7 @@ export default defineComponent({
 
 ### 复杂的 prop 类型 {#complex-prop-types}
 
-<!-- TODO: translation -->
-With type-based declaration, a prop can use a complex type much like any other type:
+通过基于类型的声明，一个 prop 可以像使用其他任何类型一样使用一个复杂类型：
 
 ```vue
 <script setup lang="ts">
@@ -150,7 +149,7 @@ const props = defineProps<{
 </script>
 ```
 
-For runtime declaration, we can use the `PropType` utility type:
+对于运行时声明，我们可以使用 `PropType` 工具类型：
 
 ```ts
 import type { PropType } from 'vue'
@@ -160,7 +159,7 @@ const props = defineProps({
 })
 ```
 
-This works in much the same way if we're specifying the `props` option directly:
+其工作方式与直接指定 `props` 选项基本相同：
 
 ```ts
 import { defineComponent } from 'vue'
@@ -173,7 +172,7 @@ export default defineComponent({
 })
 ```
 
-The `props` option is more commonly used with the Options API, so you'll find more detailed examples in the guide to [TypeScript with Options API](/guide/typescript/options-api.html#typing-component-props). The techniques shown in those examples also apply to runtime declarations using `defineProps()`.
+`props` 选项通常用于 Options API，因此你会在[选项式 API 与 TypeScript](/guide/typescript/options-api.html#typing-component-props) 指南中找到更详细的例子。这些例子中展示的技术也适用于使用 `defineProps()` 的运行时声明。
 
 ## 为组件的 emits 标注类型 {#typing-component-emits}
 
