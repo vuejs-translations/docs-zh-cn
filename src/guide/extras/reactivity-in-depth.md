@@ -198,7 +198,7 @@ watchEffect(() => {
 count.value++
 ```
 
-实际上，这与 Vue 组件保持状态和 DOM 同步的方式非常接近。每个组件实例创建一个响应式副作用来渲染和更新 DOM。当然，Vue 组件使用了比 `innerHTML` 更高效的方式来更新 DOM。这会在[渲染机制](./rendering-mechanism)一章中详细介绍。
+实际上，这与 Vue 组件保持状态和 DOM 同步的方式非常接近。每个组件实例创建一个响应式副作用来渲染和更新 DOM - 每个组件实例创建一个响应式的effect去渲染和更新DOM。当然，Vue 组件使用了比 `innerHTML` 更高效的方式来更新 DOM。这会在[渲染机制](./rendering-mechanism)一章中详细介绍。
 
 <div class="options-api">
 
