@@ -555,6 +555,7 @@ const i18n: ThemeConfig['i18n'] = {
   search: '搜索',
   menu: '菜单',
   toc: '本页目录',
+  ecosystem:'生态系统',
   returnToTop: '返回顶部',
   appearance: '外观',
   previous: '前一篇',
