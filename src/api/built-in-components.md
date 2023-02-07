@@ -5,7 +5,7 @@ pageClass: api
 # 内置组件 {#built-in-components}
 
 :::info 组件注册和使用
-内置组件无需注册便可以直接在模板中使用。它们也是 tree-shakeable 的：仅在使用时才会包含在构建中。
+内置组件无需注册便可以直接在模板中使用。它们也是 tree-shakeable 的，仅在使用时才会包含在构建中。
 
 在[渲染函数](/guide/extras/render-function.html)中使用它们时，需要显式导入。例如：
 
