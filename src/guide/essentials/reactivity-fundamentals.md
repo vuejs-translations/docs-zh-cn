@@ -465,7 +465,7 @@ const object = { foo: ref(1) }
 {{ object.foo + 1 }}
 ```
 
-渲染的结果会是一个 `[object Object]`，因为 `object.foo` 是一个 ref 对象。我们可以通过将 `foo` 改成顶层属性来解决这个问题：
+渲染的结果会是一个 `[object Object]1`，因为 `object.foo` 是一个 ref 对象。我们可以通过将 `foo` 改成顶层属性来解决这个问题：
 
 ```js
 const { foo } = object
