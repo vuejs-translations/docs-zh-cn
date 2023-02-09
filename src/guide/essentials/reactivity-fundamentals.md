@@ -347,7 +347,6 @@ console.log(proxy.nested === raw) // false
 
    ```js
    let state = reactive({ count: 0 })
-   
    // 上面的引用 ({ count: 0 }) 将不再被追踪（响应性连接已丢失！）
    state = reactive({ count: 1 })
    ```
