@@ -8,7 +8,6 @@ const ecosystem = nav.find((i: any) => i.text === '生态系统')
 const items = nav
   .filter((i: any) => i !== ecosystem && i.items)
   .concat(ecosystem?.items)
-
 </script>
 
 <template>
