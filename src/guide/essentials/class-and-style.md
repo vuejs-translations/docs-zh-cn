@@ -247,7 +247,7 @@ Class 的绑定也是同样的：
 
 ## 绑定内联样式 {#binding-inline-styles}
 
-### 绑定对象 {#binding-to-objects-2}
+### 绑定对象 {#binding-to-objects-1}
 
 `:style` 支持绑定 JavaScript 对象值，对应的是 [HTML 元素的 `style` 属性](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/style)：
 
@@ -317,7 +317,7 @@ data() {
 
 同样的，如果样式对象需要更复杂的逻辑，也可以使用返回样式对象的计算属性。
 
-### 绑定数组 {#binding-to-arrays-2}
+### 绑定数组 {#binding-to-arrays-1}
 
 我们还可以给 `:style` 绑定一个包含多个样式对象的数组。这些对象会被合并后渲染到同一元素上：
 

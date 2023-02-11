@@ -379,7 +379,7 @@ export default {
 
 但有时我们可能希望将该值绑定到当前组件实例上的动态数据。这可以通过使用 `v-bind` 来实现。此外，使用 `v-bind` 还使我们可以将选项值绑定为非字符串的数据类型。
 
-### 复选框 {#checkbox-2}
+### 复选框 {#checkbox-1}
 
 ```vue-html
 <input
@@ -403,7 +403,7 @@ export default {
 `true-value` 和 `false-value` attributes 不会影响 `value` attribute，因为浏览器在表单提交时，并不会包含未选择的复选框。为了保证这两个值 (例如：“yes”和“no”) 的其中之一被表单提交，请使用单选按钮作为替代。
 :::
 
-### 单选按钮 {#radio-2}
+### 单选按钮 {#radio-1}
 
 ```vue-html
 <input type="radio" v-model="pick" :value="first" />

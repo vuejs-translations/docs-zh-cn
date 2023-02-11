@@ -30,7 +30,7 @@
   })()
   ```
 
-  ### SSR 上下文
+  ### SSR 上下文 {#ssr-context}
 
   你可以传入一个可选的上下文对象用来在渲染过程中记录额外的数据，例如[访问 Teleport 的内容](/guide/scaling-up/ssr.html#teleports)：
 
