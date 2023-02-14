@@ -18,7 +18,7 @@ Vue 本身就是用 TypeScript 编写的，并对 TypeScript 提供了一等公�
 
 - 在开发阶段，我们推荐你依赖一个好的 [IDE 配置](#ide-support)来获取即时的类型错误反馈。
 
-- 对于单文件组件，你可以使用工具 [`vue-tsc`](https://github.com/johnsoncodehk/volar/tree/master/vue-language-tools/vue-tsc) 在命令行检查类型和生成类型声明文件。`vue-tsc` 是对 TypeScript 自身命令行界面 `tsc` 的一个封装。它的工作方式基本和 `tsc` 一致。除了 TypeScript 文件，它还支持 Vue 的单文件组件。你可以在开启 Vite 开发服务器的同时以侦听模式运行 `vue-tsc`，或是使用 [vite-plugin-checker](https://vite-plugin-checker.netlify.app/) 这样在另一个 worker 线程里做静态检查的插件。
+- 对于单文件组件，你可以使用工具 [`vue-tsc`](https://github.com/vuejs/language-tools/tree/master/packages/vue-tsc) 在命令行检查类型和生成类型声明文件。`vue-tsc` 是对 TypeScript 自身命令行界面 `tsc` 的一个封装。它的工作方式基本和 `tsc` 一致。除了 TypeScript 文件，它还支持 Vue 的单文件组件。你可以在开启 Vite 开发服务器的同时以侦听模式运行 `vue-tsc`，或是使用 [vite-plugin-checker](https://vite-plugin-checker.netlify.app/) 这样在另一个 worker 线程里做静态检查的插件。
 
 - Vue CLI 也提供了对 TypeScript 的支持，但是已经不推荐了。详见[下方的说明](#note-on-vue-cli-and-ts-loader)。
 
@@ -130,7 +130,7 @@ export default defineComponent({
 参考：
 
 - [webpack Treeshaking 的注意事项](/api/general.html#note-on-webpack-treeshaking)
-- [对 `defineComponent` 的类型测试](https://github.com/vuejs/core/blob/main/test-dts/defineComponent.test-d.tsx)
+- [对 `defineComponent` 的类型测试](https://github.com/vuejs/core/blob/main/packages/dts-test/defineComponent.test-d.tsx)
 
 :::tip
 `defineComponent()` 也支持对纯 JavaScript 编写的组件进行类型推导。
