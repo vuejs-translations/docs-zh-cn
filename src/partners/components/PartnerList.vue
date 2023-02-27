@@ -51,7 +51,7 @@ function shuffle(array: Array<any>) {
       <PartnerCard v-for="p in filtered" :key="p.name" :data="p" />
     </ClientOnly>
     <a class="browse-all" href="./all.html" v-if="showLinkToAll && filtered.length % 2">
-      Browse and Search<br>All Partners
+      浏览和搜索<br>所有合作伙伴
     </a>
   </div>
 </template>
