@@ -1,4 +1,5 @@
 {
+  "license": "CC BY-NC-SA 4.0",
   "engines": {
     "node": ">=14.0.0",
     "pnpm": ">=7.4.0"
