@@ -1,7 +1,8 @@
 # 响应性语法糖 {#reactivity-transform}
 
-:::warning 实验性功能
-响应性语法糖目前是一个实验性功能，默认是禁用的，需要[显式选择使用](#explicit-opt-in)。具体设计在最终定稿前仍可能发生变化，你可以查看 [GitHub 上的提案与讨论](https://github.com/vuejs/rfcs/discussions/369)来关注和跟进最新进展。
+:::danger 已弃用的实验性功能
+响应性语法糖目前是一个实验性功能，已被弃用，请阅读[弃用原因](https://github.com/vuejs/rfcs/discussions/369#discussioncomment-5059028).
+在未来的一个小版本更新中,它会被移出Vue core,如果你想继续使用它,可以使用[Vue Macros](https://vue-macros.sxzz.moe/features/reactivity-transform.html)插件
 :::
 
 :::tip 组合式 API 特有
