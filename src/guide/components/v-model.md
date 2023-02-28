@@ -37,17 +37,19 @@
 
 ```vue
 <!-- CustomInput.vue -->
-<script>
-export default {
-  props: ['modelValue'],
-  emits: ['update:modelValue']
-}
+<script setup>
+defineProps(['modelValue'])，
+   methods: {
+        updateValue(event) {
+            this.$emit('input', event.target.value)
+        }
+    },
 </script>
 
 <template>
   <input
     :value="modelValue"
-    @input="$emit('update:modelValue', $event.target.value)"
+   @input="updateValue"
   />
 </template>
 ```
@@ -58,14 +60,18 @@ export default {
 ```vue
 <!-- CustomInput.vue -->
 <script setup>
-defineProps(['modelValue'])
-defineEmits(['update:modelValue'])
+defineProps(['modelValue'])，
+   methods: {
+        updateValue(event) {
+            this.$emit('input', event.target.value)
+        }
+    },
 </script>
 
 <template>
   <input
     :value="modelValue"
-    @input="$emit('update:modelValue', $event.target.value)"
+   @input="updateValue"
   />
 </template>
 ```
