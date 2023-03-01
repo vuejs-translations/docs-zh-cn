@@ -1,7 +1,7 @@
 # 响应性语法糖 {#reactivity-transform}
 
 :::danger 已废弃的实验性功能
-响应性语法糖目前是一个实验性功能，已被弃用，请阅读[弃用原因](https://github.com/vuejs/rfcs/discussions/369#discussioncomment-5059028).
+响应性语法糖曾经是一个实验性功能，且已被弃用，请阅读[弃用原因](https://github.com/vuejs/rfcs/discussions/369#discussioncomment-5059028)。
 
 在未来的一个小版本更新中,它会被移出Vue core,如果你想继续使用它,可以使用[Vue Macros](https://vue-macros.sxzz.moe/features/reactivity-transform.html)插件
 :::
