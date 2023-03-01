@@ -1,7 +1,9 @@
 # 响应性语法糖 {#reactivity-transform}
 
-:::warning 实验性功能
-响应性语法糖目前是一个实验性功能，默认是禁用的，需要[显式选择使用](#explicit-opt-in)。具体设计在最终定稿前仍可能发生变化，你可以查看 [GitHub 上的提案与讨论](https://github.com/vuejs/rfcs/discussions/369)来关注和跟进最新进展。
+:::danger 已废弃的实验性功能
+响应性语法糖曾经是一个实验性功能，且已被废弃，请阅读[废弃原因](https://github.com/vuejs/rfcs/discussions/369#discussioncomment-5059028)。
+
+在未来的一个小版本更新中，它将会从 Vue core 中被移除。如需继续使用，请通过 [Vue Macros](https://vue-macros.sxzz.moe/features/reactivity-transform.html) 插件。
 :::
 
 :::tip 组合式 API 特有
@@ -281,7 +283,9 @@ Vue 为这些宏函数都提供了类型声明 (全局可用)，因此类型推�
 
 ## 显式启用 {#explicit-opt-in}
 
-响应性语法糖目前默认是关闭状态，需要你显式选择启用。此外，以下列出的所有配置都需要 `vue@^3.2.25`。
+:::warning
+以下内容仅适用于 Vue 3.3 及以下版本。Core 支持将在 3.4 及以上版本中被移除。如需继续使用，请迁移至 [Vue Macros](https://vue-macros.sxzz.moe/features/reactivity-transform.html)。
+:::
 
 ### Vite {#vite}
 
