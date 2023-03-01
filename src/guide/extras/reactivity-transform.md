@@ -284,7 +284,7 @@ Vue 为这些宏函数都提供了类型声明 (全局可用)，因此类型推�
 ## 显式启用 {#explicit-opt-in}
 
 :::warning
-以下仅适用于Vue 3.3及以下版本. Core将在3.4及以上版本中拆除. 如果你想要继续使用该语法糖,请使用[Vue Macros](https://vue-macros.sxzz.moe/features/reactivity-transform.html).
+以下内容仅适用于 Vue 3.3 及以下版本。Core 支持将在 3.4 及以上版本中被移除。如需继续使用，请迁移至 [Vue Macros](https://vue-macros.sxzz.moe/features/reactivity-transform.html)。
 :::
 
 ### Vite {#vite}
