@@ -11,6 +11,7 @@ import SponsorsAside from './components/SponsorsAside.vue'
 // import VueSchoolLink from './components/VueSchoolLink.vue'
 // import Banner from './components/Banner.vue'
 import WwAds from './components/WwAds.vue'
+import TextAd from './components/TextAd.vue'
 
 export default Object.assign({}, VPTheme, {
   Layout: () => {
@@ -19,7 +20,8 @@ export default Object.assign({}, VPTheme, {
       // banner: () => h(Banner),
       'sidebar-top': () => h(PreferenceSwitch),
       'aside-mid': () => h(SponsorsAside),
-      'aside-bottom': () => h(WwAds)
+      'aside-bottom': () => h(WwAds),
+      'content-top': () => h(TextAd)
     })
   },
   enhanceApp({ app }: { app: App }) {
