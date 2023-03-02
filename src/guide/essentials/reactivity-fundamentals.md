@@ -165,8 +165,6 @@ function increment() {
 
 ## 声明方法 \* {#declaring-methods}
 
-<VueSchoolLink href="https://vueschool.io/lessons/methods-in-vue-3" title="方法 - 免费 Vue.js 课程"/>
-
 要为组件添加方法，我们需要用到 `methods` 选项。它应该是一个包含所有方法的对象：
 
 ```js{7-11}

@@ -21,10 +21,6 @@ if (typeof window !== 'undefined') {
 
 > 此章节假设你已经看过了[组件基础](/guide/essentials/component-basics)。若你还不了解组件是什么，请先阅读该章节。
 
-<div class="options-api">
-  <VueSchoolLink href="https://vueschool.io/lessons/defining-custom-events-emits" title="定义自定义事件 - 免费 Vue.js 课程"/>
-</div>
-
 ## 触发与监听事件 {#emitting-and-listening-to-events}
 
 在组件的模板表达式中，可以直接使用 `$emit` 方法触发自定义事件 (例如：在 `v-on` 的处理函数中)：

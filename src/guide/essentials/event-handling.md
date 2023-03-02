@@ -1,13 +1,5 @@
 # 事件处理 {#event-handling}
 
-<div class="options-api">
-  <VueSchoolLink href="https://vueschool.io/lessons/user-events-in-vue-3" title="事件 - 免费 Vue.js 课程"/>
-</div>
-
-<div class="composition-api">
-  <VueSchoolLink href="https://vueschool.io/lessons/vue-fundamentals-capi-user-events-in-vue-3" title="事件 - 免费 Vue.js 课程"/>
-</div>
-
 ## 监听事件 {#listening-to-events}
 
 我们可以使用 `v-on` 指令 (简写为 `@`) 来监听 DOM 事件，并在事件触发时执行对应的 JavaScript。用法：`v-on:click="methodName"` 或 `@click="handler"`。

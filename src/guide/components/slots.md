@@ -2,8 +2,6 @@
 
 > 此章节假设你已经看过了[组件基础](/guide/essentials/component-basics)。若你还不了解组件是什么，请先阅读该章节。
 
-<VueSchoolLink href="https://vueschool.io/lessons/vue-3-component-slots" title="Slots - 免费 Vue.js 课程"/>
-
 ## 插槽内容与出口 {#slot-content-and-outlet}
 
 在之前的章节中，我们已经了解到组件能够接收任意类型的 JavaScript 值作为 props，但组件要如何接收模板内容呢？在某些场景中，我们可能想要为子组件传递一些模板片段，让子组件在它们的组件中渲染这些片段。

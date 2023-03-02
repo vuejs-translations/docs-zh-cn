@@ -15,14 +15,6 @@ const multiSelected = ref([])
 
 # 表单输入绑定 {#form-input-bindings}
 
-<div class="options-api">
-  <VueSchoolLink href="https://vueschool.io/lessons/user-inputs-vue-devtools-in-vue-3" title="用户输入 - 免费 Vue.js 课程"/>
-</div>
-
-<div class="composition-api">
-  <VueSchoolLink href="https://vueschool.io/lessons/vue-fundamentals-capi-user-inputs-in-vue" title="用户输入 - 免费 Vue.js 课程"/>
-</div>
-
 在前端处理表单时，我们常常需要将表单输入框的内容同步给 JavaScript 中相应的变量。手动连接值绑定和更改事件监听器可能会很麻烦：
 
 ```vue-html

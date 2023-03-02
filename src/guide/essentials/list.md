@@ -1,13 +1,5 @@
 # 列表渲染 {#list-rendering}
 
-<div class="options-api">
-  <VueSchoolLink href="https://vueschool.io/lessons/list-rendering-in-vue-3" title="列表渲染 - 免费 Vue.js 课程"/>
-</div>
-
-<div class="composition-api">
-  <VueSchoolLink href="https://vueschool.io/lessons/vue-fundamentals-capi-list-rendering-in-vue" title="列表渲染 - 免费 Vue.js 课程"/>
-</div>
-
 ## `v-for` {#v-for}
 
 我们可以使用 `v-for` 指令基于一个数组来渲染一个列表。`v-for` 指令的值需要使用 `item in items` 形式的特殊语法，其中 `items` 是源数据的数组，而 `item` 是迭代项的**别名**：
