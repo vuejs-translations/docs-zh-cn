@@ -102,7 +102,7 @@ function ref(value) {
 这里和下面的代码片段皆旨在以最简单的形式解释核心概念，因此省略了许多细节和边界情况。
 :::
 
-以上代码解释了我们在基础章节部分讨论过的一些[响应式对象的限制](/guide/essentials/reactivity-fundamentals#limitations-of-reactive)：
+以上代码解释了我们在基础章节部分讨论过的一些 [`reactive()` 的局限性](/guide/essentials/reactivity-fundamentals#limitations-of-reactive)：
 
 - 当你将一个响应性对象的属性解构为一个局部变量时，响应性就会“断开连接”，因为对局部变量的访问不再触发 get / set 代理捕获。
 
@@ -397,7 +397,7 @@ export function useMachine(options) {
 ### RxJS {#rxjs}
 
 [RxJS](https://rxjs.dev/) 是一个用于处理异步事件流的库。[VueUse](https://vueuse.org/) 库提供了 [`@vueuse/rxjs`](https://vueuse.org/rxjs/readme.html) 扩展来支持连接 RxJS 流与 Vue 的响应性系统。
-
+<!-- TODO: translation -->
 ## Connection to Signals {#connection-to-signals}
 
 Quite a few other frameworks have introduced reactivity primitives similar to refs from Vue's Composition API, under the term "signals":
