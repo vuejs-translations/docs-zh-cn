@@ -6,7 +6,7 @@
 
 - 对常见错误和隐患的警告
 - 对组件 props / 自定义事件的校验
-- [响应性调试钩子](/guide/extras/reactivity-in-depth.html#reactivity-debugging)
+- [响应性调试钩子](/guide/extras/reactivity-in-depth#reactivity-debugging)
 - 开发工具集成
 
 然而，这些功能在生产环境中并不会被使用，一些警告检查也会产生少量的性能开销。当部署到生产环境中时，我们应该移除所有未使用的、仅用于开发环境的代码分支，来获得更小的包体积和更好的性能。
@@ -38,7 +38,7 @@
 
 ## 追踪运行时错误 {#tracking-runtime-errors}
 
-[应用级错误处理](/api/application.html#app-config-errorhandler) 可以用来向追踪服务报告错误：
+[应用级错误处理](/api/application#app-config-errorhandler) 可以用来向追踪服务报告错误：
 
 ```js
 import { createApp } from 'vue'

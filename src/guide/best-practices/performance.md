@@ -16,7 +16,7 @@ Vue 在大多数常见场景下性能都是很优秀的，通常不需要手动�
 
 虽然最理想的情况是将两者都最大化，但是不同的前端架构往往会影响到在这些方面是否能达到更理想的性能。此外，你所构建的应用的类型极大地影响了你在性能方面应该优先考虑的问题。因此，优化性能的第一步是为你的应用类型确定合适的架构：
 
-- 查看[使用 Vue 的多种方式](/guide/extras/ways-of-using-vue.html)这一章看看如何用不同的方式围绕 Vue 组织架构。
+- 查看[使用 Vue 的多种方式](/guide/extras/ways-of-using-vue)这一章看看如何用不同的方式围绕 Vue 组织架构。
 
 - Jason Miller 在 [Application Holotypes](https://jasonformat.com/application-holotypes/) 一文中讨论了 Web 应用的类型以及它们各自的理想实现/交付方式。
 
@@ -32,8 +32,8 @@ Vue 在大多数常见场景下性能都是很优秀的，通常不需要手动�
 用于本地开发期间的性能分析：
 
 - [Chrome 开发者工具“性能”面板](https://developer.chrome.com/docs/devtools/evaluate-performance/)
-  - [`app.config.performance`](/api/application.html#app-config-performance) 将会开启 Vue 特有的性能标记，标记在 Chrome 开发者工具的性能时间线上。
-- [Vue 开发者扩展](/guide/scaling-up/tooling.html#browser-devtools)也提供了性能分析的功能。
+  - [`app.config.performance`](/api/application#app-config-performance) 将会开启 Vue 特有的性能标记，标记在 Chrome 开发者工具的性能时间线上。
+- [Vue 开发者扩展](/guide/scaling-up/tooling#browser-devtools)也提供了性能分析的功能。
 
 ## 页面加载优化 {#page-load-optimizations}
 
@@ -41,7 +41,7 @@ Vue 在大多数常见场景下性能都是很优秀的，通常不需要手动�
 
 ### 选用正确的架构 {#choosing-the-right-architecture}
 
-如果你的用例对页面加载性能很敏感，请避免将其部署为纯客户端的 SPA，而是让服务器直接发送包含用户想要查看的内容的 HTML 代码。纯客户端渲染存在首屏加载缓慢的问题，这可以通过[服务器端渲染 (SSR)](/guide/extras/ways-of-using-vue.html#fullstack-ssr) 或[静态站点生成 (SSG)](/guide/extras/ways-of-using-vue.html#jamstack-ssg) 来缓解。查看 [SSR 指南](/guide/scaling-up/ssr.html)以了解如何使用 Vue 实现 SSR。如果应用对交互性要求不高，你还可以使用传统的后端服务器来渲染 HTML，并在客户端使用 Vue 对其进行增强。
+如果你的用例对页面加载性能很敏感，请避免将其部署为纯客户端的 SPA，而是让服务器直接发送包含用户想要查看的内容的 HTML 代码。纯客户端渲染存在首屏加载缓慢的问题，这可以通过[服务器端渲染 (SSR)](/guide/extras/ways-of-using-vue#fullstack-ssr) 或[静态站点生成 (SSG)](/guide/extras/ways-of-using-vue#jamstack-ssg) 来缓解。查看 [SSR 指南](/guide/scaling-up/ssr)以了解如何使用 Vue 实现 SSR。如果应用对交互性要求不高，你还可以使用传统的后端服务器来渲染 HTML，并在客户端使用 Vue 对其进行增强。
 
 如果你的主应用必须是 SPA，但还有其他的营销相关页面 (落地页、关于页、博客等)，请单独部署这些页面！理想情况下，营销页面应该是包含尽可能少 JS 的静态 HTML，并用 SSG 方式部署。
 
@@ -77,7 +77,7 @@ function loadLazy() {
 }
 ```
 
-懒加载对于页面初次加载时的优化帮助极大，它帮助应用暂时略过了那些不是立即需要的功能。在 Vue 应用中，这可以与 Vue 的[异步组件](/guide/components/async.html)搭配使用，为组件树创建分离的代码块：
+懒加载对于页面初次加载时的优化帮助极大，它帮助应用暂时略过了那些不是立即需要的功能。在 Vue 应用中，这可以与 Vue 的[异步组件](/guide/components/async)搭配使用，为组件树创建分离的代码块：
 
 ```js
 import { defineAsyncComponent } from 'vue'
@@ -118,11 +118,11 @@ const Foo = defineAsyncComponent(() => import('./Foo.vue'))
 
 ### `v-once` {#v-once}
 
-`v-once` 是一个内置的指令，可以用来渲染依赖运行时数据但无需再更新的内容。它的整个子树都会在未来的更新中被跳过。查看它的 [API 参考手册](/api/built-in-directives.html#v-once)可以了解更多细节。
+`v-once` 是一个内置的指令，可以用来渲染依赖运行时数据但无需再更新的内容。它的整个子树都会在未来的更新中被跳过。查看它的 [API 参考手册](/api/built-in-directives#v-once)可以了解更多细节。
 
 ### `v-memo` {#v-memo}
 
-`v-memo` 是一个内置指令，可以用来有条件地跳过某些大型子树或者 `v-for` 列表的更新。查看它的 [API 参考手册](/api/built-in-directives.html#v-memo)可以了解更多细节。
+`v-memo` 是一个内置指令，可以用来有条件地跳过某些大型子树或者 `v-for` 列表的更新。查看它的 [API 参考手册](/api/built-in-directives#v-memo)可以了解更多细节。
 
 ## 通用优化 {#general-optimizations}
 
@@ -144,7 +144,7 @@ const Foo = defineAsyncComponent(() => import('./Foo.vue'))
 
 Vue 的响应性系统默认是深度的。虽然这让状态管理变得更直观，但在数据量巨大时，深度响应性也会导致不小的性能负担，因为每个属性访问都将触发代理的依赖追踪。好在这种性能负担通常这只有在处理超大型数组或层级很深的对象时，例如一次渲染需要访问 100,000+ 个属性时，才会变得比较明显。因此，它只会影响少数特定的场景。
 
-Vue 确实也为此提供了一种解决方案，通过使用 [`shallowRef()`](/api/reactivity-advanced.html#shallowref) 和 [`shallowReactive()`](/api/reactivity-advanced.html#shallowreactive) 来绕开深度响应。浅层式 API 创建的状态只在其顶层是响应式的，对所有深层的对象不会做任何处理。这使得对深层级属性的访问变得更快，但代价是，我们现在必须将所有深层级对象视为不可变的，并且只能通过替换整个根状态来触发更新：
+Vue 确实也为此提供了一种解决方案，通过使用 [`shallowRef()`](/api/reactivity-advanced#shallowref) 和 [`shallowReactive()`](/api/reactivity-advanced#shallowreactive) 来绕开深度响应。浅层式 API 创建的状态只在其顶层是响应式的，对所有深层的对象不会做任何处理。这使得对深层级属性的访问变得更快，但代价是，我们现在必须将所有深层级对象视为不可变的，并且只能通过替换整个根状态来触发更新：
 
 ```js
 const shallowArray = shallowRef([
@@ -170,6 +170,6 @@ shallowArray.value = [
 
 ### 避免不必要的组件抽象 {#avoid-unnecessary-component-abstractions}
 
-有些时候我们会去创建[无渲染组件](/guide/components/slots.html#renderless-components)或高阶组件 (用来渲染具有额外 props 的其他组件) 来实现更好的抽象或代码组织。虽然这并没有什么问题，但请记住，组件实例比普通 DOM 节点要昂贵得多，而且为了逻辑抽象创建太多组件实例将会导致性能损失。
+有些时候我们会去创建[无渲染组件](/guide/components/slots#renderless-components)或高阶组件 (用来渲染具有额外 props 的其他组件) 来实现更好的抽象或代码组织。虽然这并没有什么问题，但请记住，组件实例比普通 DOM 节点要昂贵得多，而且为了逻辑抽象创建太多组件实例将会导致性能损失。
 
 需要提醒的是，只减少几个组件实例对于性能不会有明显的改善，所以如果一个用于抽象的组件在应用中只会渲染几次，就不用操心去优化它了。考虑这种优化的最佳场景还是在大型列表中。想象一下一个有 100 项的列表，每项的组件都包含许多子组件。在这里去掉一个不必要的组件抽象，可能会减少数百个组件实例的无谓性能消耗。

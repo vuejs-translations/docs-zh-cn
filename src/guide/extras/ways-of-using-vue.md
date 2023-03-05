@@ -56,4 +56,4 @@ Vue 团队也维护了一个名为 [VitePress](https://vitepress.vuejs.org/) 的
 - 配合 [Electron](https://www.electronjs.org/) 或 [Tauri](https://tauri.studio/en/) 构建桌面应用
 - 配合 [Ionic Vue](https://ionicframework.com/docs/vue/overview) 构建移动端应用
 - 使用 [Quasar](https://quasar.dev/) 用同一套代码同时开发桌面端和移动端应用
-- 使用 Vue 的[自定义渲染 API](/api/custom-renderer) 来构建不同目标的渲染器，比如 [WebGL](https://troisjs.github.io/) 甚至是[终端命令行](https://github.com/ycmjason/vuminal)！
+- 使用 Vue 的[自定义渲染 API](/api/custom-renderer) 来构建不同目标的渲染器，比如 [WebGL](https://troisjs.github.io/) 甚至是[终端命令行](https://github.com/vue-terminal/vue-termui)！

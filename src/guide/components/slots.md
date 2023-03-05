@@ -311,7 +311,7 @@ function BaseLayout(slots) {
 </base-layout>
 ```
 
-注意这里的表达式和动态指令参数受相同的[语法限制](/guide/essentials/template-syntax.html#directives)。
+注意这里的表达式和动态指令参数受相同的[语法限制](/guide/essentials/template-syntax#directives)。
 
 ## 作用域插槽 {#scoped-slots}
 
@@ -372,7 +372,7 @@ function MyComponent(slots) {
 }
 ```
 
-实际上，这已经和作用域插槽的最终代码编译结果、以及手动编写[渲染函数](/guide/extras/render-function.html)时使用作用域插槽的方式非常类似了。
+实际上，这已经和作用域插槽的最终代码编译结果、以及手动编写[渲染函数](/guide/extras/render-function)时使用作用域插槽的方式非常类似了。
 
 `v-slot="slotProps"` 可以类比这里的函数签名，和函数的参数类似，我们也可以在 `v-slot` 中使用解构：
 
@@ -503,6 +503,6 @@ function MyComponent(slots) {
 
 </div>
 
-虽然这个模式很有趣，但大部分能用无渲染组件实现的功能都可以通过组合式 API 以另一种更高效的方式实现，并且还不会带来额外组件嵌套的开销。之后我们会在[组合式函数](/guide/reusability/composables.html)一章中介绍如何更高效地实现追踪鼠标位置的功能。
+虽然这个模式很有趣，但大部分能用无渲染组件实现的功能都可以通过组合式 API 以另一种更高效的方式实现，并且还不会带来额外组件嵌套的开销。之后我们会在[组合式函数](/guide/reusability/composables)一章中介绍如何更高效地实现追踪鼠标位置的功能。
 
 尽管如此，作用域插槽在需要**同时**封装逻辑、组合视图界面时还是很有用，就像上面的 `<FancyList>` 组件那样。

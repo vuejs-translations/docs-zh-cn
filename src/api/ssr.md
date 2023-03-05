@@ -32,7 +32,7 @@
 
   ### SSR 上下文 {#ssr-context}
 
-  你可以传入一个可选的上下文对象用来在渲染过程中记录额外的数据，例如[访问 Teleport 的内容](/guide/scaling-up/ssr.html#teleports)：
+  你可以传入一个可选的上下文对象用来在渲染过程中记录额外的数据，例如[访问 Teleport 的内容](/guide/scaling-up/ssr#teleports)：
 
   ```js
   const ctx = {}
@@ -43,7 +43,7 @@
 
   这个页面中的其他大多数 SSR API 也可以接受一个上下文对象。该上下文对象可以在组件代码里通过 [useSSRContext](#usessrcontext) 辅助函数进行访问。
 
-- **参考**：[指南 - 服务端渲染 (SSR)](/guide/scaling-up/ssr.html)
+- **参考**：[指南 - 服务端渲染 (SSR)](/guide/scaling-up/ssr)
 
 ## renderToNodeStream() {#rendertonodestream}
 

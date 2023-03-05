@@ -53,7 +53,7 @@ import { capitalize } from './helpers'
 
 ## 响应式 {#reactivity}
 
-响应式状态需要明确使用[响应式 API](/api/reactivity-core.html) 来创建。和 `setup()` 函数的返回值一样，ref 在模板中使用的时候会自动解包：
+响应式状态需要明确使用[响应式 API](/api/reactivity-core) 来创建。和 `setup()` 函数的返回值一样，ref 在模板中使用的时候会自动解包：
 
 ```vue
 <script setup>
@@ -244,7 +244,7 @@ export default {
 - **不要**为已经可以用 `<script setup>` 定义的选项使用单独的 `<script>` 部分，如 `props` 和 `emits`。
 - 在 `<script setup>` 中创建的变量不会作为属性添加到组件实例中，这使得它们无法从选项式 API 中访问。我们强烈反对以这种方式混合 API。
 
-如果你发现自己处于以上任一不被支持的场景中，那么你应该考虑切换到一个显式的 [`setup()`](/api/composition-api-setup.html) 函数，而不是使用 `<script setup>`。
+如果你发现自己处于以上任一不被支持的场景中，那么你应该考虑切换到一个显式的 [`setup()`](/api/composition-api-setup) 函数，而不是使用 `<script setup>`。
 
 ## 顶层 `await` {#top-level-await}
 

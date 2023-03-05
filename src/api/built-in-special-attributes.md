@@ -35,11 +35,11 @@
 
   当 `text` 变化时，`<span>` 总是会被替换而不是更新，因此 transition 将会被触发。
 
-- **参考**：[指南- 列表渲染 - 通过 `key` 管理状态](/guide/essentials/list.html#maintaining-state-with-key)
+- **参考**：[指南- 列表渲染 - 通过 `key` 管理状态](/guide/essentials/list#maintaining-state-with-key)
 
 ## ref {#ref}
 
-用于注册[模板引用](/guide/essentials/template-refs.html)。
+用于注册[模板引用](/guide/essentials/template-refs)。
 
 - **预期**：`string | Function`
 
@@ -81,13 +81,13 @@
   `this.$refs` 也是非响应式的，因此你不应该尝试在模板中使用它来进行数据绑定。
 
 - **参考:**
-  - [指南 - 模板引用](/guide/essentials/template-refs.html)
-  - [指南 - 为模板引用标注类型](/guide/typescript/composition-api.html#typing-template-refs) <sup class="vt-badge ts" />
-  - [指南 - 为组件模板引用标注类型](/guide/typescript/composition-api.html#typing-component-template-refs) <sup class="vt-badge ts" />
+  - [指南 - 模板引用](/guide/essentials/template-refs)
+  - [指南 - 为模板引用标注类型](/guide/typescript/composition-api#typing-template-refs) <sup class="vt-badge ts" />
+  - [指南 - 为组件模板引用标注类型](/guide/typescript/composition-api#typing-component-template-refs) <sup class="vt-badge ts" />
 
 ## is {#is}
 
-用于绑定[动态组件](/guide/essentials/component-basics.html#dynamic-components)。
+用于绑定[动态组件](/guide/essentials/component-basics#dynamic-components)。
 
 - **预期**：`string | Component`
 
@@ -95,7 +95,7 @@
 
   当 `is` attribute 用于原生 HTML 元素时，它将被当作 [Customized built-in element](https://html.spec.whatwg.org/multipage/custom-elements.html#custom-elements-customized-builtin-example)，其为原生 web 平台的特性。
 
-  但是，在这种用例中，你可能需要 Vue 用其组件来替换原生元素，如 [DOM 模板解析注意事项](/guide/essentials/component-basics.html#dom-template-parsing-caveats)所述。你可以在 `is` attribute 的值中加上 `vue:` 前缀，这样 Vue 就会把该元素渲染为 Vue 组件：
+  但是，在这种用例中，你可能需要 Vue 用其组件来替换原生元素，如 [DOM 模板解析注意事项](/guide/essentials/component-basics#dom-template-parsing-caveats)所述。你可以在 `is` attribute 的值中加上 `vue:` 前缀，这样 Vue 就会把该元素渲染为 Vue 组件：
 
   ```vue-html
   <table>
@@ -105,5 +105,5 @@
 
 - **参考：**
 
-  - [内置特殊元素 - `<component>`](/api/built-in-special-elements.html#component)
-  - [动态组件](/guide/essentials/component-basics.html#dynamic-components)
+  - [内置特殊元素 - `<component>`](/api/built-in-special-elements#component)
+  - [动态组件](/guide/essentials/component-basics#dynamic-components)

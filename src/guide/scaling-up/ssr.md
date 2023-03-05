@@ -84,7 +84,7 @@ renderToString(app).then((html) => {
 <button>1</button>
 ```
 
-[`renderToString()`](/api/ssr.html#rendertostring) 接收一个 Vue 应用实例作为参数，返回一个 Promise，当 Promise resolve 时得到应用渲染的 HTML。当然你也可以使用 [Node.js Stream API](https://nodejs.org/api/stream.html) 或者 [Web Streams API](https://developer.mozilla.org/en-US/docs/Web/API/Streams_API) 来执行流式渲染。查看 [SSR API 参考](/api/ssr.html)获取完整的相关细节。
+[`renderToString()`](/api/ssr#rendertostring) 接收一个 Vue 应用实例作为参数，返回一个 Promise，当 Promise resolve 时得到应用渲染的 HTML。当然你也可以使用 [Node.js Stream API](https://nodejs.org/api/stream) 或者 [Web Streams API](https://developer.mozilla.org/en-US/docs/Web/API/Streams_API) 来执行流式渲染。查看 [SSR API 参考](/api/ssr)获取完整的相关细节。
 
 然后我们可以把 Vue SSR 的代码移动到一个服务器请求处理函数里，它将应用的 HTML 片段包装为完整的页面 HTML。接下来的几步我们将会使用 [`express`](https://expressjs.com/)：
 
@@ -134,7 +134,7 @@ server.listen(3000, () => {
 
 为了使客户端的应用可交互，Vue 需要执行一个**激活**步骤。在激活过程中，Vue 会创建一个与服务端完全相同的应用实例，然后将每个组件与它应该控制的 DOM 节点相匹配，并添加 DOM 事件监听器。
 
-为了在激活模式下挂载应用，我们应该使用 [`createSSRApp()`](/api/application.html#createssrapp) 而不是 `createApp()`：
+为了在激活模式下挂载应用，我们应该使用 [`createSSRApp()`](/api/application#createssrapp) 而不是 `createApp()`：
 
 ```js{2}
 // 该文件运行在浏览器中
@@ -257,7 +257,7 @@ Vite 提供了内置的 [Vue 服务端渲染支持](https://cn.vitejs.dev/guide/
 
 ### 跨请求状态污染 {#cross-request-state-pollution}
 
-在状态管理一章中，我们介绍了一种[使用响应式 API 的简单状态管理模式](state-management.html#simple-state-management-with-reactivity-api)。而在 SSR 环境中，这种模式需要一些额外的调整。
+在状态管理一章中，我们介绍了一种[使用响应式 API 的简单状态管理模式](state-management#simple-state-management-with-reactivity-api)。而在 SSR 环境中，这种模式需要一些额外的调整。
 
 上述模式在一个 JavaScript 模块的根作用域中声明共享的状态。这是一种**单例模式**——即在应用的整个生命周期中只有一个响应式对象的实例。这在纯客户端的 Vue 应用中是可以的，因为对于浏览器的每一个页面访问，应用模块都会重新初始化。
 
@@ -265,7 +265,7 @@ Vite 提供了内置的 [Vue 服务端渲染支持](https://cn.vitejs.dev/guide/
 
 从技术上讲，我们可以在每个请求上重新初始化所有 JavaScript 模块，就像我们在浏览器中所做的那样。但是，初始化 JavaScript 模块的成本可能很高，因此这会显著影响服务器性能。
 
-推荐的解决方案是在每个请求中为整个应用创建一个全新的实例，包括 router 和全局 store。然后，我们使用[应用层级的 provide 方法](/guide/components/provide-inject.html#app-level-provide)来提供共享状态，并将其注入到需要它的组件中，而不是直接在组件中将其导入：
+推荐的解决方案是在每个请求中为整个应用创建一个全新的实例，包括 router 和全局 store。然后，我们使用[应用层级的 provide 方法](/guide/components/provide-inject#app-level-provide)来提供共享状态，并将其注入到需要它的组件中，而不是直接在组件中将其导入：
 
 ```js
 // app.js （在服务端和客户端间共享）

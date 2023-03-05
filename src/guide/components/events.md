@@ -58,10 +58,10 @@ export default {
 <MyComponent @some-event.once="callback" />
 ```
 
-像组件与 prop 一样，事件的名字也提供了自动的格式转换。注意这里我们触发了一个以 camelCase 形式命名的事件，但在父组件中可以使用 kebab-case 形式来监听。与 [prop 大小写格式](/guide/components/props.html#prop-name-casing)一样，在模板中我们也推荐使用 kebab-case 形式来编写监听器。
+像组件与 prop 一样，事件的名字也提供了自动的格式转换。注意这里我们触发了一个以 camelCase 形式命名的事件，但在父组件中可以使用 kebab-case 形式来监听。与 [prop 大小写格式](/guide/components/props#prop-name-casing)一样，在模板中我们也推荐使用 kebab-case 形式来编写监听器。
 
 :::tip
-和原生 DOM 事件不一样，组件触发的事件**没有冒泡机制**。你只能监听直接子组件触发的事件。平级组件或是跨越多层嵌套的组件间通信，应使用一个外部的事件总线，或是使用一个[全局状态管理方案](/guide/scaling-up/state-management.html)。
+和原生 DOM 事件不一样，组件触发的事件**没有冒泡机制**。你只能监听直接子组件触发的事件。平级组件或是跨越多层嵌套的组件间通信，应使用一个外部的事件总线，或是使用一个[全局状态管理方案](/guide/scaling-up/state-management)。
 :::
 
 ## 事件参数 {#event-arguments}
@@ -115,7 +115,7 @@ function increaseCount(n) {
 
 ## 声明触发的事件 {#declaring-emitted-events}
 
-组件可以显式地通过 <span class="composition-api">[`defineEmits()`](/api/sfc-script-setup.html#defineprops-defineemits) 宏</span><span class="options-api">[`emits`](/api/options-state.html#emits) 选项</span>来声明它要触发的事件：
+组件可以显式地通过 <span class="composition-api">[`defineEmits()`](/api/sfc-script-setup#defineprops-defineemits) 宏</span><span class="options-api">[`emits`](/api/options-state#emits) 选项</span>来声明它要触发的事件：
 
 <div class="composition-api">
 
@@ -139,7 +139,7 @@ function buttonClick() {
 
 `defineEmits()` 宏**不能**在子函数中使用。如上所示，它必须直接放置在 `<script setup>` 的顶级作用域下。
 
-如果你显式地使用了 `setup` 函数而不是 `<script setup>`，则事件需要通过 [`emits`](/api/options-state.html#emits) 选项来定义，`emit` 函数也被暴露在 `setup()` 的上下文对象上：
+如果你显式地使用了 `setup` 函数而不是 `<script setup>`，则事件需要通过 [`emits`](/api/options-state#emits) 选项来定义，`emit` 函数也被暴露在 `setup()` 的上下文对象上：
 
 ```js
 export default {
@@ -198,7 +198,7 @@ const emit = defineEmits<{
 </script>
 ```
 
-TypeScript 用户请参考：[如何为组件所抛出事件标注类型](/guide/typescript/composition-api.html#typing-component-emits) <sup class="vt-badge ts" />
+TypeScript 用户请参考：[如何为组件所抛出事件标注类型](/guide/typescript/composition-api#typing-component-emits) <sup class="vt-badge ts" />
 
 </div>
 <div class="options-api">
@@ -214,11 +214,11 @@ export default {
 }
 ```
 
-TypeScript 用户请参考：[如何为组件所抛出的事件标注类型](/guide/typescript/options-api.html#typing-component-emits)。<sup class="vt-badge ts" />
+TypeScript 用户请参考：[如何为组件所抛出的事件标注类型](/guide/typescript/options-api#typing-component-emits)。<sup class="vt-badge ts" />
 
 </div>
 
-尽管事件声明是可选的，我们还是推荐你完整地声明所有要触发的事件，以此在代码中作为文档记录组件的用法。同时，事件声明能让 Vue 更好地将事件和[透传 attribute](/guide/components/attrs.html#v-on-listener-inheritance) 作出区分，从而避免一些由第三方代码触发的自定义 DOM 事件所导致的边界情况。
+尽管事件声明是可选的，我们还是推荐你完整地声明所有要触发的事件，以此在代码中作为文档记录组件的用法。同时，事件声明能让 Vue 更好地将事件和[透传 attribute](/guide/components/attrs#v-on-listener-inheritance) 作出区分，从而避免一些由第三方代码触发的自定义 DOM 事件所导致的边界情况。
 
 :::tip
 如果一个原生事件的名字 (例如 `click`) 被定义在 `emits` 选项中，则监听器只会监听组件触发的 `click` 事件而不会再响应原生的 `click` 事件。

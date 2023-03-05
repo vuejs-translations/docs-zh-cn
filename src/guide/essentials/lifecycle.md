@@ -31,7 +31,7 @@ export default {
 
 </div>
 
-还有其他一些钩子，会在实例生命周期的不同阶段被调用，最常用的是 <span class="composition-api">[`onMounted`](/api/composition-api-lifecycle.html#onmounted)、[`onUpdated`](/api/composition-api-lifecycle.html#onupdated) 和 [`onUnmounted`](/api/composition-api-lifecycle.html#onunmounted)。所有生命周期钩子的完整参考及其用法请参考 [API 索引](/api/composition-api-lifecycle.html)。</span><span class="options-api">[`mounted`](/api/options-lifecycle.html#mounted)、[`updated`](/api/options-lifecycle.html#updated) 和 [`unmounted`](/api/options-lifecycle.html#unmounted)。</span>
+还有其他一些钩子，会在实例生命周期的不同阶段被调用，最常用的是 <span class="composition-api">[`onMounted`](/api/composition-api-lifecycle#onmounted)、[`onUpdated`](/api/composition-api-lifecycle#onupdated) 和 [`onUnmounted`](/api/composition-api-lifecycle#onunmounted)。所有生命周期钩子的完整参考及其用法请参考 [API 索引](/api/composition-api-lifecycle.html)。</span><span class="options-api">[`mounted`](/api/options-lifecycle#mounted)、[`updated`](/api/options-lifecycle#updated) 和 [`unmounted`](/api/options-lifecycle#unmounted)。</span>
 
 <div class="options-api">
 
@@ -64,4 +64,4 @@ setTimeout(() => {
 
 <!-- https://www.figma.com/file/Xw3UeNMOralY6NV7gSjWdS/Vue-Lifecycle -->
 
-有关所有生命周期钩子及其各自用例的详细信息，请参考<span class="composition-api">[生命周期钩子 API 索引](/api/composition-api-lifecycle.html)</span><span class="options-api">[生命周期钩子 API 索引](/api/options-lifecycle.html)</span>。
+有关所有生命周期钩子及其各自用例的详细信息，请参考<span class="composition-api">[生命周期钩子 API 索引](/api/composition-api-lifecycle)</span><span class="options-api">[生命周期钩子 API 索引](/api/options-lifecycle)</span>。

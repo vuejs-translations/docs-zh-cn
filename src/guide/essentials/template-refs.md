@@ -83,7 +83,7 @@ watchEffect(() => {
 })
 ```
 
-也可参考：[为模板引用标注类型](/guide/typescript/composition-api.html#typing-template-refs) <sup class="vt-badge ts" />
+也可参考：[为模板引用标注类型](/guide/typescript/composition-api#typing-template-refs) <sup class="vt-badge ts" />
 
 </div>
 
@@ -237,7 +237,7 @@ defineExpose({
 
 当父组件通过模板引用获取到了该组件的实例时，得到的实例类型为 `{ a: number, b: number }` (ref 都会自动解包，和一般的实例一样)。
 
-TypeScript 用户请参考：[为组件的模板引用标注类型](/guide/typescript/composition-api.html#typing-component-template-refs) <sup class="vt-badge ts" />
+TypeScript 用户请参考：[为组件的模板引用标注类型](/guide/typescript/composition-api#typing-component-template-refs) <sup class="vt-badge ts" />
 
 </div>
 <div class="options-api">

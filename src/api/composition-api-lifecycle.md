@@ -1,7 +1,7 @@
 # 组合式 API：生命周期钩子 {#composition-api-lifecycle-hooks}
 
 :::info 使用方式注意
-所有罗列在本页的 API 都应该在组件的 `setup()` 阶段被同步调用。相关细节请看[指南 - 生命周期钩子](/guide/essentials/lifecycle.html)。
+所有罗列在本页的 API 都应该在组件的 `setup()` 阶段被同步调用。相关细节请看[指南 - 生命周期钩子](/guide/essentials/lifecycle)。
 :::
 
 ## onMounted() {#onmounted}
@@ -22,7 +22,7 @@
 
   - 其自身的 DOM 树已经创建完成并插入了父容器中。注意仅当根容器在文档中时，才可以保证组件 DOM 树也在文档中。
 
-  这个钩子通常用于执行需要访问组件所渲染的 DOM 树相关的副作用，或是在[服务端渲染应用](/guide/scaling-up/ssr.html)中用于确保 DOM 相关代码仅在客户端执行。
+  这个钩子通常用于执行需要访问组件所渲染的 DOM 树相关的副作用，或是在[服务端渲染应用](/guide/scaling-up/ssr)中用于确保 DOM 相关代码仅在客户端执行。
 
   **这个钩子在服务器端渲染期间不会被调用。**
 
@@ -60,7 +60,7 @@
 
   父组件的更新钩子将在其子组件的更新钩子之后调用。
 
-  这个钩子会在组件的任意 DOM 更新后被调用，这些更新可能是由不同的状态变更导致的。如果你需要在某个特定的状态更改后访问更新后的 DOM，请使用 [nextTick()](/api/general.html#nexttick) 作为替代。
+  这个钩子会在组件的任意 DOM 更新后被调用，这些更新可能是由不同的状态变更导致的。如果你需要在某个特定的状态更改后访问更新后的 DOM，请使用 [nextTick()](/api/general#nexttick) 作为替代。
 
   **这个钩子在服务器端渲染期间不会被调用。**
 
@@ -212,7 +212,7 @@
 
   **错误传递规则**
 
-  - 默认情况下，所有的错误都会被发送到应用级的 [`app.config.errorHandler`](/api/application.html#app-config-errorhandler) (前提是这个函数已经定义)，这样这些错误都能在一个统一的地方报告给分析服务。
+  - 默认情况下，所有的错误都会被发送到应用级的 [`app.config.errorHandler`](/api/application#app-config-errorhandler) (前提是这个函数已经定义)，这样这些错误都能在一个统一的地方报告给分析服务。
 
   - 如果组件的继承链或组件链上存在多个 `errorCaptured` 钩子，对于同一个错误，这些钩子会被按从底至上的顺序一一调用。这个过程被称为“向上传递”，类似于原生 DOM 事件的冒泡机制。
 
@@ -241,7 +241,7 @@
   }
   ```
 
-- **参考**：[Reactivity in Depth](/guide/extras/reactivity-in-depth.html)
+- **参考**：[Reactivity in Depth](/guide/extras/reactivity-in-depth)
 
 ## onRenderTriggered() <sup class="vt-badge dev-only" /> {#onrendertriggered}
 
@@ -267,11 +267,11 @@
   }
   ```
 
-- **参考**：[Reactivity in Depth](/guide/extras/reactivity-in-depth.html)
+- **参考**：[Reactivity in Depth](/guide/extras/reactivity-in-depth)
 
 ## onActivated() {#onactivated}
 
-注册一个回调函数，若组件实例是 [`<KeepAlive>`](/api/built-in-components.html#keepalive) 缓存树的一部分，当组件被插入到 DOM 中时调用。
+注册一个回调函数，若组件实例是 [`<KeepAlive>`](/api/built-in-components#keepalive) 缓存树的一部分，当组件被插入到 DOM 中时调用。
 
 **这个钩子在服务器端渲染期间不会被调用。**
 
@@ -281,11 +281,11 @@
   function onActivated(callback: () => void): void
   ```
 
-- **参考**：[指南 - 缓存实例的生命周期](/guide/built-ins/keep-alive.html#lifecycle-of-cached-instance)
+- **参考**：[指南 - 缓存实例的生命周期](/guide/built-ins/keep-alive#lifecycle-of-cached-instance)
 
 ## onDeactivated() {#ondeactivated}
 
-注册一个回调函数，若组件实例是 [`<KeepAlive>`](/api/built-in-components.html#keepalive) 缓存树的一部分，当组件从 DOM 中被移除时调用。
+注册一个回调函数，若组件实例是 [`<KeepAlive>`](/api/built-in-components#keepalive) 缓存树的一部分，当组件从 DOM 中被移除时调用。
 
 **这个钩子在服务器端渲染期间不会被调用。**
 
@@ -295,7 +295,7 @@
   function onDeactivated(callback: () => void): void
   ```
 
-- **参考**：[Guide - 缓存实例的生命周期](/guide/built-ins/keep-alive.html#lifecycle-of-cached-instance)
+- **参考**：[Guide - 缓存实例的生命周期](/guide/built-ins/keep-alive#lifecycle-of-cached-instance)
 
 ## onServerPrefetch() <sup class="vt-badge" data-text="SSR only" /> {#onserverprefetch}
 
@@ -338,4 +338,4 @@
   </script>
   ```
 
-- **参考**：[服务端渲染](/guide/scaling-up/ssr.html)
+- **参考**：[服务端渲染](/guide/scaling-up/ssr)

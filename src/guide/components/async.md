@@ -2,7 +2,7 @@
 
 ## 基本用法 {#basic-usage}
 
-在大型项目中，我们可能需要拆分应用为更小的块，并仅在需要时再从服务器加载相关组件。Vue 提供了 [`defineAsyncComponent`](/api/general.html#defineasynccomponent) 方法来实现此功能：
+在大型项目中，我们可能需要拆分应用为更小的块，并仅在需要时再从服务器加载相关组件。Vue 提供了 [`defineAsyncComponent`](/api/general#defineasynccomponent) 方法来实现此功能：
 
 ```js
 import { defineAsyncComponent } from 'vue'
@@ -30,7 +30,7 @@ const AsyncComp = defineAsyncComponent(() =>
 
 最后得到的 `AsyncComp` 是一个外层包装过的组件，仅在页面需要它渲染时才会调用加载内部实际组件的函数。它会将接收到的 props 和插槽传给内部组件，所以你可以使用这个异步的包装组件无缝地替换原始组件，同时实现延迟加载。
 
-与普通组件一样，异步组件可以使用 `app.component()` [全局注册](/guide/components/registration.html#global-registration)：
+与普通组件一样，异步组件可以使用 `app.component()` [全局注册](/guide/components/registration#global-registration)：
 
 ```js
 app.component('MyComponent', defineAsyncComponent(() =>
@@ -40,7 +40,7 @@ app.component('MyComponent', defineAsyncComponent(() =>
 
 <div class="options-api">
 
-你也可以在[局部注册组件](/guide/components/registration.html#local-registration)时使用 `defineAsyncComponent`：
+你也可以在[局部注册组件](/guide/components/registration#local-registration)时使用 `defineAsyncComponent`：
 
 ```vue
 <script>
@@ -110,4 +110,4 @@ const AsyncComp = defineAsyncComponent({
 
 ## 搭配 Suspense 使用 {#using-with-suspense}
 
-异步组件可以搭配内置的 `<Suspense>` 组件一起使用，若想了解 `<Suspense>` 和异步组件之间交互，请参阅 [`<Suspense>`](/guide/built-ins/suspense.html) 章节。
+异步组件可以搭配内置的 `<Suspense>` 组件一起使用，若想了解 `<Suspense>` 和异步组件之间交互，请参阅 [`<Suspense>`](/guide/built-ins/suspense) 章节。

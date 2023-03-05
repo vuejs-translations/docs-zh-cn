@@ -82,7 +82,7 @@ describe('increment', () => {
 
 ### 组合式函数 {#composables}
 
-有一类 Vue 应用中特有的函数被称为 [组合式函数](/guide/reusability/composables.html)，在测试过程中可能需要特殊处理。
+有一类 Vue 应用中特有的函数被称为 [组合式函数](/guide/reusability/composables)，在测试过程中可能需要特殊处理。
 你可以跳转到下方查看 [测试组合式函数](#testing-composables) 了解更多细节。
 
 ### 组件的单元测试 {#unit-testing-components}
@@ -91,7 +91,7 @@ describe('increment', () => {
 
 1. 白盒：单元测试
 
-   白盒测试知晓一个组件的实现细节和依赖关系。它们更专注于将组件进行更 **独立** 的测试。这些测试通常会涉及到模拟一些组件的部分子组件，以及设置插件的状态和依赖性（例如 Vuex）。
+   白盒测试知晓一个组件的实现细节和依赖关系。它们更专注于将组件进行更 **独立** 的测试。这些测试通常会涉及到模拟一些组件的部分子组件，以及设置插件的状态和依赖性（例如 Piana）。
 
 2. 黑盒：组件测试
 
@@ -353,7 +353,7 @@ test('it should work', () => {
 
 ### 测试组合式函数 {#testing-composables}
 
-> 这一小节假设你已经读过了[组合式函数](/guide/reusability/composables.html)这一章。
+> 这一小节假设你已经读过了[组合式函数](/guide/reusability/composables)这一章。
 
 当涉及到测试组合式函数时，我们可以根据是否依赖宿主组件实例把它们分为两类。
 

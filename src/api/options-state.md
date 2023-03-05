@@ -45,7 +45,7 @@
   data: (vm) => ({ a: vm.myProp })
   ```
 
-- **参考**：[深入响应式系统](/guide/extras/reactivity-in-depth.html)
+- **参考**：[深入响应式系统](/guide/extras/reactivity-in-depth)
 
 ## props {#props}
 
@@ -85,9 +85,9 @@
 
   在基于对象的语法中，每个 prop 可以进一步定义如下选项：
 
-  - **`type`**：可以是下列原生构造函数之一：`String`、`Number`、`Boolean`、`Array`、`Object`、`Date`、`Function`、`Symbol`、任何自定义构造函数，或由上述内容组成的数组。在开发模式中，Vue 会检查一个 prop 的值是否匹配其声明的类型，如果不匹配则会抛出警告。详见 [Prop 校验](/guide/components/props.html#prop-validation)。
+  - **`type`**：可以是下列原生构造函数之一：`String`、`Number`、`Boolean`、`Array`、`Object`、`Date`、`Function`、`Symbol`、任何自定义构造函数，或由上述内容组成的数组。在开发模式中，Vue 会检查一个 prop 的值是否匹配其声明的类型，如果不匹配则会抛出警告。详见 [Prop 校验](/guide/components/props#prop-validation)。
 
-    还要注意，一个 `Boolean` 类型的 prop 会影响它在开发或生产模式下的值转换行为。详见 [Boolean 类型转换](/guide/components/props.html#boolean-casting)。
+    还要注意，一个 `Boolean` 类型的 prop 会影响它在开发或生产模式下的值转换行为。详见 [Boolean 类型转换](/guide/components/props#boolean-casting)。
 
   - **`default`**：为该 prop 指定一个当其没有被传入或值为 `undefined` 时的默认值。对象或数组的默认值必须从一个工厂函数返回。工厂函数也接收原始 prop 对象作为参数。
 
@@ -126,8 +126,8 @@
   ```
 
 - **参考**：
-  - [指南 - Props](/guide/components/props.html)
-  - [指南 - 为组件的 props 标注类型](/guide/typescript/options-api.html#typing-component-props) <sup class="vt-badge ts" />
+  - [指南 - Props](/guide/components/props)
+  - [指南 - 为组件的 props 标注类型](/guide/typescript/options-api#typing-component-props) <sup class="vt-badge ts" />
 
 ## computed {#computed}
 
@@ -208,8 +208,8 @@
   ```
 
 - **参考**：
-  - [指南 - 计算属性](/guide/essentials/computed.html)
-  - [指南 - 为计算属性标记类型](/guide/typescript/options-api.html#typing-computed-properties) <sup class="vt-badge ts" />
+  - [指南 - 计算属性](/guide/essentials/computed)
+  - [指南 - 为计算属性标记类型](/guide/typescript/options-api#typing-computed-properties) <sup class="vt-badge ts" />
 
 ## methods {#methods}
 
@@ -250,7 +250,7 @@
   }
   ```
 
-- **参考**：[Event 处理](/guide/essentials/event-handling.html)
+- **参考**：[Event 处理](/guide/essentials/event-handling)
 
 ## watch {#watch}
 
@@ -289,14 +289,14 @@
 
   `watch` 选项期望接受一个对象，其中键是需要侦听的响应式组件实例属性 (例如，通过 `data` 或 `computed` 声明的属性)——值是相应的回调函数。该回调函数接受被侦听源的新值和旧值。
 
-  除了一个根级属性，键名也可以是一个简单的由点分隔的路径，例如 `a.b.c`。注意，这种用法**不支持**复杂表达式——仅支持由点分隔的路径。如果你需要侦听复杂的数据源，可以使用命令式的 [`$watch()`](/api/component-instance.html#watch) API。
+  除了一个根级属性，键名也可以是一个简单的由点分隔的路径，例如 `a.b.c`。注意，这种用法**不支持**复杂表达式——仅支持由点分隔的路径。如果你需要侦听复杂的数据源，可以使用命令式的 [`$watch()`](/api/component-instance#watch) API。
 
   值也可以是一个方法名称的字符串 (通过 `methods` 声明)，或包含额外选项的对象。当使用对象语法时，回调函数应被声明在 `handler` 中。额外的选项包含：
 
   - **`immediate`**：在侦听器创建时立即触发回调。第一次调用时，旧值将为 `undefined`。
-  - **`deep`**：如果源是对象或数组，则强制深度遍历源，以便在深度变更时触发回调。详见[深层侦听器](/guide/essentials/watchers.html#deep-watchers)。
-  - **`flush`**：调整回调的刷新时机。详见[回调的触发时机](/guide/essentials/watchers.html#callback-flush-timing)及 [`watchEffect()`](/api/reactivity-core.html#watcheffect)。
-  - **`onTrack / onTrigger`**：调试侦听器的依赖关系。详见[侦听器调试](/guide/extras/reactivity-in-depth.html#watcher-debugging)。
+  - **`deep`**：如果源是对象或数组，则强制深度遍历源，以便在深度变更时触发回调。详见[深层侦听器](/guide/essentials/watchers#deep-watchers)。
+  - **`flush`**：调整回调的刷新时机。详见[回调的触发时机](/guide/essentials/watchers#callback-flush-timing)及 [`watchEffect()`](/api/reactivity-core#watcheffect)。
+  - **`onTrack / onTrigger`**：调试侦听器的依赖关系。详见[侦听器调试](/guide/extras/reactivity-in-depth#watcher-debugging)。
 
   声明侦听器回调时避免使用箭头函数，因为它们将无法通过 `this` 访问组件实例。
 
@@ -368,7 +368,7 @@
   }
   ```
 
-- **参考**：[侦听器](/guide/essentials/watchers.html)
+- **参考**：[侦听器](/guide/essentials/watchers)
 
 ## emits {#emits}
 
@@ -397,7 +397,7 @@
 
   验证函数会接收到传递给组件的 `$emit` 调用的额外参数。例如，如果 `this.$emit('foo', 1)` 被调用，`foo` 相应的验证函数将接受参数 `1`。验证函数应返回布尔值，以表明事件参数是否通过了验证。
 
-  注意，`emits` 选项会影响一个监听器被解析为组件事件监听器，还是原生 DOM 事件监听器。被声明为组件事件的监听器不会被透传到组件的根元素上，且将从组件的 `$attrs` 对象中移除。详见[透传 Attributes](/guide/components/attrs.html)。
+  注意，`emits` 选项会影响一个监听器被解析为组件事件监听器，还是原生 DOM 事件监听器。被声明为组件事件的监听器不会被透传到组件的根元素上，且将从组件的 `$attrs` 对象中移除。详见[透传 Attributes](/guide/components/attrs)。
 
 - **示例**
 
@@ -434,8 +434,8 @@
   ```
 
 - **参考**：
-  - [指南 - 透传 Attributes](/guide/components/attrs.html)
-  - [指南 - 为组件的 emits 标注类型](/guide/typescript/options-api.html#typing-component-emits) <sup class="vt-badge ts" />
+  - [指南 - 透传 Attributes](/guide/components/attrs)
+  - [指南 - 为组件的 emits 标注类型](/guide/typescript/options-api#typing-component-emits) <sup class="vt-badge ts" />
 
 ## expose {#expose}
 

@@ -6,7 +6,7 @@ outline: deep
 
 在绝大多数情况下，Vue 推荐使用模板语法来创建应用。然而在某些使用场景下，我们真的需要用到 JavaScript 完全的编程能力。这时**渲染函数**就派上用场了。
 
-> 如果你还不熟悉虚拟 DOM 和渲染函数的概念的话，请确保先阅读[渲染机制](/guide/extras/rendering-mechanism.html)章节。
+> 如果你还不熟悉虚拟 DOM 和渲染函数的概念的话，请确保先阅读[渲染机制](/guide/extras/rendering-mechanism)章节。
 
 ## 基本用法 {#basic-usage}
 
@@ -389,7 +389,7 @@ h('input', {
 />
 ```
 
-对于事件和按键修饰符，可以使用 [`withModifiers`](/api/render-function.html#withmodifiers) 函数：
+对于事件和按键修饰符，可以使用 [`withModifiers`](/api/render-function#withmodifiers) 函数：
 
 ```js
 import { withModifiers } from 'vue'
@@ -446,7 +446,7 @@ function render() {
 }
 ```
 
-如果一个组件是用名字注册的，不能直接导入 (例如，由一个库全局注册)，可以使用 [`resolveComponent()`](/api/render-function.html#resolvecomponent) 来解决这个问题。
+如果一个组件是用名字注册的，不能直接导入 (例如，由一个库全局注册)，可以使用 [`resolveComponent()`](/api/render-function#resolvecomponent) 来解决这个问题。
 
 ### 渲染插槽 {#rendering-slots}
 
@@ -489,7 +489,7 @@ export default {
 </div>
 <div class="options-api">
 
-在渲染函数中，可以通过 [this.$slots](/api/component-instance.html#slots) 来访问插槽：
+在渲染函数中，可以通过 [this.$slots](/api/component-instance#slots) 来访问插槽：
 
 ```js
 export default {
@@ -559,7 +559,7 @@ h(MyComponent, null, {
 
 ### 内置组件 {#built-in-components}
 
-诸如 `<KeepAlive>`、`<Transition>`、`<TransitionGroup>`、`<Teleport>` 和 `<Suspense>` 等[内置组件](/api/built-in-components.html)在渲染函数中必须导入才能使用：
+诸如 `<KeepAlive>`、`<Transition>`、`<TransitionGroup>`、`<Teleport>` 和 `<Suspense>` 等[内置组件](/api/built-in-components)在渲染函数中必须导入才能使用：
 
 <div class="composition-api">
 
@@ -628,7 +628,7 @@ export default {
 
 ### 自定义指令 {#custom-directives}
 
-可以使用 [`withDirectives`](/api/render-function.html#withdirectives) 将自定义指令应用于 vnode：
+可以使用 [`withDirectives`](/api/render-function#withdirectives) 将自定义指令应用于 vnode：
 
 ```js
 import { h, withDirectives } from 'vue'
@@ -645,7 +645,7 @@ const vnode = withDirectives(h('div'), [
 ])
 ```
 
-当一个指令是以名称注册并且不能被直接导入时，可以使用 [`resolveDirective`](/api/render-function.html#resolvedirective) 函数来解决这个问题。
+当一个指令是以名称注册并且不能被直接导入时，可以使用 [`resolveDirective`](/api/render-function#resolvedirective) 函数来解决这个问题。
 
 ## 函数式组件 {#functional-components}
 
@@ -674,11 +674,11 @@ function MyComponent(props, context) {
 }
 ```
 
-第二个参数 `context` 包含三个属性：`attrs`、`emit` 和 `slots`。它们分别相当于组件实例的 [`$attrs`](/api/component-instance.html#attrs)、[`$emit`](/api/component-instance.html#emit) 和 [`$slots`](/api/component-instance.html#slots) 这几个属性。
+第二个参数 `context` 包含三个属性：`attrs`、`emit` 和 `slots`。它们分别相当于组件实例的 [`$attrs`](/api/component-instance#attrs)、[`$emit`](/api/component-instance#emit) 和 [`$slots`](/api/component-instance#slots) 这几个属性。
 
 </div>
 
-大多数常规组件的配置选项在函数式组件中都不可用，除了 [`props`](/api/options-state.html#props) 和 [`emits`](/api/options-state.html#emits)。我们可以给函数式组件添加对应的属性来声明它们：
+大多数常规组件的配置选项在函数式组件中都不可用，除了 [`props`](/api/options-state#props) 和 [`emits`](/api/options-state#emits)。我们可以给函数式组件添加对应的属性来声明它们：
 
 ```js
 MyComponent.props = ['value']
@@ -687,7 +687,7 @@ MyComponent.emits = ['click']
 
 如果这个 `props` 选项没有被定义，那么被传入函数的 `props` 对象就会像 `attrs` 一样会包含所有 attribute。除非指定了 `props` 选项，否则每个 prop 的名字将不会基于驼峰命名法被一般化处理。
 
-对于有明确 `props` 的函数式组件，[attribute 透传](/guide/components/attrs.html)的原理与普通组件基本相同。然而，对于没有明确指定 `props` 的函数式组件，只有 `class`、`style` 和 `onXxx` 事件监听器将默认从 `attrs` 中继承。在这两种情况下，可以将 `inheritAttrs` 设置为 `false` 来禁用属性继承：
+对于有明确 `props` 的函数式组件，[attribute 透传](/guide/components/attrs)的原理与普通组件基本相同。然而，对于没有明确指定 `props` 的函数式组件，只有 `class`、`style` 和 `onXxx` 事件监听器将默认从 `attrs` 中继承。在这两种情况下，可以将 `inheritAttrs` 设置为 `false` 来禁用属性继承：
 
 ```js
 MyComponent.inheritAttrs = false

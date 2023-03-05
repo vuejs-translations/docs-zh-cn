@@ -32,7 +32,7 @@ outline: deep
 
 1. 带有异步 `setup()` 钩子的组件。这也包含了使用 `<script setup>` 时有顶层 `await` 表达式的组件。
 
-2. [异步组件](/guide/components/async.html)。
+2. [异步组件](/guide/components/async)。
 
 ### `async setup()` {#async-setup}
 
@@ -101,7 +101,7 @@ const posts = await res.json()
 
 ## 错误处理 {#error-handling}
 
-`<Suspense>` 组件自身目前还不提供错误处理，不过你可以使用 [`errorCaptured`](/api/options-lifecycle.html#errorcaptured) 选项或者 [`onErrorCaptured()`](/api/composition-api-lifecycle.html#onerrorcaptured) 钩子，在使用到 `<Suspense>` 的父组件中捕获和处理异步错误。
+`<Suspense>` 组件自身目前还不提供错误处理，不过你可以使用 [`errorCaptured`](/api/options-lifecycle#errorcaptured) 选项或者 [`onErrorCaptured()`](/api/composition-api-lifecycle#onerrorcaptured) 钩子，在使用到 `<Suspense>` 的父组件中捕获和处理异步错误。
 
 ## 和其他组件结合 {#combining-with-other-components}
 

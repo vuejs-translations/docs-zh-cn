@@ -6,11 +6,11 @@
 
 <!-- https://www.figma.com/file/qa7WHDQRWuEZNRs7iZRZSI/components -->
 
-这和我们嵌套 HTML 元素的方式类似，Vue 实现了自己的组件模型，使我们可以在每个组件内封装自定义内容与逻辑。Vue 同样也能很好地配合原生 Web Component。如果你想知道 Vue 组件与原生 Web Components 之间的关系，可以[阅读此章节](/guide/extras/web-components.html)。
+这和我们嵌套 HTML 元素的方式类似，Vue 实现了自己的组件模型，使我们可以在每个组件内封装自定义内容与逻辑。Vue 同样也能很好地配合原生 Web Component。如果你想知道 Vue 组件与原生 Web Components 之间的关系，可以[阅读此章节](/guide/extras/web-components)。
 
 ## 定义一个组件 {#defining-a-component}
 
-当使用构建步骤时，我们一般会将 Vue 组件定义在一个单独的 `.vue` 文件中，这被叫做[单文件组件](/guide/scaling-up/sfc.html) (简称 SFC)：
+当使用构建步骤时，我们一般会将 Vue 组件定义在一个单独的 `.vue` 文件中，这被叫做[单文件组件](/guide/scaling-up/sfc) (简称 SFC)：
 
 <div class="options-api">
 
@@ -117,7 +117,7 @@ export default {
 </template>
 ```
 
-若要将导入的组件暴露给模板，我们需要在 `components` 选项上[注册](/guide/components/registration.html)它。这个组件将会以其注册时的名字作为模板中的标签名。
+若要将导入的组件暴露给模板，我们需要在 `components` 选项上[注册](/guide/components/registration)它。这个组件将会以其注册时的名字作为模板中的标签名。
 
 </div>
 
@@ -138,7 +138,7 @@ import ButtonCounter from './ButtonCounter.vue'
 
 </div>
 
-当然，你也可以全局地注册一个组件，使得它在当前应用中的任何组件上都可以使用，而不需要额外再导入。关于组件的全局注册和局部注册两种方式的利弊，我们放在了[组件注册](/guide/components/registration.html)这一章节中专门讨论。
+当然，你也可以全局地注册一个组件，使得它在当前应用中的任何组件上都可以使用，而不需要额外再导入。关于组件的全局注册和局部注册两种方式的利弊，我们放在了[组件注册](/guide/components/registration)这一章节中专门讨论。
 
 组件可以被重用任意多次：
 
@@ -179,7 +179,7 @@ import ButtonCounter from './ButtonCounter.vue'
 
 如果我们正在构建一个博客，我们可能需要一个表示博客文章的组件。我们希望所有的博客文章分享相同的视觉布局，但有不同的内容。要实现这样的效果自然必须向组件中传递数据，例如每篇文章标题和内容，这就会使用到 props。
 
-Props 是一种特别的 attributes，你可以在组件上声明注册。要传递给博客文章组件一个标题，我们必须在组件的 props 列表上声明它。这里要用到 <span class="options-api">[`props`](/api/options-state.html#props) 选项</span><span class="composition-api">[`defineProps`](/api/sfc-script-setup.html#defineprops-defineemits) 宏</span>：
+Props 是一种特别的 attributes，你可以在组件上声明注册。要传递给博客文章组件一个标题，我们必须在组件的 props 列表上声明它。这里要用到 <span class="options-api">[`props`](/api/options-state#props) 选项</span><span class="composition-api">[`defineProps`](/api/sfc-script-setup#defineprops-defineemits) 宏</span>：
 
 <div class="options-api">
 
@@ -219,7 +219,7 @@ const props = defineProps(['title'])
 console.log(props.title)
 ```
 
-TypeScript 用户请参考：[为组件 props 标注类型](/guide/typescript/composition-api.html#typing-component-props)<sup class="vt-badge ts" />
+TypeScript 用户请参考：[为组件 props 标注类型](/guide/typescript/composition-api#typing-component-props)<sup class="vt-badge ts" />
 
 如果你没有使用 `<script setup>`，props 必须以 `props` 选项的方式声明，props 对象会作为 `setup()` 函数的第一个参数被传入：
 
@@ -299,7 +299,7 @@ const posts = ref([
 
 留意我们是如何使用 `v-bind` 来传递动态 prop 值的。当事先不知道要渲染的确切内容时，这一点特别有用。
 
-以上就是目前你需要了解的关于 props 的全部了。如果你看完本章节后还想知道更多细节，我们推荐你深入阅读关于 props 的[完整指引](/guide/components/props.html)。
+以上就是目前你需要了解的关于 props 的全部了。如果你看完本章节后还想知道更多细节，我们推荐你深入阅读关于 props 的[完整指引](/guide/components/props)。
 
 ## 监听事件 {#listening-to-events}
 
@@ -366,7 +366,7 @@ const postFontSize = ref(1)
  />
 ```
 
-子组件可以通过调用内置的 [**`$emit`** 方法](/api/component-instance.html#emit)，通过传入事件名称来抛出一个事件：
+子组件可以通过调用内置的 [**`$emit`** 方法](/api/component-instance#emit)，通过传入事件名称来抛出一个事件：
 
 ```vue{5}
 <!-- BlogPost.vue, 省略了 <script> -->
@@ -391,7 +391,7 @@ const postFontSize = ref(1)
 
 </div>
 
-我们可以通过 <span class="options-api">[`emits`](/api/options-state.html#emits) 选项</span><span class="composition-api">[`defineEmits`](/api/sfc-script-setup.html#defineprops-defineemits) 宏</span>来声明需要抛出的事件：
+我们可以通过 <span class="options-api">[`emits`](/api/options-state#emits) 选项</span><span class="composition-api">[`defineEmits`](/api/sfc-script-setup#defineprops-defineemits) 宏</span>来声明需要抛出的事件：
 
 <div class="options-api">
 
@@ -418,7 +418,7 @@ defineEmits(['enlarge-text'])
 
 </div>
 
-这声明了一个组件可能触发的所有事件，还可以对事件的参数进行[验证](/guide/components/events.html#validate-emitted-events)。同时，这还可以让 Vue 避免将它们作为原生事件监听器隐式地应用于子组件的根元素。
+这声明了一个组件可能触发的所有事件，还可以对事件的参数进行[验证](/guide/components/events#validate-emitted-events)。同时，这还可以让 Vue 避免将它们作为原生事件监听器隐式地应用于子组件的根元素。
 
 <div class="composition-api">
 
@@ -432,7 +432,7 @@ emit('enlarge-text')
 </script>
 ```
 
-TypeScript 用户请参考：[为组件 emits 标注类型](/guide/typescript/composition-api.html#typing-component-emits)<sup class="vt-badge ts" />
+TypeScript 用户请参考：[为组件 emits 标注类型](/guide/typescript/composition-api#typing-component-emits)<sup class="vt-badge ts" />
 
 如果你没有在使用 `<script setup>`，你可以通过 `emits` 选项定义组件会抛出的事件。你可以从 `setup()` 函数的第二个参数，即 setup 上下文对象上访问到 `emit` 函数：
 
@@ -538,7 +538,7 @@ Something bad happened.
 
 你也可以使用 `is` attribute 来创建一般的 HTML 元素。
 
-当使用 `<component :is="...">` 来在多个组件间作切换时，被切换掉的组件会被卸载。我们可以通过 [`<KeepAlive>` 组件](/guide/built-ins/keep-alive.html)强制被切换掉的组件仍然保持“存活”的状态。
+当使用 `<component :is="...">` 来在多个组件间作切换时，被切换掉的组件会被卸载。我们可以通过 [`<KeepAlive>` 组件](/guide/built-ins/keep-alive)强制被切换掉的组件仍然保持“存活”的状态。
 
 ## DOM 模板解析注意事项 {#dom-template-parsing-caveats}
 
@@ -615,7 +615,7 @@ const BlogPost = {
 </table>
 ```
 
-自定义的组件 `<blog-post-row>` 将作为无效的内容被忽略，因而在最终呈现的输出中造成错误。我们可以使用特殊的 [`is` attribute](/api/built-in-special-attributes.html#is) 作为一种解决方案：
+自定义的组件 `<blog-post-row>` 将作为无效的内容被忽略，因而在最终呈现的输出中造成错误。我们可以使用特殊的 [`is` attribute](/api/built-in-special-attributes#is) 作为一种解决方案：
 
 ```vue-html
 <table>

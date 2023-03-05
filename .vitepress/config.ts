@@ -314,15 +314,10 @@ export const sidebar: ThemeConfig['sidebar'] = {
           text: '动画技巧',
           link: '/guide/extras/animation'
         },
-        {
-          text: '响应性语法糖',
-          link: '/guide/extras/reactivity-transform'
-        }
         // {
         //   text: '为 Vue 构建一个库',
         //   link: '/guide/extras/building-a-library'
         // },
-        // { text: 'Custom Renderers', link: '/guide/extras/custom-renderer' },
         // {
         //   text: 'Vue for React 开发者',
         //   link: '/guide/extras/vue-for-react-devs'
@@ -726,9 +721,5 @@ export default defineConfigWithTheme<ThemeConfig>({
     json: {
       stringify: true
     }
-  },
-
-  vue: {
-    reactivityTransform: true
   }
 })

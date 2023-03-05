@@ -67,7 +67,7 @@
   <component :is="href ? 'a' : 'span'"></component>
   ```
 
-  [内置组件](./built-in-components.html)都可以传递给 `is`，但是如果想通过名称传递则必须先对其进行注册。举例来说：
+  [内置组件](./built-in-components)都可以传递给 `is`，但是如果想通过名称传递则必须先对其进行注册。举例来说：
 
   ```vue
   <script>
@@ -108,7 +108,7 @@
 
   在实践中，这种极端情况并不常见，因为原生表单字段通常包裹在实际应用的组件中。如果确实需要直接使用原生元素，那么你可以手动将 `v-model` 拆分为 attribute 和事件。
 
-- **参考**：[动态组件](/guide/essentials/component-basics.html#dynamic-components)
+- **参考**：[动态组件](/guide/essentials/component-basics#dynamic-components)
 
 ## `<slot>` {#slot}
 
@@ -138,7 +138,7 @@
 
   Vue 模板里的 `<slot>` 元素会被编译到 JavaScript，因此不要与[原生 `<slot>` 元素](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/slot)进行混淆。
 
-- **参考**：[组件 - 插槽](/guide/components/slots.html)
+- **参考**：[组件 - 插槽](/guide/components/slots)
 
 ## `<template>` {#template}
 
@@ -154,11 +154,11 @@
 
   如果这些指令都不存在，那么它将被渲染成一个[原生的 `<template>` 元素](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/template)。
 
-  带有 `v-for` 的 `<template>` 也可以有一个 [`key` 属性](/api/built-in-special-attributes.html#key)。所有其他的属性和指令都将被丢弃，因为没有相应的元素，它们就没有意义。
+  带有 `v-for` 的 `<template>` 也可以有一个 [`key` 属性](/api/built-in-special-attributes#key)。所有其他的属性和指令都将被丢弃，因为没有相应的元素，它们就没有意义。
 
-  单文件组件使用[顶层的 `<template>` 标签](/api/sfc-spec.html#language-blocks)来包裹整个模板。这种用法与上面描述的 `<template>` 使用方式是有区别的。该顶层标签不是模板本身的一部分，不支持指令等模板语法。
+  单文件组件使用[顶层的 `<template>` 标签](/api/sfc-spec#language-blocks)来包裹整个模板。这种用法与上面描述的 `<template>` 使用方式是有区别的。该顶层标签不是模板本身的一部分，不支持指令等模板语法。
 
 - **参考**：
-  - [指南 - `<template>` 上的 `v-if`](/guide/essentials/conditional.html#v-if-on-template) 
-  - [指南 - `<template>` 上的 `v-for`](/guide/essentials/list.html#v-for-on-template) 
-  - [指南 - 具名插槽](/guide/components/slots.html#named-slots) 
+  - [指南 - `<template>` 上的 `v-if`](/guide/essentials/conditional#v-if-on-template)
+  - [指南 - `<template>` 上的 `v-for`](/guide/essentials/list#v-for-on-template)
+  - [指南 - 具名插槽](/guide/components/slots#named-slots)

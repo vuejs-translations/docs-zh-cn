@@ -50,9 +50,9 @@
   }
   ```
 
-  请注意，针对上面这个例子，所供给的 `msg` 将**不会**是响应式的。请查看[和响应式数据配合使用](/guide/components/provide-inject.html#working-with-reactivity)一节获取更多细节。
+  请注意，针对上面这个例子，所供给的 `msg` 将**不会**是响应式的。请查看[和响应式数据配合使用](/guide/components/provide-inject#working-with-reactivity)一节获取更多细节。
 
-- **参考**：[依赖注入](/guide/components/provide-inject.html)
+- **参考**：[依赖注入](/guide/components/provide-inject)
 
 ## inject {#inject}
 
@@ -88,7 +88,7 @@
 
   如果没有供给相匹配的属性、也没有提供默认值，那么注入的属性将为 `undefined`。
 
-  请注意，注入绑定并非响应式的。这是有意为之的一个设计。如果要注入的值是一个响应式对象，那么这个对象上的属性将会保留响应性。请看[配合响应性](/guide/components/provide-inject.html#working-with-reactivity)一节获取更多细节。
+  请注意，注入绑定并非响应式的。这是有意为之的一个设计。如果要注入的值是一个响应式对象，那么这个对象上的属性将会保留响应性。请看[配合响应性](/guide/components/provide-inject#working-with-reactivity)一节获取更多细节。
 
 - **示例**
 
@@ -167,7 +167,7 @@
   }
   ```
 
-- **参考**：[依赖注入](/guide/components/provide-inject.html)
+- **参考**：[依赖注入](/guide/components/provide-inject)
 
 ## mixins {#mixins}
 
@@ -188,7 +188,7 @@
   Mixin 钩子的调用顺序与提供它们的选项顺序相同，且会在组件自身的钩子前被调用。
 
   :::warning 不再推荐
-  在 Vue 2 中，mixins 是创建可重用组件逻辑的主要方式。尽管在 Vue 3 中保留了 mixins 支持，但对于组件间的逻辑复用，[Composition API](/guide/reusability/composables.html) 是现在更推荐的方式。
+  在 Vue 2 中，mixins 是创建可重用组件逻辑的主要方式。尽管在 Vue 3 中保留了 mixins 支持，但对于组件间的逻辑复用，[Composition API](/guide/reusability/composables) 是现在更推荐的方式。
   :::
 
 - **示例：**

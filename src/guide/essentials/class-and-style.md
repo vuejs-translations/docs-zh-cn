@@ -201,7 +201,7 @@ data() {
 渲染出的 HTML 为：
 
 ```vue-html
-<p class="foo bar baz boo">Hi</p>
+<p class="foo bar baz boo">Hi!</p>
 ```
 
 Class 的绑定也是同样的：
@@ -213,7 +213,7 @@ Class 的绑定也是同样的：
 当 `isActive` 为真时，被渲染的 HTML 会是：
 
 ```vue-html
-<p class="foo bar active">Hi</p>
+<p class="foo bar active">Hi!</p>
 ```
 
 如果你的组件有多个根元素，你将需要指定哪个根元素来接收这个 class。你可以通过组件的 `$attrs` 属性来实现指定：
@@ -235,7 +235,7 @@ Class 的绑定也是同样的：
 <span>This is a child component</span>
 ```
 
-你可以在[透传 Attribute](/guide/components/attrs.html) 一章中了解更多组件的 attribute 继承的细节。
+你可以在[透传 Attribute](/guide/components/attrs) 一章中了解更多组件的 attribute 继承的细节。
 
 ## 绑定内联样式 {#binding-inline-styles}
 

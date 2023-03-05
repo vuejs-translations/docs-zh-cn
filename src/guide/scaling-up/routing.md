@@ -10,11 +10,18 @@
 
 ## 官方路由 {#official-router}
 
+<!-- TODO update links -->
+<div>
+  <VueSchoolLink href="https://vueschool.io/courses/vue-router-4-for-everyone" title="免费的 Vue Router 课程">
+    在 Vue School 上观看免费的视频课程
+  </VueSchoolLink>
+</div>
+
 Vue 很适合用来构建单页面应用。对于大多数此类应用，都推荐使用官方支持的[路由库](https://github.com/vuejs/router)。要了解更多细节，请查看 [Vue Router 的文档](https://router.vuejs.org/zh/)。
 
 ## 从头开始实现一个简单的路由 {#simple-routing-from-scratch}
 
-如果你只需要一个简单的页面路由，而不想为此引入一整个路由库，你可以通过[动态组件](/guide/essentials/component-basics.html#dynamic-components)的方式，监听浏览器 [`hashchange` 事件](https://developer.mozilla.org/en-US/docs/Web/API/Window/hashchange_event)或使用 [History API](https://developer.mozilla.org/en-US/docs/Web/API/History) 来更新当前组件。
+如果你只需要一个简单的页面路由，而不想为此引入一整个路由库，你可以通过[动态组件](/guide/essentials/component-basics#dynamic-components)的方式，监听浏览器 [`hashchange` 事件](https://developer.mozilla.org/en-US/docs/Web/API/Window/hashchange_event)或使用 [History API](https://developer.mozilla.org/en-US/docs/Web/API/History) 来更新当前组件。
 
 下面是一个简单的例子：
 

@@ -112,12 +112,12 @@ methods: {
 
 <div class="composition-api">
 
-你也可以看看[为事件处理器标注类型](/guide/typescript/composition-api.html#typing-event-handlers)这一章了解更多。<sup class="vt-badge ts" />
+你也可以看看[为事件处理器标注类型](/guide/typescript/composition-api#typing-event-handlers)这一章了解更多。<sup class="vt-badge ts" />
 
 </div>
 <div class="options-api">
 
-你也可以看看[为事件处理器标注类型](/guide/typescript/options-api.html#typing-event-handlers)这一章了解更多。<sup class="vt-badge ts" />
+你也可以看看[为事件处理器标注类型](/guide/typescript/options-api#typing-event-handlers)这一章了解更多。<sup class="vt-badge ts" />
 
 </div>
 

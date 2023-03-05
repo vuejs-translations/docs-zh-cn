@@ -67,7 +67,7 @@ export default {
 1. 多个视图可能都依赖于同一份状态。
 2. 来自不同视图的交互也可能需要更改同一份状态。
 
-对于情景 1，一个可行的办法是将共享状态“提升”到共同的祖先组件上去，再通过 props 传递下来。然而在深层次的组件树结构中这么做的话，很快就会使得代码变得繁琐冗长。这会导致另一个问题：[Prop 逐级透传问题](/guide/components/provide-inject.html#prop-drilling)。
+对于情景 1，一个可行的办法是将共享状态“提升”到共同的祖先组件上去，再通过 props 传递下来。然而在深层次的组件树结构中这么做的话，很快就会使得代码变得繁琐冗长。这会导致另一个问题：[Prop 逐级透传问题](/guide/components/provide-inject#prop-drilling)。
 
 对于情景 2，我们经常发现自己会直接通过模板引用获取父/子实例，或者通过触发的事件尝试改变和同步多个状态的副本。但这些模式的健壮性都不甚理想，很容易就会导致代码难以维护。
 
@@ -77,11 +77,11 @@ export default {
 
 <div class="options-api">
 
-在选项式 API 中，响应式数据是用 `data()` 选项声明的。在内部，`data()` 的返回值对象会通过 [`reactive()`](/api/reactivity-core.html#reactive) 这个公开的 API 函数转为响应式。
+在选项式 API 中，响应式数据是用 `data()` 选项声明的。在内部，`data()` 的返回值对象会通过 [`reactive()`](/api/reactivity-core#reactive) 这个公开的 API 函数转为响应式。
 
 </div>
 
-如果你有一部分状态需要在多个组件实例间共享，你可以使用 [`reactive()`](/api/reactivity-core.html#reactive) 来创建一个响应式对象，并将它导入到多个组件中：
+如果你有一部分状态需要在多个组件实例间共享，你可以使用 [`reactive()`](/api/reactivity-core#reactive) 来创建一个响应式对象，并将它导入到多个组件中：
 
 ```js
 // store.js
@@ -200,7 +200,7 @@ export const store = reactive({
 请注意这里点击的处理函数使用了 `store.increment()`，带上了圆括号作为内联表达式调用，因为它并不是组件的方法，并且必须要以正确的 `this` 上下文来调用。
 :::
 
-除了我们这里用到的单个响应式对象作为一个 store 之外，你还可以使用其他[响应式 API](/api/reactivity-core.html) 例如 `ref()` 或是 `computed()`，或是甚至通过一个[组合式函数](/guide/reusability/composables.html)来返回一个全局状态：
+除了我们这里用到的单个响应式对象作为一个 store 之外，你还可以使用其他[响应式 API](/api/reactivity-core) 例如 `ref()` 或是 `computed()`，或是甚至通过一个[组合式函数](/guide/reusability/composables)来返回一个全局状态：
 
 ```js
 import { ref } from 'vue'

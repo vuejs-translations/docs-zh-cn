@@ -22,7 +22,7 @@
 
 <div class="composition-api">
 
-要为组件后代提供数据，需要使用到 [`provide()`](/api/composition-api-dependency-injection.html#provide) 函数：
+要为组件后代提供数据，需要使用到 [`provide()`](/api/composition-api-dependency-injection#provide) 函数：
 
 ```vue
 <script setup>
@@ -61,7 +61,7 @@ provide('key', count)
 
 <div class="options-api">
 
-要为组件后代提供数据，需要使用到 [`provide`](/api/options-composition.html#provide) 选项：
+要为组件后代提供数据，需要使用到 [`provide`](/api/options-composition#provide) 选项：
 
 ```js
 export default {
@@ -107,13 +107,13 @@ const app = createApp({})
 app.provide(/* 注入名 */ 'message', /* 值 */ 'hello!')
 ```
 
-在应用级别提供的数据在该应用内的所有组件中都可以注入。这在你编写[插件](/guide/reusability/plugins.html)时会特别有用，因为插件一般都不会使用组件形式来提供值。
+在应用级别提供的数据在该应用内的所有组件中都可以注入。这在你编写[插件](/guide/reusability/plugins)时会特别有用，因为插件一般都不会使用组件形式来提供值。
 
 ## Inject (注入) {#inject}
 
 <div class="composition-api">
 
-要注入上层组件提供的数据，需使用 [`inject()`](/api/composition-api-dependency-injection.html#inject) 函数：
+要注入上层组件提供的数据，需使用 [`inject()`](/api/composition-api-dependency-injection#inject) 函数：
 
 ```vue
 <script setup>
@@ -144,7 +144,7 @@ export default {
 
 <div class="options-api">
 
-要注入上层组件提供的数据，需使用 [`inject`](/api/options-composition.html#inject) 选项来声明：
+要注入上层组件提供的数据，需使用 [`inject`](/api/options-composition#inject) 选项来声明：
 
 ```js
 export default {
@@ -274,7 +274,7 @@ const { location, updateLocation } = inject('location')
 </template>
 ```
 
-最后，如果你想确保提供的数据不能被注入方的组件更改，你可以使用 [`readonly()`](/api/reactivity-core.html#readonly) 来包装提供的值。
+最后，如果你想确保提供的数据不能被注入方的组件更改，你可以使用 [`readonly()`](/api/reactivity-core#readonly) 来包装提供的值。
 
 ```vue
 <script setup>
@@ -289,7 +289,7 @@ provide('read-only-count', readonly(count))
 
 <div class="options-api">
 
-为保证注入方和供给方之间的响应性链接，我们需要使用 [computed()](/api/reactivity-core.html#computed) 函数提供一个计算属性：
+为保证注入方和供给方之间的响应性链接，我们需要使用 [computed()](/api/reactivity-core#computed) 函数提供一个计算属性：
 
 ```js{10}
 import { computed } from 'vue'
@@ -311,7 +311,7 @@ export default {
 
 [带有响应性的 provide + inject 完整示例](https://sfc.vuejs.org/#eyJBcHAudnVlIjoiPHNjcmlwdD5cbmltcG9ydCBDaGlsZCBmcm9tICcuL0NoaWxkLnZ1ZSdcbmltcG9ydCB7IGNvbXB1dGVkIH0gZnJvbSAndnVlJ1xuXG5leHBvcnQgZGVmYXVsdCB7XG4gIGNvbXBvbmVudHM6IHsgQ2hpbGQgfSxcbiAgZGF0YSgpIHtcbiAgICByZXR1cm4ge1xuICAgICAgbWVzc2FnZTogJ2hlbGxvJ1xuICAgIH1cbiAgfSxcbiAgcHJvdmlkZSgpIHtcbiAgICByZXR1cm4ge1xuICAgICAgbWVzc2FnZTogY29tcHV0ZWQoKCkgPT4gdGhpcy5tZXNzYWdlKVxuICAgIH1cbiAgfVxufVxuPC9zY3JpcHQ+XG5cbjx0ZW1wbGF0ZT5cbiAgPGlucHV0IHYtbW9kZWw9XCJtZXNzYWdlXCI+XG4gIDxDaGlsZCAvPlxuPC90ZW1wbGF0ZT4iLCJpbXBvcnQtbWFwLmpzb24iOiJ7XG4gIFwiaW1wb3J0c1wiOiB7XG4gICAgXCJ2dWVcIjogXCJodHRwczovL3NmYy52dWVqcy5vcmcvdnVlLnJ1bnRpbWUuZXNtLWJyb3dzZXIuanNcIlxuICB9XG59IiwiQ2hpbGQudnVlIjoiPHNjcmlwdD5cbmltcG9ydCBHcmFuZENoaWxkIGZyb20gJy4vR3JhbmRDaGlsZC52dWUnXG5cbmV4cG9ydCBkZWZhdWx0IHtcbiAgY29tcG9uZW50czoge1xuICAgIEdyYW5kQ2hpbGRcbiAgfVxufVxuPC9zY3JpcHQ+XG5cbjx0ZW1wbGF0ZT5cbiAgPEdyYW5kQ2hpbGQgLz5cbjwvdGVtcGxhdGU+IiwiR3JhbmRDaGlsZC52dWUiOiI8c2NyaXB0PlxuZXhwb3J0IGRlZmF1bHQge1xuICBpbmplY3Q6IFsnbWVzc2FnZSddXG59XG48L3NjcmlwdD5cblxuPHRlbXBsYXRlPlxuICA8cD5cbiAgICBNZXNzYWdlIHRvIGdyYW5kIGNoaWxkOiB7eyBtZXNzYWdlIH19XG4gIDwvcD5cbjwvdGVtcGxhdGU+In0=)
 
-`computed()` 函数常用于组合式 API 风格的组件中，但它同样还可以用于补充选项式 API 风格的某些用例。你可以通过阅读[响应式系统基础](/guide/essentials/reactivity-fundamentals.html)和[计算属性](/guide/essentials/computed.html)两个章节了解更多组合式的 API 风格。
+`computed()` 函数常用于组合式 API 风格的组件中，但它同样还可以用于补充选项式 API 风格的某些用例。你可以通过阅读[响应式系统基础](/guide/essentials/reactivity-fundamentals)和[计算属性](/guide/essentials/computed)两个章节了解更多组合式的 API 风格。
 
 :::warning 临时配置要求
 上面的用例需要设置 `app.config.unwrapInjectedRef = true` 以保证注入会自动解包这个计算属性。这将会在 Vue 3.3 后成为一个默认行为，而我们暂时在此告知此项配置以避免后续升级对代码的破坏性。在 3.3 后就不需要这样做了。
@@ -350,7 +350,7 @@ import { myInjectionKey } from './keys.js'
 const injected = inject(myInjectionKey)
 ```
 
-TypeScript 用户请参考：[为 Provide / Inject 标注类型](/guide/typescript/composition-api.html#typing-provide-inject) <sup class="vt-badge ts" />
+TypeScript 用户请参考：[为 Provide / Inject 标注类型](/guide/typescript/composition-api#typing-provide-inject) <sup class="vt-badge ts" />
 
 </div>
 

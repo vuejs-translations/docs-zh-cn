@@ -7,7 +7,7 @@ pageClass: api
 :::info 组件注册和使用
 内置组件无需注册便可以直接在模板中使用。它们也支持 tree-shake：仅在使用时才会包含在构建中。
 
-在[渲染函数](/guide/extras/render-function.html)中使用它们时，需要显式导入。例如：
+在[渲染函数](/guide/extras/render-function)中使用它们时，需要显式导入。例如：
 
 ```js
 import { h, Transition } from 'vue'
@@ -118,7 +118,7 @@ h(Transition, {
   </Transition>
   ```
 
-- **参考**：[`<Transition>` 指南](/guide/built-ins/transition.html)
+- **参考**：[`<Transition>` 指南](/guide/built-ins/transition)
 
 ## `<TransitionGroup>` {#transitiongroup}
 
@@ -150,7 +150,7 @@ h(Transition, {
 
   默认情况下，`<TransitionGroup>` 不会渲染一个容器 DOM 元素，但是可以通过 `tag` prop 启用。
 
-  注意，每个 `<transition-group>` 的子节点必须有[**独立的 key**](/guide/essentials/list.html#maintaining-state-with-key)，动画才能正常工作。
+  注意，每个 `<transition-group>` 的子节点必须有[**独立的 key**](/guide/essentials/list#maintaining-state-with-key)，动画才能正常工作。
 
   `<TransitionGroup>` 支持通过 CSS transform 控制移动效果。当一个子节点在屏幕上的位置在更新之后发生变化时，它会被添加一个使其位移的 CSS class (基于 `name` attribute 推导，或使用 `move-class` prop 显式配置)。如果使其位移的 class 被添加时 CSS 的 `transform` 属性是“可过渡的”，那么该元素会基于 [FLIP 技巧](https://aerotwist.com/blog/flip-your-animations/)平滑地到达动画终点。
 
@@ -164,7 +164,7 @@ h(Transition, {
   </TransitionGroup>
   ```
 
-- **参考**：[指南 - TransitionGroup](/guide/built-ins/transition-group.html)
+- **参考**：[指南 - TransitionGroup](/guide/built-ins/transition-group)
 
 ## `<KeepAlive>` {#keepalive}
 
@@ -257,7 +257,7 @@ h(Transition, {
   </KeepAlive>
   ```
 
-- **参考**：[指南 - KeepAlive](/guide/built-ins/keep-alive.html)
+- **参考**：[指南 - KeepAlive](/guide/built-ins/keep-alive)
 
 ## `<Teleport>` {#teleport}
 
@@ -299,7 +299,7 @@ h(Transition, {
   </teleport>
   ```
 
-- **参考**：[指南 - Teleport](/guide/built-ins/teleport.html)
+- **参考**：[指南 - Teleport](/guide/built-ins/teleport)
 
 ## `<Suspense>` <sup class="vt-badge experimental" /> {#suspense}
 
@@ -323,6 +323,6 @@ h(Transition, {
 
   `<Suspense>` 接受两个插槽：`#default` 和 `#fallback`。它将在内存中渲染默认插槽的同时展示后备插槽内容。
 
-  如果在渲染时遇到异步依赖项 ([异步组件](/guide/components/async.html)和具有 [`async setup()`](/guide/built-ins/suspense.html#async-setup) 的组件)，它将等到所有异步依赖项解析完成时再显示默认插槽。
+  如果在渲染时遇到异步依赖项 ([异步组件](/guide/components/async)和具有 [`async setup()`](/guide/built-ins/suspense#async-setup) 的组件)，它将等到所有异步依赖项解析完成时再显示默认插槽。
 
-- **参考**：[指南 - Suspense](/guide/built-ins/suspense.html)
+- **参考**：[指南 - Suspense](/guide/built-ins/suspense)
