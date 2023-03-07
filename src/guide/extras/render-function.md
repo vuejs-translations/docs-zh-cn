@@ -39,8 +39,8 @@ h('div', { id: 'foo' })
 // Vue 会自动将它们分配到正确的位置
 h('div', { class: 'bar', innerHTML: 'hello' })
 
-// props modifiers such as .prop and .attr can be added
-// with '.' and `^' prefixes respectively
+// 像 .prop 和 .attr 这样的的属性修饰符
+// 可以分别通过 '.' 和 '^' 前缀来添加
 h('div', { '.name': 'some-name', '^width': '100' })
 
 // 类与样式可以像在模板中一样
