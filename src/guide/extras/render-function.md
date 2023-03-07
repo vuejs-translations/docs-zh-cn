@@ -40,7 +40,7 @@ h('div', { id: 'foo' })
 h('div', { class: 'bar', innerHTML: 'hello' })
 
 // 像 .prop 和 .attr 这样的的属性修饰符
-// 分别使用  '.' 和 '^' 前缀进行标识
+// 可以分别通过 '.' 和 '^' 前缀来添加
 h('div', { '.name': 'some-name', '^width': '100' })
 
 // 类与样式可以像在模板中一样
