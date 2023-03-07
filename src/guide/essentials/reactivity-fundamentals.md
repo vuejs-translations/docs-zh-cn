@@ -573,5 +573,3 @@ export default {
 ```
 
 </div>
-
-<!-- zhlint disabled -->
