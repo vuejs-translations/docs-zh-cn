@@ -8,7 +8,7 @@
 
 - **详细信息**
 
-  `v-text` 通过设置元素的 [textContent](https://developer.mozilla.org/en-US/docs/Web/API/Node/textContent) 属性来工作，因此它将覆盖元素中所有现有的内容。如果你需要更新 `textContent` 的部分，应该使用 [mustache interpolations](/guide/essentials/template-syntax.html#text-interpolation) 代替。
+  `v-text` 通过设置元素的 [textContent](https://developer.mozilla.org/en-US/docs/Web/API/Node/textContent) 属性来工作，因此它将覆盖元素中所有现有的内容。如果你需要更新 `textContent` 的部分，应该使用 [mustache interpolations](/guide/essentials/template-syntax#text-interpolation) 代替。
 
 - **示例**
 
@@ -18,7 +18,7 @@
   <span>{{msg}}</span>
   ```
 
-- **参考**：[模板语法 - 文本插值](/guide/essentials/template-syntax.html#text-interpolation)
+- **参考**：[模板语法 - 文本插值](/guide/essentials/template-syntax#text-interpolation)
 
 ## v-html {#v-html}
 
@@ -34,7 +34,7 @@
  在你的站点上动态渲染任意的 HTML 是非常危险的，因为它很容易导致 [XSS 攻击](https://en.wikipedia.org/wiki/Cross-site_scripting)。请只对可信内容使用 HTML 插值，**绝不要**将用户提供的内容作为插值
   :::
 
- 在[单文件组件](/guide/scaling-up/sfc)，`scoped` 样式将不会作用于 `v-html` 里的内容，因为 HTML 内容不会被 Vue 的模板编译器解析。如果你想让 `v-html` 的内容也支持 scoped CSS，你可以使用 [CSS modules](./sfc-css-features.html#css-modules) 或使用一个额外的全局 `<style>` 元素，手动设置类似 BEM 的作用域策略。
+ 在[单文件组件](/guide/scaling-up/sfc)，`scoped` 样式将不会作用于 `v-html` 里的内容，因为 HTML 内容不会被 Vue 的模板编译器解析。如果你想让 `v-html` 的内容也支持 scoped CSS，你可以使用 [CSS modules](./sfc-css-features#css-modules) 或使用一个额外的全局 `<style>` 元素，手动设置类似 BEM 的作用域策略。
 
 - **示例：**
 
@@ -42,7 +42,7 @@
   <div v-html="html"></div>
   ```
 
-- **参考**：[模板语法 - 原始 HTML](/guide/essentials/template-syntax.html#raw-html)
+- **参考**：[模板语法 - 原始 HTML](/guide/essentials/template-syntax#raw-html)
 
 ## v-show {#v-show}
 
@@ -54,7 +54,7 @@
 
   `v-show` 通过设置内联样式的 `display` CSS 属性来工作，当元素可见时将使用初始 `display` 值。当条件改变时，也会触发过渡效果。
 
-- **参考**：[条件渲染 - v-show](/guide/essentials/conditional.html#v-show)
+- **参考**：[条件渲染 - v-show](/guide/essentials/conditional#v-show)
 
 ## v-if {#v-if}
 
@@ -70,9 +70,9 @@
 
   当条件改变时会触发过渡效果。
 
-  当同时使用时，`v-if` 比 `v-for` 优先级更高。我们并不推荐在一元素上同时使用这两个指令 — 查看[列表渲染指南](/guide/essentials/list.html#v-for-with-v-if)详情。
+  当同时使用时，`v-if` 比 `v-for` 优先级更高。我们并不推荐在一元素上同时使用这两个指令 — 查看[列表渲染指南](/guide/essentials/list#v-for-with-v-if)详情。
 
-- **参考**：[条件渲染 - v-if](/guide/essentials/conditional.html#v-if)
+- **参考**：[条件渲染 - v-if](/guide/essentials/conditional#v-if)
 
 ## v-else {#v-else}
 
@@ -97,7 +97,7 @@
   </div>
   ```
 
-- **参考**：[条件渲染 - v-else](/guide/essentials/conditional.html#v-else)
+- **参考**：[条件渲染 - v-else](/guide/essentials/conditional#v-else)
 
 ## v-else-if {#v-else-if}
 
@@ -128,7 +128,7 @@
   </div>
   ```
 
-- **参考**：[条件渲染 - v-else-if](/guide/essentials/conditional.html#v-else-if)
+- **参考**：[条件渲染 - v-else-if](/guide/essentials/conditional#v-else-if)
 
 ## v-for {#v-for}
 
@@ -165,7 +165,7 @@
   `v-for` 也可以用于 [Iterable Protocol](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterable_protocol) 的实现，包括原生 `Map` 和 `Set`。
 
 - **参考：**
-  - [列表渲染](/guide/essentials/list.html)
+  - [列表渲染](/guide/essentials/list)
 
 ## v-on {#v-on}
 
@@ -250,8 +250,8 @@
   ```
 
 - **参考：**
-  - [事件处理](/guide/essentials/event-handling.html)
-  - [组件 - 自定义事件](/guide/essentials/component-basics.html#listening-to-events)
+  - [事件处理](/guide/essentials/event-handling)
+  - [组件 - 自定义事件](/guide/essentials/component-basics#listening-to-events)
 
 ## v-bind {#v-bind}
 
@@ -273,7 +273,7 @@
 
   当用于绑定 `class` 或 `style` attribute，`v-bind` 支持额外的值类型如数组或对象。详见下方的指南链接。
 
-  在处理绑定时，Vue 默认会利用 `in` 操作符来检查该元素上是否定义了和绑定的 key 同名的 DOM property。如果存在同名的 property，则 Vue 会把作为 DOM property 赋值，而不是作为 attribute 设置。这个行为在大多数情况都符合期望的绑定值类型，但是你也可以显式用 `.prop` 和 `.attr` 修饰符来强制绑定方式。有时这是必要的，特别是在和[自定义元素](/guide/extras/web-components.html#passing-dom-properties)打交道时。
+  在处理绑定时，Vue 默认会利用 `in` 操作符来检查该元素上是否定义了和绑定的 key 同名的 DOM property。如果存在同名的 property，则 Vue 会把作为 DOM property 赋值，而不是作为 attribute 设置。这个行为在大多数情况都符合期望的绑定值类型，但是你也可以显式用 `.prop` 和 `.attr` 修饰符来强制绑定方式。有时这是必要的，特别是在和[自定义元素](/guide/extras/web-components#passing-dom-properties)打交道时。
 
   当用于组件 props 绑定时，所绑定的 props 必须在子组件中已被正确声明。
 
@@ -337,8 +337,8 @@
   如果使用字符串模板或使用构建步骤预编译模板，则不需要 `.camel`。
 
 - **参考：**
-  - [Class 与 Style 绑定](/guide/essentials/class-and-style.html)
-  - [组件 -  Prop 传递细节](/guide/components/props.html#prop-passing-details)
+  - [Class 与 Style 绑定](/guide/essentials/class-and-style)
+  - [组件 -  Prop 传递细节](/guide/components/props#prop-passing-details)
 
 ## v-model {#v-model}
 
@@ -355,14 +355,14 @@
 
 - **修饰符：**
 
-  - [`.lazy`](/guide/essentials/forms.html#lazy) - 监听 `change` 事件而不是 `input`
-  - [`.number`](/guide/essentials/forms.html#number) - 将输入的合法符串转为数字
-  - [`.trim`](/guide/essentials/forms.html#trim) - 移除输入内容两端空格
+  - [`.lazy`](/guide/essentials/forms#lazy) - 监听 `change` 事件而不是 `input`
+  - [`.number`](/guide/essentials/forms#number) - 将输入的合法符串转为数字
+  - [`.trim`](/guide/essentials/forms#trim) - 移除输入内容两端空格
 
 - **参考：**
 
-  - [表单输入绑定](/guide/essentials/forms.html)
-  - [组件事件 - 配合 `v-model` 使用](/guide/components/v-model.html)
+  - [表单输入绑定](/guide/essentials/forms)
+  - [组件事件 - 配合 `v-model` 使用](/guide/components/v-model)
 
 ## v-slot {#v-slot}
 
@@ -377,7 +377,7 @@
 - **仅限：**
 
   - `<template>`
-  - [components](/guide/components/slots.html#scoped-slots) (用于带有 prop 的单个默认插槽)
+  - [components](/guide/components/slots#scoped-slots) (用于带有 prop 的单个默认插槽)
 
 - **示例：**
 
@@ -413,7 +413,7 @@
   ```
 
 - **参考：**
-  - [组件 - 插槽](/guide/components/slots.html)
+  - [组件 - 插槽](/guide/components/slots)
 
 ## v-pre {#v-pre}
 
@@ -460,7 +460,7 @@
   从 3.2 起，你也可以搭配 [`v-memo`](#v-memo) 的无效条件来缓存部分模板。
 
 - **参考：**
-  - [数据绑定语法 - 插值](/guide/essentials/template-syntax.html#text-interpolation)
+  - [数据绑定语法 - 插值](/guide/essentials/template-syntax#text-interpolation)
   - [v-memo](#v-memo)
 
 ## v-memo <sup class="vt-badge" data-text="3.2+" /> {#v-memo}

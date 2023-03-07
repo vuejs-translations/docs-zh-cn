@@ -1,17 +1,17 @@
 # 组合式 API：setup() {#composition-api-setup}
 
-:::info 注意
-该文档页说明了 `setup` 组件选项的用法。对于结合单文件组件使用的组合式 API，推荐通过 [`<script setup>`](/api/sfc-script-setup.html) 以获得更加简洁及符合人体工程学的语法。
-:::
+## 基本使用 {#basic-usage}
 
 `setup()` 钩子是在组件中使用组合式 API 的入口，通常只在以下情况下使用：
 
 1. 需要在非单文件组件中使用组合式 API 时。
 2. 需要在基于选项式 API 的组件中集成基于组合式 API 的代码时。
 
-## 基本使用 {#basic-usage}
+:::info 注意
+对于结合单文件组件使用的组合式 API，推荐通过 [`<script setup>`](/api/sfc-script-setup) 以获得更加简洁及符合人体工程学的语法。
+:::
 
-我们可以使用[响应式 API](./reactivity-core.html) 来声明响应式的状态，在 `setup()` 函数中返回的对象会暴露给模板和组件实例。其他的选项也可以通过组件实例来获取 `setup()` 暴露的属性：
+我们可以使用[响应式 API](./reactivity-core) 来声明响应式的状态，在 `setup()` 函数中返回的对象会暴露给模板和组件实例。其他的选项也可以通过组件实例来获取 `setup()` 暴露的属性：
 
 ```vue
 <script>
@@ -38,11 +38,11 @@ export default {
 </template>
 ```
 
-在模板中访问从 `setup` 返回的 [ref](/api/reactivity-core.html#ref) 时，它会[自动浅层解包](/guide/essentials/reactivity-fundamentals.html#deep-reactivity)，因此你无须再在模板中为它写 `.value`。当通过 `this` 访问时也会同样如此解包。
+在模板中访问从 `setup` 返回的 [ref](/api/reactivity-core#ref) 时，它会[自动浅层解包](/guide/essentials/reactivity-fundamentals#deep-reactivity)，因此你无须再在模板中为它写 `.value`。当通过 `this` 访问时也会同样如此解包。
 
 `setup()` 自身并不含对组件实例的访问权，即在 `setup()` 中访问 `this` 会是 `undefined`。你可以在选项式 API 中访问组合式 API 暴露的值，但反过来则不行。
 
-`setup()` 应该*同步地*返回一个对象。唯一可以使用 `async setup()` 的情况是，该组件是 [Suspense](../guide/built-ins/suspense.html) 组件的后裔。
+`setup()` 应该*同步地*返回一个对象。唯一可以使用 `async setup()` 的情况是，该组件是 [Suspense](../guide/built-ins/suspense) 组件的后裔。
 
 ## 访问 Props {#accessing-props}
 
@@ -61,7 +61,7 @@ export default {
 
 请注意如果你解构了 `props` 对象，解构出的变量将会丢失响应性。因此我们推荐通过 `props.xxx` 的形式来使用其中的 props。
 
-如果你确实需要解构 `props` 对象，或者需要将某个 prop 传到一个外部函数中并保持响应性，那么你可以使用 [toRefs()](./reactivity-utilities.html#torefs) 和 [toRef()](/api/reactivity-utilities.html#toref) 这两个工具函数：
+如果你确实需要解构 `props` 对象，或者需要将某个 prop 传到一个外部函数中并保持响应性，那么你可以使用 [toRefs()](./reactivity-utilities#torefs) 和 [toRef()](/api/reactivity-utilities#toref) 这两个工具函数：
 
 ```js
 import { toRefs, toRef } from 'vue'
@@ -115,7 +115,7 @@ export default {
 
 ### 暴露公共属性 {#exposing-public-properties}
 
-`expose` 函数用于显式地限制该组件暴露出的属性，当父组件通过[模板引用](/guide/essentials/template-refs.html#ref-on-component)访问该组件的实例时，将仅能访问 `expose` 函数暴露出的内容：
+`expose` 函数用于显式地限制该组件暴露出的属性，当父组件通过[模板引用](/guide/essentials/template-refs#ref-on-component)访问该组件的实例时，将仅能访问 `expose` 函数暴露出的内容：
 
 ```js{5,10}
 export default {
@@ -134,7 +134,7 @@ export default {
 
 ## 与渲染函数一起使用 {#usage-with-render-functions}
 
-`setup` 也可以返回一个[渲染函数](/guide/extras/render-function.html)，此时在渲染函数中可以直接使用在同一作用域下声明的响应式状态：
+`setup` 也可以返回一个[渲染函数](/guide/extras/render-function)，此时在渲染函数中可以直接使用在同一作用域下声明的响应式状态：
 
 ```js{6}
 import { h, ref } from 'vue'

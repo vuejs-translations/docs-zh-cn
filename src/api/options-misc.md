@@ -22,11 +22,11 @@
 
   当你在使用单文件组件时，组件已经会根据其文件名推导出其名称。举例来说，一个名为 `MyComponent.vue` 的文件会推导出显示名称为“MyComponent”。
 
-  另一种场景是当一个组件通过 [`app.component`](/api/application.html#app-component) 被全局注册时，这个全局 ID 就自动被设为了其名称。
+  另一种场景是当一个组件通过 [`app.component`](/api/application#app-component) 被全局注册时，这个全局 ID 就自动被设为了其名称。
 
   使用 `name` 选项使你可以覆盖推导出的名称，或是在没有推导出名字时显式提供一个。(例如没有使用构建工具时，或是一个内联的非 SFC 式的组件)
 
-  有一种场景下 `name` 必须是已显式声明的：即 [`<KeepAlive>`](/guide/built-ins/keep-alive.html) 通过其 `include / exclude` prop 来匹配其需要缓存的组件时。
+  有一种场景下 `name` 必须是已显式声明的：即 [`<KeepAlive>`](/guide/built-ins/keep-alive) 通过其 `include / exclude` prop 来匹配其需要缓存的组件时。
 
   :::tip
   在 3.2.34 或以上的版本中，使用 `<script setup>` 的单文件组件会自动根据文件名生成对应的 `name` 选项，即使是在配合 `<KeepAlive>` 使用时也无需再手动声明。
@@ -104,7 +104,7 @@
 
   </div>
 
-- **参考**：[透传 attribute](/guide/components/attrs.html)
+- **参考**：[透传 attribute](/guide/components/attrs)
 
 ## components {#components}
 
@@ -134,7 +134,7 @@
   }
   ```
 
-- **参考**：[组件注册](/guide/components/registration.html)
+- **参考**：[组件注册](/guide/components/registration)
 
 ## directives {#directives}
 
@@ -169,4 +169,4 @@
 
   这个列表中的指令都在当前组件实例中可用。
 
-- **参考**：[自定义指令](/guide/reusability/custom-directives.html)
+- **参考**：[自定义指令](/guide/reusability/custom-directives)

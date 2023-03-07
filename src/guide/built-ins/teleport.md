@@ -114,7 +114,8 @@ export default {
 你可以点击下面这个按钮，然后通过浏览器的开发者工具，在 `<body>` 标签下找到模态框元素：
 
 <script setup>
-let open = $ref(false)
+import { ref } from 'vue'
+const open = ref(false)
 </script>
 
 <div class="demo">
@@ -196,5 +197,5 @@ let open = $ref(false)
 
 **参考**
 
-- [`<Teleport>` API 参考](/api/built-in-components.html#teleport)
-- [在 SSR 中处理 Teleports](/guide/scaling-up/ssr.html#teleports)
+- [`<Teleport>` API 参考](/api/built-in-components#teleport)
+- [在 SSR 中处理 Teleports](/guide/scaling-up/ssr#teleports)

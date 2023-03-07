@@ -48,7 +48,7 @@ Vue 3 是性能最强的主流前端框架之一，可以轻松处理大多数 w
 
 请注意，像上面这样的跑分的侧重点在于原始渲染性能在特定情况下的优化，因此不能完全代表真实世界的性能结果。如果你更关心页面加载性能，欢迎用 [WebPageTest](https://www.webpagetest.org/lighthouse) 或是 [PageSpeed Insights](https://pagespeed.web.dev/) 来测试本站。本文档站是一个完全由 Vue 本身构建，通过静态生成预渲染，并在客户端进行 hydration 的单页应用。它在模拟 4 倍 CPU 降速的 Moto G4 + 低速 4G 网络的情况下依然能获得 100 分的性能得分。
 
-你可以在[渲染机制](/guide/extras/rendering-mechanism.html)章节了解更多关于 Vue 如何自动优化运行时性能的信息，也可以在[性能优化指南](/guide/best-practices/performance.html)中了解如何在特别苛刻的情况下优化 Vue 应用。
+你可以在[渲染机制](/guide/extras/rendering-mechanism)章节了解更多关于 Vue 如何自动优化运行时性能的信息，也可以在[性能优化指南](/guide/best-practices/performance)中了解如何在特别苛刻的情况下优化 Vue 应用。
 
 ## Vue 体积小吗？ {#is-vue-lightweight}
 
@@ -68,17 +68,17 @@ Vue 3 是性能最强的主流前端框架之一，可以轻松处理大多数 w
 
 - [组合式 API](/guide/reusability/composables) 提供一流的 TypeScript 集成，并为组织、提取和重用复杂逻辑提供了简洁的模式。
 
-- [全面的工具链支持](/guide/scaling-up/tooling.html)使得开发体验在应用增长的过程中依然可以保持平滑。
+- [全面的工具链支持](/guide/scaling-up/tooling)使得开发体验在应用增长的过程中依然可以保持平滑。
 
 - 较低的入门门槛和优秀的文档能够显著降低新手开发者的入职和培训成本。
 
 ## 我可以为 Vue 做贡献吗？ {#how-do-i-contribute-to-vue}
 
-非常欢迎！请阅读我们的[社区指南](/about/community-guide.html)。
+非常欢迎！请阅读我们的[社区指南](/about/community-guide)。
 
 ## 我应该使用选项式 API 还是组合式 API？ {#should-i-use-options-api-or-composition-api}
 
-如果你是 Vue 的新手，我们在[这里](/guide/introduction.html#which-to-choose)提供了一个两者之间宏观的比较。
+如果你是 Vue 的新手，我们在[这里](/guide/introduction#which-to-choose)提供了一个两者之间宏观的比较。
 
 如果你过去使用过选项式 API 且正在评估组合式 API，可以查阅[组合式 API 常见问题](/guide/extras/composition-api-faq)。
 

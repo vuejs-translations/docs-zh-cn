@@ -96,7 +96,7 @@
   </script>
   ```
 
-  当 `toRef` 与组件 props 结合使用时，关于禁止对 props 做出更改的限制依然有效。尝试将新的值传递给 ref 等效于尝试直接更改 props，这是不允许的。在这种场景下，你可能可以考虑使用带有 `get` 和 `set` 的 [`computed`](./reactivity-core.html#computed) 替代。详情请见[在组件上使用 `v-model`](/guide/components/v-model.html) 指南。
+  当 `toRef` 与组件 props 结合使用时，关于禁止对 props 做出更改的限制依然有效。尝试将新的值传递给 ref 等效于尝试直接更改 props，这是不允许的。在这种场景下，你可能可以考虑使用带有 `get` 和 `set` 的 [`computed`](./reactivity-core#computed) 替代。详情请见[在组件上使用 `v-model`](/guide/components/v-model) 指南。
 
   即使源属性当前不存在，`toRef()` 也会返回一个可用的 ref。这让它在处理可选 props 的时候格外实用，相比之下 [`toRefs`](#torefs) 就不会为可选 props 创建对应的 refs。
 
@@ -163,7 +163,7 @@
 
 ## isProxy() {#isproxy}
 
-检查一个对象是否是由 [`reactive()`](./reactivity-core.html#reactive)、[`readonly()`](./reactivity-core.html#readonly)、[`shallowReactive()`](./reactivity-advanced.html#shallowreactive) 或 [`shallowReadonly()`](./reactivity-advanced.html#shallowreadonly) 创建的代理。
+检查一个对象是否是由 [`reactive()`](./reactivity-core#reactive)、[`readonly()`](./reactivity-core#readonly)、[`shallowReactive()`](./reactivity-advanced#shallowreactive) 或 [`shallowReadonly()`](./reactivity-advanced#shallowreadonly) 创建的代理。
 
 - **类型**
 
@@ -173,7 +173,7 @@
 
 ## isReactive() {#isreactive}
 
-检查一个对象是否是由 [`reactive()`](./reactivity-core.html#reactive) 或 [`shallowReactive()`](./reactivity-advanced.html#shallowreactive) 创建的代理。
+检查一个对象是否是由 [`reactive()`](./reactivity-core#reactive) 或 [`shallowReactive()`](./reactivity-advanced#shallowreactive) 创建的代理。
 
 - **类型**
 
@@ -185,7 +185,7 @@
 
 检查传入的值是否为只读对象。只读对象的属性可以更改，但他们不能通过传入的对象直接赋值。
 
-通过 [`readonly()`](./reactivity-core.html#readonly) 和 [`shallowReadonly()`](./reactivity-advanced.html#shallowreadonly) 创建的代理都是只读的，因为他们是没有 `set` 函数的 [`computed()`](./reactivity-core.html#computed) ref。
+通过 [`readonly()`](./reactivity-core#readonly) 和 [`shallowReadonly()`](./reactivity-advanced#shallowreadonly) 创建的代理都是只读的，因为他们是没有 `set` 函数的 [`computed()`](./reactivity-core#computed) ref。
 
 - **类型**
 

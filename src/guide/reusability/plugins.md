@@ -1,4 +1,4 @@
-# 插件 {#plugins}
+﻿# 插件 {#plugins}
 
 ## 介绍 {#introduction}
 
@@ -14,7 +14,7 @@ app.use(myPlugin, {
 })
 ```
 
-一个插件可以是一个拥有 `install()` 方法的对象，也可以直接是一个安装函数本身。安装函数会接收到安装它的[应用实例](/api/application.html)和传递给 `app.use()` 的额外选项作为参数：
+一个插件可以是一个拥有 `install()` 方法的对象，也可以直接是一个安装函数本身。安装函数会接收到安装它的[应用实例](/api/application)和传递给 `app.use()` 的额外选项作为参数：
 
 ```js
 const myPlugin = {
@@ -26,11 +26,11 @@ const myPlugin = {
 
 插件没有严格定义的使用范围，但是插件发挥作用的常见场景主要包括以下几种：
 
-1. 通过 [`app.component()`](/api/application.html#app-component) 和 [`app.directive()`](/api/application.html#app-directive) 注册一到多个全局组件或自定义指令。
+1. 通过 [`app.component()`](/api/application#app-component) 和 [`app.directive()`](/api/application#app-directive) 注册一到多个全局组件或自定义指令。
 
-2. 通过 [`app.provide()`](/api/application.html#app-provide) 使一个资源[可被注入](/guide/components/provide-inject.html)进整个应用。
+2. 通过 [`app.provide()`](/api/application#app-provide) 使一个资源[可被注入](/guide/components/provide-inject)进整个应用。
 
-3. 向 [`app.config.globalProperties`](/api/application.html#app-config-globalproperties) 中添加一些全局实例属性或方法
+3. 向 [`app.config.globalProperties`](/api/application#app-config-globalproperties) 中添加一些全局实例属性或方法
 
 4. 一个可能上述三种都包含了的功能库 (例如 [vue-router](https://github.com/vuejs/vue-router-next))。
 
@@ -89,7 +89,7 @@ app.use(i18nPlugin, {
 
 这样，我们一开始的表达式 `$translate('greetings.hello')` 就会在运行时被替换为 `Bonjour!` 了。
 
-TypeScript 用户请参考：[扩展全局属性](/guide/typescript/options-api.html#augmenting-global-properties) <sup class="vt-badge ts" />
+TypeScript 用户请参考：[扩展全局属性](/guide/typescript/options-api#augmenting-global-properties) <sup class="vt-badge ts" />
 
 :::tip
 请谨慎使用全局属性，如果在整个应用中使用不同插件注入的太多全局属性，很容易让应用变得难以理解和维护。

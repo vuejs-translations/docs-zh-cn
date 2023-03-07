@@ -4,7 +4,7 @@ Vue 使用一种基于 HTML 的模板语法，使我们能够声明式地将其�
 
 在底层机制中，Vue 会将模板编译成高度优化的 JavaScript 代码。结合响应式系统，当应用状态变更时，Vue 能够智能地推导出需要重新渲染的组件的最少数量，并应用最少的 DOM 操作。
 
-如果你对虚拟 DOM 的概念比较熟悉，并且偏好直接使用 JavaScript，你也可以结合可选的 JSX 支持[直接手写渲染函数](/guide/extras/render-function.html)而不采用模板。但请注意，这将不会享受到和模板同等级别的编译时优化。
+如果你对虚拟 DOM 的概念比较熟悉，并且偏好直接使用 JavaScript，你也可以结合可选的 JSX 支持[直接手写渲染函数](/guide/extras/render-function)而不采用模板。但请注意，这将不会享受到和模板同等级别的编译时优化。
 
 ## 文本插值 {#text-interpolation}
 
@@ -18,7 +18,7 @@ Vue 使用一种基于 HTML 的模板语法，使我们能够声明式地将其�
 
 ## 原始 HTML {#raw-html}
 
-双大括号会将数据解释为纯文本，而不是 HTML。若想插入 HTML，你需要使用 [`v-html` 指令](/api/built-in-directives.html#v-html)：
+双大括号会将数据解释为纯文本，而不是 HTML。若想插入 HTML，你需要使用 [`v-html` 指令](/api/built-in-directives#v-html)：
 
 ```vue-html
 <p>Using text interpolation: {{ rawHtml }}</p>
@@ -44,7 +44,7 @@ Vue 使用一种基于 HTML 的模板语法，使我们能够声明式地将其�
 
 ## Attribute 绑定 {#attribute-bindings}
 
-双大括号不能在 HTML attributes 中使用。想要响应式地绑定一个 attribute，应该使用 [`v-bind` 指令](/api/built-in-directives.html#v-bind)：
+双大括号不能在 HTML attributes 中使用。想要响应式地绑定一个 attribute，应该使用 [`v-bind` 指令](/api/built-in-directives#v-bind)：
 
 ```vue-html
 <div v-bind:id="dynamicId"></div>
@@ -164,13 +164,13 @@ data() {
 
 模板中的表达式将被沙盒化，仅能够访问到[有限的全局对象列表](https://github.com/vuejs/core/blob/main/packages/shared/src/globalsWhitelist.ts#L3)。该列表中会暴露常用的内置全局对象，比如 `Math` 和 `Date`。
 
-没有显式包含在列表中的全局对象将不能在模板内表达式中访问，例如用户附加在 `window` 上的属性。然而，你也可以自行在 [`app.config.globalProperties`](/api/application.html#app-config-globalproperties) 上显式地添加它们，供所有的 Vue 表达式使用。
+没有显式包含在列表中的全局对象将不能在模板内表达式中访问，例如用户附加在 `window` 上的属性。然而，你也可以自行在 [`app.config.globalProperties`](/api/application#app-config-globalproperties) 上显式地添加它们，供所有的 Vue 表达式使用。
 
 ## 指令 Directives {#directives}
 
-指令是带有 `v-` 前缀的特殊 attribute。Vue 提供了许多[内置指令](/api/built-in-directives.html)，包括上面我们所介绍的 `v-bind` 和 `v-html`。
+指令是带有 `v-` 前缀的特殊 attribute。Vue 提供了许多[内置指令](/api/built-in-directives)，包括上面我们所介绍的 `v-bind` 和 `v-html`。
 
-指令 attribute 的期望值为一个 JavaScript 表达式 (除了少数几个例外，即之后要讨论到的 `v-for`、`v-on` 和 `v-slot`)。一个指令的任务是在其表达式的值变化时响应式地更新 DOM。以 [`v-if`](/api/built-in-directives.html#v-if) 为例：
+指令 attribute 的期望值为一个 JavaScript 表达式 (除了少数几个例外，即之后要讨论到的 `v-for`、`v-on` 和 `v-slot`)。一个指令的任务是在其表达式的值变化时响应式地更新 DOM。以 [`v-if`](/api/built-in-directives#v-if) 为例：
 
 ```vue-html
 <p v-if="seen">Now you see me</p>
@@ -243,7 +243,7 @@ data() {
 <a :['foo' + bar]="value"> ... </a>
 ```
 
-如果你需要传入一个复杂的动态参数，我们推荐使用[计算属性](computed.html)替换复杂的表达式，也是 Vue 最基础的概念之一，我们很快就会讲到。
+如果你需要传入一个复杂的动态参数，我们推荐使用[计算属性](computed)替换复杂的表达式，也是 Vue 最基础的概念之一，我们很快就会讲到。
 
 当使用 DOM 内嵌模板 (直接写在 HTML 文件里的模板) 时，我们需要避免在名称中使用大写字母，因为浏览器会强制将其转换为小写：
 
@@ -261,7 +261,7 @@ data() {
 <form @submit.prevent="onSubmit">...</form>
 ```
 
-之后在讲到 [`v-on`](./event-handling.html#event-modifiers) 和 [`v-model`](./forms.html#modifiers) 的功能时，你将会看到其他修饰符的例子。
+之后在讲到 [`v-on`](./event-handling#event-modifiers) 和 [`v-model`](./forms#modifiers) 的功能时，你将会看到其他修饰符的例子。
 
 最后，在这里你可以直观地看到完整的指令语法：
 

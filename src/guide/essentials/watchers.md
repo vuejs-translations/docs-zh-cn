@@ -6,7 +6,7 @@
 
 <div class="options-api">
 
-在选项式 API 中，我们可以使用 [`watch` 选项](/api/options-state.html#watch)在每次响应式属性发生变化时触发一个函数。
+在选项式 API 中，我们可以使用 [`watch` 选项](/api/options-state#watch)在每次响应式属性发生变化时触发一个函数。
 
 ```js
 export default {
@@ -65,7 +65,7 @@ export default {
 
 <div class="composition-api">
 
-在组合式 API 中，我们可以使用 [`watch` 函数](/api/reactivity-core.html#watch)在每次响应式状态发生变化时触发回调函数：
+在组合式 API 中，我们可以使用 [`watch` 函数](/api/reactivity-core#watch)在每次响应式状态发生变化时触发回调函数：
 
 ```vue
 <script setup>
@@ -280,7 +280,7 @@ watch(todoId, async () => {
 
 特别是注意侦听器是如何两次使用 `todoId` 的，一次是作为源，另一次是在回调中。
 
-我们可以用 [`watchEffect` 函数](/api/reactivity-core.html#watcheffect) 来简化上面的代码。`watchEffect()` 允许我们自动跟踪回调的响应式依赖。上面的侦听器可以重写为：
+我们可以用 [`watchEffect` 函数](/api/reactivity-core#watcheffect) 来简化上面的代码。`watchEffect()` 允许我们自动跟踪回调的响应式依赖。上面的侦听器可以重写为：
 
 ```js
 watchEffect(async () => {
@@ -363,7 +363,7 @@ watchPostEffect(() => {
 
 ## `this.$watch()` \* {#this-watch}
 
-我们也可以使用组件实例的 [`$watch()` 方法](/api/component-instance.html#watch)来命令式地创建一个侦听器：
+我们也可以使用组件实例的 [`$watch()` 方法](/api/component-instance#watch)来命令式地创建一个侦听器：
 
 ```js
 export default {

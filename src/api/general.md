@@ -92,7 +92,7 @@
 
   </div>
 
-- **参考**：[`this.$nextTick()`](/api/component-instance.html#nexttick)
+- **参考**：[`this.$nextTick()`](/api/component-instance#nexttick)
 
 ## defineComponent() {#definecomponent}
 
@@ -134,7 +134,7 @@
 
   请注意，如果你的项目中使用的是 Vite，就不需要这么做，因为 Rollup (Vite 背后在生产环境使用的打包器) 可以智能地确定 `defineComponent()` 实际上并没有副作用，所以无需手动注释。
 
-- **参考**：[指南 - 配合 TypeScript 使用 Vue](/guide/typescript/overview.html#general-usage-notes)
+- **参考**：[指南 - 配合 TypeScript 使用 Vue](/guide/typescript/overview#general-usage-notes)
 
 ## defineAsyncComponent() {#defineasynccomponent}
 
@@ -165,7 +165,7 @@
   }
   ```
 
-- **参考**：[指南 - 异步组件](/guide/components/async.html)
+- **参考**：[指南 - 异步组件](/guide/components/async)
 
 ## defineCustomElement() {#definecustomelement}
 
@@ -206,6 +206,6 @@
 
 - **参考：**
 
-  - [指南 - 使用 Vue 构建自定义元素](/guide/extras/web-components.html#building-custom-elements-with-vue)
+  - [指南 - 使用 Vue 构建自定义元素](/guide/extras/web-components#building-custom-elements-with-vue)
 
-  - 另外请注意在使用单文件组件时 `defineCustomElement()` 需要[特殊的配置](/guide/extras/web-components.html#sfc-as-custom-element)。
+  - 另外请注意在使用单文件组件时 `defineCustomElement()` 需要[特殊的配置](/guide/extras/web-components#sfc-as-custom-element)。

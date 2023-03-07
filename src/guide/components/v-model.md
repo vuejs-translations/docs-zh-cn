@@ -275,7 +275,7 @@ export default {
 
 ## 处理 `v-model` 修饰符 {#handling-v-model-modifiers}
 
-在学习输入绑定时，我们知道了 `v-model` 有一些[内置的修饰符](/guide/essentials/forms.html#modifiers)，例如 `.trim`，`.number` 和 `.lazy`。在某些场景下，你可能想要一个自定义组件的 `v-model` 支持自定义的修饰符。
+在学习输入绑定时，我们知道了 `v-model` 有一些[内置的修饰符](/guide/essentials/forms#modifiers)，例如 `.trim`，`.number` 和 `.lazy`。在某些场景下，你可能想要一个自定义组件的 `v-model` 支持自定义的修饰符。
 
 我们来创建一个自定义的修饰符 `capitalize`，它会自动将 `v-model` 绑定输入的字符串值第一个字母转为大写：
 

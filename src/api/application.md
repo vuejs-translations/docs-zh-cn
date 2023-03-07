@@ -35,11 +35,11 @@
   const app = createApp(App)
   ```
 
-- **参考**：[指南 - 创建一个 Vue 应用实例](/guide/essentials/application.html)
+- **参考**：[指南 - 创建一个 Vue 应用实例](/guide/essentials/application)
 
 ## createSSRApp() {#createssrapp}
 
-以 [SSR 激活](/guide/scaling-up/ssr.html#client-hydration)模式创建一个应用实例。用法与 `createApp()` 完全相同。
+以 [SSR 激活](/guide/scaling-up/ssr#client-hydration)模式创建一个应用实例。用法与 `createApp()` 完全相同。
 
 ## app.mount() {#app-mount}
 
@@ -59,7 +59,7 @@
 
   如果该组件有模板或定义了渲染函数，它将替换容器内所有现存的 DOM 节点。否则在运行时编译器可用的情况下，容器元素的 `innerHTML` 将被用作模板。
 
-  在 SSR 激活模式下，它将激活容器内现有的 DOM 节点。如果出现了[激活不匹配](/guide/scaling-up/ssr.html#hydration-mismatch)，那么现有的 DOM 节点将会被修改以匹配客户端的实际渲染结果。
+  在 SSR 激活模式下，它将激活容器内现有的 DOM 节点。如果出现了[激活不匹配](/guide/scaling-up/ssr#hydration-mismatch)，那么现有的 DOM 节点将会被修改以匹配客户端的实际渲染结果。
 
   对于每个应用实例，`mount()` 仅能调用一次。
 
@@ -145,8 +145,8 @@
   </div>
 
 - **参考：**
-  - [依赖注入](/guide/components/provide-inject.html)
-  - [应用层 Provide](/guide/components/provide-inject.html#app-level-provide)
+  - [依赖注入](/guide/components/provide-inject)
+  - [应用层 Provide](/guide/components/provide-inject#app-level-provide)
 
 ## app.component() {#app-component}
 
@@ -177,7 +177,7 @@
   const MyComponent = app.component('my-component')
   ```
 
-- **参考**：[组件注册](/guide/components/registration.html)
+- **参考**：[组件注册](/guide/components/registration)
 
 ## app.directive() {#app-directive}
 
@@ -215,11 +215,11 @@
   const myDirective = app.directive('my-directive')
   ```
 
-- **参考**：[自定义指令](/guide/reusability/custom-directives.html)
+- **参考**：[自定义指令](/guide/reusability/custom-directives)
 
 ## app.use() {#app-use}
 
-安装一个[插件](/guide/reusability/plugins.html)。
+安装一个[插件](/guide/reusability/plugins)。
 
 - **类型**
 
@@ -250,7 +250,7 @@
   app.use(MyPlugin)
   ```
 
-- **参考**：[插件](/guide/reusability/plugins.html)
+- **参考**：[插件](/guide/reusability/plugins)
 
 ## app.mixin() {#app-mixin}
 
@@ -259,7 +259,7 @@
 :::warning 不推荐
 Mixins 在 Vue 3 支持主要是为了向后兼容，因为生态中有许多库使用到。在新的应用中应尽量避免使用 mixin，特别是全局 mixin。
 
-若要进行逻辑复用，推荐用[组合式函数](/guide/reusability/composables.html)来替代。
+若要进行逻辑复用，推荐用[组合式函数](/guide/reusability/composables)来替代。
 :::
 
 - **类型**
@@ -272,7 +272,7 @@ Mixins 在 Vue 3 支持主要是为了向后兼容，因为生态中有许多库
 
 ## app.version {#app-version}
 
-提供当前应用所使用的 Vue 版本号。这在[插件](/guide/reusability/plugins.html)中很有用，因为可能需要根据不同的 Vue 版本执行不同的逻辑。
+提供当前应用所使用的 Vue 版本号。这在[插件](/guide/reusability/plugins)中很有用，因为可能需要根据不同的 Vue 版本执行不同的逻辑。
 
 - **类型**
 
@@ -297,7 +297,7 @@ Mixins 在 Vue 3 支持主要是为了向后兼容，因为生态中有许多库
   }
   ```
 
-- **参考**：[全局 API - version](/api/general.html#version)
+- **参考**：[全局 API - version](/api/general#version)
 
 ## app.config {#app-config}
 
@@ -391,11 +391,11 @@ console.log(app.config)
 
 - **类型** `boolean`
 
-- **参考**：[指南 - 性能](/guide/best-practices/performance.html)
+- **参考**：[指南 - 性能](/guide/best-practices/performance)
 
 ## app.config.compilerOptions {#app-config-compileroptions}
 
-配置运行时编译器的选项。设置在此对象上的值将会在浏览器内进行模板编译时使用，并会影响到所配置应用的所有组件。另外你也可以通过 [`compilerOptions` 选项](/api/options-rendering.html#compileroptions)在每个组件的基础上覆盖这些选项。
+配置运行时编译器的选项。设置在此对象上的值将会在浏览器内进行模板编译时使用，并会影响到所配置应用的所有组件。另外你也可以通过 [`compilerOptions` 选项](/api/options-rendering#compileroptions)在每个组件的基础上覆盖这些选项。
 
 ::: warning 重要
 此配置项仅在完整构建版本，即可以在浏览器中编译模板的 `vue.js` 文件中可用。如果你用的是带构建的项目配置，且使用的是仅含运行时的 Vue 文件版本，那么编译器选项必须通过构建工具的相关配置传递给 `@vue/compiler-dom`。
@@ -426,7 +426,7 @@ console.log(app.config)
   }
   ```
 
-- **参考**：[Vue 与 Web Components](/guide/extras/web-components.html)
+- **参考**：[Vue 与 Web Components](/guide/extras/web-components)
 
 ### app.config.compilerOptions.whitespace {#app-config-compileroptions-whitespace}
 
@@ -522,8 +522,8 @@ console.log(app.config)
     }
   }
   ```
-  
-- **参考**：[指南 - 扩展全局属性](/guide/typescript/options-api.html#augmenting-global-properties) <sup class="vt-badge ts" />
+
+- **参考**：[指南 - 扩展全局属性](/guide/typescript/options-api#augmenting-global-properties) <sup class="vt-badge ts" />
 
 ## app.config.optionMergeStrategies {#app-config-optionmergestrategies}
 
@@ -574,4 +574,4 @@ console.log(app.config)
   // 打印 'Hello Vue'
   ```
 
-- **参考**：[组件实例 - `$options`](/api/component-instance.html#options)
+- **参考**：[组件实例 - `$options`](/api/component-instance#options)

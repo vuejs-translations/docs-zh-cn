@@ -87,7 +87,7 @@ Vue 本身就是用 TypeScript 编写的，并对 TypeScript 提供了一等公�
 
 ### `defineComponent()` {#definecomponent}
 
-为了让 TypeScript 正确地推导出组件选项内的类型，我们需要通过 [`defineComponent()`](/api/general.html#definecomponent) 这个全局 API 来定义组件：
+为了让 TypeScript 正确地推导出组件选项内的类型，我们需要通过 [`defineComponent()`](/api/general#definecomponent) 这个全局 API 来定义组件：
 
 ```ts
 import { defineComponent } from 'vue'
@@ -129,7 +129,7 @@ export default defineComponent({
 
 参考：
 
-- [webpack Treeshaking 的注意事项](/api/general.html#note-on-webpack-treeshaking)
+- [webpack Treeshaking 的注意事项](/api/general#note-on-webpack-treeshaking)
 - [对 `defineComponent` 的类型测试](https://github.com/vuejs/core/blob/main/packages/dts-test/defineComponent.test-d.tsx)
 
 :::tip

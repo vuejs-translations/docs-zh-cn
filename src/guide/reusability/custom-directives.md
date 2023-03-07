@@ -12,7 +12,7 @@ const vFocus = {
 
 除了 Vue 内置的一系列指令 (比如 `v-model` 或 `v-show`) 之外，Vue 还允许你注册自定义的指令 (Custom Directives)。
 
-我们已经介绍了两种在 Vue 中重用代码的方式：[组件](/guide/essentials/component-basics.html)和[组合式函数](./composables)。组件是主要的构建模块，而组合式函数则侧重于有状态的逻辑。另一方面，自定义指令主要是为了重用涉及普通元素的底层 DOM 访问的逻辑。
+我们已经介绍了两种在 Vue 中重用代码的方式：[组件](/guide/essentials/component-basics)和[组合式函数](./composables)。组件是主要的构建模块，而组合式函数则侧重于有状态的逻辑。另一方面，自定义指令主要是为了重用涉及普通元素的底层 DOM 访问的逻辑。
 
 一个自定义指令由一个包含类似组件生命周期钩子的对象来定义。钩子函数会接收到指令所绑定元素作为其参数。下面是一个自定义指令的例子，当一个 input 元素被 Vue 插入到 DOM 中后，它会被自动聚焦：
 
@@ -210,7 +210,7 @@ app.directive('demo', (el, binding) => {
 
 ## 在组件上使用 {#usage-on-components}
 
-当在组件上使用自定义指令时，它会始终应用于组件的根节点，和[透传 attributes](/guide/components/attrs.html) 类似。
+当在组件上使用自定义指令时，它会始终应用于组件的根节点，和[透传 attributes](/guide/components/attrs) 类似。
 
 ```vue-html
 <MyComponent v-demo="test" />

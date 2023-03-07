@@ -42,11 +42,11 @@ export default {
 
 ### `<script>` {#script}
 
-- 每个 `*.vue` 文件最多可以包含一个 `<script>` 块。(使用 [`<script setup>`](/api/sfc-script-setup.html) 的情况除外)
+- 每个 `*.vue` 文件最多可以包含一个 `<script>` 块。(使用 [`<script setup>`](/api/sfc-script-setup) 的情况除外)
 
 - 这个脚本代码块将作为 ES 模块执行。
 
-- **默认导出**应该是 Vue 的组件选项对象，可以是一个对象字面量或是 [defineComponent](/api/general.html#definecomponent) 函数的返回值。
+- **默认导出**应该是 Vue 的组件选项对象，可以是一个对象字面量或是 [defineComponent](/api/general#definecomponent) 函数的返回值。
 
 ### `<script setup>` {#script-setup}
 
@@ -68,7 +68,7 @@ export default {
 - [vite-plugin-vue-gql：`<gql>`](https://github.com/wheatjs/vite-plugin-vue-gql)
 - [vue-i18n：`<i18n>`](https://github.com/intlify/bundle-tools/tree/main/packages/vite-plugin-vue-i18n#i18n-custom-block)
 
-自定义块的处理需要依赖工具链。如果你想要在构建中集成你的自定义语块，请参见[相关工具链指南](/guide/scaling-up/tooling.html#sfc-custom-block-integrations)获取更多细节。
+自定义块的处理需要依赖工具链。如果你想要在构建中集成你的自定义语块，请参见[相关工具链指南](/guide/scaling-up/tooling#sfc-custom-block-integrations)获取更多细节。
 
 ## 自动名称推导 {#automatic-name-inference}
 

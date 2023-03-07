@@ -67,7 +67,7 @@ export default {
 
 <div class="composition-api">
 
-我们可以使用 [`reactive()`](/api/reactivity-core.html#reactive) 函数创建一个响应式对象或数组：
+我们可以使用 [`reactive()`](/api/reactivity-core#reactive) 函数创建一个响应式对象或数组：
 
 ```js
 import { reactive } from 'vue'
@@ -75,9 +75,9 @@ import { reactive } from 'vue'
 const state = reactive({ count: 0 })
 ```
 
-响应式对象其实是 [JavaScript Proxy](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Proxy)，其行为表现与一般对象相似。不同之处在于 Vue 能够跟踪对响应式对象属性的访问与更改操作。如果你对这其中的细节感到好奇，我们在 [深入响应式系统](/guide/extras/reactivity-in-depth.html) 一章中会进行解释，但我们推荐你先读完这里的主要指南。
+响应式对象其实是 [JavaScript Proxy](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Proxy)，其行为表现与一般对象相似。不同之处在于 Vue 能够跟踪对响应式对象属性的访问与更改操作。如果你对这其中的细节感到好奇，我们在 [深入响应式系统](/guide/extras/reactivity-in-depth) 一章中会进行解释，但我们推荐你先读完这里的主要指南。
 
-TypeScript 用户请参阅：[为响应式对象标注类型](/guide/typescript/composition-api.html#typing-reactive) <sup class="vt-badge ts" />
+TypeScript 用户请参阅：[为响应式对象标注类型](/guide/typescript/composition-api#typing-reactive) <sup class="vt-badge ts" />
 
 要在组件模板中使用响应式状态，需要在 `setup()` 函数中定义并返回。
 
@@ -165,6 +165,8 @@ function increment() {
 
 ## 声明方法 \* {#declaring-methods}
 
+<VueSchoolLink href="https://vueschool.io/lessons/methods-in-vue-3" title="免费的 Vue.js Methods 课程"/>
+
 要为组件添加方法，我们需要用到 `methods` 选项。它应该是一个包含所有方法的对象：
 
 ```js{7-11}
@@ -214,7 +216,7 @@ export default {
 
 当你更改响应式状态后，DOM 会自动更新。然而，你得注意 DOM 的更新并不是同步的。相反，Vue 将缓冲它们直到更新周期的 “下个时机” 以确保无论你进行了多少次状态更改，每个组件都只更新一次。
 
-若要等待一个状态改变后的 DOM 更新完成，你可以使用 [nextTick()](/api/general.html#nexttick) 这个全局 API：
+若要等待一个状态改变后的 DOM 更新完成，你可以使用 [nextTick()](/api/general#nexttick) 这个全局 API：
 
 <div class="composition-api">
 
@@ -296,7 +298,7 @@ function mutateDeeply() {
 
 </div>
 
-你也可以直接创建一个[浅层响应式对象](/api/reactivity-advanced.html#shallowreactive)。它们仅在顶层具有响应性，一般仅在某些特殊场景中需要。
+你也可以直接创建一个[浅层响应式对象](/api/reactivity-advanced#shallowreactive)。它们仅在顶层具有响应性，一般仅在某些特殊场景中需要。
 
 <div class="composition-api">
 
@@ -373,7 +375,7 @@ console.log(proxy.nested === raw) // false
 
 ## 用 `ref()` 定义响应式变量 \*\* {#reactive-variables-with-ref}
 
-`reactive()` 的种种限制归根结底是因为 JavaScript 没有可以作用于所有值类型的 “引用” 机制。为此，Vue 提供了一个 [`ref()`](/api/reactivity-core.html#ref) 方法来允许我们创建可以使用任何值类型的响应式 **ref**：
+`reactive()` 的种种限制归根结底是因为 JavaScript 没有可以作用于所有值类型的 “引用” 机制。为此，Vue 提供了一个 [`ref()`](/api/reactivity-core#ref) 方法来允许我们创建可以使用任何值类型的响应式 **ref**：
 
 ```js
 import { ref } from 'vue'
@@ -393,7 +395,7 @@ count.value++
 console.log(count.value) // 1
 ```
 
-TypeScript 用户请参阅：[为 ref 标注类型](/guide/typescript/composition-api.html#typing-ref) <sup class="vt-badge ts" />
+TypeScript 用户请参阅：[为 ref 标注类型](/guide/typescript/composition-api#typing-ref) <sup class="vt-badge ts" />
 
 和响应式对象的属性类似，ref 的 `.value` 属性也是响应式的。同时，当值为对象类型时，会用 `reactive()` 自动转换它的 `.value`。
 
@@ -423,7 +425,7 @@ callSomeFunction(obj.foo)
 const { foo, bar } = obj
 ```
 
-简言之，`ref()` 让我们能创造一种对任意值的 “引用”，并能够在不丢失响应性的前提下传递这些引用。这个功能很重要，因为它经常用于将逻辑提取到 [组合函数](/guide/reusability/composables.html) 中。
+简言之，`ref()` 让我们能创造一种对任意值的 “引用”，并能够在不丢失响应性的前提下传递这些引用。这个功能很重要，因为它经常用于将逻辑提取到 [组合函数](/guide/reusability/composables) 中。
 
 ### ref 在模板中的解包 \*\* {#ref-unwrapping-in-templates}
 
@@ -510,7 +512,7 @@ console.log(state.count) // 2
 console.log(count.value) // 1
 ```
 
-只有当嵌套在一个深层响应式对象内时，才会发生 ref 解包。当其作为[浅层响应式对象](/api/reactivity-advanced.html#shallowreactive)的属性被访问时不会解包。
+只有当嵌套在一个深层响应式对象内时，才会发生 ref 解包。当其作为[浅层响应式对象](/api/reactivity-advanced#shallowreactive)的属性被访问时不会解包。
 
 #### 数组和集合类型的 ref 解包 {#ref-unwrapping-in-arrays-and-collections}
 
@@ -571,30 +573,3 @@ export default {
 ```
 
 </div>
-
-<div class="composition-api">
-
-## 响应性语法糖 <sup class="vt-badge experimental" /> \*\* {#reactivity-transform}
-
-相对于普通的 JavaScript 变量，我们不得不用相对繁琐的 `.value` 来获取 ref 的值。这是一个受限于 JavaScript 语言限制的缺点。然而，通过编译时转换，我们可以让编译器帮我们省去使用 `.value` 的麻烦。Vue 提供了一种编译时转换，使得我们可以像这样书写之前的“计数器”示例：
-
-```vue
-<script setup>
-let count = $ref(0)
-
-function increment() {
-  // 无需 .value
-  count++
-}
-</script>
-
-<template>
-  <button @click="increment">{{ count }}</button>
-</template>
-```
-
-你可以在 [响应性语法糖](/guide/extras/reactivity-transform.html) 章节中了解更多细节。请注意它仍处于实验性阶段，在最终提案落地前仍可能发生改动。
-
-</div>
-
-<!-- zhlint disabled -->

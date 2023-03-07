@@ -20,7 +20,7 @@ footer: false
 - 已安装 16.0 或更高版本的 [Node.js](https://nodejs.org/)
 :::
 
-在本节中，我们将介绍如何在本地搭建 Vue [单页应用](/guide/extras/ways-of-using-vue.html#single-page-application-spa)。创建的项目将使用基于 [Vite](https://vitejs.dev) 的构建设置，并允许我们使用 Vue 的[单文件组件](/guide/scaling-up/sfc) (SFC)。
+在本节中，我们将介绍如何在本地搭建 Vue [单页应用](/guide/extras/ways-of-using-vue#single-page-application-spa)。创建的项目将使用基于 [Vite](https://vitejs.dev) 的构建设置，并允许我们使用 Vue 的[单文件组件](/guide/scaling-up/sfc) (SFC)。
 
 确保你安装了最新版本的 [Node.js](https://nodejs.org/)，然后在命令行中运行以下命令 (不要带上 `>` 符号)：
 
@@ -48,19 +48,19 @@ footer: false
 <span class="line"><span style="color:var(--vt-c-green);">&gt; </span><span style="color:#A6ACCD;">npm run dev</span></span>
 <span class="line"></span></code></pre></div>
 
-你现在应该已经运行起来了你的第一个 Vue 项目！请注意，生成的项目中的示例组件使用的是[组合式 API](/guide/introduction.html#composition-api) 和 `<script setup>`，而非[选项式 API](/guide/introduction.html#options-api)。下面是一些补充提示：
+你现在应该已经运行起来了你的第一个 Vue 项目！请注意，生成的项目中的示例组件使用的是[组合式 API](/guide/introduction#composition-api) 和 `<script setup>`，而非[选项式 API](/guide/introduction#options-api)。下面是一些补充提示：
 
-- 推荐的 IDE 配置是 [Visual Studio Code](https://code.visualstudio.com/) + [Volar 扩展](https://marketplace.visualstudio.com/items?itemName=Vue.volar)。如果使用其他编辑器，参考 [IDE 支持章节](/guide/scaling-up/tooling.html#ide-support)。
-- 更多工具细节，包括与后端框架的整合，我们会在[工具链指南](/guide/scaling-up/tooling.html)进行讨论。
+- 推荐的 IDE 配置是 [Visual Studio Code](https://code.visualstudio.com/) + [Volar 扩展](https://marketplace.visualstudio.com/items?itemName=Vue.volar)。如果使用其他编辑器，参考 [IDE 支持章节](/guide/scaling-up/tooling#ide-support)。
+- 更多工具细节，包括与后端框架的整合，我们会在[工具链指南](/guide/scaling-up/tooling)进行讨论。
 - 要了解构建工具 Vite 更多背后的细节，请查看 [Vite 文档](https://cn.vitejs.dev)。
-- 如果你选择使用 TypeScript，请阅读 [TypeScript 使用指南](typescript/overview.html)。
+- 如果你选择使用 TypeScript，请阅读 [TypeScript 使用指南](typescript/overview)。
 
 当你准备将应用发布到生产环境时，请运行：
 
 <div class="language-sh"><pre><code><span class="line"><span style="color:var(--vt-c-green);">&gt; </span><span style="color:#A6ACCD;">npm run build</span></span>
 <span class="line"></span></code></pre></div>
 
-此命令会在 `./dist` 文件夹中为你的应用创建一个生产环境的构建版本。关于将应用上线生产环境的更多内容，请阅读[生产环境部署指南](/guide/best-practices/production-deployment.html)。
+此命令会在 `./dist` 文件夹中为你的应用创建一个生产环境的构建版本。关于将应用上线生产环境的更多内容，请阅读[生产环境部署指南](/guide/best-practices/production-deployment)。
 
 [下一步>](#next-steps)
 
@@ -171,7 +171,7 @@ import { createApp } from 'vue'
 :::
 
 :::warning 生产环境中的注意事项
-到目前为止示例中使用的都是 Vue 的开发构建版本——如果你打算在生产中通过 CDN 使用 Vue，请务必查看[生产环境部署指南](/guide/best-practices/production-deployment.html#without-build-tools)。
+到目前为止示例中使用的都是 Vue 的开发构建版本——如果你打算在生产中通过 CDN 使用 Vue，请务必查看[生产环境部署指南](/guide/best-practices/production-deployment#without-build-tools)。
 :::
 
 ### 拆分模块 {#splitting-up-the-modules}
@@ -208,7 +208,7 @@ export default {
 
 ### 无需构建的组合式 API 用法 {#using-composition-api-without-a-build-step}
 
-组合式 API 的许多示例将使用 `<script setup>` 语法。如果你想在无需构建的情况下使用组合式 API，请参阅 [`setup()` 选项](/api/composition-api-setup.html)。
+组合式 API 的许多示例将使用 `<script setup>` 语法。如果你想在无需构建的情况下使用组合式 API，请参阅 [`setup()` 选项](/api/composition-api-setup)。
 
 ## 下一步 {#next-steps}
 

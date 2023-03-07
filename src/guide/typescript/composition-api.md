@@ -97,23 +97,6 @@ const props = withDefaults(defineProps<Props>(), {
 
 这将被编译为等效的运行时 props `default` 选项。此外，`withDefaults` 帮助程序为默认值提供类型检查，并确保返回的 props 类型删除了已声明默认值的属性的可选标志。
 
-或者，你可以使用目前为实验性的[响应性语法糖](/guide/extras/reactivity-transform.html)：
-
-```vue
-<script setup lang="ts">
-interface Props {
-  name: string
-  count?: number
-}
-
-// 对 defineProps() 的响应性解构
-// 默认值会被编译为等价的运行时选项
-const { name, count = 100 } = defineProps<Props>()
-</script>
-```
-
-这个行为目前需要[显式地选择开启](/guide/extras/reactivity-transform.html#explicit-opt-in)。
-
 ### 非 `<script setup>` 场景下 {#without-script-setup}
 
 如果没有使用 `<script setup>`，那么为了开启 props 的类型推导，必须使用 `defineComponent()`。传入 `setup()` 的 props 对象类型是从 `props` 选项中推导而来。
@@ -172,7 +155,7 @@ export default defineComponent({
 })
 ```
 
-`props` 选项通常用于 Options API，因此你会在[选项式 API 与 TypeScript](/guide/typescript/options-api.html#typing-component-props) 指南中找到更详细的例子。这些例子中展示的技术也适用于使用 `defineProps()` 的运行时声明。
+`props` 选项通常用于 Options API，因此你会在[选项式 API 与 TypeScript](/guide/typescript/options-api#typing-component-props) 指南中找到更详细的例子。这些例子中展示的技术也适用于使用 `defineProps()` 的运行时声明。
 
 ## 为组件的 emits 标注类型 {#typing-component-emits}
 
@@ -416,4 +399,4 @@ const openModal = () => {
 </script>
 ```
 
-注意，如果你想在 TypeScript 文件而不是在 Vue SFC 中使用这种技巧，需要开启 Volar 的 [Takeover 模式](./overview.html#volar-takeover-mode)。
+注意，如果你想在 TypeScript 文件而不是在 Vue SFC 中使用这种技巧，需要开启 Volar 的 [Takeover 模式](./overview#volar-takeover-mode)。

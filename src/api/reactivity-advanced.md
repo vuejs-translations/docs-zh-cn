@@ -2,7 +2,7 @@
 
 ## shallowRef() {#shallowref}
 
-[`ref()`](./reactivity-core.html#ref) 的浅层作用形式。
+[`ref()`](./reactivity-core#ref) 的浅层作用形式。
 
 - **类型**
 
@@ -33,8 +33,8 @@
   ```
 
 - **参考：**
-  - [指南 - 减少大型不可变结构的响应性开销](/guide/best-practices/performance.html#reduce-reactivity-overhead-for-large-immutable-structures)
-  - [指南 - 与其他状态系统集成](/guide/extras/reactivity-in-depth.html#integration-with-external-state-systems)
+  - [指南 - 减少大型不可变结构的响应性开销](/guide/best-practices/performance#reduce-reactivity-overhead-for-large-immutable-structures)
+  - [指南 - 与其他状态系统集成](/guide/extras/reactivity-in-depth#integration-with-external-state-systems)
 
 ## triggerRef() {#triggerref}
 
@@ -133,7 +133,7 @@
 
 ## shallowReactive() {#shallowreactive}
 
-[`reactive()`](./reactivity-core.html#reactive) 的浅层作用形式。
+[`reactive()`](./reactivity-core#reactive) 的浅层作用形式。
 
 - **类型**
 
@@ -171,7 +171,7 @@
 
 ## shallowReadonly() {#shallowreadonly}
 
-[`readonly()`](./reactivity-core.html#readonly) 的浅层作用形式
+[`readonly()`](./reactivity-core#readonly) 的浅层作用形式
 
 - **类型**
 
@@ -219,7 +219,7 @@
 
 - **详细信息**
 
-  `toRaw()` 可以返回由 [`reactive()`](./reactivity-core.html#reactive)、[`readonly()`](./reactivity-core.html#readonly)、[`shallowReactive()`](#shallowreactive) 或者 [`shallowReadonly()`](#shallowreadonly) 创建的代理对应的原始对象。
+  `toRaw()` 可以返回由 [`reactive()`](./reactivity-core#reactive)、[`readonly()`](./reactivity-core#readonly)、[`shallowReactive()`](#shallowreactive) 或者 [`shallowReadonly()`](#shallowreadonly) 创建的代理对应的原始对象。
 
   这是一个可以用于临时读取而不引起代理访问/跟踪开销，或是写入而不触发更改的特殊方法。不建议保存对原始对象的持久引用，请谨慎使用。
 

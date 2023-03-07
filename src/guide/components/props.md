@@ -18,7 +18,7 @@ console.log(props.foo)
 </script>
 ```
 
-在没有使用 `<script setup>` 的组件中，prop 可以使用 [`props`](/api/options-state.html#props) 选项来声明：
+在没有使用 `<script setup>` 的组件中，prop 可以使用 [`props`](/api/options-state#props) 选项来声明：
 
 ```js
 export default {
@@ -36,7 +36,7 @@ export default {
 
 <div class="options-api">
 
-props 需要使用 [`props`](/api/options-state.html#props) 选项来定义：
+props 需要使用 [`props`](/api/options-state#props) 选项来定义：
 
 ```js
 export default {
@@ -92,7 +92,7 @@ export default {
 
 <div class="options-api">
 
-TypeScript 用户请参考：[为组件 Props 标注类型](/guide/typescript/options-api.html#typing-component-props) <sup class="vt-badge ts" />
+TypeScript 用户请参考：[为组件 Props 标注类型](/guide/typescript/options-api#typing-component-props) <sup class="vt-badge ts" />
 
 </div>
 
@@ -109,7 +109,7 @@ defineProps<{
 </script>
 ```
 
-更多关于基于类型的声明的细节请参考[组件 props 类型标注](/guide/typescript/composition-api.html#typing-component-props)。<sup class="vt-badge ts" />
+更多关于基于类型的声明的细节请参考[组件 props 类型标注](/guide/typescript/composition-api#typing-component-props)。<sup class="vt-badge ts" />
 
 </div>
 
@@ -144,13 +144,13 @@ export default {
 <span>{{ greetingMessage }}</span>
 ```
 
-虽然理论上你也可以在向子组件传递 props 时使用 camelCase 形式 (使用 [DOM 模板](/guide/essentials/component-basics.html#dom-template-parsing-caveats)时例外)，但实际上为了和 HTML attribute 对齐，我们通常会将其写为 kebab-case 形式：
+虽然理论上你也可以在向子组件传递 props 时使用 camelCase 形式 (使用 [DOM 模板](/guide/essentials/component-basics#dom-template-parsing-caveats)时例外)，但实际上为了和 HTML attribute 对齐，我们通常会将其写为 kebab-case 形式：
 
 ```vue-html
 <MyComponent greeting-message="hello" />
 ```
 
-对于组件名我们推荐使用 [PascalCase](/guide/components/registration.html#component-name-casing)，因为这提高了模板的可读性，能帮助我们区分 Vue 组件和原生 HTML 元素。然而对于传递 props 来说，使用 camelCase 并没有太多优势，因此我们推荐更贴近 HTML 的书写风格。
+对于组件名我们推荐使用 [PascalCase](/guide/components/registration#component-name-casing)，因为这提高了模板的可读性，能帮助我们区分 Vue 组件和原生 HTML 元素。然而对于传递 props 来说，使用 camelCase 并没有太多优势，因此我们推荐更贴近 HTML 的书写风格。
 
 ### 静态 vs. 动态 Prop {#static-vs-dynamic-props}
 
@@ -228,7 +228,7 @@ export default {
 
 ### 使用一个对象绑定多个 prop {#binding-multiple-properties-using-an-object}
 
-如果你想要将一个对象的所有属性都当作 props 传入，你可以使用[没有参数的 `v-bind`](/guide/essentials/template-syntax.html#dynamically-binding-multiple-attributes)，即只使用 `v-bind` 而非 `:prop-name`。例如，这里有一个 `post` 对象：
+如果你想要将一个对象的所有属性都当作 props 传入，你可以使用[没有参数的 `v-bind`](/guide/essentials/template-syntax#dynamically-binding-multiple-attributes)，即只使用 `v-bind` 而非 `:prop-name`。例如，这里有一个 `post` 对象：
 
 <div class="options-api">
 
@@ -363,7 +363,7 @@ export default {
 
 当对象或数组作为 props 被传入时，虽然子组件无法更改 props 绑定，但仍然**可以**更改对象或数组内部的值。这是因为 JavaScript 的对象和数组是按引用传递，而对 Vue 来说，禁止这样的改动，虽然可能生效，但有很大的性能损耗，比较得不偿失。
 
-这种更改的主要缺陷是它允许了子组件以某种不明显的方式影响父组件的状态，可能会使数据流在将来变得更难以理解。在最佳实践中，你应该尽可能避免这样的更改，除非父子组件在设计上本来就需要紧密耦合。在大多数场景下，子组件应该[抛出一个事件](/guide/components/events.html)来通知父组件做出改变。
+这种更改的主要缺陷是它允许了子组件以某种不明显的方式影响父组件的状态，可能会使数据流在将来变得更难以理解。在最佳实践中，你应该尽可能避免这样的更改，除非父子组件在设计上本来就需要紧密耦合。在大多数场景下，子组件应该[抛出一个事件](/guide/components/events)来通知父组件做出改变。
 
 ## Prop 校验 {#prop-validation}
 
@@ -410,7 +410,8 @@ defineProps({
   // 函数类型的默认值
   propG: {
     type: Function,
-    // 不像对象或数组的默认，这不是一个工厂函数。这会是一个用来作为默认值的函数
+    // 不像对象或数组的默认，这不是一个
+    // 工厂函数。这会是一个用来作为默认值的函数
     default() {
       return 'Default function'
     }
@@ -463,7 +464,8 @@ export default {
     // 函数类型的默认值
     propG: {
       type: Function,
-      // 不像对象或数组的默认，这不是一个工厂函数。这会是一个用来作为默认值的函数
+      // 不像对象或数组的默认，这不是一个
+      // 工厂函数。这会是一个用来作为默认值的函数
       default() {
         return 'Default function'
       }
@@ -488,7 +490,7 @@ export default {
 
 <div class="composition-api">
 
-如果使用了[基于类型的 prop 声明](/api/sfc-script-setup.html#typescript-only-features) <sup class="vt-badge ts" />，Vue 会尽最大努力在运行时按照 prop 的类型标注进行编译。举例来说，`defineProps<{ msg: string }>` 会被编译为 `{ msg: { type: String, required: true }}`。
+如果使用了[基于类型的 prop 声明](/api/sfc-script-setup#typescript-only-features) <sup class="vt-badge ts" />，Vue 会尽最大努力在运行时按照 prop 的类型标注进行编译。举例来说，`defineProps<{ msg: string }>` 会被编译为 `{ msg: { type: String, required: true }}`。
 
 </div>
 <div class="options-api">

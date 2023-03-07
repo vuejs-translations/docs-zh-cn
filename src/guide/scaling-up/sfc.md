@@ -65,7 +65,7 @@ const greeting = ref('Hello World!')
 - [组件作用域的 CSS](/api/sfc-css-features)
 - [在使用组合式 API 时语法更简单](/api/sfc-script-setup)
 - 通过交叉分析模板和逻辑代码能进行更多编译时优化
-- [更好的 IDE 支持](/guide/scaling-up/tooling.html#ide-support)，提供自动补全和对模板中表达式的类型检查
+- [更好的 IDE 支持](/guide/scaling-up/tooling#ide-support)，提供自动补全和对模板中表达式的类型检查
 - 开箱即用的模块热更新 (HMR) 支持
 
 SFC 是 Vue 框架提供的一个功能，并且在下列场景中都是官方推荐的项目组织方式：
@@ -104,4 +104,4 @@ SFC 中的 `<style>` 标签一般会在开发时注入成原生的 `<style>` 标
 
 在现代的 UI 开发中，我们发现与其将代码库划分为三个巨大的层，相互交织在一起，不如将它们划分为松散耦合的组件，再按需组合起来。在一个组件中，其模板、逻辑和样式本就是有内在联系的、是耦合的，将它们放在一起，实际上使组件更有内聚性和可维护性。
 
-即使你不喜欢单文件组件这样的形式而仍然选择拆分单独的 JavaScript 和 CSS 文件，也没关系，你还是可以通过[资源导入](/api/sfc-spec.html#src-imports)功能获得热更新和预编译等功能的支持。
+即使你不喜欢单文件组件这样的形式而仍然选择拆分单独的 JavaScript 和 CSS 文件，也没关系，你还是可以通过[资源导入](/api/sfc-spec#src-imports)功能获得热更新和预编译等功能的支持。

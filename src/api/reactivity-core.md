@@ -3,8 +3,8 @@
 :::info 参考
 要更好地了解响应式 API，推荐阅读下面几个指南中的章节：
 
-- [响应式基础](/guide/essentials/reactivity-fundamentals.html) (with the API preference set to Composition API)
-- [深入响应式系统](/guide/extras/reactivity-in-depth.html)
+- [响应式基础](/guide/essentials/reactivity-fundamentals) (with the API preference set to Composition API)
+- [深入响应式系统](/guide/extras/reactivity-in-depth)
   :::
 
 ## ref() {#ref}
@@ -27,7 +27,7 @@
 
   如果将一个对象赋值给 ref，那么这个对象将通过 [reactive()](#reactive) 转为具有深层次响应式的对象。这也意味着如果对象中包含了嵌套的 ref，它们将被深层地解包。
 
-  若要避免这种深层次的转换，请使用 [`shallowRef()`](./reactivity-advanced.html#shallowref) 来替代。
+  若要避免这种深层次的转换，请使用 [`shallowRef()`](./reactivity-advanced#shallowref) 来替代。
 
 - **示例**
 
@@ -40,8 +40,8 @@
   ```
 
 - **参考：**
-  - [指南 - `ref()` 定义响应式变量](/guide/essentials/reactivity-fundamentals.html#reactive-variables-with-ref)
-  - [指南 - 为 `ref()` 标注类型](/guide/typescript/composition-api.html#typing-ref) <sup class="vt-badge ts" />
+  - [指南 - `ref()` 定义响应式变量](/guide/essentials/reactivity-fundamentals#reactive-variables-with-ref)
+  - [指南 - 为 `ref()` 标注类型](/guide/typescript/composition-api#typing-ref) <sup class="vt-badge ts" />
 
 ## computed() {#computed}
 
@@ -109,9 +109,9 @@
   ```
 
 - **参考：**
-  - [指南 - 计算属性](/guide/essentials/computed.html)
-  - [指南 - 计算属性调试](/guide/extras/reactivity-in-depth.html#computed-debugging)
-  - [指南 - 为 `computed()` 标注类型](/guide/typescript/composition-api.html#typing-computed) <sup class="vt-badge ts" />
+  - [指南 - 计算属性](/guide/essentials/computed)
+  - [指南 - 计算属性调试](/guide/extras/reactivity-in-depth#computed-debugging)
+  - [指南 - 为 `computed()` 标注类型](/guide/typescript/composition-api#typing-computed) <sup class="vt-badge ts" />
 
 ## reactive() {#reactive}
 
@@ -129,7 +129,7 @@
 
   值得注意的是，当访问到某个响应式数组或 `Map` 这样的原生集合类型中的 ref 元素时，不会执行 ref 的解包。
 
-  若要避免深层响应式转换，只想保留对这个对象顶层次访问的响应性，请使用 [shallowReactive()](./reactivity-advanced.html#shallowreactive) 作替代。
+  若要避免深层响应式转换，只想保留对这个对象顶层次访问的响应性，请使用 [shallowReactive()](./reactivity-advanced#shallowreactive) 作替代。
 
   返回的对象以及其中嵌套的对象都会通过 [ES Proxy](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy) 包裹，因此**不等于**源对象，建议只使用响应式代理，避免使用原始对象。
 
@@ -187,8 +187,8 @@
   ```
 
 - **参考：**
-  - [指南 - 响应式基础](/guide/essentials/reactivity-fundamentals.html)
-  - [指南 - 为 `reactive()` 标注类型](/guide/typescript/composition-api.html#typing-reactive) <sup class="vt-badge ts" />
+  - [指南 - 响应式基础](/guide/essentials/reactivity-fundamentals)
+  - [指南 - 为 `reactive()` 标注类型](/guide/typescript/composition-api#typing-reactive) <sup class="vt-badge ts" />
 
 ## readonly() {#readonly}
 
@@ -206,7 +206,7 @@
 
   只读代理是深层的：对任何嵌套属性的访问都将是只读的。它的 ref 解包行为与 `reactive()` 相同，但解包得到的值是只读的。
 
-  要避免深层级的转换行为，请使用 [shallowReadonly()](./reactivity-advanced.html#shallowreadonly) 作替代。
+  要避免深层级的转换行为，请使用 [shallowReadonly()](./reactivity-advanced#shallowreadonly) 作替代。
 
 - **示例**
 
@@ -256,7 +256,7 @@
 
   第二个参数是一个可选的选项，可以用来调整副作用的刷新时机或调试副作用的依赖。
 
-  默认情况下，侦听器将在组件渲染之前执行。设置 `flush: 'post'` 将会使侦听器延迟到组件渲染之后再执行。详见[回调的触发时机](/guide/essentials/watchers.html#callback-flush-timing)。在某些特殊情况下 (例如要使缓存失效)，可能有必要在响应式依赖发生改变时立即触发侦听器。这可以通过设置 `flush: 'sync'` 来实现。然而，该设置应谨慎使用，因为如果有多个属性同时更新，这将导致一些性能和数据一致性的问题。
+  默认情况下，侦听器将在组件渲染之前执行。设置 `flush: 'post'` 将会使侦听器延迟到组件渲染之后再执行。详见[回调的触发时机](/guide/essentials/watchers#callback-flush-timing)。在某些特殊情况下 (例如要使缓存失效)，可能有必要在响应式依赖发生改变时立即触发侦听器。这可以通过设置 `flush: 'sync'` 来实现。然而，该设置应谨慎使用，因为如果有多个属性同时更新，这将导致一些性能和数据一致性的问题。
 
   返回值是一个用来停止该副作用的函数。
 
@@ -309,8 +309,8 @@
   ```
 
 - **参考：**
-  - [指南 - 侦听器](/guide/essentials/watchers.html#watcheffect)
-  - [指南 - 侦听器调试](/guide/extras/reactivity-in-depth.html#watcher-debugging)
+  - [指南 - 侦听器](/guide/essentials/watchers#watcheffect)
+  - [指南 - 侦听器调试](/guide/extras/reactivity-in-depth#watcher-debugging)
 
 ## watchPostEffect() {#watchposteffect}
 
@@ -383,9 +383,9 @@
   第三个可选的参数是一个对象，支持以下这些选项：
 
   - **`immediate`**：在侦听器创建时立即触发回调。第一次调用时旧值是 `undefined`。
-  - **`deep`**：如果源是对象，强制深度遍历，以便在深层级变更时触发回调。参考[深层侦听器](/guide/essentials/watchers.html#deep-watchers)。
-  - **`flush`**：调整回调函数的刷新时机。参考[回调的刷新时机](/guide/essentials/watchers.html#callback-flush-timing)及 [`watchEffect()`](/api/reactivity-core.html#watcheffect)。
-  - **`onTrack / onTrigger`**：调试侦听器的依赖。参考[调试侦听器](/guide/extras/reactivity-in-depth.html#watcher-debugging)。
+  - **`deep`**：如果源是对象，强制深度遍历，以便在深层级变更时触发回调。参考[深层侦听器](/guide/essentials/watchers#deep-watchers)。
+  - **`flush`**：调整回调函数的刷新时机。参考[回调的刷新时机](/guide/essentials/watchers#callback-flush-timing)及 [`watchEffect()`](/api/reactivity-core#watcheffect)。
+  - **`onTrack / onTrigger`**：调试侦听器的依赖。参考[调试侦听器](/guide/extras/reactivity-in-depth#watcher-debugging)。
 
   与 [`watchEffect()`](#watcheffect) 相比，`watch()` 使我们可以：
 
@@ -483,5 +483,5 @@
 
 - **参考：**
 
-  - [指南 - 侦听器](/guide/essentials/watchers.html)
-  - [指南 - 侦听器调试](/guide/extras/reactivity-in-depth.html#watcher-debugging)
+  - [指南 - 侦听器](/guide/essentials/watchers)
+  - [指南 - 侦听器调试](/guide/extras/reactivity-in-depth#watcher-debugging)

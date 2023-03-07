@@ -14,14 +14,14 @@ import ListStagger from './transition-demos/ListStagger.vue'
 
 - 默认情况下，它不会渲染一个容器元素。但你可以通过传入 `tag` prop 来指定一个元素作为容器元素来渲染。
 
-- [过渡模式](./transition.html#transition-modes)在这里不可用，因为我们不再是在互斥的元素之间进行切换。
+- [过渡模式](./transition#transition-modes)在这里不可用，因为我们不再是在互斥的元素之间进行切换。
 
 - 列表中的每个元素都**必须**有一个独一无二的 `key` attribute。
 
 - CSS 过渡 class 会被应用在列表内的元素上，**而不是**容器元素上。
 
 :::tip
-当在 [DOM 模板](/guide/essentials/component-basics.html#dom-template-parsing-caveats)中使用时，组件名需要写为 `<transition-group>`。
+当在 [DOM 模板](/guide/essentials/component-basics#dom-template-parsing-caveats)中使用时，组件名需要写为 `<transition-group>`。
 :::
 
 ## 进入 / 离开动画 {#enter-leave-transitions}
@@ -132,4 +132,4 @@ function onEnter(el, done) {
 
 **参考**
 
-- [`<TransitionGroup>` API 参考](/api/built-in-components.html#transitiongroup)
+- [`<TransitionGroup>` API 参考](/api/built-in-components#transitiongroup)

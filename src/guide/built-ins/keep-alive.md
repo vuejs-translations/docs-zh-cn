@@ -8,7 +8,7 @@ import SwitchComponent from './keep-alive-demos/SwitchComponent.vue'
 
 ## 基本使用 {#basic-usage}
 
-在组件基础章节中，我们已经介绍了通过特殊的 `<component>` 元素来实现[动态组件](/guide/essentials/component-basics.html#dynamic-components)的用法：
+在组件基础章节中，我们已经介绍了通过特殊的 `<component>` 元素来实现[动态组件](/guide/essentials/component-basics#dynamic-components)的用法：
 
 ```vue-html
 <component :is="activeComponent" />
@@ -47,7 +47,7 @@ import SwitchComponent from './keep-alive-demos/SwitchComponent.vue'
 </div>
 
 :::tip
-在 [DOM 模板](/guide/essentials/component-basics.html#dom-template-parsing-caveats)中使用时，它应该被写为 `<keep-alive>`。
+在 [DOM 模板](/guide/essentials/component-basics#dom-template-parsing-caveats)中使用时，它应该被写为 `<keep-alive>`。
 :::
 
 ## 包含/排除 {#include-exclude}
@@ -71,7 +71,7 @@ import SwitchComponent from './keep-alive-demos/SwitchComponent.vue'
 </KeepAlive>
 ```
 
-它会根据组件的 [`name`](/api/options-misc.html#name) 选项进行匹配，所以组件如果想要条件性地被 `KeepAlive` 缓存，就必须显式声明一个 `name` 选项。
+它会根据组件的 [`name`](/api/options-misc#name) 选项进行匹配，所以组件如果想要条件性地被 `KeepAlive` 缓存，就必须显式声明一个 `name` 选项。
 
 :::tip
 在 3.2.34 或以上的版本中，使用 `<script setup>` 的单文件组件会自动根据文件名生成对应的 `name` 选项，无需再手动声明。
@@ -93,7 +93,7 @@ import SwitchComponent from './keep-alive-demos/SwitchComponent.vue'
 
 <div class="composition-api">
 
-一个持续存在的组件可以通过 [`onActivated()`](/api/composition-api-lifecycle.html#onactivated) 和 [`onDeactivated()`](/api/composition-api-lifecycle.html#ondeactivated) 注册相应的两个状态的生命周期钩子：
+一个持续存在的组件可以通过 [`onActivated()`](/api/composition-api-lifecycle#onactivated) 和 [`onDeactivated()`](/api/composition-api-lifecycle#ondeactivated) 注册相应的两个状态的生命周期钩子：
 
 ```vue
 <script setup>
@@ -114,7 +114,7 @@ onDeactivated(() => {
 </div>
 <div class="options-api">
 
-一个持续存在的组件可以通过 [`activated`](/api/options-lifecycle.html#activated) 和 [`deactivated`](/api/options-lifecycle.html#deactivated) 选项来注册相应的两个状态的生命周期钩子：
+一个持续存在的组件可以通过 [`activated`](/api/options-lifecycle#activated) 和 [`deactivated`](/api/options-lifecycle#deactivated) 选项来注册相应的两个状态的生命周期钩子：
 
 ```js
 export default {
@@ -141,4 +141,4 @@ export default {
 
 **参考**
 
-- [`<KeepAlive>` API 参考](/api/built-in-components.html#keepalive)
+- [`<KeepAlive>` API 参考](/api/built-in-components#keepalive)

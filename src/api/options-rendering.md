@@ -23,7 +23,7 @@
   如果应用的根组件不含任何 `template` 或 `render` 选项，Vue 将会尝试使用所挂载元素的 `innerHTML` 来作为模板。
 
   :::warning 安全性注意
-  务必只使用可以信任的模板来源。不要直接将用户提供的内容用作模板。查看[安全指南](/guide/best-practices/security.html#rule-no-1-never-use-non-trusted-templates)了解更多细节。
+  务必只使用可以信任的模板来源。不要直接将用户提供的内容用作模板。查看[安全指南](/guide/best-practices/security#rule-no-1-never-use-non-trusted-templates)了解更多细节。
   :::
 
 ## render {#render}
@@ -58,8 +58,8 @@
   预编译的模板，例如单文件组件中的模板，会在构建时被编译为 `render` 选项。如果一个组件中同时存在 `render` 和 `template`，则 `render` 将具有更高的优先级。
 
 - **参考：**
-  - [渲染机制](/guide/extras/rendering-mechanism.html)
-  - [渲染函数](/guide/extras/render-function.html)
+  - [渲染机制](/guide/extras/rendering-mechanism)
+  - [渲染函数](/guide/extras/render-function)
 
 ## compilerOptions {#compileroptions}
 
@@ -80,6 +80,6 @@
 
 - **详细信息**
 
-  这个配置选项仅在使用完整构建版本 (即可以在浏览器中编译模板的 `vue.js` 文件) 时才有效。它支持与应用级的 [app.config.compilerOptions](/api/application.html#app-config-compileroptions) 相同的选项，并针对当前组件有更高的优先级。
+  这个配置选项仅在使用完整构建版本 (即可以在浏览器中编译模板的 `vue.js` 文件) 时才有效。它支持与应用级的 [app.config.compilerOptions](/api/application#app-config-compileroptions) 相同的选项，并针对当前组件有更高的优先级。
 
-- **参考**：[app.config.compilerOptions](/api/application.html#app-config-compileroptions)
+- **参考**：[app.config.compilerOptions](/api/application#app-config-compileroptions)

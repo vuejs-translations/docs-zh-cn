@@ -10,13 +10,15 @@ outline: deep
 
 ## 什么是组合式 API？ {#what-is-composition-api}
 
+<VueSchoolLink href="https://vueschool.io/lessons/introduction-to-the-vue-js-3-composition-api" title="免费的组合式 API 课程"/>
+
 组合式 API (Composition API) 是一系列 API 的集合，使我们可以使用函数而不是声明选项的方式书写 Vue 组件。它是一个概括性的术语，涵盖了以下方面的 API：
 
-- [响应式 API](/api/reactivity-core.html)：例如 `ref()` 和 `reactive()`，使我们可以直接创建响应式状态、计算属性和侦听器。
+- [响应式 API](/api/reactivity-core)：例如 `ref()` 和 `reactive()`，使我们可以直接创建响应式状态、计算属性和侦听器。
 
-- [生命周期钩子](/api/composition-api-lifecycle.html)：例如 `onMounted()` 和 `onUnmounted()`，使我们可以在组件各个生命周期阶段添加逻辑。
+- [生命周期钩子](/api/composition-api-lifecycle)：例如 `onMounted()` 和 `onUnmounted()`，使我们可以在组件各个生命周期阶段添加逻辑。
 
-- [依赖注入](/api/composition-api-dependency-injection.html)：例如 `provide()` 和 `inject()`，使我们可以在使用响应式 API 时，利用 Vue 的依赖注入系统。
+- [依赖注入](/api/composition-api-dependency-injection)：例如 `provide()` 和 `inject()`，使我们可以在使用响应式 API 时，利用 Vue 的依赖注入系统。
 
 组合式 API 是 Vue 3 及 [Vue 2.7](https://blog.vuejs.org/posts/vue-2-7-naruto.html) 的内置功能。对于更老的 Vue 2 版本，可以使用官方维护的插件 [`@vue/composition-api`](https://github.com/vuejs/composition-api)。在 Vue 3 中，组合式 API 基本上都会配合 [`<script setup>`](/api/sfc-script-setup.html) 语法在单文件组件中使用。下面是一个使用组合式 API 的组件示例：
 
@@ -51,9 +53,9 @@ onMounted(() => {
 
 ### 更好的逻辑复用 {#better-logic-reuse}
 
-组合式 API 最基本的优势是它使我们能够通过[组合函数](/guide/reusability/composables.html)来实现更加简洁高效的逻辑复用。在选项式 API 中我们主要的逻辑复用机制是 mixins，而组合式 API 解决了 [mixins 的所有缺陷](/guide/reusability/composables.html#vs-mixins)。
+组合式 API 最基本的优势是它使我们能够通过[组合函数](/guide/reusability/composables)来实现更加简洁高效的逻辑复用。在选项式 API 中我们主要的逻辑复用机制是 mixins，而组合式 API 解决了 [mixins 的所有缺陷](/guide/reusability/composables#vs-mixins)。
 
-组合式 API 提供的逻辑复用能力孵化了一些非常棒的社区项目，比如 [VueUse](https://vueuse.org/)，一个不断成长的工具型组合式函数集合。组合式 API 还为其他第三方状态管理库与 Vue 的响应式系统之间的集成提供了一套简洁清晰的机制，例如 [RxJS](https://vueuse.org/rxjs/readme.html#vueuse-rxjs)。
+组合式 API 提供的逻辑复用能力孵化了一些非常棒的社区项目，比如 [VueUse](https://vueuse.org/)，一个不断成长的工具型组合式函数集合。组合式 API 还为其他第三方状态管理库与 Vue 的响应式系统之间的集成提供了一套简洁清晰的机制，例如[不可变数据](/guide/extras/reactivity-in-depth#immutable-data)、[状态机](/guide/extras/reactivity-in-depth#state-machines)与 [RxJS](https://vueuse.org/rxjs/readme.html#vueuse-rxjs)。
 
 ### 更灵活的代码组织 {#more-flexible-code-organization}
 
@@ -110,7 +112,7 @@ onMounted(() => {
 
 ### 可以同时使用两种 API 吗？ {#can-i-use-both-apis-together}
 
-可以。你可以在一个选项式 API 的组件中通过 [`setup()`](/api/composition-api-setup.html) 选项来使用组合式 API。
+可以。你可以在一个选项式 API 的组件中通过 [`setup()`](/api/composition-api-setup) 选项来使用组合式 API。
 
 然而，我们只推荐你在一个已经基于选项式 API 开发了很久、但又需要和基于组合式 API 的新代码或是第三方库整合的项目中这样做。
 
