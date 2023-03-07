@@ -585,13 +585,33 @@ export default {
 <MyComponent />
 ```
 
-当一个 prop 被声明为允许多种类型时，例如：
+当一个 prop 被声明为允许多种类型且满足下列任意一个条件时，`Boolean` 类型的特殊转换规则会被应用。
+  - 声明的类型不包含`String`
+  - 声明类型时`Boolean`在`String`前面
+
+例如：
 
 <div class="composition-api">
 
 ```js
+<!-- disabled会被解析成true -->
 defineProps({
   disabled: [Boolean, Number]
+})
+  
+<!-- disabled会被解析成true -->
+defineProps({
+  disabled: [Boolean, String]
+})
+  
+<!-- disabled会被解析成true -->
+defineProps({
+  disabled: [Number, Boolean]
+})
+  
+<!-- disabled会被解析成空字符串 -->
+defineProps({
+  disabled: [String, Boolean]
 })
 ```
 
@@ -599,13 +619,33 @@ defineProps({
 <div class="options-api">
 
 ```js
+<!-- disabled会被解析成true -->
 export default {
   props: {
     disabled: [Boolean, Number]
   }
 }
+  
+<!-- disabled会被解析成true -->
+export default {
+  props: {
+    disabled: [Boolean, String]
+  }
+}
+  
+<!-- disabled会被解析成true -->
+export default {
+  props: {
+    disabled: [Number, Boolean]
+  }
+}
+  
+<!-- disabled会被解析成空字符串 -->
+export default {
+  props: {
+    disabled: [String, Boolean]
+  }
+}
 ```
 
 </div>
-
-无论声明类型的顺序如何，`Boolean` 类型的特殊转换规则都会被应用。
