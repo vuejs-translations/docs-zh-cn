@@ -39,7 +39,7 @@ h('div', { id: 'foo' })
 // Vue 会自动将它们分配到正确的位置
 h('div', { class: 'bar', innerHTML: 'hello' })
 
-// 可以在 props 中添加 .prop 和 .attr 的属性修饰符
+// 像 .prop 和 .attr 这样的的属性修饰符
 // 分别使用  '.' 和 '^' 前缀进行标识
 h('div', { '.name': 'some-name', '^width': '100' })
 
