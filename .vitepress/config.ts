@@ -568,12 +568,7 @@ const i18n: ThemeConfig['i18n'] = {
     before: '',
     after: ''
   },
-
-  // aria labels
-  // TODO:
-  // update the key to `ariaAnnouncer` after new `@vue/theme` released
-  // https://github.com/vuejs/theme/issues/75
-  ariaAnnouner: {
+  ariaAnnouncer: {
     before: '',
     after: '已经加载完毕'
   },
