@@ -24,5 +24,6 @@
       "source": "/v2/:path*",
       "destination": "https://v2.cn.vuejs.org/v2/:path*"
     }
-  ]
+  ],
+  "cleanUrls": true
 }
