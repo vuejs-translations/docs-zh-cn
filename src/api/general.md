@@ -132,7 +132,7 @@
   export default /*#__PURE__*/ defineComponent(/* ... */)
   ```
 
-  请注意，如果你的项目中使用的是 Vite，就不需要这么做，因为 Rollup (Vite 的底层生产环境构建器) 可以智能地确定 `defineComponent()` 实际上并没有副作用，所以无需手动注释。
+  请注意，如果你的项目中使用的是 Vite，就不需要这么做，因为 Rollup (Vite 底层使用的生产环境打包工具) 可以智能地确定 `defineComponent()` 实际上并没有副作用，所以无需手动注释。
 
 - **参考**：[指南 - 配合 TypeScript 使用 Vue](/guide/typescript/overview#general-usage-notes)
 
