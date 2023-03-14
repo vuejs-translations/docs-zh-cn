@@ -102,6 +102,14 @@ h(Transition, {
   </Transition>
   ```
 
+  通过改变 `key` 属性来强制过度执行：
+  
+  ```vue-html
+  <Transition>
+    <div :key="text">{{ text }}</div>
+  </Transition>
+  ```
+
   动态组件，初始渲染时带有过渡模式 + 动画出现：
 
   ```vue-html
