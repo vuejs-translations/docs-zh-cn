@@ -68,7 +68,7 @@ export default {
 - [vite-plugin-vue-gql：`<gql>`](https://github.com/wheatjs/vite-plugin-vue-gql)
 - [vue-i18n：`<i18n>`](https://github.com/intlify/bundle-tools/tree/main/packages/vite-plugin-vue-i18n#i18n-custom-block)
 
-自定义块的处理需要依赖工具链。如果你想要在构建中集成你的自定义语块，请参见[相关工具链指南](/guide/scaling-up/tooling#sfc-custom-block-integrations)获取更多细节。
+自定义块的处理需要依赖工具链。如果你想要在构建中集成你的自定义语块，请参见 [SFC 自定义块集成工具链指南](/guide/scaling-up/tooling#sfc-custom-block-integrations)获取更多细节。
 
 ## 自动名称推导 {#automatic-name-inference}
 
@@ -109,7 +109,7 @@ p {{ msg }}
 - [Vue CLI](https://cli.vuejs.org/zh/guide/css.html#%E9%A2%84%E5%A4%84%E7%90%86%E5%99%A8)
 - [webpack + vue-loader](https://vue-loader.vuejs.org/zh/guide/pre-processors.html#%E4%BD%BF%E7%94%A8%E9%A2%84%E5%A4%84%E7%90%86%E5%99%A8)
 
-## Src 导入 {#src-imports}
+## `src` 导入 {#src-imports}
 
 如果你更喜欢将 `*.vue` 组件分散到多个文件中，可以为一个语块使用 `src` 这个 attribute 来导入一个外部文件：
 
