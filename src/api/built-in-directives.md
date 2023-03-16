@@ -356,7 +356,7 @@
 - **修饰符：**
 
   - [`.lazy`](/guide/essentials/forms#lazy) - 监听 `change` 事件而不是 `input`
-  - [`.number`](/guide/essentials/forms#number) - 将输入的合法符串转为数字
+  - [`.number`](/guide/essentials/forms#number) - 将输入的合法字符串转为数字
   - [`.trim`](/guide/essentials/forms#trim) - 移除输入内容两端空格
 
 - **参考：**
