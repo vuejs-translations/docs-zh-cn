@@ -118,7 +118,7 @@ const Foo = defineAsyncComponent(() => import('./Foo.vue'))
 
 ### `v-once` {#v-once}
 
-`v-once` 是一个内置的指令，可以用来渲染依赖运行时数据但无需再更新的内容。它的整个子树都会在未来的更新中被跳过。查看它的 [API 参考手册](/api/built-in-directives#v-once)可以了解更多细节。
+`v-once` 是一个内置的指令，它仅会渲染一次，在随后的重新渲染，元素/组件及其所有子项将被当作静态内容并跳过渲染。这可以用来优化更新时的性能。查看它的 [API 参考手册](/api/built-in-directives#v-once)可以了解更多细节。
 
 ### `v-memo` {#v-memo}
 
