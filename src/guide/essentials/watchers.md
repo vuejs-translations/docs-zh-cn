@@ -18,7 +18,7 @@ export default {
   },
   watch: {
     // 每当 question 改变时，这个函数就会执行
-    question(newQuestion, oldQuestion) {
+    question(newQuestion) {
       if (newQuestion.includes('?')) {
         this.getAnswer()
       }
@@ -75,7 +75,7 @@ const question = ref('')
 const answer = ref('Questions usually contain a question mark. ;-)')
 
 // 可以直接侦听一个 ref
-watch(question, async (newQuestion, oldQuestion) => {
+watch(question, async (newQuestion) => {
   if (newQuestion.indexOf('?') > -1) {
     answer.value = 'Thinking...'
     try {
