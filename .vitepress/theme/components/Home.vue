@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { onMounted } from 'vue'
-import SiteMap from './SiteMap.vue';
+import SiteMap from './SiteMap.vue'
 // import NewsLetter from './NewsLetter.vue'
 import { load, data, base } from './sponsors'
 import SponsorsGroup from './SponsorsGroup.vue'
@@ -58,7 +58,12 @@ onMounted(async () => {
           description
         } of data.platinum_china"
       >
-        <a :href="url" target="_blank" rel="sponsored noopener">
+        <a
+          class="logo"
+          :href="url"
+          target="_blank"
+          rel="sponsored noopener"
+        >
           <picture v-if="img.endsWith('png')">
             <source
               type="image/avif"
@@ -72,7 +77,9 @@ onMounted(async () => {
           </picture>
           <img v-else :src="`${base}/images/${img}`" :alt="name" />
         </a>
-        <span>{{ description }}</span>
+        <a :href="url" target="_blank" rel="sponsored noopener">{{
+          description
+        }}</a>
       </template>
     </template>
     <a v-else class="lead" href="/sponsor/"
@@ -232,7 +239,7 @@ html:not(.dark) .accent,
   align-items: center;
 }
 
-#special-sponsor span {
+#special-sponsor span, #special-sponsor a {
   color: var(--vt-c-text-2);
   font-weight: 500;
   font-size: 13px;
@@ -240,14 +247,19 @@ html:not(.dark) .accent,
   flex: 1;
 }
 
+#special-sponsor a:hover {
+  color: var(--vt-c-green);
+}
+
 #special-sponsor span:first-child {
   text-align: right;
 }
 
-#special-sponsor a {
+#special-sponsor .logo {
+  flex: unset;
   display: flex;
   justify-content: center;
-  padding: 0 24px;
+  padding: 0 30px;
 }
 
 #special-sponsor img {
