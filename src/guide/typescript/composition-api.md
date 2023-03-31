@@ -400,3 +400,11 @@ const openModal = () => {
 ```
 
 注意，如果你想在 TypeScript 文件而不是在 Vue SFC 中使用这种技巧，需要开启 Volar 的 [Takeover 模式](./overview#volar-takeover-mode)。
+
+如果你在某些情况下无法获得组件的具体类型，或者你并不关心组件的具体类型，那么你可以使用 `ComponentPublicInstance`。这种方式只包含所有组件都共享的属性，比如 `$el`。
+
+```ts
+import { ref } from 'vue'
+import type { ComponentPublicInstance } from 'vue'
+const child = ref<ComponentPublicInstance | null>(null)
+```
