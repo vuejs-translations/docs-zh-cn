@@ -24,7 +24,7 @@ onMounted(async () => {
     </p>
     <p class="actions">
       <!-- NOTE: hide the home video -->
-      <!-- <vue-mastery-modal /> -->
+      <!-- <VueMasteryModal /> -->
       <a class="get-started" href="/guide/introduction.html">
         快速上手
         <svg
@@ -75,7 +75,13 @@ onMounted(async () => {
               :style="{ height: height || '55px' }"
             />
           </picture>
-          <img v-else :src="`${base}/images/${img}`" :alt="name" />
+          <img
+            width="168"
+            height="42"
+            v-else
+            :src="`${base}/images/${img}`"
+            :alt="name"
+          />
         </a>
         <a :href="url" target="_blank" rel="sponsored noopener">{{
           description
@@ -334,7 +340,7 @@ html:not(.dark) .accent,
 
 @media (max-width: 576px) {
   #hero {
-    padding: 64px 32px;
+    padding: 56px 32px;
   }
   .description {
     font-size: 16px;
@@ -357,7 +363,7 @@ html:not(.dark) .accent,
     padding: 20px 36px;
   }
   .actions a {
-    margin: 0.5em 0;
+    margin: 18px 0;
   }
 }
 

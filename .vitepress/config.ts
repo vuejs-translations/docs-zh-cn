@@ -588,7 +588,6 @@ export default defineConfigWithTheme<ThemeConfig>({
   description: 'Vue.js - 渐进式的 JavaScript 框架',
   srcDir: 'src',
   srcExclude: ['tutorial/**/description.md'],
-  scrollOffset: 'header',
 
   head: [
     ['meta', { name: 'theme-color', content: '#3c8772' }],
@@ -629,7 +628,7 @@ export default defineConfigWithTheme<ThemeConfig>({
       'script',
       {
         src: 'https://vueschool.io/banner.js?affiliate=vuejs&type=top',
-        async: true
+        async: 'true'
       }
     ]
   ],
