@@ -7,13 +7,6 @@ function track() {
 <template>
   <div class="text-ad">
     <span>广告</span>
-    <a
-      href="https://jiaocheng.hongshu18.com/chatgpt_pc.html"
-      target="_blank"
-      rel="noopener nofollow"
-      @click="track"
-      >ChatGPT 能代替程序员写代码吗？点击免费体验</a
-    >
   </div>
 </template>
 
@@ -30,6 +23,7 @@ function track() {
 }
 
 .text-ad span {
+  white-space: nowrap;
   color: var(--vt-c-blue);
   font-size: 13px;
   line-height: 13px;
