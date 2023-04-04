@@ -43,10 +43,7 @@ onMounted(async () => {
     </p>
   </section>
 
-  <section
-    id="special-sponsor"
-    :class="{ center: !data || !data.platinum_china }"
-  >
+  <section id="special-sponsor">
     <template v-if="data && data.platinum_china">
       <span>中国区铂金赞助</span>
       <template
@@ -72,7 +69,7 @@ onMounted(async () => {
             <img
               :src="`${base}/images/${img}`"
               :alt="name"
-              :style="{ height: height || '55px' }"
+              :style="{ height: height || '50px' }"
             />
           </picture>
           <img
@@ -88,7 +85,7 @@ onMounted(async () => {
         }}</a>
       </template>
     </template>
-    <a v-else class="lead" href="/sponsor/"
+    <a v-else-if="data" class="lead" href="/sponsor/"
       >中国区铂金赞助位 点击了解更多</a
     >
   </section>
@@ -243,9 +240,11 @@ html:not(.dark) .accent,
   padding: 12px 24px;
   display: flex;
   align-items: center;
+  height: 76px;
 }
 
-#special-sponsor span, #special-sponsor a {
+#special-sponsor span,
+#special-sponsor a {
   color: var(--vt-c-text-2);
   font-weight: 500;
   font-size: 13px;
@@ -268,12 +267,7 @@ html:not(.dark) .accent,
   padding: 0 30px;
 }
 
-#special-sponsor img {
-  height: 42px;
-  margin: -6px 0;
-}
-
-#special-sponsor.center {
+#special-sponsor {
   justify-content: center;
 }
 
