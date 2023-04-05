@@ -14,7 +14,7 @@ Vue 使用一种基于 HTML 的模板语法，使我们能够声明式地将其�
 <span>Message: {{ msg }}</span>
 ```
 
-双大括号标签会被替换为相应组件实例中 `msg` 属性的值。同时每次 `msg` 属性更改时它也会同步更新。
+双大括号标签会被替换为[相应组件实例中](/guide/essentials/reactivity-fundamentals#declaring-reactive-state) `msg` 属性的值。同时每次 `msg` 属性更改时它也会同步更新。
 
 ## 原始 HTML {#raw-html}
 
