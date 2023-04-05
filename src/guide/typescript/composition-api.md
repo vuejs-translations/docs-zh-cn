@@ -406,14 +406,6 @@ const openModal = () => {
 ```ts
 import { ref } from 'vue'
 import type { ComponentPublicInstance } from 'vue'
-const child = ref<ComponentPublicInstance | null>(null)
-```
-
-In cases where the exact type of the component isn't available or isn't important, `ComponentPublicInstance` can be used instead. This will only include properties that are shared by all components, such as `$el`:
-
-```ts
-import { ref } from 'vue'
-import type { ComponentPublicInstance } from 'vue'
 
 const child = ref<ComponentPublicInstance | null>(null)
 ```
