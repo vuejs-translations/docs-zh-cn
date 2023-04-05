@@ -342,6 +342,7 @@ html:not(.dark) .accent,
   }
   #special-sponsor {
     flex-direction: column;
+    height: auto;
   }
   #special-sponsor img {
     height: 36px;
