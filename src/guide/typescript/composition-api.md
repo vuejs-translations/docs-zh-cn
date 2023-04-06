@@ -406,5 +406,6 @@ const openModal = () => {
 ```ts
 import { ref } from 'vue'
 import type { ComponentPublicInstance } from 'vue'
+
 const child = ref<ComponentPublicInstance | null>(null)
 ```

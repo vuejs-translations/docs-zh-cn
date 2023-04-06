@@ -1,1 +1,1 @@
-跟 Vue 说 Hello World！
+一个 SVG 图像
