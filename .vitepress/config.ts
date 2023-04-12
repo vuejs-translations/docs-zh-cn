@@ -32,7 +32,7 @@ const nav: ThemeConfig['nav'] = [
   },
   {
     text: '演练场',
-    link: 'https://sfc.vuejs.org'
+    link: 'https://play.vuejs.org'
   },
   {
     text: '生态系统',
