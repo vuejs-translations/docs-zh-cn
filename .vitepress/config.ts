@@ -32,7 +32,7 @@ const nav: ThemeConfig['nav'] = [
   },
   {
     text: '演练场',
-    link: 'https://sfc.vuejs.org'
+    link: 'https://play.vuejs.org'
   },
   {
     text: '生态系统',
@@ -588,7 +588,6 @@ export default defineConfigWithTheme<ThemeConfig>({
   description: 'Vue.js - 渐进式的 JavaScript 框架',
   srcDir: 'src',
   srcExclude: ['tutorial/**/description.md'],
-  scrollOffset: 'header',
 
   head: [
     ['meta', { name: 'theme-color', content: '#3c8772' }],
@@ -629,7 +628,7 @@ export default defineConfigWithTheme<ThemeConfig>({
       'script',
       {
         src: 'https://vueschool.io/banner.js?affiliate=vuejs&type=top',
-        async: true
+        async: 'true'
       }
     ]
   ],
@@ -649,6 +648,16 @@ export default defineConfigWithTheme<ThemeConfig>({
         link: 'https://ja.vuejs.org',
         text: '日本語',
         repo: 'https://github.com/vuejs-translations/docs-ja'
+      },
+      {
+        link: 'https://ua.vuejs.org',
+        text: 'Українська',
+        repo: 'https://github.com/vuejs-translations/docs-uk'
+      },
+      {
+        link: 'https://fr.vuejs.org',
+        text: 'Français',
+        repo: 'https://github.com/vuejs-translations/docs-fr'
       },
       {
         link: '/translations/',

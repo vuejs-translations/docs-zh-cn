@@ -4,7 +4,7 @@
 
 你不需要在机器上安装任何东西，也可以尝试基于单文件组件的 Vue 开发体验。我们提供了一个在线的演练场，可以在浏览器中访问：
 
-- [Vue SFC 演练场](https://sfc.vuejs.org)
+- [Vue SFC 演练场](https://play.vuejs.org)
   - 自动随着 Vue 仓库最新的提交更新
   - 支持检查编译输出的结果
 - [StackBlitz 中的 Vue + Vite](https://vite.new/vue)

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { onMounted } from 'vue'
-import SiteMap from './SiteMap.vue';
+import SiteMap from './SiteMap.vue'
 // import NewsLetter from './NewsLetter.vue'
 import { load, data, base } from './sponsors'
 import SponsorsGroup from './SponsorsGroup.vue'
@@ -24,7 +24,7 @@ onMounted(async () => {
     </p>
     <p class="actions">
       <!-- NOTE: hide the home video -->
-      <!-- <vue-mastery-modal /> -->
+      <!-- <VueMasteryModal /> -->
       <a class="get-started" href="/guide/introduction.html">
         快速上手
         <svg
@@ -43,10 +43,7 @@ onMounted(async () => {
     </p>
   </section>
 
-  <section
-    id="special-sponsor"
-    :class="{ center: !data || !data.platinum_china }"
-  >
+  <section id="special-sponsor">
     <template v-if="data && data.platinum_china">
       <span>中国区铂金赞助</span>
       <template
@@ -58,7 +55,12 @@ onMounted(async () => {
           description
         } of data.platinum_china"
       >
-        <a :href="url" target="_blank" rel="sponsored noopener">
+        <a
+          class="logo"
+          :href="url"
+          target="_blank"
+          rel="sponsored noopener"
+        >
           <picture v-if="img.endsWith('png')">
             <source
               type="image/avif"
@@ -67,15 +69,23 @@ onMounted(async () => {
             <img
               :src="`${base}/images/${img}`"
               :alt="name"
-              :style="{ height: height || '55px' }"
+              :style="{ height: height || '50px' }"
             />
           </picture>
-          <img v-else :src="`${base}/images/${img}`" :alt="name" />
+          <img
+            width="168"
+            height="42"
+            v-else
+            :src="`${base}/images/${img}`"
+            :alt="name"
+          />
         </a>
-        <span>{{ description }}</span>
+        <a :href="url" target="_blank" rel="sponsored noopener">{{
+          description
+        }}</a>
       </template>
     </template>
-    <a v-else class="lead" href="/sponsor/"
+    <a v-else-if="data" class="lead" href="/sponsor/"
       >中国区铂金赞助位 点击了解更多</a
     >
   </section>
@@ -230,9 +240,11 @@ html:not(.dark) .accent,
   padding: 12px 24px;
   display: flex;
   align-items: center;
+  height: 76px;
 }
 
-#special-sponsor span {
+#special-sponsor span,
+#special-sponsor a {
   color: var(--vt-c-text-2);
   font-weight: 500;
   font-size: 13px;
@@ -240,22 +252,22 @@ html:not(.dark) .accent,
   flex: 1;
 }
 
+#special-sponsor a:hover {
+  color: var(--vt-c-green);
+}
+
 #special-sponsor span:first-child {
   text-align: right;
 }
 
-#special-sponsor a {
+#special-sponsor .logo {
+  flex: unset;
   display: flex;
   justify-content: center;
-  padding: 0 24px;
+  padding: 0 30px;
 }
 
-#special-sponsor img {
-  height: 42px;
-  margin: -6px 0;
-}
-
-#special-sponsor.center {
+#special-sponsor {
   justify-content: center;
 }
 
@@ -322,7 +334,7 @@ html:not(.dark) .accent,
 
 @media (max-width: 576px) {
   #hero {
-    padding: 64px 32px;
+    padding: 56px 32px;
   }
   .description {
     font-size: 16px;
@@ -330,6 +342,7 @@ html:not(.dark) .accent,
   }
   #special-sponsor {
     flex-direction: column;
+    height: auto;
   }
   #special-sponsor img {
     height: 36px;
@@ -345,7 +358,7 @@ html:not(.dark) .accent,
     padding: 20px 36px;
   }
   .actions a {
-    margin: 0.5em 0;
+    margin: 18px 0;
   }
 }
 
