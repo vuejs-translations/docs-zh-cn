@@ -398,18 +398,18 @@ export function useMachine(options) {
 
 [RxJS](https://rxjs.dev/) 是一个用于处理异步事件流的库。[VueUse](https://vueuse.org/) 库提供了 [`@vueuse/rxjs`](https://vueuse.org/rxjs/readme.html) 扩展来支持连接 RxJS 流与 Vue 的响应性系统。
 
-## 与信号 (signals) 的联系 {#connection-to-signals}
+## 与信号 (signal) 的联系 {#connection-to-signals}
 
-相当多的其他框架在“信号”一词下引入了与 Vue 的 组合式 API 中的 refs 类似的响应性基础：
+很多其他框架已经引入了与 Vue 组合式 API 中的 ref 类似的响应性基础类型，并称之为“信号”：
 
 - [Solid 信号](https://www.solidjs.com/docs/latest/api#createsignal)
 - [Angular 信号](https://github.com/angular/angular/discussions/49090)
 - [Preact 信号](https://preactjs.com/guide/v10/signals/)
 - [Qwik 信号](https://qwik.builder.io/docs/components/state/#usesignal)r
 
-从根本上说，信号是与 Vue refs 相同的响应性基础。它是一个提供访问时依赖跟踪以及变更时副作用触发的值容器。这种基于响应性基础的范式在前端领域并不是一个特别新的概念：它可以追溯到十多年前的 [Knockout observables](https://knockoutjs.com/documentation/observables.html) 和 [Meteor Tracker](https://docs.meteor.com/api/tracker.html) 等实现。Vue 的选项式 API 和 React 的状态管理库 [MobX](https://mobx.js.org/) 也是基于同样的原则，但将基础这部分隐藏在了对象属性背后。
+从根本上说，信号是与 Vue 中的 ref 相同的响应性基础类型。它是一个在访问时跟踪依赖、在变更时触发副作用的值容器。这种基于响应性基础类型的范式在前端领域并不是一个特别新的概念：它可以追溯到十多年前的 [Knockout observables](https://knockoutjs.com/documentation/observables.html) 和 [Meteor Tracker](https://docs.meteor.com/api/tracker.html) 等实现。Vue 的选项式 API 和 React 的状态管理库 [MobX](https://mobx.js.org/) 也是基于同样的原则，只不过将基础类型这部分隐藏在了对象属性背后。
 
-虽然这并不是信号的必要特征，但如今这个概念经常与通过通过细粒度订阅来更新的渲染模型一起讨论。由于使用了虚拟 DOM，Vue 目前[依靠编译器来实现类似的优化](/guide/extras/rendering-mechanism#compiler-informed-virtual-dom)。然而，我们也在探索一种新的受 Solid 启发的编译策略 (Vapor Mode)，它不依赖于虚拟 DOM，而是更多地利用 Vue 的内置响应性系统。
+虽然这并不是信号的必要特征，但如今这个概念经常与细粒度订阅和更新的渲染模型一起讨论。由于使用了虚拟 DOM，Vue 目前[依靠编译器来实现类似的优化](/guide/extras/rendering-mechanism#compiler-informed-virtual-dom)。然而，我们也在探索一种新的受 Solid 启发的编译策略 (Vapor Mode)，它不依赖于虚拟 DOM，而是更多地利用 Vue 的内置响应性系统。
 
 ### API 设计权衡 {#api-design-trade-offs}
 
@@ -417,7 +417,7 @@ Preact 和 Qwik 的信号设计与 Vue 的 [shallowRef](/api/reactivity-advanced
 
 #### Solid Signals {#solid-signals}
 
-Solid 的 `createSignal()` API 设计强调了读/写隔离。信号通过一个只读的 getter 和一个单独的 setter 暴露：
+Solid 的 `createSignal()` API 设计强调了读/写隔离。信号通过一个只读的 getter 和另一个单独的 setter 暴露：
 
 ```js
 const [count, setCount] = createSignal(0)
@@ -446,7 +446,7 @@ export function createSignal(value, options) {
 
 #### Angular 信号 {#angular-signals}
 
-Angular 正在经历一些根本性的变化，它放弃了脏检查，并引入了自己的响应性基础的实现。Angular 的信号 API 看起来像这样：
+Angular 正在经历一些底层的变化，它放弃了脏检查，并引入了自己的响应性基础类型实现。Angular 的信号 API 看起来像这样：
 
 ```js
 const count = signal(0)
@@ -486,7 +486,7 @@ export function signal(initialValue) {
 
 [在演练场中尝试一下](https://play.vuejs.org/#eNp9UslOwzAQ/ZVRLiRQEsqxpBUIvoADp0goTd3U4DiWl4AU5d8ZL3E3iZtn5r1Z3vOYvAiRD4Ykq6RUjaRCgyLaiE3FaSd6qWEERVteswU0fSeMJjuYYC/7Dm7youatYbW895D8S91UvOJNz5VGuOEa1oGePmRzYdebLSNYmRumaQbrjSfg8xYeEVsWfh/cBANNOsFqTTACKA/LzavrTtUKxjEyp6kssDZj3vygAPJjL1Bbo3XP4blhtPleV4nrlBuxw1npYLca4A6WWZU4PADljSQd4drRC8//rxfKaW+f+ZJg4oJbFvG8ZJFcaYreHL041Iz1P+9kvwAtadsS6d7Rm1rB55VRaLAzhvy6NnvDG01x1WAN5VTTmn3UzJAMRrudd0pa++LEc9wRpRDlHZT5YGu2pOzhWHAJWxvnakxOHufFxqx/4MxzcEinIYP+eV5ntOe5Rx94IYjopxOZUhnIEr+4xPMrjuG1LPFftkTj5DNJGhwYBZ4BJz3DV56FmJLpD1DrKXU=)
 
-与 Vue refs 相比，Solid 和 Angular 基于 getter 的 API 风格在 Vue 组件中使用时提供了一些有趣的权衡：
+与 Vue 的 ref 相比，Solid 和 Angular 基于 getter 的 API 风格在 Vue 组件中使用时提供了一些有趣的权衡：
 
 - `()` 比 `.value` 略微省事，但更新值却更冗长；
 - 没有 ref 解包：总是需要通过 `()` 来访问值。这使得值的访问在任何地方都是一致的。这也意味着你可以将原始信号作为组件的参数传递下去。
