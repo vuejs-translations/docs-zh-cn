@@ -397,36 +397,36 @@ export function useMachine(options) {
 ### RxJS {#rxjs}
 
 [RxJS](https://rxjs.dev/) 是一个用于处理异步事件流的库。[VueUse](https://vueuse.org/) 库提供了 [`@vueuse/rxjs`](https://vueuse.org/rxjs/readme.html) 扩展来支持连接 RxJS 流与 Vue 的响应性系统。
-<!-- TODO: translation -->
-## Connection to Signals {#connection-to-signals}
 
-Quite a few other frameworks have introduced reactivity primitives similar to refs from Vue's Composition API, under the term "signals":
+## 与信号 (signal) 的联系 {#connection-to-signals}
 
-- [Solid Signals](https://www.solidjs.com/docs/latest/api#createsignal)
-- [Angular Signals](https://github.com/angular/angular/discussions/49090)
-- [Preact Signals](https://preactjs.com/guide/v10/signals/)
-- [Qwik Signals](https://qwik.builder.io/docs/components/state/#usesignal)
+很多其他框架已经引入了与 Vue 组合式 API 中的 ref 类似的响应性基础类型，并称之为“信号”：
 
-Fundamentally, signals are the same kind of reactivity primitive as Vue refs. It's a value container that provides dependency tracking on access, and side-effect triggering on mutation. This reactivity-primitive-based paradigm isn't a particularly new concept in the frontend world: it dates back to implementations like [Knockout observables](https://knockoutjs.com/documentation/observables.html) and [Meteor Tracker](https://docs.meteor.com/api/tracker.html) from more than a decade ago. Vue Options API and the React state management library [MobX](https://mobx.js.org/) are also based on the same principles, but hide the primitives behind object properties.
+- [Solid 信号](https://www.solidjs.com/docs/latest/api#createsignal)
+- [Angular 信号](https://github.com/angular/angular/discussions/49090)
+- [Preact 信号](https://preactjs.com/guide/v10/signals/)
+- [Qwik 信号](https://qwik.builder.io/docs/components/state/#usesignal)r
 
-Although not a necessary trait for something to qualify as signals, today the concept is often discussed alongside the rendering model where updates are performed through fine-grained subscriptions. Due to the use of Virtual DOM, Vue currently [relies on compilers to achieve similar optimizations](/guide/extras/rendering-mechanism#compiler-informed-virtual-dom). However, we are also exploring a new Solid-inspired compilation strategy (Vapor Mode) that does not rely on Virtual DOM and takes more advantage of Vue's built-in reactivity system.
+从根本上说，信号是与 Vue 中的 ref 相同的响应性基础类型。它是一个在访问时跟踪依赖、在变更时触发副作用的值容器。这种基于响应性基础类型的范式在前端领域并不是一个特别新的概念：它可以追溯到十多年前的 [Knockout observables](https://knockoutjs.com/documentation/observables.html) 和 [Meteor Tracker](https://docs.meteor.com/api/tracker.html) 等实现。Vue 的选项式 API 和 React 的状态管理库 [MobX](https://mobx.js.org/) 也是基于同样的原则，只不过将基础类型这部分隐藏在了对象属性背后。
 
-### API Design Trade-Offs {#api-design-trade-offs}
+虽然这并不是信号的必要特征，但如今这个概念经常与细粒度订阅和更新的渲染模型一起讨论。由于使用了虚拟 DOM，Vue 目前[依靠编译器来实现类似的优化](/guide/extras/rendering-mechanism#compiler-informed-virtual-dom)。然而，我们也在探索一种新的受 Solid 启发的编译策略 (Vapor Mode)，它不依赖于虚拟 DOM，而是更多地利用 Vue 的内置响应性系统。
 
-The design of Preact and Qwik's signals are very similar to Vue's [shallowRef](/api/reactivity-advanced#shallowref): all three provide a mutable interface via the `.value` property. We will focus the discussion on Solid and Angular signals.
+### API 设计权衡 {#api-design-trade-offs}
+
+Preact 和 Qwik 的信号设计与 Vue 的 [shallowRef](/api/reactivity-advanced#shallowref) 非常相似：三者都通过 `.value` 属性提供了一个更改接口。我们将重点讨论 Solid 和 Angular 的信号。
 
 #### Solid Signals {#solid-signals}
 
-Solid's `createSignal()` API design emphasizes read / write segregation. Signals are exposed as a read-only getter and a separate setter:
+Solid 的 `createSignal()` API 设计强调了读/写隔离。信号通过一个只读的 getter 和另一个单独的 setter 暴露：
 
 ```js
 const [count, setCount] = createSignal(0)
 
-count() // access the value
-setCount(1) // update the value
+count() // 访问值
+setCount(1) // 更新值
 ```
 
-Notice how the `count` signal can be passed down without the setter. This ensures that the state can never be mutated unless the setter is also explicitly exposed. Whether this safety guarantee justifies the more verbose syntax could be subject to the requirement of the project and personal taste - but in case you prefer this API style, you can easily replicate it in Vue:
+注意到 `count` 信号在没有 setter 的情况也能传递。这就保证了除非 setter 也被明确暴露，否则状态永远不会被改变。这种更冗长的语法带来的安全保证的合理性取决于项目的要求和个人品味——但如果你喜欢这种 API 风格，可以轻易地在 Vue 中复制它：
 
 ```js
 import { shallowRef, triggerRef } from 'vue'
@@ -442,27 +442,27 @@ export function createSignal(value, options) {
 }
 ```
 
-[Try it in the Playground](https://play.vuejs.org/#eNpdUk1TgzAQ/Ss7uQAjgr12oNXxH+ix9IAYaDQkMV/qMPx3N6G0Uy9Msu/tvn2PTORJqcI7SrakMp1myoKh1qldI9iopLYwQadpa+krG0TLYYZeyxGSojSSs/d7E8vFh0ka0YhOCmPh0EknbB4mPYfTEeqbIelD1oiqXPRQCS+WjoojAW8A1Wmzm1A39KYZzHNVYiUib85aKeCx46z7rBuySqQe6h14uINN1pDIBWACVUcqbGwtl17EqvIiR3LyzwcmcXFuTi3n8vuF9jlYzYaBajxfMsDcomv6E/m9E51luN2NV99yR3OQKkAmgykss+SkMZerxMLEZFZ4oBYJGAA600VEryAaD6CPaJwJKwnr9ldR2WMedV1Dsi6WwB58emZlsAV/zqmH9LzfvqBfruUmNvZ4QN7VearjenP4aHwmWsABt4x/+tiImcx/z27Jqw==)
+[在演练场中尝试一下](https://play.vuejs.org/#eNpdUk1TgzAQ/Ss7uQAjgr12oNXxH+ix9IAYaDQkMV/qMPx3N6G0Uy9Msu/tvn2PTORJqcI7SrakMp1myoKh1qldI9iopLYwQadpa+krG0TLYYZeyxGSojSSs/d7E8vFh0ka0YhOCmPh0EknbB4mPYfTEeqbIelD1oiqXPRQCS+WjoojAW8A1Wmzm1A39KYZzHNVYiUib85aKeCx46z7rBuySqQe6h14uINN1pDIBWACVUcqbGwtl17EqvIiR3LyzwcmcXFuTi3n8vuF9jlYzYaBajxfMsDcomv6E/m9E51luN2NV99yR3OQKkAmgykss+SkMZerxMLEZFZ4oBYJGAA600VEryAaD6CPaJwJKwnr9ldR2WMedV1Dsi6WwB58emZlsAV/zqmH9LzfvqBfruUmNvZ4QN7VearjenP4aHwmWsABt4x/+tiImcx/z27Jqw==)
 
-#### Angular Signals {#angular-signals}
+#### Angular 信号 {#angular-signals}
 
-Angular is undergoing some fundamental changes by foregoing dirty-checking and introducing its own implementation of a reactivity primitive. The Angular Signal API looks like this:
+Angular 正在经历一些底层的变化，它放弃了脏检查，并引入了自己的响应性基础类型实现。Angular 的信号 API 看起来像这样：
 
 ```js
 const count = signal(0)
 
-count() // access the value
-count.set(1) // set new value
-count.update((v) => v + 1) // update based on previous value
+count() // 访问值
+count.set(1) //设置值
+count.update((v) => v + 1) // 通过前值更新
 
-// mutate deep objects with same identity
+// 对具有相同身份的深层对象进行更改
 const state = signal({ count: 0 })
 state.mutate((o) => {
   o.count++
 })
 ```
 
-Again, we can easily replicate the API in Vue:
+同样，我们可以轻易地在 Vue 中复制这个 API：
 
 ```js
 import { shallowRef, triggerRef } from 'vue'
@@ -484,11 +484,11 @@ export function signal(initialValue) {
 }
 ```
 
-[Try it in the Playground](https://play.vuejs.org/#eNp9UslOwzAQ/ZVRLiRQEsqxpBUIvoADp0goTd3U4DiWl4AU5d8ZL3E3iZtn5r1Z3vOYvAiRD4Ykq6RUjaRCgyLaiE3FaSd6qWEERVteswU0fSeMJjuYYC/7Dm7youatYbW895D8S91UvOJNz5VGuOEa1oGePmRzYdebLSNYmRumaQbrjSfg8xYeEVsWfh/cBANNOsFqTTACKA/LzavrTtUKxjEyp6kssDZj3vygAPJjL1Bbo3XP4blhtPleV4nrlBuxw1npYLca4A6WWZU4PADljSQd4drRC8//rxfKaW+f+ZJg4oJbFvG8ZJFcaYreHL041Iz1P+9kvwAtadsS6d7Rm1rB55VRaLAzhvy6NnvDG01x1WAN5VTTmn3UzJAMRrudd0pa++LEc9wRpRDlHZT5YGu2pOzhWHAJWxvnakxOHufFxqx/4MxzcEinIYP+eV5ntOe5Rx94IYjopxOZUhnIEr+4xPMrjuG1LPFftkTj5DNJGhwYBZ4BJz3DV56FmJLpD1DrKXU=)
+[在演练场中尝试一下](https://play.vuejs.org/#eNp9UslOwzAQ/ZVRLiRQEsqxpBUIvoADp0goTd3U4DiWl4AU5d8ZL3E3iZtn5r1Z3vOYvAiRD4Ykq6RUjaRCgyLaiE3FaSd6qWEERVteswU0fSeMJjuYYC/7Dm7youatYbW895D8S91UvOJNz5VGuOEa1oGePmRzYdebLSNYmRumaQbrjSfg8xYeEVsWfh/cBANNOsFqTTACKA/LzavrTtUKxjEyp6kssDZj3vygAPJjL1Bbo3XP4blhtPleV4nrlBuxw1npYLca4A6WWZU4PADljSQd4drRC8//rxfKaW+f+ZJg4oJbFvG8ZJFcaYreHL041Iz1P+9kvwAtadsS6d7Rm1rB55VRaLAzhvy6NnvDG01x1WAN5VTTmn3UzJAMRrudd0pa++LEc9wRpRDlHZT5YGu2pOzhWHAJWxvnakxOHufFxqx/4MxzcEinIYP+eV5ntOe5Rx94IYjopxOZUhnIEr+4xPMrjuG1LPFftkTj5DNJGhwYBZ4BJz3DV56FmJLpD1DrKXU=)
 
-Compared to Vue refs, Solid and Angular's getter-based API style provide some interesting trade-offs when used in Vue components:
+与 Vue 的 ref 相比，Solid 和 Angular 基于 getter 的 API 风格在 Vue 组件中使用时提供了一些有趣的权衡：
 
-- `()` is slightly less verbose than `.value`, but updating the value is more verbose.
-- There is no ref-unwrapping: accessing values always require `()`. This makes value access consistent everywhere. This also means you can pass raw signals down as component props.
+- `()` 比 `.value` 略微省事，但更新值却更冗长；
+- 没有 ref 解包：总是需要通过 `()` 来访问值。这使得值的访问在任何地方都是一致的。这也意味着你可以将原始信号作为组件的参数传递下去。
 
-Whether these API styles suit you is to some extent subjective. Our goal here is to demonstrate the underlying similarity and trade-offs between these different API designs. We also want to show that Vue is flexible: you are not really locked into the existing APIs. Should it be necessary, you can create your own reactivity primitive API to suit more specific needs.
+这些 API 风格是否适合你，在某种程度上是主观的。我们在这里的目标是展示这些不同的 API 设计之间的基本相似性和取舍。我们还想说明 Vue 是灵活的：你并没有真正被限定在现有的 API 中。如有必要，你可以创建你自己的响应性基础 API，以满足更多的具体需求。
