@@ -647,7 +647,7 @@ const vnode = withDirectives(h('div'), [
 
 当一个指令是以名称注册并且不能被直接导入时，可以使用 [`resolveDirective`](/api/render-function#resolvedirective) 函数来解决这个问题。
 
-### Template Refs
+### 模板引用 {#template-refs}
 
 <div class="composition-api">
 
