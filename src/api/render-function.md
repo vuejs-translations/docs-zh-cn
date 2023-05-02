@@ -314,7 +314,7 @@
   import { h, withModifiers } from 'vue'
 
   const vnode = h('button', {
-    // 等价于 v-on.stop.prevent
+    // 等价于 v-on:click.stop.prevent
     onClick: withModifiers(() => {
       // ...
     }, ['stop', 'prevent'])

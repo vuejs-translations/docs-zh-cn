@@ -647,6 +647,41 @@ const vnode = withDirectives(h('div'), [
 
 当一个指令是以名称注册并且不能被直接导入时，可以使用 [`resolveDirective`](/api/render-function#resolvedirective) 函数来解决这个问题。
 
+### Template Refs
+
+<div class="composition-api">
+
+在组合式 API 中，模板引用通过将 `ref()` 本身作为一个参数传递给 vnode 来创建：
+
+```js
+import { h, ref } from 'vue'
+
+export default {
+  setup() {
+    const divEl = ref()
+
+    // <div ref="divEl">
+    return () => h('div', { ref: divEl })
+  }
+}
+```
+
+</div>
+<div class="options-api">
+
+在选项式 API 中，模板引用通过在 vnode 参数中传递字符串类型的引用名称来创建： 
+
+```js
+export default {
+  render() {
+    // <div ref="divEl">
+    return h('div', { ref: 'divEl' })
+  }
+}
+```
+
+</div>
+
 ## 函数式组件 {#functional-components}
 
 函数式组件是一种定义自身没有任何状态的组件的方式。它们很像纯函数：接收 props，返回 vnodes。函数式组件在渲染过程中不会创建组件实例 (也就是说，没有 `this`)，也不会触发常规的组件生命周期钩子。
