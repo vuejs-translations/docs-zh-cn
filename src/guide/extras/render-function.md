@@ -651,7 +651,7 @@ const vnode = withDirectives(h('div'), [
 
 <div class="composition-api">
 
-在组合式 API 中，模板引用通过将 `ref()` 本身作为一个参数传递给 vnode 来创建：
+在组合式 API 中，模板引用通过将 `ref()` 本身作为一个属性传递给 vnode 来创建：
 
 ```js
 import { h, ref } from 'vue'
