@@ -59,7 +59,7 @@ app.mount('#app')
 
 ### DOM 中的根组件模板 {#in-dom-root-component-template}
 
-当在未采用构建流程的情况下使用 Vue 时，我们可以在挂载容器中直接书写根组件模板：
+根组件的模板通常是组件本身的一部分，但也可以直接通过在挂载容器内编写模板来单独提供：
 
 ```html
 <div id="app">
@@ -82,6 +82,8 @@ app.mount('#app')
 ```
 
 当根组件没有设置 `template` 选项时，Vue 将自动使用容器的 `innerHTML` 作为模板。
+
+DOM 内模板通常用于[无构建步骤](/guide/quick-start.html#using-vue-from-cdn)的 Vue 应用程序。它们也可以与服务器端框架一起使用，其中根模板可能是由服务器动态生成的。
 
 ## 应用配置 {#app-configurations}
 
