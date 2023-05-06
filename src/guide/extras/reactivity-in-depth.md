@@ -405,7 +405,7 @@ export function useMachine(options) {
 - [Solid 信号](https://www.solidjs.com/docs/latest/api#createsignal)
 - [Angular 信号](https://github.com/angular/angular/discussions/49090)
 - [Preact 信号](https://preactjs.com/guide/v10/signals/)
-- [Qwik 信号](https://qwik.builder.io/docs/components/state/#usesignal)r
+- [Qwik 信号](https://qwik.builder.io/docs/components/state/#usesignal)
 
 从根本上说，信号是与 Vue 中的 ref 相同的响应性基础类型。它是一个在访问时跟踪依赖、在变更时触发副作用的值容器。这种基于响应性基础类型的范式在前端领域并不是一个特别新的概念：它可以追溯到十多年前的 [Knockout observables](https://knockoutjs.com/documentation/observables.html) 和 [Meteor Tracker](https://docs.meteor.com/api/tracker.html) 等实现。Vue 的选项式 API 和 React 的状态管理库 [MobX](https://mobx.js.org/) 也是基于同样的原则，只不过将基础类型这部分隐藏在了对象属性背后。
 
