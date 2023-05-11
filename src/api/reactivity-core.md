@@ -480,6 +480,18 @@
     data.value = await response
   })
   ```
+当直接侦听一个响应式数组时，需要启用 `{deep: true}` 参数
+
+```js
+const ary = reactive([])
+watch(
+  ary, 
+  (value) => {
+    console.log(value)
+  },
+  { deep: true }
+)
+```
 
 - **参考：**
 
