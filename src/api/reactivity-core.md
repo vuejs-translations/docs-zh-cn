@@ -174,7 +174,7 @@
   console.log(map.get('count').value)
   ```
 
-  将一个 [ref](#ref) 赋值给为一个 `reactive` 属性时，该 ref 会被自动解包：
+  将一个 [ref](#ref) 赋值给一个 `reactive` 属性时，该 ref 会被自动解包：
 
   ```ts
   const count = ref(1)
