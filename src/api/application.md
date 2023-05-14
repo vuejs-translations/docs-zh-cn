@@ -269,6 +269,7 @@ Mixins 在 Vue 3 支持主要是为了向后兼容，因为生态中有许多库
 - **参考：**
   - [依赖注入](/guide/components/provide-inject)
   - [应用层 Provide](/guide/components/provide-inject#app-level-provide)
+  - [app.runWithContext()](#app-runwithcontext)
 
 ## app.runWithContext()<sup class="vt-badge" data-text="3.3+" /> {#app-runwithcontext}
 
