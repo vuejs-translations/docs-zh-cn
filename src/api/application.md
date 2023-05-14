@@ -90,64 +90,6 @@
   }
   ```
 
-## app.provide() {#app-provide}
-
-提供一个值，可以在应用中的所有后代组件中注入使用。
-
-- **类型**
-
-  ```ts
-  interface App {
-    provide<T>(key: InjectionKey<T> | symbol | string, value: T): this
-  }
-  ```
-
-- **详细信息**
-
-  第一个参数应当是注入的 key，第二个参数则是提供的值。返回应用实例本身。
-
-- **示例**
-
-  ```js
-  import { createApp } from 'vue'
-
-  const app = createApp(/* ... */)
-
-  app.provide('message', 'hello')
-  ```
-
-  在应用的某个组件中：
-
-  <div class="composition-api">
-
-  ```js
-  import { inject } from 'vue'
-
-  export default {
-    setup() {
-      console.log(inject('message')) // 'hello'
-    }
-  }
-  ```
-
-  </div>
-  <div class="options-api">
-
-  ```js
-  export default {
-    inject: ['message'],
-    created() {
-      console.log(this.message) // 'hello'
-    }
-  }
-  ```
-
-  </div>
-
-- **参考：**
-  - [依赖注入](/guide/components/provide-inject)
-  - [应用层 Provide](/guide/components/provide-inject#app-level-provide)
-
 ## app.component() {#app-component}
 
 如果同时传递一个组件名字符串及其定义，则注册一个全局组件；如果只传递一个名字，则会返回用该名字注册的组件 (如果存在的话)。
@@ -268,6 +210,96 @@ Mixins 在 Vue 3 支持主要是为了向后兼容，因为生态中有许多库
   interface App {
     mixin(mixin: ComponentOptions): this
   }
+  ```
+
+## app.provide() {#app-provide}
+
+提供一个值，可以在应用中的所有后代组件中注入使用。
+
+- **类型**
+
+  ```ts
+  interface App {
+    provide<T>(key: InjectionKey<T> | symbol | string, value: T): this
+  }
+  ```
+
+- **详细信息**
+
+  第一个参数应当是注入的 key，第二个参数则是提供的值。返回应用实例本身。
+
+- **示例**
+
+  ```js
+  import { createApp } from 'vue'
+
+  const app = createApp(/* ... */)
+
+  app.provide('message', 'hello')
+  ```
+
+  在应用的某个组件中：
+
+  <div class="composition-api">
+
+  ```js
+  import { inject } from 'vue'
+
+  export default {
+    setup() {
+      console.log(inject('message')) // 'hello'
+    }
+  }
+  ```
+
+  </div>
+  <div class="options-api">
+
+  ```js
+  export default {
+    inject: ['message'],
+    created() {
+      console.log(this.message) // 'hello'
+    }
+  }
+  ```
+
+  </div>
+
+- **参考：**
+  - [依赖注入](/guide/components/provide-inject)
+  - [应用层 Provide](/guide/components/provide-inject#app-level-provide)
+
+<!-- TODO: translation -->
+
+## app.runWithContext()<sup class="vt-badge" data-text="3.3+" /> {#app-runwithcontext}
+
+Execute a callback with the current app as injection context.
+
+- **Type**
+
+  ```ts
+  interface App {
+    runWithContext<T>(fn: () => T): T
+  }
+  ```
+
+- **Details**
+
+  Expects a callback function and runs the callback immediately. During the synchronous call of the callback, `inject()` calls are able to look up injections from the values provided by the current app, even when there is no current active component instance. The return value of the callback will also be returned.
+
+- **Example**
+
+  ```js
+  import { inject } from 'vue'
+
+  app.provide('id', 1)
+
+  const injected = app.runWithContext(() => {
+    return inject('id')
+  })
+
+  console.log(injected) // 1
   ```
 
 ## app.version {#app-version}

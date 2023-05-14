@@ -199,6 +199,46 @@ defineExpose({
 
 当父组件通过模板引用的方式获取到当前组件的实例，获取到的实例会像这样 `{ a: number, b: number }` (ref 会和在普通实例中一样被自动解包)
 
+<!-- TODO: translation -->
+
+## defineOptions() {#defineoptions}
+
+This macro can be used to declare component options directly inside `<script setup>` without having to use a separate `<script>` block:
+
+```vue
+<script setup>
+defineOptions({
+  inheritAttrs: false,
+  customOptions: {
+    /* ... */
+  }
+})
+</script>
+```
+
+- Only supported in 3.3+.
+- This is a macro. The options will be hoisted to module scope and cannot access local variables in `<script setup>` that are not literal constants.
+
+<!-- TODO: translation -->
+
+## defineSlots()<sup class="vt-badge ts"/> {#defineslots}
+
+This macro can be used to provide type hints to IDEs for slot name and props type checking.
+
+`defineSlots()` only accepts a type parameter and no runtime arguments. The type parameter should be a type literal where the property key is the slot name, and the value type is the slot function. The first argument of the function is the props the slot expects to receive, and its type will be used for slot props in the template. The return type is currently ignored and can be `any`, but we may leverage it for slot content checking in the future.
+
+It also returns the `slots` object, which is equivalent to the `slots` object exposed on the setup context or returned by `useSlots()`.
+
+```vue
+<script setup lang="ts">
+const slots = defineSlots<{
+  default(props: { msg: string }): any
+}>()
+</script>
+```
+
+- Only supported in 3.3+.
+
 ## `useSlots()` 和 `useAttrs()` {#useslots-useattrs}
 
 在 `<script setup>` 使用 `slots` 和 `attrs` 的情况应该是相对来说较为罕见的，因为可以在模板中直接通过 `$slots` 和 `$attrs` 来访问它们。在你的确需要使用它们的罕见场景中，可以分别用 `useSlots` 和 `useAttrs` 两个辅助函数：
@@ -264,7 +304,7 @@ const post = await fetch(`/api/post/1`).then((r) => r.json())
 
 ## 针对 TypeScript 的功能 {#typescript-only-features}
 
-### 针对类型的 props/emit 声明 {#type-only-props-emit-declarations}
+### 针对类型的 props/emit 声明<sup class="vt-badge ts" /> {#type-only-props-emit-declarations}
 
 props 和 emit 都可以通过给 `defineProps` 和 `defineEmits` 传递纯类型参数的方式来声明：
 
@@ -278,6 +318,12 @@ const emit = defineEmits<{
   (e: 'change', id: number): void
   (e: 'update', value: string): void
 }>()
+
+// 3.3+: alternative, more succinct syntax
+const emit = defineEmits<{
+  change: [id: number] // named tuple syntax
+  update: [value: string]
+}>()
 ```
 
 - `defineProps` 或 `defineEmits` 要么使用运行时声明，要么使用类型声明。同时使用两种声明方式会导致编译报错。
@@ -288,14 +334,9 @@ const emit = defineEmits<{
 
   - 在生产模式下，编译器会生成数组格式的声明来减少打包体积 (这里的 props 会被编译成 `['foo', 'bar']`)。
 
-  - 生成的代码仍然是有着合法类型的 TypeScript 代码，它可以在后续的流程中被其他工具处理。
+- In version 3.2 and below, the generic type parameter for `defineProps()` were limited to a type literal or a reference to a local interface.
 
-- 截至目前，类型声明参数必须是以下内容之一，以确保正确的静态分析：
-
-  - 类型字面量
-  - 在同一文件中的接口或类型字面量的引用
-
-  现在还不支持复杂的类型和从其他文件进行类型导入，但我们有计划在将来支持。
+  This limitation has been resolved in 3.3. The latest version of Vue supports referencing imported and a limited set of complex types in the type parameter position. However, because the type to runtime conversion is still AST-based, some complex types that require actual type analysis, e.g. conditional types, are not supported. You can use conditional types for the type of a single prop, but not the entire props object.
 
 ### 使用类型声明时的默认 props 值 {#default-props-values-when-using-type-declaration}
 
@@ -314,6 +355,37 @@ const props = withDefaults(defineProps<Props>(), {
 ```
 
 上面代码会被编译为等价的运行时 props 的 `default` 选项。此外，`withDefaults` 辅助函数提供了对默认值的类型检查，并确保返回的 `props` 的类型删除了已声明默认值的属性的可选标志。
+
+<!-- TODO: translation -->
+
+## Generics <sup class="vt-badge ts" /> {#generics}
+
+Generic type parameters can be declared using the `generic` attribute on the `<script>` tag:
+
+```vue
+<script setup lang="ts" generic="T">
+defineProps<{
+  items: T[]
+  selected: T
+}>()
+</script>
+```
+
+The value of `generic` works exactly the same as the parameter list between `<...>` in TypeScript. For example, you can use multiple parameters, `extends` constraints, default types, and reference imported types:
+
+```vue
+<script
+  setup
+  lang="ts"
+  generic="T extends string | number, U extends Item"
+>
+import type { Item } from './types'
+defineProps<{
+  id: T
+  list: U[]
+}>()
+</script>
+```
 
 ## 限制 {#restrictions}
 

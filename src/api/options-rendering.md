@@ -83,3 +83,32 @@
   这个配置选项仅在使用完整构建版本 (即可以在浏览器中编译模板的 `vue.js` 文件) 时才有效。它支持与应用级的 [app.config.compilerOptions](/api/application#app-config-compileroptions) 相同的选项，并针对当前组件有更高的优先级。
 
 - **参考**：[app.config.compilerOptions](/api/application#app-config-compileroptions)
+
+<!-- TODO: translation -->
+
+## slots<sup class="vt-badge ts"/> {#slots}
+
+An option to assist with type inference when using slots programmatically in render functions. Only supported in 3.3+.
+
+- **Details**
+
+  This option's runtime value is not used. The actual types should be declared via type casting using the `SlotsType` type helper:
+
+  ```ts
+  import { SlotsType } from 'vue'
+
+  defineComponent({
+    slots: Object as SlotsType<{
+      default: { foo: string; bar: number }
+      item: { data: number }
+    }>,
+    setup(props, { slots }) {
+      expectType<
+        undefined | ((scope: { foo: string; bar: number }) => any)
+      >(slots.default)
+      expectType<undefined | ((scope: { data: number }) => any)>(
+        slots.item
+      )
+    }
+  })
+  ```
