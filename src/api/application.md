@@ -270,13 +270,11 @@ Mixins 在 Vue 3 支持主要是为了向后兼容，因为生态中有许多库
   - [依赖注入](/guide/components/provide-inject)
   - [应用层 Provide](/guide/components/provide-inject#app-level-provide)
 
-<!-- TODO: translation -->
-
 ## app.runWithContext()<sup class="vt-badge" data-text="3.3+" /> {#app-runwithcontext}
 
-Execute a callback with the current app as injection context.
+使用当前应用程序作为注入上下文执行回调函数。
 
-- **Type**
+- **类型**
 
   ```ts
   interface App {
@@ -284,11 +282,11 @@ Execute a callback with the current app as injection context.
   }
   ```
 
-- **Details**
+- **详情**
 
-  Expects a callback function and runs the callback immediately. During the synchronous call of the callback, `inject()` calls are able to look up injections from the values provided by the current app, even when there is no current active component instance. The return value of the callback will also be returned.
+  需要一个回调函数并立即运行该回调。在回调同步调用期间，`inject()` 调用可以从当前应用程序提供的值中查找注入，即使没有当前活动的组件实例。回调的返回值也将被返回。
 
-- **Example**
+- **示例**
 
   ```js
   import { inject } from 'vue'

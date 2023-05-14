@@ -84,15 +84,13 @@
 
 - **参考**：[app.config.compilerOptions](/api/application#app-config-compileroptions)
 
-<!-- TODO: translation -->
-
 ## slots<sup class="vt-badge ts"/> {#slots}
 
-An option to assist with type inference when using slots programmatically in render functions. Only supported in 3.3+.
+提供一个选项，在渲染函数中以编程方式使用插槽时辅助类型推断。仅在 Vue 3.3+ 中支持。
 
-- **Details**
+- **详情**
 
-  This option's runtime value is not used. The actual types should be declared via type casting using the `SlotsType` type helper:
+  该选项的运行时值不会被使用。实际类型应通过使用 `SlotsType` 类型辅助程序进行类型转换进行声明：
 
   ```ts
   import { SlotsType } from 'vue'

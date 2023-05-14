@@ -129,13 +129,11 @@
   type FooInstance = InstanceType<typeof Foo>
   ```
 
-  <!-- TODO: translation -->
+  ### 函数签名 <sup class="vt-badge" data-text="3.3+" /> {#function-signature}
 
-  ### Function Signature <sup class="vt-badge" data-text="3.3+" /> {#function-signature}
+  `defineComponent()` 还有一种备用签名，旨在与 Composition API 和 [render 函数或 JSX](/guide/extras/render-function.html) 一起使用。
 
-  `defineComponent()` also has an alternative signature that is meant to be used with Composition API and [render functions or JSX](/guide/extras/render-function.html).
-
-  Instead of passing in an options object, a function is expected instead. This function works the same as the Composition API [`setup()`](/api/composition-api-setup.html#composition-api-setup) function: it receives the props and the setup context. The return value should be a render function - both `h()` and JSX are supported:
+  与其传递选项对象不同，需要传入一个函数。这个函数的工作方式与 Composition API [`setup()`](/api/composition-api-setup.html#composition-api-setup) 函数相同：它接收道具和设置上下文。返回值应该是一个渲染函数———— `h()` 和 JSX 都被支持：
 
   ```js
   import { ref, h } from 'vue'
@@ -159,7 +157,7 @@
   )
   ```
 
-  The main use case for this signature is with TypeScript (and in particular with TSX), as it supports generics:
+  此签名的主要用例是使用 TypeScript（特别是使用 TSX ），因为它支持泛型：
 
   ```tsx
   const Comp = defineComponent(
@@ -179,7 +177,7 @@
   )
   ```
 
-  In the future, we plan to provide a Babel plugin that automatically infers and injects the runtime props (like for `defineProps` in SFCs) so that the runtime props declaration can be omitted.
+  在将来，我们计划提供一个 Babel 插件，自动推断并注入运行时道具（就像在 SFC 中的 `defineProps` 一样），以便可以省略运行时道具声明。
 
   ### webpack Treeshaking 的注意事项 {#note-on-webpack-treeshaking}
 

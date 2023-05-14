@@ -199,11 +199,9 @@ defineExpose({
 
 当父组件通过模板引用的方式获取到当前组件的实例，获取到的实例会像这样 `{ a: number, b: number }` (ref 会和在普通实例中一样被自动解包)
 
-<!-- TODO: translation -->
-
 ## defineOptions() {#defineoptions}
 
-This macro can be used to declare component options directly inside `<script setup>` without having to use a separate `<script>` block:
+这个宏可以用来直接在 `<script setup>` 中声明组件选项，而不必使用单独的 `<script>` 块：
 
 ```vue
 <script setup>
@@ -216,18 +214,16 @@ defineOptions({
 </script>
 ```
 
-- Only supported in 3.3+.
-- This is a macro. The options will be hoisted to module scope and cannot access local variables in `<script setup>` that are not literal constants.
-
-<!-- TODO: translation -->
+- 仅支持 Vue 3.3+。
+- 这是一个宏定义，选项将会被提升到模块作用域中，无法访问 `<script setup>` 中不是字面常数的局部变量。
 
 ## defineSlots()<sup class="vt-badge ts"/> {#defineslots}
 
-This macro can be used to provide type hints to IDEs for slot name and props type checking.
+这个宏可以用于为 IDE 提供插槽名称和 props 类型检查的类型提示。
 
-`defineSlots()` only accepts a type parameter and no runtime arguments. The type parameter should be a type literal where the property key is the slot name, and the value type is the slot function. The first argument of the function is the props the slot expects to receive, and its type will be used for slot props in the template. The return type is currently ignored and can be `any`, but we may leverage it for slot content checking in the future.
+`defineSlots()` 只接受类型参数，没有运行时参数。类型参数应该是一个类型字面量，其中属性键是插槽名称，值类型是插槽函数。函数的第一个参数是插槽期望接收的 props，其类型将用于模板中的插槽 props。返回类型目前被忽略，可以是 `any`，但我们将来可能会利用它来检查插槽内容。
 
-It also returns the `slots` object, which is equivalent to the `slots` object exposed on the setup context or returned by `useSlots()`.
+它还返回 `slots` 对象，该对象等同于在设置上下文中公开或由 `useSlots()` 返回的 `slots` 对象。
 
 ```vue
 <script setup lang="ts">
@@ -237,7 +233,8 @@ const slots = defineSlots<{
 </script>
 ```
 
-- Only supported in 3.3+.
+- 仅支持 Vue 3.3+。
+
 
 ## `useSlots()` 和 `useAttrs()` {#useslots-useattrs}
 
@@ -356,11 +353,9 @@ const props = withDefaults(defineProps<Props>(), {
 
 上面代码会被编译为等价的运行时 props 的 `default` 选项。此外，`withDefaults` 辅助函数提供了对默认值的类型检查，并确保返回的 `props` 的类型删除了已声明默认值的属性的可选标志。
 
-<!-- TODO: translation -->
-
 ## Generics <sup class="vt-badge ts" /> {#generics}
 
-Generic type parameters can be declared using the `generic` attribute on the `<script>` tag:
+可以使用 `<script>` 标签上的 `generic` 属性声明泛型类型参数：
 
 ```vue
 <script setup lang="ts" generic="T">
@@ -371,7 +366,7 @@ defineProps<{
 </script>
 ```
 
-The value of `generic` works exactly the same as the parameter list between `<...>` in TypeScript. For example, you can use multiple parameters, `extends` constraints, default types, and reference imported types:
+`generic` 的值与 TypeScript 中位于 `<...>` 之间的参数列表完全相同。例如，您可以使用多个参数，`extends` 约束，默认类型和引用导入的类型：
 
 ```vue
 <script
