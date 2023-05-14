@@ -212,18 +212,16 @@ let x: string | number = 1
 如果正在使用 Vue CLI 或基于 webpack 的配置，支持模板内表达式的 TypeScript 需要 `vue-loader@^16.8.0`。
 :::
 
-<!-- TODO: translation -->
+### 使用 TSX
 
-### Usage with TSX
+Vue 也支持使用 JSX / TSX 编写组件。详情请查阅[渲染函数 & JSX](/guide/extras/render-function.html#jsx-tsx)。
 
-Vue also supports authoring components with JSX / TSX. Details are covered in the [Render Function & JSX](/guide/extras/render-function.html#jsx-tsx) guide.
+## 泛型组件 {#generic-components}
 
-## Generic Components {#generic-components}
+泛型组件支持两种使用方式：
 
-Generic components are supported in two cases:
-
-- In SFCs: [`<script setup>` with the `generic` attribute](/api/sfc-script-setup.html#generics)
-- Render function / JSX components: [`defineComponent()`'s function signature](/api/general.html#function-signature)
+- 在单文件组件中：[在 `<script setup>` 上使用 `generic` 属性](/api/sfc-script-setup.html#generics)
+- 渲染函数 / JSX 组件：[`defineComponent()` 的函数签名](/api/general.html#function-signature)
 
 ## 特定 API 的使用指南 {#api-specific-recipes}
 

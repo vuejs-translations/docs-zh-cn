@@ -223,7 +223,7 @@ defineOptions({
 
 `defineSlots()` 只接受类型参数，没有运行时参数。类型参数应该是一个类型字面量，其中属性键是插槽名称，值类型是插槽函数。函数的第一个参数是插槽期望接收的 props，其类型将用于模板中的插槽 props。返回类型目前被忽略，可以是 `any`，但我们将来可能会利用它来检查插槽内容。
 
-它还返回 `slots` 对象，该对象等同于在设置上下文中公开或由 `useSlots()` 返回的 `slots` 对象。
+它还返回 `slots` 对象，该对象等同于在 setup 上下文中暴露或由 `useSlots()` 返回的 `slots` 对象。
 
 ```vue
 <script setup lang="ts">
@@ -316,9 +316,9 @@ const emit = defineEmits<{
   (e: 'update', value: string): void
 }>()
 
-// 3.3+: alternative, more succinct syntax
+// 3.3+：另一种更简洁的语法
 const emit = defineEmits<{
-  change: [id: number] // named tuple syntax
+  change: [id: number] // 具名元组语法
   update: [value: string]
 }>()
 ```
@@ -331,9 +331,9 @@ const emit = defineEmits<{
 
   - 在生产模式下，编译器会生成数组格式的声明来减少打包体积 (这里的 props 会被编译成 `['foo', 'bar']`)。
 
-- In version 3.2 and below, the generic type parameter for `defineProps()` were limited to a type literal or a reference to a local interface.
+- 在 3.2 及以下版本中，`defineProps()`  的泛型类型参数只能使用类型字面量或者本地接口的引用。
 
-  This limitation has been resolved in 3.3. The latest version of Vue supports referencing imported and a limited set of complex types in the type parameter position. However, because the type to runtime conversion is still AST-based, some complex types that require actual type analysis, e.g. conditional types, are not supported. You can use conditional types for the type of a single prop, but not the entire props object.
+  这个限制已经在 3.3 版本中解决。最新版本的 Vue 支持在类型参数的位置引用导入的和有限的复杂类型。然而，由于类型到运行时的转换仍然基于 AST，因此并不支持使用需要实际类型分析的复杂类型，例如条件类型等。你可以在单个 prop 的类型上使用条件类型，但不能对整个 props 对象使用。
 
 ### 使用类型声明时的默认 props 值 {#default-props-values-when-using-type-declaration}
 

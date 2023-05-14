@@ -50,7 +50,7 @@ Can also be used to create a ref for a property on a source reactive object. The
 - **类型**
 
   ```ts
-  // normalization signature (3.3+)
+  // 规范化签名 (3.3+)
   function toRef<T>(
     value: T
   ): T extends () => infer R
@@ -59,7 +59,7 @@ Can also be used to create a ref for a property on a source reactive object. The
     ? T
     : Ref<UnwrapRef<T>>
 
-  // object property signature
+  // 对象属性签名
   function toRef<T extends object, K extends keyof T>(
     object: T,
     key: K,
@@ -71,21 +71,21 @@ Can also be used to create a ref for a property on a source reactive object. The
 
 - **示例**
 
-  Normalization signature (3.3+):
+  规范化签名 (3.3+)：
 
   ```js
-  // returns existing refs as-is
+  // 按原样返回现有的 ref
   toRef(existingRef)
 
-  // creates a readonly ref that calls the getter on .value access
+  // 创建一个只读的 ref，当访问 .value 时会调用此 getter 函数
   toRef(() => props.foo)
 
-  // creates normal refs from non-function values
-  // equivalent to ref(1)
+  // 从非函数的值中创建普通的 ref
+  // 等同于 ref(1)
   toRef(1)
   ```
 
-  Object property signature:
+  对象属性签名：
 
   ```js
   const state = reactive({
@@ -93,7 +93,7 @@ Can also be used to create a ref for a property on a source reactive object. The
     bar: 2
   })
 
-  // a two-way ref that syncs with the original property
+  // 双向 ref，会与源属性同步
   const fooRef = toRef(state, 'foo')
 
   // 更改该 ref 会更新源属性
@@ -125,7 +125,7 @@ Can also be used to create a ref for a property on a source reactive object. The
   // 一个组合式函数
   useSomeFeature(toRef(props, 'foo'))
 
-  // getter syntax - recommended in 3.3+
+  // getter 语法——推荐在 3.3+ 版本使用
   useSomeFeature(toRef(() => props.foo))
   </script>
   ```
@@ -134,21 +134,19 @@ Can also be used to create a ref for a property on a source reactive object. The
 
   即使源属性当前不存在，`toRef()` 也会返回一个可用的 ref。这让它在处理可选 props 的时候格外实用，相比之下 [`toRefs`](#torefs) 就不会为可选 props 创建对应的 refs。
 
-<!-- TODO: translation -->
-
 ## toValue() <sup class="vt-badge" data-text="3.3+" /> {#tovalue}
 
-Normalizes values / refs / getters to values. This is similar to [unref()](#unref), except that it also normalizes getters. If the argument is a getter, it will be invoked and its return value will be returned.
+将 values / refs / getters 规范化为值。这与 [unref()](#unref) 类似，不同的是此函数也会规范化 getter 函数。如果参数是一个 getter，它将会被调用并且返回它的返回值。
 
-This can be used in [Composables](/guide/reusability/composables.html) to normalize an argument that can be either a value, a ref, or a getter.
+这可以在[组合式函数](/guide/reusability/composables.html)中使用，用来规范化一个可以是值、ref、或者 getter 的参数。
 
-- **Type**
+- **类型**
 
   ```ts
   function toValue<T>(source: T | Ref<T> | (() => T)): T
   ```
 
-- **Example**
+- **示例**
 
   ```js
   toValue(1) //       --> 1
@@ -156,18 +154,18 @@ This can be used in [Composables](/guide/reusability/composables.html) to normal
   toValue(() => 1) // --> 1
   ```
 
-  Normalizing arguments in composables:
+  在组合式函数中规范化参数：
 
   ```ts
   import type { MaybeRefOrGetter } from 'vue'
 
   function useFeature(id: MaybeRefOrGetter<number>) {
     watch(() => toValue(id), id => {
-      // react to id changes
+      // 处理 id 变更
     })
   }
 
-  // this composable supports any of the following:
+  // 这个组合式函数支持以下的任意形式：
   useFeature(1)
   useFeature(ref(1))
   useFeature(() => 1)

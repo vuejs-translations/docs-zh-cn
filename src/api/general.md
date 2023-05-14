@@ -101,12 +101,12 @@
 - **类型**
 
   ```ts
-  // options syntax
+  // 选项语法
   function defineComponent(
     component: ComponentOptions
   ): ComponentConstructor
 
-  // function syntax (requires 3.3+)
+  // 函数语法 (需要 3.3+)
   function defineComponent(
     setup: ComponentOptions['setup'],
     extraOptions?: ComponentOptions
@@ -131,24 +131,24 @@
 
   ### 函数签名 <sup class="vt-badge" data-text="3.3+" /> {#function-signature}
 
-  `defineComponent()` 还有一种备用签名，旨在与 Composition API 和 [render 函数或 JSX](/guide/extras/render-function.html) 一起使用。
+  `defineComponent()` 还有一种备用签名，旨在与组合式 API 和 [渲染函数或 JSX](/guide/extras/render-function.html) 一起使用。
 
-  与其传递选项对象不同，需要传入一个函数。这个函数的工作方式与 Composition API [`setup()`](/api/composition-api-setup.html#composition-api-setup) 函数相同：它接收道具和设置上下文。返回值应该是一个渲染函数———— `h()` 和 JSX 都被支持：
+  与其传递选项对象不同，需要传入一个函数。这个函数的工作方式与 Composition API [`setup()`](/api/composition-api-setup.html#composition-api-setup) 函数相同：它接收 props 和 setup 上下文。返回值应该是一个渲染函数——支持 `h()` 和 JSX：
 
   ```js
   import { ref, h } from 'vue'
 
   const Comp = defineComponent(
     (props) => {
-      // use Composition API here like in <script setup>
+      // 就像在 <script setup> 中一样使用组合式 API
       const count = ref(0)
 
       return () => {
-        // render function or JSX
+        // 渲染函数或 JSX
         return h('div', count.value)
       }
     },
-    // extra options, e.g. declare props and emits
+    // 其他选项，例如声明 props 和 emits。
     {
       props: {
         /* ... */
@@ -157,27 +157,27 @@
   )
   ```
 
-  此签名的主要用例是使用 TypeScript（特别是使用 TSX ），因为它支持泛型：
+  此签名的主要用例是使用 TypeScript (特别是使用 TSX )，因为它支持泛型：
 
   ```tsx
   const Comp = defineComponent(
     <T extends string | number>(props: { msg: T; list: T[] }) => {
-      // use Composition API here like in <script setup>
+      // 就像在 <script setup> 中一样使用组合式 API
       const count = ref(0)
 
       return () => {
-        // render function or JSX
+        // 渲染函数或 JSX
         return <div>{count.value}</div>
       }
     },
-    // manual runtime props declaration is currently still needed.
+    // 目前仍然需要手动声明运行时的 props
     {
       props: ['msg', 'list']
     }
   )
   ```
 
-  在将来，我们计划提供一个 Babel 插件，自动推断并注入运行时道具（就像在 SFC 中的 `defineProps` 一样），以便可以省略运行时道具声明。
+  在将来，我们计划提供一个 Babel 插件，自动推断并注入运行时 props（就像在 SFC 中的 `defineProps` 一样），以便可以省略运行时 props 的声明。
 
   ### webpack Treeshaking 的注意事项 {#note-on-webpack-treeshaking}
 

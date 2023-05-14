@@ -32,27 +32,25 @@
 
 - **参考**：[指南 - 为组件 props 标注类型](/guide/typescript/options-api#typing-component-props)
 
-<!-- TODO: translation -->
-
 ## MaybeRef\<T> {#mayberef}
 
-Alias for `T | Ref<T>`. Useful for annotating arguments of [Composables](/guide/reusability/composables.html).
+`T | Ref<T>` 的别名。对于标注[组合式函数](/guide/reusability/composables.html)的参数很有用。
 
-- Only supported in 3.3+.
+- 仅在 3.3+ 版本中支持。
 
 ## MaybeRefOrGetter\<T> {#maybereforgetter}
 
-Alias for `T | Ref<T> | (() => T)`. Useful for annotating arguments of [Composables](/guide/reusability/composables.html).
+`T | Ref<T> | (() => T)` 的别名。对于标注[组合式函数](/guide/reusability/composables.html)的参数很有用。
 
-- Only supported in 3.3+.
+- 仅在 3.3+ 版本中支持。
 
 ## ExtractPropTypes\<T> {#extractproptypes}
 
-Extract prop types from a runtime props options object. The extracted types are internal facing - i.e. the resolved props received by the component. This means boolean props and props with default values are always defined, even if they are not required.
+从运行时的 props 选项对象中提取 props 类型。提取到的类型是面向内部的，也就是说组件接收到的是解析后的 props。这意味着 boolean 类型的 props 和带有默认值的 props 总是一个定义的值，即使它们不是必需的。
 
-To extract public facing props, i.e. props that the parent is allowed to pass, use [`ExtractPublicPropTypes`](#extractpublicproptypes).
+要提取面向外部的 props，即父组件允许传递的 props，请使用 [`ExtractPublicPropTypes`](#extractpublicproptypes)。
 
-- **Example**
+- **示例**
 
   ```ts
   const propsOptions = {
@@ -79,9 +77,9 @@ To extract public facing props, i.e. props that the parent is allowed to pass, u
 
 ## ExtractPublicPropTypes\<T> {#extractpublicproptypes}
 
-Extract prop types from a runtime props options object. The extracted types are public facing - i.e. the props that the parent is allowed to pass.
+从运行时的 props 选项对象中提取 prop。提取的类型是面向外部的，即父组件允许传递的 props。
 
-- **Example**
+- **示例**
 
   ```ts
   const propsOptions = {
