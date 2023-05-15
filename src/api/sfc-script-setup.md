@@ -177,7 +177,7 @@ const emit = defineEmits(['change', 'delete'])
 
 ### 针对类型的 props/emit 声明<sup class="vt-badge ts" /> {#type-only-props-emit-declarations}
 
-props 和 emit 都可以通过给 `defineProps` 和 `defineEmits` 传递纯类型参数的方式来声明：
+props 和 emit 也可以通过给 `defineProps` 和 `defineEmits` 传递纯类型参数的方式来声明：
 
 ```ts
 const props = defineProps<{
@@ -348,7 +348,7 @@ const post = await fetch(`/api/post/1`).then((r) => r.json())
 `async setup()` 必须与 [`Suspense` 内置组件](/guide/built-ins/suspense.html)组合使用，`Suspense` 目前还是处于实验阶段的特性，会在将来的版本中稳定。
 :::
 
-## Generics <sup class="vt-badge ts" /> {#generics}
+## 泛型 <sup class="vt-badge ts" /> {#generics}
 
 可以使用 `<script>` 标签上的 `generic` 属性声明泛型类型参数：
 
