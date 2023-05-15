@@ -175,7 +175,57 @@ const emit = defineEmits(['change', 'delete'])
 
 - 传入到 `defineProps` 和 `defineEmits` 的选项会从 setup 中提升到模块的作用域。因此，传入的选项不能引用在 setup 作用域中声明的局部变量。这样做会引起编译错误。但是，它*可以*引用导入的绑定，因为它们也在模块作用域内。
 
-如果使用了 TypeScript，[使用纯类型声明来声明 prop 和 emit](#typescript-only-features) 也是可以的。
+### Type-only props/emit declarations<sup class="vt-badge ts" /> {#type-only-props-emit-declarations}
+
+<!-- TODO: translation -->Props and emits can also be declared using pure-type syntax by passing a literal type argument to `defineProps` or `defineEmits`:
+
+```ts
+const props = defineProps<{
+  foo: string
+  bar?: number
+}>()
+
+const emit = defineEmits<{
+  (e: 'change', id: number): void
+  (e: 'update', value: string): void
+}>()
+
+// 3.3+: alternative, more succinct syntax
+const emit = defineEmits<{
+  change: [id: number] // named tuple syntax
+  update: [value: string]
+}>()
+```
+
+- `defineProps` or `defineEmits` can only use either runtime declaration OR type declaration. Using both at the same time will result in a compile error.
+
+- When using type declaration, the equivalent runtime declaration is automatically generated from static analysis to remove the need for double declaration and still ensure correct runtime behavior.
+
+  - In dev mode, the compiler will try to infer corresponding runtime validation from the types. For example here `foo: String` is inferred from the `foo: string` type. If the type is a reference to an imported type, the inferred result will be `foo: null` (equal to `any` type) since the compiler does not have information of external files.
+
+  - In prod mode, the compiler will generate the array format declaration to reduce bundle size (the props here will be compiled into `['foo', 'bar']`)
+
+- In version 3.2 and below, the generic type parameter for `defineProps()` were limited to a type literal or a reference to a local interface.
+
+  This limitation has been resolved in 3.3. The latest version of Vue supports referencing imported and a limited set of complex types in the type parameter position. However, because the type to runtime conversion is still AST-based, some complex types that require actual type analysis, e.g. conditional types, are not supported. You can use conditional types for the type of a single prop, but not the entire props object.
+
+### Default props values when using type declaration {#default-props-values-when-using-type-declaration}
+
+One drawback of the type-only `defineProps` declaration is that it doesn't have a way to provide default values for the props. To resolve this problem, a `withDefaults` compiler macro is also provided:
+
+```ts
+export interface Props {
+  msg?: string
+  labels?: string[]
+}
+
+const props = withDefaults(defineProps<Props>(), {
+  msg: 'hello',
+  labels: () => ['one', 'two']
+})
+```
+
+This will be compiled to equivalent runtime props `default` options. In addition, the `withDefaults` helper provides type checks for the default values, and ensures the returned `props` type has the optional flags removed for properties that do have default values declared.
 
 ## defineExpose() {#defineexpose}
 
