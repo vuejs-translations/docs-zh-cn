@@ -43,9 +43,9 @@
 
 基于响应式对象上的一个属性，创建一个对应的 ref。这样创建的 ref 与其源属性保持同步：改变源属性的值将更新 ref 的值，反之亦然。
 
-Can be used to normalize values / refs / getters into refs (3.3+).
+可以将值、refs 或 getters 规范化为 refs (3.3+)。
 
-Can also be used to create a ref for a property on a source reactive object. The created ref is synced with its source property: mutating the source property will update the ref, and vice-versa.
+也可以基于响应式对象上的一个属性，创建一个对应的 ref。这样创建的 ref 与其源属性保持同步：改变源属性的值将更新 ref 的值，反之亦然。
 
 - **类型**
 
@@ -132,13 +132,13 @@ Can also be used to create a ref for a property on a source reactive object. The
 
   当 `toRef` 与组件 props 结合使用时，关于禁止对 props 做出更改的限制依然有效。尝试将新的值传递给 ref 等效于尝试直接更改 props，这是不允许的。在这种场景下，你可能可以考虑使用带有 `get` 和 `set` 的 [`computed`](./reactivity-core#computed) 替代。详情请见[在组件上使用 `v-model`](/guide/components/v-model) 指南。
 
-  即使源属性当前不存在，`toRef()` 也会返回一个可用的 ref。这让它在处理可选 props 的时候格外实用，相比之下 [`toRefs`](#torefs) 就不会为可选 props 创建对应的 refs。
+  当使用对象属性签名时，即使源属性当前不存在，`toRef()` 也会返回一个可用的 ref。这让它在处理可选 props 的时候格外实用，相比之下 [`toRefs`](#torefs) 就不会为可选 props 创建对应的 refs。
 
 ## toValue() <sup class="vt-badge" data-text="3.3+" /> {#tovalue}
 
-将 values / refs / getters 规范化为值。这与 [unref()](#unref) 类似，不同的是此函数也会规范化 getter 函数。如果参数是一个 getter，它将会被调用并且返回它的返回值。
+将值、refs 或 getters 规范化为值。这与 [unref()](#unref) 类似，不同的是此函数也会规范化 getter 函数。如果参数是一个 getter，它将会被调用并且返回它的返回值。
 
-这可以在[组合式函数](/guide/reusability/composables.html)中使用，用来规范化一个可以是值、ref、或者 getter 的参数。
+这可以在[组合式函数](/guide/reusability/composables.html)中使用，用来规范化一个可以是值、ref 或 getter 的参数。
 
 - **类型**
 

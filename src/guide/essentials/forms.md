@@ -36,7 +36,7 @@ const multiSelected = ref([])
 - `<select>` 会绑定 `value` property 并侦听 `change` 事件。
 
 ::: tip 注意
-`v-model` 会忽略任何表单元素上初始的 `value`、`checked` 或 `selected` attribute。它将始终将当前绑定的 JavaScript 状态视为数据的正确来源。你应该在 JavaScript 中使用<span class="options-api"> `data` 选项</span><span class="composition-api">[响应式系统的 API](/api/reactivity-core.html#reactivity-api-core) </span>来声明该初始值。
+`v-model` 会忽略任何表单元素上初始的 `value`、`checked` 或 `selected` attribute。它将始终将当前绑定的 JavaScript 状态视为数据的正确来源。你应该在 JavaScript 中使用<span class="options-api"> [`data`](/api/options-state.html#data) 选项</span><span class="composition-api">[响应式系统的 API](/api/reactivity-core.html#reactivity-api-core) </span>来声明该初始值。
 :::
 
 ## 基本用法 {#basic-usage}

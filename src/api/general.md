@@ -133,7 +133,7 @@
 
   `defineComponent()` 还有一种备用签名，旨在与组合式 API 和 [渲染函数或 JSX](/guide/extras/render-function.html) 一起使用。
 
-  与其传递选项对象不同，需要传入一个函数。这个函数的工作方式与 Composition API [`setup()`](/api/composition-api-setup.html#composition-api-setup) 函数相同：它接收 props 和 setup 上下文。返回值应该是一个渲染函数——支持 `h()` 和 JSX：
+  与传递选项对象不同的是，它需要传入一个函数。这个函数的工作方式与组合式 API 的 [`setup()`](/api/composition-api-setup.html#composition-api-setup) 函数相同：它接收 props 和 setup 上下文。返回值应该是一个渲染函数——支持 `h()` 和 JSX：
 
   ```js
   import { ref, h } from 'vue'
@@ -177,7 +177,7 @@
   )
   ```
 
-  在将来，我们计划提供一个 Babel 插件，自动推断并注入运行时 props（就像在 SFC 中的 `defineProps` 一样），以便可以省略运行时 props 的声明。
+  在将来，我们计划提供一个 Babel 插件，自动推断并注入运行时 props (就像在 SFC 中的 `defineProps` 一样)，以便省略运行时 props 的声明。
 
   ### webpack Treeshaking 的注意事项 {#note-on-webpack-treeshaking}
 
