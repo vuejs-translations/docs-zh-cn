@@ -83,3 +83,30 @@
   这个配置选项仅在使用完整构建版本 (即可以在浏览器中编译模板的 `vue.js` 文件) 时才有效。它支持与应用级的 [app.config.compilerOptions](/api/application#app-config-compileroptions) 相同的选项，并针对当前组件有更高的优先级。
 
 - **参考**：[app.config.compilerOptions](/api/application#app-config-compileroptions)
+
+## slots<sup class="vt-badge ts"/> {#slots}
+
+一个在渲染函数中以编程方式使用插槽时辅助类型推断的选项。仅在 Vue 3.3+ 中支持。
+
+- **详情**
+
+  该选项的运行时值不会被使用。实际类型应通过 `SlotsType` 类型辅助工具进行类型转换来声明：
+
+  ```ts
+  import { SlotsType } from 'vue'
+
+  defineComponent({
+    slots: Object as SlotsType<{
+      default: { foo: string; bar: number }
+      item: { data: number }
+    }>,
+    setup(props, { slots }) {
+      expectType<
+        undefined | ((scope: { foo: string; bar: number }) => any)
+      >(slots.default)
+      expectType<undefined | ((scope: { data: number }) => any)>(
+        slots.item
+      )
+    }
+  })
+  ```

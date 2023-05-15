@@ -52,32 +52,10 @@ const props = defineProps<Props>()
 
 #### 语法限制 {#syntax-limitations}
 
-为了生成正确的运行时代码，传给 `defineProps()` 的泛型参数必须是以下之一：
 
-- 一个类型字面量：
+在 3.2 及以下版本中，`defineProps（）` 的泛型类型参数仅限于类型文字或对本地接口的引用。
 
-  ```ts
-  defineProps<{ /*... */ }>()
-  ```
-
-- 对**同一个文件**中的一个接口或对象类型字面量的引用：
-
-  ```ts
-  interface Props {/* ... */}
-
-  defineProps<Props>()
-  ```
-
-接口或对象字面类型可以包含从其他文件导入的类型引用，但是，传递给 `defineProps` 的泛型参数本身**不能**是一个导入的类型：
-
-```ts
-import { Props } from './other-file'
-
-// 不支持！
-defineProps<Props>()
-```
-
-这是因为 Vue 组件是单独编译的，编译器目前不会抓取导入的文件以分析源类型。我们计划在未来的版本中解决这个限制。
+这个限制在 3.3 中得到了解决。最新版本的 Vue 支持在类型参数位置引用导入和有限的复杂类型。但是，由于类型到运行时转换仍然基于 AST，一些需要实际类型分析的复杂类型，例如条件类型，还未支持。您可以使用条件类型来指定单个 prop 的类型，但不能用于整个 props 对象的类型。
 
 ### Props 解构默认值 {#props-default-values}
 

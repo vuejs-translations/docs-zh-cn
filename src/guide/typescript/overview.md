@@ -175,6 +175,10 @@ const count = ref(1)
 </template>
 ```
 
+参考:
+
+- [`<script setup>` 中针对 TypeScript 的功能](/api/sfc-script-setup.html#typescript-only-features)
+
 ### 模板中的 TypeScript {#typescript-in-templates}
 
 在使用了 `<script lang="ts">` 或 `<script setup lang="ts">` 后，`<template>` 在绑定表达式中也支持 TypeScript。这对需要在模板表达式中执行类型转换的情况下非常有用。
@@ -207,6 +211,17 @@ let x: string | number = 1
 :::tip
 如果正在使用 Vue CLI 或基于 webpack 的配置，支持模板内表达式的 TypeScript 需要 `vue-loader@^16.8.0`。
 :::
+
+### 使用 TSX
+
+Vue 也支持使用 JSX / TSX 编写组件。详情请查阅[渲染函数 & JSX](/guide/extras/render-function.html#jsx-tsx)。
+
+## 泛型组件 {#generic-components}
+
+泛型组件支持两种使用方式：
+
+- 在单文件组件中：[在 `<script setup>` 上使用 `generic` 属性](/api/sfc-script-setup.html#generics)
+- 渲染函数 / JSX 组件：[`defineComponent()` 的函数签名](/api/general.html#function-signature)
 
 ## 特定 API 的使用指南 {#api-specific-recipes}
 

@@ -101,9 +101,16 @@
 - **类型**
 
   ```ts
+  // 选项语法
   function defineComponent(
-    component: ComponentOptions | ComponentOptions['setup']
+    component: ComponentOptions
   ): ComponentConstructor
+
+  // 函数语法 (需要 3.3+)
+  function defineComponent(
+    setup: ComponentOptions['setup'],
+    extraOptions?: ComponentOptions
+  ): () => any
   ```
 
   > 为了便于阅读，对类型进行了简化。
@@ -121,6 +128,56 @@
 
   type FooInstance = InstanceType<typeof Foo>
   ```
+
+  ### 函数签名 <sup class="vt-badge" data-text="3.3+" /> {#function-signature}
+
+  `defineComponent()` 还有一种备用签名，旨在与组合式 API 和 [渲染函数或 JSX](/guide/extras/render-function.html) 一起使用。
+
+  与传递选项对象不同的是，它需要传入一个函数。这个函数的工作方式与组合式 API 的 [`setup()`](/api/composition-api-setup.html#composition-api-setup) 函数相同：它接收 props 和 setup 上下文。返回值应该是一个渲染函数——支持 `h()` 和 JSX：
+
+  ```js
+  import { ref, h } from 'vue'
+
+  const Comp = defineComponent(
+    (props) => {
+      // 就像在 <script setup> 中一样使用组合式 API
+      const count = ref(0)
+
+      return () => {
+        // 渲染函数或 JSX
+        return h('div', count.value)
+      }
+    },
+    // 其他选项，例如声明 props 和 emits。
+    {
+      props: {
+        /* ... */
+      }
+    }
+  )
+  ```
+
+  此签名的主要用例是使用 TypeScript (特别是使用 TSX )，因为它支持泛型：
+
+  ```tsx
+  const Comp = defineComponent(
+    <T extends string | number>(props: { msg: T; list: T[] }) => {
+      // 就像在 <script setup> 中一样使用组合式 API
+      const count = ref(0)
+
+      return () => {
+        // 渲染函数或 JSX
+        return <div>{count.value}</div>
+      }
+    },
+    // 目前仍然需要手动声明运行时的 props
+    {
+      props: ['msg', 'list']
+    }
+  )
+  ```
+
+  在将来，我们计划提供一个 Babel 插件，自动推断并注入运行时 props (就像在 SFC 中的 `defineProps` 一样)，以便省略运行时 props 的声明。
 
   ### webpack Treeshaking 的注意事项 {#note-on-webpack-treeshaking}
 

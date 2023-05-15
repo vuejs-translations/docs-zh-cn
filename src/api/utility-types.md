@@ -32,6 +32,78 @@
 
 - **参考**：[指南 - 为组件 props 标注类型](/guide/typescript/options-api#typing-component-props)
 
+## MaybeRef\<T> {#mayberef}
+
+`T | Ref<T>` 的别名。对于标注[组合式函数](/guide/reusability/composables.html)的参数很有用。
+
+- 仅在 3.3+ 版本中支持。
+
+## MaybeRefOrGetter\<T> {#maybereforgetter}
+
+`T | Ref<T> | (() => T)` 的别名。对于标注[组合式函数](/guide/reusability/composables.html)的参数很有用。
+
+- 仅在 3.3+ 版本中支持。
+
+## ExtractPropTypes\<T> {#extractproptypes}
+
+从运行时的 props 选项对象中提取 props 类型。提取到的类型是面向内部的，也就是说组件接收到的是解析后的 props。这意味着 boolean 类型的 props 和带有默认值的 props 总是一个定义的值，即使它们不是必需的。
+
+要提取面向外部的 props，即父组件允许传递的 props，请使用 [`ExtractPublicPropTypes`](#extractpublicproptypes)。
+
+- **示例**
+
+  ```ts
+  const propsOptions = {
+    foo: String,
+    bar: Boolean,
+    baz: {
+      type: Number,
+      required: true
+    },
+    qux: {
+      type: Number,
+      default: 1
+    }
+  } as const
+
+  type Props = ExtractPropTypes<typeof propsOptions>
+  // {
+  //   foo?: string,
+  //   bar: boolean,
+  //   baz: number,
+  //   qux: number
+  // }
+  ```
+
+## ExtractPublicPropTypes\<T> {#extractpublicproptypes}
+
+从运行时的 props 选项对象中提取 prop。提取的类型是面向外部的，即父组件允许传递的 props。
+
+- **示例**
+
+  ```ts
+  const propsOptions = {
+    foo: String,
+    bar: Boolean,
+    baz: {
+      type: Number,
+      required: true
+    },
+    qux: {
+      type: Number,
+      default: 1
+    }
+  } as const
+
+  type Props = ExtractPublicPropTypes<typeof propsOptions>
+  // {
+  //   foo?: string,
+  //   bar?: boolean,
+  //   baz: number,
+  //   qux?: number
+  // }
+  ```
+
 ## ComponentCustomProperties {#componentcustomproperties}
 
 用于增强组件实例类型以支持自定义全局属性。
@@ -121,16 +193,17 @@
   ```tsx
   <div style={ { '--bg-color': 'blue' } }>
   ```
+
   ```html
-  <div :style="{ '--bg-color': 'blue' }">
+  <div :style="{ '--bg-color': 'blue' }"></div>
   ```
 
 :::tip
-  类型增强必须被放置在一个模块 `.ts` 或 `.d.ts` 文件中。查看[类型增强指南](/guide/typescript/options-api#augmenting-global-properties)了解更多细节。
-  :::
+类型增强必须被放置在一个模块 `.ts` 或 `.d.ts` 文件中。查看[类型增强指南](/guide/typescript/options-api#augmenting-global-properties)了解更多细节。
+:::
 
 :::info 参考
 SFC `<style>` 标签支持通过 `v-bind` CSS 函数来链接 CSS 值与组件状态。这允许在没有类型扩展的情况下自定义属性。
 
 - [CSS 中的 v-bind()](/api/sfc-css-features#v-bind-in-css)
-  :::
+:::
