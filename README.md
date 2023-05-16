@@ -4,6 +4,21 @@
 
 你也可以预览对应的英文原文文档 [https://vuejs.org](https://vuejs.org) 及其代码仓库 [vuejs/docs](https://github.com/vuejs/docs)。
 
+## 如何参与贡献
+
+本仓库是[英文文档仓库](https://github.com/vuejs/docs)的镜像翻译仓库。我们仅对原文进行内容同步与翻译，**不包含**基于英文原版的扩展、删减或演绎等。如对原文有任何意见或建议，欢迎到[英文文档仓库](https://github.com/vuejs/docs)提出 issue 或发起 PR。
+
+有劳访问我们的 [wiki](https://github.com/vuejs-translations/docs-zh-cn/wiki) 了解相关注意事项。
+
+目前网站处于维护状态，我们会定期同步英文版的更新，包括文档内容和前端代码等。欢迎大家：
+
+- 同步英文站点最新的改动到这里
+- 修复错别字或错误的书写格式
+- 发 issue 讨论译法或书写格式
+- 发 issue 讨论部署或协作流程上的问题
+
+同时我们的文档中可能会偶尔存在暂时未翻译的段落，这些段落通常都以 `<!-- TODO: translation -->` 开头作为标记。所以也欢迎大家在源码中搜索这些段落并贡献翻译。你也可以通过[这个链接](https://github.com/vuejs-translations/docs-zh-cn/search?q=TODO%3A+translation)快速找到尚未翻译好的内容。
+
 ## 如何在本地编辑和预览该网站
 
 本项目要求：
@@ -17,19 +32,6 @@
 pnpm i
 pnpm run dev
 ```
-
-## 如何参与贡献
-
-有劳访问我们的 [wiki](https://github.com/vuejs-translations/docs-zh-cn/wiki) 了解相关注意事项。
-
-目前网站处于维护状态，我们会定期同步英文版的更新，包括文档内容和前端代码等。欢迎大家：
-
-- 同步英文站点最新的改动到这里
-- 修复错别字或错误的书写格式
-- 发 issue 讨论译法或书写格式
-- 发 issue 讨论部署或协作流程上的问题
-
-同时我们的文档中可能会偶尔存在暂时未翻译的段落，这些段落通常都以 `<!-- TODO: translation -->` 开头作为标记。所以也欢迎大家在源码中搜索这些段落并贡献翻译。你也可以通过[这个链接](https://github.com/vuejs-translations/docs-zh-cn/search?q=TODO%3A+translation)快速找到尚未翻译好的内容。
 
 ## 贡献者列表
 
