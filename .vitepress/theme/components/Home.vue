@@ -252,6 +252,10 @@ html:not(.dark) .accent,
   flex: 1;
 }
 
+#special-sponsor .lead {
+  flex: initial;
+}
+
 #special-sponsor a:hover {
   color: var(--vt-c-green);
 }
