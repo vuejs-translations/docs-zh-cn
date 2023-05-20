@@ -151,9 +151,9 @@ data() {
 可以在绑定的表达式中使用一个组件暴露的方法：
 
 ```vue-html
-<span :title="toTitleDate(date)">
+<time :title="toTitleDate(date)" :datetime="date">
   {{ formatDate(date) }}
-</span>
+</time>
 ```
 
 :::tip
