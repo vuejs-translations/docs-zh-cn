@@ -1,6 +1,6 @@
 # Props {#props}
 
-> 此章节假设你已经看过了[组件基础](/guide/essentials/component-basics)。若你还不了解组件是什么，请先阅读该章节。
+> 此章节假设你已经看过了[组件基础](/guide/essentials/component-basics)。若你还不了解组件是什么，请先阅读[组件基础](/guide/essentials/component-basics)章节。
 
 ## Props 声明 {#props-declaration}
 
