@@ -101,7 +101,7 @@ export default {
 defineOptions({
   inheritAttrs: false
 })
-// ...setup logic
+// ...setup 逻辑
 </script>
 ```
 
