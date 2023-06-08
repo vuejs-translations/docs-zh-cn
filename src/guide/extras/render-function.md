@@ -232,24 +232,22 @@ const vnode = <div id={dynamicId}>hello, {userName}</div>
 
 `create-vue` 和 Vue CLI 都有预置的 JSX 语法支持。如果你想手动配置 JSX，请参阅 [`@vue/babel-plugin-jsx`](https://github.com/vuejs/jsx-next) 文档获取更多细节。
 
-虽然最早是由 React 引入，但实际上 JSX 语法并没有定义运行时语义，并且能被编译成各种不同的输出形式。如果你之前使用过 JSX 语法，那么请注意 **Vue 的 JSX 编译方式与 React 中 JSX 的编译方式不同**，因此你不能在 Vue 应用中使用 React 的 JSX 编译。与 React JSX 语法的一些明显区别包括：
+虽然最早是由 React 引入，但实际上 JSX 语法并没有定义运行时语义，并且能被编译成各种不同的输出形式。如果你之前使用过 JSX 语法，那么请注意 **Vue 的 JSX 转换方式与 React 中 JSX 的转换方式不同**，因此你不能在 Vue 应用中使用 React 的 JSX 转换。与 React JSX 语法的一些明显区别包括：
 
 - 可以使用 HTML attributes 比如 `class` 和 `for` 作为 props - 不需要使用 `className` 或 `htmlFor`。
 - 传递子元素给组件 (比如 slots) 的[方式不同](#passing-slots)。
 
-Vue 的类型定义也提供了 TSX 语法的类型推导支持。当使用 TSX 语法时，确保在 `tsconfig.json` 中配置了 `"jsx": "preserve"`，这样的 TypeScript 就能保证 Vue JSX 语法编译过程中的完整性。
+Vue 的类型定义也提供了 TSX 语法的类型推导支持。当使用 TSX 语法时，确保在 `tsconfig.json` 中配置了 `"jsx": "preserve"`，这样的 TypeScript 就能保证 Vue JSX 语法转换过程中的完整性。
 
-<!-- TODO: translation -->
+### JSX 类型推断 {#jsx-type-inference}
 
-### JSX Type Inference {#jsx-type-inference}
+与转换类似，Vue 的 JSX 也需要不同的类型定义。目前，Vue 的类型会在全局范围内自动注册 Vue 的 JSX 类型。这意味着当 Vue 的类型可用时，TSX 将可以开箱即用。
 
-Similar to the transform, Vue's JSX also needs different type definitions. Currently, Vue's types automatically registers Vue's JSX types globally. This means TSX will work out of the box when Vue's type is available.
+全局的 JSX 类型在与其他同样需要 JSX 类型推断的库一起使用时可能会引起冲突，特别是 React。从 3.3 开始，Vue 支持通过 TypeScript 的 [jsxImportSource](https://www.typescriptlang.org/tsconfig#jsxImportSource) 选项指定 JSX 命名空间。我们计划在 3.4 中移除默认的全局 JSX 命名空间注册。
 
-The global JSX types may cause conflict with used together with other libraries that also needs JSX type inference, in particular React. Starting in 3.3, Vue supports specifying JSX namespace via TypeScript's [jsxImportSource](https://www.typescriptlang.org/tsconfig#jsxImportSource) option. We plan to remove the default global JSX namespace registration in 3.4.
+对于 TSX 用户，建议在升级到 3.3 之后，在 `tsconfig.json` 中把 [jsxImportSource](https://www.typescriptlang.org/tsconfig#jsxImportSource) 设置为 `'vue'`，或者针对单个文件加入 `/* @jsxImportSource vue */`。这可以让你现在就选用该新特性，并在 3.4 发布时无痛升级。
 
-For TSX users, it is suggested to set [jsxImportSource](https://www.typescriptlang.org/tsconfig#jsxImportSource) to `'vue'` in `tsconfig.json` after upgrading to 3.3, or opt-in per file with `/* @jsxImportSource vue */`. This will allow you to opt-in to the new behavior now and upgrade seamlessly when 3.4 releases.
-
-If there is code that depends on the presence of the global `JSX` namespace,  you can retain the exact pre-3.4 global behavior by explicitly referencing `vue/jsx`, which registers the global `JSX` namespace.
+如果仍有代码依赖于全局存在的 `JSX` 命名空间，你可以通过显式引用 `vue/jsx` 来保留 3.4 之前的全局行为，它注册了全局 `JSX` 命名空间。
 
 ## 渲染函数案例 {#render-function-recipes}
 
