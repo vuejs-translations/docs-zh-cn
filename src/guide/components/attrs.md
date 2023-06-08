@@ -94,7 +94,7 @@ export default {
 </script>
 ```
 
- 从 3.3 开始你也可以直接在 `<script setup>` 中使用e `defineOptions`：
+ 从 3.3 开始你也可以直接在 `<script setup>` 中使用 `defineOptions`：
 
 ```vue
 <script setup>
