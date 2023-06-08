@@ -490,7 +490,7 @@ export default {
 
 <div class="composition-api">
 
-如果使用了[基于类型的 prop 声明](/api/sfc-script-setup#typescript-only-features) <sup class="vt-badge ts" />，Vue 会尽最大努力在运行时按照 prop 的类型标注进行编译。举例来说，`defineProps<{ msg: string }>` 会被编译为 `{ msg: { type: String, required: true }}`。
+如果使用了[基于类型的 prop 声明](/api/sfc-script-setup#type-only-props-emit-declarations) <sup class="vt-badge ts" />，Vue 会尽最大努力在运行时按照 prop 的类型标注进行编译。举例来说，`defineProps<{ msg: string }>` 会被编译为 `{ msg: { type: String, required: true }}`。
 
 </div>
 <div class="options-api">

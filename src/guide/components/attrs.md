@@ -94,6 +94,17 @@ export default {
 </script>
 ```
 
+ Since 3.3 you can also use `defineOptions` directly in `<script setup>`:
+
+```vue
+<script setup>
+defineOptions({
+  inheritAttrs: false
+})
+// ...setup logic
+</script>
+```
+
 </div>
 
 最常见的需要禁用 attribute 继承的场景就是 attribute 需要应用在根节点以外的其他元素上。通过设置 `inheritAttrs` 选项为 `false`，你可以完全控制透传进来的 attribute 被如何使用。

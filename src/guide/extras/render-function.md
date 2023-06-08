@@ -241,7 +241,7 @@ Vue 的类型定义也提供了 TSX 语法的类型推导支持。当使用 TSX 
 
 <!-- TODO: translation -->
 
-### JSX Type Inference
+### JSX Type Inference {#jsx-type-inference}
 
 Similar to the transform, Vue's JSX also needs different type definitions. Currently, Vue's types automatically registers Vue's JSX types globally. This means TSX will work out of the box when Vue's type is available.
 

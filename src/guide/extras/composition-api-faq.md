@@ -108,7 +108,13 @@ onMounted(() => {
 
 组合式 API 能够覆盖所有状态逻辑方面的需求。除此之外，只需要用到一小部分选项：`props`，`emits`，`name` 和 `inheritAttrs`。如果使用 `<script setup>`，那么 `inheritAttrs` 应该是唯一一个需要用额外的 `<script>` 块书写的选项了。
 
-如果你在代码中**只**使用了组合式 API (以及上述必需的选项)，那么你可以通过配置[编译时标记](https://github.com/vuejs/core/tree/main/packages/vue#bundler-build-feature-flags)来去掉 Vue 运行时中针对选项式 API 支持的代码，从而减小生产包大概几 kb 左右的体积。注意这个配置也会影响你依赖中的 Vue 组件。
+:::tip
+
+从 3.3 开始你可以直接通过 `<script setup>` 中的 `defineOptions` 来设置组件名或 `inheritAttrs` 属性。
+
+:::
+
+如果你在代码中只使用了组合式 API (以及上述必需的选项)，那么你可以通过配置[编译时标记](https://github.com/vuejs/core/tree/main/packages/vue#bundler-build-feature-flags)来去掉 Vue 运行时中针对选项式 API 支持的代码，从而减小生产包大概几 kb 左右的体积。注意这个配置也会影响你依赖中的 Vue 组件。
 
 ### 可以同时使用两种 API 吗？ {#can-i-use-both-apis-together}
 
