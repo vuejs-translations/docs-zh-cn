@@ -111,7 +111,7 @@ let count = $(myCreateRef())
 
 1. 和 `.value` 类似，为了保持响应性，你始终需要以 `props.x` 的方式访问这些 prop。这意味着你不能够解构 `defineProps` 的返回值，因为得到的变量将不是响应式的、也不会更新。
 
-2. 当使用[基于类型的 props 的声明](https://v3.vuejs.org/api/sfc-script-setup#typescript-only-features)时，无法很方便地声明这些 prop 的默认值。为此我们提供了 `withDefaults()` 这个 API，但使用起来仍然很笨拙。
+2. 当使用[基于类型的 props 的声明](https://v3.vuejs.org/api/sfc-script-setup#type-only-props-emit-declarations)时，无法很方便地声明这些 prop 的默认值。为此我们提供了 `withDefaults()` 这个 API，但使用起来仍然很笨拙。
 
 当 `defineProps` 与解构一起使用时，我们可以通过应用编译时转换来解决这些问题，类似于我们之前看到的 `$()`：
 

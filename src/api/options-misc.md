@@ -102,6 +102,27 @@
   </template>
   ```
 
+  从 3.3 开始你也可以直接在 `<script setup>` 中使用 `defineOptions`：
+
+  ```vue
+  <script setup>
+  defineProps(['label', 'value'])
+  defineEmits(['input'])
+  defineOptions({ inheritAttrs: false })
+  </script>
+
+  <template>
+    <label>
+      {{ label }}
+      <input
+        v-bind="$attrs"
+        v-bind:value="value"
+        v-on:input="$emit('input', $event.target.value)"
+      />
+    </label>
+  </template>
+  ```
+
   </div>
 
 - **参考**：[透传 attribute](/guide/components/attrs)
