@@ -245,9 +245,9 @@ Vue 的类型定义也提供了 TSX 语法的类型推导支持。当使用 TSX 
 
 全局的 JSX 类型在与其他同样需要 JSX 类型推断的库一起使用时可能会引起冲突，特别是 React。从 3.3 开始，Vue 支持通过 TypeScript 的 [jsxImportSource](https://www.typescriptlang.org/tsconfig#jsxImportSource) 选项指定 JSX 命名空间。我们计划在 3.4 中移除默认的全局 JSX 命名空间注册。
 
-对于 TSX 用户，建议在升级到 3.3 之后，在 `tsconfig.json` 中把 [jsxImportSource](https://www.typescriptlang.org/tsconfig#jsxImportSource) 设置为`'vue'`，或者针对单个文件加入 `/* @jsxImportSource vue */`。它可以让你现在就选用该新特性，并在 3.4 发布时无痛升级。
+对于 TSX 用户，建议在升级到 3.3 之后，在 `tsconfig.json` 中把 [jsxImportSource](https://www.typescriptlang.org/tsconfig#jsxImportSource) 设置为 `'vue'`，或者针对单个文件加入 `/* @jsxImportSource vue */`。这可以让你现在就选用该新特性，并在 3.4 发布时无痛升级。
 
-如果仍有代码依赖于全局存在的 `JSX` 命名空间，你可以通过显性引用 `vue/jsx` 来保留 3.4 之前的全局行为，它注册了全局 `JSX` 命名空间。
+如果仍有代码依赖于全局存在的 `JSX` 命名空间，你可以通过显式引用 `vue/jsx` 来保留 3.4 之前的全局行为，它注册了全局 `JSX` 命名空间。
 
 ## 渲染函数案例 {#render-function-recipes}
 
