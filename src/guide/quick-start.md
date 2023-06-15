@@ -78,7 +78,9 @@ footer: false
 
 ### 使用全局构建版本 {#using-the-global-build}
 
-上面的例子使用了*全局构建版本*的 Vue，该版本的所有顶层 API 都以属性的形式暴露在了全局的 `Vue` 对象上。这里有一个使用全局构建版本的例子：
+上面的链接使用了*全局构建版本*的 Vue，该版本的所有顶层 API 都以属性的形式暴露在了全局的 `Vue` 对象上。这里有一个使用全局构建版本的例子：
+
+<div class="options-api">
 
 ```html
 <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
@@ -98,11 +100,44 @@ footer: false
 </script>
 ```
 
-[JSFiddle 中的示例](https://jsfiddle.net/yyx990803/nw1xg8Lj/)
+[Codepen 示例](https://codepen.io/vuejs-examples/pen/QWJwJLp)
+
+</div>
+
+<div class="composition-api">
+
+```html
+<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+
+<div id="app">{{ message }}</div>
+
+<script>
+  const { createApp, ref } = Vue
+
+  createApp({
+    setup() {
+      const message = ref('Hello vue!')
+      return {
+        message
+      }
+    }
+  }).mount('#app')
+</script>
+```
+
+[Codepen 示例](https://codepen.io/vuejs-examples/pen/eYQpQEG)
+
+:::tip
+本指南中许多关于组合式 API 的例子将使用 `<script setup>` 语法，这需要构建工具。如果你打算在没有构建步骤的情况下使用组合式 API，请参考 [`setup()` 选项](/api/composition-api-setup)的用法。
+:::
+
+</div>
 
 ### 使用 ES 模块构建版本 {#using-the-es-module-build}
 
 在本文档的其余部分我们使用的主要是 [ES 模块](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Guide/Modules)语法。现代浏览器大多都已原生支持 ES 模块。因此我们可以像这样通过 CDN 以及原生 ES 模块使用 Vue：
+
+<div class="options-api">
 
 ```html{3,4}
 <div id="app">{{ message }}</div>
@@ -120,9 +155,41 @@ footer: false
 </script>
 ```
 
+</div>
+
+<div class="composition-api">
+
+```html{3,4}
+<div id="app">{{ message }}</div>
+
+<script type="module">
+  import { createApp, ref } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js'
+
+  createApp({
+    setup() {
+      const message = ref('Hello Vue!')
+      return {
+        message
+      }
+    }
+  }).mount('#app')
+</script>
+```
+
+</div>
+
 注意我们使用了 `<script type="module">`，且导入的 CDN URL 指向的是 Vue 的 **ES 模块构建版本**。
 
-[JSFiddle 中的示例](https://jsfiddle.net/yyx990803/vo23c470/)
+<div class="options-api">
+
+[Codepen 示例](https://codepen.io/vuejs-examples/pen/VwVYVZO)
+
+</div>
+<div class="composition-api">
+
+[Codepen 示例](https://codepen.io/vuejs-examples/pen/MWzazEv)
+
+</div>
 
 ### 启用 Import maps {#enabling-import-maps}
 
@@ -133,6 +200,8 @@ import { createApp } from 'vue'
 ```
 
 我们可以使用[导入映射表 (Import Maps)](https://caniuse.com/import-maps) 来告诉浏览器如何定位到导入的 `vue`：
+
+<div class="options-api">
 
 ```html{1-7,12}
 <script type="importmap">
@@ -158,16 +227,45 @@ import { createApp } from 'vue'
 </script>
 ```
 
-[JSFiddle 中的示例](https://jsfiddle.net/yyx990803/2ke1ab0z/)
+[Codepen 示例](https://codepen.io/vuejs-examples/pen/wvQKQyM)
+
+</div>
+
+<div class="composition-api">
+
+```html{1-7,12}
+<script type="importmap">
+  {
+    "imports": {
+      "vue": "https://unpkg.com/vue@3/dist/vue.esm-browser.js"
+    }
+  }
+</script>
+
+<div id="app">{{ message }}</div>
+
+<script type="module">
+  import { createApp, ref } from 'vue'
+
+  createApp({
+    setup() {
+      const message = ref('Hello Vue!')
+      return {
+        message
+      }
+    }
+  }).mount('#app')
+</script>
+```
+
+[Codepen demo](https://codepen.io/vuejs-examples/pen/YzRyRYM)
+
+</div>
 
 你也可以在映射表中添加其他的依赖——但请务必确保你使用的是该库的 ES 模块版本。
 
 :::tip 导入映射表的浏览器支持情况
-目前只有基于 Chromium 的浏览器支持导入映射表，所以我们推荐你在学习过程中使用 Chrome 或 Edge。
-
-如果你使用的是 Firefox 浏览器，则该功能默认在 108+ 版本或通过启用 `about:config` 中的 `dom.importMaps.enabled` 选项支持。
-
-如果你更喜欢那些还不支持导入映射表的浏览器，你可以使用 [es-module-shims](https://github.com/guybedford/es-module-shims) 来进行 polyfill。
+导入映射表是一个相对较新的浏览器功能。请确保使用其[支持范围](https://caniuse.com/import-maps)内的浏览器。特别注意的是，它只在 Safari 16.4 以上版本中被支持。
 :::
 
 :::warning 生产环境中的注意事项
@@ -190,6 +288,8 @@ import { createApp } from 'vue'
 </script>
 ```
 
+<div class="options-api">
+
 ```js
 // my-component.js
 export default {
@@ -200,15 +300,30 @@ export default {
 }
 ```
 
-如果直接在浏览器中打开了上面的 `index.html`，你会发现它抛出了一个错误，因为 ES 模块不能通过 `file://` 协议工作。为了使其工作，你需要使用本地 HTTP 服务器通过 `http://` 协议提供 `index.html`。
+</div>
+<div class="composition-api">
+
+```js
+// my-component.js
+import { ref } from 'vue'
+export default {
+  setup() {
+    const count = ref(0)
+    return { count }
+  },
+  template: `<div>count is {{ count }}</div>`
+}
+```
+
+</div>
+
+如果直接在浏览器中打开了上面的 `index.html`，你会发现它抛出了一个错误，因为 ES 模块不能通过 `file://` 协议工作，也即是当你打开一个本地文件时浏览器使用的协议。
+
+由于安全原因，ES 模块只能通过 `http://` 协议工作，也即是浏览器在打开网页时使用的协议。为了使 ES 模块在我们的本地机器上工作，我们需要使用本地的 HTTP 服务器，通过 `http://` 协议来提供 `index.html`。
 
 要启动一个本地的 HTTP 服务器，请先安装 [Node.js](https://nodejs.org/zh/)，然后通过命令行在 HTML 文件所在文件夹下运行 `npx serve`。你也可以使用其他任何可以基于正确的 MIME 类型服务静态文件的 HTTP 服务器。
 
 可能你也注意到了，这里导入的组件模板是内联的 JavaScript 字符串。如果你正在使用 VSCode，你可以安装 [es6-string-html](https://marketplace.visualstudio.com/items?itemName=Tobermory.es6-string-html) 扩展，然后在字符串前加上一个前缀注释 `/*html*/` 以高亮语法。
-
-### 无需构建的组合式 API 用法 {#using-composition-api-without-a-build-step}
-
-组合式 API 的许多示例将使用 `<script setup>` 语法。如果你想在无需构建的情况下使用组合式 API，请参阅 [`setup()` 选项](/api/composition-api-setup)。
 
 ## 下一步 {#next-steps}
 

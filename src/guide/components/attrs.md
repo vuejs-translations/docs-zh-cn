@@ -79,18 +79,13 @@ outline: deep
 
 <div class="composition-api">
 
-如果你使用了 `<script setup>`，你需要一个额外的 `<script>` 块来书写这个选项声明：
+如果你使用了 `<script setup>`，则可以使用 [`defineOptions`](/api/sfc-script-setup#defineoptions) 宏：
 
 ```vue
-<script>
-// 使用普通的 <script> 来声明选项
-export default {
-  inheritAttrs: false
-}
-</script>
-
 <script setup>
-// ...setup 部分逻辑
+defineOptions({
+  inheritAttrs: false
+})
 </script>
 ```
 

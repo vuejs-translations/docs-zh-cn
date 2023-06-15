@@ -5,7 +5,7 @@
 这时我们需要使用**模板引用**——也就是指向模板中一个 DOM 元素的 ref。我们需要通过<a target="_blank" href="/api/built-in-special-attributes.html#ref">这个特殊的 `ref` attribute</a> 来实现模板引用：
 
 ```vue-html
-<p ref="p">hello</p>
+<p ref="pElementRef">hello</p>
 ```
 
 <div class="composition-api">
@@ -15,7 +15,7 @@
 <div class="sfc">
 
 ```js
-const p = ref(null)
+const pElementRef = ref(null)
 ```
 
 </div>
@@ -23,10 +23,10 @@ const p = ref(null)
 
 ```js
 setup() {
-  const p = ref(null)
+  const pElementRef = ref(null)
 
   return {
-    p
+    pElementRef
   }
 }
 ```
@@ -67,7 +67,7 @@ createApp({
 
 <div class="options-api">
 
-此元素将作为 `this.$refs.p` 暴露在 `this.$refs` 上。然而，你只能在组件**挂载**之后访问它。
+此元素将作为 `this.$refs.pElementRef` 暴露在 `this.$refs` 上。然而，你只能在组件**挂载**之后访问它。
 
 要在挂载之后执行代码，我们可以使用 `mounted` 选项：
 
@@ -97,4 +97,4 @@ createApp({
 
 这被称为**生命周期钩子**——它允许我们注册一个在组件的特定生命周期调用的回调函数。还有一些其他的钩子如 <span class="options-api">`created` 和 `updated`</span><span class="composition-api">`onUpdated` 和 `onUnmounted`</span>。更多细节请查阅<a target="_blank" href="/guide/essentials/lifecycle.html#lifecycle-diagram">生命周期图示</a>。
 
-现在，尝试添加一个 <span class="options-api">`mounted`</span><span class="composition-api">`onMounted`</span> 钩子，然后通过 <span class="options-api">`this.$refs.p`</span><span class="composition-api">`p.value`</span> 访问 `<p>`，并直接对其执行一些 DOM 操作。(例如修改它的 `textContent`)。
+现在，尝试添加一个 <span class="options-api">`mounted`</span><span class="composition-api">`onMounted`</span> 钩子，然后通过 <span class="options-api">`this.$refs.pElementRef`</span><span class="composition-api">`pElementRef.value`</span> 访问 `<p>`，并直接对其执行一些 DOM 操作。(例如修改它的 `textContent`)。

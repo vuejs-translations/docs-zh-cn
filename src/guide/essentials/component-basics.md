@@ -80,7 +80,8 @@ export default {
     <button @click="count++">
       You clicked me {{ count }} times.
     </button>`
-  // 或者 `template: '#my-template-element'`
+  // 也可以针对一个 DOM 内联模板：
+  // template: '#my-template-element'
 }
 ```
 

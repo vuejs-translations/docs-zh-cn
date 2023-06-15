@@ -39,7 +39,7 @@
   console.log(count.value) // 1
   ```
 
-- **参考：**
+- **参考**
   - [指南 - `ref()` 定义响应式变量](/guide/essentials/reactivity-fundamentals#reactive-variables-with-ref)
   - [指南 - 为 `ref()` 标注类型](/guide/typescript/composition-api#typing-ref) <sup class="vt-badge ts" />
 
@@ -108,7 +108,7 @@
   })
   ```
 
-- **参考：**
+- **参考**
   - [指南 - 计算属性](/guide/essentials/computed)
   - [指南 - 计算属性调试](/guide/extras/reactivity-in-depth#computed-debugging)
   - [指南 - 为 `computed()` 标注类型](/guide/typescript/composition-api#typing-computed) <sup class="vt-badge ts" />
@@ -186,7 +186,7 @@
   console.log(obj.count === count.value) // true
   ```
 
-- **参考：**
+- **参考**
   - [指南 - 响应式基础](/guide/essentials/reactivity-fundamentals)
   - [指南 - 为 `reactive()` 标注类型](/guide/typescript/composition-api#typing-reactive) <sup class="vt-badge ts" />
 
@@ -308,7 +308,7 @@
   })
   ```
 
-- **参考：**
+- **参考**
   - [指南 - 侦听器](/guide/essentials/watchers#watcheffect)
   - [指南 - 侦听器调试](/guide/extras/reactivity-in-depth#watcher-debugging)
 
@@ -481,7 +481,7 @@
   })
   ```
 
-- **参考：**
+- **参考**
 
   - [指南 - 侦听器](/guide/essentials/watchers)
   - [指南 - 侦听器调试](/guide/extras/reactivity-in-depth#watcher-debugging)

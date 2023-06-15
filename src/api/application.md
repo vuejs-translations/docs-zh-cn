@@ -35,7 +35,7 @@
   const app = createApp(App)
   ```
 
-- **参考**：[指南 - 创建一个 Vue 应用实例](/guide/essentials/application)
+- **参考**[指南 - 创建一个 Vue 应用实例](/guide/essentials/application)
 
 ## createSSRApp() {#createssrapp}
 
@@ -119,7 +119,7 @@
   const MyComponent = app.component('my-component')
   ```
 
-- **参考**：[组件注册](/guide/components/registration)
+- **参考**[组件注册](/guide/components/registration)
 
 ## app.directive() {#app-directive}
 
@@ -157,7 +157,7 @@
   const myDirective = app.directive('my-directive')
   ```
 
-- **参考**：[自定义指令](/guide/reusability/custom-directives)
+- **参考**[自定义指令](/guide/reusability/custom-directives)
 
 ## app.use() {#app-use}
 
@@ -192,7 +192,7 @@
   app.use(MyPlugin)
   ```
 
-- **参考**：[插件](/guide/reusability/plugins)
+- **参考**[插件](/guide/reusability/plugins)
 
 ## app.mixin() {#app-mixin}
 
@@ -266,7 +266,7 @@ Mixins 在 Vue 3 支持主要是为了向后兼容，因为生态中有许多库
 
   </div>
 
-- **参考：**
+- **参考**
   - [依赖注入](/guide/components/provide-inject)
   - [应用层 Provide](/guide/components/provide-inject#app-level-provide)
   - [app.runWithContext()](#app-runwithcontext)
@@ -328,7 +328,7 @@ Mixins 在 Vue 3 支持主要是为了向后兼容，因为生态中有许多库
   }
   ```
 
-- **参考**：[全局 API - version](/api/general#version)
+- **参考**[全局 API - version](/api/general#version)
 
 ## app.config {#app-config}
 
@@ -420,9 +420,9 @@ console.log(app.config)
 
 设置此项为 `true` 可以在浏览器开发工具的“性能/时间线”页中启用对组件初始化、编译、渲染和修补的性能表现追踪。仅在开发模式和支持 [performance.mark](https://developer.mozilla.org/en-US/docs/Web/API/Performance/mark) API 的浏览器中工作。
 
-- **类型** `boolean`
+- **类型**：`boolean`
 
-- **参考**：[指南 - 性能](/guide/best-practices/performance)
+- **参考**[指南 - 性能](/guide/best-practices/performance)
 
 ## app.config.compilerOptions {#app-config-compileroptions}
 
@@ -457,7 +457,7 @@ console.log(app.config)
   }
   ```
 
-- **参考**：[Vue 与 Web Components](/guide/extras/web-components)
+- **参考**[Vue 与 Web Components](/guide/extras/web-components)
 
 ### app.config.compilerOptions.whitespace {#app-config-compileroptions-whitespace}
 
@@ -554,7 +554,7 @@ console.log(app.config)
   }
   ```
 
-- **参考**：[指南 - 扩展全局属性](/guide/typescript/options-api#augmenting-global-properties) <sup class="vt-badge ts" />
+- **参考**[指南 - 扩展全局属性](/guide/typescript/options-api#augmenting-global-properties) <sup class="vt-badge ts" />
 
 ## app.config.optionMergeStrategies {#app-config-optionmergestrategies}
 
@@ -605,4 +605,4 @@ console.log(app.config)
   // 打印 'Hello Vue'
   ```
 
-- **参考**：[组件实例 - `$options`](/api/component-instance#options)
+- **参考**[组件实例 - `$options`](/api/component-instance#options)

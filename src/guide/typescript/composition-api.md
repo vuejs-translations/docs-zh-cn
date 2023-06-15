@@ -149,10 +149,21 @@ const emit = defineEmits<{
   (e: 'change', id: number): void
   (e: 'update', value: string): void
 }>()
+
+// 3.3+: alternative, more succinct syntax
+const emit = defineEmits<{
+  change: [id: number]
+  update: [value: string]
+}>()
 </script>
 ```
 
-这个类型参数应该是一个带[调用签名](https://www.typescriptlang.org/docs/handbook/2/functions.html#call-signatures)的类型字面量。这个类型字面量的类型就是返回的 `emit` 函数的类型。我们可以看到，基于类型的声明使我们可以对所触发事件的类型进行更细粒度的控制。
+类型参数可以是以下的一种：<!-- TODO: translation -->
+
+1. A callable function type, but written as a type literal with [Call Signatures](https://www.typescriptlang.org/docs/handbook/2/functions.html#call-signatures). It will be used as the type of the returned `emit` function.
+2. A type literal where the keys are the event names, and values are array / tuple types representing the additional accepted parameters for the event. The example above is using named tuples so each argument can have an explicit name.
+
+我们可以看到，基于类型的声明使我们可以对所触发事件的类型进行更细粒度的控制。
 
 若没有使用 `<script setup>`，`defineComponent()` 也可以根据 `emits` 选项推导暴露在 setup 上下文中的 `emit` 函数的类型：
 

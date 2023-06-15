@@ -60,7 +60,7 @@
 
   父组件的更新钩子将在其子组件的更新钩子之后调用。
 
-  这个钩子会在组件的任意 DOM 更新后被调用，这些更新可能是由不同的状态变更导致的。如果你需要在某个特定的状态更改后访问更新后的 DOM，请使用 [nextTick()](/api/general#nexttick) 作为替代。
+  这个钩子会在组件的任意 DOM 更新后被调用，这些更新可能是由不同的状态变更导致的，因为多个状态变更可以在同一个渲染周期中批量执行（考虑到性能因素）。如果你需要在某个特定的状态更改后访问更新后的 DOM，请使用 [nextTick()](/api/general#nexttick) 作为替代。
 
   **这个钩子在服务器端渲染期间不会被调用。**
 
@@ -241,7 +241,7 @@
   }
   ```
 
-- **参考**：[Reactivity in Depth](/guide/extras/reactivity-in-depth)
+- **参考**[Reactivity in Depth](/guide/extras/reactivity-in-depth)
 
 ## onRenderTriggered() <sup class="vt-badge dev-only" /> {#onrendertriggered}
 
@@ -267,7 +267,7 @@
   }
   ```
 
-- **参考**：[Reactivity in Depth](/guide/extras/reactivity-in-depth)
+- **参考**[Reactivity in Depth](/guide/extras/reactivity-in-depth)
 
 ## onActivated() {#onactivated}
 
@@ -281,7 +281,7 @@
   function onActivated(callback: () => void): void
   ```
 
-- **参考**：[指南 - 缓存实例的生命周期](/guide/built-ins/keep-alive#lifecycle-of-cached-instance)
+- **参考**[指南 - 缓存实例的生命周期](/guide/built-ins/keep-alive#lifecycle-of-cached-instance)
 
 ## onDeactivated() {#ondeactivated}
 
@@ -295,7 +295,7 @@
   function onDeactivated(callback: () => void): void
   ```
 
-- **参考**：[Guide - 缓存实例的生命周期](/guide/built-ins/keep-alive#lifecycle-of-cached-instance)
+- **参考**[Guide - 缓存实例的生命周期](/guide/built-ins/keep-alive#lifecycle-of-cached-instance)
 
 ## onServerPrefetch() <sup class="vt-badge" data-text="SSR only" /> {#onserverprefetch}
 
@@ -338,4 +338,4 @@
   </script>
   ```
 
-- **参考**：[服务端渲染](/guide/scaling-up/ssr)
+- **参考**[服务端渲染](/guide/scaling-up/ssr)

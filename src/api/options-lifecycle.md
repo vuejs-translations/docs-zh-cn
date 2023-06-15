@@ -230,7 +230,7 @@
   }
   ```
 
-- **参考**：[深入响应式系统](/guide/extras/reactivity-in-depth)
+- **参考**[深入响应式系统](/guide/extras/reactivity-in-depth)
 
 ## renderTriggered <sup class="vt-badge dev-only" /> {#rendertriggered}
 
@@ -256,7 +256,7 @@
   }
   ```
 
-- **参考**：[深入响应式系统](/guide/extras/reactivity-in-depth)
+- **参考**[深入响应式系统](/guide/extras/reactivity-in-depth)
 
 ## activated {#activated}
 
@@ -272,7 +272,7 @@
   }
   ```
 
-- **参考**：[指南 - 被缓存实例的生命周期](/guide/built-ins/keep-alive#lifecycle-of-cached-instance)
+- **参考**[指南 - 被缓存实例的生命周期](/guide/built-ins/keep-alive#lifecycle-of-cached-instance)
 
 ## deactivated {#deactivated}
 
@@ -288,7 +288,7 @@
   }
   ```
 
-- **参考**：[指南 - 被缓存实例的生命周期](/guide/built-ins/keep-alive#lifecycle-of-cached-instance)
+- **参考**[指南 - 被缓存实例的生命周期](/guide/built-ins/keep-alive#lifecycle-of-cached-instance)
 
 ## serverPrefetch <sup class="vt-badge" data-text="SSR only" /> {#serverprefetch}
 
@@ -333,4 +333,4 @@
   }
   ```
 
-- **参考**：[服务端渲染](/guide/scaling-up/ssr)
+- **参考**[服务端渲染](/guide/scaling-up/ssr)

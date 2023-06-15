@@ -740,3 +740,78 @@ MyComponent.inheritAttrs = false
 
 函数式组件可以像普通组件一样被注册和使用。如果你将一个函数作为第一个参数传入 `h`，它将会被当作一个函数式组件来对待。
 
+
+### Typing Functional Components<sup class="vt-badge ts" /> {#typing-functional-components}
+
+Functional Components can be typed based on whether they are named or anonymous. Volar also supports type checking properly typed functional components when consuming them in SFC templates.<!-- TODO: translation -->
+
+**Named Functional Component**
+
+```tsx
+import type { SetupContext } from 'vue'
+type FComponentProps = {
+  message: string
+}
+
+type Events = {
+  sendMessage(message: string): void
+}
+
+function FComponent(
+  props: FComponentProps,
+  context: SetupContext<Events>
+) {
+  return (
+    <button onClick={() => context.emit('sendMessage', props.message)}>
+        {props.message} {' '}
+    </button>
+  )
+}
+
+FComponent.props = {
+  message: {
+    type: String,
+    required: true
+  }
+}
+
+FComponent.emits = {
+  sendMessage: (value: unknown) => typeof value === 'string'
+}
+```
+
+**Anonymous Functional Component**
+
+```tsx
+import type { FunctionalComponent } from 'vue'
+
+type FComponentProps = {
+  message: string
+}
+
+type Events = {
+  sendMessage(message: string): void
+}
+
+const FComponent: FunctionalComponent<FComponentProps, Events> = (
+  props,
+  context
+) => {
+  return (
+    <button onClick={() => context.emit('sendMessage', props.message)}>
+        {props.message} {' '}
+    </button>
+  )
+}
+
+FComponent.props = {
+  message: {
+    type: String,
+    required: true
+  }
+}
+
+FComponent.emits = {
+  sendMessage: (value) => typeof value === 'string'
+}
+```

@@ -76,18 +76,15 @@
   </div>
   <div class="composition-api">
 
-  在一个组件的 `<script setup>` 中声明这个选项时，需要一个额外的 `<script>` 块：
+  在一个使用了 `<script setup>` 的组件中声明这个选项时，可以使用 [`defineOptions`](/api/sfc-script-setup#defineoptions) 宏：
 
   ```vue
-  <script>
-  export default {
-    inheritAttrs: false
-  }
-  </script>
-
   <script setup>
   defineProps(['label', 'value'])
   defineEmits(['input'])
+  defineOptions({
+    inheritAttrs: false
+  })
   </script>
 
   <template>
@@ -125,7 +122,7 @@
 
   </div>
 
-- **参考**：[透传 attribute](/guide/components/attrs)
+- **参考**[透传 attribute](/guide/components/attrs)
 
 ## components {#components}
 
@@ -155,7 +152,7 @@
   }
   ```
 
-- **参考**：[组件注册](/guide/components/registration)
+- **参考**[组件注册](/guide/components/registration)
 
 ## directives {#directives}
 
@@ -190,4 +187,4 @@
 
   这个列表中的指令都在当前组件实例中可用。
 
-- **参考**：[自定义指令](/guide/reusability/custom-directives)
+- **参考**[自定义指令](/guide/reusability/custom-directives)

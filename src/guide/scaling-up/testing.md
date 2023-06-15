@@ -225,7 +225,9 @@ Vitest 和基于浏览器的运行器之间的主要区别是速度和执行上�
 
 ### 其他选择 {#other-options-1}
 
-- [Nightwatch](https://v2.nightwatchjs.org/) 是一个端到端测试运行器，支持 Vue 的组件测试。（Nightwatch v2 版本的 [示例项目](https://github.com/nightwatchjs-community/todo-vue)）
+- [Nightwatch](https://v2.nightwatchjs.org/) 是一个端到端测试运行器，支持 Vue 的组件测试。(Nightwatch v2 版本的 [示例项目](https://github.com/nightwatchjs-community/todo-vue))
+
+- [WebdriverIO](https://webdriver.io/docs/component-testing/vue) 用于跨浏览器组件测试，该测试依赖于基于标准自动化的原生用户交互。也可以与测试库一起使用。
 
 ## 端到端（E2E）测试 {#e2e-testing}
 
@@ -273,7 +275,9 @@ Vitest 和基于浏览器的运行器之间的主要区别是速度和执行上�
 
 - [Playwright](https://playwright.dev/) 也是一个非常好的端到端测试解决方案，支持测试范围更广的浏览器品类（主要是 WebKit 型的）。查看这篇文章 [《为什么选择 Playwright》](https://playwright.dev/docs/why-playwright) 了解更多细节。
 
-- [Nightwatch v2](https://v2.nightwatchjs.org/) 是一个基于 [Selenium WebDriver](https://www.npmjs.com/package/selenium-webdriver) 的端到端测试解决方案。它的浏览器品类支持范围是最广的。
+- [Nightwatch](https://nightwatchjs.org/) 是一个基于 [Selenium WebDriver](https://www.npmjs.com/package/selenium-webdriver) 的端到端测试解决方案。它的浏览器品类支持范围是最广的。
+
+- [WebdriverIO](https://webdriver.io/) 是一个基于 WebDriver 协议的网络和移动测试的自动化测试框架。
 
 ## 用例指南 {#recipes}
 
