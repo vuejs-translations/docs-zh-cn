@@ -211,7 +211,7 @@ const value = inject('message', '这是默认值')
 const value = inject('key', () => new ExpensiveClass(), true)
 ```
 
-The third parameter indicates the default value should be treated as a factory function.
+第三个参数表示默认值应该被当作一个工厂函数。
 
 </div>
 
