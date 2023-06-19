@@ -622,7 +622,7 @@ export default {
   }
 }
   
-// disabled w将被转换为 true
+// disabled 将被转换为 true
 export default {
   props: {
     disabled: [Boolean, String]
