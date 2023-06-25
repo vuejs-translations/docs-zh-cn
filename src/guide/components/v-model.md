@@ -437,7 +437,7 @@ export default {
 
 </div>
 
-这里是另一个使用多个 `v-model` 且带有不同参数的修饰符的例子：
+这里是另一个例子，展示了如何在使用多个不同参数的 `v-model` 时使用修饰符：
 
 ```vue-html
 <UserName
