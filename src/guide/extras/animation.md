@@ -84,7 +84,7 @@ export default {
 
 <DisabledButton />
 
-## 状态驱动的动画 {#state-driven-animations}
+## 数据驱动的动画 {#state-driven-animations}
 
 有些过渡效果可以通过动态插值来实现，比如在交互时动态地给元素绑定样式。看下面这个例子：
 
