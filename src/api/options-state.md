@@ -250,7 +250,7 @@
   }
   ```
 
-- **参考** [事件处理](/guide/essentials/event-handling)
+- **参考**[事件处理](/guide/essentials/event-handling)
 
 ## watch {#watch}
 

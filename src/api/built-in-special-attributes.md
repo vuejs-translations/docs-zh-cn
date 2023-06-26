@@ -35,7 +35,7 @@
 
   当 `text` 变化时，`<span>` 总是会被替换而不是更新，因此 transition 将会被触发。
 
-- **参考**[指南- 列表渲染 - 通过 `key` 管理状态](/guide/essentials/list#maintaining-state-with-key)
+- **参考**[指南 - 列表渲染 - 通过 `key` 管理状态](/guide/essentials/list#maintaining-state-with-key)
 
 ## ref {#ref}
 

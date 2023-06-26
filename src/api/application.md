@@ -457,7 +457,7 @@ console.log(app.config)
   }
   ```
 
-- **参考**[Vue 与 Web Components](/guide/extras/web-components)
+- **参考** [Vue 与 Web Components](/guide/extras/web-components)
 
 ### app.config.compilerOptions.whitespace {#app-config-compileroptions-whitespace}
 

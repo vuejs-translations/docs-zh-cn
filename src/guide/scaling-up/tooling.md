@@ -78,9 +78,9 @@ Vue 的浏览器开发者插件使我们可以浏览一个 Vue 应用的组件�
 ![devtools 截图](https://raw.githubusercontent.com/vuejs/devtools/main/media/screenshot-shadow.png)
 
 - [文档](https://devtools.vuejs.org/)
-- [Chrome 插件商店页](https://chrome.google.com/webstore/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd)
+- [Chrome 扩展商店页](https://chrome.google.com/webstore/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd)
 - [Firefox 所属插件页](https://addons.mozilla.org/en-US/firefox/addon/vue-js-devtools/)
-- [Edge 拓展](https://microsoftedge.microsoft.com/addons/detail/vuejs-devtools/olofadcdnkkjdfgjcmjaadnlehnnihnl)
+- [Edge 扩展](https://microsoftedge.microsoft.com/addons/detail/vuejs-devtools/olofadcdnkkjdfgjcmjaadnlehnnihnl)
 - [独立的 Electron 应用所属插件](https://devtools.vuejs.org/guide/installation.html#standalone)
 
 ## TypeScript {#typescript}
