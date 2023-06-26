@@ -22,7 +22,7 @@
   import { createApp } from 'vue'
 
   const app = createApp({
-    /* root component options */
+    /* 根组件选项 */
   })
   ```
 
@@ -412,7 +412,7 @@ console.log(app.config)
 
   ```js
   app.config.warnHandler = (msg, instance, trace) => {
-    // `trace` is the component hierarchy trace
+    // `trace` 是组件层次结构的追踪
   }
   ```
 
@@ -582,9 +582,9 @@ console.log(app.config)
 
   ```js
   const app = createApp({
-    // option from self
+    // 自身的选项
     msg: 'Vue',
-    // option from a mixin
+    // mixin 的选项
     mixins: [
       {
         msg: 'Hello '
@@ -596,7 +596,7 @@ console.log(app.config)
     }
   })
 
-  // 为  `msg` 定义一个合并策略函数
+  // 为 `msg` 定义一个合并策略函数
   app.config.optionMergeStrategies.msg = (parent, child) => {
     return (parent || '') + (child || '')
   }
