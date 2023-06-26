@@ -412,7 +412,7 @@ console.log(app.config)
 
   ```js
   app.config.warnHandler = (msg, instance, trace) => {
-    // `trace` 是组件层次结构的追踪
+    // `trace` 是组件层级结构的追踪
   }
   ```
 
@@ -584,7 +584,7 @@ console.log(app.config)
   const app = createApp({
     // 自身的选项
     msg: 'Vue',
-    // mixin 的选项
+    // 来自 mixin 的选项
     mixins: [
       {
         msg: 'Hello '
