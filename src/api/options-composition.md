@@ -244,6 +244,8 @@
   }
   ```
 
+  <!-- TODO: translation -->
+
   :::warning Not Recommended for Composition API
   `extends` is designed for Options API and does not handle the merging of the `setup()` hook.
 
