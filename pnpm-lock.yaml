@@ -6,7 +6,7 @@ dependencies:
     version: 1.5.0(vue@3.3.4)
   '@vue/theme':
     specifier: ^2.2.2
-    version: 2.2.3(vitepress@1.0.0-beta.2)(vue@3.3.4)
+    version: 2.2.3(vitepress@1.0.0-beta.3)(vue@3.3.4)
   dynamics.js:
     specifier: ^1.1.5
     version: 1.1.5
@@ -15,7 +15,7 @@ dependencies:
     version: 3.9.0
   vitepress:
     specifier: ^1.0.0-alpha.74
-    version: 1.0.0-beta.2(@types/node@16.10.3)(search-insights@2.6.0)(terser@5.14.2)
+    version: 1.0.0-beta.3(@types/node@16.10.3)(search-insights@2.6.0)(terser@5.14.2)
   vue:
     specifier: ^3.2.47
     version: 3.3.4
@@ -719,7 +719,7 @@ packages:
     resolution: {integrity: sha512-7OjdcV8vQ74eiz1TZLzZP4JwqM5fA94K6yntPS5Z25r9HDuGNzaGdgvwKYq6S+MxwF0TFRwe50fIR/MYnakdkQ==}
     dev: false
 
-  /@vue/theme@2.2.3(vitepress@1.0.0-beta.2)(vue@3.3.4):
+  /@vue/theme@2.2.3(vitepress@1.0.0-beta.3)(vue@3.3.4):
     resolution: {integrity: sha512-lJzlPi1hg21CQ/d3SY1f0vIt4O4nTzOb3EeOKF7KDOm0uvZ/pVRwPQiDeeJ6LqLeOOMWeLCzwagf1KmczsMM/w==}
     peerDependencies:
       vitepress: ^1.0.0-alpha.60
@@ -729,7 +729,7 @@ packages:
       '@vueuse/core': 9.13.0(vue@3.3.4)
       body-scroll-lock: 3.1.5
       normalize.css: 8.0.1
-      vitepress: 1.0.0-beta.2(@types/node@16.10.3)(search-insights@2.6.0)(terser@5.14.2)
+      vitepress: 1.0.0-beta.3(@types/node@16.10.3)(search-insights@2.6.0)(terser@5.14.2)
     transitivePeerDependencies:
       - '@algolia/client-search'
       - '@types/react'
@@ -2040,6 +2040,7 @@ packages:
       nanoid: 3.3.6
       picocolors: 1.0.0
       source-map-js: 1.0.2
+    dev: false
 
   /postcss@8.4.24:
     resolution: {integrity: sha512-M0RzbcI0sO/XJNucsGjvWU9ERWxb/ytp1w6dKtxTKgixdtQDq4rmx/g8W1hnaheq9jgwL/oyEdH5Bc4WwJKMqg==}
@@ -2048,7 +2049,6 @@ packages:
       nanoid: 3.3.6
       picocolors: 1.0.0
       source-map-js: 1.0.2
-    dev: false
 
   /preact@10.5.14:
     resolution: {integrity: sha512-KojoltCrshZ099ksUZ2OQKfbH66uquFoxHSbnwKbTJHeQNvx42EmC7wQVWNuDt6vC5s3nudRHFtKbpY4ijKlaQ==}
@@ -2459,7 +2459,7 @@ packages:
     dependencies:
       '@types/node': 16.10.3
       esbuild: 0.15.18
-      postcss: 8.4.21
+      postcss: 8.4.24
       resolve: 1.22.2
       rollup: 2.79.1
       terser: 5.14.2
@@ -2501,8 +2501,8 @@ packages:
       fsevents: 2.3.2
     dev: false
 
-  /vitepress@1.0.0-beta.2(@types/node@16.10.3)(search-insights@2.6.0)(terser@5.14.2):
-    resolution: {integrity: sha512-DBXYjtYbm3W1IPPJ2TiCaK/XK+o/2XmL2+jslOGKm+txcbmG0kbeB+vadC5tCUZA9NdA+9Ywj3M4548c7t/SDg==}
+  /vitepress@1.0.0-beta.3(@types/node@16.10.3)(search-insights@2.6.0)(terser@5.14.2):
+    resolution: {integrity: sha512-GR5Pvr/o343NN1M4Na1shhDYZRrQbjmLq7WE0lla0H8iDPAsHE8agTHLWfu3FWx+3q2KA29sv16+0O9RQKGjlA==}
     hasBin: true
     dependencies:
       '@docsearch/css': 3.5.0
