@@ -110,7 +110,7 @@ const nav: ThemeConfig['nav'] = [
         text: '社区指南',
         link: '/about/community-guide'
       },
-      { text: '行为规范', link: 'https://vuejs.org/about/coc.html' },
+      { text: '行为规范', link: '/about/coc' },
       {
         text: '纪录片',
         link: 'https://www.youtube.com/watch?v=OrxmtDw4pVI'
@@ -747,7 +747,7 @@ export default defineConfigWithTheme<ThemeConfig>({
   markdown: {
     config(md) {
       md.use(headerPlugin)
-        // .use(textAdPlugin)
+      // .use(textAdPlugin)
     }
   },
 

@@ -54,7 +54,7 @@ module.exports = {
       .tap(options => ({
         ...options,
         compilerOptions: {
-          // 将所有带 ion- 的标签名都视为自定义元素
+          // 将所有以 ion- 开头的标签都视为自定义元素
           isCustomElement: tag => tag.startsWith('ion-')
         }
       }))
