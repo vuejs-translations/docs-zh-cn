@@ -295,7 +295,7 @@
   function onDeactivated(callback: () => void): void
   ```
 
-- **参考**：[Guide - 缓存实例的生命周期](/guide/built-ins/keep-alive#lifecycle-of-cached-instance)
+- **参考**：[指南 - 缓存实例的生命周期](/guide/built-ins/keep-alive#lifecycle-of-cached-instance)
 
 ## onServerPrefetch() <sup class="vt-badge" data-text="SSR only" /> {#onserverprefetch}
 
