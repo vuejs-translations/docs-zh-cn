@@ -147,7 +147,7 @@ const myDirective = {
   - `dir`：指令的定义对象。
 
 - `vnode`：代表绑定元素的底层 VNode。
-- `prevNode`：之前的渲染中代表指令所绑定元素的 VNode。仅在 `beforeUpdate` 和 `updated` 钩子中可用。
+- `prevNode`：代表之前的渲染中指令所绑定元素的 VNode。仅在 `beforeUpdate` 和 `updated` 钩子中可用。
 
 举例来说，像下面这样使用指令：
 
