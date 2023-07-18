@@ -224,22 +224,22 @@ export function register() {
 
 如果你有非常多的组件，你也可以利用构建工具的功能，比如 Vite 的 [glob 导入](https://cn.vitejs.dev/guide/features.html#glob-import)或者 webpack 的 [`require.context`](https://webpack.js.org/guides/dependency-management/#requirecontext) 来从一个文件夹加载所有的组件。
 
-### Web Components and Typescript {#web-components-and-typescript}
+### Web 组件和 Typescript {#web-components-and-typescript}
 
-If you are developing an application or a library, you may want to [type check](/guide/scaling-up/tooling.html#typescript) your Vue components, including those that are defined as custom elements.<!-- TODO: translation -->
+如果你正在开发一个应用或者库，你可能想要为你的 Vue 组件添加[类型检查](/guide/scaling-up/tooling.html#typescript)，包括那些定义为自定义元素的组件。
 
-Custom elements are registered globally using native APIs, so by default they won't have type inference when used in Vue templates. To provide type support for Vue components registered as custom elements, we can register global component typings using the the [`GlobalComponents` interface](https://github.com/vuejs/language-tools/blob/master/packages/vscode-vue/README.md#usage) in Vue templates and/or in [JSX](https://www.typescriptlang.org/docs/handbook/jsx.html#intrinsic-elements):
+自定义元素是使用原生 API 全局注册的，所以默认情况下，当在 Vue 模板中使用时，它们不会有类型推断。为了给注册为自定义元素的 Vue 组件提供类型支持，我们可以通过 Vue 模板和/或 [JSX](https://www.typescriptlang.org/docs/handbook/jsx.html#intrinsic-elements) 中的 [`GlobalComponents` 接口](https://github.com/vuejs/language-tools/blob/master/packages/vscode-vue/README.md#usage) 来注册全局组件的类型：
 
 ```typescript
 import { defineCustomElement } from 'vue'
 
-// vue SFC
+// vue 单文件组件
 import CounterSFC from './src/components/counter.ce.vue'
 
-// turn component into web components
+// 将组件转换为 web 组件
 export const Counter = defineCustomElement(CounterSFC)
 
-// register global typings
+// 注册全局类型
 declare module 'vue' {
   export interface GlobalComponents {
     'Counter': typeof Counter,
