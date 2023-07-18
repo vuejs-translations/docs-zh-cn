@@ -79,17 +79,7 @@ outline: deep
 
 <div class="composition-api">
 
-如果你使用了 `<script setup>`，则可以使用 [`defineOptions`](/api/sfc-script-setup#defineoptions) 宏：
-
-```vue
-<script setup>
-defineOptions({
-  inheritAttrs: false
-})
-</script>
-```
-
- 从 3.3 开始你也可以直接在 `<script setup>` 中使用 `defineOptions`：
+ 从 3.3 开始你也可以直接在 `<script setup>` 中使用 [`defineOptions`](/api/sfc-script-setup#defineoptions)：
 
 ```vue
 <script setup>

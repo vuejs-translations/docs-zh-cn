@@ -83,7 +83,7 @@
   import { inject } from 'vue'
   import { fooSymbol } from './injectionSymbols'
 
-  // 注入值的默认方式
+  // 注入不含默认值的静态值
   const foo = inject('foo')
 
   // 注入响应式的值
