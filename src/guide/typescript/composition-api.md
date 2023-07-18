@@ -158,10 +158,10 @@ const emit = defineEmits<{
 </script>
 ```
 
-类型参数可以是以下的一种：<!-- TODO: translation -->
+类型参数可以是以下的一种：
 
-1. A callable function type, but written as a type literal with [Call Signatures](https://www.typescriptlang.org/docs/handbook/2/functions.html#call-signatures). It will be used as the type of the returned `emit` function.
-2. A type literal where the keys are the event names, and values are array / tuple types representing the additional accepted parameters for the event. The example above is using named tuples so each argument can have an explicit name.
+1. 一个可调用的函数类型，但是写作一个包含[调用签名](https://www.typescriptlang.org/docs/handbook/2/functions.html#call-signatures)的类型字面量。它将被用作返回的 `emit` 函数的类型。
+2. 一个类型字面量，其中键是事件名称，值是数组或元组类型，表示事件的附加接受参数。上面的示例使用了命名元组，因此每个参数都可以有一个显式的名称。
 
 我们可以看到，基于类型的声明使我们可以对所触发事件的类型进行更细粒度的控制。
 
