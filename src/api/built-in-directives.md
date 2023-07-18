@@ -18,7 +18,7 @@
   <span>{{msg}}</span>
   ```
 
-- **参考**：[模板语法 - 文本插值](/guide/essentials/template-syntax#text-interpolation)
+- **参考**[模板语法 - 文本插值](/guide/essentials/template-syntax#text-interpolation)
 
 ## v-html {#v-html}
 
@@ -36,13 +36,13 @@
 
  在[单文件组件](/guide/scaling-up/sfc)，`scoped` 样式将不会作用于 `v-html` 里的内容，因为 HTML 内容不会被 Vue 的模板编译器解析。如果你想让 `v-html` 的内容也支持 scoped CSS，你可以使用 [CSS modules](./sfc-css-features#css-modules) 或使用一个额外的全局 `<style>` 元素，手动设置类似 BEM 的作用域策略。
 
-- **示例：**
+- **示例**
 
   ```vue-html
   <div v-html="html"></div>
   ```
 
-- **参考**：[模板语法 - 原始 HTML](/guide/essentials/template-syntax#raw-html)
+- **参考**[模板语法 - 原始 HTML](/guide/essentials/template-syntax#raw-html)
 
 ## v-show {#v-show}
 
@@ -54,7 +54,7 @@
 
   `v-show` 通过设置内联样式的 `display` CSS 属性来工作，当元素可见时将使用初始 `display` 值。当条件改变时，也会触发过渡效果。
 
-- **参考**：[条件渲染 - v-show](/guide/essentials/conditional#v-show)
+- **参考**[条件渲染 - v-show](/guide/essentials/conditional#v-show)
 
 ## v-if {#v-if}
 
@@ -72,7 +72,7 @@
 
   当同时使用时，`v-if` 比 `v-for` 优先级更高。我们并不推荐在一元素上同时使用这两个指令 — 查看[列表渲染指南](/guide/essentials/list#v-for-with-v-if)详情。
 
-- **参考**：[条件渲染 - v-if](/guide/essentials/conditional#v-if)
+- **参考**[条件渲染 - v-if](/guide/essentials/conditional#v-if)
 
 ## v-else {#v-else}
 
@@ -97,7 +97,7 @@
   </div>
   ```
 
-- **参考**：[条件渲染 - v-else](/guide/essentials/conditional#v-else)
+- **参考**[条件渲染 - v-else](/guide/essentials/conditional#v-else)
 
 ## v-else-if {#v-else-if}
 
@@ -128,7 +128,7 @@
   </div>
   ```
 
-- **参考**：[条件渲染 - v-else-if](/guide/essentials/conditional#v-else-if)
+- **参考**[条件渲染 - v-else-if](/guide/essentials/conditional#v-else-if)
 
 ## v-for {#v-for}
 
@@ -164,7 +164,7 @@
 
   `v-for` 也可以用于 [Iterable Protocol](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterable_protocol) 的实现，包括原生 `Map` 和 `Set`。
 
-- **参考：**
+- **参考**
   - [列表渲染](/guide/essentials/list)
 
 ## v-on {#v-on}
@@ -177,7 +177,7 @@
 
 - **参数：**`event` (使用对象语法则为可选项)
 
-- **修饰符：**
+- **修饰符**
 
   - `.stop` - 调用 `event.stopPropagation()`。
   - `.prevent` - 调用 `event.preventDefault()`。
@@ -200,7 +200,7 @@
 
   `v-on` 还支持绑定不带参数的事件/监听器对的对象。请注意，当使用对象语法时，不支持任何修饰符。
 
-- **示例：**
+- **示例**
 
   ```vue-html
   <!-- 方法处理函数 -->
@@ -249,7 +249,7 @@
   <MyComponent @my-event="handleThis(123, $event)" />
   ```
 
-- **参考：**
+- **参考**
   - [事件处理](/guide/essentials/event-handling)
   - [组件 - 自定义事件](/guide/essentials/component-basics#listening-to-events)
 
@@ -263,13 +263,13 @@
 
 - **参数：**`attrOrProp (可选的)`
 
-- **修饰符：**
+- **修饰符**
 
   - `.camel` - 将短横线命名的 attribute 转变为驼峰式命名。
   - `.prop` - 强制绑定为 DOM property。<sup class="vt-badge">3.2+</sup>
   - `.attr` - 强制绑定为 DOM attribute。<sup class="vt-badge">3.2+</sup>
 
-- **用途：**
+- **用途**
 
   当用于绑定 `class` 或 `style` attribute，`v-bind` 支持额外的值类型如数组或对象。详见下方的指南链接。
 
@@ -279,7 +279,7 @@
 
   当不带参数使用时，可以用于绑定一个包含了多个 attribute 名称-绑定值对的对象。
 
-- **示例：**
+- **示例**
 
   ```vue-html
   <!-- 绑定 attribute -->
@@ -336,7 +336,7 @@
 
   如果使用字符串模板或使用构建步骤预编译模板，则不需要 `.camel`。
 
-- **参考：**
+- **参考**
   - [Class 与 Style 绑定](/guide/essentials/class-and-style)
   - [组件 -  Prop 传递细节](/guide/components/props#prop-passing-details)
 
@@ -353,13 +353,13 @@
   - `<textarea>`
   - components
 
-- **修饰符：**
+- **修饰符**
 
   - [`.lazy`](/guide/essentials/forms#lazy) - 监听 `change` 事件而不是 `input`
   - [`.number`](/guide/essentials/forms#number) - 将输入的合法字符串转为数字
   - [`.trim`](/guide/essentials/forms#trim) - 移除输入内容两端空格
 
-- **参考：**
+- **参考**
 
   - [表单输入绑定](/guide/essentials/forms)
   - [组件事件 - 配合 `v-model` 使用](/guide/components/v-model)
@@ -379,7 +379,7 @@
   - `<template>`
   - [components](/guide/components/slots#scoped-slots) (用于带有 prop 的单个默认插槽)
 
-- **示例：**
+- **示例**
 
   ```vue-html
   <!-- 具名插槽 -->
@@ -412,7 +412,7 @@
   </Mouse>
   ```
 
-- **参考：**
+- **参考**
   - [组件 - 插槽](/guide/components/slots)
 
 ## v-pre {#v-pre}
@@ -425,7 +425,7 @@
 
   元素内具有 `v-pre`，所有 Vue 模板语法都会被保留并按原样渲染。最常见的用例就是显示原始双大括号标签及内容。
 
-- **示例：**
+- **示例**
 
   ```vue-html
   <span v-pre>{{ this will not be compiled }}</span>
@@ -459,7 +459,7 @@
 
   从 3.2 起，你也可以搭配 [`v-memo`](#v-memo) 的无效条件来缓存部分模板。
 
-- **参考：**
+- **参考**
   - [数据绑定语法 - 插值](/guide/essentials/template-syntax#text-interpolation)
   - [v-memo](#v-memo)
 
@@ -500,7 +500,7 @@
 
   `v-memo` 也能被用于在一些默认优化失败的边际情况下，手动避免子组件出现不需要的更新。但是一样的，开发者需要负责指定正确的依赖数组以免跳过必要的更新。
 
-- **参考：**
+- **参考**
   - [v-once](#v-once)
 
 ## v-cloak {#v-cloak}
@@ -517,7 +517,7 @@
 
   `v-cloak` 会保留在所绑定的元素上，直到相关组件实例被挂载后才移除。配合像 `[v-cloak] { display: none }` 这样的 CSS 规则，它可以在组件编译完毕前隐藏原始模板。
 
-- **示例：**
+- **示例**
 
   ```css
   [v-cloak] {

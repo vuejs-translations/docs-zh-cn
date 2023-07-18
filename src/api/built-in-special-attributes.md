@@ -35,7 +35,7 @@
 
   当 `text` 变化时，`<span>` 总是会被替换而不是更新，因此 transition 将会被触发。
 
-- **参考**：[指南- 列表渲染 - 通过 `key` 管理状态](/guide/essentials/list#maintaining-state-with-key)
+- **参考**[指南 - 列表渲染 - 通过 `key` 管理状态](/guide/essentials/list#maintaining-state-with-key)
 
 ## ref {#ref}
 
@@ -80,7 +80,7 @@
 
   `this.$refs` 也是非响应式的，因此你不应该尝试在模板中使用它来进行数据绑定。
 
-- **参考:**
+- **参考**
   - [指南 - 模板引用](/guide/essentials/template-refs)
   - [指南 - 为模板引用标注类型](/guide/typescript/composition-api#typing-template-refs) <sup class="vt-badge ts" />
   - [指南 - 为组件模板引用标注类型](/guide/typescript/composition-api#typing-component-template-refs) <sup class="vt-badge ts" />
@@ -103,7 +103,7 @@
   </table>
   ```
 
-- **参考：**
+- **参考**
 
   - [内置特殊元素 - `<component>`](/api/built-in-special-elements#component)
   - [动态组件](/guide/essentials/component-basics#dynamic-components)

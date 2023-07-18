@@ -92,7 +92,7 @@
 
   </div>
 
-- **参考**：[`this.$nextTick()`](/api/component-instance#nexttick)
+- **参考** [`this.$nextTick()`](/api/component-instance#nexttick)
 
 ## defineComponent() {#definecomponent}
 
@@ -191,7 +191,7 @@
 
   请注意，如果你的项目中使用的是 Vite，就不需要这么做，因为 Rollup (Vite 底层使用的生产环境打包工具) 可以智能地确定 `defineComponent()` 实际上并没有副作用，所以无需手动注释。
 
-- **参考**：[指南 - 配合 TypeScript 使用 Vue](/guide/typescript/overview#general-usage-notes)
+- **参考**[指南 - 配合 TypeScript 使用 Vue](/guide/typescript/overview#general-usage-notes)
 
 ## defineAsyncComponent() {#defineasynccomponent}
 
@@ -222,7 +222,7 @@
   }
   ```
 
-- **参考**：[指南 - 异步组件](/guide/components/async)
+- **参考**[指南 - 异步组件](/guide/components/async)
 
 ## defineCustomElement() {#definecustomelement}
 
@@ -261,7 +261,7 @@
   customElements.define('my-vue-element', MyVueElement)
   ```
 
-- **参考：**
+- **参考**
 
   - [指南 - 使用 Vue 构建自定义元素](/guide/extras/web-components#building-custom-elements-with-vue)
 

@@ -304,7 +304,7 @@ const attrs = useAttrs()
 
 `<script setup>` 可以和普通的 `<script>` 一起使用。普通的 `<script>` 在有这些需要的情况下或许会被使用到：
 
-- 声明无法在 `<script setup>` 中声明的选项，例如 `inheritAttrs` 或插件的自定义选项。
+- 声明无法在 `<script setup>` 中声明的选项，例如 `inheritAttrs` 或插件的自定义选项 (在 3.3+ 中可以通过 [`defineOptions`](/api/sfc-script-setup#defineoptions) 替代)。
 - 声明模块的具名导出 (named exports)。
 - 运行只需要在模块作用域执行一次的副作用，或是创建单例对象。
 

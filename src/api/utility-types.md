@@ -30,7 +30,7 @@
   }
   ```
 
-- **参考**：[指南 - 为组件 props 标注类型](/guide/typescript/options-api#typing-component-props)
+- **参考**[指南 - 为组件 props 标注类型](/guide/typescript/options-api#typing-component-props)
 
 ## MaybeRef\<T> {#mayberef}
 
@@ -125,7 +125,7 @@
   类型扩展必须被放置在一个模块 `.ts` 或 `.d.ts` 文件中。查看[类型扩展指南](/guide/typescript/options-api#augmenting-global-properties)了解更多细节
   :::
 
-- **参考**：[指南 - 扩展全局属性](/guide/typescript/options-api#augmenting-global-properties)
+- **参考**[指南 - 扩展全局属性](/guide/typescript/options-api#augmenting-global-properties)
 
 ## ComponentCustomOptions {#componentcustomoptions}
 
@@ -147,7 +147,7 @@
   类型扩展必须被放置在一个模块 `.ts` 或 `.d.ts` 文件中。查看[类型扩展指南](/guide/typescript/options-api#augmenting-global-properties)了解更多细节。
   :::
 
-- **参考**：[指南 - 扩展自定义选项](/guide/typescript/options-api#augmenting-custom-options)
+- **参考**[指南 - 扩展自定义选项](/guide/typescript/options-api#augmenting-custom-options)
 
 ## ComponentCustomProps {#componentcustomprops}
 

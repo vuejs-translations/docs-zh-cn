@@ -52,7 +52,7 @@
 
   请注意，针对上面这个例子，所供给的 `msg` 将**不会**是响应式的。请查看[和响应式数据配合使用](/guide/components/provide-inject#working-with-reactivity)一节获取更多细节。
 
-- **参考**：[依赖注入](/guide/components/provide-inject)
+- **参考**[依赖注入](/guide/components/provide-inject)
 
 ## inject {#inject}
 
@@ -167,7 +167,7 @@
   }
   ```
 
-- **参考**：[依赖注入](/guide/components/provide-inject)
+- **参考**[依赖注入](/guide/components/provide-inject)
 
 ## mixins {#mixins}
 
@@ -188,10 +188,10 @@
   Mixin 钩子的调用顺序与提供它们的选项顺序相同，且会在组件自身的钩子前被调用。
 
   :::warning 不再推荐
-  在 Vue 2 中，mixins 是创建可重用组件逻辑的主要方式。尽管在 Vue 3 中保留了 mixins 支持，但对于组件间的逻辑复用，[Composition API](/guide/reusability/composables) 是现在更推荐的方式。
+  在 Vue 2 中，mixins 是创建可重用组件逻辑的主要方式。尽管在 Vue 3 中保留了 mixins 支持，但对于组件间的逻辑复用，[使用组合式 API 的组合式函数](/guide/reusability/composables)是现在更推荐的方式。
   :::
 
-- **示例：**
+- **示例**
 
   ```js
   const mixin = {
@@ -231,9 +231,9 @@
 
   然而，`extends` 和 `mixins` 表达的是不同的目标。`mixins` 选项基本用于组合功能，而 `extends` 则一般更关注继承关系。
 
-  同 `mixins` 一样，所有选项都将使用相关的策略进行合并。
+  同 `mixins` 一样，所有选项 (`setup()` 除外) 都将使用相关的策略进行合并。
 
-- **示例：**
+- **示例**
 
   ```js
   const CompA = { ... }
@@ -243,3 +243,26 @@
     ...
   }
   ```
+
+  <!-- TODO: translation -->
+
+  :::warning Not Recommended for Composition API
+  `extends` is designed for Options API and does not handle the merging of the `setup()` hook.
+
+  In Composition API, the preferred mental model for logic reuse is "compose" over "inheritance". If you have logic from a component that needs to be reused in another one, consider extracting the relevant logic into a [Composable](/guide/reusability/composables#composables).
+
+  If you still intend to "extend" a component using Composition API, you can call the base component's `setup()` in the extending component's `setup()`:
+
+  ```js
+  import Base from './Base.js'
+  export default {
+    extends: Base,
+    setup(props, ctx) {
+      return {
+        ...Base.setup(props, ctx),
+        // local bindings
+      }
+    }
+  }
+  ```
+  :::

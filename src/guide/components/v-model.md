@@ -403,6 +403,8 @@ export default {
 
 </div>
 
+### 带参数的 `v-model` 修饰符 {#modifiers-for-v-model-with-arguments}
+
 对于又有参数又有修饰符的 `v-model` 绑定，生成的 prop 名将是 `arg + "Modifiers"`。举例来说：
 
 ```vue-html
@@ -433,4 +435,56 @@ export default {
 }
 ```
 
+</div>
+
+这里是另一个例子，展示了如何在使用多个不同参数的 `v-model` 时使用修饰符：
+
+```vue-html
+<UserName
+  v-model:first-name.capitalize="first"
+  v-model:last-name.uppercase="last"
+/>
+```
+
+<div class="composition-api">
+
+```vue{5,6,10,11}
+<script setup >
+const props = defineProps({
+  firstName: String,
+  lastName: String,
+  firstNameModifiers: { default: () => ({}) },
+  lastNameModifiers: { default: () => ({}) }
+})
+defineEmits(['update:firstName', 'update:lastName'])
+
+console.log(props.firstNameModifiers) // { capitalize: true }
+console.log(props.lastNameModifiers) // { uppercase: true}
+</script>
+```
+
+</div>
+<div class="options-api">
+
+```vue{15,16}
+<script>
+export default {
+  props: {
+    firstName: String,
+    lastName: String,
+    firstNameModifiers: {
+      default: () => ({})
+    },
+    lastNameModifiers: {
+      default: () => ({})
+    }
+  },
+  emits: ['update:firstName', 'update:lastName'],
+  created() {
+    console.log(this.firstNameModifiers) // { capitalize: true }
+    console.log(this.lastNameModifiers) // { uppercase: true}
+  }
+}
+</script>
+```
 </div>

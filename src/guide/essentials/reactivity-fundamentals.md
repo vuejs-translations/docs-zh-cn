@@ -8,9 +8,9 @@ outline: deep
 本页和后面很多页面中都分别包含了选项式 API 和组合式 API 的示例代码。现在你选择的是 <span class="options-api">选项式 API</span><span class="composition-api">组合式 API</span>。你可以使用左侧侧边栏顶部的 “API 风格偏好” 开关在 API 风格之间切换。
 :::
 
-## 声明响应式状态 {#declaring-reactive-state}
-
 <div class="options-api">
+
+## 声明响应式状态 \* {#declaring-reactive-state}
 
 选用选项式 API 时，会用 `data` 选项来声明组件的响应式状态。此选项的值应为返回一个对象的函数。Vue 将在创建新组件实例的时候调用此函数，并将函数返回的对象用响应式系统进行包装。此对象的所有顶层属性都会被代理到组件实例 (即方法和生命周期钩子中的 `this`) 上。
 
@@ -67,98 +67,157 @@ export default {
 
 <div class="composition-api">
 
-我们可以使用 [`reactive()`](/api/reactivity-core#reactive) 函数创建一个响应式对象或数组：
+## 声明响应式状态 \*\* {#declaring-reactive-state-1}
+
+### `ref()` \*\* {#ref}
+
+在组合式 API 中，推荐使用 [`ref()`](/api/reactivity-core#ref) 函数来声明响应式状态：
 
 ```js
-import { reactive } from 'vue'
+import { ref } from 'vue'
 
-const state = reactive({ count: 0 })
+const count = ref(0)
 ```
 
-响应式对象其实是 [JavaScript Proxy](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Proxy)，其行为表现与一般对象相似。不同之处在于 Vue 能够跟踪对响应式对象属性的访问与更改操作。如果你对这其中的细节感到好奇，我们在 [深入响应式系统](/guide/extras/reactivity-in-depth) 一章中会进行解释，但我们推荐你先读完这里的主要指南。
+`ref()` 接收参数，并将其包裹在一个带有 `.value` 属性的 ref 对象中返回：
 
-TypeScript 用户请参阅：[为响应式对象标注类型](/guide/typescript/composition-api#typing-reactive) <sup class="vt-badge ts" />
+```js
+const count = ref(0)
 
-要在组件模板中使用响应式状态，需要在 `setup()` 函数中定义并返回。
+console.log(count) // { value: 0 }
+console.log(count.value) // 0
+
+count.value++
+console.log(count.value) // 1
+```
+
+> 参考：[为 refs 标注类型](/guide/typescript/composition-api#typing-ref) <sup class="vt-badge ts" />
+
+要访问组件模板中的 ref，请从组件的 `setup()` 函数中声明并返回它们：
 
 ```js{5,9-11}
-import { reactive } from 'vue'
+import { ref } from 'vue'
 
 export default {
-  // `setup` 是一个专门用于组合式 API 的特殊钩子函数
+  // `setup` 是一个特殊的钩子，专门用于组合式 API。
   setup() {
-    const state = reactive({ count: 0 })
+    const count = ref(0)
 
-    // 暴露 state 到模板
+    // 将 ref 暴露给模板
     return {
-      state
+      count
     }
   }
 }
 ```
 
 ```vue-html
-<div>{{ state.count }}</div>
+<div>{{ count }}</div>
 ```
 
-自然，我们也可以在同一个作用域下定义更新响应式状态的函数，并将他们作为方法与状态一起暴露出去：
+注意，在模板中使用 ref 时，我们**不**需要附加 `.value`。为了方便起见，当在模板中使用时，ref 会自动解包 (有一些[注意事项](#caveat-when-unwrapping-in-template))。
 
-```js{7-9,14}
-import { reactive } from 'vue'
+你也可以直接在事件监听器中改变一个 ref：
+
+```vue-html{1}
+<button @click="count++">
+  {{ count }}
+</button>
+```
+
+对于更复杂的逻辑，我们可以在同一作用域内声明更改 ref 的函数，并将它们作为方法与状态一起公开：
+
+```js{7-10,15}
+import { ref } from 'vue'
 
 export default {
   setup() {
-    const state = reactive({ count: 0 })
+    const count = ref(0)
 
     function increment() {
-      state.count++
+      // 在 JavaScript 中需要 .value
+      count.value++
     }
 
     // 不要忘记同时暴露 increment 函数
     return {
-      state,
+      count,
       increment
     }
   }
 }
 ```
 
-暴露的方法通常会被用作事件监听器：
+然后，暴露的方法可以被用作事件监听器：
 
-```vue-html
+```vue-html{1}
 <button @click="increment">
-  {{ state.count }}
+  {{ count }}
 </button>
 ```
 
+这里是 [Codepen](https://codepen.io/vuejs-examples/pen/WNYbaqo) 上的例子，没有使用任何构建工具。
+
 ### `<script setup>` \*\* {#script-setup}
 
-在 `setup()` 函数中手动暴露大量的状态和方法非常繁琐。幸运的是，我们可以通过使用构建工具来简化该操作。当使用单文件组件（SFC）时，我们可以使用 `<script setup>` 来大幅度地简化代码。
+在 `setup()` 函数中手动暴露大量的状态和方法非常繁琐。幸运的是，我们可以通过使用[单文件组件 (SFC)](/guide/scaling-up/sfc) 来避免这种情况。我们可以使用 `<script setup>` 来大幅度地简化代码：
 
-```vue
+```vue{1}
 <script setup>
-import { reactive } from 'vue'
+import { ref } from 'vue'
 
-const state = reactive({ count: 0 })
+const count = ref(0)
 
 function increment() {
-  state.count++
+  count.value++
 }
 </script>
 
 <template>
   <button @click="increment">
-    {{ state.count }}
+    {{ count }}
   </button>
 </template>
 ```
 
-[在演练场中尝试一下](https://play.vuejs.org/#eNpNjkEKgzAURK8yZFNF0K5FS3uPbGyIEKo/If64Cbl7fxWky2HePCarVwjtnqzq1bCZ6AJjs5zCQ5Nbg4+MjGgnw263KJijX3ET/qZJk/G0Cc8TW4wXVmUYn4h73FHqHzcnksYTHJloV0tc1ciacG7bA28aTUXT0J035IAEtmtYBJEEDO/ELJanWZz5jFpdOq0OAMj5X4kiQtl151CYobuMqnwBBoFaVA==)
+[在演练场中尝试一下](https://play.vuejs.org/#eNo9jUEKgzAQRa8yZKMiaNcllvYe2dgwQqiZhDhxE3L3jrW4/DPvv1/UK8Zhz6juSm82uciwIef4MOR8DImhQMIFKiwpeGgEbQwZsoE2BhsyMUwH0d66475ksuwCgSOb0CNx20ExBCc77POase8NVUN6PBdlSwKjj+vMKAlAvzOzWJ52dfYzGXXpjPoBAKX856uopDGeFfnq8XKp+gWq4FAi)
 
-`<script setup>` 中的顶层的导入和变量声明可在同一组件的模板中直接使用。你可以理解为模板中的表达式和 `<script setup>` 中的代码处在同一个作用域中。
+`<script setup>` 中的顶层的导入、声明的变量和函数可在同一组件的模板中直接使用。你可以理解为模板是在同一作用域内声明的一个 JavaScript 函数——它自然可以访问与它一起声明的所有内容。
 
-> 在指南的后续章节中，我们基本上都会在组合式 API 示例中使用单文件组件 + `<script setup>` 的语法，因为大多数 Vue 开发者都会这样使用。
+:::tip
+在指南的后续章节中，我们基本上都会在组合式 API 示例中使用单文件组件 + `<script setup>` 的语法，因为大多数 Vue 开发者都会这样使用。
 
+如果你没有使用单文件组件，你仍然可以在 [`setup()`](/api/composition-api-setup) 选项中使用组合式 API。
+:::
+
+### Why Refs? \*\* {#why-refs}
+
+You might be wondering why we need refs with the `.value` instead of plain variables. To explain that, we will need to briefly discuss how Vue's reactivity system works. <!-- TODO: translation -->
+
+When you use a ref in the template, and changes the ref's value later, Vue automatically detects the change and updates the DOM accordingly. This is made possible with a dependency-tracking based reactivity system. When a component is rendered for the first time, Vue **tracks** every ref that was used during the render. Later on, when a ref is mutated, it will **trigger** re-render for components that are tracking it.
+
+In standard JavaScript, there is no way to detect the access or mutation of plain variables. But we can intercept a property's get and set operations.
+
+The `.value` property gives Vue the opportunity to detect when a ref has been accessed or mutated. Under the hood, Vue performs the tracking in its getter, and performs triggering in its setter. Conceptually, you can think of a ref as an object that looks like this:
+
+```js
+// pseudo code, not actual implementation
+const myRef = {
+  _value: 0,
+  get value() {
+    track()
+    return this._value
+  },
+  set value(newValue) {
+    this._value = newValue
+    trigger()
+  }
+}
+```
+
+Another nice trait of refs is that unlike plain variables, you can pass refs into functions while retaining access to the latest value and the reactivity connection. This is particularly useful when refactoring complex logic into reusable code.
+
+The reactivity system is discussed in more details in the [Reactivity in Depth](/guide/extras/reactivity-in-depth) section.
 </div>
 
 <div class="options-api">
@@ -212,50 +271,11 @@ export default {
 
 </div>
 
-### DOM 更新时机 {#dom-update-timing}
-
-当你更改响应式状态后，DOM 会自动更新。然而，你得注意 DOM 的更新并不是同步的。相反，Vue 将缓冲它们直到更新周期的 “下个时机” 以确保无论你进行了多少次状态更改，每个组件都只更新一次。
-
-若要等待一个状态改变后的 DOM 更新完成，你可以使用 [nextTick()](/api/general#nexttick) 这个全局 API：
-
-<div class="composition-api">
-
-```js
-import { nextTick } from 'vue'
-
-function increment() {
-  state.count++
-  nextTick(() => {
-    // 访问更新后的 DOM
-  })
-}
-```
-
-</div>
-<div class="options-api">
-
-```js
-import { nextTick } from 'vue'
-
-export default {
-  methods: {
-    increment() {
-      this.count++
-      nextTick(() => {
-        // 访问更新后的 DOM
-      })
-    }
-  }
-}
-```
-
-</div>
-
-### 深层响应性 {#deep-reactivity}
-
-在 Vue 中，状态都是默认深层响应式的。这意味着即使在更改深层次的对象或数组，你的改动也能被检测到。
+### Deep Reactivity {#deep-reactivity}
 
 <div class="options-api">
+
+In Vue, state is deeply reactive by default. This means you can expect changes to be detected even when you mutate nested objects or arrays:<!-- TODO: translation -->
 
 ```js
 export default {
@@ -281,28 +301,100 @@ export default {
 
 <div class="composition-api">
 
-```js
-import { reactive } from 'vue'
+Refs can hold any value type, including deeply nested objects, arrays, or JavaScript built-in data structures like `Map`.
 
-const obj = reactive({
+A ref will make its value deeply reactive. This means you can expect changes to be detected even when you mutate nested objects or arrays:
+
+```js
+import { ref } from 'vue'
+
+const obj = ref({
   nested: { count: 0 },
   arr: ['foo', 'bar']
 })
 
 function mutateDeeply() {
   // 以下都会按照期望工作
-  obj.nested.count++
-  obj.arr.push('baz')
+  obj.value.nested.count++
+  obj.value.arr.push('baz')
+}
+```
+
+Non-primitive values are turned into reactive proxies via [`reactive()`](#reactive), which is discussed below.
+
+It is also possible to opt-out of deep reactivity with [shallow refs](/api/reactivity-advanced#shallowref). For shallow refs, only `.value` access is tracked for reactivity. Shallow refs can be used for optimizing performance by avoiding the observation cost of large objects, or in cases where the inner state is managed by an external library.
+
+Further reading:
+
+- [Reduce Reactivity Overhead for Large Immutable Structures](/guide/best-practices/performance#reduce-reactivity-overhead-for-large-immutable-structures)
+- [Integration with External State Systems](/guide/extras/reactivity-in-depth#integration-with-external-state-systems)
+
+</div>
+
+### DOM Update Timing {#dom-update-timing}
+
+When you mutate reactive state, the DOM is updated automatically. However, it should be noted that the DOM updates are not applied synchronously. Instead, Vue buffers them until the "next tick" in the update cycle to ensure that each component updates only once no matter how many state changes you have made.
+
+To wait for the DOM update to complete after a state change, you can use the [nextTick()](/api/general#nexttick) global API:
+
+<div class="composition-api">
+
+```js
+import { nextTick } from 'vue'
+
+async function increment() {
+  count.value++
+  await nextTick()
+  // Now the DOM is updated
+}
+```
+
+</div>
+<div class="options-api">
+
+```js
+import { nextTick } from 'vue'
+
+export default {
+  methods: {
+    async increment() {
+      this.count++
+      await nextTick()
+      // Now the DOM is updated
+    }
+  }
 }
 ```
 
 </div>
 
-你也可以直接创建一个[浅层响应式对象](/api/reactivity-advanced#shallowreactive)。它们仅在顶层具有响应性，一般仅在某些特殊场景中需要。
-
 <div class="composition-api">
 
-### 响应式代理 vs. 原始对象 \*\* {#reactive-proxy-vs-original-1}
+## `reactive()` \*\* {#reactive}
+
+There is another way to declare reactive state, with the `reactive()` API. Unlike a ref which wraps the inner value in a special object, `reactive()` makes an object itself reactive:
+
+```js
+import { reactive } from 'vue'
+
+const state = reactive({ count: 0 })
+```
+
+> See also: [Typing Reactive](/guide/typescript/composition-api#typing-reactive) <sup class="vt-badge ts" />
+
+Usage in template:
+
+```vue-html
+<button @click="state.count++">
+  {{ state.count }}
+</button>
+```
+
+Reactive objects are [JavaScript Proxies](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy) and behave just like normal objects. The difference is that Vue is able to intercept the access and mutation of all properties of a reactive object for reactivity tracking and triggering.
+
+`reactive()` converts the object deeply: nested objects are also wrapped with `reactive()` when accessed. It is also called by `ref()` internally when the ref value is an object. Similar to shallow refs, there is also the [`shallowReactive()`](/api/reactivity-advanced#shallowreactive) API for opting-out of deep reactivity.
+
+### Reactive Proxy vs. Original \*\* {#reactive-proxy-vs-original-1}
 
 值得注意的是，`reactive()` 返回的是一个原始对象的 [Proxy](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy)，它和原始对象是不相等的：
 
@@ -339,155 +431,43 @@ console.log(proxy.nested === raw) // false
 
 ### `reactive()` 的局限性 \*\* {#limitations-of-reactive}
 
-`reactive()` API 有两条限制：
+The `reactive()` API has a few limitations:
 
-1. 仅对对象类型有效（对象、数组和 `Map`、`Set` 这样的[集合类型](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects#%E4%BD%BF%E7%94%A8%E9%94%AE%E7%9A%84%E9%9B%86%E5%90%88%E5%AF%B9%E8%B1%A1)），而对 `string`、`number` 和 `boolean` 这样的 [原始类型](https://developer.mozilla.org/zh-CN/docs/Glossary/Primitive) 无效。
+1. **Limited value types:** it only works for object types (objects, arrays, and [collection types](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects#keyed_collections) such as `Map` and `Set`). It cannot hold [primitive types](https://developer.mozilla.org/en-US/docs/Glossary/Primitive) such as `string`, `number` or `boolean`.
 
-2. 因为 Vue 的响应式系统是通过属性访问进行追踪的，因此我们必须始终保持对该响应式对象的相同引用。这意味着我们不可以随意地“替换”一个响应式对象，因为这将导致对初始引用的响应性连接丢失：
+2. **Cannot replace entire object:** since Vue's reactivity tracking works over property access, we must always keep the same reference to the reactive object. This means we can't easily "replace" a reactive object because the reactivity connection to the first reference is lost:
 
    ```js
    let state = reactive({ count: 0 })
 
-   // 上面的引用 ({ count: 0 }) 将不再被追踪（响应性连接已丢失！）
+   // the above reference ({ count: 0 }) is no longer being tracked
+   // (reactivity connection is lost!)
    state = reactive({ count: 1 })
    ```
 
-  同时这也意味着当我们将响应式对象的属性赋值或解构至本地变量时，或是将该属性传入一个函数时，我们会失去响应性：
+3. **Not destructure-friendly:** when we destructure a reactive object's property into local variables, or when we pass that property into a function, we will lose the reactivity connection:
 
    ```js
    const state = reactive({ count: 0 })
 
-   // n 是一个局部变量，同 state.count
-   // 失去响应性连接
-   let n = state.count
-   // 不影响原始的 state
-   n++
-
-   // count 也和 state.count 失去了响应性连接
+   // count is disconnected from state.count when destructured.
    let { count } = state
    // 不会影响原始的 state
    count++
 
-   // 该函数接收一个普通数字，并且
-   // 将无法跟踪 state.count 的变化
+   // the function receives a plain number and
+   // won't be able to track changes to state.count
+   // we have to pass the entire object in to retain reactivity
    callSomeFunction(state.count)
    ```
 
-## 用 `ref()` 定义响应式变量 \*\* {#reactive-variables-with-ref}
+Due to these limitations, we recommend using `ref()` as the primary API for declaring reactive state.
 
-`reactive()` 的种种限制归根结底是因为 JavaScript 没有可以作用于所有值类型的 “引用” 机制。为此，Vue 提供了一个 [`ref()`](/api/reactivity-core#ref) 方法来允许我们创建可以使用任何值类型的响应式 **ref**：
+## Additional Ref Unwrapping Details \*\* {#additional-ref-unwrapping-details}
 
-```js
-import { ref } from 'vue'
+### As Reactive Object Property \*\* {#ref-unwrapping-as-reactive-object-property}
 
-const count = ref(0)
-```
-
-`ref()` 将传入参数的值包装为一个带 `.value` 属性的 ref 对象：
-
-```js
-const count = ref(0)
-
-console.log(count) // { value: 0 }
-console.log(count.value) // 0
-
-count.value++
-console.log(count.value) // 1
-```
-
-TypeScript 用户请参阅：[为 ref 标注类型](/guide/typescript/composition-api#typing-ref) <sup class="vt-badge ts" />
-
-和响应式对象的属性类似，ref 的 `.value` 属性也是响应式的。同时，当值为对象类型时，会用 `reactive()` 自动转换它的 `.value`。
-
-一个包含对象类型值的 ref 可以响应式地替换整个对象：
-
-```js
-const objectRef = ref({ count: 0 })
-
-// 这是响应式的替换
-objectRef.value = { count: 1 }
-```
-
-ref 被传递给函数或是从一般对象上被解构时，不会丢失响应性：
-
-```js
-const obj = {
-  foo: ref(1),
-  bar: ref(2)
-}
-
-// 该函数接收一个 ref
-// 需要通过 .value 取值
-// 但它会保持响应性
-callSomeFunction(obj.foo)
-
-// 仍然是响应式的
-const { foo, bar } = obj
-```
-
-简言之，`ref()` 让我们能创造一种对任意值的 “引用”，并能够在不丢失响应性的前提下传递这些引用。这个功能很重要，因为它经常用于将逻辑提取到 [组合函数](/guide/reusability/composables) 中。
-
-### ref 在模板中的解包 \*\* {#ref-unwrapping-in-templates}
-
-当 ref 在模板中作为顶层属性被访问时，它们会被自动“解包”，所以不需要使用  `.value`。下面是之前的计数器例子，用 `ref()` 代替：
-
-```vue{13}
-<script setup>
-import { ref } from 'vue'
-
-const count = ref(0)
-
-function increment() {
-  count.value++
-}
-</script>
-
-<template>
-  <button @click="increment">
-    {{ count }} <!-- 无需 .value -->
-  </button>
-</template>
-```
-
-[在演练场中尝试一下](https://play.vuejs.org/#eNo9jUEKgzAQRa8yZKMiaNclSnuP2dgwQqiZhDhxE3L3Riwu//DmvazeIQxHIvVUejfRBoGdJIUZ2brgo0CGSCsUWKN30FS0QUY2nncB4xMLTCfRPrrzviY2Yj2DZRPJEUvbQUaGix2OZUvU98gFWY9XsbbqEHJhW4TqAtCfJFItL7NZ851Q3TpUc87/cCl6vMD6pMfboMoPvd1Nzg==)
-
-请注意，仅当 ref 是模板渲染上下文的顶层属性时才适用自动“解包”。 例如， `object` 是顶层属性，但 `object.foo` 不是。
-
-所以我们给出以下 object：
-
-```js
-const object = { foo: ref(1) }
-```
-
-下面的表达式将**不会**像预期的那样工作：
-
-```vue-html
-{{ object.foo + 1 }}
-```
-
-渲染的结果会是一个 `[object Object]1`，因为 `object.foo` 是一个 ref 对象。我们可以通过将 `foo` 改成顶层属性来解决这个问题：
-
-```js
-const { foo } = object
-```
-
-```vue-html
-{{ foo + 1 }}
-```
-
-现在渲染结果将是 `2`。
-
-需要注意的是，如果一个 ref 是文本插值（即一个 <code v-pre>{{ }}</code> 符号）计算的最终值，它也将被解包。因此下面的渲染结果将为 `1`：
-
-```vue-html
-{{ object.foo }}
-```
-
-这只是文本插值的一个方便功能，相当于 <code v-pre>{{ object.foo.value }}</code>。
-
-### ref 在响应式对象中的解包 \*\* {#ref-unwrapping-in-reactive-objects}
-
-当一个 `ref` 被嵌套在一个响应式对象中，作为属性被访问或更改时，它会自动解包，因此会表现得和一般的属性一样：
+A ref is automatically unwrapped when accessed or mutated as a property of a reactive object. In other words, it behaves like a normal property :
 
 ```js
 const count = ref(0)
@@ -514,9 +494,9 @@ console.log(count.value) // 1
 
 只有当嵌套在一个深层响应式对象内时，才会发生 ref 解包。当其作为[浅层响应式对象](/api/reactivity-advanced#shallowreactive)的属性被访问时不会解包。
 
-#### 数组和集合类型的 ref 解包 {#ref-unwrapping-in-arrays-and-collections}
+### Caveat in Arrays and Collections \*\* {#caveat-in-arrays-and-collections}
 
-跟响应式对象不同，当 ref 作为响应式数组或像 `Map` 这种原生集合类型的元素被访问时，不会进行解包。
+Unlike reactive objects, there is **no** unwrapping performed when the ref is accessed as an element of a reactive array or a native collection type like `Map`:
 
 ```js
 const books = reactive([ref('Vue 3 Guide')])
@@ -527,6 +507,49 @@ const map = reactive(new Map([['count', ref(0)]]))
 // 这里需要 .value
 console.log(map.get('count').value)
 ```
+
+### Caveat when Unwrapping in Templates \*\* {#caveat-when-unwrapping-in-templates}
+
+Ref unwrapping in templates only applies if the ref is a top-level property in the template render context.
+
+In the example below, `count` and `object` are top-level properties, but `object.id` is not:
+
+```js
+const count = ref(0)
+const object = { id: ref(0) }
+```
+
+Therefore, this expression works as expected:
+
+```vue-html
+{{ count + 1 }}
+```
+
+...while this one does **NOT**:
+
+```vue-html
+{{ object.id + 1 }}
+```
+
+The rendered result will be `[object Object]1` because `object.id` is not unwrapped when evaluating the expression and remains a ref object. To fix this, we can destructure `id` into a top-level property:
+
+```js
+const { id } = object
+```
+
+```vue-html
+{{ id + 1 }}
+```
+
+Now the render result will be `2`.
+
+Another thing to note is that a ref does get unwrapped if it is the final evaluated value of a text interpolation (i.e. a <code v-pre>{{ }}</code> tag), so the following will render `1`:
+
+```vue-html
+{{ object.id }}
+```
+
+This is just a convenience feature of text interpolation and is equivalent to <code v-pre>{{ object.id.value }}</code>.
 
 </div>
 

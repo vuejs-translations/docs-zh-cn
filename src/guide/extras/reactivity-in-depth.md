@@ -104,7 +104,7 @@ function ref(value) {
 
 以上代码解释了我们在基础章节部分讨论过的一些 [`reactive()` 的局限性](/guide/essentials/reactivity-fundamentals#limitations-of-reactive)：
 
-- 当你将一个响应性对象的属性解构为一个局部变量时，响应性就会“断开连接”，因为对局部变量的访问不再触发 get / set 代理捕获。
+- When you assign or destructure a reactive object's property to a local variable, accessing or assigning to that variable is non-reactive because it no longer triggers the get / set proxy traps on the source object. Note this "disconnect" only affects the variable binding - if the variable points to a non-primitive value such as an object, mutating the object would still be reactive.<!-- TODO: translation -->
 
 - 从 `reactive()` 返回的代理尽管行为上表现得像原始对象，但我们通过使用 `===` 运算符还是能够比较出它们的不同。
 

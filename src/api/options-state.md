@@ -45,7 +45,7 @@
   data: (vm) => ({ a: vm.myProp })
   ```
 
-- **参考**：[深入响应式系统](/guide/extras/reactivity-in-depth)
+- **参考**[深入响应式系统](/guide/extras/reactivity-in-depth)
 
 ## props {#props}
 
@@ -125,7 +125,7 @@
   }
   ```
 
-- **参考**：
+- **参考**
   - [指南 - Props](/guide/components/props)
   - [指南 - 为组件的 props 标注类型](/guide/typescript/options-api#typing-component-props) <sup class="vt-badge ts" />
 
@@ -207,7 +207,7 @@
   }
   ```
 
-- **参考**：
+- **参考**
   - [指南 - 计算属性](/guide/essentials/computed)
   - [指南 - 为计算属性标记类型](/guide/typescript/options-api#typing-computed-properties) <sup class="vt-badge ts" />
 
@@ -250,7 +250,7 @@
   }
   ```
 
-- **参考**：[Event 处理](/guide/essentials/event-handling)
+- **参考**[事件处理](/guide/essentials/event-handling)
 
 ## watch {#watch}
 
@@ -368,7 +368,7 @@
   }
   ```
 
-- **参考**：[侦听器](/guide/essentials/watchers)
+- **参考**[侦听器](/guide/essentials/watchers)
 
 ## emits {#emits}
 
@@ -433,7 +433,7 @@
   }
   ```
 
-- **参考**：
+- **参考**
   - [指南 - 透传 Attributes](/guide/components/attrs)
   - [指南 - 为组件的 emits 标注类型](/guide/typescript/options-api#typing-component-emits) <sup class="vt-badge ts" />
 

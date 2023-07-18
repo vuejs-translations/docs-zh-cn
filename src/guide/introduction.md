@@ -30,6 +30,8 @@ Vue (发音为 /vjuː/，类似 **view**) 是一款用于构建用户界面的 J
 
 下面是一个最基本的示例：
 
+<div class="options-api">
+
 ```js
 import { createApp } from 'vue'
 
@@ -41,6 +43,23 @@ createApp({
   }
 }).mount('#app')
 ```
+
+</div>
+<div class="composition-api">
+
+```js
+import { createApp, ref } from 'vue'
+
+createApp({
+  setup() {
+    return {
+      count: ref(0)
+    }
+  }
+}).mount('#app')
+```
+
+</div>
 
 ```vue-html
 <div id="app">
@@ -96,6 +115,8 @@ Vue 是一个框架，也是一个生态。其功能覆盖了大部分前端开�
 
 在大多数启用了构建工具的 Vue 项目中，我们可以使用一种类似 HTML 格式的文件来书写 Vue 组件，它被称为**单文件组件** (也被称为 `*.vue` 文件，英文 Single-File Components，缩写为 **SFC**)。顾名思义，Vue 的单文件组件会将一个组件的逻辑 (JavaScript)，模板 (HTML) 和样式 (CSS) 封装在同一个文件里。下面我们将用单文件组件的格式重写上面的计数器示例：
 
+<div class="options-api">
+
 ```vue
 <script>
 export default {
@@ -117,6 +138,28 @@ button {
 }
 </style>
 ```
+
+</div>
+<div class="composition-api">
+
+```vue
+<script setup>
+import { ref } from 'vue'
+const count = ref(0)
+</script>
+
+<template>
+  <button @click="count++">Count is: {{ count }}</button>
+</template>
+
+<style scoped>
+button {
+  font-weight: bold;
+}
+</style>
+```
+
+</div>
 
 单文件组件是 Vue 的标志性功能。如果你的用例需要进行构建，我们推荐用它来编写 Vue 组件。你可以在后续相关章节里了解更多关于[单文件组件的用法及用途](/guide/scaling-up/sfc)。但你暂时只需要知道 Vue 会帮忙处理所有这些构建工具的配置就好。
 
