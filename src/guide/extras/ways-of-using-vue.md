@@ -47,7 +47,7 @@ SSG 有两种风格：单页和多页。这两种风格都能将站点预渲染�
 
 单页 SSG 更适合于重交互、深会话的场景，或需要在导航之间持久化元素或状态。否则，多页 SSG 将是更好的选择。
 
-Vue 团队也维护了一个名为 [VitePress](https://vitepress.vuejs.org/) 的静态站点生成器，你正在阅读的文档就是基于它构建的！VitePress 支持两种形式的 SSG。另外，[NuxtJS](https://nuxt.com/) 也支持 SSG。你甚至可以在同一个 Nuxt 应用中通过不同的路由提供 SSR 和 SSG。
+Vue 团队也维护了一个名为 [VitePress](https://vitepress.dev/) 的静态站点生成器，你正在阅读的文档就是基于它构建的！VitePress 支持两种形式的 SSG。另外，[NuxtJS](https://nuxt.com/) 也支持 SSG。你甚至可以在同一个 Nuxt 应用中通过不同的路由提供 SSR 和 SSG。
 
 ## Web 之外... {#beyond-the-web}
 
