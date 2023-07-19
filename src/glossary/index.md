@@ -1,37 +1,37 @@
-# Glossary {#glossary}
+# 术语表 {#glossary}
 
-This glossary is intended to provide some guidance about the meanings of technical terms that are in common usage when talking about Vue. It is intended to be *descriptive* of how terms are commonly used, not a *prescriptive* specification of how they must be used. Some terms may have slightly different meanings or nuances depending on the surrounding context.
+该术语表的目的是提供一些关于在谈论 Vue 时常用的技术术语的含义的指导。它旨在*描述*术语的常见用法，而不是*规定*它们必须如何使用。在不同的上下文中，一些术语的含义可能会有细微的差别。
 
 [[TOC]]
 
-## async component {#async-component}
+## 异步组件 {#async-component}
 
-An *async component* is a wrapper around another component that allows for the wrapped component to be lazy loaded. This is typically used as a way to reduce the size of the built `.js` files, allowing them to be split into smaller chunks that are loaded only when required.
+*异步组件*是另一个组件的包装器，它允许被包装的组件进行懒加载。这通常用作减少构建的 `.js` 文件大小的一种方式，通过将它们拆分为较小的块来按需加载。
 
-Vue Router has a similar feature for the [lazy loading of route components](https://router.vuejs.org/guide/advanced/lazy-loading.html), though this does not use Vue's async components feature.
+Vue Router 也有类似的功能，用于[路由懒加载](https://router.vuejs.org/zh/guide/advanced/lazy-loading.html)，但这并不是通过 Vue 的异步组件功能实现的。
 
-For more details see:
-- [Guide - Async Components](/guide/components/async.html)
+更多细节参考：
+- [指南 - 异步组件](/guide/components/async.html)
 
-## compiler macro {#compiler-macro}
+## 编译器宏 {#compiler-macro}
 
-A *compiler macro* is special code that is processed by a compiler and converted into something else. They are effectively a clever form of string replacement.
+*编译器宏*是一种特殊的代码，由编译器处理并转换为其他东西。它们实际上是一种更高效且巧妙的字符串替换形式。
 
-Vue's [SFC](#single-file-component) compiler supports various macros, such as `defineProps()`, `defineEmits()` and `defineExpose()`. These macros are intentionally designed to look like normal JavaScript functions so that they can leverage the same parser and type inference tooling around JavaScript / TypeScript. However, they are not actual functions that are run in the browser. These are special strings that the compiler detects and replaces with the real JavaScript code that will actually be run.
+Vue 的[单文件组件](#single-file-component)编译器支持各种宏，例如 `defineProps()`、`defineEmits()` 和 `defineExpose()`。这些宏有意设计成类似正常的 JavaScript 函数，以便它们可以利用 JavaScript / TypeScript 中的相同解析器和类型推断工具。然而，它们不是在浏览器中运行的实际函数。这些是编译器检测到并替换为实际上将运行的真正 JavaScript 代码的特殊字符串。
 
-Macros have limitations on their use that don't apply to normal JavaScript code. For example, you might think that `const dp = defineProps` would allow you to create an alias for `defineProps`, but it'll actually result in an error. There are also limitations on what values can be passed to `defineProps()`, as the 'arguments' have to be processed by the compiler and not at runtime.
+宏在使用上有一些不适用于正常 JavaScript 代码的限制。例如，你可能认为 `const dp = defineProps` 可以让你为 `defineProps` 创建一个别名，但实际上它会导致错误。对 `defineProps()` 可传入的值也有限制，因为“参数”必须由编译器而不是在运行时处理。
 
-For more details see:
+更多细节参考：
 - [`<script setup>` - `defineProps()` & `defineEmits()`](/api/sfc-script-setup.html#defineprops-defineemits)
 - [`<script setup>` - `defineExpose()`](/api/sfc-script-setup.html#defineexpose)
 
-## component {#component}
+## 组件 {#component}
 
-The term *component* is not unique to Vue. It is common to many UI frameworks. It describes a chunk of the UI, such as a button or checkbox. Components can also be combined to form larger components.
+*组件*一词不是 Vue 独有的。它是许多 UI 框架都有的共同特性。它描述了 UI 的一部分，例如按钮或复选框。多个组件也可以组合成更大的组件。
 
-Components are the primary mechanism provided by Vue to split a UI into smaller pieces, both to improve maintainability and to allow for code reuse.
+组件是 Vue 提供的用于将 UI 拆分为较小的部分的主要机制，既可以提高可维护性，也允许代码重用。
 
-A Vue component is an object. All properties are optional, but either a template or render function is required for the component to render. For example, the following object would be a valid component:
+一个 Vue 组件是一个对象。所有属性都是可选的，但是模板或渲染函数是组件渲染所必需的。例如，以下对象将是一个有效的组件：
 
 ```js
 const HelloWorldComponent = {
@@ -41,21 +41,21 @@ const HelloWorldComponent = {
 }
 ```
 
-In practice, most Vue applications are written using [Single-File Components](#single-file-component) (`.vue` files). While these components may not appear to be objects at first glance, the SFC compiler will convert them into an object, which is used as the default export for the file. From an external perspective, a `.vue` file is just an ES module that exports a component object.
+在实践中，大多数 Vue 应用都是通过[单文件组件](#single-file-component) (`.vue` 文件)编写的。虽然这些组件乍一看可能不像是对象，但单文件组件编译器会将它们转换为一个对象，它将用作文件的默认导出。从外部的角度来看，`.vue` 文件只是一个导出组件对象的 ES 模块。
 
-The properties of a component object are usually referred to as *options*. This is where the [Options API](#options-api) gets its name.
+组件对象的属性通常称为*选项*。这就是[选项式 API](#options-api)得名的原因。
 
-The options for a component define how instances of that component should be created. Components are conceptually similar to classes, though Vue doesn't use actual JavaScript classes to define them.
+组件的选项将定义如何创建该组件的实例。组件在概念上类似于类，尽管 Vue 并不使用实际的 JavaScript 类来定义它们。
 
-The term component can also be used more loosely to refer to component instances.
+组件这个词也可以更宽泛地用来指代组件实例。
 
-For more details see:
-- [Guide - Component Basics](/guide/essentials/component-basics.html)
+更多细节参考：
+- [指南 - 组件基础](/guide/essentials/component-basics.html)
 
-The word 'component' also features in several other terms:
-- [async component](#async-component)
-- [dynamic component](#dynamic-component)
-- [functional component](#functional-component)
+“组件”一词还出现在其他几个术语中：
+- [异步组件](#async-component)
+- [动态组件](#dynamic-component)
+- [函数式组件](#functional-component)
 - [Web Component](#web-component)
 
 ## composable {#composable}
