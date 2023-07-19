@@ -86,7 +86,6 @@ const HelloWorldComponent = {
 
 Vue 对渲染自定义元素有内置的支持，并允许它们直接在 Vue 组件模板中使用。
 
-Custom elements should not be confused with the ability to include Vue components as tags within another Vue component's template. Custom elements are used to create Web Components, not Vue components.
 自定义元素不应该与在另一个 Vue 组件的模板中包含 Vue 组件的能力混淆。自定义元素是用于创建 Web Components 的，而不是 Vue 组件。
 
 更多细节参考：
