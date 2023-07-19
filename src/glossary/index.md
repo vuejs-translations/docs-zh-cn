@@ -58,83 +58,84 @@ const HelloWorldComponent = {
 - [函数式组件](#functional-component)
 - [Web Component](#web-component)
 
-## composable {#composable}
+## 组合式函数 {#composable}
 
-The term *composable* describes a common usage pattern in Vue. It isn't a separate feature of Vue, it's just a way of using the framework's [Composition API](#composition-api).
+*组合式函数*一词描述了 Vue 中的一种常见用法。它不是 Vue 的一个单独的特性，而是一种使用框架的[组合式 API](#composition-api)的方式。
 
-* A composable is a function.
-* Composables are used to encapsulate and reuse stateful logic.
-* The function name usually begins with `use`, so that other developers know it's a composable.
-* The function is typically expected to be called during the synchronous execution of a component's `setup()` function (or, equivalently, during the execution of a `<script setup>` block). This ties the invocation of the composable to the current component context, e.g. via calls to `provide()`, `inject()` or `onMounted()`.
-* Composables typically return a plain object, not a reactive object. This object usually contains refs and functions and is expected to be destructured within the calling code.
+* 组合式函数是一个函数。
+* 组合式函数用于封装和重用有状态的逻辑。
+* 函数名通常以 `use` 开头，以便让其他开发者知道它是一个组合式函数。
+* 函数通常在组件的 `setup()` 函数(或等效的 `<script setup>` 块)的同步执行期间调用。这将组合式函数的调用与当前组件的上下文绑定，例如通过调用 `provide()`、`inject()` 或 `onMounted()`。
+* 通常来说，组合式函数返回的是一个普通对象，而不是一个响应式对象。这个对象通常包含 `ref` 和函数，并且预期在调用它的代码中进行解构。
 
-As with many patterns, there can be some disagreement about whether specific code qualifies for the label. Not all JavaScript utility functions are composables. If a function doesn't use the Composition API then it probably isn't a composable. If it doesn't expect to be called during the synchronous execution of `setup()` then it probably isn't a composable. Composables are specifically used to encapsulate stateful logic, they are not just a naming convention for functions.
+在许多模式中，对于特定代码是否符合该标签可能会有一些争议。并非所有的 JavaScript 工具函数都是组合式函数。如果一个函数没有使用组合式 API，那么它可能不是一个组合式函数。如果它不期望在 `setup()` 的同步执行期间被调用，那么它可能不是一个组合式函数。组合式函数专门用于封装有状态的逻辑，它们不仅仅是函数的命名约定。
 
-See [Guide - Composables](/guide/reusability/composables.html) for more details about writing composables.
+参考[指南 - 组合式函数](/guide/reusability/composables.html)获取更多关于如何编写组合式函数的细节。
 
-## Composition API {#composition-api}
+## 组合式 API {#composition-api}
 
-The *Composition API* is a collection of functions used to write components and composables in Vue.
+*组合式 API*是 Vue 中的一组用于编写组件和组合式函数的函数。
 
-The term is also used to describe one of the two main styles used to write components, the other being the [Options API](#options-api). Components written using the Composition API use either `<script setup>` or an explicit `setup()` function.
+该词也用于描述用于编写组件的两种主要风格之一，另一种是[选项式 API](#options-api)。通过组合式 API 编写的组件使用 `<script setup>` 或显式的 `setup()` 函数。
 
-See the [Composition API FAQ](/guide/extras/composition-api-faq) for more details.
+参考[组合式 API 常见问答](/guide/extras/composition-api-faq)获取更多细节。
 
-## custom element {#custom-element}
+## 自定义元素 {#custom-element}
 
-A *custom element* is a feature of the [Web Components](#web-component) standard, which is implemented in modern web browsers. It refers to the ability to use a custom HTML element in your HTML markup to include a Web Component at that point in the page.
+*自定义元素*是现代 Web 浏览器中实现的 [Web Components](#web-component) 标准的一个特性。它指的是在 HTML 标记中使用自定义 HTML 元素的能力，以在页面的该位置导入一个 Web Component。
 
-Vue has built-in support for rendering custom elements and allows them to be used directly in Vue component templates.
+Vue 对渲染自定义元素有内置的支持，并允许它们直接在 Vue 组件模板中使用。
 
 Custom elements should not be confused with the ability to include Vue components as tags within another Vue component's template. Custom elements are used to create Web Components, not Vue components.
+自定义元素不应该与在另一个 Vue 组件的模板中包含 Vue 组件的能力混淆。自定义元素是用于创建 Web Components 的，而不是 Vue 组件。
 
-For more details see:
-- [Guide - Vue and Web Components](/guide/extras/web-components.html)
+更多细节参考：
+- [Vue 与 Web Components](/guide/extras/web-components.html)
 
-## directive {#directive}
+## 指令 {#directive}
 
-The term *directive* refers to template attributes beginning with the `v-` prefix, or their equivalent shorthands.
+*指令*一词指的是以 `v-` 前缀开头的模板属性，或者它们的等效简写。
 
-Built-in directives include `v-if`, `v-for`, `v-bind`, `v-on` and `v-slot`.
+内置的指令包括 `v-if`、`v-for`、`v-bind`、`v-on` 和 `v-slot`。
 
-Vue also supports creating custom directives, though they are typically only used as an 'escape hatch' for manipulating DOM nodes directly. Custom directives generally can't be used to recreate the functionality of the built-in directives.
+Vue 也支持创建自定义指令，尽管它们通常只用作操作 DOM 节点的“逃生舱”。自定义指令通常不能用来重新创建内置指令的功能。
 
-For more details see:
-- [Guide - Template Syntax - Directives](/guide/essentials/template-syntax.html#directives)
-- [Guide - Custom Directives](/guide/reusability/custom-directives.html)
+更多细节参考：
+- [指南 - 模板语法 - 指令](/guide/essentials/template-syntax.html#directives)
+- [指南 - 自定义指令](/guide/reusability/custom-directives.html)
 
-## dynamic component {#dynamic-component}
+## 动态组件 {#dynamic-component}
 
-The term *dynamic component* is used to describe cases where the choice of which child component to render needs to be made dynamically. Typically, this is achieved using `<component :is="type">`.
+*动态组件*一词用于描述需要动态选择要渲染的子组件的情况。这通常是通过 `<component :is="type">` 来实现的。
 
-A dynamic component is not a special type of component. Any component can be used as a dynamic component. It is the choice of component that is dynamic, rather than the component itself.
+动态组件不是一种特殊类型的组件。任何组件都可以用作动态组件。动态指的是的是组件的选择，而不是组件本身。
 
-For more details see:
-- [Guide - Components Basics - Dynamic Components](/guide/essentials/component-basics.html#dynamic-components)
+更多细节参考：
+- [指南 - 组件基础 - 动态组件](/guide/essentials/component-basics.html#dynamic-components)
 
-## effect {#effect}
+## 作用 {#effect}
 
-See [reactive effect](#reactive-effect) and [side effect](#side-effect).
+见[响应式作用](#reactive-effect)和[副作用](#side-effect).
 
-## event {#event}
+## 事件 {#event}
 
-The use of events for communicating between different parts of a program is common to many different areas of programming. Within Vue, the term is commonly applied to both native HTML element events and Vue component events. The `v-on` directive is used in templates to listen for both types of event.
+通过事件在程序的不同部分之间进行通信在许多不同领域编程实践中都是很常见的。在 Vue 中，这个术语通常被用于原生 HTML 元素事件和 Vue 组件事件。`v-on` 指令用于在模板中监听这两种类型的事件。
 
-For more details see:
-- [Guide - Event Handling](/guide/essentials/event-handling.html)
-- [Guide - Component Events](/guide/components/events.html)
+更多细节参考：
+- [指南 - 事件处理](/guide/essentials/event-handling.html)
+- [指南 - 组件事件](/guide/components/events.html)
 
-## fragment {#fragment}
+## 片段 {#fragment}
 
-The term *fragment* refers to a special type of [VNode](#vnode) that is used as a parent for other VNodes, but which doesn't render any elements itself.
+*片段*一词指的是一种特殊类型的 [VNode](#vnode)，它用作其他 VNode 的父节点，但它本身不渲染任何元素。
 
-The name comes from the similar concept of a [`DocumentFragment`](https://developer.mozilla.org/en-US/docs/Web/API/DocumentFragment) in the native DOM API.
+该名称来自于一个类似概念：原生 DOM API 中的 [`DocumentFragment`](https://developer.mozilla.org/en-US/docs/Web/API/DocumentFragment)。
 
-Fragments are used to support components with multiple root nodes. While such components might appear to have multiple roots, behind the scenes they use a fragment node as a single root, as a parent of the 'root' nodes.
+片段用于支持具有多个根节点的组件。虽然这样的组件可能看起来有多个根节点，但在幕后，它们使用片段节点作为单个根节点，作为“根”节点的父节点。
 
-Fragments are also used by the template compiler as a way to wrap multiple dynamic nodes, e.g. those created via `v-for` or `v-if`. This allows for extra hints to be passed to the [VDOM](#virtual-dom) patching algorithm. Much of this is handled internally, but one place you may encounter this directly is using a `key` on a `<template>` tag with `v-for`. In that scenario, the `key` is added as a [prop](#prop) to the fragment VNode.
+片段也被模板编译器用作包装多个动态节点的方式，例如通过 `v-for` 或 `v-if` 创建的节点。这允许向 [VDOM](#virtual-dom) 补丁算法传递额外的提示。这些大部分都是在内部处理的，但你可能直接遇到的一个例子是在 `<template>` 标签上使用 `v-for` 的 `key`。在这种情况下，`key` 会作为[参数](#prop)添加到片段的 VNode。
 
-Fragment nodes are currently rendered to the DOM as empty text nodes, though that is an implementation detail. You may encounter those text nodes if you use `$el` or attempt to walk the DOM with built-in browser APIs.
+片段节点当前被渲染为 DOM 上的空文本节点，尽管这是一个实现细节。但如果你使用 `$el` 或尝试使用内置的浏览器 API 遍历 DOM 时，可能会遇到这些文本节点。
 
 ## functional component {#functional-component}
 
