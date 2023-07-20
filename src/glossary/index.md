@@ -160,63 +160,63 @@ JavaScript 对某些结构使用了提升，例如 `var`、`import` 和函数声
 
 ## 内联 DOM 模板 {#in-dom-template}
 
-There are various ways to specify a template for a component. In most cases the template is provided as a string.
+有许多种方式来指定组件的模板。在大多数情况下，模板是以字符串的形式提供的。
 
-The term *in-DOM template* refers to the scenario where the template is provided in the form of DOM nodes, instead of a string. Vue then converts the DOM nodes into a template string using `innerHTML`.
+*内联 DOM 模板*一词指的是模板以 DOM 节点而非字符串的形式提供的场景。然后 Vue 将通过 `innerHTML` 将 DOM 节点转换为模板字符串。
 
-Typically, an in-DOM template starts off as HTML markup written directly in the HTML of the page. The browser then parses this into DOM nodes, which Vue then uses to read off the `innerHTML`.
+通常来说，内联 DOM 模板是直接在页面的 HTML 中编写的 HTML 标记。然后浏览器将其解析为 DOM 节点，Vue 再使用这些节点来读取 `innerHTML`。
 
-For more details see:
-- [Guide - Creating an Application - In-DOM Root Component Template](/guide/essentials/application.html#in-dom-root-component-template)
-- [Guide - Component Basics - DOM Template Parsing Caveats](/guide/essentials/component-basics.html#dom-template-parsing-caveats)
-- [Options: Rendering - template](/api/options-rendering.html#template)
+更多细节参考：
+- [指南 - 创建一个应用 - DOM 中的根组件模板](/guide/essentials/application.html#in-dom-root-component-template)
+- [指南 - 组件基础 - DOM 模板解析注意事项](/guide/essentials/component-basics.html#dom-template-parsing-caveats)
+- [渲染选项 - template](/api/options-rendering.html#template)
 
-## inject {#inject}
+## 注入 {#inject}
 
-See [provide / inject](#provide-inject).
+见[提供 / 注入](#provide-inject).
 
-## lifecycle hooks {#lifecycle-hooks}
+## 生命周期钩子 {#lifecycle-hooks}
 
-A Vue component instance goes through a lifecycle. For example, it is created, mounted, updated, and unmounted.
+Vue 组件实例会经历一个生命周期。例如，它会被创建、挂载、更新和卸载。
 
-The *lifecycle hooks* are a way to listen for these lifecycle events.
+*生命周期钩子*是监听这些生命周期事件的一种方式。
 
-With the Options API, each hook is provided as a separate option, e.g. `mounted`. The Composition API uses functions instead, such as `onMounted()`.
+在选项式 API 中，每个钩子都作为单独的选项提供，例如 `mounted`。而组合式 API 使用函数，例如 `onMounted()`。
 
-For more details see:
-- [Guide - Lifecycle Hooks](/guide/essentials/lifecycle.html)
+更多细节参考：
+- [指南 - 生命周期钩子](/guide/essentials/lifecycle.html)
 
-## macro {#macro}
+## 宏 {#macro}
 
-See [compiler macro](#compiler-macro).
+见[编译器宏](#compiler-macro).
 
-## named slot {#named-slot}
+## 具名插槽 {#named-slot}
 
-A component can have multiple slots, differentiated by name. Slots other than the default slot are referred to as *named slots*.
+组件可以有通过名称进行区分的多个插槽。除了默认插槽之外的插槽被称为*具名插槽*。
 
-For more details see:
-- [Guide - Slots - Named Slots](/guide/components/slots.html#named-slots)
+更多细节参考：
+- [指南 - 插槽 - 具名插槽](/guide/components/slots.html#named-slots)
 
-## Options API {#options-api}
+## 选项式 API {#options-api}
 
-Vue components are defined using objects. The properties of these component objects are known as *options*.
+Vue 组件是通过对象定义的。这些组件对象的属性被称为*选项*。
 
-Components can be written in two styles. One style uses the [Composition API](#composition-api) in conjunction with `setup` (either via a `setup()` option or `<script setup>`). The other style makes very little direct use of the Composition API, instead using various component options to achieve a similar result. The component options that are used in this way are referred to as the *Options API*.
+组件可以用两种风格编写。一种风格将[组合式 API](#composition-api)与 `setup` (通过 `setup()` 选项或 `<script setup>`) 结合使用。另一种风格几乎不直接使用组合式 API，而是使用各种组件选项来达到类似的效果。以这种方式使用的组件选项被称为*选项式 API*。
 
-The Options API includes options such as `data()`, `computed`, `methods` and `created()`.
+选项式 API 包括 `data()`、`computed`、`methods` 和 `created()` 等选项。
 
-Some options, such as `props`, `emits` and `inheritAttrs`, can be used when authoring components with either API. As they are component options, they could be considered part of the Options API. However, as these options are also used in conjunction with `setup()`, it is usually more useful to think of them as shared between the two component styles.
+某些选项，例如 `props`、`emits` 和 `inheritAttrs`，可以在使用任一 API 编写组件时使用。由于它们是组件选项，因此它们可以被认为是选项式 API 的一部分。但是，由于这些选项也与 `setup()` 结合使用，因此通常更适合将它们视为两种组件风格之间共享的选项。
 
-The `setup()` function itself is a component option, so it *could* be described as part of the Options API. However, this is not how the term 'Options API' is normally used. Instead, the `setup()` function is considered to be part of Composition API.
+`setup()` 函数本身是一个组件选项，因此它*可以*被描述为选项式 API 的一部分。但是，这不是“选项式 API”这个术语的常见用法。相反，`setup()` 函数被认为是组合式 API 的一部分。
 
-## plugin {#plugin}
+## 插件 {#plugin}
 
-While the term *plugin* can be used in a wide variety of contexts, Vue has a specific concept of a plugin as a way to add functionality to an application.
+*插件*一词可以在各种上下文中使用，但是在 Vue 中它有一个特定的概念，即插件是向应用程序添加功能的一种方式。
 
-Plugins are added to an application by calling `app.use(plugin)`. The plugin itself is either a function or an object with an `install` function. That function will be passed the application instance and can then do whatever it needs to do.
+通过调用 `app.use(plugin)` 向应用中添加插件。插件本身可以是一个函数，也可以是一个带有 `install` 函数的对象。该函数将传递应用实例，然后可以执行任何所需的操作。
 
-For more details see:
-- [Guide - Plugins](/guide/reusability/plugins.html)
+更多细节参考：
+- [指南 - 插件](/guide/reusability/plugins.html)
 
 ## prop {#prop}
 
