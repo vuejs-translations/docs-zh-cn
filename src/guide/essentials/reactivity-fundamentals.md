@@ -217,7 +217,7 @@ const myRef = {
 
 另一个 ref 的好处是，与普通变量不同，你可以将 ref 传递给函数，同时保留对最新值和响应式连接的访问。当将复杂的逻辑重构为可重用的代码时，这将非常有用。
 
-该响应性系统在 [深入响应式原理](/guide/extras/reactivity-in-depth) 章节中有更详细的讨论。
+该响应性系统在[深入响应式原理](/guide/extras/reactivity-in-depth)章节中有更详细的讨论。
 </div>
 
 <div class="options-api">
@@ -372,7 +372,7 @@ export default {
 
 ## `reactive()` \*\* {#reactive}
 
-通过 `reactive()` API，还有另一种声明响应式状态的方式。与将内部值包装在特殊对象中的 ref 不同，`reactive()` 将使对象本身具有响应性：
+还有另一种声明响应式状态的方式，即使用 `reactive()` API。与将内部值包装在特殊对象中的 ref 不同，`reactive()` 将使对象本身具有响应性：
 
 ```js
 import { reactive } from 'vue'
@@ -380,7 +380,7 @@ import { reactive } from 'vue'
 const state = reactive({ count: 0 })
 ```
 
-> 参考： [为 `reactive()` 标注类型](/guide/typescript/composition-api#typing-reactive) <sup class="vt-badge ts" />
+> 参考：[为 `reactive()` 标注类型](/guide/typescript/composition-api#typing-reactive) <sup class="vt-badge ts" />
 
 在模板中使用：
 
@@ -435,7 +435,7 @@ console.log(proxy.nested === raw) // false
 
 1. **有限的值类型**：它只能用于对象类型 (对象、数组和如 `Map`、`Set` 这样的[集合类型](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects#keyed_collections))。它不能持有如 `string`、`number` 或 `boolean` 这样的[原始类型](https://developer.mozilla.org/en-US/docs/Glossary/Primitive)。
 
-2. **无法替代整个对象**：由于 Vue 的响应式跟踪是通过属性访问实现的，因此我们必须始终保持对响应式对象的相同引用。这意味着我们不能轻易地“替换”响应式对象，因为这样的话与第一个引用的响应性连接将丢失：
+2. **不能替换整个对象**：由于 Vue 的响应式跟踪是通过属性访问实现的，因此我们必须始终保持对响应式对象的相同引用。这意味着我们不能轻易地“替换”响应式对象，因为这样的话与第一个引用的响应性连接将丢失：
 
    ```js
    let state = reactive({ count: 0 })
