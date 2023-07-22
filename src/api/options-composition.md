@@ -244,7 +244,7 @@
   }
   ```
 
-  :::warning 对于组合式 API 不推荐使用
+  :::warning 不建议用于组合式 API
   `extends` 是为选项式 API 设计的，不会处理 `setup()` 钩子的合并。
 
   在组合式 API 中，逻辑复用的首选模式是“组合”而不是“继承”。如果一个组件中的逻辑需要复用，考虑将相关逻辑提取到[组合式函数](/guide/reusability/composables#composables)中。
