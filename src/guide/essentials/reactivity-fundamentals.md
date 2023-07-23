@@ -301,9 +301,9 @@ export default {
 
 <div class="composition-api">
 
-refs 可以持有任何类型的值，包括深层嵌套的对象、数组或者 JavaScript 内置的数据结构，比如 `Map`。
+Ref 可以持有任何类型的值，包括深层嵌套的对象、数组或者 JavaScript 内置的数据结构，比如 `Map`。
 
-ref 会使它的值具有深层响应性。这意味着即使改变嵌套对象或数组时，变化也会被检测到：
+Ref 会使它的值具有深层响应性。这意味着即使改变嵌套对象或数组时，变化也会被检测到：
 
 ```js
 import { ref } from 'vue'
@@ -322,7 +322,7 @@ function mutateDeeply() {
 
 非原始值将通过 [`reactive()`](#reactive) 转换为响应式代理，该函数将在后面讨论。
 
-也可以通过 [shallow refs](/api/reactivity-advanced#shallowref) 来退出深层响应性。对于浅层 ref，只有 `.value` 的访问会被追踪。浅层 ref 可以用于避免对大型数据的响应性开销来优化性能，或者在其内部状态是由外部库管理的情况下使用。
+也可以通过 [shallow ref](/api/reactivity-advanced#shallowref) 来放弃深层响应性。对于浅层 ref，只有 `.value` 的访问会被追踪。浅层 ref 可以用于避免对大型数据的响应性开销来优化性能、或者有外部库管理其内部状态的情况。
 
 阅读更多：
 
@@ -445,7 +445,7 @@ console.log(proxy.nested === raw) // false
    state = reactive({ count: 1 })
    ```
 
-3. **不利于解构**：当我们将响应式对象的属性解构为本地变量时，或者将该属性传递给函数时，我们将丢失响应性连接：
+3. **对解构操作不友好**：当我们将响应式对象的属性解构为本地变量时，或者将该属性传递给函数时，我们将丢失响应性连接：
 
    ```js
    const state = reactive({ count: 0 })
@@ -510,7 +510,7 @@ console.log(map.get('count').value)
 
 ### 在模板中解包的注意事项 \*\* {#caveat-when-unwrapping-in-templates}
 
-模板中的 ref 解包仅适用于 ref 是模板渲染上下文中的顶级属性的情况。
+在模板渲染上下文中，只有顶级的 ref 属性才会被解包。
 
 在下面的例子中，`count` 和 `object` 是顶级属性，但 `object.id` 不是：
 
@@ -543,7 +543,7 @@ const { id } = object
 
 现在渲染的结果将是 `2`。
 
-另一个需要注意的点是，如果 ref 是文本插值的最终计算值(即 <code v-pre>{{ }}</code> 标签)，那么它将被解包，因此以下内容将渲染为 `1`：
+另一个需要注意的点是，如果 ref 是文本插值的最终计算值 (即 <code v-pre>{{ }}</code> 标签)，那么它将被解包，因此以下内容将渲染为 `1`：
 
 ```vue-html
 {{ object.id }}
