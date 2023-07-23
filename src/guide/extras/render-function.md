@@ -743,9 +743,9 @@ MyComponent.inheritAttrs = false
 
 ### 为函数式组件标注类型<sup class="vt-badge ts" /> {#typing-functional-components}
 
-函数式组件可以根据它们是否命名来标注类型。Volar 还支持在单文件组件模板中消费它们时对正确类型化的函数式组件进行类型检查。
+函数式组件可以根据它们是否有命名来标注类型。在单文件组件模板中，Volar 还支持对正确类型化的函数式组件进行类型检查。
 
-**命名函数式组件**
+**具名函数式组件**
 
 ```tsx
 import type { SetupContext } from 'vue'

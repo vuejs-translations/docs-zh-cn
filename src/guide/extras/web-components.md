@@ -226,7 +226,7 @@ export function register() {
 
 ### Web Components 和 Typescript {#web-components-and-typescript}
 
-如果你正在开发一个应用或者库，你可能想要为你的 Vue 组件添加[类型检查](/guide/scaling-up/tooling.html#typescript)，包括那些定义为自定义元素的组件。
+如果你正在开发一个应用或者库，你可能想要为你的 Vue 组件添加[类型检查](/guide/scaling-up/tooling.html#typescript)，包括那些被定义为自定义元素的组件。
 
 自定义元素是使用原生 API 全局注册的，所以默认情况下，当在 Vue 模板中使用时，它们不会有类型推断。为了给注册为自定义元素的 Vue 组件提供类型支持，我们可以通过 Vue 模板和/或 [JSX](https://www.typescriptlang.org/docs/handbook/jsx.html#intrinsic-elements) 中的 [`GlobalComponents` 接口](https://github.com/vuejs/language-tools/blob/master/packages/vscode-vue/README.md#usage) 来注册全局组件的类型：
 
