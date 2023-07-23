@@ -244,14 +244,12 @@
   }
   ```
 
-  <!-- TODO: translation -->
+  :::warning 不建议用于组合式 API
+  `extends` 是为选项式 API 设计的，不会处理 `setup()` 钩子的合并。
 
-  :::warning Not Recommended for Composition API
-  `extends` is designed for Options API and does not handle the merging of the `setup()` hook.
+  在组合式 API 中，逻辑复用的首选模式是“组合”而不是“继承”。如果一个组件中的逻辑需要复用，考虑将相关逻辑提取到[组合式函数](/guide/reusability/composables#composables)中。
 
-  In Composition API, the preferred mental model for logic reuse is "compose" over "inheritance". If you have logic from a component that needs to be reused in another one, consider extracting the relevant logic into a [Composable](/guide/reusability/composables#composables).
-
-  If you still intend to "extend" a component using Composition API, you can call the base component's `setup()` in the extending component's `setup()`:
+  如果你仍然想要通过组合式 API 来“继承”一个组件，可以在继承组件的 `setup()` 中调用基类组件的 `setup()`：
 
   ```js
   import Base from './Base.js'
@@ -260,7 +258,7 @@
     setup(props, ctx) {
       return {
         ...Base.setup(props, ctx),
-        // local bindings
+        // 本地绑定
       }
     }
   }

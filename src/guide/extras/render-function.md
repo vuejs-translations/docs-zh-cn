@@ -741,11 +741,11 @@ MyComponent.inheritAttrs = false
 函数式组件可以像普通组件一样被注册和使用。如果你将一个函数作为第一个参数传入 `h`，它将会被当作一个函数式组件来对待。
 
 
-### Typing Functional Components<sup class="vt-badge ts" /> {#typing-functional-components}
+### 为函数式组件标注类型<sup class="vt-badge ts" /> {#typing-functional-components}
 
-Functional Components can be typed based on whether they are named or anonymous. Volar also supports type checking properly typed functional components when consuming them in SFC templates.<!-- TODO: translation -->
+函数式组件可以根据它们是否有命名来标注类型。在单文件组件模板中，Volar 还支持对正确类型化的函数式组件进行类型检查。
 
-**Named Functional Component**
+**具名函数式组件**
 
 ```tsx
 import type { SetupContext } from 'vue'
@@ -780,7 +780,7 @@ FComponent.emits = {
 }
 ```
 
-**Anonymous Functional Component**
+**匿名函数式组件**
 
 ```tsx
 import type { FunctionalComponent } from 'vue'
