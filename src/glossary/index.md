@@ -10,7 +10,7 @@
 
 Vue Router 也有类似的功能，用于[路由懒加载](https://router.vuejs.org/zh/guide/advanced/lazy-loading.html)，但这并不是通过 Vue 的异步组件功能实现的。
 
-更多细节参考：
+详见：
 - [指南 - 异步组件](/guide/components/async.html)
 
 ## 编译器宏 {#compiler-macro}
@@ -21,7 +21,7 @@ Vue 的[单文件组件](#single-file-component)编译器支持各种宏，例�
 
 宏在使用上有一些不适用于正常 JavaScript 代码的限制。例如，你可能认为 `const dp = defineProps` 可以让你为 `defineProps` 创建一个别名，但实际上它会导致错误。对 `defineProps()` 可传入的值也有限制，因为“参数”必须由编译器而不是在运行时处理。
 
-更多细节参考：
+详见：
 - [`<script setup>` - `defineProps()` & `defineEmits()`](/api/sfc-script-setup.html#defineprops-defineemits)
 - [`<script setup>` - `defineExpose()`](/api/sfc-script-setup.html#defineexpose)
 
@@ -49,7 +49,7 @@ const HelloWorldComponent = {
 
 组件这个词也可以更宽泛地用来指代组件实例。
 
-更多细节参考：
+详见：
 - [指南 - 组件基础](/guide/essentials/component-basics.html)
 
 “组件”一词还出现在其他几个术语中：
@@ -88,7 +88,7 @@ Vue 对渲染自定义元素有内置的支持，并允许它们直接在 Vue �
 
 自定义元素不应该与在另一个 Vue 组件的模板中包含 Vue 组件的能力混淆。自定义元素是用于创建 Web Components 的，而不是 Vue 组件。
 
-更多细节参考：
+详见：
 - [Vue 与 Web Components](/guide/extras/web-components.html)
 
 ## 指令 {#directive}
@@ -99,7 +99,7 @@ Vue 对渲染自定义元素有内置的支持，并允许它们直接在 Vue �
 
 Vue 也支持创建自定义指令，尽管它们通常只用作操作 DOM 节点的“逃生舱”。自定义指令通常不能用来重新创建内置指令的功能。
 
-更多细节参考：
+详见：
 - [指南 - 模板语法 - 指令](/guide/essentials/template-syntax.html#directives)
 - [指南 - 自定义指令](/guide/reusability/custom-directives.html)
 
@@ -109,7 +109,7 @@ Vue 也支持创建自定义指令，尽管它们通常只用作操作 DOM 节�
 
 动态组件不是一种特殊类型的组件。任何组件都可以用作动态组件。动态指的是的是组件的选择，而不是组件本身。
 
-更多细节参考：
+详见：
 - [指南 - 组件基础 - 动态组件](/guide/essentials/component-basics.html#dynamic-components)
 
 ## 作用 {#effect}
@@ -120,7 +120,7 @@ Vue 也支持创建自定义指令，尽管它们通常只用作操作 DOM 节�
 
 通过事件在程序的不同部分之间进行通信在许多不同领域编程实践中都是很常见的。在 Vue 中，这个术语通常被用于原生 HTML 元素事件和 Vue 组件事件。`v-on` 指令用于在模板中监听这两种类型的事件。
 
-更多细节参考：
+详见：
 - [指南 - 事件处理](/guide/essentials/event-handling.html)
 - [指南 - 组件事件](/guide/components/events.html)
 
@@ -144,7 +144,7 @@ Vue 也支持创建自定义指令，尽管它们通常只用作操作 DOM 节�
 
 函数式组件无法拥有任何自己的状态。它也不会经历通常的组件生命周期，因此无法使用生命周期钩子。这使得它们比正常的有状态组件要稍微轻一些。
 
-更多细节参考：
+详见：
 - [指南 - 渲染函数 & JSX -函数式组件](/guide/extras/render-function.html#functional-components)
 
 ## 提升 {#hoisting}
@@ -155,7 +155,7 @@ JavaScript 对某些结构使用了提升，例如 `var`、`import` 和函数声
 
 在 Vue 上下文中，模板编译器应用了*静态提升*来提高性能。在将模板转换为渲染函数时，对应于静态内容的 VNode 可以只创建一次然后被重复使用。这些静态 VNode 是被提升的，因为它们是在渲染函数运行之前，在其外面创建的。模板编译器生成的静态对象或数组也会应用类似的提升。
 
-更多细节参考：
+详见：
 - [指南 - 渲染机制 - 静态提升](/guide/extras/rendering-mechanism.html#static-hoisting)
 
 ## 内联 DOM 模板 {#in-dom-template}
@@ -166,7 +166,7 @@ JavaScript 对某些结构使用了提升，例如 `var`、`import` 和函数声
 
 通常来说，内联 DOM 模板是直接在页面的 HTML 中编写的 HTML 标记。然后浏览器将其解析为 DOM 节点，Vue 再使用这些节点来读取 `innerHTML`。
 
-更多细节参考：
+详见：
 - [指南 - 创建一个应用 - DOM 中的根组件模板](/guide/essentials/application.html#in-dom-root-component-template)
 - [指南 - 组件基础 - DOM 模板解析注意事项](/guide/essentials/component-basics.html#dom-template-parsing-caveats)
 - [渲染选项 - template](/api/options-rendering.html#template)
@@ -183,7 +183,7 @@ Vue 组件实例会经历一个生命周期。例如，它会被创建、挂载�
 
 在选项式 API 中，每个钩子都作为单独的选项提供，例如 `mounted`。而组合式 API 使用函数，例如 `onMounted()`。
 
-更多细节参考：
+详见：
 - [指南 - 生命周期钩子](/guide/essentials/lifecycle.html)
 
 ## 宏 {#macro}
@@ -194,7 +194,7 @@ Vue 组件实例会经历一个生命周期。例如，它会被创建、挂载�
 
 组件可以有通过名称进行区分的多个插槽。除了默认插槽之外的插槽被称为*具名插槽*。
 
-更多细节参考：
+详见：
 - [指南 - 插槽 - 具名插槽](/guide/components/slots.html#named-slots)
 
 ## 选项式 API {#options-api}
@@ -215,7 +215,7 @@ Vue 组件是通过对象定义的。这些组件对象的属性被称为*选项
 
 通过调用 `app.use(plugin)` 向应用中添加插件。插件本身可以是一个函数，也可以是一个带有 `install` 函数的对象。该函数将传递应用实例，然后可以执行任何所需的操作。
 
-更多细节参考：
+详见：
 - [指南 - 插件](/guide/reusability/plugins.html)
 
 ## Prop {#prop}
@@ -236,7 +236,7 @@ Vue 组件是通过对象定义的。这些组件对象的属性被称为*选项
 
 虽然 props 源自单词 *properties*，但在 Vue 的上下文中，术语 props 具有更加特定的含义。你应该避免将其用作 properties 的缩写。
 
-更多细节参考：
+详见：
 - [指南 - Props](/guide/components/props.html)
 - [指南 - 渲染函数 & JSX](/guide/extras/render-function.html)
 - [指南 - 插槽 - 作用域插槽](/guide/components/slots.html#scoped-slots)
@@ -251,7 +251,7 @@ Vue 组件是通过对象定义的。这些组件对象的属性被称为*选项
 
 `provide` 也可以在应用级别使用，使得该值对该应用中的所有组件都可用。
 
-更多细节参考：
+详见：
 - [指南 - 依赖注入](/guide/components/provide-inject.html)
 
 ## 响应式作用 {#reactive-effect}
@@ -264,7 +264,7 @@ Vue 只能在响应式作用内部跟踪响应式依赖关系。如果在响应�
 
 这个术语源自“副作用”。调用作用函数是属性值被更改的副作用。
 
-更多细节参考：
+详见：
 - [指南 - 深入响应式系统](/guide/extras/reactivity-in-depth.html)
 
 ## 响应性 {#reactivity}
@@ -277,7 +277,7 @@ Vue 只能在响应式作用内部跟踪响应式依赖关系。如果在响应�
 
 取而代之的是，Vue 的响应性系统在运行时跟踪属性的访问。它通过结合 Proxy 包装器和 getter/setter 函数来实现。
 
-更多细节参考：
+详见：
 - [指南 - 响应式基础](/guide/essentials/reactivity-fundamentals.html)
 - [指南 - 深入响应式系统](/guide/extras/reactivity-in-depth.html)
 
@@ -287,7 +287,7 @@ Vue 只能在响应式作用内部跟踪响应式依赖关系。如果在响应�
 
 响应性 API 是组合式 API 的一个子集。
 
-更多细节参考：
+详见：
 - [响应性 API：核心](/api/reactivity-core.html)
 - [响应性 API：工具](/api/reactivity-utilities.html)
 - [响应性 API：进阶](/api/reactivity-advanced.html)
@@ -300,7 +300,7 @@ Vue 只能在响应式作用内部跟踪响应式依赖关系。如果在响应�
 
 ref 有多种不同的类型。例如，可以使用 `ref()`、`shallowRef()`、`computed()` 和 `customRef()` 来创建 ref。函数 `isRef()` 可以用来检查一个对象是否是 ref，`isReadonly()` 可以用来检查 ref 是否允许被直接重新赋值。
 
-更多细节参考：
+详见：
 - [指南 - 响应式基础](/guide/essentials/reactivity-fundamentals.html)
 - [响应性 API：核心](/api/reactivity-core.html)
 - [响应性 API：工具](/api/reactivity-utilities.html)
@@ -310,7 +310,7 @@ ref 有多种不同的类型。例如，可以使用 `ref()`、`shallowRef()`、
 
 *渲染函数*是组件的一部分，它在渲染期间生成 VNode。模板会被编译成渲染函数。
 
-更多细节参考：
+详见：
 - [指南 - 渲染函数 & JSX](/guide/extras/render-function.html)
 
 ## 调度器 {#scheduler}
@@ -333,7 +333,7 @@ ref 有多种不同的类型。例如，可以使用 `ref()`、`shallowRef()`、
 
 传递给插槽的 props 只能在父模板的特定区域中使用，该区域负责定义插槽的内容。该模板区域的行为类似于 props 的变量作用域，因此称为“作用域插槽”。
 
-更多细节参考：
+详见：
 - [指南 - 插槽 - 作用域插槽](/guide/components/slots.html#scoped-slots)
 
 ## SFC {#sfc}
@@ -362,7 +362,7 @@ ref 有多种不同的类型。例如，可以使用 `ref()`、`shallowRef()`、
 
 插槽用于向子组件传递内容。props 用于传递数据值，而插槽用于传递更丰富的内容，包括 HTML 元素和其他 Vue 组件。
 
-更多细节参考：
+详见：
 - [指南 - 插槽](/guide/components/slots.html)
 
 ## 模板 ref {#template-ref}
@@ -375,7 +375,7 @@ ref 有多种不同的类型。例如，可以使用 `ref()`、`shallowRef()`、
 
 模板 ref 不应该与 Vue 响应性系统中的响应式 ref 混淆。
 
-更多细节参考：
+详见：
 - [指南 - Template Refs](/guide/essentials/template-refs.html)
 
 ## VDOM {#vdom}
@@ -386,31 +386,31 @@ ref 有多种不同的类型。例如，可以使用 `ref()`、`shallowRef()`、
 
 *虚拟 DOM* (VDOM) 一词并非 Vue 独有。它是多个 Web 框架用于管理 UI 更新的常用方法。
 
-Browsers use a tree of nodes to represent the current state of the page. That tree, and the JavaScript APIs used to interact with it, are referred to as the *document object model*, or *DOM*.
+浏览器使用节点树来表示页面的当前状态。该树及用于与之交互的 JavaScript API 称为*文档对象模型*或 *DOM*。
 
-Manipulating the DOM is a major performance bottleneck. The virtual DOM provides one strategy for managing that.
+更新 DOM 是一个主要的性能瓶颈。虚拟 DOM 提供了一种管理 DOM 的策略。
 
-Rather than creating DOM nodes directly, Vue components generate a description of what DOM nodes they would like. These descriptors are plain JavaScript objects, known as VNodes (virtual DOM nodes). Creating VNodes is relatively cheap.
+与直接创建 DOM 节点不同，Vue 组件会生成它们想要的 DOM 节点的描述。这些描述符是普通的 JavaScript 对象，称为 VNode（虚拟 DOM 节点）。创建 VNode 的成本相对较低。
 
-Every time a component re-renders, the new tree of VNodes is compared to the previous tree of VNodes and any differences are then applied to the real DOM. If nothing has changed then the DOM doesn't need to be touched.
+每次组件重新渲染时，都会将新的 VNode 树与先前的 VNode 树进行比较，然后将它们之间的差异应用于真实 DOM。如果没有任何更改，则不需要修改 DOM。
 
-Vue uses a hybrid approach that we call [Compiler-Informed Virtual DOM](/guide/extras/rendering-mechanism.html#compiler-informed-virtual-dom). Vue's template compiler is able to apply performance optimizations based on static analysis of the template. Rather than performing a full comparison of a component's old and new VNode trees at runtime, Vue can use information extracted by the compiler to reduce the comparison to just the parts of the tree that can actually change.
+Vue 使用了一种混合方法，我们称之为[带编译时信息的虚拟 DOM](/guide/extras/rendering-mechanism.html#compiler-informed-virtual-dom)。Vue 的模板编译器能够根据对模板的静态分析添加性能优化。Vue 不会在运行时对组件的新旧 VNode 树进行完整的对比，而是可以利用编译器提取的信息，将树的对比减少到实际可能发生变化的部分。
 
-更多细节参考：
-- [指南 - Rendering Mechanism](/guide/extras/rendering-mechanism.html)
-- [指南 - Render Functions & JSX](/guide/extras/render-function.html)
+详见：
+- [指南 - 渲染机制](/guide/extras/rendering-mechanism.html)
+- [指南 - 渲染函数 & JSX](/guide/extras/render-function.html)
 
 ## VNode {#vnode}
 
-A *VNode* is a *virtual DOM node*. They can be created using the [`h()`](/api/render-function.html#h) function.
+*VNode* 即*虚拟 DOM 节点*。它们可以使用 [`h()`](/api/render-function.html#h) 函数创建。
 
-See [virtual DOM](#virtual-dom) for more information.
+详见[虚拟 DOM](#virtual-dom)。
 
 ## Web Component {#web-component}
 
-The *Web Components* standard is a collection of features implemented in modern web browsers.
+*Web Component* 标准是现代 Web 浏览器中实现的一组功能。
 
-Vue components are not Web Components, but `defineCustomElement()` can be used to create a [custom element](#custom-element) from a Vue component. Vue also supports the use of custom elements inside Vue components.
+Vue 组件不是 Web 组件，但是可以通过 `defineCustomElement()` 从 Vue 组件创建[自定义元素](#custom-element)。Vue 还支持在 Vue 组件内部使用自定义元素。
 
-更多细节参考：
-- [指南 - Vue and Web Components](/guide/extras/web-components.html)
+详见：
+- [指南 - Vue 和 Web Components](/guide/extras/web-components.html)
