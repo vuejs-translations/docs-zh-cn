@@ -218,173 +218,173 @@ Vue 组件是通过对象定义的。这些组件对象的属性被称为*选项
 更多细节参考：
 - [指南 - 插件](/guide/reusability/plugins.html)
 
-## prop {#prop}
+## Prop {#prop}
 
-There are three common uses of the term *prop* in Vue:
+*Prop*一词在 Vue 中有三种常见用法：
 
-* Component props
+* 组件 props
 * VNode props
-* Slot props
+* 插槽 props
 
-*Component props* are what most people think of as props. These are explicitly defined by a component using either `defineProps()` or the `props` option.
+大多数情况下，props 是指*组件 props*。这些 props 由组件通过 `defineProps()` 或 `props` 选项显式定义。
 
-The term *VNode props* refers to the properties of the object passed as the second argument to `h()`. These can include component props, but they can also include component events, DOM events, DOM attributes and DOM properties. You'd usually only encounter VNode props if you're working with render functions to manipulate VNodes directly.
+*VNode props*一词指的是作为 `h()` 的第二个参数传递的对象的属性。这些属性可以包括组件参数，但也可以包括组件事件、DOM 事件、DOM attribute 和 DOM property。通常只有在使用渲染函数直接操作 VNode 时才会用到 VNode props。
 
-*Slot props* are the properties passed to a scoped slot.
+*插槽 props*是传递给作用域插槽的属性。
 
-In all cases, props are properties that are passed in from elsewhere.
+在所有情况下，props 都是从其他地方传递过来的属性。
 
-While the word props is derived from the word *properties*, the term props has a much more specific meaning in the context of Vue. You should avoid using it as an abbreviation of properties.
+虽然 props 源自单词 *properties*，但在 Vue 的上下文中，术语 props 具有更加特定的含义。你应该避免将其用作 properties 的缩写。
 
-For more details see:
-- [Guide - Props](/guide/components/props.html)
-- [Guide - Render Functions & JSX](/guide/extras/render-function.html)
-- [Guide - Slots - Scoped Slots](/guide/components/slots.html#scoped-slots)
+更多细节参考：
+- [指南 - Props](/guide/components/props.html)
+- [指南 - 渲染函数 & JSX](/guide/extras/render-function.html)
+- [指南 - 插槽 - 作用域插槽](/guide/components/slots.html#scoped-slots)
 
-## provide / inject {#provide-inject}
+## 提供 / 注入 {#provide-inject}
 
-`provide` and `inject` are a form of inter-component communication.
+`provide` 和 `inject` 是一种组件间通信的形式。
 
-When a component *provides* a value, all descendants of that component can then choose to grab that value, using `inject`. Unlike with props, the providing component doesn't know precisely which component is receiving the value.
+当组件*提供*一个值时，该组件的所有后代组件都可以选择使用 `inject` 来获取该值。与 props 不同，提供组件不知道哪些组件正在接收该值。
 
-`provide` and `inject` are sometimes used to avoid *prop drilling*. They can also be used as an implicit way for a component to communicate with its slot contents.
+`provide` 和 `inject` 有时用于避免*prop 逐级透传*。它们也可以作为组件与其插槽内容进行隐式通信的一种方式。
 
-`provide` can also be used at the application level, making a value available to all components within that application.
+`provide` 也可以在应用级别使用，使得该值对该应用中的所有组件都可用。
 
-For more details see:
-- [Guide - provide / inject](/guide/components/provide-inject.html)
+更多细节参考：
+- [指南 - 依赖注入](/guide/components/provide-inject.html)
 
-## reactive effect {#reactive-effect}
+## 响应式作用 {#reactive-effect}
 
-A *reactive effect* is part of Vue's reactivity system. It refers to the process of tracking the dependencies of a function and re-running that function when the values of those dependencies change.
+*响应式作用*是 Vue 响应性系统的一部分。它指的是跟踪函数的依赖关系，并在它们的值发生变化时重新运行该函数的过程。
 
-`watchEffect()` is the most direct way to create an effect. Various other parts of Vue use effects internally. e.g. component rendering updates, `computed()` and `watch()`.
+`watchEffect` 是最直接的创建作用的方式。Vue 的其他各个部分也会在内部使用作用。例如：组件渲染更新、`computed()` 和 `watch()`。
 
-Vue can only track reactive dependencies within a reactive effect. If a property's value is read outside a reactive effect it'll 'lose' reactivity, in the sense that Vue won't know what to do if that property subsequently changes.
+Vue 只能在响应式作用内部跟踪响应式依赖关系。如果在响应式作用之外读取属性的值，它将“丢失”响应性，因为 Vue 不知道在该属性发生变化后应该做什么。
 
-The term is derived from 'side effect'. Calling the effect function is a side effect of the property value being changed.
+这个术语源自“副作用”。调用作用函数是属性值被更改的副作用。
 
-For more details see:
-- [Guide - Reactivity in Depth](/guide/extras/reactivity-in-depth.html)
+更多细节参考：
+- [指南 - 深入响应式系统](/guide/extras/reactivity-in-depth.html)
 
-## reactivity {#reactivity}
+## 响应性 {#reactivity}
 
-In general, *reactivity* refers to the ability to automatically perform actions in response to data changes. For example, updating the DOM or making a network request when a data value changes.
+通常来说，*响应性*是指在数据变化时自动执行操作的能力。例如，当数据值变化时更新 DOM，或进行网络请求。
 
-In a Vue context, reactivity is used to describe a collection of features. Those features combine to form a *reactivity system*, which is exposed via the [Reactivity API](#reactivity-api).
+在 Vue 上下文中，响应性用于描述一组功能。这些功能组合在一起形成一个*响应性系统*，并通过[响应性 API](#reactivity-api)暴露出来。
 
-There are various different ways that a reactivity system could be implemented. For example, it could be done by static analysis of code to determine its dependencies. However, Vue doesn't employ that form of reactivity system.
+有多种不同的方式来实现一个响应性系统。例如，可以通过代码的静态分析来确定其依赖关系。但是，Vue 没有采用这种形式的响应性系统。
 
-Instead, Vue's reactivity system tracks property access at runtime. It does this using both Proxy wrappers and getter/setter functions for properties.
+取而代之的是，Vue 的响应性系统在运行时跟踪属性的访问。它通过结合 Proxy 包装器和 getter/setter 函数来实现。
 
-For more details see:
-- [Guide - Reactivity Fundamentals](/guide/essentials/reactivity-fundamentals.html)
-- [Guide - Reactivity in Depth](/guide/extras/reactivity-in-depth.html)
+更多细节参考：
+- [指南 - 响应式基础](/guide/essentials/reactivity-fundamentals.html)
+- [指南 - 深入响应式系统](/guide/extras/reactivity-in-depth.html)
 
-## Reactivity API {#reactivity-api}
+## 响应性 API {#reactivity-api}
 
-The *Reactivity API* is a collection of core Vue functions related to [reactivity](#reactivity). These can be used independently of components. It includes functions such as `ref()`, `reactive()`, `computed()`, `watch()` and `watchEffect()`.
+*响应性 API* 是一组与[响应性](#reactivity)相关的核心 Vue 函数。这些函数可以独立于组件使用。包括 `ref()`、`reactive()`、`computed()`、`watch()` 和 `watchEffect()` 等。
 
-The Reactivity API is a subset of the Composition API.
+响应性 API 是组合式 API 的一个子集。
 
-For more details see:
-- [Reactivity API: Core](/api/reactivity-core.html)
-- [Reactivity API: Utilities](/api/reactivity-utilities.html)
-- [Reactivity API: Advanced](/api/reactivity-advanced.html)
+更多细节参考：
+- [响应性 API：核心](/api/reactivity-core.html)
+- [响应性 API：工具](/api/reactivity-utilities.html)
+- [响应性 API：进阶](/api/reactivity-advanced.html)
 
 ## ref {#ref}
 
-> This entry is about the use of `ref` for reactivity. For the `ref` attribute used in templates, see [template ref](#template-ref) instead.
+> 该条目是关于 `ref` 在响应性中的用法。对于模板中使用的 `ref` 属性，请参考[模板 ref](#template-ref)。
 
-A `ref` is part of Vue's reactivity system. It is an object with a single reactive property, called `value`.
+`ref` 是 Vue 响应性系统的一部分。它是一个具有单个响应式属性 (称为 `value`) 的对象。
 
-There are various different types of ref. For example, refs can be created using `ref()`, `shallowRef()`, `computed()`, and `customRef()`. The function `isRef()` can be used to check whether an object is a ref, and `isReadonly()` can be used to check whether the ref allows the direct reassignment of its value.
+ref 有多种不同的类型。例如，可以使用 `ref()`、`shallowRef()`、`computed()` 和 `customRef()` 来创建 ref。函数 `isRef()` 可以用来检查一个对象是否是 ref，`isReadonly()` 可以用来检查 ref 是否允许被直接重新赋值。
 
-For more details see:
-- [Guide - Reactivity Fundamentals](/guide/essentials/reactivity-fundamentals.html)
-- [Reactivity API: Core](/api/reactivity-core.html)
-- [Reactivity API: Utilities](/api/reactivity-utilities.html)
-- [Reactivity API: Advanced](/api/reactivity-advanced.html)
+更多细节参考：
+- [指南 - 响应式基础](/guide/essentials/reactivity-fundamentals.html)
+- [响应性 API：核心](/api/reactivity-core.html)
+- [响应性 API：工具](/api/reactivity-utilities.html)
+- [响应性 API：进阶](/api/reactivity-advanced.html)
 
-## render function {#render-function}
+## 渲染函数 {#render-function}
 
-A *render function* is the part of a component that generates the VNodes used during rendering. Templates are compiled down into render functions.
+*渲染函数*是组件的一部分，它在渲染期间生成 VNode。模板会被编译成渲染函数。
 
-For more details see:
-- [Guide - Render Functions & JSX](/guide/extras/render-function.html)
+更多细节参考：
+- [指南 - 渲染函数 & JSX](/guide/extras/render-function.html)
 
-## scheduler {#scheduler}
+## 调度器 {#scheduler}
 
-The *scheduler* is the part of Vue's internals that controls the timing of when [reactive effects](#reactive-effect) are run.
+*调度器*是 Vue 内部的一部分，它控制着[响应式作用](#reactive-effect)运行的时机。
 
-When reactive state changes, Vue doesn't immediately trigger rendering updates. Instead, it batches them together using a queue. This ensures that a component only re-renders once, even if multiple changes are made to the underlying data.
+当响应式状态发生变化时，Vue 不会立即触发渲染更新。相反，它会通过队列实现批处理。这确保了即使对底层数据进行了多次更改，组件也只重新渲染一次。
 
-[Watchers](/guide/essentials/watchers.html) are also batched using the scheduler queue. Watchers with `flush: 'pre'` (the default) will run before component rendering, whereas those with `flush: 'post'` will run after component rendering.
+[侦听器](/guide/essentials/watchers.html)也使用了调度器队列进行批处理。具有 `flush: 'pre'` (默认值) 的侦听器将在组件渲染之前运行，而具有 `flush: 'post'` 的侦听器将在组件渲染之后运行。
 
-Jobs in the scheduler are also used to perform various other internal tasks, such as triggering some [lifecycle hooks](#lifecycle-hooks) and updating [template refs](#template-ref).
+调度器中的任务还用于执行各种其他内部任务，例如触发一些[生命周期钩子](#lifecycle-hooks)和更新[模板 ref](#template-ref)。
 
-## scoped slot {#scoped-slot}
+## 作用域插槽 {#scoped-slot}
 
-The term *scoped slot* is used to refer to a [slot](#slot) that receives [props](#prop).
+*作用域插槽*是指接收 [prop](#prop) 的[插槽](#slot)。
 
-Historically, Vue made a much greater distinction between scoped and non-scoped slots. To some extent they could be regarded as two separate features, unified behind a common template syntax.
+由于历史原因，Vue 在作用域插槽和非作用域插槽之间有很大的区别。在某种程度上，它们可以被视为被统一在一个公共的模板语法背后的两个不同的功能。
 
-In Vue 3, the slot APIs were simplified to make all slots behave like scoped slots. However, the use cases for scoped and non-scoped slots often differ, so the term still proves useful as a way to refer to slots with props.
+在 Vue 3 中，插槽 API 被简化为使所有插槽都像作用域插槽一样。然而，作用域插槽和非作用域插槽的使用场景通常不一样，因此该术语仍被用于特指具有 props 的插槽。
 
-The props passed to a slot can only be used within a specific region of the parent template, responsible for defining the slot's contents. This region of the template behaves as a variable scope for the props, hence the name 'scoped slot'.
+传递给插槽的 props 只能在父模板的特定区域中使用，该区域负责定义插槽的内容。该模板区域的行为类似于 props 的变量作用域，因此称为“作用域插槽”。
 
-For more details see:
-- [Guide - Slots - Scoped Slots](/guide/components/slots.html#scoped-slots)
+更多细节参考：
+- [指南 - 插槽 - 作用域插槽](/guide/components/slots.html#scoped-slots)
 
 ## SFC {#sfc}
 
-See [Single-File Component](#single-file-component).
+见[单文件组件](#single-file-component).
 
-## side effect {#side-effect}
+## 副作用 {#side-effect}
 
-The term *side effect* is not specific to Vue. It is used to describe operations or functions that do something beyond their local scope.
+*副作用*一词并非 Vue 特有。它用于描述超出其本地作用域的操作或函数。
 
-For example, in the context of setting a property like `user.name = null`, it is expected that this will change the value of `user.name`. If it also does something else, like triggering Vue's reactivity system, then this would be described as a side effect. This is the origin of the term [reactive effect](#reactive-effect) within Vue.
+举个例子，在设置 `user.name = null` 属性的上下文中，预期 `user.name` 的值会被更改。如果它还做了其他事情，比如触发 Vue 的响应性系统，那么这就被描述为副作用。这就是 Vue 中的[响应式 effect](#reactive-effect) 一词的起源。
 
-When a function is described as having side effects, it means that the function performs some sort of action that is observable outside the function, aside from just returning a value. This might mean that it updates a value in state, or triggers a network request.
+当描述一个函数具有副作用时，这意味着该函数除了返回一个值之外，还执行了某种在函数外可观察到的操作。这可能意味着它更新了状态中的值，或者触发了网络请求。
 
-The term is often used when describing rendering or computed properties. It is considered best practice for rendering to have no side effects. Likewise, the getter function for a computed property should have no side effects.
+该术语通常用于描述渲染或计算属性。最佳实践是渲染不应该有副作用。同样，计算属性的 getter 函数也不应该有副作用。
 
-## Single-File Component {#single-file-component}
+## 单文件组件 {#single-file-component}
 
-The term *Single-File Component*, or SFC, refers to the `.vue` file format that is commonly used for Vue components.
+*单文件组件* (SFC) 一词指的是常用于 Vue 组件的 `.vue` 文件格式。
 
-See also:
-- [Guide - Single-File Components](/guide/scaling-up/sfc.html)
-- [SFC Syntax Specification](/api/sfc-spec.html)
+参考：
+- [指南 - 单文件组件](/guide/scaling-up/sfc.html)
+- [SFC 语法定义](/api/sfc-spec.html)
 
-## slot {#slot}
+## 插槽 {#slot}
 
-Slots are used to pass content to child components. Whereas props are used to pass data values, slots are used to pass richer content consisting of HTML elements and other Vue components.
+插槽用于向子组件传递内容。props 用于传递数据值，而插槽用于传递更丰富的内容，包括 HTML 元素和其他 Vue 组件。
 
-For more details see:
-- [Guide - Slots](/guide/components/slots.html)
+更多细节参考：
+- [指南 - 插槽](/guide/components/slots.html)
 
-## template ref {#template-ref}
+## 模板 ref {#template-ref}
 
-The term *template ref* refers to using a `ref` attribute on a tag within a template. After the component renders, this attribute is used to populate a corresponding property with either the HTML element or the component instance that corresponds to the tag in the template.
+*模板 ref* 一词指的是在模板中的标签上使用 `ref` 属性。组件渲染后，该属性用于将相应的属性填充为模板中的标签对应的 HTML 元素或组件实例。
 
-If you are using the Options API then the refs are exposed via properties of the `$refs` object.
+如果你使用的是选项式 API，那么 ref 会通过 `$refs` 对象的属性暴露出来。
 
-With the Composition API, template refs populate a reactive [ref](#ref) with the same name.
+通过组合式 API，模板 ref 会填充一个与之同名的[响应式 ref](#ref)。
 
-Template refs should not be confused with the reactive refs found in Vue's reactivity system.
+模板 ref 不应该与 Vue 响应性系统中的响应式 ref 混淆。
 
-For more details see:
-- [Guide - Template Refs](/guide/essentials/template-refs.html)
+更多细节参考：
+- [指南 - Template Refs](/guide/essentials/template-refs.html)
 
 ## VDOM {#vdom}
 
-See [virtual DOM](#virtual-dom).
+参考[虚拟 DOM](#virtual-dom).
 
-## virtual DOM {#virtual-dom}
+## 虚拟 DOM {#virtual-dom}
 
-The term *virtual DOM* (VDOM) is not unique to Vue. It is a common approach used by several web frameworks for managing updates to the UI.
+*虚拟 DOM* (VDOM) 一词并非 Vue 独有。它是多个 Web 框架用于管理 UI 更新的常用方法。
 
 Browsers use a tree of nodes to represent the current state of the page. That tree, and the JavaScript APIs used to interact with it, are referred to as the *document object model*, or *DOM*.
 
@@ -396,9 +396,9 @@ Every time a component re-renders, the new tree of VNodes is compared to the pre
 
 Vue uses a hybrid approach that we call [Compiler-Informed Virtual DOM](/guide/extras/rendering-mechanism.html#compiler-informed-virtual-dom). Vue's template compiler is able to apply performance optimizations based on static analysis of the template. Rather than performing a full comparison of a component's old and new VNode trees at runtime, Vue can use information extracted by the compiler to reduce the comparison to just the parts of the tree that can actually change.
 
-For more details see:
-- [Guide - Rendering Mechanism](/guide/extras/rendering-mechanism.html)
-- [Guide - Render Functions & JSX](/guide/extras/render-function.html)
+更多细节参考：
+- [指南 - Rendering Mechanism](/guide/extras/rendering-mechanism.html)
+- [指南 - Render Functions & JSX](/guide/extras/render-function.html)
 
 ## VNode {#vnode}
 
@@ -412,5 +412,5 @@ The *Web Components* standard is a collection of features implemented in modern 
 
 Vue components are not Web Components, but `defineCustomElement()` can be used to create a [custom element](#custom-element) from a Vue component. Vue also supports the use of custom elements inside Vue components.
 
-For more details see:
-- [Guide - Vue and Web Components](/guide/extras/web-components.html)
+更多细节参考：
+- [指南 - Vue and Web Components](/guide/extras/web-components.html)
