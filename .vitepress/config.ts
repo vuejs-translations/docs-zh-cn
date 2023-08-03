@@ -583,7 +583,7 @@ const i18n: ThemeConfig['i18n'] = {
   ariaToC: '当前页面的目录',
   ariaMainNav: '主导航',
   ariaMobileNav: '移动版导航',
-  ariaSidebarNav: '侧边栏导航'
+  ariaSidebarNav: '侧边栏导航',
 }
 
 export default defineConfigWithTheme<ThemeConfig>({
@@ -726,7 +726,7 @@ export default defineConfigWithTheme<ThemeConfig>({
             reportMissingResultsLinkText: '向我们反馈'
           }
         }
-      }
+      },
     },
 
     // carbonAds: {
