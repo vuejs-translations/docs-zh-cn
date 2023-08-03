@@ -583,7 +583,7 @@ const i18n: ThemeConfig['i18n'] = {
   ariaToC: '当前页面的目录',
   ariaMainNav: '主导航',
   ariaMobileNav: '移动版导航',
-  ariaSidebarNav: '侧边栏导航',
+  ariaSidebarNav: '侧边栏导航'
 }
 
 export default defineConfigWithTheme<ThemeConfig>({
@@ -666,6 +666,16 @@ export default defineConfigWithTheme<ThemeConfig>({
         repo: 'https://github.com/vuejs-translations/docs-fr'
       },
       {
+        link: 'https://ko.vuejs.org',
+        text: '한국어',
+        repo: 'https://github.com/vuejs-translations/docs-ko'
+      },
+      {
+        link: 'https://pt.vuejs.org',
+        text: 'Português',
+        repo: 'https://github.com/vuejs-translations/docs-pt'
+      },
+      {
         link: '/translations/',
         text: '帮助我们翻译！',
         isTranslationsDesc: true
@@ -716,7 +726,7 @@ export default defineConfigWithTheme<ThemeConfig>({
             reportMissingResultsLinkText: '向我们反馈'
           }
         }
-      },
+      }
     },
 
     // carbonAds: {
