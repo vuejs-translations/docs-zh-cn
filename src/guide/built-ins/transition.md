@@ -362,6 +362,8 @@ function onEnter(el, done) {
 
 // 当进入过渡完成时调用。
 function onAfterEnter(el) {}
+
+// 当进入过渡在完成之前被取消时调用
 function onEnterCancelled(el) {}
 
 // 在 leave 钩子之前调用
