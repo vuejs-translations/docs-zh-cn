@@ -115,7 +115,7 @@ export default {
 <div>{{ count }}</div>
 ```
 
-注意，在模板中使用 ref 时，我们**不**需要附加 `.value`。为了方便起见，当在模板中使用时，ref 会自动解包 (有一些[注意事项](#caveat-when-unwrapping-in-template))。
+注意，在模板中使用 ref 时，我们**不**需要附加 `.value`。为了方便起见，当在模板中使用时，ref 会自动解包 (有一些[注意事项](#caveat-when-unwrapping-in-templates))。
 
 你也可以直接在事件监听器中改变一个 ref：
 
