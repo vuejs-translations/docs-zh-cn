@@ -17,9 +17,9 @@ Vue Router 也有类似的功能，用于[路由懒加载](https://router.vuejs.
 
 *编译器宏*是一种特殊的代码，由编译器处理并转换为其他东西。它们实际上是一种更高效且巧妙的字符串替换形式。
 
-Vue 的[单文件组件](#single-file-component)编译器支持各种宏，例如 `defineProps()`、`defineEmits()` 和 `defineExpose()`。这些宏有意设计成类似正常的 JavaScript 函数，以便它们可以利用 JavaScript / TypeScript 中的相同解析器和类型推断工具。然而，它们不是在浏览器中运行的实际函数。这些是编译器检测到并替换为实际上将运行的真正 JavaScript 代码的特殊字符串。
+Vue 的[单文件组件](#single-file-component)编译器支持各种宏，例如 `defineProps()`、`defineEmits()` 和 `defineExpose()`。这些宏有意设计得像是普通的 JavaScript 函数，以便它们可以利用 JavaScript / TypeScript 中的相同解析器和类型推断工具。然而，它们不是在浏览器中运行的实际函数。这些特殊字符串会被编译器检测到并替换为实际真正运行的 JavaScript 代码。
 
-宏在使用上有一些不适用于正常 JavaScript 代码的限制。例如，你可能认为 `const dp = defineProps` 可以让你为 `defineProps` 创建一个别名，但实际上它会导致错误。对 `defineProps()` 可传入的值也有限制，因为“参数”必须由编译器而不是在运行时处理。
+宏在使用上有一些不适用于普通 JavaScript 代码的限制。例如，你可能认为 `const dp = defineProps` 会为 `defineProps` 创建一个别名，但实际上它会导致错误。相同的限制也存在于传入 `defineProps()` 的值，因为“参数”必须由编译器处理，而不是在运行时。
 
 详见：
 - [`<script setup>` - `defineProps()` & `defineEmits()`](/api/sfc-script-setup.html#defineprops-defineemits)
@@ -29,9 +29,9 @@ Vue 的[单文件组件](#single-file-component)编译器支持各种宏，例�
 
 *组件*一词不是 Vue 独有的。它是许多 UI 框架都有的共同特性。它描述了 UI 的一部分，例如按钮或复选框。多个组件也可以组合成更大的组件。
 
-组件是 Vue 提供的用于将 UI 拆分为较小的部分的主要机制，既可以提高可维护性，也允许代码重用。
+组件是 Vue 提供的将 UI 拆成较小部分的主要机制，既可以提高可维护性，也允许代码重用。
 
-一个 Vue 组件是一个对象。所有属性都是可选的，但是模板或渲染函数是组件渲染所必需的。例如，以下对象将是一个有效的组件：
+一个 Vue 组件是一个对象。所有属性都是可选的，但是必须有用于组件渲染的模板或渲染函数二选一。例如，以下对象将是一个有效的组件：
 
 ```js
 const HelloWorldComponent = {
@@ -41,7 +41,7 @@ const HelloWorldComponent = {
 }
 ```
 
-在实践中，大多数 Vue 应用都是通过[单文件组件](#single-file-component) (`.vue` 文件) 编写的。虽然这些组件乍一看可能不像是对象，但单文件组件编译器会将它们转换为一个对象，它将用作文件的默认导出。从外部的角度来看，`.vue` 文件只是一个导出组件对象的 ES 模块。
+在实践中，大多数 Vue 应用都是通过[单文件组件](#single-file-component) (`.vue` 文件) 编写的。虽然这些组件乍一看不是对象，但单文件组件编译器会将它们转换为用作文件默认导出的一个对象。从外部来看，`.vue` 文件只是导出一个组件对象的 ES 模块。
 
 组件对象的属性通常称为*选项*。这就是[选项式 API](#options-api) 得名的原因。
 
@@ -82,11 +82,11 @@ const HelloWorldComponent = {
 
 ## 自定义元素 {#custom-element}
 
-*自定义元素*是现代 Web 浏览器中实现的 [Web Components](#web-component) 标准的一个特性。它指的是在 HTML 标记中使用自定义 HTML 元素的能力，以在页面的该位置导入一个 Web Component。
+*自定义元素*是现代 Web 浏览器中实现的 [Web Components](#web-component) 标准的一个特性。它指的是在 HTML 标记中使用自定义 HTML 元素，以在页面的该位置加入一个 Web Component 的能力。
 
 Vue 对渲染自定义元素有内置的支持，并允许它们直接在 Vue 组件模板中使用。
 
-自定义元素不应该与在另一个 Vue 组件的模板中包含 Vue 组件的能力混淆。自定义元素是用于创建 Web Components 的，而不是 Vue 组件。
+自定义元素不应该与在 Vue 组件的模板中包含另一个 Vue 组件的能力混淆。自定义元素是用于创建 Web Components 的，而不是 Vue 组件。
 
 详见：
 - [Vue 与 Web Components](/guide/extras/web-components.html)
