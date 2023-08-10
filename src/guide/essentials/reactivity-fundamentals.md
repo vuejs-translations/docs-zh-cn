@@ -93,7 +93,7 @@ console.log(count.value) // 1
 
 > 参考：[为 refs 标注类型](/guide/typescript/composition-api#typing-ref) <sup class="vt-badge ts" />
 
-要访问组件模板中的 ref，请从组件的 `setup()` 函数中声明并返回它们：
+要在组件模板中访问 ref，请从组件的 `setup()` 函数中声明并返回它们：
 
 ```js{5,9-11}
 import { ref } from 'vue'
