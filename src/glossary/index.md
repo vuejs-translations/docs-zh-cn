@@ -298,7 +298,7 @@ Vue 只能在响应式作用内部跟踪响应式依赖关系。如果在响应�
 
 `ref` 是 Vue 响应性系统的一部分。它是一个具有单个响应式属性 (称为 `value`) 的对象。
 
-ref 有多种不同的类型。例如，可以使用 `ref()`、`shallowRef()`、`computed()` 和 `customRef()` 来创建 ref。函数 `isRef()` 可以用来检查一个对象是否是 ref，`isReadonly()` 可以用来检查 ref 是否允许被直接重新赋值。
+Ref 有多种不同的类型。例如，可以使用 `ref()`、`shallowRef()`、`computed()` 和 `customRef()` 来创建 ref。函数 `isRef()` 可以用来检查一个对象是否是 ref，`isReadonly()` 可以用来检查 ref 是否允许被直接重新赋值。
 
 详见：
 - [指南 - 响应式基础](/guide/essentials/reactivity-fundamentals.html)
@@ -317,7 +317,7 @@ ref 有多种不同的类型。例如，可以使用 `ref()`、`shallowRef()`、
 
 *调度器*是 Vue 内部的一部分，它控制着[响应式作用](#reactive-effect)运行的时机。
 
-当响应式状态发生变化时，Vue 不会立即触发渲染更新。相反，它会通过队列实现批处理。这确保了即使对底层数据进行了多次更改，组件也只重新渲染一次。
+当响应式状态发生变化时，Vue 不会立即触发渲染更新。取而代之的是，它会通过队列实现批处理。这确保了即使对底层数据进行了多次更改，组件也只重新渲染一次。
 
 [侦听器](/guide/essentials/watchers.html)也使用了调度器队列进行批处理。具有 `flush: 'pre'` (默认值) 的侦听器将在组件渲染之前运行，而具有 `flush: 'post'` 的侦听器将在组件渲染之后运行。
 
@@ -384,7 +384,7 @@ ref 有多种不同的类型。例如，可以使用 `ref()`、`shallowRef()`、
 
 ## 虚拟 DOM {#virtual-dom}
 
-*虚拟 DOM* (VDOM) 一词并非 Vue 独有。它是多个 Web 框架用于管理 UI 更新的常用方法。
+*虚拟 DOM* (VDOM) 一词并非 Vue 独有。它是多个 web 框架用于管理 UI 更新的常用方法。
 
 浏览器使用节点树来表示页面的当前状态。该树及用于与之交互的 JavaScript API 称为*文档对象模型*或 *DOM*。
 
