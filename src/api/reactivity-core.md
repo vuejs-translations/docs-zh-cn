@@ -40,7 +40,7 @@
   ```
 
 - **参考**
-  - [指南 - `ref()` 定义响应式变量](/guide/essentials/reactivity-fundamentals#reactive-variables-with-ref)
+  - [指南 - `ref()` 的响应式基础](/guide/essentials/reactivity-fundamentals#reactive-variables-with-ref)
   - [指南 - 为 `ref()` 标注类型](/guide/typescript/composition-api#typing-ref) <sup class="vt-badge ts" />
 
 ## computed() {#computed}
