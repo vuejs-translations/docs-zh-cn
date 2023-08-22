@@ -4,7 +4,7 @@
 
 [[TOC]]
 
-## 异步组件 {#async-component}
+## 异步组件 (async component) {#async-component}
 
 *异步组件*是另一个组件的包装器，它允许被包装的组件进行懒加载。这通常用作减少构建的 `.js` 文件大小的一种方式，通过将它们拆分为较小的块来按需加载。
 
@@ -13,7 +13,7 @@ Vue Router 也有类似的功能，用于[路由懒加载](https://router.vuejs.
 详见：
 - [指南 - 异步组件](/guide/components/async.html)
 
-## 编译器宏 {#compiler-macro}
+## 编译器宏 (compiler macro) {#compiler-macro}
 
 *编译器宏*是一种特殊的代码，由编译器处理并转换为其他东西。它们实际上是一种更高效且巧妙的字符串替换形式。
 
@@ -25,7 +25,7 @@ Vue 的[单文件组件](#single-file-component)编译器支持各种宏，例�
 - [`<script setup>` - `defineProps()` & `defineEmits()`](/api/sfc-script-setup.html#defineprops-defineemits)
 - [`<script setup>` - `defineExpose()`](/api/sfc-script-setup.html#defineexpose)
 
-## 组件 {#component}
+## 组件 (component) {#component}
 
 *组件*一词不是 Vue 独有的。它是许多 UI 框架都有的共同特性。它描述了 UI 的一部分，例如按钮或复选框。多个组件也可以组合成更大的组件。
 
@@ -58,7 +58,7 @@ const HelloWorldComponent = {
 - [函数式组件](#functional-component)
 - [Web Component](#web-component)
 
-## 组合式函数 {#composable}
+## 组合式函数 (composable) {#composable}
 
 *组合式函数*一词描述了 Vue 中的一种常见用法。它不是 Vue 的一个单独的特性，而是一种使用框架的[组合式 API](#composition-api) 的方式。
 
@@ -72,7 +72,7 @@ const HelloWorldComponent = {
 
 参考[指南 - 组合式函数](/guide/reusability/composables.html)获取更多关于如何编写组合式函数的细节。
 
-## 组合式 API {#composition-api}
+## 组合式 API (Composition API) {#composition-api}
 
 *组合式 API* 是 Vue 中的一组用于编写组件和组合式函数的函数。
 
@@ -80,7 +80,7 @@ const HelloWorldComponent = {
 
 参考[组合式 API 常见问答](/guide/extras/composition-api-faq)获取更多细节。
 
-## 自定义元素 {#custom-element}
+## 自定义元素 (custom element) {#custom-element}
 
 *自定义元素*是现代 Web 浏览器中实现的 [Web Components](#web-component) 标准的一个特性。它指的是在 HTML 标记中使用自定义 HTML 元素，以在页面的该位置加入一个 Web Component 的能力。
 
@@ -91,7 +91,7 @@ Vue 对渲染自定义元素有内置的支持，并允许它们直接在 Vue �
 详见：
 - [Vue 与 Web Components](/guide/extras/web-components.html)
 
-## 指令 {#directive}
+## 指令 (directive) {#directive}
 
 *指令*一词指的是以 `v-` 前缀开头的模板属性，或者它们的等效简写。
 
@@ -103,7 +103,7 @@ Vue 也支持创建自定义指令，尽管它们通常只用作操作 DOM 节�
 - [指南 - 模板语法 - 指令](/guide/essentials/template-syntax.html#directives)
 - [指南 - 自定义指令](/guide/reusability/custom-directives.html)
 
-## 动态组件 {#dynamic-component}
+## 动态组件 (dynamic component) {#dynamic-component}
 
 *动态组件*一词用于描述需要动态选择要渲染的子组件的情况。这通常是通过 `<component :is="type">` 来实现的。
 
@@ -112,11 +112,11 @@ Vue 也支持创建自定义指令，尽管它们通常只用作操作 DOM 节�
 详见：
 - [指南 - 组件基础 - 动态组件](/guide/essentials/component-basics.html#dynamic-components)
 
-## 作用 {#effect}
+## 作用 (effect) {#effect}
 
 见[响应式作用](#reactive-effect)和[副作用](#side-effect)。
 
-## 事件 {#event}
+## 事件 (event) {#event}
 
 通过事件在程序的不同部分之间进行通信在许多不同领域编程实践中都是很常见的。在 Vue 中，这个术语通常被用于原生 HTML 元素事件和 Vue 组件事件。`v-on` 指令用于在模板中监听这两种类型的事件。
 
@@ -124,7 +124,7 @@ Vue 也支持创建自定义指令，尽管它们通常只用作操作 DOM 节�
 - [指南 - 事件处理](/guide/essentials/event-handling.html)
 - [指南 - 组件事件](/guide/components/events.html)
 
-## 片段 {#fragment}
+## 片段 (fragment) {#fragment}
 
 *片段*一词指的是一种特殊类型的 [VNode](#vnode)，它用作其他 VNode 的父节点，但它本身不渲染任何元素。
 
@@ -136,7 +136,7 @@ Vue 也支持创建自定义指令，尽管它们通常只用作操作 DOM 节�
 
 片段节点当前在 DOM 上被渲染为了空文本节点，但这只是一个实现细节。当你使用 `$el` 或尝试通过浏览器内置的 API 遍历 DOM 时，可能会意外地遇到这些文本节点。
 
-## 函数式组件 {#functional-component}
+## 函数式组件 (functional component) {#functional-component}
 
 组件的定义通常是一个包含选项的对象。如果使用 `<script setup>` 的话它可能看起来不是这样，但是从 `.vue` 文件导出的组件仍然是一个对象。
 
@@ -147,7 +147,7 @@ Vue 也支持创建自定义指令，尽管它们通常只用作操作 DOM 节�
 详见：
 - [指南 - 渲染函数 & JSX -函数式组件](/guide/extras/render-function.html#functional-components)
 
-## 提升 {#hoisting}
+## 提升 (hoisting) {#hoisting}
 
 *提升*一词用于描述在一段代码到达之前就运行。执行被“提升”到一个较早的点。
 
@@ -158,7 +158,7 @@ JavaScript 对某些结构使用了提升，例如 `var`、`import` 和函数声
 详见：
 - [指南 - 渲染机制 - 静态提升](/guide/extras/rendering-mechanism.html#static-hoisting)
 
-## 内联 DOM 模板 {#in-dom-template}
+## 内联 DOM 模板 (in-DOM template) {#in-dom-template}
 
 指定组件模板的方式有很多。在大多数情况下，模板是以字符串的形式提供的。
 
@@ -171,11 +171,11 @@ JavaScript 对某些结构使用了提升，例如 `var`、`import` 和函数声
 - [指南 - 组件基础 - DOM 模板解析注意事项](/guide/essentials/component-basics.html#dom-template-parsing-caveats)
 - [渲染选项 - template](/api/options-rendering.html#template)
 
-## 注入 {#inject}
+## 注入 (inject) {#inject}
 
 见[提供 / 注入](#provide-inject)。
 
-## 生命周期钩子 {#lifecycle-hooks}
+## 生命周期钩子 (lifecycle hooks) {#lifecycle-hooks}
 
 Vue 组件实例会经历一个生命周期。例如，它会被创建、挂载、更新和卸载。
 
@@ -186,18 +186,18 @@ Vue 组件实例会经历一个生命周期。例如，它会被创建、挂载�
 详见：
 - [指南 - 生命周期钩子](/guide/essentials/lifecycle.html)
 
-## 宏 {#macro}
+## 宏 (macro) {#macro}
 
 见[编译器宏](#compiler-macro)。
 
-## 具名插槽 {#named-slot}
+## 具名插槽 (named slot) {#named-slot}
 
 组件可以有通过名称进行区分的多个插槽。除了默认插槽之外的插槽被称为*具名插槽*。
 
 详见：
 - [指南 - 插槽 - 具名插槽](/guide/components/slots.html#named-slots)
 
-## 选项式 API {#options-api}
+## 选项式 API (Options API) {#options-api}
 
 Vue 组件是通过对象定义的。这些组件对象的属性被称为*选项*。
 
@@ -209,7 +209,7 @@ Vue 组件是通过对象定义的。这些组件对象的属性被称为*选项
 
 `setup()` 函数本身是一个组件选项，因此它*可以*被描述为选项式 API 的一部分。但是，这不是“选项式 API”这个术语的常见用法。相反，`setup()` 函数被认为是组合式 API 的一部分。
 
-## 插件 {#plugin}
+## 插件 (plugin) {#plugin}
 
 *插件*一词可以在各种上下文中使用，但是在 Vue 中它有一个特定的概念，即插件是向应用程序添加功能的一种方式。
 
@@ -241,7 +241,7 @@ Vue 组件是通过对象定义的。这些组件对象的属性被称为*选项
 - [指南 - 渲染函数 & JSX](/guide/extras/render-function.html)
 - [指南 - 插槽 - 作用域插槽](/guide/components/slots.html#scoped-slots)
 
-## 提供 / 注入 {#provide-inject}
+## 提供 / 注入 (provide / inject) {#provide-inject}
 
 `provide` 和 `inject` 是一种组件间通信的形式。
 
@@ -254,7 +254,7 @@ Vue 组件是通过对象定义的。这些组件对象的属性被称为*选项
 详见：
 - [指南 - 依赖注入](/guide/components/provide-inject.html)
 
-## 响应式作用 {#reactive-effect}
+## 响应式作用 (reactive effect) {#reactive-effect}
 
 *响应式作用*是 Vue 响应性系统的一部分。它指的是跟踪函数的依赖关系，并在它们的值发生变化时重新运行该函数的过程。
 
@@ -267,7 +267,7 @@ Vue 只能在响应式作用内部跟踪响应式依赖关系。如果在响应�
 详见：
 - [指南 - 深入响应式系统](/guide/extras/reactivity-in-depth.html)
 
-## 响应性 {#reactivity}
+## 响应性 (reactivity) {#reactivity}
 
 通常来说，*响应性*是指在数据变化时自动执行操作的能力。例如，当数据值变化时更新 DOM，或进行网络请求。
 
@@ -281,7 +281,7 @@ Vue 只能在响应式作用内部跟踪响应式依赖关系。如果在响应�
 - [指南 - 响应式基础](/guide/essentials/reactivity-fundamentals.html)
 - [指南 - 深入响应式系统](/guide/extras/reactivity-in-depth.html)
 
-## 响应性 API {#reactivity-api}
+## 响应性 API (Reactivity API) {#reactivity-api}
 
 *响应性 API* 是一组与[响应性](#reactivity)相关的核心 Vue 函数。这些函数可以独立于组件使用。包括 `ref()`、`reactive()`、`computed()`、`watch()` 和 `watchEffect()` 等。
 
@@ -306,14 +306,14 @@ Ref 有多种不同的类型。例如，可以使用 `ref()`、`shallowRef()`、
 - [响应性 API：工具](/api/reactivity-utilities.html)
 - [响应性 API：进阶](/api/reactivity-advanced.html)
 
-## 渲染函数 {#render-function}
+## 渲染函数 (render function) {#render-function}
 
 *渲染函数*是组件的一部分，它在渲染期间生成 VNode。模板会被编译成渲染函数。
 
 详见：
 - [指南 - 渲染函数 & JSX](/guide/extras/render-function.html)
 
-## 调度器 {#scheduler}
+## 调度器 (scheduler) {#scheduler}
 
 *调度器*是 Vue 内部的一部分，它控制着[响应式作用](#reactive-effect)运行的时机。
 
@@ -323,7 +323,7 @@ Ref 有多种不同的类型。例如，可以使用 `ref()`、`shallowRef()`、
 
 调度器中的任务还用于执行各种其他内部任务，例如触发一些[生命周期钩子](#lifecycle-hooks)和更新[模板 ref](#template-ref)。
 
-## 作用域插槽 {#scoped-slot}
+## 作用域插槽 (scoped slot) {#scoped-slot}
 
 *作用域插槽*是指接收 [prop](#prop) 的[插槽](#slot)。
 
@@ -340,7 +340,7 @@ Ref 有多种不同的类型。例如，可以使用 `ref()`、`shallowRef()`、
 
 见[单文件组件](#single-file-component)。
 
-## 副作用 {#side-effect}
+## 副作用 (side effect) {#side-effect}
 
 *副作用*一词并非 Vue 特有。它用于描述超出其本地作用域的操作或函数。
 
@@ -350,7 +350,7 @@ Ref 有多种不同的类型。例如，可以使用 `ref()`、`shallowRef()`、
 
 该术语通常用于描述渲染或计算属性。最佳实践是渲染不应该有副作用。同样，计算属性的 getter 函数也不应该有副作用。
 
-## 单文件组件 {#single-file-component}
+## 单文件组件 (Single-File Component) {#single-file-component}
 
 *单文件组件* (SFC) 一词指的是常用于 Vue 组件的 `.vue` 文件格式。
 
@@ -358,14 +358,14 @@ Ref 有多种不同的类型。例如，可以使用 `ref()`、`shallowRef()`、
 - [指南 - 单文件组件](/guide/scaling-up/sfc.html)
 - [SFC 语法定义](/api/sfc-spec.html)
 
-## 插槽 {#slot}
+## 插槽 (slot) {#slot}
 
 插槽用于向子组件传递内容。和 prop 用于传递数据不同，插槽用于传递更丰富的内容，包括 HTML 元素和其他 Vue 组件。
 
 详见：
 - [指南 - 插槽](/guide/components/slots.html)
 
-## 模板 ref {#template-ref}
+## 模板 ref (template ref) {#template-ref}
 
 *模板 ref* 一词指的是在模板中的标签上使用 `ref` 属性。组件渲染后，该属性用于将相应的属性填充为模板中的标签对应的 HTML 元素或组件实例。
 
@@ -382,7 +382,7 @@ Ref 有多种不同的类型。例如，可以使用 `ref()`、`shallowRef()`、
 
 参考[虚拟 DOM](#virtual-dom)。
 
-## 虚拟 DOM {#virtual-dom}
+## 虚拟 DOM (virtual DOM) {#virtual-dom}
 
 *虚拟 DOM* (VDOM) 一词并非 Vue 独有。它是多个 web 框架用于管理 UI 更新的常用方法。
 
