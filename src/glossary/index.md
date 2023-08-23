@@ -147,22 +147,22 @@ Vue 也支持创建自定义指令，尽管它们通常只用作操作 DOM 节�
 详见：
 - [指南 - 渲染函数 & JSX -函数式组件](/guide/extras/render-function.html#functional-components)
 
-## 提升 (hoisting) {#hoisting}
+## 变量提升 (hoisting) {#hoisting}
 
-*提升*一词用于描述在一段代码到达之前就运行。执行被“提升”到一个较早的点。
+*变量提升*一词用于描述在一段代码到达之前就运行。执行被“提升”到一个较早的点。
 
-JavaScript 对某些结构使用了提升，例如 `var`、`import` 和函数声明。
+JavaScript 对某些结构使用了变量提升，例如 `var`、`import` 和函数声明。
 
-在 Vue 上下文中，模板编译器应用了*静态提升*来提高性能。在将模板转换为渲染函数时，对应于静态内容的 VNode 可以只创建一次然后被重复使用。这些静态 VNode 是被提升的，因为它们是在渲染函数运行之前，在其外面创建的。模板编译器生成的静态对象或数组也会应用类似的提升。
+在 Vue 上下文中，模板编译器应用了*静态变量提升*来提高性能。在将模板转换为渲染函数时，对应于静态内容的 VNode 可以只创建一次然后被重复使用。这些静态 VNode 是被提升的，因为它们是在渲染函数运行之前，在其外面创建的。模板编译器生成的静态对象或数组也会应用类似的变量提升。
 
 详见：
 - [指南 - 渲染机制 - 静态提升](/guide/extras/rendering-mechanism.html#static-hoisting)
 
-## 内联 DOM 模板 (in-DOM template) {#in-dom-template}
+## DOM 内模板 (in-DOM template) {#in-dom-template}
 
 指定组件模板的方式有很多。在大多数情况下，模板是以字符串的形式提供的。
 
-*内联 DOM 模板*一词指的是以 DOM 节点而非字符串形式提供模板的场景。然后 Vue 将通过 `innerHTML` 将 DOM 节点转换为模板字符串。
+*DOM 内模板*一词指的是以 DOM 节点而非字符串形式提供模板的场景。然后 Vue 将通过 `innerHTML` 将 DOM 节点转换为模板字符串。
 
 通常来说，内联 DOM 模板是直接在页面的 HTML 中编写的 HTML 标记。然后浏览器将其解析为 DOM 节点，Vue 再使用这些节点来读取 `innerHTML`。
 
