@@ -73,8 +73,7 @@ onMounted(async () => {
             />
           </picture>
           <img
-            width="168"
-            height="42"
+            width="140"
             v-else
             :src="`${base}/images/${img}`"
             :alt="name"
