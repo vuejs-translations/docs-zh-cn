@@ -103,12 +103,6 @@ TypeScript 用户请参考：[扩展全局属性](/guide/typescript/options-api#
 // plugins/i18n.js
 export default {
   install: (app, options) => {
-    app.config.globalProperties.$translate = (key) => {
-      return key.split('.').reduce((o, i) => {
-        if (o) return o[i]
-      }, options)
-    }
-
     app.provide('i18n', options)
   }
 }

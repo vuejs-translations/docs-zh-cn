@@ -353,6 +353,8 @@ onMounted(() => {
 </template>
 ```
 
+可以通过类似于 [MDN](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#technical_summary) 的页面来获取正确的 DOM 接口。
+
 注意为了严格的类型安全，有必要在访问 `el.value` 时使用可选链或类型守卫。这是因为直到组件被挂载前，这个 ref 的值都是初始的 `null`，并且在由于 `v-if` 的行为将引用的元素卸载时也可以被设置为 `null`。
 
 ## 为组件模板引用标注类型 {#typing-component-template-refs}

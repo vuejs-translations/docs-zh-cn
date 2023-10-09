@@ -21,7 +21,7 @@ import ListStagger from './transition-demos/ListStagger.vue'
 - CSS 过渡 class 会被应用在列表内的元素上，**而不是**容器元素上。
 
 :::tip
-当在 [DOM 模板](/guide/essentials/component-basics#dom-template-parsing-caveats)中使用时，组件名需要写为 `<transition-group>`。
+当在 [DOM 内模板](/guide/essentials/component-basics#in-dom-template-parsing-caveats)中使用时，组件名需要写为 `<transition-group>`。
 :::
 
 ## 进入 / 离开动画 {#enter-leave-transitions}

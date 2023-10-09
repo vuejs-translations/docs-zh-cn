@@ -168,7 +168,7 @@ JavaScript 对某些结构使用了变量提升，例如 `var`、`import` 和函
 
 详见：
 - [指南 - 创建一个应用 - DOM 中的根组件模板](/guide/essentials/application.html#in-dom-root-component-template)
-- [指南 - 组件基础 - DOM 模板解析注意事项](/guide/essentials/component-basics.html#dom-template-parsing-caveats)
+- [指南 - 组件基础 - DOM 内模板解析注意事项](/guide/essentials/component-basics.html#in-dom-template-parsing-caveats)
 - [渲染选项 - template](/api/options-rendering.html#template)
 
 ## 注入 (inject) {#inject}

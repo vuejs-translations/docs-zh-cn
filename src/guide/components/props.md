@@ -144,7 +144,7 @@ export default {
 <span>{{ greetingMessage }}</span>
 ```
 
-虽然理论上你也可以在向子组件传递 props 时使用 camelCase 形式 (使用 [DOM 模板](/guide/essentials/component-basics#dom-template-parsing-caveats)时例外)，但实际上为了和 HTML attribute 对齐，我们通常会将其写为 kebab-case 形式：
+虽然理论上你也可以在向子组件传递 props 时使用 camelCase 形式 (使用 [DOM 内模板](/guide/essentials/component-basics#in-dom-template-parsing-caveats)时例外)，但实际上为了和 HTML attribute 对齐，我们通常会将其写为 kebab-case 形式：
 
 ```vue-html
 <MyComponent greeting-message="hello" />
