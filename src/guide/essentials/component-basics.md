@@ -174,7 +174,7 @@ import ButtonCounter from './ButtonCounter.vue'
 <button-counter></button-counter>
 ```
 
-请看 [DOM 模板解析注意事项](#dom-template-parsing-caveats)了解更多细节。
+请看 [DOM 内模板解析注意事项](#in-dom-template-parsing-caveats)了解更多细节。
 
 ## 传递 props {#passing-props}
 
@@ -541,7 +541,7 @@ Something bad happened.
 
 当使用 `<component :is="...">` 来在多个组件间作切换时，被切换掉的组件会被卸载。我们可以通过 [`<KeepAlive>` 组件](/guide/built-ins/keep-alive)强制被切换掉的组件仍然保持“存活”的状态。
 
-## DOM 模板解析注意事项 {#dom-template-parsing-caveats}
+## DOM 内模板解析注意事项 {#in-dom-template-parsing-caveats}
 
 如果你想在 DOM 中直接书写 Vue 模板，Vue 则必须从 DOM 中获取模板字符串。由于浏览器的原生 HTML 解析行为限制，有一些需要注意的事项。
 
@@ -583,7 +583,7 @@ const BlogPost = {
 
 这是因为 Vue 的模板解析器支持任意标签使用 `/>` 作为标签关闭的标志。
 
-然而在 DOM 模板中，我们必须显式地写出关闭标签：
+然而在 DOM 内模板中，我们必须显式地写出关闭标签：
 
 ```vue-html
 <my-component></my-component>
@@ -628,7 +628,7 @@ const BlogPost = {
 当使用在原生 HTML 元素上时，`is` 的值必须加上前缀 `vue:` 才可以被解析为一个 Vue 组件。这一点是必要的，为了避免和原生的[自定义内置元素](https://html.spec.whatwg.org/multipage/custom-elements.html#custom-elements-customized-builtin-example)相混淆。
 :::
 
-以上就是你需要了解的关于 DOM 模板解析的所有注意事项，同时也是 Vue *基础*部分的所有内容。祝贺你！虽然还有很多需要学习的，但你可以先暂停一下，去用 Vue 做一些有趣的东西，或者研究一些[示例](/examples/)。
+以上就是你需要了解的关于 DOM 内模板解析的所有注意事项，同时也是 Vue *基础*部分的所有内容。祝贺你！虽然还有很多需要学习的，但你可以先暂停一下，去用 Vue 做一些有趣的东西，或者研究一些[示例](/examples/)。
 
 完成了本页的阅读后，回顾一下你刚才所学到的知识，如果还想知道更多细节，我们推荐你继续阅读关于组件的完整指引。
 

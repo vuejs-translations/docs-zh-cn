@@ -47,7 +47,7 @@ import SwitchComponent from './keep-alive-demos/SwitchComponent.vue'
 </div>
 
 :::tip
-在 [DOM 模板](/guide/essentials/component-basics#dom-template-parsing-caveats)中使用时，它应该被写为 `<keep-alive>`。
+在 [DOM 内模板](/guide/essentials/component-basics#in-dom-template-parsing-caveats)中使用时，它应该被写为 `<keep-alive>`。
 :::
 
 ## 包含/排除 {#include-exclude}

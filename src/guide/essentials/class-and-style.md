@@ -87,7 +87,13 @@ data() {
 <div :class="classObject"></div>
 ```
 
-这也会渲染出相同的结果。我们也可以绑定一个返回对象的[计算属性](./computed)。这是一个常见且很有用的技巧：
+这将渲染：
+
+```vue-html
+<div class="active"></div>
+```
+
+我们也可以绑定一个返回对象的[计算属性](./computed)。这是一个常见且很有用的技巧：
 
 <div class="composition-api">
 
