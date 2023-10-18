@@ -755,7 +755,7 @@ export default defineConfigWithTheme<ThemeConfig>({
         text: '版权声明',
         link: 'https://github.com/vuejs-translations/docs-zh-cn#%E7%89%88%E6%9D%83%E5%A3%B0%E6%98%8E'
       },
-      copyright: `本中文文档内容版权为 Vue 官方团队及翻译贡献者所有，保留所有权利。`
+      copyright: `本中文文档采用 知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议  (CC BY-NC-SA 4.0) 进行许可。`
     }
   },
 
