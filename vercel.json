@@ -1,4 +1,5 @@
 {
+  "$schema": "https://openapi.vercel.sh/vercel.json",
   "headers": [
     {
       "source": "/assets/(.*)",
@@ -19,11 +20,16 @@
       ]
     }
   ],
+  "rewrites": [
+    {
+      "source": "/:path*",
+      "destination": "/:path*.html"
+    }
+  ],
   "redirects": [
     {
       "source": "/v2/:path*",
       "destination": "https://v2.cn.vuejs.org/v2/:path*"
     }
-  ],
-  "cleanUrls": true
+  ]
 }
