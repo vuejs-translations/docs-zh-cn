@@ -150,7 +150,7 @@ const emit = defineEmits<{
   (e: 'update', value: string): void
 }>()
 
-// 3.3+: alternative, more succinct syntax
+// 3.3+: 可选的、更简洁的语法
 const emit = defineEmits<{
   change: [id: number]
   update: [value: string]
