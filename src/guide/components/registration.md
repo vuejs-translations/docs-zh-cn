@@ -8,7 +8,7 @@
 
 ## 全局注册 {#global-registration}
 
-我们可以使用 [Vue 应用实例](/guide/essentials/application)的 `app.component()` 方法，让组件在当前 Vue 应用中全局可用。
+我们可以使用 [Vue 应用实例](/guide/essentials/application)的 `.component()` 方法，让组件在当前 Vue 应用中全局可用。
 
 ```js
 import { createApp } from 'vue'
@@ -33,7 +33,7 @@ import MyComponent from './App.vue'
 app.component('MyComponent', MyComponent)
 ```
 
-`app.component()` 方法可以被链式调用：
+`.component()` 方法可以被链式调用：
 
 ```js
 app
@@ -136,6 +136,6 @@ export default {
 
 2. `<PascalCase />` 在模板中更明显地表明了这是一个 Vue 组件，而不是原生 HTML 元素。同时也能够将 Vue 组件和自定义元素 (web components) 区分开来。
 
-在单文件组件和内联字符串模板中，我们都推荐这样做。但是，PascalCase 的标签名在 DOM 模板中是不可用的，详情参见 [DOM 内模板解析注意事项](/guide/essentials/component-basics#in-dom-template-parsing-caveats)。
+在单文件组件和内联字符串模板中，我们都推荐这样做。但是，PascalCase 的标签名在 DOM 内模板中是不可用的，详情参见 [DOM 内模板解析注意事项](/guide/essentials/component-basics#in-dom-template-parsing-caveats)。
 
 为了方便，Vue 支持将模板中使用 kebab-case 的标签解析为使用 PascalCase 注册的组件。这意味着一个以 `MyComponent` 为名注册的组件，在模板中可以通过 `<MyComponent>` 或 `<my-component>` 引用。这让我们能够使用同样的 JavaScript 组件注册代码来配合不同来源的模板。

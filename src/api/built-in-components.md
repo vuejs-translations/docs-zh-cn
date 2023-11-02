@@ -294,17 +294,17 @@ h(Transition, {
   指定目标容器：
 
   ```vue-html
-  <teleport to="#some-id" />
-  <teleport to=".some-class" />
-  <teleport to="[data-teleport]" />
+  <Teleport to="#some-id" />
+  <Teleport to=".some-class" />
+  <Teleport to="[data-teleport]" />
   ```
 
   有条件地禁用：
 
   ```vue-html
-  <teleport to="#popup" :disabled="displayVideoInline">
+  <Teleport to="#popup" :disabled="displayVideoInline">
     <video src="./my-movie.mp4">
-  </teleport>
+  </Teleport>
   ```
 
 - **参考**[指南 - Teleport](/guide/built-ins/teleport)

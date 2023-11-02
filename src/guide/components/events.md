@@ -172,7 +172,7 @@ export default {
 
 </div>
 
-这个 `emits` 选项还支持对象语法，它允许我们对触发事件的参数进行验证：
+这个 `emits` 选项和 `defineEmits()` 宏还支持对象语法，它允许我们对触发事件的参数进行验证：
 
 <div class="composition-api">
 

@@ -42,7 +42,7 @@ Vue 被世界各地知名且多元的组织在生产环境中使用，包括 Wik
 
 Vue 3 是性能最强的主流前端框架之一，可以轻松处理大多数 web 应用的场景，并且几乎不需要手动优化。
 
-跑分方面，Vue 在 [js-framework-benchmark](https://rawgit.com/krausest/js-framework-benchmark/master/webdriver-ts-results/table.html) 中的表现比 React 和 Angular 要好得多。在该基准测试中，它还与一些生产环境下最快级别的非虚拟 DOM 框架并驾齐驱。
+跑分方面，Vue 在 [js-framework-benchmark](https://krausest.github.io/js-framework-benchmark/current.html) 中的表现比 React 和 Angular 要好得多。在该基准测试中，它还与一些生产环境下最快级别的非虚拟 DOM 框架并驾齐驱。
 
 请注意，像上面这样的跑分的侧重点在于原始渲染性能在特定情况下的优化，因此不能完全代表真实世界的性能结果。如果你更关心页面加载性能，欢迎用 [WebPageTest](https://www.webpagetest.org/lighthouse) 或是 [PageSpeed Insights](https://pagespeed.web.dev/) 来测试本站。本文档站是一个完全由 Vue 本身构建，通过静态生成预渲染，并在客户端进行 hydration 的单页应用。它在模拟 4 倍 CPU 降速的 Moto G4 + 低速 4G 网络的情况下依然能获得 100 分的性能得分。
 
