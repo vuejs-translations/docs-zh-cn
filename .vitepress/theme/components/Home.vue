@@ -45,44 +45,46 @@ onMounted(async () => {
 
   <section id="special-sponsor">
     <template v-if="data && data.platinum_china">
-      <span>中国区铂金赞助</span>
-      <template
-        v-for="{
-          url,
-          img,
-          name,
-          height,
-          description
-        } of data.platinum_china"
-      >
-        <a
-          class="logo"
-          :href="url"
-          target="_blank"
-          rel="sponsored noopener"
+      <h3>中国区铂金赞助</h3>
+      <div id="special-sponsor-container">
+        <template
+          v-for="{
+            url,
+            img,
+            name,
+            height,
+            description
+          } of data.platinum_china"
         >
-          <picture v-if="img.endsWith('png')">
-            <source
-              type="image/avif"
-              :srcset="`${base}/images/${img.replace(/\.png$/, '.avif')}`"
-            />
+          <a
+            class="logo"
+            :href="url"
+            target="_blank"
+            rel="sponsored noopener"
+          >
+            <picture v-if="img.endsWith('png')">
+              <source
+                type="image/avif"
+                :srcset="`${base}/images/${img.replace(
+                  /\.png$/,
+                  '.avif'
+                )}`"
+              />
+              <img
+                :src="`${base}/images/${img}`"
+                :alt="name"
+                :style="{ height: height || '50px' }"
+              />
+            </picture>
             <img
+              width="150"
+              v-else
               :src="`${base}/images/${img}`"
               :alt="name"
-              :style="{ height: height || '50px' }"
             />
-          </picture>
-          <img
-            width="140"
-            v-else
-            :src="`${base}/images/${img}`"
-            :alt="name"
-          />
-        </a>
-        <a :href="url" target="_blank" rel="sponsored noopener">{{
-          description
-        }}</a>
-      </template>
+          </a>
+        </template>
+      </div>
     </template>
     <a v-else-if="data" class="lead" href="/sponsor/"
       >中国区铂金赞助位 点击了解更多</a
@@ -237,41 +239,25 @@ html:not(.dark) .accent,
   border-top: 1px solid var(--vt-c-divider-light);
   border-bottom: 1px solid var(--vt-c-divider-light);
   padding: 12px 24px;
-  display: flex;
-  align-items: center;
-  height: 76px;
 }
 
-#special-sponsor span,
-#special-sponsor a {
-  color: var(--vt-c-text-2);
-  font-weight: 500;
+#special-sponsor h3 {
+  text-align: center;
   font-size: 13px;
-  vertical-align: middle;
-  flex: 1;
+  font-weight: 500;
+  padding-bottom: 10px;
 }
 
-#special-sponsor .lead {
-  flex: initial;
-}
-
-#special-sponsor a:hover {
-  color: var(--vt-c-green);
-}
-
-#special-sponsor span:first-child {
-  text-align: right;
+#special-sponsor-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 #special-sponsor .logo {
-  flex: unset;
   display: flex;
   justify-content: center;
-  padding: 0 30px;
-}
-
-#special-sponsor {
-  justify-content: center;
+  padding: 0 20px;
 }
 
 .dark #special-sponsor img {
