@@ -227,6 +227,54 @@ const props = withDefaults(defineProps<Props>(), {
 
 上面代码会被编译为等价的运行时 props 的 `default` 选项。此外，`withDefaults` 辅助函数提供了对默认值的类型检查，并确保返回的 `props` 的类型删除了已声明默认值的属性的可选标志。
 
+<!-- TODO: translation -->
+
+## defineModel() <sup class="vt-badge" data-text="3.4+" /> {#definemodel}
+
+This macro can be used to declare a two-way binding prop that can be consumed via `v-model` from the parent component, and it can be declared and mutated like a ref. This will declare a prop with the same name and a corresponding `update:propName` event.
+
+If the first argument is a literial string, it will be used as the prop name; Otherwise the prop name will default to `"modelValue"`. In both cases, you can also pass an additional object which will be used as the prop's options.
+
+```vue
+<script setup>
+const modelValue = defineModel({ type: String })
+modelValue.value = 'hello'
+
+const count = defineModel('count', { default: 0 })
+function inc() {
+  count.value++
+}
+</script>
+
+<template>
+  <input v-model="modelValue" />
+  <button @click="inc">increment</button>
+</template>
+```
+
+### Local mode
+
+The options object can also specify an additional option, `local`. When set to `true`, the ref can be locally mutated even if the parent did not pass the matching `v-model`, essentially making the model optional.
+
+```ts
+// local mutable model, can be mutated locally
+// even if the parent did not pass the matching `v-model`.
+const count = defineModel('count', { local: true, default: 0 })
+```
+
+### Provide value type <sup class="vt-badge ts" /> {#provide-value-type}
+
+Like `defineProps` and `defineEmits`, `defineModel` can also receive a type argument to specify the type of the model value:
+
+```ts
+const modelValue = defineModel<string>()
+//    ^? Ref<string | undefined>
+
+// default model with options, required removes possible undefined values
+const modelValue = defineModel<string>({ required: true })
+//    ^? Ref<string>
+```
+
 ## defineExpose() {#defineexpose}
 
 使用 `<script setup>` 的组件是**默认关闭**的——即通过模板引用或者 `$parent` 链获取到的组件的公开实例，**不会**暴露任何在 `<script setup>` 中声明的绑定。
@@ -249,7 +297,7 @@ defineExpose({
 
 当父组件通过模板引用的方式获取到当前组件的实例，获取到的实例会像这样 `{ a: number, b: number }` (ref 会和在普通实例中一样被自动解包)
 
-## defineOptions() {#defineoptions}
+## defineOptions() <sup class="vt-badge" data-text="3.3+" /> {#defineoptions}
 
 这个宏可以用来直接在 `<script setup>` 中声明组件选项，而不必使用单独的 `<script>` 块：
 
@@ -379,5 +427,5 @@ defineProps<{
 
 ## 限制 {#restrictions}
 
-* 由于模块执行语义的差异，`<script setup>` 中的代码依赖单文件组件的上下文。当将其移动到外部的 `.js` 或者 `.ts` 文件中的时候，对于开发者和工具来说都会感到混乱。因此，**`<script setup>`** 不能和 `src` attribute 一起使用。
-* `<script setup>` 不支持 DOM 内根组件模板。([相关讨论](https://github.com/vuejs/core/issues/8391))
+- 由于模块执行语义的差异，`<script setup>` 中的代码依赖单文件组件的上下文。当将其移动到外部的 `.js` 或者 `.ts` 文件中的时候，对于开发者和工具来说都会感到混乱。因此，**`<script setup>`** 不能和 `src` attribute 一起使用。
+- `<script setup>` 不支持 DOM 内根组件模板。([相关讨论](https://github.com/vuejs/core/issues/8391))
