@@ -278,7 +278,7 @@ watch(todoId, async () => {
 }, { immediate: true })
 ```
 
-特别是注意侦听器是如何两次使用 `todoId` 的，一次是作为源，另一次是在回调中。
+特别需要注意的是，侦听器两次是如何使用 `todoId` 的，一次是作为源，另一次是在回调中。
 
 我们可以用 [`watchEffect` 函数](/api/reactivity-core#watcheffect) 来简化上面的代码。`watchEffect()` 允许我们自动跟踪回调的响应式依赖。上面的侦听器可以重写为：
 
