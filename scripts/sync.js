@@ -1,7 +1,8 @@
-const { Command } = require('commander');
-const SimpleGit = require('simple-git');
+import { Command } from 'commander';
+import SimpleGit from 'simple-git';
+import open from 'open';
+
 const program = new Command();
-const open = require('open');
 
 async function getLatestSyncHash () {
   const git = SimpleGit();
