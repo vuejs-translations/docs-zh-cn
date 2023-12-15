@@ -23,17 +23,17 @@
   ```vue
   <script setup>
   import { ref, provide } from 'vue'
-  import { fooSymbol } from './injectionSymbols'
+  import { countSymbol } from './injectionSymbols'
 
   // 提供静态值
-  provide('foo', 'bar')
+  provide('path', '/project/')
 
   // 提供响应式的值
   const count = ref(0)
   provide('count', count)
 
   // 提供时将 Symbol 作为 key
-  provide(fooSymbol, count)
+  provide(countSymbol, count)
   </script>
   ```
 
@@ -81,19 +81,19 @@
   ```vue
   <script setup>
   import { inject } from 'vue'
-  import { fooSymbol } from './injectionSymbols'
+  import { countSymbol } from './injectionSymbols'
 
   // 注入不含默认值的静态值
-  const foo = inject('foo')
+  const path = inject('path')
 
   // 注入响应式的值
   const count = inject('count')
 
   // 通过 Symbol 类型的 key 注入
-  const foo2 = inject(fooSymbol)
+  const count2 = inject(countSymbol)
 
   // 注入一个值，若为空则使用提供的默认值
-  const bar = inject('foo', 'default value')
+  const bar = inject('path', '/default-path')
 
   // 注入一个值，若为空则使用提供的函数类型的默认值
   const fn = inject('function', () => {})
@@ -103,6 +103,16 @@
   </script>
   ```
 
-- **参考**
+## hasInjectionContext() <sup class="vt-badge" data-text="3.3+" /> {#has-injection-context}
+
+<!-- TODO: translation -->Returns true if [inject()](#inject) can be used without warning about being called in the wrong place (e.g. outside of `setup()`). This method is designed to be used by libraries that want to use `inject()` internally without triggering a warning to the end user.
+
+- **Type**
+
+  ```ts
+  function hasInjectionContext(): boolean
+  ```
+
+* **参考**
   - [指南 - 依赖注入](/guide/components/provide-inject)
   - [指南 - 为 provide/inject 标注类型](/guide/typescript/composition-api#typing-provide-inject) <sup class="vt-badge ts" />

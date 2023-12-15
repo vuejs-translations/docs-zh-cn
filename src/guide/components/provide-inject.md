@@ -315,10 +315,6 @@ export default {
 
 `computed()` 函数常用于组合式 API 风格的组件中，但它同样还可以用于补充选项式 API 风格的某些用例。你可以通过阅读[响应式系统基础](/guide/essentials/reactivity-fundamentals)和[计算属性](/guide/essentials/computed)两个章节了解更多组合式的 API 风格。
 
-:::warning 临时配置要求
-上面的用例需要设置 `app.config.unwrapInjectedRef = true` 以保证注入会自动解包这个计算属性。这将会在 Vue 3.3 后成为一个默认行为，而我们暂时在此告知此项配置以避免后续升级对代码的破坏性。在 3.3 后就不需要这样做了。
-:::
-
 </div>
 
 ## 使用 Symbol 作注入名 {#working-with-symbol-keys}

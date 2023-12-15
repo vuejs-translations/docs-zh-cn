@@ -41,3 +41,7 @@
 ## 归属 {#attribution}
 
 该行为准则改编自《[Contributor Covenant](https://www.contributor-covenant.org/)》[1.4 版本](https://www.contributor-covenant.org/version/1/4/code-of-conduct.html)。
+
+有关该行为准则的常见问题见 https://www.contributor-covenant.org/faq
+
+[主页]: https://www.contributor-covenant.org

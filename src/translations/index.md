@@ -16,7 +16,9 @@ aside: false
 - [孟加拉语 / Bengali](https://bn.vuejs.org) [[source](https://github.com/vuejs-translations/docs-bn)]
 - [意大利语 / Italian](https://it.vuejs.org) [[source](https://github.com/vuejs-translations/docs-it)]
 
-<!-- ## 翻译中的语言 {#work-in-progress-languages} -->
+## 翻译中的语言 {#work-in-progress-languages}
+
+- [فارسی / 波斯语](https://fa.vuejs.org/) [[source](https://github.com/vuejs-translations/docs-fa)]
 
 ## 启动新的翻译 {#starting-a-new-translation}
 

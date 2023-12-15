@@ -67,7 +67,7 @@ export default {
 
 </div>
 
-注意，你只可以**在组件挂载后**才能访问模板引用。如果你想在模板中的表达式上访问 <span class="options-api">`$refs.input`</span><span class="composition-api">`input`</span>，在初次渲染时会是 `null`。这是因为在初次渲染前这个元素还不存在呢！
+注意，你只可以**在组件挂载后**才能访问模板引用。如果你想在模板中的表达式上访问 <span class="options-api">`$refs.input`</span><span class="composition-api">`input`</span>，在初次渲染时会是 <span class="options-api">`undefined`</span><span class="composition-api">`null`</span>。这是因为在初次渲染前这个元素还不存在呢！
 
 <div class="composition-api">
 
