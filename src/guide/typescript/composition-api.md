@@ -50,8 +50,17 @@ const props = defineProps<Props>()
 </script>
 ```
 
-#### 语法限制 {#syntax-limitations}
+这同样适用于 `Props` 从另一个源文件中导入的情况。该功能要求 TypeScript 作为 Vue 的一个 peer dependency。
 
+```vue
+<script setup lang="ts">
+import type { Props } from './foo'
+
+const props = defineProps<Props>()
+</script>
+```
+
+#### 语法限制 {#syntax-limitations}
 
 在 3.2 及以下版本中，`defineProps()` 的泛型类型参数仅限于类型文字或对本地接口的引用。
 
@@ -143,6 +152,18 @@ export default defineComponent({
 <script setup lang="ts">
 // 运行时
 const emit = defineEmits(['change', 'update'])
+
+// 基于选项
+const emit = defineEmits({
+  change: (id: number) => {
+    // 返回 `true` 或 `false`
+    // 表明验证通过或失败
+  },
+  update: (value: string) => {
+    // 返回 `true` 或 `false`
+    // 表明验证通过或失败
+  }
+})
 
 // 基于类型
 const emit = defineEmits<{

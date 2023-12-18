@@ -17,6 +17,7 @@ if (typeof window !== 'undefined') {
   }
 }
 </script>
+
 # 组件事件 {#component-events}
 
 > 此章节假设你已经看过了[组件基础](/guide/essentials/component-basics)。若你还不了解组件是什么，请先阅读该章节。
@@ -172,14 +173,14 @@ export default {
 
 </div>
 
-这个 `emits` 选项和 `defineEmits()` 宏还支持对象语法，它允许我们对触发事件的参数进行验证：
+这个 `emits` 选项和 `defineEmits()` 宏还支持对象语法。通过 TypeScript 为参数指定类型，它允许我们对触发事件的参数进行验证：
 
 <div class="composition-api">
 
 ```vue
 <script setup>
 const emit = defineEmits({
-  submit(payload) {
+  submit(payload: { email: string, password: string }) {
     // 通过返回值为 `true` 还是为 `false` 来判断
     // 验证是否通过
   }
@@ -206,7 +207,7 @@ TypeScript 用户请参考：[如何为组件所抛出事件标注类型](/guide
 ```js
 export default {
   emits: {
-    submit(payload) {
+    submit(payload: { email: string, password: string }) {
       // 通过返回值为 `true` 还是为 `false` 来判断
       // 验证是否通过
     }
@@ -283,3 +284,14 @@ export default {
 ```
 
 </div>
+
+## Events as Props {#events-props}
+
+<!-- TODO: translation -->You may also declare and pass `events` as `props`, by prefixing the capitalized event name with `on`
+Using `props.onEvent` has a different behaviour than using `emit('event')`, as the former will pass only handle the property based listener (either `@event` or `:on-event`)
+
+:::warning
+If both `:onEvent` and `@event` are passed `props.onEvent` might be an array of `functions` instead of `function`, this behavior is not stable and might change in the future.
+:::
+
+Because of this, it is recommended to use `emit('event')` instead of `props.onEvent` when emitting events.

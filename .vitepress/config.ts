@@ -45,6 +45,7 @@ const nav: ThemeConfig['nav'] = [
         items: [
           { text: '合作伙伴', link: '/partners/' },
           { text: '主题', link: '/ecosystem/themes' },
+          { text: 'UI 组件', link: 'https://ui-libs.vercel.app/' },
           {
             text: '证书',
             link: 'https://certification.vuejs.org/?ref=vuejs-nav'

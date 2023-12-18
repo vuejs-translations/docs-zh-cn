@@ -116,16 +116,16 @@ watch(
 
 [Landmark](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/landmark_role) 会为应用中的章节提供访问规划。依赖辅助技术的用户可以跳过内容直接导航到应用的每个部分。你可以使用 [ARIA role](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles) 帮助你实现这个目标。
 
-| HTML            | ARIA Role            | 地标的目的 |
-| --------------- | -------------------- | --------- |
-| header          | role="banner"        | 主标题：页面的标题 |
-| nav             | role="navigation"    | 适合用作文档或相关文档导航的链接集合 |
-| main            | role="main"          | 文档的主体或中心内容 |
-| footer          | role="contentinfo"   | 关于父级文档的信息：脚注/版权/隐私声明链接 |
-| aside           | role="complementary" | 用来支持主内容，同时其自身的内容是相对独立且有意义的 |
-| *无对应元素* | role="search"        | 该章节包含整个应用的搜索功能 |
-| form            | role="form"          | 表单相关元素的集合 |
-| section         | role="region"        | 相关的且用户可能会导航至此的内容。必须为该元素提供 label |
+| HTML    | ARIA Role            | 地标的目的 |
+|---------| -------------------- | --------- |
+| header  | role="banner"        | 主标题：页面的标题 |
+| nav     | role="navigation"    | 适合用作文档或相关文档导航的链接集合 |
+| main    | role="main"          | 文档的主体或中心内容 |
+| footer  | role="contentinfo"   | 关于父级文档的信息：脚注/版权/隐私声明链接 |
+| aside   | role="complementary" | 用来支持主内容，同时其自身的内容是相对独立且有意义的 |
+| search  | role="search"        | 该章节包含整个应用的搜索功能 |
+| form    | role="form"          | 表单相关元素的集合 |
+| section | role="region"        | 相关的且用户可能会导航至此的内容。必须为该元素提供 label |
 
 
 :::tip 提示：
@@ -164,7 +164,7 @@ watch(
 提供标签来描述所有表单控件的用途；使 `for` 和 `id` 链接起来：
 
 ```vue-html
-<label for="name">Name</label>
+<label for="name">Name: </label>
 <input type="text" name="name" id="name" v-model="name" />
 ```
 
@@ -192,7 +192,7 @@ watch(
 你也可以为 input 框配置一个带有 [`aria-label`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-label) 的无障碍访问名。
 
 ```vue-html
-<label for="name">Name</label>
+<label for="name">Name: </label>
 <input
   type="text"
   name="name"
@@ -221,7 +221,7 @@ watch(
 >
   <h1 id="billing">Billing</h1>
   <div class="form-item">
-    <label for="name">Name:</label>
+    <label for="name">Name: </label>
     <input
       type="text"
       name="name"
@@ -251,7 +251,7 @@ watch(
 >
   <h1 id="billing">Billing</h1>
   <div class="form-item">
-    <label for="name">Full Name:</label>
+    <label for="name">Full Name: </label>
     <input
       type="text"
       name="name"
@@ -330,7 +330,7 @@ watch(
 ```vue-html
 <fieldset>
   <legend>Using aria-labelledby</legend>
-  <label id="date-label" for="date">Current Date:</label>
+  <label id="date-label" for="date">Current Date: </label>
   <input
     type="date"
     name="date"
@@ -346,7 +346,7 @@ watch(
 ```vue-html
 <fieldset>
   <legend>Using aria-describedby</legend>
-  <label id="dob" for="dob">Date of Birth:</label>
+  <label id="dob" for="dob">Date of Birth: </label>
   <input type="date" name="dob" id="dob" aria-describedby="dob-instructions" />
   <p id="dob-instructions">MM/DD/YYYY</p>
 </fieldset>

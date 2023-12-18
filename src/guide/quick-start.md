@@ -17,7 +17,7 @@ footer: false
 :::tip 前提条件
 
 - 熟悉命令行
-- 已安装 16.0 或更高版本的 [Node.js](https://nodejs.org/)
+- 已安装 18.0 或更高版本的 [Node.js](https://nodejs.org/)
 :::
 
 在本节中，我们将介绍如何在本地搭建 Vue [单页应用](/guide/extras/ways-of-using-vue#single-page-application-spa)。创建的项目将使用基于 [Vite](https://vitejs.dev) 的构建设置，并允许我们使用 Vue 的[单文件组件](/guide/scaling-up/sfc) (SFC)。
