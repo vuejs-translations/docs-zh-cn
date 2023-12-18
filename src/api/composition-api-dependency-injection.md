@@ -105,9 +105,9 @@
 
 ## hasInjectionContext() <sup class="vt-badge" data-text="3.3+" /> {#has-injection-context}
 
-<!-- TODO: translation -->Returns true if [inject()](#inject) can be used without warning about being called in the wrong place (e.g. outside of `setup()`). This method is designed to be used by libraries that want to use `inject()` internally without triggering a warning to the end user.
+如果 [inject()](#inject) 可以在错误的地方 (例如 `setup()` 之外) 被调用而不触发警告，则返回 `true`。此方法适用于希望在内部使用 `inject()` 而不向用户发出警告的库。
 
-- **Type**
+- **类型**
 
   ```ts
   function hasInjectionContext(): boolean
