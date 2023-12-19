@@ -294,4 +294,4 @@ export default {
 如果同时传递了 `:onEvent` 和 `@event`，则 `props.onEvent` 可能是一个函数数组而不是单个函数，这种行为不稳定，可能会在未来改变。
 :::
 
-因此，建议在发出事件时使用 `emit('event')` 而不是 `props.onEvent`。
+因此，建议在触发事件时使用 `emit('event')` 而不是 `props.onEvent`。
