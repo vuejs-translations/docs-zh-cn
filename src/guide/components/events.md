@@ -285,13 +285,13 @@ export default {
 
 </div>
 
-## Events as Props {#events-props}
+## 将事件作为 prop {#events-props}
 
-<!-- TODO: translation -->You may also declare and pass `events` as `props`, by prefixing the capitalized event name with `on`
-Using `props.onEvent` has a different behaviour than using `emit('event')`, as the former will pass only handle the property based listener (either `@event` or `:on-event`)
+你也可以通过在大写的事件名称前加上 `on` 将 `events` 作为 `props` 声明并传递
+与使用 `emit('event')` 的行为不同，`props.onEvent` 只会处理基于属性的监听器（`@event` 或 `:on-event`）
 
 :::warning
-If both `:onEvent` and `@event` are passed `props.onEvent` might be an array of `functions` instead of `function`, this behavior is not stable and might change in the future.
+如果同时传递了 `:onEvent` 和 `@event`，则 `props.onEvent` 可能是一个函数数组而不是单个函数，这种行为不稳定，可能会在未来改变。
 :::
 
-Because of this, it is recommended to use `emit('event')` instead of `props.onEvent` when emitting events.
+因此，建议在触发事件时使用 `emit('event')` 而不是 `props.onEvent`。
