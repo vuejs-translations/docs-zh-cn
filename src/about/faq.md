@@ -8,7 +8,7 @@ Vue 是一个独立的社区驱动的项目。它是由[尤雨溪](https://twitt
 
 ## Vue 2 和 Vue 3 之间的区别是什么？ {#what-s-the-difference-between-vue-2-and-vue-3}
 
-Vue 3 是 Vue 当前的最新主版本。它包含了一些 Vue 2 中没有的新特性 (比如 Teleport、Suspense，以及多根元素模板)。同时它也包含了一些与 Vue 2 非兼容性的变更。细节文档请参考 [Vue 3 迁移指南](https://v3-migration.vuejs.org/)。
+Vue 3 是 Vue 当前的最新主版本。它包含了一些 Vue 2 中没有的新特性 (比如 Teleport、Suspense，以及多根元素模板)。同时它也包含了一些与 Vue 2 非兼容性的变更。细节文档请参考 [Vue 3 迁移指南](https://v3-migration.vuejs.org/zh/)。
 
 尽管存在差异，但大多数 Vue API 在两个大版本之间是共享的，所以你的大部分 Vue 2 知识将继续在 Vue 3 中发挥作用。需要注意的是，组合式 API 原本是一个 Vue 3 独有的特性，但目前已兼容至 Vue 2 且在 [Vue 2.7](https://github.com/vuejs/vue/blob/main/CHANGELOG.md#270-2022-07-01) 中可用。
 
