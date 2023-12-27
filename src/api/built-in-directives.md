@@ -257,7 +257,11 @@
 
 动态的绑定一个或多个 attribute，也可以是组件的 prop。
 
-- **缩写：**`:` 或者 `.` (当使用 `.prop` 修饰符)
+<!-- TODO: translation -->
+
+- **缩写：**
+  - `:` 或者 `.` (当使用 `.prop` 修饰符)
+  - Omitting value (when attribute and bound value has the same name) <sup class="vt-badge">3.4+</sup>
 
 - **期望：**`any (带参数) | Object (不带参数)`
 
@@ -291,7 +295,14 @@
   <!-- 缩写 -->
   <img :src="imageSrc" />
 
+<<<<<<< HEAD
   <!-- 缩写形式的动态 attribute 名 -->
+=======
+  <!-- same-name shorthand (3.4+), expands to :src="src" -->
+  <img :src />
+
+  <!-- shorthand dynamic attribute name -->
+>>>>>>> d69ec67f (v-bind same-name shorthand)
   <button :[key]="value"></button>
 
   <!-- 内联字符串拼接 -->
