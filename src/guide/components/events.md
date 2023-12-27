@@ -287,7 +287,8 @@ export default {
 
 ## 将事件作为 prop {#events-props}
 
-你也可以通过在大写的事件名称前加上 `on` 将 `events` 作为 `props` 声明并传递
+你也可以通过在大写的事件名称前加上 `on` 将 `events` 作为 `props` 声明并传递。
+
 与使用 `emit('event')` 的行为不同，`props.onEvent` 只会处理基于属性的监听器（`@event` 或 `:on-event`）
 
 :::warning
