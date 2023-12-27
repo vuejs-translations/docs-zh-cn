@@ -401,8 +401,9 @@ defineProps({
     }
   },
   // 自定义类型校验函数
+  // 在 3.4+ 中完整的 props 作为第二个参数传入
   propF: {
-    validator(value) {
+    validator(value, props) {
       // The value must match one of these strings
       return ['success', 'warning', 'danger'].includes(value)
     }
@@ -455,8 +456,9 @@ export default {
       }
     },
     // 自定义类型校验函数
+    // 在 3.4+ 中完整的 props 作为第二个参数传入
     propF: {
-      validator(value) {
+      validator(value, props) {
         // The value must match one of these strings
         return ['success', 'warning', 'danger'].includes(value)
       }
