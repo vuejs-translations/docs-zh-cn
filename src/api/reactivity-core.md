@@ -52,7 +52,7 @@
   ```ts
   // 只读
   function computed<T>(
-    getter: () => T,
+    getter: (oldValue: T | undefined) => T,
     // 查看下方的 "计算属性调试" 链接
     debuggerOptions?: DebuggerOptions
   ): Readonly<Ref<Readonly<T>>>
@@ -60,7 +60,7 @@
   // 可写的
   function computed<T>(
     options: {
-      get: () => T
+      get: (oldValue: T | undefined) => T
       set: (value: T) => void
     },
     debuggerOptions?: DebuggerOptions
@@ -108,10 +108,13 @@
   })
   ```
 
+<!-- TODO: translation -->
+
 - **参考**
   - [指南 - 计算属性](/guide/essentials/computed)
   - [指南 - 计算属性调试](/guide/extras/reactivity-in-depth#computed-debugging)
   - [指南 - 为 `computed()` 标注类型](/guide/typescript/composition-api#typing-computed) <sup class="vt-badge ts" />
+  - [指南 - 性能优化 - Computed Stability](/guide/best-practices/performance#computed-stability) <sup class="vt-badge" data-text="3.4+" />
 
 ## reactive() {#reactive}
 
