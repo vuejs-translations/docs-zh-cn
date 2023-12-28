@@ -99,27 +99,6 @@
   </template>
   ```
 
-  从 3.3 开始你也可以直接在 `<script setup>` 中使用 `defineOptions`：
-
-  ```vue
-  <script setup>
-  defineProps(['label', 'value'])
-  defineEmits(['input'])
-  defineOptions({ inheritAttrs: false })
-  </script>
-
-  <template>
-    <label>
-      {{ label }}
-      <input
-        v-bind="$attrs"
-        v-bind:value="value"
-        v-on:input="$emit('input', $event.target.value)"
-      />
-    </label>
-  </template>
-  ```
-
   </div>
 
 - **参考**[透传 attribute](/guide/components/attrs)
@@ -184,7 +163,5 @@
   ```vue-html
   <input v-focus>
   ```
-
-  这个列表中的指令都在当前组件实例中可用。
 
 - **参考**[自定义指令](/guide/reusability/custom-directives)
