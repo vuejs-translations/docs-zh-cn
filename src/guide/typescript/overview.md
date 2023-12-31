@@ -212,7 +212,7 @@ let x: string | number = 1
 如果正在使用 Vue CLI 或基于 webpack 的配置，支持模板内表达式的 TypeScript 需要 `vue-loader@^16.8.0`。
 :::
 
-### 使用 TSX
+### 使用 TSX {#usage-with-tsx}
 
 Vue 也支持使用 JSX / TSX 编写组件。详情请查阅[渲染函数 & JSX](/guide/extras/render-function.html#jsx-tsx)。
 
