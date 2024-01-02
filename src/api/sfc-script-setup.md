@@ -227,6 +227,77 @@ const props = withDefaults(defineProps<Props>(), {
 
 上面代码会被编译为等价的运行时 props 的 `default` 选项。此外，`withDefaults` 辅助函数提供了对默认值的类型检查，并确保返回的 `props` 的类型删除了已声明默认值的属性的可选标志。
 
+## defineModel() <sup class="vt-badge" data-text="3.4+" /> {#definemodel}
+
+这个宏可以用来声明一个双向绑定属性，可以通过父组件的 `v-model` 来使用。[组件 `v-model`](/guide/components/v-model) 指南中也讨论了示例用法。
+
+在底层，这个宏声明了一个属性和一个相应的值更新事件。如果第一个参数是一个字面值字符串，它将被用作属性名称；否则，属性名称将默认为 `"modelValue"`。在这两种情况下，你也可以传递一个额外的对象，它可以包括 prop 的选项和模型 ref 的值转换选项。
+
+```js
+// 声明 “modelValue” 属性，由父节点通过v-model使用
+const model = defineModel();
+// OR: 声明具有选项的 “modelValue” 属性
+const model = defineModel({ type: String });
+
+// 在发生改变时，触发事件 "update:modelValue"
+model.value = "hello";
+
+// 声明 "count" 属性，由父节点通过v-model:count使用
+const count = defineModel("count");
+// OR: 声明带有选项的 “count” 属性
+const count = defineModel("count", { type: Number, default: 0 });
+
+function inc() {
+  // 在发生改变时，触发事件 "update:count"
+  count.value++;
+}
+```
+
+### 修饰符和转换器 {#modifiers-and-transformers}
+
+为了访问 `v-model` 指令使用的修饰符，我们可以像这样解构 `defineModel()` 的返回值：
+
+```js
+const [modelValue, modelModifiers] = defineModel();
+
+// 对应 v-model.trim
+if (modelModifiers.trim) {
+  // ...
+}
+```
+
+当存在修饰符时，我们可能需要在读取或将其同步回父元素时对其值进行转换。我们可以通过使用 `get` 和 `set` 转换器选项来实现这一点
+
+```js
+const [modelValue, modelModifiers] = defineModel({
+  // get() 省略了，因为这里不需要它
+  set(value) {
+    // 如果使用.trim修饰符，则返回处理过的值
+    if (modelModifiers.trim) {
+      return value.trim();
+    }
+    // 否则，按原样返回值
+    return value;
+  },
+});
+```
+
+### TypeScript 用法 <sup class="vt-badge ts" /> {#usage-with-typescript}
+
+与 `defineProps` 和 `defineEmits` 一样，`defineModel` 也可以接收类型参数来指定模型值和修饰符的类型
+
+```ts
+const modelValue = defineModel<string>();
+//    ^? Ref<string | undefined>
+
+// 带有选项的默认模型，required 删除可能的未定义值
+const modelValue = defineModel<string>({ required: true });
+//    ^? Ref<string>
+
+const [modelValue, modifiers] = defineModel<string, "trim" | "uppercase">();
+//                 ^? Record<'trim' | 'uppercase', true | undefined>
+```
+
 ## defineExpose() {#defineexpose}
 
 使用 `<script setup>` 的组件是**默认关闭**的——即通过模板引用或者 `$parent` 链获取到的组件的公开实例，**不会**暴露任何在 `<script setup>` 中声明的绑定。
