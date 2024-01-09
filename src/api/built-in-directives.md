@@ -295,14 +295,10 @@
   <!-- 缩写 -->
   <img :src="imageSrc" />
 
-<<<<<<< HEAD
-  <!-- 缩写形式的动态 attribute 名 -->
-=======
-  <!-- same-name shorthand (3.4+), expands to :src="src" -->
+  <!-- 缩写形式的动态 attribute 名 (3.4+)，扩展为 :src="src" -->
   <img :src />
 
-  <!-- shorthand dynamic attribute name -->
->>>>>>> d69ec67f (v-bind same-name shorthand)
+  <!-- 动态 attribute 名的缩写 -->
   <button :[key]="value"></button>
 
   <!-- 内联字符串拼接 -->
