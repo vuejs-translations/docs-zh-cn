@@ -284,7 +284,7 @@ const [modelValue, modelModifiers] = defineModel({
 
 ### 在 TypeScript 中使用 <sup class="vt-badge ts" /> {#usage-with-typescript}
 
-与 `defineProps` 和 `defineEmits` 一样，`defineModel` 也可以接收类型参数来指定模型值和修饰符的类型
+与 `defineProps` 和 `defineEmits` 一样，`defineModel` 也可以接收类型参数来指定 model 值和修饰符的类型：
 
 ```ts
 const modelValue = defineModel<string>();
