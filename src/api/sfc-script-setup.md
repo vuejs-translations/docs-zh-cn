@@ -272,7 +272,7 @@ if (modelModifiers.trim) {
 const [modelValue, modelModifiers] = defineModel({
   // get() 省略了，因为这里不需要它
   set(value) {
-    // 如果使用.trim修饰符，则返回处理过的值
+    // 如果使用了 .trim 修饰符，则返回 trim 过的值
     if (modelModifiers.trim) {
       return value.trim();
     }
