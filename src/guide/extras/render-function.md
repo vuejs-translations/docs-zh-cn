@@ -241,13 +241,23 @@ Vue 的类型定义也提供了 TSX 语法的类型推导支持。当使用 TSX 
 
 ### JSX 类型推断 {#jsx-type-inference}
 
-与转换类似，Vue 的 JSX 也需要不同的类型定义。目前，Vue 的类型会在全局范围内自动注册 Vue 的 JSX 类型。这意味着当 Vue 的类型可用时，TSX 将可以开箱即用。
+与转换类似，Vue 的 JSX 也需要不同的类型定义。
 
-全局的 JSX 类型在与其他同样需要 JSX 类型推断的库一起使用时可能会引起冲突，特别是 React。从 3.3 开始，Vue 支持通过 TypeScript 的 [jsxImportSource](https://www.typescriptlang.org/tsconfig#jsxImportSource) 选项指定 JSX 命名空间。我们计划在 3.4 中移除默认的全局 JSX 命名空间注册。
+<!-- TODO: translation -->
 
-对于 TSX 用户，建议在升级到 3.3 之后，在 `tsconfig.json` 中把 [jsxImportSource](https://www.typescriptlang.org/tsconfig#jsxImportSource) 设置为 `'vue'`，或者针对单个文件加入 `/* @jsxImportSource vue */`。这可以让你现在就选用该新特性，并在 3.4 发布时无痛升级。
+Starting in Vue 3.4, Vue no longer implicitly registers the global `JSX` namespace. To instruct TypeScript to use Vue's JSX type definitions, make sure to include the following in your `tsconfig.json`:
 
-如果仍有代码依赖于全局存在的 `JSX` 命名空间，你可以通过显式引用 `vue/jsx` 来保留 3.4 之前的全局行为，它注册了全局 `JSX` 命名空间。
+```json
+{
+  "compilerOptions": {
+    "jsx": "preserve",
+    "jsxImportSource": "vue"
+    // ...
+  }
+}
+```
+
+如果仍有代码依赖于全局存在的 `JSX` 命名空间，你可以在项目中通过显式导入或引用 `vue/jsx` 来保留 3.4 之前的全局行为，它注册了全局 `JSX` 命名空间。
 
 ## 渲染函数案例 {#render-function-recipes}
 

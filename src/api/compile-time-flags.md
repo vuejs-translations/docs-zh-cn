@@ -14,7 +14,6 @@ outline: deep
 
 请参考[配置指南](#configuration-guides)来了解如何根据你的构建工具进行配置。
 
-
 ## `__VUE_OPTIONS_API__` {#VUE_OPTIONS_API}
 
 - **默认值：** `true`

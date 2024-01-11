@@ -52,7 +52,7 @@
   ```ts
   // 只读
   function computed<T>(
-    getter: () => T,
+    getter: (oldValue: T | undefined) => T,
     // 查看下方的 "计算属性调试" 链接
     debuggerOptions?: DebuggerOptions
   ): Readonly<Ref<Readonly<T>>>
@@ -60,7 +60,7 @@
   // 可写的
   function computed<T>(
     options: {
-      get: () => T
+      get: (oldValue: T | undefined) => T
       set: (value: T) => void
     },
     debuggerOptions?: DebuggerOptions
@@ -108,10 +108,13 @@
   })
   ```
 
+<!-- TODO: translation -->
+
 - **参考**
   - [指南 - 计算属性](/guide/essentials/computed)
   - [指南 - 计算属性调试](/guide/extras/reactivity-in-depth#computed-debugging)
   - [指南 - 为 `computed()` 标注类型](/guide/typescript/composition-api#typing-computed) <sup class="vt-badge ts" />
+  - [指南 - 性能优化 - Computed Stability](/guide/best-practices/performance#computed-stability) <sup class="vt-badge" data-text="3.4+" />
 
 ## reactive() {#reactive}
 
@@ -360,6 +363,7 @@
     flush?: 'pre' | 'post' | 'sync' // 默认：'pre'
     onTrack?: (event: DebuggerEvent) => void
     onTrigger?: (event: DebuggerEvent) => void
+    once?: boolean // 默认：false (3.4+)
   }
   ```
 
@@ -382,10 +386,13 @@
 
   第三个可选的参数是一个对象，支持以下这些选项：
 
+  <!-- TODO: translation -->
+
   - **`immediate`**：在侦听器创建时立即触发回调。第一次调用时旧值是 `undefined`。
   - **`deep`**：如果源是对象，强制深度遍历，以便在深层级变更时触发回调。参考[深层侦听器](/guide/essentials/watchers#deep-watchers)。
   - **`flush`**：调整回调函数的刷新时机。参考[回调的刷新时机](/guide/essentials/watchers#callback-flush-timing)及 [`watchEffect()`](/api/reactivity-core#watcheffect)。
   - **`onTrack / onTrigger`**：调试侦听器的依赖。参考[调试侦听器](/guide/extras/reactivity-in-depth#watcher-debugging)。
+  - **`once`**: run the callback only once. The watcher is automatically stopped after the first callback run. <sup class="vt-badge" data-text="3.4+" />
 
   与 [`watchEffect()`](#watcheffect) 相比，`watch()` 使我们可以：
 
