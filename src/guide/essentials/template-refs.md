@@ -12,7 +12,7 @@
 
 <div class="composition-api">
 
-为了通过组合式 API 获得该模板引用，我们需要声明一个同名的 ref：
+为了通过组合式 API 获得该模板引用，我们需要声明一个匹配模板 ref attribute 值的 ref：
 
 ```vue
 <script setup>

@@ -6,10 +6,9 @@ footer: false
 
 :::info 你正在阅读的是 Vue 3 的文档！
 
-- Vue 2 将于 2023 年 12 月 31 日停止维护。详见 [Vue 2 延长 LTS](https://v2.vuejs.org/lts/)。
-- Vue 2 中文文档已迁移至 [v2.cn.vuejs.org](https://v2.cn.vuejs.org/)。
+- Vue 2 已于 **2023 年 12 月 31 日**停止维护。详见 [Vue 2 终止支持 (EOL)](https://v2.cn.vuejs.org/eol/).
 - 想从 Vue 2 升级？请参考[迁移指南](https://v3-migration.vuejs.org/)。
-  :::
+:::
 
 <style src="@theme/styles/vue-mastery.css"></style>
 <div class="vue-mastery-link">
@@ -281,4 +280,3 @@ onMounted(() => {
     <p class="next-steps-caption">浏览核心功能和常见用户界面的示例。</p>
   </a>
 </div>
-

@@ -374,7 +374,13 @@ console.log(app.config)
   - 自定义指令钩子
   - 过渡 (Transition) 钩子
 
-- **示例**
+  <!-- TODO: translation -->
+
+  :::tip
+  In production, the 3rd argument (`info`) will be a shortened code instead of the full information string. You can find the code to string mapping in the [Production Error Code Reference](/error-reference/#runtime-errors).
+  :::
+
+- **Example**
 
   ```js
   app.config.errorHandler = (err, instance, info) => {

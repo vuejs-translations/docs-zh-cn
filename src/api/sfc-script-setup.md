@@ -229,7 +229,7 @@ const props = withDefaults(defineProps<Props>(), {
 
 ## defineModel() <sup class="vt-badge" data-text="3.4+" /> {#definemodel}
 
-这个宏可以用来声明一个双向绑定属性，可以通过父组件的 `v-model` 来使用。[组件 `v-model`](/guide/components/v-model) 指南中也讨论了示例用法。
+这个宏可以用来声明一个双向绑定属性，通过父组件的 `v-model` 来使用。[组件 `v-model`](/guide/components/v-model) 指南中也讨论了示例用法。
 
 在底层，这个宏声明了一个属性和一个相应的值更新事件。如果第一个参数是一个字面值字符串，它将被用作属性名称；否则，属性名称将默认为 `"modelValue"`。在这两种情况下，你也可以传递一个额外的对象，它可以包括 prop 的选项和模型 ref 的值转换选项。
 
@@ -266,7 +266,7 @@ if (modelModifiers.trim) {
 }
 ```
 
-当存在修饰符时，我们可能需要在读取或将其同步回父元素时对其值进行转换。我们可以通过使用 `get` 和 `set` 转换器选项来实现这一点
+当存在修饰符时，我们可能需要在读取或将其同步回父元素时对其值进行转换。我们可以通过使用 `get` 和 `set` 转换器选项来实现这一点：
 
 ```js
 const [modelValue, modelModifiers] = defineModel({
@@ -320,7 +320,7 @@ defineExpose({
 
 当父组件通过模板引用的方式获取到当前组件的实例，获取到的实例会像这样 `{ a: number, b: number }` (ref 会和在普通实例中一样被自动解包)
 
-## defineOptions() {#defineoptions}
+## defineOptions() <sup class="vt-badge" data-text="3.3+" /> {#defineoptions}
 
 这个宏可以用来直接在 `<script setup>` 中声明组件选项，而不必使用单独的 `<script>` 块：
 
@@ -450,5 +450,5 @@ defineProps<{
 
 ## 限制 {#restrictions}
 
-* 由于模块执行语义的差异，`<script setup>` 中的代码依赖单文件组件的上下文。当将其移动到外部的 `.js` 或者 `.ts` 文件中的时候，对于开发者和工具来说都会感到混乱。因此，**`<script setup>`** 不能和 `src` attribute 一起使用。
-* `<script setup>` 不支持 DOM 内根组件模板。([相关讨论](https://github.com/vuejs/core/issues/8391))
+- 由于模块执行语义的差异，`<script setup>` 中的代码依赖单文件组件的上下文。当将其移动到外部的 `.js` 或者 `.ts` 文件中的时候，对于开发者和工具来说都会感到混乱。因此，**`<script setup>`** 不能和 `src` attribute 一起使用。
+- `<script setup>` 不支持 DOM 内根组件模板。([相关讨论](https://github.com/vuejs/core/issues/8391))

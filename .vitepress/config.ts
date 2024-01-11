@@ -17,6 +17,7 @@ const nav: ThemeConfig['nav'] = [
       { text: '快速上手', link: '/guide/quick-start' },
       // { text: '风格指南', link: '/style-guide/' },
       { text: '术语表', link: '/glossary/' },
+      { text: '错误码参照表', link: '/error-reference/' },
       {
         text: 'Vue 2 文档',
         link: 'https://v2.cn.vuejs.org'
@@ -419,7 +420,7 @@ export const sidebar: ThemeConfig['sidebar'] = {
         { text: '服务端渲染', link: '/api/ssr' },
         { text: 'TypeScript 工具类型', link: '/api/utility-types' },
         { text: '自定义渲染', link: '/api/custom-renderer' },
-        { text: '编译时标志', link: '/api/compile-time-flags' }
+        { text: '编译时标志', link: '/api/compile-time-flags' },
       ]
     }
   ],
@@ -599,15 +600,25 @@ export default defineConfigWithTheme<ThemeConfig>({
 
   head: [
     ['meta', { name: 'theme-color', content: '#3c8772' }],
-    ['meta', { name: 'twitter:site', content: '@vuejs' }],
-    ['meta', { name: 'twitter:card', content: 'summary' }],
+    ['meta', { property: 'og:url', content: 'https://vuejs.org/' }],
+    ['meta', { property: 'og:type', content: 'website' }],
+    ['meta', { property: 'og:title', content: 'Vue.js' }],
     [
       'meta',
       {
-        name: 'twitter:image',
+        property: 'og:description',
+        content: 'Vue.js - 渐进式的 JavaScript 框架'
+      }
+    ],
+    [
+      'meta',
+      {
+        property: 'og:image',
         content: 'https://vuejs.org/images/logo.png'
       }
     ],
+    ['meta', { name: 'twitter:site', content: '@vuejs' }],
+    ['meta', { name: 'twitter:card', content: 'summary' }],
     [
       'link',
       {
