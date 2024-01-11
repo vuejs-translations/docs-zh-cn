@@ -239,7 +239,7 @@ const model = defineModel();
 // OR: 声明具有选项的 “modelValue” 属性
 const model = defineModel({ type: String });
 
-// 在发生改变时，触发事件 "update:modelValue"
+// 在出现变化时，触发事件 "update:modelValue"
 model.value = "hello";
 
 // 声明 "count" 属性，由父节点通过v-model:count使用
