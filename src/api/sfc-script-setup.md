@@ -234,7 +234,7 @@ const props = withDefaults(defineProps<Props>(), {
 在底层，这个宏声明了一个属性和一个相应的值更新事件。如果第一个参数是一个字面值字符串，它将被用作属性名称；否则，属性名称将默认为 `"modelValue"`。在这两种情况下，你也可以传递一个额外的对象，它可以包括 prop 的选项和模型 ref 的值转换选项。
 
 ```js
-// 声明 “modelValue” 属性，由父节点通过v-model使用
+// 声明 “modelValue” 属性，由父节点通过 v-model 使用
 const model = defineModel();
 // OR: 声明具有选项的 “modelValue” 属性
 const model = defineModel({ type: String });
