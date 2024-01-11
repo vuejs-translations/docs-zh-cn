@@ -234,28 +234,28 @@ const props = withDefaults(defineProps<Props>(), {
 在底层，这个宏声明了一个属性和一个相应的值更新事件。如果第一个参数是一个字面值字符串，它将被用作属性名称；否则，属性名称将默认为 `"modelValue"`。在这两种情况下，你也可以传递一个额外的对象，它可以包括 prop 的选项和模型 ref 的值转换选项。
 
 ```js
-// 声明 “modelValue” 属性，由父节点通过 v-model 使用
+// 声明 "modelValue" prop，由父组件通过 v-model 使用
 const model = defineModel();
-// OR: 声明具有选项的 “modelValue” 属性
+// 或者：声明带选项的 "modelValue" prop
 const model = defineModel({ type: String });
 
-// 在出现变化时，触发事件 "update:modelValue"
+// 在被修改时，触发 "update:modelValue" 事件
 model.value = "hello";
 
-// 声明 "count" 属性，由父节点通过v-model:count使用
+// 声明 "count" prop，由父组件通过 v-model:count 使用
 const count = defineModel("count");
-// OR: 声明带有选项的 “count” 属性
+// 或者：声明带选项的 "count" prop
 const count = defineModel("count", { type: Number, default: 0 });
 
 function inc() {
-  // 在发生改变时，触发事件 "update:count"
+  // 在被修改时，触发 "update:count" 事件
   count.value++;
 }
 ```
 
 ### 修饰符和转换器 {#modifiers-and-transformers}
 
-为了访问 `v-model` 指令使用的修饰符，我们可以像这样解构 `defineModel()` 的返回值：
+为了获取 `v-model` 指令使用的修饰符，我们可以像这样解构 `defineModel()` 的返回值：
 
 ```js
 const [modelValue, modelModifiers] = defineModel();
@@ -266,7 +266,7 @@ if (modelModifiers.trim) {
 }
 ```
 
-当存在修饰符时，我们可能需要在读取或将其同步回父元素时对其值进行转换。我们可以通过使用 `get` 和 `set` 转换器选项来实现这一点：
+当存在修饰符时，我们可能需要在读取或将其同步回父组件时对其值进行转换。我们可以通过使用 `get` 和 `set` 转换器选项来实现这一点：
 
 ```js
 const [modelValue, modelModifiers] = defineModel({
@@ -276,13 +276,13 @@ const [modelValue, modelModifiers] = defineModel({
     if (modelModifiers.trim) {
       return value.trim();
     }
-    // 否则，按原样返回值
+    // 否则，原样返回
     return value;
   },
 });
 ```
 
-### TypeScript 用法 <sup class="vt-badge ts" /> {#usage-with-typescript}
+### 在 TypeScript 中使用 <sup class="vt-badge ts" /> {#usage-with-typescript}
 
 与 `defineProps` 和 `defineEmits` 一样，`defineModel` 也可以接收类型参数来指定模型值和修饰符的类型
 
@@ -290,7 +290,7 @@ const [modelValue, modelModifiers] = defineModel({
 const modelValue = defineModel<string>();
 //    ^? Ref<string | undefined>
 
-// 带有选项的默认模型，required 删除可能的未定义值
+// 用带有选项的默认 model，设置 required 去掉了可能的 undefined 值
 const modelValue = defineModel<string>({ required: true });
 //    ^? Ref<string>
 
