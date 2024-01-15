@@ -124,7 +124,7 @@ const Foo = defineAsyncComponent(() => import('./Foo.vue'))
 
 `v-memo` 是一个内置指令，可以用来有条件地跳过某些大型子树或者 `v-for` 列表的更新。查看它的 [API 参考手册](/api/built-in-directives#v-memo)可以了解更多细节。
 
-### Computed 稳定性 <sup class="vt-badge" data-text="3.4+" /> {#computed-stability}
+### 计算属性稳定性 <sup class="vt-badge" data-text="3.4+" /> {#computed-stability}
 
 从 3.4 开始，计算属性仅在其计算值较前一个值发生更改时才会触发副作用。例如，以下 `isEven` 计算属性仅在返回值从 `true` 更改为 `false` 时才会触发副作用，反之亦然：
 
@@ -139,7 +139,7 @@ count.value = 2
 count.value = 4
 ```
 
-这减少了触发非必要副作用的行为，但不幸的是，如果计算属性在每次计算时都创建一个新对象，则不起作用：
+这减少了非必要副作用的触发。但不幸的是，如果计算属性在每次计算时都创建一个新对象，则不起作用：
 
 ```js
 const computedObj = computed(() => {
@@ -149,9 +149,9 @@ const computedObj = computed(() => {
 })
 ```
 
-由于每次都会创建一个新对象，因此从技术上讲，新值始终与旧值不同。即使 `isEven` 属性保持不变，Vue 也无法知道，除非它对旧值和新值进行深度比较。这种比较可能代价高昂，而且可能是不值得的。
+由于每次都会创建一个新对象，因此从技术上讲，新旧值始终不同。即使 `isEven` 属性保持不变，Vue 也无法知道，除非它对旧值和新值进行深度比较。这种比较可能代价高昂，并不值得。
 
-相反，我们可以通过手动比较新值与旧值来优化这一点，如果我们知道没有任何变化，则有条件地返回旧值：
+相反，我们可以通过手动比较新旧值来优化。如果我们知道没有变化，则有条件地返回旧值：
 
 ```js
 const computedObj = computed((oldValue) => {
@@ -167,7 +167,7 @@ const computedObj = computed((oldValue) => {
 
 [演练场示例](https://play.vuejs.org/#eNqVVMtu2zAQ/JUFgSZK4UpuczMkow/40AJ9IC3aQ9mDIlG2EokUyKVt1PC/d0lKtoEminMQQC1nZ4c7S+7Yu66L11awGUtNoesOwQi03ZzLuu2URtiBFtUECtV2FkU5gU2OxWpRVaJA2EOlVQuXxHDJJZeFkgYJayVC5hKj6dUxLnzSjZXmV40rZfFrh3Vb/82xVrLH//5DCQNNKPkweNiNVFP+zBsrIJvDjksgGrRahjVAbRZrIWdBVLz2yBfwBrIsg6mD7LncPyryfIVnywupUmz68HOEEqqCI+XFBQzrOKR79MDdx66GCn1jhpQDZx8f0oZ+nBgdRVcH/aMuBt1xZ80qGvGvh/X6nlXwnGpPl6qsLLxTtitzFFTNl0oSN/79AKOCHHQuS5pw4XorbXsr9ImHZN7nHFdx1SilI78MeOJ7Ca+nbvgd+GgomQOv6CNjSQqXaRJuHd03+kHRdg3JoT+A3a7XsfcmpbcWkQS/LZq6uM84C8o5m4fFuOg0CemeOXXX2w2E6ylsgj2gTgeYio/f1l5UEqj+Z3yC7lGuNDlpApswNNTrql7Gd0ZJeqW8TZw5t+tGaMdDXnA2G4acs7xp1OaTj6G2YjLEi5Uo7h+I35mti3H2TQsj9Jp6etjDXC8Fhu3F9y9iS+vDZqtK2xB6ZPNGGNVYpzHA3ltZkuwTnFf70b+1tVz+MIstCmmGQzmh/p56PGf00H4YOfpR7nV8PTxubP8P2GAP9Q==)
 
-值得注意的是，你应该始终在比较和返回旧值之前执行完整计算，以便在每次运行时都可以收集相同的依赖项。
+值得注意的是，你应该始终在比较和返回旧值之前执行完整计算，以便在每次运行时都可以收集到相同的依赖项。
 
 ## 通用优化 {#general-optimizations}
 

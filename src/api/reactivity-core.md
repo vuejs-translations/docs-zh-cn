@@ -112,7 +112,7 @@
   - [指南 - 计算属性](/guide/essentials/computed)
   - [指南 - 计算属性调试](/guide/extras/reactivity-in-depth#computed-debugging)
   - [指南 - 为 `computed()` 标注类型](/guide/typescript/composition-api#typing-computed) <sup class="vt-badge ts" />
-  - [指南 - 性能优化 - Computed 稳定性](/guide/best-practices/performance#computed-stability) <sup class="vt-badge" data-text="3.4+" />
+  - [指南 - 性能优化 - 计算属性稳定性](/guide/best-practices/performance#computed-stability) <sup class="vt-badge" data-text="3.4+" />
 
 ## reactive() {#reactive}
 
