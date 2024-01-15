@@ -227,76 +227,74 @@ const props = withDefaults(defineProps<Props>(), {
 
 上面代码会被编译为等价的运行时 props 的 `default` 选项。此外，`withDefaults` 辅助函数提供了对默认值的类型检查，并确保返回的 `props` 的类型删除了已声明默认值的属性的可选标志。
 
-<!-- TODO: translation -->
-
 ## defineModel() <sup class="vt-badge" data-text="3.4+" /> {#definemodel}
 
-This macro can be used to declare a two-way binding prop that can be consumed via `v-model` from the parent component. Example usage is also discussed in the [Component `v-model`](/guide/components/v-model) guide.
+这个宏可以用来声明一个双向绑定 prop，通过父组件的 `v-model` 来使用。[组件 `v-model`](/guide/components/v-model) 指南中也讨论了示例用法。
 
-Under the hood, this macro declares a model prop and a corresponding value update event. If the first argument is a literal string, it will be used as the prop name; Otherwise the prop name will default to `"modelValue"`. In both cases, you can also pass an additional object which can include the prop's options and the model ref's value transform options.
+在底层，这个宏声明了一个 model prop 和一个相应的值更新事件。如果第一个参数是一个字符串字面量，它将被用作 prop 名称；否则，prop 名称将默认为 `"modelValue"`。在这两种情况下，你都可以再传递一个额外的对象，它可以包含 prop 的选项和 model ref 的值转换选项。
 
 ```js
-// declares "modelValue" prop, consumed by parent via v-model
+// 声明 "modelValue" prop，由父组件通过 v-model 使用
 const model = defineModel()
-// OR: declares "modelValue" prop with options
+// 或者：声明带选项的 "modelValue" prop
 const model = defineModel({ type: String })
 
-// emits "update:modelValue" when mutated
-model.value = 'hello'
+// 在被修改时，触发 "update:modelValue" 事件
+model.value = "hello"
 
-// declares "count" prop, consumed by parent via v-model:count
-const count = defineModel('count')
-// OR: declares "count" prop with options
-const count = defineModel('count', { type: Number, default: 0 })
+// 声明 "count" prop，由父组件通过 v-model:count 使用
+const count = defineModel("count")
+// 或者：声明带选项的 "count" prop
+const count = defineModel("count", { type: Number, default: 0 })
 
 function inc() {
-  // emits "update:count" when mutated
+  // 在被修改时，触发 "update:count" 事件
   count.value++
 }
 ```
 
-### Modifiers and Transformers {#modifiers-and-transformers}
+### 修饰符和转换器 {#modifiers-and-transformers}
 
-To access modifiers used with the `v-model` directive, we can destructure the return value of `defineModel()` like this:
+为了获取 `v-model` 指令使用的修饰符，我们可以像这样解构 `defineModel()` 的返回值：
 
 ```js
 const [modelValue, modelModifiers] = defineModel()
 
-// corresponds to v-model.trim
+// 对应 v-model.trim
 if (modelModifiers.trim) {
   // ...
 }
 ```
 
-When a modifier is present, we likely need to transform the value when reading or syncing it back to the parent. We can achieve this by using the `get` and `set` transformer options:
+当存在修饰符时，我们可能需要在读取或将其同步回父组件时对其值进行转换。我们可以通过使用 `get` 和 `set` 转换器选项来实现这一点：
 
 ```js
 const [modelValue, modelModifiers] = defineModel({
-  // get() omitted as it is not needed here
+  // get() 省略了，因为这里不需要它
   set(value) {
-    // if the .trim modifier is used, return trimmed value
+    // 如果使用了 .trim 修饰符，则返回裁剪后过的值
     if (modelModifiers.trim) {
       return value.trim()
     }
-    // otherwise, return the value as-is
+    // 否则，原样返回
     return value
   }
 })
 ```
 
-### Usage with TypeScript <sup class="vt-badge ts" /> {#usage-with-typescript}
+### 在 TypeScript 中使用 <sup class="vt-badge ts" /> {#usage-with-typescript}
 
-Like `defineProps` and `defineEmits`, `defineModel` can also receive type arguments to specify the types of the model value and the modifiers:
+与 `defineProps` 和 `defineEmits` 一样，`defineModel` 也可以接收类型参数来指定 model 值和修饰符的类型：
 
 ```ts
 const modelValue = defineModel<string>()
 //    ^? Ref<string | undefined>
 
-// default model with options, required removes possible undefined values
+// 用带有选项的默认 model，设置 required 去掉了可能的 undefined 值
 const modelValue = defineModel<string>({ required: true })
 //    ^? Ref<string>
 
-const [modelValue, modifiers] = defineModel<string, 'trim' | 'uppercase'>()
+const [modelValue, modifiers] = defineModel<string, "trim" | "uppercase">()
 //                 ^? Record<'trim' | 'uppercase', true | undefined>
 ```
 
