@@ -231,7 +231,7 @@ const props = withDefaults(defineProps<Props>(), {
 
 这个宏可以用来声明一个双向绑定 prop，通过父组件的 `v-model` 来使用。[组件 `v-model`](/guide/components/v-model) 指南中也讨论了示例用法。
 
-在底层，这个宏声明了一个 prop 和一个相应的值更新事件。如果第一个参数是一个字符串字面量，它将被用作 prop 名称；否则，prop 名称将默认为 `"modelValue"`。在这两种情况下，你都可以再传递一个额外的对象，它可以包含 prop 的选项和 model ref 的值转换选项。
+在底层，这个宏声明了一个 model prop 和一个相应的值更新事件。如果第一个参数是一个字符串字面量，它将被用作 prop 名称；否则，prop 名称将默认为 `"modelValue"`。在这两种情况下，你都可以再传递一个额外的对象，它可以包含 prop 的选项和 model ref 的值转换选项。
 
 ```js
 // 声明 "modelValue" prop，由父组件通过 v-model 使用
@@ -272,7 +272,7 @@ if (modelModifiers.trim) {
 const [modelValue, modelModifiers] = defineModel({
   // get() 省略了，因为这里不需要它
   set(value) {
-    // 如果使用了 .trim 修饰符，则返回 trim 过的值
+    // 如果使用了 .trim 修饰符，则返回裁剪后过的值
     if (modelModifiers.trim) {
       return value.trim()
     }
