@@ -2,13 +2,13 @@
 
 <!-- TODO: translation -->
 
-## Basic Usage {#basic-usage}
+## 基本用法 {#basic-usage}
 
 `v-model` 可以在组件上使用以实现双向绑定。
 
 <div class="composition-api">
 
-Starting in Vue 3.4, the recommended approach to achieve this is using the [`defineModel()`](/api/sfc-script-setup#definemodel) macro:
+从 Vue 3.4 开始，推荐的实现方式是使用 [`defineModel()`](/api/sfc-script-setup#definemodel) 宏：
 
 ```vue
 <!-- Child.vue -->
@@ -25,19 +25,19 @@ function update() {
 </template>
 ```
 
-The parent can then bind a value with `v-model`:
+父组件可以用 `v-model` 绑定一个值：
 
 ```vue-html
 <!-- Parent.vue -->
 <Child v-model="count" />
 ```
 
-The value returned by `defineModel()` is a ref. It can be accessed and mutated like any other ref, except that it acts as a two-way binding between a parent value and a local one:
+`defineModel()` 返回的值是一个 ref。它可以像其他 ref 一样被访问以及改变，不过它能起到在父组件和当前变量之间的双向绑定的作用：
 
-- Its `.value` is synced with the value bound by the parent `v-model`;
-- When it is mutated by the child, it causes the parent bound value to be updated as well.
+- 它的 `.value` 和父组件的 `v-model` 的值同步；
+- 当它被子组件改变了，会触发父组件绑定的值一起更新。
 
-This means you can also bind this ref to a native input element with `v-model`, making it straightforward to wrap native input elements while providing the same `v-model` usage:
+这意味着你也可以用 `v-model` 绑定这个 ref 到一个原生 input 元素上，在提供相同的 `v-model` 用法的同时，直观的包装原生 input 元素：
 
 ```vue
 <script setup>
@@ -51,14 +51,14 @@ const model = defineModel()
 
 [Playground Example](https://play.vuejs.org/#eNqFUtFKwzAU/ZWYl06YLbK30Q10DFSYigq+5KW0t11mmoQknZPSf/cm3eqEsT0l555zuefmpKV3WsfbBuiUpjY3XDtiwTV6ziSvtTKOLNZcFKQ0qiZRnATkG6JB0BIDJen2kp5iMlfSOlLbisw8P4oeQAhFPpURxVV0zWSa9PNwEgIHtRaZA0SEpOvbeduG5q5LE0Sh2jvZ3tSqADFjFHlGSYJkmhz10zF1FseXvIo3VklcrfX9jOaq1lyAedGOoz1GpyQwnsvQ3fdTqDnTwPhQz9eQf52ob+zO1xh9NWDBbIHRgXOZqcD19PL9GXZ4H0h03whUnyHfwCrReI+97L6RBdo+0gW3j+H9uaw+7HLnQNrDUt6oV3ZBzyhmsjiz+p/dSTwJfUx2+IpD1ic+xz5enwQGXEDJJaw8Gl2I1upMzlc/hEvdOBR6SNKAjqP1J6P/o6XdL11L5h4=)
 
-### Under the Hood {#under-the-hood}
+### 底层逻辑 {#under-the-hood}
 
-`defineModel` is a convenience macro. The compiler expands it to the following:
+`defineModel` 是一个方便的宏。 编译器将其展开为以下内容：
 
-- A prop named `modelValue`, which the local ref's value is synced with;
-- An event named `update:modelValue`, which is emitted when the local ref's value is mutated.
+- 一个名为 `modelValue` 的 prop，本地 ref 的值与其同步；
+- 一个名为 `update:modelValue` 的事件，当本地 ref 的值发生变化时触发。
 
-This is how you would implement the same child component shown above prior to 3.4:
+在 3.4 版本之前，你一般会按照如下的方式来实现一个相同的子组件：
 
 ```vue
 <script setup>
@@ -73,16 +73,15 @@ const emit = defineEmits(['update:modelValue'])
   />
 </template>
 ```
+如你所见，这显得有点啰嗦。然而，这样写有助于理解其底层逻辑。
 
-As you can see, it is quite a bit more verbose. However, it is helpful to understand what is happening under the hood.
-
-Because `defineModel` declares a prop, you can therefore declare the underlying prop's options by passing it to `defineModel`:
+因为 `defineModel` 声明了一个 prop，你可以通过给 `defineModel` 传递选项，来声明底层 prop 的选项：
 
 ```js
-// making the v-model required
+// 使 v-model 必填
 const model = defineModel({ required: true })
 
-// providing a default value
+// 提供一个默认值
 const model = defineModel({ default: 0 })
 ```
 
