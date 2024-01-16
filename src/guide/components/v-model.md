@@ -32,10 +32,10 @@ function update() {
 <Child v-model="count" />
 ```
 
-`defineModel()` 返回的值是一个 ref。它可以像其他 ref 一样被访问以及改变，不过它能起到在父组件和当前变量之间的双向绑定的作用：
+`defineModel()` 返回的值是一个 ref。它可以像其他 ref 一样被访问以及变更，不过它能起到在父组件和当前变量之间的双向绑定的作用：
 
 - 它的 `.value` 和父组件的 `v-model` 的值同步；
-- 当它被子组件改变了，会触发父组件绑定的值一起更新。
+- 当它被子组件变更了，会触发父组件绑定的值一起更新。
 
 这意味着你也可以用 `v-model` 绑定这个 ref 到一个原生 input 元素上，在提供相同的 `v-model` 用法的同时，直观的包装原生 input 元素：
 
@@ -56,7 +56,7 @@ const model = defineModel()
 `defineModel` 是一个方便的宏。 编译器将其展开为以下内容：
 
 - 一个名为 `modelValue` 的 prop，本地 ref 的值与其同步；
-- 一个名为 `update:modelValue` 的事件，当本地 ref 的值发生变化时触发。
+- 一个名为 `update:modelValue` 的事件，当本地 ref 的值发生变更时触发。
 
 在 3.4 版本之前，你一般会按照如下的方式来实现一个相同的子组件：
 
@@ -73,6 +73,7 @@ const emit = defineEmits(['update:modelValue'])
   />
 </template>
 ```
+
 如你所见，这显得有点啰嗦。然而，这样写有助于理解其底层逻辑。
 
 因为 `defineModel` 声明了一个 prop，你可以通过给 `defineModel` 传递选项，来声明底层 prop 的选项：
