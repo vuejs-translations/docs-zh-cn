@@ -1,7 +1,5 @@
 # 组件 v-model {#component-v-model}
 
-<!-- TODO: translation -->
-
 ## 基本用法 {#basic-usage}
 
 `v-model` 可以在组件上使用以实现双向绑定。
@@ -32,12 +30,12 @@ function update() {
 <Child v-model="count" />
 ```
 
-`defineModel()` 返回的值是一个 ref。它可以像其他 ref 一样被访问以及变更，不过它能起到在父组件和当前变量之间的双向绑定的作用：
+`defineModel()` 返回的值是一个 ref。它可以像其他 ref 一样被访问以及修改，不过它能起到在父组件和当前变量之间的双向绑定的作用：
 
 - 它的 `.value` 和父组件的 `v-model` 的值同步；
 - 当它被子组件变更了，会触发父组件绑定的值一起更新。
 
-这意味着你也可以用 `v-model` 绑定这个 ref 到一个原生 input 元素上，在提供相同的 `v-model` 用法的同时，直观的包装原生 input 元素：
+这意味着你也可以用 `v-model` 把这个 ref 绑定到一个原生 input 元素上，在提供相同的 `v-model` 用法的同时轻松包装原生 input 元素：
 
 ```vue
 <script setup>
@@ -49,16 +47,16 @@ const model = defineModel()
 </template>
 ```
 
-[Playground Example](https://play.vuejs.org/#eNqFUtFKwzAU/ZWYl06YLbK30Q10DFSYigq+5KW0t11mmoQknZPSf/cm3eqEsT0l555zuefmpKV3WsfbBuiUpjY3XDtiwTV6ziSvtTKOLNZcFKQ0qiZRnATkG6JB0BIDJen2kp5iMlfSOlLbisw8P4oeQAhFPpURxVV0zWSa9PNwEgIHtRaZA0SEpOvbeduG5q5LE0Sh2jvZ3tSqADFjFHlGSYJkmhz10zF1FseXvIo3VklcrfX9jOaq1lyAedGOoz1GpyQwnsvQ3fdTqDnTwPhQz9eQf52ob+zO1xh9NWDBbIHRgXOZqcD19PL9GXZ4H0h03whUnyHfwCrReI+97L6RBdo+0gW3j+H9uaw+7HLnQNrDUt6oV3ZBzyhmsjiz+p/dSTwJfUx2+IpD1ic+xz5enwQGXEDJJaw8Gl2I1upMzlc/hEvdOBR6SNKAjqP1J6P/o6XdL11L5h4=)
+[演练场示例](https://play.vuejs.org/#eNqFUtFKwzAU/ZWYl06YLbK30Q10DFSYigq+5KW0t11mmoQknZPSf/cm3eqEsT0l555zuefmpKV3WsfbBuiUpjY3XDtiwTV6ziSvtTKOLNZcFKQ0qiZRnATkG6JB0BIDJen2kp5iMlfSOlLbisw8P4oeQAhFPpURxVV0zWSa9PNwEgIHtRaZA0SEpOvbeduG5q5LE0Sh2jvZ3tSqADFjFHlGSYJkmhz10zF1FseXvIo3VklcrfX9jOaq1lyAedGOoz1GpyQwnsvQ3fdTqDnTwPhQz9eQf52ob+zO1xh9NWDBbIHRgXOZqcD19PL9GXZ4H0h03whUnyHfwCrReI+97L6RBdo+0gW3j+H9uaw+7HLnQNrDUt6oV3ZBzyhmsjiz+p/dSTwJfUx2+IpD1ic+xz5enwQGXEDJJaw8Gl2I1upMzlc/hEvdOBR6SNKAjqP1J6P/o6XdL11L5h4=)
 
-### 底层逻辑 {#under-the-hood}
+### 底层机制 {#under-the-hood}
 
-`defineModel` 是一个方便的宏。 编译器将其展开为以下内容：
+`defineModel` 是一个便利宏。 编译器将其展开为以下内容：
 
 - 一个名为 `modelValue` 的 prop，本地 ref 的值与其同步；
 - 一个名为 `update:modelValue` 的事件，当本地 ref 的值发生变更时触发。
 
-在 3.4 版本之前，你一般会按照如下的方式来实现一个相同的子组件：
+在 3.4 版本之前，你一般会按照如下的方式来实现上述相同的子组件：
 
 ```vue
 <script setup>
@@ -74,7 +72,7 @@ const emit = defineEmits(['update:modelValue'])
 </template>
 ```
 
-如你所见，这显得有点啰嗦。然而，这样写有助于理解其底层逻辑。
+如你所见，这显得冗长得多。然而，这样写有助于理解其底层机制。
 
 因为 `defineModel` 声明了一个 prop，你可以通过给 `defineModel` 传递选项，来声明底层 prop 的选项：
 
