@@ -243,9 +243,7 @@ Vue 的类型定义也提供了 TSX 语法的类型推导支持。当使用 TSX 
 
 与转换类似，Vue 的 JSX 也需要不同的类型定义。
 
-<!-- TODO: translation -->
-
-Starting in Vue 3.4, Vue no longer implicitly registers the global `JSX` namespace. To instruct TypeScript to use Vue's JSX type definitions, make sure to include the following in your `tsconfig.json`:
+从 Vue 3.4 开始，Vue 不再隐式注册全局 `JSX` 命名空间。要指示 TypeScript 使用 Vue 的 JSX 类型定义，请确保在您的 `tsconfig.json` 中包含以下内容：
 
 ```json
 {
