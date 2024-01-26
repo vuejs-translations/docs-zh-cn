@@ -13,7 +13,7 @@ onMounted(() => {
 
 ## 运行时错误 {#runtime-errors}
 
-在生产环境中，传递给以下错误处理程序 API 的第三个参数不是含有完整信息的字符串，而是一串较短的代码。
+在生产环境中，传递给以下错误处理程序 API 的第三个参数是一个短代码，而不是含有完整信息的字符串：
 
 - [`app.config.errorHandler`](/api/application#app-config-errorhandler)
 - [`onErrorCaptured`](/api/composition-api-lifecycle#onerrorcaptured) (Composition API)
