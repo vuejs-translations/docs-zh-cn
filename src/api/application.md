@@ -375,7 +375,7 @@ console.log(app.config)
   - 过渡 (Transition) 钩子
 
   :::tip
-  在生产环境中，第三个参数 (`info`) 不是含有完整信息的字符串，而是一串较短的代码。代码和字符串的映射可以参阅[生产环境错误代码参考](/error-reference/#runtime-errors)。
+  在生产环境中，第三个参数 (`info`) 是一个缩短的代码，而不是含有完整信息的字符串。错误代码和字符串的映射可以参阅[生产环境错误代码参考](/error-reference/#runtime-errors)。
   :::
 
 - **示例**
