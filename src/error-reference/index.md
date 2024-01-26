@@ -9,24 +9,22 @@ onMounted(() => {
 })
 </script>
 
-# Production Error Code Reference {#error-reference}
+# 生产环境错误代码参考 {#error-reference}
 
-<!-- TODO: translation -->
+## 运行时错误 {#runtime-errors}
 
-## Runtime Errors {#runtime-errors}
-
-In production builds, the 3rd argument passed to the following error handler APIs will be a short code instead of the full information string:
+在生产环境中，传递给以下错误处理程序 API 的第三个参数是一个短代码，而不是含有完整信息的字符串：
 
 - [`app.config.errorHandler`](/api/application#app-config-errorhandler)
 - [`onErrorCaptured`](/api/composition-api-lifecycle#onerrorcaptured) (Composition API)
 - [`errorCaptured`](/api/options-lifecycle#errorcaptured) (Options API)
 
-The following table maps the codes to their original full information strings.
+下表提供了代码和其原始的完整信息字符串的映射。
 
 <ErrorsTable kind="runtime" :errors="data.runtime" :highlight="highlight" />
 
-## Compiler Errors {#compiler-errors}
+## 编译错误 {#compiler-errors}
 
-The following table provides a mapping of the production compiler error codes to their original messages.
+下表提供了生产环境的编译错误代码与其原始消息的映射。
 
 <ErrorsTable kind="compiler" :errors="data.compiler" :highlight="highlight" />
