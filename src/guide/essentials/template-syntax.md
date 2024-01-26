@@ -68,7 +68,7 @@ Vue 使用一种基于 HTML 的模板语法，使我们能够声明式地将其�
 
 ### 同名简写 <sup class="vt-badge" data-text="3.4+" /> {#same-name-shorthand}
 
-如果 attribute 的名称与绑定的 JavaScript 值的名称相同，那么可以进一步简化语法，省略 attribute：
+如果 attribute 的名称与绑定的 JavaScript 值的名称相同，那么可以进一步简化语法，省略 attribute 值：
 
 ```vue-html
 <!-- same as :id="id" -->
@@ -78,7 +78,7 @@ Vue 使用一种基于 HTML 的模板语法，使我们能够声明式地将其�
 <div v-bind:id></div>
 ```
 
-这与在JavaScript中声明对象时使用的属性简写语法类似。请注意，这是一个只在Vue 3.4及以上版本中可用的特性。
+这与在 JavaScript 中声明对象时使用的属性简写语法类似。请注意，这是一个只在 Vue 3.4 及以上版本中可用的特性。
 
 ### 布尔型 Attribute {#boolean-attributes}
 
