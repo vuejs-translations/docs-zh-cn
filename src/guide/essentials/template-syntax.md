@@ -68,7 +68,7 @@ Vue 使用一种基于 HTML 的模板语法，使我们能够声明式地将其�
 
 ### 同名简写 <sup class="vt-badge" data-text="3.4+" /> {#same-name-shorthand}
 
-如果属性的名称与绑定的JavaScript值的名称相同，那么可以进一步简化语法，省略属性值：
+如果 attribute 的名称与绑定的 JavaScript 值的名称相同，那么可以进一步简化语法，省略 attribute：
 
 ```vue-html
 <!-- same as :id="id" -->
