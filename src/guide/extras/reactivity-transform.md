@@ -8,7 +8,7 @@
 - 想要摆脱它的话，请查看这个[命令行工具](https://github.com/edison1105/drop-reactivity-transform)，它可以自动完成这一过程。
 - 如需继续使用，请通过 [Vue Macros](https://vue-macros.sxzz.moe/features/reactivity-transform.html) 插件。
 
-如果你仍然打算使用它，现在可以通过 [Vue Macros](https://vue-macros.sxzz.moe/features/reactivity-transform.html) 插件来使用。
+如果仍然打算使用它，你现在可以使用 [Vue Macros](https://vue-macros.sxzz.moe/features/reactivity-transform.html) 插件。
 :::
 
 :::tip 组合式 API 特有
