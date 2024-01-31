@@ -174,7 +174,7 @@ export default {
 
 ## `v-model` 的参数 {#v-model-arguments}
 
-`v-model` on a component can also accept an argument:
+组件上的 `v-model` 也可以接受一个参数：
 
 ```vue-html
 <MyComponent v-model:title="bookTitle" />
@@ -182,7 +182,7 @@ export default {
 
 <div class="composition-api">
 
-In the child component, we can support the corresponding argument by passing a string to `defineModel()` as its first argument:
+在子组件中，我们可以通过将字符串作为 `defineModel()` 的第一个参数来支持相应的参数：
 
 ```vue
 <!-- MyComponent.vue -->
@@ -197,7 +197,7 @@ const title = defineModel('title')
 
 [Try it in the Playground](https://play.vuejs.org/#eNqFkl9PwjAUxb9K05dhglsMb2SQqOFBE9Soj31Zxh0Uu7bpHxxZ9t29LWOiQXzaes7p2a+9a+mt1unOA53S3JaGa0csOK/nTPJaK+NISwxUpCOVUTVJMJoM1nJ/r/BNgnS9nWYnWujFMCFMlkpaRxx3AsgsFI6S3XWtViBIYda+Dg3QFLUWkFwxmWcHFqTAhQPUCwe4IiTf3Mzbtq/qujzDddRPYfruaUzNGI1PRkmG0Twb+uiY/sI9cw0/0VdQcQnL0D5KovgfL5fa4/69jiDQOOTo+S6SOYtfrvg63VolkauNN0lLxOUCzLN2HMkYnZLoBK8QQn0+Rs0ZD+OjXm6g/Dijb20TNEZfDFgwOwQZPIdzAWQN9uLtKXIPJtL7gH3BfAWrhA+Mh9idlyvEPslF2of4J3G5freLxoG0x0MF0JDsYp5RHE6Y1F9H/8adpJO4j8mOdl/Hw/nf)
 
-If prop options are also needed, they should be passed after the model name:
+如果需要传递 prop 选项，应该在模型名称之后传递：
 
 ```js
 const title = defineModel('title', { required: true })
@@ -355,7 +355,7 @@ export default {
 
 <div class="composition-api">
 
-Modifiers added to a component `v-model` can be accessed in the child component by destructuring the `defineModel()` return value like this:
+可以通过解构 `defineModel()` 的返回值来在子组件中访问添加到组件 `v-model` 的修饰符，如下所示：
 
 ```vue{4}
 <script setup>
@@ -369,7 +369,7 @@ console.log(modifiers) // { capitalize: true }
 </template>
 ```
 
-To conditionally adjust how the value should be read / written based on modifiers, we can pass `get` and `set` options to `defineModel()`. These two options receive the value on get / set of the model ref and should return a transformed value. This is how we can use the `set` option to implement the `capitalize` modifier:
+我们可以通过向 `defineModel()` 传递 `get` 和 `set` 选项，根据修饰符条件性地调整值应如何读取/写入。这两个选项在获取/设置模型 ref 的值时接收该值，并应返回一个转换后的值。这就是我们如何使用 `set` 选项来实现 `capitalize` 修饰符的方式：
 
 ```vue{6-8}
 <script setup>
