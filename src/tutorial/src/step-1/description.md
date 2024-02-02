@@ -21,6 +21,33 @@
 
 - 你也可以在 SFC 模式和 HTML 模式之间切换。前者会以<a target="_blank" href="/guide/introduction.html#single-file-components">单文件组件</a> (SFC) 的格式展示示例代码，这是大多数开发者配合构建步骤使用 Vue 的模式。HTML 模式则在无需构建步骤时使用。
 
+<div class="html">
+
+:::tip
+If you're about to use HTML-mode without a build step in your own applications, make sure you either change imports to:
+
+```js
+import { ... } from 'vue/dist/vue.esm-bundler.js'
+```
+
+inside your scripts or configure your build tool to resolve `vue` accordingly. Sample config for [Vite](https://vitejs.dev/):
+
+```js
+// vite.config.js
+export default {
+  resolve: {
+    alias: {
+      vue: 'vue/dist/vue.esm-bundler.js'
+    }
+  }
+}
+```
+
+See the respective [section in Tooling guide](/guide/scaling-up/tooling.html#note-on-in-browser-template-compilation) for more information.
+:::
+
+</div>
+
 </details>
 
 准备好了吗？点击“下一步”按钮开始吧。

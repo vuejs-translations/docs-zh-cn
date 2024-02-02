@@ -331,13 +331,17 @@ watchEffect(async () => {
 
 当你更改了响应式状态，它可能会同时触发 Vue 组件更新和侦听器回调。
 
+Similar to component updates, user-created watcher callbacks are batched to avoid duplicate invocations. For example, we probably don't want a watcher to fire a thousand times if we synchronously push a thousand items into an array being watched.
+
 默认情况下，用户创建的侦听器回调，都会在 Vue 组件更新**之前**被调用。这意味着你在侦听器回调中访问的 DOM 将是被 Vue 更新之前的状态。
+
+### Post Watchers {#post-watchers}
 
 如果想在侦听器回调中能访问被 Vue 更新**之后**的 DOM，你需要指明 `flush: 'post'` 选项：
 
 <div class="options-api">
 
-```js
+```js{6}
 export default {
   // ...
   watch: {
@@ -353,7 +357,7 @@ export default {
 
 <div class="composition-api">
 
-```js
+```js{2,6}
 watch(source, callback, {
   flush: 'post'
 })
@@ -374,6 +378,54 @@ watchPostEffect(() => {
 ```
 
 </div>
+
+### Sync Watchers {#sync-watchers}
+
+It's also possible to create a watcher that fires synchronously, before any Vue-managed updates:
+
+<div class="options-api">
+
+```js{6}
+export default {
+  // ...
+  watch: {
+    key: {
+      handler() {},
+      flush: 'sync'
+    }
+  }
+}
+```
+
+</div>
+
+<div class="composition-api">
+
+```js{2,6}
+watch(source, callback, {
+  flush: 'sync'
+})
+
+watchEffect(callback, {
+  flush: 'sync'
+})
+```
+
+Sync `watchEffect()` also has a convenience alias, `watchSyncEffect()`:
+
+```js
+import { watchSyncEffect } from 'vue'
+
+watchSyncEffect(() => {
+  /* executed synchronously upon reactive data change */
+})
+```
+
+</div>
+
+:::warning Use with Caution
+Sync watchers do not have batching and triggers every time a reactive mutation is detected. It's ok to use them to watch simple boolean values, but avoid using them on data sources that might be synchronously mutated many times, e.g. arrays.
+:::
 
 <div class="options-api">
 

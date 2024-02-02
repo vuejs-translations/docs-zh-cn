@@ -255,6 +255,8 @@ Vue 的类型定义也提供了 TSX 语法的类型推导支持。当使用 TSX 
 }
 ```
 
+You can also opt-in per file by adding a `/* @jsxImportSource vue */` comment at the top of the file.
+
 如果仍有代码依赖于全局存在的 `JSX` 命名空间，你可以在项目中通过显式导入或引用 `vue/jsx` 来保留 3.4 之前的全局行为，它注册了全局 `JSX` 命名空间。
 
 ## 渲染函数案例 {#render-function-recipes}
@@ -575,7 +577,42 @@ h(MyComponent, null, {
 
 插槽以函数的形式传递使得它们可以被子组件懒调用。这能确保它被注册为子组件的依赖关系，而不是父组件。这使得更新更加准确及有效。
 
-### 内置组件 {#built-in-components}
+### Scoped Slots {#scoped-slots}
+
+To render a scoped slot in the parent component, a slot is passed to the child. Notice how the slot now has a parameter `text`. The slot will be called in the child component and the data from the child component will be passed up to the parent component.
+
+```js
+// parent component
+export default {
+  setup() {
+    return () => h(MyComp, null, {
+      default: ({ text }) => h('p', text)
+    })
+  }
+}
+```
+
+Remember to pass `null` so the slots will not be treated as props.
+
+```js
+// child component
+export default {
+  setup(props, { slots }) {
+    const text = ref('hi')
+    return () => h('div', null, slots.default({ text: text.value }))
+  }
+}
+```
+
+JSX equivalent:
+
+```jsx
+<MyComponent>{{
+  default: ({ text }) => <p>{ text }</p>  
+}}</MyComponent>
+```
+
+### Built-in Components {#built-in-components}
 
 诸如 `<KeepAlive>`、`<Transition>`、`<TransitionGroup>`、`<Teleport>` 和 `<Suspense>` 等[内置组件](/api/built-in-components)在渲染函数中必须导入才能使用：
 

@@ -239,7 +239,7 @@ data() {
 <a v-on:[eventName]="doSomething"> ... </a>
 
 <!-- 简写 -->
-<a @[eventName]="doSomething">
+<a @[eventName]="doSomething"> ... </a>
 ```
 
 在此示例中，当 `eventName` 的值是 `"focus"` 时，`v-on:[eventName]` 就等价于 `v-on:focus`。
