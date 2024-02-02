@@ -331,13 +331,13 @@ watchEffect(async () => {
 
 当你更改了响应式状态，它可能会同时触发 Vue 组件更新和侦听器回调。
 
-Similar to component updates, user-created watcher callbacks are batched to avoid duplicate invocations. For example, we probably don't want a watcher to fire a thousand times if we synchronously push a thousand items into an array being watched.
+类似于组件更新，用户创建的侦听器回调函数也会被批量处理以避免重复调用。例如，如果我们同步将一千个项目推入被观察的数组中，我们可能不希望观察器触发一千次。
 
-默认情况下，用户创建的侦听器回调，都会在 Vue 组件更新**之前**被调用。这意味着你在侦听器回调中访问的 DOM 将是被 Vue 更新之前的状态。
+默认情况下，侦听器回调会在父组件更新 (如果有的话) **之后**，所属组件的 DOM 更新**之前**调用。这意味着如果你尝试在侦听器回调中访问所属组件的 DOM，那么 DOM 将处于更新前的状态。
 
 ### Post Watchers {#post-watchers}
 
-如果想在侦听器回调中能访问被 Vue 更新**之后**的 DOM，你需要指明 `flush: 'post'` 选项：
+如果想在侦听器回调中能访问被 Vue 更新**之后**的所属组件的 DOM，你需要指明 `flush: 'post'` 选项：
 
 <div class="options-api">
 
@@ -381,7 +381,7 @@ watchPostEffect(() => {
 
 ### Sync Watchers {#sync-watchers}
 
-It's also possible to create a watcher that fires synchronously, before any Vue-managed updates:
+<!-- TODO: translation -->It's also possible to create a watcher that fires synchronously, before any Vue-managed updates:
 
 <div class="options-api">
 
