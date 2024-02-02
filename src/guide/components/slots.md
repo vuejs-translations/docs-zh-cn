@@ -311,7 +311,7 @@ function BaseLayout(slots) {
 </base-layout>
 ```
 
-注意这里的表达式和动态指令参数受相同的[语法限制](/guide/essentials/template-syntax#directives)。
+注意这里的表达式和动态指令参数受相同的[语法限制](/guide/essentials/template-syntax.md#dynamic-argument-syntax-constraints)。
 
 ## 作用域插槽 {#scoped-slots}
 

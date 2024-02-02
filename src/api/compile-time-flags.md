@@ -38,7 +38,6 @@ outline: deep
 
 `@vitejs/plugin-vue` 会自动为这些标志提供默认值。要更改默认值，请使用 Vite 的 [`define` 配置项](https://vitejs.dev/config/shared-options.html#define)：
 
-
 ```js
 // vite.config.js
 import { defineConfig } from 'vite'

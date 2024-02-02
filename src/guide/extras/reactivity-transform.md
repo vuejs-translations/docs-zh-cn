@@ -3,11 +3,6 @@
 :::danger 已移除的实验性功能
 响应性语法糖曾经是一个实验性功能，且已在最新的 3.4 版本中被移除，请阅读[废弃原因](https://github.com/vuejs/rfcs/discussions/369#discussioncomment-5059028)。
 
-在未来的一个小版本更新中，它将会从 Vue core 中被移除。
-
-- 想要摆脱它的话，请查看这个[命令行工具](https://github.com/edison1105/drop-reactivity-transform)，它可以自动完成这一过程。
-- 如需继续使用，请通过 [Vue Macros](https://vue-macros.sxzz.moe/features/reactivity-transform.html) 插件。
-
 如果仍然打算使用它，你现在可以使用 [Vue Macros](https://vue-macros.sxzz.moe/features/reactivity-transform.html) 插件。
 :::
 

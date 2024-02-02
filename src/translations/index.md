@@ -19,6 +19,8 @@ aside: false
 ## 翻译中的语言 {#work-in-progress-languages}
 
 - [فارسی / 波斯语](https://fa.vuejs.org/) [[源码](https://github.com/vuejs-translations/docs-fa)]
+- [Čeština / 捷克语](https://cs.vuejs.org/) [[源码](https://github.com/vuejs-translations/docs-cs)]
+- [العربية / 阿拉伯语](https://ar.vuejs.org/) [[源码](https://github.com/vuejs-translations/docs-ar)]
 
 ## 启动新的翻译 {#starting-a-new-translation}
 
