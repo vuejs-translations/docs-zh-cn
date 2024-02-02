@@ -612,7 +612,7 @@ JSX equivalent:
 }}</MyComponent>
 ```
 
-### Built-in Components {#built-in-components}
+### 内置组件 {#built-in-components}
 
 诸如 `<KeepAlive>`、`<Transition>`、`<TransitionGroup>`、`<Teleport>` 和 `<Suspense>` 等[内置组件](/api/built-in-components)在渲染函数中必须导入才能使用：
 
