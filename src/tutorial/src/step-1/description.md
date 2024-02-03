@@ -24,13 +24,13 @@
 <div class="html">
 
 :::tip
-<!-- TODO: translation -->If you're about to use HTML-mode without a build step in your own applications, make sure you either change imports to:
+如果你想在应用中采用 HTML 模式且不进行构建步骤，那么请确认你的导入方式应该为：
 
 ```js
 import { ... } from 'vue/dist/vue.esm-bundler.js'
 ```
 
-inside your scripts or configure your build tool to resolve `vue` accordingly. Sample config for [Vite](https://vitejs.dev/):
+请在脚本中配置或者通过配置构建工具来正确解析 `vue`。以下是 [Vite](https://vitejs.dev/) 配置的示例：
 
 ```js
 // vite.config.js
@@ -43,7 +43,7 @@ export default {
 }
 ```
 
-See the respective [section in Tooling guide](/guide/scaling-up/tooling.html#note-on-in-browser-template-compilation) for more information.
+更多相关信息，请参阅[工具指南中的相关部分](/guide/scaling-up/tooling.html#note-on-in-browser-template-compilation)。
 :::
 
 </div>
