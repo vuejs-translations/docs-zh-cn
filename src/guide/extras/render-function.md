@@ -579,7 +579,7 @@ h(MyComponent, null, {
 
 ### Scoped Slots {#scoped-slots}
 
-<!-- TODO: translation -->To render a scoped slot in the parent component, a slot is passed to the child. Notice how the slot now has a parameter `text`. The slot will be called in the child component and the data from the child component will be passed up to the parent component.
+为了在父组件中渲染作用域插槽，我们需要把带有 `text` 参数的插槽传给子组件。这样，当这个插槽在子组件中被调用时，子组件的数据就能传回父组件。
 
 ```js
 // parent component
