@@ -582,7 +582,7 @@ h(MyComponent, null, {
 为了在父组件中渲染作用域插槽，需要给子组件传递一个插槽。注意该插槽现在拥有一个 `text` 参数。该插槽将在子组件中被调用，同时子组件中的数据将向上传递给父组件。
 
 ```js
-// parent component
+// 父组件
 export default {
   setup() {
     return () => h(MyComp, null, {
@@ -592,10 +592,10 @@ export default {
 }
 ```
 
-Remember to pass `null` so the slots will not be treated as props.
+记得传递 `null` 以避免插槽被误认为 prop：
 
 ```js
-// child component
+// 子组件
 export default {
   setup(props, { slots }) {
     const text = ref('hi')
@@ -604,7 +604,7 @@ export default {
 }
 ```
 
-JSX equivalent:
+等同于 JSX：
 
 ```jsx
 <MyComponent>{{
