@@ -577,12 +577,12 @@ h(MyComponent, null, {
 
 插槽以函数的形式传递使得它们可以被子组件懒调用。这能确保它被注册为子组件的依赖关系，而不是父组件。这使得更新更加准确及有效。
 
-### Scoped Slots {#scoped-slots}
+### 作用域插槽 {#scoped-slots}
 
-<!-- TODO: translation -->To render a scoped slot in the parent component, a slot is passed to the child. Notice how the slot now has a parameter `text`. The slot will be called in the child component and the data from the child component will be passed up to the parent component.
+为了在父组件中渲染作用域插槽，需要给子组件传递一个插槽。注意该插槽现在拥有一个 `text` 参数。该插槽将在子组件中被调用，同时子组件中的数据将向上传递给父组件。
 
 ```js
-// parent component
+// 父组件
 export default {
   setup() {
     return () => h(MyComp, null, {
@@ -592,10 +592,10 @@ export default {
 }
 ```
 
-Remember to pass `null` so the slots will not be treated as props.
+记得传递 `null` 以避免插槽被误认为 prop：
 
 ```js
-// child component
+// 子组件
 export default {
   setup(props, { slots }) {
     const text = ref('hi')
@@ -604,7 +604,7 @@ export default {
 }
 ```
 
-JSX equivalent:
+等同于 JSX：
 
 ```jsx
 <MyComponent>{{
