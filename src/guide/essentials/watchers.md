@@ -379,9 +379,9 @@ watchPostEffect(() => {
 
 </div>
 
-### Sync Watchers {#sync-watchers}
+### 同步侦听器 {#sync-watchers}
 
-<!-- TODO: translation -->It's also possible to create a watcher that fires synchronously, before any Vue-managed updates:
+你还可以创建一个同步触发的侦听器，它会在 Vue 进行任何更新之前触发：
 
 <div class="options-api">
 
