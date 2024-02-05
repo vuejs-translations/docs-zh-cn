@@ -174,7 +174,7 @@ export default {
 
 ## `v-model` 的参数 {#v-model-arguments}
 
-`v-model` on a component can also accept an argument:
+组件上的 `v-model` 也可以接受一个参数：
 
 ```vue-html
 <MyComponent v-model:title="bookTitle" />
@@ -182,7 +182,7 @@ export default {
 
 <div class="composition-api">
 
-In the child component, we can support the corresponding argument by passing a string to `defineModel()` as its first argument:
+在子组件中，我们可以通过将字符串作为第一个参数传递给 `defineModel()` 来支持相应的参数：
 
 ```vue
 <!-- MyComponent.vue -->
@@ -195,9 +195,9 @@ const title = defineModel('title')
 </template>
 ```
 
-[Try it in the Playground](https://play.vuejs.org/#eNqFkl9PwjAUxb9K05dhglsMb2SQqOFBE9Soj31Zxh0Uu7bpHxxZ9t29LWOiQXzaes7p2a+9a+mt1unOA53S3JaGa0csOK/nTPJaK+NISwxUpCOVUTVJMJoM1nJ/r/BNgnS9nWYnWujFMCFMlkpaRxx3AsgsFI6S3XWtViBIYda+Dg3QFLUWkFwxmWcHFqTAhQPUCwe4IiTf3Mzbtq/qujzDddRPYfruaUzNGI1PRkmG0Twb+uiY/sI9cw0/0VdQcQnL0D5KovgfL5fa4/69jiDQOOTo+S6SOYtfrvg63VolkauNN0lLxOUCzLN2HMkYnZLoBK8QQn0+Rs0ZD+OjXm6g/Dijb20TNEZfDFgwOwQZPIdzAWQN9uLtKXIPJtL7gH3BfAWrhA+Mh9idlyvEPslF2of4J3G5freLxoG0x0MF0JDsYp5RHE6Y1F9H/8adpJO4j8mOdl/Hw/nf)
+[在演练场中尝试一下](https://play.vuejs.org/#eNqFkl9PwjAUxb9K05dhglsMb2SQqOFBE9Soj31Zxh0Uu7bpHxxZ9t29LWOiQXzaes7p2a+9a+mt1unOA53S3JaGa0csOK/nTPJaK+NISwxUpCOVUTVJMJoM1nJ/r/BNgnS9nWYnWujFMCFMlkpaRxx3AsgsFI6S3XWtViBIYda+Dg3QFLUWkFwxmWcHFqTAhQPUCwe4IiTf3Mzbtq/qujzDddRPYfruaUzNGI1PRkmG0Twb+uiY/sI9cw0/0VdQcQnL0D5KovgfL5fa4/69jiDQOOTo+S6SOYtfrvg63VolkauNN0lLxOUCzLN2HMkYnZLoBK8QQn0+Rs0ZD+OjXm6g/Dijb20TNEZfDFgwOwQZPIdzAWQN9uLtKXIPJtL7gH3BfAWrhA+Mh9idlyvEPslF2of4J3G5freLxoG0x0MF0JDsYp5RHE6Y1F9H/8adpJO4j8mOdl/Hw/nf)
 
-If prop options are also needed, they should be passed after the model name:
+如果需要额外的 prop 选项，应该在 model 名称之后传递：
 
 ```js
 const title = defineModel('title', { required: true })
@@ -355,7 +355,7 @@ export default {
 
 <div class="composition-api">
 
-Modifiers added to a component `v-model` can be accessed in the child component by destructuring the `defineModel()` return value like this:
+通过像这样解构 `defineModel()` 的返回值，可以在子组件中访问添加到组件 `v-model` 的修饰符：
 
 ```vue{4}
 <script setup>
@@ -369,7 +369,7 @@ console.log(modifiers) // { capitalize: true }
 </template>
 ```
 
-To conditionally adjust how the value should be read / written based on modifiers, we can pass `get` and `set` options to `defineModel()`. These two options receive the value on get / set of the model ref and should return a transformed value. This is how we can use the `set` option to implement the `capitalize` modifier:
+为了能够基于修饰符选择性地调节值的读取和写入方式，我们可以给 `defineModel()` 传入 `get` 和 `set` 这两个选项。这两个选项在从模型引用中读取或设置值时会接收到当前的值，并且它们都应该返回一个经过处理的新值。下面是一个例子，展示了如何利用 `set` 选项来应用 `capitalize` (首字母大写) 修饰符：
 
 ```vue{6-8}
 <script setup>
