@@ -21,17 +21,17 @@ Vue 使用一种基于 HTML 的模板语法，使我们能够声明式地将其�
 双大括号会将数据解释为纯文本，而不是 HTML。若想插入 HTML，你需要使用 [`v-html` 指令](/api/built-in-directives#v-html)：
 
 ```vue-html
-<p>Using text interpolation: {{ rawHtml }}</p>
-<p>Using v-html directive: <span v-html="rawHtml"></span></p>
+<p>使用文本插值: {{ rawHtml }}</p>
+<p>使用 v-html 指令: <span v-html="rawHtml"></span></p>
 ```
 
 <script setup>
-  const rawHtml = '<span style="color: red">This should be red.</span>'
+  const rawHtml = '<span style="color: red">这段文字应该是红色的。</span>'
 </script>
 
 <p class="demo">
-  <p>Using text interpolation: {{ rawHtml }}</p>
-  <p>Using v-html directive: <span v-html="rawHtml"></span></p>
+  <p>使用文本插值: {{ rawHtml }}</p>
+  <p>使用 v-html 指令: <span v-html="rawHtml"></span></p>
 </p>
 
 这里我们遇到了一个新的概念。这里看到的 `v-html` attribute 被称为一个**指令**。指令由 `v-` 作为前缀，表明它们是一些由 Vue 提供的特殊 attribute，你可能已经猜到了，它们将为渲染的 DOM 应用特殊的响应式行为。这里我们做的事情简单来说就是：在当前组件实例上，将此元素的 innerHTML 与 `rawHtml` 属性保持同步。
