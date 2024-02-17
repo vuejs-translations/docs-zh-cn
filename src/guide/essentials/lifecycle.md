@@ -60,8 +60,9 @@ setTimeout(() => {
 
 下面是实例生命周期的图表。你现在并不需要完全理解图中的所有内容，但以后它将是一个有用的参考。
 
-![组件生命周期图示](./images/lifecycle.png)
+![组件生命周期图示](./images/lifecycle_zh-CN.png)
 
 <!-- https://www.figma.com/file/Xw3UeNMOralY6NV7gSjWdS/Vue-Lifecycle -->
+<!-- https://www.figma.com/file/QHo4ehJ4TRx3f7gzRP1F1k/Vue-Lifecycle-(zh-CN) -->
 
 有关所有生命周期钩子及其各自用例的详细信息，请参考<span class="composition-api">[生命周期钩子 API 索引](/api/composition-api-lifecycle)</span><span class="options-api">[生命周期钩子 API 索引](/api/options-lifecycle)</span>。
