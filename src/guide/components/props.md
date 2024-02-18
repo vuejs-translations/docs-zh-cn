@@ -515,6 +515,7 @@ export default {
 - `Date`
 - `Function`
 - `Symbol`
+- `Error`
 
 另外，`type` 也可以是自定义的类或构造函数，Vue 将会通过 `instanceof` 来检查类型是否匹配。例如下面这个类：
 
