@@ -583,7 +583,7 @@ export default {
 
 ## Transitions with the Key Attribute {#transitions-with-the-key-attribute}
 
-Sometimes you need to force the re-render of a DOM element in order for a transition to occur.
+<!-- TODO: translation -->Sometimes you need to force the re-render of a DOM element in order for a transition to occur.
 
 Take this counter component for example.
 
