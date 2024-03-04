@@ -407,6 +407,8 @@ export default {
 
     // 当进入过渡完成时调用。
     onAfterEnter(el) {},
+
+    // 当进入过渡在完成之前被取消时调用
     onEnterCancelled(el) {},
 
     // 在 leave 钩子之前调用
