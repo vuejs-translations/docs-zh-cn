@@ -178,7 +178,7 @@ export default {
 <div class="composition-api">
 
 ```vue
-<script setup>
+<script setup lang="ts">
 const emit = defineEmits({
   submit(payload: { email: string, password: string }) {
     // 通过返回值为 `true` 还是为 `false` 来判断
