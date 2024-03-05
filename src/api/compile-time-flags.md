@@ -16,19 +16,19 @@ outline: deep
 
 ## `__VUE_OPTIONS_API__` {#VUE_OPTIONS_API}
 
-- **默认值：** `true`
+- **默认值：**`true`
 
   启用/禁用选项式 API 支持。禁用此功能将减小打包结果的体积，但如果第三方库依赖选项式 API，则可能影响兼容性。
 
 ## `__VUE_PROD_DEVTOOLS__` {#VUE_PROD_DEVTOOLS}
 
-- **默认值：** `false`
+- **默认值：**`false`
 
   在生产环境中启用/禁用开发者工具支持。启用会在打包结果中包含更多代码，因此建议仅在调试时启用此功能。
 
 ## `__VUE_PROD_HYDRATION_MISMATCH_DETAILS__` <sup class="vt-badge" data-text="3.4+" /> {#VUE_PROD_HYDRATATION_MISMATCH_DETAILS}
 
-- **默认值：** `false`
+- **默认值：**`false`
 
   启用/禁用生产环境构建下激活 (hydration) 不匹配的详细警告。启用会在打包结果中包含更多代码，因此建议仅在调试时启用此功能。
 

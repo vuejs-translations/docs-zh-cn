@@ -5,7 +5,7 @@ outline: deep
 # 响应式基础 {#reactivity-fundamentals}
 
 :::tip API 参考
-本页和后面很多页面中都分别包含了选项式 API 和组合式 API 的示例代码。现在你选择的是 <span class="options-api">选项式 API</span><span class="composition-api">组合式 API</span>。你可以使用左侧侧边栏顶部的 “API 风格偏好” 开关在 API 风格之间切换。
+本页和后面很多页面中都分别包含了选项式 API 和组合式 API 的示例代码。现在你选择的是 <span class="options-api">选项式 API</span><span class="composition-api">组合式 API</span>。你可以使用左侧侧边栏顶部的“API 风格偏好”开关在 API 风格之间切换。
 :::
 
 <div class="options-api">
@@ -43,7 +43,7 @@ Vue 在组件实例上暴露的内置 API 使用 `$` 作为前缀。它同时也
 
 ### 响应式代理 vs. 原始值 \* {#reactive-proxy-vs-original}
 
-在 Vue 3 中，数据是基于 [JavaScript Proxy（代理）](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Proxy) 实现响应式的。使用过 Vue 2 的用户可能需要注意下面这样的边界情况：
+在 Vue 3 中，数据是基于 [JavaScript Proxy (代理)](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Proxy) 实现响应式的。使用过 Vue 2 的用户可能需要注意下面这样的边界情况：
 
 ```js
 export default {
@@ -406,7 +406,7 @@ const proxy = reactive(raw)
 console.log(proxy === raw) // false
 ```
 
-只有代理对象是响应式的，更改原始对象不会触发更新。因此，使用 Vue 的响应式系统的最佳实践是 **仅使用你声明对象的代理版本**。
+只有代理对象是响应式的，更改原始对象不会触发更新。因此，使用 Vue 的响应式系统的最佳实践是**仅使用你声明对象的代理版本**。
 
 为保证访问代理的一致性，对同一个原始对象调用 `reactive()` 会总是返回同样的代理对象，而对一个已存在的代理对象调用 `reactive()` 会返回其本身：
 
@@ -496,7 +496,7 @@ console.log(count.value) // 1
 
 ### 数组和集合的注意事项 \*\* {#caveat-in-arrays-and-collections}
 
-与 reactive 对象不同的是，当 ref 作为响应式数组或原生集合类型(如 `Map`) 中的元素被访问时，它**不会**被解包：
+与 reactive 对象不同的是，当 ref 作为响应式数组或原生集合类型 (如 `Map`) 中的元素被访问时，它**不会**被解包：
 
 ```js
 const books = reactive([ref('Vue 3 Guide')])
@@ -572,7 +572,7 @@ export default {
 }
 ```
 
-不过这种方法对于被重用的组件来说是有问题的，因为这个预置防抖的函数是 **有状态的**：它在运行时维护着一个内部状态。如果多个组件实例都共享这同一个预置防抖的函数，那么它们之间将会互相影响。
+不过这种方法对于被重用的组件来说是有问题的，因为这个预置防抖的函数是**有状态的**：它在运行时维护着一个内部状态。如果多个组件实例都共享这同一个预置防抖的函数，那么它们之间将会互相影响。
 
 要保持每个组件实例的防抖函数都彼此独立，我们可以改为在 `created` 生命周期钩子中创建这个预置防抖的函数：
 
