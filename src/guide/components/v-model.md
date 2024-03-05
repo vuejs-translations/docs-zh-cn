@@ -51,7 +51,7 @@ const model = defineModel()
 
 ### 底层机制 {#under-the-hood}
 
-`defineModel` 是一个便利宏。 编译器将其展开为以下内容：
+`defineModel` 是一个便利宏。编译器将其展开为以下内容：
 
 - 一个名为 `modelValue` 的 prop，本地 ref 的值与其同步；
 - 一个名为 `update:modelValue` 的事件，当本地 ref 的值发生变更时触发。
@@ -161,7 +161,7 @@ export default {
 
 [在演练场中尝试一下](https://play.vuejs.org/#eNqFkctqwzAQRX9lEAEn4Np744aWrvoD3URdiHiSGvRCHpmC8b93JDfGKYGCkJjXvTrSJF69r8aIohHtcA69p6O0vfEuELzFgZx5tz4SXIIzUFT1JpfGCmmlxe/c3uFFRU0wSQtwdqxh0dLQwHSnNJep3ilS+8PSCxCQYrC3CMDgMKgrNlB8odaOXVJ2TgdvvNp6vSwHhMZrRcgRQLs1G5+M61A/S/ErKQXUR5immwXMWW1VEKX4g3j3Mo9QfXCeKU9FtvpQmp/lM0Oi6RP/qYieebHZNvyL0acLLODNmGYSxCogxVJ6yW1c2iWz/QOnEnY48kdUpMIVGSllD8t8zVZb+PkHqPG4iw==)
 
-另一种在组件内实现 `v-model` 的方式是使用一个可写的，同时具有 getter 和 setter 的 `computed`  属性。`get` 方法需返回 `modelValue` prop，而 `set` 方法需触发相应的事件：
+另一种在组件内实现 `v-model` 的方式是使用一个可写的，同时具有 getter 和 setter 的 `computed` 属性。`get` 方法需返回 `modelValue` prop，而 `set` 方法需触发相应的事件：
 
 ```vue
 <!-- CustomInput.vue -->

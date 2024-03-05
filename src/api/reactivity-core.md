@@ -388,7 +388,7 @@
   - **`deep`**：如果源是对象，强制深度遍历，以便在深层级变更时触发回调。参考[深层侦听器](/guide/essentials/watchers#deep-watchers)。
   - **`flush`**：调整回调函数的刷新时机。参考[回调的刷新时机](/guide/essentials/watchers#callback-flush-timing)及 [`watchEffect()`](/api/reactivity-core#watcheffect)。
   - **`onTrack / onTrigger`**：调试侦听器的依赖。参考[调试侦听器](/guide/extras/reactivity-in-depth#watcher-debugging)。
-  - **`once`**: 回调函数只会运行一次。侦听器将在回调函数首次运行后自动停止。 <sup class="vt-badge" data-text="3.4+" />
+  - **`once`**：回调函数只会运行一次。侦听器将在回调函数首次运行后自动停止。 <sup class="vt-badge" data-text="3.4+" />
 
   与 [`watchEffect()`](#watcheffect) 相比，`watch()` 使我们可以：
 

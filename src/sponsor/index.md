@@ -17,7 +17,7 @@ Vue.js 是采用 MIT 许可的开源项目，使用完全免费。
 
 ## 中国区赞助渠道
 
-来自国内的开发者或公司可以通过 [爱发电](https://afdian.net/a/evanyou) 平台来支持 Vue.js 的开发。爱发电上的赞助等级和本页下面列出的赞助等级是一一对应的。
+来自国内的开发者或公司可以通过[爱发电](https://afdian.net/a/evanyou)平台来支持 Vue.js 的开发。爱发电上的赞助等级和本页下面列出的赞助等级是一一对应的。
 
 其中**中国区铂金赞助商**是仅针对本站 (cn.vuejs.org) 的赞助位级别，包含以下权益：
 
@@ -31,7 +31,7 @@ Vue.js 是采用 MIT 许可的开源项目，使用完全免费。
 
 3. 在 [`vuejs/core`](https://github.com/vuejs/core) 和 [`vuejs/vue`](https://github.com/vuejs/core) 的 README 上明显的 logo 展示位。
 
-此赞助位同样可以通过 [爱发电](https://afdian.net/a/evanyou) 来订阅。如果您对此赞助位感兴趣但还抱有疑问，请致信 [sponsor@vuejs.org](mailto:sponsor@vuejs.org) 咨询具体事宜。
+此赞助位同样可以通过[爱发电](https://afdian.net/a/evanyou)来订阅。如果您对此赞助位感兴趣但还抱有疑问，请致信 [sponsor@vuejs.org](mailto:sponsor@vuejs.org) 咨询具体事宜。
 
 ## 国际站赞助 {#how-to-sponsor}
 

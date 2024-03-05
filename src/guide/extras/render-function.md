@@ -724,7 +724,7 @@ export default {
 </div>
 <div class="options-api">
 
-在选项式 API 中，模板引用通过在 vnode 参数中传递字符串类型的引用名称来创建： 
+在选项式 API 中，模板引用通过在 vnode 参数中传递字符串类型的引用名称来创建：
 
 ```js
 export default {

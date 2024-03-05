@@ -6,7 +6,7 @@ footer: false
 
 :::info 你正在阅读的是 Vue 3 的文档！
 
-- Vue 2 已于 **2023 年 12 月 31 日**停止维护。详见 [Vue 2 终止支持 (EOL)](https://v2.cn.vuejs.org/eol/).
+- Vue 2 已于 **2023 年 12 月 31 日**停止维护。详见 [Vue 2 终止支持 (EOL)](https://v2.cn.vuejs.org/eol/)。
 - 想从 Vue 2 升级？请参考[迁移指南](https://v3-migration.vuejs.org/)。
 :::
 
