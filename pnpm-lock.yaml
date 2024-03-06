@@ -56,8 +56,8 @@ devDependencies:
     specifier: ^5.14.2
     version: 5.14.2
   zhlint:
-    specifier: ^0.8.0
-    version: 0.8.0
+    specifier: ^0.8.1
+    version: 0.8.1
 
 packages:
 
@@ -2169,8 +2169,8 @@ packages:
       strip-ansi: 7.1.0
     dev: true
 
-  /zhlint@0.8.0:
-    resolution: {integrity: sha512-aiiar4RBTpbRikbkFqaMDtSET4WG8ARPPkYeNKWqrbELzQK/eAMRiRLPXufFzOZP5RRXy02BxE33ySh1HyoM9Q==}
+  /zhlint@0.8.1:
+    resolution: {integrity: sha512-ZFPIxaQ0gmx7HDC6oIMDayBQXye/2FuszcYr9I21tW2zNKy2bc1sA8HE8PTWAG5axWjffqwgwhq4Nu1SpyrsKw==}
     hasBin: true
     dependencies:
       chalk: 3.0.0
