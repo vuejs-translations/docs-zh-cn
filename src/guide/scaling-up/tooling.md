@@ -86,10 +86,10 @@ import { VTCodeGroup, VTCodeGroupTab } from '@vue/theme'
 
 ## IDE 支持 {#ide-support}
 
-- 推荐使用的 IDE 是 [VSCode](https://code.visualstudio.com/)，配合 [Vue 语言特性 (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.volar) 插件。该插件提供了语法高亮、TypeScript 支持，以及模板内表达式与组件 props 的智能提示。
+- 推荐使用的 IDE 是 [VSCode](https://code.visualstudio.com/)，配合 [Vue - Official 扩展](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (之前是 Volar)。该插件提供了语法高亮、TypeScript 支持，以及模板内表达式与组件 props 的智能提示。
 
   :::tip
-  Volar 取代了我们之前为 Vue 2 提供的官方 VSCode 扩展 [Vetur](https://marketplace.visualstudio.com/items?itemName=octref.vetur)。如果你之前已经安装了 Vetur，请确保在 Vue 3 的项目中禁用它。
+  Vue - Official 取代了我们之前为 Vue 2 提供的官方 VSCode 扩展 [Vetur](https://marketplace.visualstudio.com/items?itemName=octref.vetur)。如果你之前已经安装了 Vetur，请确保在 Vue 3 的项目中禁用它。
   :::
 
 - [WebStorm](https://www.jetbrains.com/webstorm/) 同样也为 Vue 的单文件组件提供了很好的内置支持。
@@ -120,7 +120,7 @@ Vue 的浏览器开发者插件使我们可以浏览一个 Vue 应用的组件�
 
 具体细节请参考章节：[配合 TypeScript 使用 Vue](/guide/typescript/overview)。
 
-- [Volar](https://github.com/johnsoncodehk/volar) 插件能够为 `<script lang="ts">` 块提供类型检查，也能对模板内表达式和组件之间 props 提供自动补全和类型验证。
+- [Vue - Official 扩展](https://github.com/vuejs/language-tools) 能够为 `<script lang="ts">` 块提供类型检查，也能对模板内表达式和组件之间 props 提供自动补全和类型验证。
 
 - 使用 [`vue-tsc`](https://github.com/vuejs/language-tools/tree/master/packages/tsc) 可以在命令行中执行相同的类型检查，通常用来生成单文件组件的 `d.ts` 文件。
 
@@ -150,7 +150,7 @@ Vue 团队维护着 [eslint-plugin-vue](https://github.com/vuejs/eslint-plugin-v
 
 ## 格式化 {#formatting}
 
-- [Volar](https://github.com/johnsoncodehk/volar) VSCode 插件为 Vue SFC 提供了开箱即用的格式化功能。
+- [Vue - Official](https://github.com/vuejs/language-tools) VSCode 插件为 Vue SFC 提供了开箱即用的格式化功能。
 
 - 除此之外，[Prettier](https://prettier.io/) 也提供了内置的 Vue SFC 格式化支持。
 
