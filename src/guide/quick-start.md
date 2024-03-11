@@ -365,6 +365,8 @@ import { createApp } from 'vue'
 
 :::warning 生产环境中的注意事项
 到目前为止示例中使用的都是 Vue 的开发构建版本——如果你打算在生产中通过 CDN 使用 Vue，请务必查看[生产环境部署指南](/guide/best-practices/production-deployment#without-build-tools)。
+
+虽然 Vue 可以不依赖构建系统使用，但也可以考虑使用 [`vuejs/petite-vue`](https://github.com/vuejs/petite-vue) 这个替代方案，以更好地适配可能在 [`jquery/jquery`](https://github.com/jquery/jquery) (过去) 或 [`alpinejs/alpine`](https://github.com/alpinejs/alpine) (现在) 的上下文中使用的情况。
 :::
 
 ### 拆分模块 {#splitting-up-the-modules}
