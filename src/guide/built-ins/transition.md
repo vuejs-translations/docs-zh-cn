@@ -583,7 +583,7 @@ export default {
 
 你也可以根据你的组件的当前状态在 JavaScript 过渡钩子中应用不同的行为。最后，创建动态过渡的终极方式还是创建[可复用的过渡组件](#reusable-transitions)，并让这些组件根据动态的 props 来改变过渡的效果。掌握了这些技巧后，就真的只有你想不到，没有做不到的了。
 
-## 使用Key属性过渡 {#transitions-with-the-key-attribute}
+## 使用 Key Attribute 过渡 {#transitions-with-the-key-attribute}
 
 有时，你需要强制重新渲染一个 DOM 元素时进行过渡。
 
