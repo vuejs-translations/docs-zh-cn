@@ -585,7 +585,7 @@ export default {
 
 ## 使用 Key Attribute 过渡 {#transitions-with-the-key-attribute}
 
-有时，你需要强制重新渲染一个 DOM 元素时进行过渡。
+有时为了触发过渡，你需要强制重新渲染 DOM 元素。
 
 以计数器组件为例：
 
