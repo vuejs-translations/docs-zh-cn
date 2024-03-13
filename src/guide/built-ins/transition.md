@@ -638,7 +638,7 @@ export default {
 
 </div>
 
-如果我们没有 `key` 属性，则只有文本节点会被更新，因此不会发生过渡。但是，有了 `key` 属性，Vue 就知道在 `count` 改变时创建了一个新的 `span` 元素，因此 `Transition` 组件有两个不同的元素在它们之间进行过渡。
+如果不使用 `key` attribute，则只有文本节点会被更新，因此不会发生过渡。但是，有了 `key` 属性，Vue 就知道在 `count` 改变时创建一个新的 `span` 元素，因此 `Transition` 组件有两个不同的元素在它们之间进行过渡。
 
 <div class="composition-api">
 
