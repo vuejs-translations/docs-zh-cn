@@ -135,6 +135,6 @@ Vue Router 使用动态导入对[懒加载组件](https://router.vuejs.org/zh/gu
 
 ---
 
-**Related**
+**参考**
 
-- [`<Suspense>` API reference](/api/built-in-components#suspense)
+- [`<Suspense>` API 参考](/api/built-in-components#suspense)
