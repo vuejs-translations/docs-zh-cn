@@ -132,3 +132,9 @@ const posts = await res.json()
 ```
 
 Vue Router 使用动态导入对[懒加载组件](https://router.vuejs.org/zh/guide/advanced/lazy-loading.html)进行了内置支持。这些与异步组件不同，目前他们不会触发 `<Suspense>`。但是，它们仍然可以有异步组件作为后代，这些组件可以照常触发 `<Suspense>`。
+
+---
+
+**Related**
+
+- [`<Suspense>` API reference](/api/built-in-components#suspense)

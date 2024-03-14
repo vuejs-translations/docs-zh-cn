@@ -23,7 +23,7 @@ Vue.js 的社区正在急速增长中，如果你正在阅读本文，这说明�
 
 ### 获得帮助 {#get-support}
 
-- [Discord 聊天室](https://chat.vuejs.org/)：一个 Vue 开发者相互认识和实时聊天的地方。
+- [Discord 聊天室](https://discord.com/invite/vue)：一个 Vue 开发者相互认识和实时聊天的地方。
 - [论坛](https://forum.vuejs.org/)：咨询与 Vue 及其生态的相关问题的最佳地点。
 - [DEV 社区](https://dev.to/t/vue)：在 Dev.to 分享与讨论 Vue 的相关话题。
 - [Meetup](https://events.vuejs.org/meetups)：想在当地找到像你一样的 Vue.js 爱好者吗？有兴趣成为社区领袖吗？这里就有你所需要的支持和帮助！
