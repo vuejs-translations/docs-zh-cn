@@ -224,7 +224,7 @@ export function register() {
 
 如果你有非常多的组件，你也可以利用构建工具的功能，比如 Vite 的 [glob 导入](https://cn.vitejs.dev/guide/features.html#glob-import)或者 webpack 的 [`require.context`](https://webpack.js.org/guides/dependency-management/#requirecontext) 来从一个文件夹加载所有的组件。
 
-### Web Components 和 Typescript {#web-components-and-typescript}
+### Web Components 和 TypeScript {#web-components-and-typescript}
 
 如果你正在开发一个应用或者库，你可能想要为你的 Vue 组件添加[类型检查](/guide/scaling-up/tooling.html#typescript)，包括那些被定义为自定义元素的组件。
 

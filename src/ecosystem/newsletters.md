@@ -7,6 +7,5 @@
 - [Jakub Andrzejewski](https://dev.to/jacobandrewsky)
 - [Weekly Vue News](https://weekly-vue.news/)
 - [Vue.js Developers Newsletter](https://vuejsdevelopers.com/newsletter/)
-- [VueDose](https://vuedose.tips/articles#newsletter)
 
 如果你还知道其他优秀的内容，请使用[该链接](https://github.com/vuejs/docs/edit/main/src/ecosystem/newsletters.md)提交一个 pull request！

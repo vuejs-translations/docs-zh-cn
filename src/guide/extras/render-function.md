@@ -785,7 +785,6 @@ MyComponent.inheritAttrs = false
 
 函数式组件可以像普通组件一样被注册和使用。如果你将一个函数作为第一个参数传入 `h`，它将会被当作一个函数式组件来对待。
 
-
 ### 为函数式组件标注类型<sup class="vt-badge ts" /> {#typing-functional-components}
 
 函数式组件可以根据它们是否有命名来标注类型。在单文件组件模板中，[Vue - Official 扩展](https://github.com/vuejs/language-tools)还支持对正确类型化的函数式组件进行类型检查。
