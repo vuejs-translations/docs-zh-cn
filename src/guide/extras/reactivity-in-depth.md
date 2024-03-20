@@ -355,7 +355,7 @@ Vue 的响应性系统是通过深度转换普通 JavaScript 对象为响应式�
 我们可以通过一个简单的组合式函数来集成 Immer：
 
 ```js
-import produce from 'immer'
+import { produce } from 'immer'
 import { shallowRef } from 'vue'
 
 export function useImmer(baseState) {
