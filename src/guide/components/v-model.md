@@ -51,7 +51,7 @@ const model = defineModel()
 
 ### 底层机制 {#under-the-hood}
 
-`defineModel` 是一个便利宏。编译器将其展开为以下内容：
+`defineModel` 是一个编译器宏。编译器将其展开为以下内容：
 
 - 一个名为 `modelValue` 的 prop，本地 ref 的值与其同步；
 - 一个名为 `update:modelValue` 的事件，当本地 ref 的值发生变更时触发。
