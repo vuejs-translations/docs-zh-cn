@@ -21,7 +21,7 @@ import { VTCodeGroup, VTCodeGroupTab } from '@vue/theme'
 :::tip 前提条件
 
 - 熟悉命令行
-- 已安装 18.0 或更高版本的 [Node.js](https://nodejs.org/)
+- 已安装 18.3 或更高版本的 [Node.js](https://nodejs.org/)
 :::
 
 在本节中，我们将介绍如何在本地搭建 Vue [单页应用](/guide/extras/ways-of-using-vue#single-page-application-spa)。创建的项目将使用基于 [Vite](https://vitejs.dev) 的构建设置，并允许我们使用 Vue 的[单文件组件](/guide/scaling-up/sfc) (SFC)。
@@ -37,21 +37,21 @@ import { VTCodeGroup, VTCodeGroupTab } from '@vue/theme'
 
   </VTCodeGroupTab>
   <VTCodeGroupTab label="pnpm">
-  
+
   ```sh
   $ pnpm create vue@latest
   ```
 
   </VTCodeGroupTab>
   <VTCodeGroupTab label="yarn">
-  
+
   ```sh
   $ yarn create vue@latest
   ```
 
   </VTCodeGroupTab>
   <VTCodeGroupTab label="bun">
-  
+
   ```sh
   $ bun create vue@latest
   ```
@@ -70,6 +70,7 @@ import { VTCodeGroup, VTCodeGroupTab } from '@vue/theme'
 <span style="color:var(--vt-c-green);">✔</span> <span style="color:#A6ACCD;">Add an End-to-End Testing Solution? <span style="color:#888;">… <span style="color:#89DDFF;text-decoration:underline">No</span> / Cypress / Playwright</span></span>
 <span style="color:var(--vt-c-green);">✔</span> <span style="color:#A6ACCD;">Add ESLint for code quality? <span style="color:#888;">… <span style="color:#89DDFF;text-decoration:underline">No</span> / Yes</span></span>
 <span style="color:var(--vt-c-green);">✔</span> <span style="color:#A6ACCD;">Add Prettier for code formatting? <span style="color:#888;">… <span style="color:#89DDFF;text-decoration:underline">No</span> / Yes</span></span>
+<span style="color:var(--vt-c-green);">✔</span> <span style="color:#A6ACCD;">Add Vue DevTools 7 extension for debugging? (experimental) <span style="color:#888;">… <span style="color:#89DDFF;text-decoration:underline">No</span> / Yes</span></span>
 <span></span>
 <span style="color:#A6ACCD;">Scaffolding project in ./<span style="color:#89DDFF;">&lt;</span><span style="color:#888;">your-project-name</span><span style="color:#89DDFF;">&gt;</span>...</span>
 <span style="color:#A6ACCD;">Done.</span></code></pre></div>
@@ -79,35 +80,35 @@ import { VTCodeGroup, VTCodeGroupTab } from '@vue/theme'
 <VTCodeGroup>
   <VTCodeGroupTab label="npm">
 
-  ```sh
-  $ cd <your-project-name>
+  ```sh-vue
+  $ cd {{'<your-project-name>'}}
   $ npm install
   $ npm run dev
   ```
 
   </VTCodeGroupTab>
   <VTCodeGroupTab label="pnpm">
-  
-  ```sh
-  $ cd <your-project-name>
+
+  ```sh-vue
+  $ cd {{'<your-project-name>'}}
   $ pnpm install
   $ pnpm run dev
   ```
 
   </VTCodeGroupTab>
   <VTCodeGroupTab label="yarn">
-  
-  ```sh
-  $ cd <your-project-name>
+
+  ```sh-vue
+  $ cd {{'<your-project-name>'}}
   $ yarn
   $ yarn dev
   ```
 
   </VTCodeGroupTab>
   <VTCodeGroupTab label="bun">
-  
-  ```sh
-  $ cd <your-project-name>
+
+  ```sh-vue
+  $ cd {{'<your-project-name>'}}
   $ bun install
   $ bun run dev
   ```
@@ -133,21 +134,21 @@ import { VTCodeGroup, VTCodeGroupTab } from '@vue/theme'
 
   </VTCodeGroupTab>
   <VTCodeGroupTab label="pnpm">
-  
+
   ```sh
   $ pnpm run build
   ```
 
   </VTCodeGroupTab>
   <VTCodeGroupTab label="yarn">
-  
+
   ```sh
   $ yarn build
   ```
 
   </VTCodeGroupTab>
   <VTCodeGroupTab label="bun">
-  
+
   ```sh
   $ bun run build
   ```
@@ -420,7 +421,7 @@ export default {
 
 要启动一个本地的 HTTP 服务器，请先安装 [Node.js](https://nodejs.org/zh/)，然后通过命令行在 HTML 文件所在文件夹下运行 `npx serve`。你也可以使用其他任何可以基于正确的 MIME 类型服务静态文件的 HTTP 服务器。
 
-可能你也注意到了，这里导入的组件模板是内联的 JavaScript 字符串。如果你正在使用 VSCode，你可以安装 [es6-string-html](https://marketplace.visualstudio.com/items?itemName=Tobermory.es6-string-html) 扩展，然后在字符串前加上一个前缀注释 `/*html*/` 以高亮语法。
+可能你也注意到了，这里导入的组件模板是内联的 JavaScript 字符串。如果你正在使用 VS Code，你可以安装 [es6-string-html](https://marketplace.visualstudio.com/items?itemName=Tobermory.es6-string-html) 扩展，然后在字符串前加上一个前缀注释 `/*html*/` 以高亮语法。
 
 ## 下一步 {#next-steps}
 
