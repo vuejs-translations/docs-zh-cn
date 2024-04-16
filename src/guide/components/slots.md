@@ -296,7 +296,7 @@ function BaseLayout(slots) {
 
 ## 条件插槽 {#conditional-slots}
 
-有时你需要根据插槽是否存在来渲染某些内容。 
+有时你需要根据插槽是否存在来渲染某些内容。
 
 你可以结合使用 [$slots](/api/component-instance.html#slots) 属性与 [v-if](/guide/essentials/conditional.html#v-if) 来实现。
 
