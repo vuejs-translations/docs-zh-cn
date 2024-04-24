@@ -41,7 +41,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <button @click="increment">点击了：{{ count }} 次</button>
+  <button @click="increment">Count: {{ count }}</button>
 </template>
 ```
 
