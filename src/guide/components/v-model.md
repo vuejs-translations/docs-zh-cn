@@ -444,7 +444,7 @@ function emitValue(e) {
 
 <div class="options-api">
 
-Modifiers added to a component `v-model` will be provided to the component via the `modelModifiers` prop. In the below example, we have created a component that contains a `modelModifiers` prop that defaults to an empty object:
+添加到组件的 `v-model` 的修饰符将通过 `modelModifiers` 属性提供给组件。在下面的示例中，我们创建了一个包含 `modelModifiers` 属性的组件，该属性默认为空对象：
 
 ```vue{11}
 <script>
@@ -471,9 +471,9 @@ export default {
 </template>
 ```
 
-Notice the component's `modelModifiers` prop contains `capitalize` and its value is `true` - due to it being set on the `v-model` binding `v-model.capitalize="myText"`.
+请注意，组件的 `modelModifiers` 属性包含 `capitalize`，值为 `true` ——因为它是在 `v-model` 绑定的 `v-model.capitalize="myText"` 上设置的。
 
-Now that we have our prop set up, we can check the `modelModifiers` object keys and write a handler to change the emitted value. In the code below we will capitalize the string whenever the `<input />` element fires an `input` event.
+现在我们已经为组件配置了 prop，我们可以检查 `modelModifiers` 对象键并编写一个处理程序来更改发出的值。 在下面的代码中，每当 `<input />` 元素触发 `input` 事件时，我们都会将字符串大写。
 
 ```vue{13-15}
 <script>
