@@ -444,7 +444,7 @@ function emitValue(e) {
 
 <div class="options-api">
 
-添加到组件的 `v-model` 的修饰符将通过 `modelModifiers` 属性提供给组件。在下面的示例中，我们创建了一个包含 `modelModifiers` 属性的组件，该属性默认为空对象：
+添加到组件 `v-model` 的修饰符将通过 `modelModifiers` prop 提供给组件。在下面的示例中，我们创建了一个包含 `modelModifiers` prop 的组件，该 prop 默认为空对象：
 
 ```vue{11}
 <script>
@@ -471,9 +471,9 @@ export default {
 </template>
 ```
 
-请注意，组件的 `modelModifiers` 属性包含 `capitalize`，值为 `true` ——因为它是在 `v-model` 绑定的 `v-model.capitalize="myText"` 上设置的。
+请注意，该组件的 `modelModifiers` prop 包含 `capitalize` 且值为 `true` ——因为它是在 `v-model.capitalize="myText"` 这个 `v-model` 绑定上设置的。
 
-现在我们已经为组件配置了 prop，我们可以检查 `modelModifiers` 对象键并编写一个处理程序来更改发出的值。 在下面的代码中，每当 `<input />` 元素触发 `input` 事件时，我们都会将字符串大写。
+现在我们已经为组件配置了 prop，我们可以检查 `modelModifiers` 对象的键并编写一个处理程序来更改抛出的值。 在下面的代码中，每当 `<input />` 元素触发 `input` 事件时，我们都会将首字母大写。
 
 ```vue{13-15}
 <script>
