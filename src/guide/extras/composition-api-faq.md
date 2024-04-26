@@ -36,12 +36,12 @@ function increment() {
 
 // 生命周期钩子
 onMounted(() => {
-  console.log(`Count init: ${count.value}`)
+  console.log(`The initial count is ${count.value}.`)
 })
 </script>
 
 <template>
-  <button @click="increment">Count: {{ count }}</button>
+  <button @click="increment">Count is: {{ count }}</button>
 </template>
 ```
 
