@@ -473,7 +473,7 @@ export default {
 
 请注意，该组件的 `modelModifiers` prop 包含 `capitalize` 且值为 `true` ——因为它是在 `v-model.capitalize="myText"` 这个 `v-model` 绑定上设置的。
 
-现在我们已经为组件配置了 prop，我们可以检查 `modelModifiers` 对象的键并编写一个处理程序来更改抛出的值。 在下面的代码中，每当 `<input />` 元素触发 `input` 事件时，我们都会将首字母大写。
+现在我们已经为组件配置了 prop，我们可以检查 `modelModifiers` 对象的键并编写一个处理程序来更改抛出的值。在下面的代码中，每当 `<input />` 元素触发 `input` 事件时，我们都会将首字母大写。
 
 ```vue{13-15}
 <script>
