@@ -36,7 +36,7 @@ function increment() {
 
 // 生命周期钩子
 onMounted(() => {
-  console.log(`计数器初始值为 ${count.value}。`)
+  console.log(`Count init: ${count.value}`)
 })
 </script>
 
