@@ -36,12 +36,12 @@ function increment() {
 
 // 生命周期钩子
 onMounted(() => {
-  console.log(`计数器初始值为 ${count.value}。`)
+  console.log(`The initial count is ${count.value}.`)
 })
 </script>
 
 <template>
-  <button @click="increment">点击了：{{ count }} 次</button>
+  <button @click="increment">Count is: {{ count }}</button>
 </template>
 ```
 
