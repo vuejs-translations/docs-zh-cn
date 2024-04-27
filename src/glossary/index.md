@@ -145,7 +145,7 @@ Vue 也支持创建自定义指令，尽管它们通常只用作操作 DOM 节�
 函数式组件无法拥有任何自己的状态。它也不会经历通常的组件生命周期，因此无法使用生命周期钩子。这使得它们比正常的有状态组件要稍微轻一些。
 
 详见：
-- [指南 - 渲染函数 & JSX -函数式组件](/guide/extras/render-function.html#functional-components)
+- [指南 - 渲染函数 & JSX - 函数式组件](/guide/extras/render-function.html#functional-components)
 
 ## 变量提升 (hoisting) {#hoisting}
 
