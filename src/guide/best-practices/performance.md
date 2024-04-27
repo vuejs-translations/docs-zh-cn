@@ -134,7 +134,7 @@ const isEven = computed(() => count.value % 2 === 0)
 
 watchEffect(() => console.log(isEven.value)) // true
 
-// 这将不会触发新的输出，因为计算属性的值保持为 `true`
+// 这将不会触发新的输出，因为计算属性的值依然为 `true`
 count.value = 2
 count.value = 4
 ```
