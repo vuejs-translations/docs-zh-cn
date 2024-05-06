@@ -135,7 +135,7 @@ Vue Router 使用动态导入对[懒加载组件](https://router.vuejs.org/zh/gu
 
 ## Nested Suspense {#nested-suspense}
 
-When we have multiple async components (common for nested or layout-based routes) like this:
+<!-- TODO: translation -->When we have multiple async components (common for nested or layout-based routes) like this:
 
 ```vue-html
 <Suspense>
