@@ -2,6 +2,10 @@
 
 > 此章节假设你已经看过了[组件基础](/guide/essentials/component-basics)。若你还不了解组件是什么，请先阅读该章节。
 
+<!--<div class="options-api">
+  <VueSchoolLink href="https://vueschool.io/lessons/vue-3-reusable-components-with-props" title="Free Vue.js Props Lesson"/>
+</div>-->
+
 ## Props 声明 {#props-declaration}
 
 一个组件需要显式声明它所接受的 props，这样 Vue 才能知道外部传入的哪些是 props，哪些是透传 attribute (关于透传 attribute，我们会在[专门的章节](/guide/components/attrs)中讨论)。
@@ -385,13 +389,18 @@ defineProps({
     type: String,
     required: true
   },
-  // Number 类型的默认值
+  // 必传但可为空的字符串
   propD: {
+    type: [String, null],
+    required: true
+  },
+  // Number 类型的默认值
+  propE: {
     type: Number,
     default: 100
   },
   // 对象类型的默认值
-  propE: {
+  propF: {
     type: Object,
     // 对象或数组的默认值
     // 必须从一个工厂函数返回。
@@ -402,14 +411,14 @@ defineProps({
   },
   // 自定义类型校验函数
   // 在 3.4+ 中完整的 props 作为第二个参数传入
-  propF: {
+  propG: {
     validator(value, props) {
       // The value must match one of these strings
       return ['success', 'warning', 'danger'].includes(value)
     }
   },
   // 函数类型的默认值
-  propG: {
+  propH: {
     type: Function,
     // 不像对象或数组的默认，这不是一个
     // 工厂函数。这会是一个用来作为默认值的函数
@@ -440,13 +449,18 @@ export default {
       type: String,
       required: true
     },
-    // Number 类型的默认值
+    // 必传但可为空的字符串
     propD: {
+      type: [String, null],
+      required: true
+    },
+    // Number 类型的默认值
+    propE: {
       type: Number,
       default: 100
     },
     // 对象类型的默认值
-    propE: {
+    propF: {
       type: Object,
       // 对象或者数组应当用工厂函数返回。
       // 工厂函数会收到组件所接收的原始 props
@@ -457,14 +471,14 @@ export default {
     },
     // 自定义类型校验函数
     // 在 3.4+ 中完整的 props 作为第二个参数传入
-    propF: {
+    propG: {
       validator(value, props) {
         // The value must match one of these strings
         return ['success', 'warning', 'danger'].includes(value)
       }
     },
     // 函数类型的默认值
-    propG: {
+    propH: {
       type: Function,
       // 不像对象或数组的默认，这不是一个
       // 工厂函数。这会是一个用来作为默认值的函数
@@ -553,6 +567,39 @@ export default {
 
 Vue 会通过 `instanceof Person` 来校验 `author` prop 的值是否是 `Person` 类的一个实例。
 
+### 可为空的类型 {#nullable-type}
+
+如果该类型是必传的但可为空，你可以用一个包含 `null` 的数组语法：
+
+<div class="composition-api">
+
+```js
+defineProps({
+  id: {
+    type: [String, null],
+    required: true
+  }
+})
+```
+
+</div>
+<div class="options-api">
+
+```js
+export default {
+  props: {
+    id: {
+      type: [String, null],
+      required: true
+    }
+  }
+}
+```
+
+</div>
+
+注意如果 `type` 仅为 `null` 而非使用数组语法，它将允许任何类型。
+
 ## Boolean 类型转换 {#boolean-casting}
 
 为了更贴近原生 boolean attributes 的行为，声明为 `Boolean` 类型的 props 有特别的类型转换规则。以带有如下声明的 `<MyComponent>` 组件为例：
@@ -597,17 +644,17 @@ export default {
 defineProps({
   disabled: [Boolean, Number]
 })
-  
+
 // disabled 将被转换为 true
 defineProps({
   disabled: [Boolean, String]
 })
-  
+
 // disabled 将被转换为 true
 defineProps({
   disabled: [Number, Boolean]
 })
-  
+
 // disabled 将被解析为空字符串 (disabled="")
 defineProps({
   disabled: [String, Boolean]
@@ -624,21 +671,21 @@ export default {
     disabled: [Boolean, Number]
   }
 }
-  
+
 // disabled 将被转换为 true
 export default {
   props: {
     disabled: [Boolean, String]
   }
 }
-  
+
 // disabled 将被转换为 true
 export default {
   props: {
     disabled: [Number, Boolean]
   }
 }
-  
+
 // disabled 将被解析为空字符串 (disabled="")
 export default {
   props: {

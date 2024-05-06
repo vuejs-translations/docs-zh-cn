@@ -67,7 +67,7 @@ whenDepsChange(update)
 
 我们无法直接追踪对上述示例中局部变量的读写，原生 JavaScript 没有提供任何机制能做到这一点。**但是**，我们是可以追踪**对象属性**的读写的。
 
-在 JavaScript 中有两种劫持 property 访问的方式：[getter](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/get) / [setters](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/set) 和 [Proxies](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy)。Vue 2 使用 getter / setters 完全是出于支持旧版本浏览器的限制。而在 Vue 3 中则使用了 Proxy 来创建响应式对象，仅将 getter / setter 用于 ref。下面的伪代码将会说明它们是如何工作的：
+在 JavaScript 中有两种劫持 property 访问的方式：[getter](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/get#description) / [setters](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/set#description) 和 [Proxies](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy)。Vue 2 使用 getter / setters 完全是出于支持旧版本浏览器的限制。而在 Vue 3 中则使用了 Proxy 来创建响应式对象，仅将 getter / setter 用于 ref。下面的伪代码将会说明它们是如何工作的：
 
 ```js{4,9,17,22}
 function reactive(obj) {
@@ -191,7 +191,7 @@ import { ref, watchEffect } from 'vue'
 const count = ref(0)
 
 watchEffect(() => {
-  document.body.innerHTML = `计数：${count.value}`
+  document.body.innerHTML = `Count is: ${count.value}`
 })
 
 // 更新 DOM
@@ -409,7 +409,7 @@ export function useMachine(options) {
 
 从根本上说，信号是与 Vue 中的 ref 相同的响应性基础类型。它是一个在访问时跟踪依赖、在变更时触发副作用的值容器。这种基于响应性基础类型的范式在前端领域并不是一个特别新的概念：它可以追溯到十多年前的 [Knockout observables](https://knockoutjs.com/documentation/observables.html) 和 [Meteor Tracker](https://docs.meteor.com/api/tracker.html) 等实现。Vue 的选项式 API 和 React 的状态管理库 [MobX](https://mobx.js.org/) 也是基于同样的原则，只不过将基础类型这部分隐藏在了对象属性背后。
 
-虽然这并不是信号的必要特征，但如今这个概念经常与细粒度订阅和更新的渲染模型一起讨论。由于使用了虚拟 DOM，Vue 目前[依靠编译器来实现类似的优化](/guide/extras/rendering-mechanism#compiler-informed-virtual-dom)。然而，我们也在探索一种新的受 Solid 启发的编译策略 (Vapor Mode)，它不依赖于虚拟 DOM，而是更多地利用 Vue 的内置响应性系统。
+虽然这并不是信号的必要特征，但如今这个概念经常与细粒度订阅和更新的渲染模型一起讨论。由于使用了虚拟 DOM，Vue 目前[依靠编译器来实现类似的优化](/guide/extras/rendering-mechanism#compiler-informed-virtual-dom)。然而，我们也在探索一种新的、受 Solid 启发的、名为 [Vapor Mode](https://github.com/vuejs/core-vapor) 的编译策略，它不依赖于虚拟 DOM，而是更多地利用 Vue 的内置响应性系统。
 
 ### API 设计权衡 {#api-design-trade-offs}
 

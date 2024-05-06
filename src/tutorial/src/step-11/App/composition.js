@@ -1,3 +1,3 @@
 export default {
-  // 注册组件
+  // 注册子组件
 }

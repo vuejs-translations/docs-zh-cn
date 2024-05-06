@@ -127,7 +127,6 @@ watch(
 | form    | role="form"          | 表单相关元素的集合 |
 | section | role="region"        | 相关的且用户可能会导航至此的内容。必须为该元素提供 label |
 
-
 :::tip 提示：
 建议同时使用 landmark HTML 元素和 role 属性，以最大程度地兼容[不支持 HTML5 语义元素的传统浏览器](https://caniuse.com/#feat=html5semantic)。
 :::
@@ -155,8 +154,6 @@ watch(
 </form>
 ```
 
-<!-- <common-codepen-snippet title="Simple Form" slug="dyNzzWZ" :height="368" tab="js,result" theme="light" :preview="false" :editable="false" /> -->
-
 请注意这里我们是如何在表单元素中引入 `autocomplete='on'` 的，它将应用于表单中的所有 input 框。你也可以为每个 input 框都设置不同的 [autocomplete attribute 的值](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/autocomplete)。
 
 ### 标签 {#labels}
@@ -167,8 +164,6 @@ watch(
 <label for="name">Name: </label>
 <input type="text" name="name" id="name" v-model="name" />
 ```
-
-<!-- <common-codepen-snippet title="Form Label" slug="XWpaaaj" :height="265" tab="js,result" theme="light" :preview="false" :editable="false" /> -->
 
 如果你在 Chrome 开发者工具中检查这个元素，并打开 Elements 选项卡中的 Accessibility 选项卡，你将看到输入是如何从标签中获取其名称的：
 
@@ -202,8 +197,6 @@ watch(
 />
 ```
 
-<!-- <common-codepen-snippet title="Form ARIA label" slug="NWdvvYQ" :height="265" tab="js,result" theme="light" :preview="false" :editable="false" /> -->
-
 在 Chrome DevTools 中审查此元素，查看无障碍名称是如何更改的：
 
 ![Chrome 开发者工具正在通过 aria-label 展示无障碍访问的 input 框名字](./images/AccessibleARIAlabelDevTools.png)
@@ -234,8 +227,6 @@ watch(
 </form>
 ```
 
-<!-- <common-codepen-snippet title="Form ARIA labelledby" slug="MWJvvBe" :height="265" tab="js,result" theme="light" :preview="false" :editable="false" /> -->
-
 ![Chrome 开发者工具通过 aria-labelledby 展示 input 的无障碍访问名称](./images/AccessibleARIAlabelledbyDevTools.png)
 
 #### `aria-describedby` {#aria-describedby}
@@ -265,8 +256,6 @@ watch(
   <button type="submit">Submit</button>
 </form>
 ```
-
-<!-- <common-codepen-snippet title="Form ARIA describedby" slug="gOgxxQE" :height="265" tab="js,result" theme="light" :preview="false" :editable="false" /> -->
 
 你可以通过使用 Chrome 开发者工具来查看说明：
 
@@ -325,7 +314,8 @@ watch(
 
 ### 用法说明 {#instructions}
 
-添加用法说明时，请确保将其正确链接到目标 input 框。你可以提供附加用法说明并在 [`aria-labelledby`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-labelledby) 内绑定多个 id。这可以使设计更加灵活。
+添加用法说明时，请确保将其正确链接到目标 input 框。
+你可以提供附加用法说明并在 [`aria-labelledby`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-labelledby) 内绑定多个 id。这可以使设计更加灵活。
 
 ```vue-html
 <fieldset>
@@ -351,8 +341,6 @@ watch(
   <p id="dob-instructions">MM/DD/YYYY</p>
 </fieldset>
 ```
-
-<!-- <common-codepen-snippet title="Form Instructions" slug="WNREEqv" :height="265" tab="js,result" theme="light" :preview="false" :editable="false" /> -->
 
 ### 隐藏内容 {#hiding-content}
 
@@ -386,8 +374,6 @@ watch(
 }
 ```
 
-<!-- <common-codepen-snippet title="Form Search" slug="QWdMqWy" :height="265" tab="js,result" theme="light" :preview="false" :editable="false" /> -->
-
 #### `aria-hidden="true"` {#aria-hidden-true}
 
 添加 `aria-hidden="true"` 在无障碍访问时被隐藏，但对其他可视用户仍然是可见的。不要在可聚焦的元素上使用它，请只在装饰性的、重复的或屏幕外的内容上使用它。
@@ -413,8 +399,6 @@ watch(
   <input type="submit" value="Submit" />
 </form>
 ```
-
-<!-- <common-codepen-snippet title="Form Buttons" slug="JjEyrYZ" :height="467" tab="js,result" theme="light" :preview="false" :editable="false" /> -->
 
 ### 功能图片 {#functional-images}
 
@@ -449,8 +433,6 @@ watch(
   </button>
 </form>
 ```
-
-<!-- <common-codepen-snippet title="Functional Images" slug="jOyLGqM" :height="265" tab="js,result" theme="light" :preview="false" :editable="false" /> -->
 
 ## 规范 {#standards}
 
