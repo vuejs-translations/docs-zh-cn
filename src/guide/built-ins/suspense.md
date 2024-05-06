@@ -135,7 +135,7 @@ Vue Router 使用动态导入对[懒加载组件](https://router.vuejs.org/zh/gu
 
 ## 嵌套使用 {#nested-suspense}
 
-当我们有多个类似于下方的异步组件（常见于嵌套或基于布局的路由）时：
+当我们有多个类似于下方的异步组件 (常见于嵌套或基于布局的路由) 时：
 
 ```vue-html
 <Suspense>
@@ -145,7 +145,7 @@ Vue Router 使用动态导入对[懒加载组件](https://router.vuejs.org/zh/gu
 </Suspense>
 ```
 
-`<Suspense>`创建了一个边界，它将如预期的那样解析树下的所有异步组件。然而，当我们更改 `DynamicAsyncOuter` 时，`<Suspense>` 会正确地等待它，但当我们更改 `DynamicAsyncInner` 时，嵌套的 `DynamicAsyncInner` 会呈现为一个空节点，直到它被解析为止（而不是之前的节点或回退插槽）。
+`<Suspense>` 创建了一个边界，它将如预期的那样解析树下的所有异步组件。然而，当我们更改 `DynamicAsyncOuter` 时，`<Suspense>` 会正确地等待它，但当我们更改 `DynamicAsyncInner` 时，嵌套的 `DynamicAsyncInner` 会呈现为一个空节点，直到它被解析为止 (而不是之前的节点或回退插槽)。
 
 为了解决这个问题，我们可以使用嵌套的方法来处理嵌套组件的补丁，就像这样：
 
@@ -159,7 +159,7 @@ Vue Router 使用动态导入对[懒加载组件](https://router.vuejs.org/zh/gu
 </Suspense>
 ```
 
-如果你不设置 `suspensible` 属性，内部的 `<Suspense>` 将被父级 `<Suspense>` 视为同步组件。这意味着它将会有自己的回退插槽，如果两个 `Dynamic` 组件同时被修改，则当子 `<Suspense>` 加载其自己的依赖关系树时，可能会出现空节点和多个修补周期，这可能不是理想情况。设置后，所有异步依赖项处理都会交给父级 `<Suspense>`（包括发出的事件），而内部 `<Suspense>` 仅充当依赖项解析和修补的另一个边界。
+如果你不设置 `suspensible` 属性，内部的 `<Suspense>` 将被父级 `<Suspense>` 视为同步组件。这意味着它将会有自己的回退插槽，如果两个 `Dynamic` 组件同时被修改，则当子 `<Suspense>` 加载其自己的依赖关系树时，可能会出现空节点和多个修补周期，这可能不是理想情况。设置后，所有异步依赖项处理都会交给父级 `<Suspense>` (包括发出的事件)，而内部 `<Suspense>` 仅充当依赖项解析和修补的另一个边界。
 
 ---
 
