@@ -451,7 +451,7 @@
   <span v-once>This will never change: {{msg}}</span>
   <!-- 带有子元素的元素 -->
   <div v-once>
-    <h1>comment</h1>
+    <h1>Comment</h1>
     <p>{{msg}}</p>
   </div>
   <!-- 组件 -->

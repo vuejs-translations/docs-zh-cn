@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { onMounted } from 'vue'
+import { ref, onMounted } from 'vue'
 import SiteMap from './SiteMap.vue'
 // import NewsLetter from './NewsLetter.vue'
 import { load, data, base } from './sponsors'
@@ -8,13 +8,12 @@ import SponsorsGroup from './SponsorsGroup.vue'
 // https://github.com/vuejs-translations/docs-zh-cn/issues/177
 // import VueMasteryModal from './VueMasteryModal.vue'
 
-onMounted(async () => {
-  await load()
-})
+onMounted(load)
 </script>
 
 <template>
   <section id="hero">
+    <img id="uwu" alt="Vue.js Kawaii Logo by @icarusgkx" />
     <h1 class="tagline">
       <span class="accent">渐进式</span>
       <br />JavaScript 框架
@@ -354,6 +353,25 @@ html:not(.dark) .accent,
 @media (max-width: 370px) {
   .tagline {
     font-size: 36px;
+  }
+}
+
+#uwu {
+  display: none;
+}
+
+.uwu #uwu {
+  display: block;
+  width: 100%;
+  max-width: 720px;
+  margin: -120px auto -20px;
+  aspect-ratio: 192 / 108;
+  content: url(/logo-uwu.png);
+}
+
+@media (max-width: 576px) {
+  .uwu #uwu {
+    margin: -60px auto -10px;
   }
 }
 </style>

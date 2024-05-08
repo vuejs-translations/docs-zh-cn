@@ -237,7 +237,7 @@
 - **类型**
 
   ```ts
-  function isProxy(value: unknown): boolean
+  function isProxy(value: any): boolean
   ```
 
 ## isReactive() {#isreactive}

@@ -13,11 +13,12 @@ import SponsorsAside from './components/SponsorsAside.vue'
 import WwAds from './components/WwAds.vue'
 // import TextAd from './components/TextAd.vue'
 
+
 export default Object.assign({}, VPTheme, {
   Layout: () => {
     // @ts-ignore
     return h(VPTheme.Layout, null, {
-      // banner: () => h(Banner),
+      // banner: () => h(VueMasteryBanner),
       'sidebar-top': () => h(PreferenceSwitch),
       'aside-mid': () => h(SponsorsAside),
       'aside-bottom': () => h(WwAds),

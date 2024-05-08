@@ -210,6 +210,11 @@ app.directive('demo', (el, binding) => {
 
 ## 在组件上使用 {#usage-on-components}
 
+:::warning 不推荐
+不推荐在组件上使用自定义指令，当组件具有多个根节点时可能会出现预期外的行为。
+:::
+
+
 当在组件上使用自定义指令时，它会始终应用于组件的根节点，和[透传 attributes](/guide/components/attrs) 类似。
 
 ```vue-html
@@ -224,4 +229,4 @@ app.directive('demo', (el, binding) => {
 </div>
 ```
 
-需要注意的是组件可能含有多个根节点。当应用到一个多根组件时，指令将会被忽略且抛出一个警告。和 attribute 不同，指令不能通过 `v-bind="$attrs"` 来传递给一个不同的元素。总的来说，**不**推荐在组件上使用自定义指令。
+需要注意的是组件可能含有多个根节点。当应用到一个多根组件时，指令将会被忽略且抛出一个警告。和 attribute 不同，指令不能通过 `v-bind="$attrs"` 来传递给一个不同的元素。

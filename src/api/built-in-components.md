@@ -318,6 +318,7 @@ h(Transition, {
   ```ts
   interface SuspenseProps {
     timeout?: string | number
+    suspensible?: boolean
   }
   ```
 
@@ -332,5 +333,7 @@ h(Transition, {
   `<Suspense>` 接受两个插槽：`#default` 和 `#fallback`。它将在内存中渲染默认插槽的同时展示后备插槽内容。
 
   如果在渲染时遇到异步依赖项 ([异步组件](/guide/components/async)和具有 [`async setup()`](/guide/built-ins/suspense#async-setup) 的组件)，它将等到所有异步依赖项解析完成时再显示默认插槽。
+
+  通过将 Suspense 设置为 `suspensible`，所有的异步依赖将由父级 Suspense 处理。请参阅[实现细节](https://github.com/vuejs/core/pull/6736)
 
 - **参考**[指南 - Suspense](/guide/built-ins/suspense)
