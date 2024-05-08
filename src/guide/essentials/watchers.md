@@ -109,7 +109,7 @@ watch(question, async (newQuestion, oldQuestion) => {
 
 ### 侦听数据源类型 {#watch-source-types}
 
-`watch` 的第一个参数可以是不同形式的“数据源”：它可以是一个 ref (包括计算属性)、一个响应式对象、一个 [getter 函数](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/get#description)、或多个数据源组成的数组：
+`watch` 的第一个参数可以是不同形式的“数据源”：它可以是一个 ref (包括计算属性)、一个响应式对象、一个 [getter 函数](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Functions/get#description)、或多个数据源组成的数组：
 
 ```js
 const x = ref(0)

@@ -152,7 +152,7 @@ Vue Router 使用动态导入对[懒加载组件](https://router.vuejs.org/zh/gu
 ```vue-html
 <Suspense>
   <component :is="DynamicAsyncOuter">
-    <Suspense suspensible> <!-- this -->
+    <Suspense suspensible> <!-- 像这样 -->
       <component :is="DynamicAsyncInner" />
     </Suspense>
   </component>
