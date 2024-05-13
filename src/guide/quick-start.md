@@ -354,7 +354,7 @@ import { createApp } from 'vue'
 </script>
 ```
 
-[CodePen Demo >](https://codepen.io/vuejs-examples/pen/YzRyRYM)
+[CodePen 示例 >](https://codepen.io/vuejs-examples/pen/YzRyRYM)
 
 </div>
 
