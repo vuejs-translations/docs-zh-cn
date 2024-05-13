@@ -196,7 +196,7 @@ import { VTCodeGroup, VTCodeGroupTab } from '@vue/theme'
 </script>
 ```
 
-[Codepen 示例](https://codepen.io/vuejs-examples/pen/QWJwJLp)
+[CodePen 示例 >](https://codepen.io/vuejs-examples/pen/QWJwJLp)
 
 </div>
 
@@ -221,7 +221,7 @@ import { VTCodeGroup, VTCodeGroupTab } from '@vue/theme'
 </script>
 ```
 
-[Codepen 示例](https://codepen.io/vuejs-examples/pen/eYQpQEG)
+[CodePen 示例 >](https://codepen.io/vuejs-examples/pen/eYQpQEG)
 
 :::tip
 本指南中许多关于组合式 API 的例子将使用 `<script setup>` 语法，这需要构建工具。如果你打算在没有构建步骤的情况下使用组合式 API，请参考 [`setup()` 选项](/api/composition-api-setup)的用法。
@@ -278,12 +278,12 @@ import { VTCodeGroup, VTCodeGroupTab } from '@vue/theme'
 
 <div class="options-api">
 
-[Codepen 示例](https://codepen.io/vuejs-examples/pen/VwVYVZO)
+[CodePen 示例 >](https://codepen.io/vuejs-examples/pen/VwVYVZO)
 
 </div>
 <div class="composition-api">
 
-[Codepen 示例](https://codepen.io/vuejs-examples/pen/MWzazEv)
+[CodePen 示例 >](https://codepen.io/vuejs-examples/pen/MWzazEv)
 
 </div>
 
@@ -323,7 +323,7 @@ import { createApp } from 'vue'
 </script>
 ```
 
-[Codepen 示例](https://codepen.io/vuejs-examples/pen/wvQKQyM)
+[CodePen 示例 >](https://codepen.io/vuejs-examples/pen/wvQKQyM)
 
 </div>
 
@@ -354,7 +354,7 @@ import { createApp } from 'vue'
 </script>
 ```
 
-[Codepen demo](https://codepen.io/vuejs-examples/pen/YzRyRYM)
+[CodePen 示例 >](https://codepen.io/vuejs-examples/pen/YzRyRYM)
 
 </div>
 
