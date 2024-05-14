@@ -290,7 +290,7 @@ type DebuggerEvent = {
 ```js
 const plusOne = computed(() => count.value + 1, {
   onTrack(e) {
-    // 当 count.value 被追踪为依赖时触发
+    // 当 plusOne.value 被追踪为依赖时触发
     debugger
   },
   onTrigger(e) {
