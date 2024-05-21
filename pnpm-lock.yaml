@@ -13,7 +13,7 @@ dependencies:
     version: 4.1.2
   '@vue/theme':
     specifier: ^2.2.5
-    version: 2.2.8(vitepress@1.1.4)(vue@3.4.26)
+    version: 2.2.11(vitepress@1.1.4)(vue@3.4.26)
   dynamics.js:
     specifier: ^1.1.5
     version: 1.1.5
@@ -824,8 +824,8 @@ packages:
     resolution: {integrity: sha512-Fg4zwR0GNnjzodMt3KRy2AWGMKQXByl56+4HjN87soxLNU9P5xcJkstAlIeEF3cU6UYOzmJl1tV0dVPGIljCnQ==}
     dev: false
 
-  /@vue/theme@2.2.8(vitepress@1.1.4)(vue@3.4.26):
-    resolution: {integrity: sha512-GlS4xIWQ3XWpkhYdNXu1Bl9jSDlPR7L72n5EA/Wm8mkbA3iUAdOxILztoK8hJRbiAlXxdSJi6+zzJUvC8fWEsA==}
+  /@vue/theme@2.2.11(vitepress@1.1.4)(vue@3.4.26):
+    resolution: {integrity: sha512-TofChQEQfHLh3BSb8vHhGRTl12gAtlFYO/3mFlSXOXSs+fG0NU+3mIXeeetA/R5CXuoCZa2fnnTNYYweWQhwnA==}
     peerDependencies:
       vitepress: ^1.2.0
     dependencies:
