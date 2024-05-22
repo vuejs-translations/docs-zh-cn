@@ -19,7 +19,7 @@ function update() {
 </script>
 
 <template>
-  <div>parent bound v-model is: {{ model }}</div>
+  <div>Parent bound v-model is: {{ model }}</div>
 </template>
 ```
 
@@ -27,7 +27,7 @@ function update() {
 
 ```vue-html
 <!-- Parent.vue -->
-<Child v-model="count" />
+<Child v-model="countModel" />
 ```
 
 `defineModel()` 返回的值是一个 ref。它可以像其他 ref 一样被访问以及修改，不过它能起到在父组件和当前变量之间的双向绑定的作用：
@@ -59,6 +59,7 @@ const model = defineModel()
 在 3.4 版本之前，你一般会按照如下的方式来实现上述相同的子组件：
 
 ```vue
+<!-- Child.vue -->
 <script setup>
 const props = defineProps(['modelValue'])
 const emit = defineEmits(['update:modelValue'])
@@ -70,6 +71,16 @@ const emit = defineEmits(['update:modelValue'])
     @input="emit('update:modelValue', $event.target.value)"
   />
 </template>
+```
+
+然后，父组件中的 `v-model="modelValue"` 将被编译为：
+
+```vue-html
+<!-- Parent.vue -->
+<Child
+  :modelValue="foo"
+  @update:modelValue="$event => (foo = $event)"
+/>
 ```
 
 如你所见，这显得冗长得多。然而，这样写有助于理解其底层机制。
@@ -212,7 +223,7 @@ const title = defineModel('title')
 </template>
 ```
 
-[在演练场中尝试一下](https://play.vuejs.org/#eNqFkl9PwjAUxb9K05dhglsMb2SQqOFBE9Soj31Zxh0Uu7bpHxxZ9t29LWOiQXzaes7p2a+9a+mt1unOA53S3JaGa0csOK/nTPJaK+NISwxUpCOVUTVJMJoM1nJ/r/BNgnS9nWYnWujFMCFMlkpaRxx3AsgsFI6S3XWtViBIYda+Dg3QFLUWkFwxmWcHFqTAhQPUCwe4IiTf3Mzbtq/qujzDddRPYfruaUzNGI1PRkmG0Twb+uiY/sI9cw0/0VdQcQnL0D5KovgfL5fa4/69jiDQOOTo+S6SOYtfrvg63VolkauNN0lLxOUCzLN2HMkYnZLoBK8QQn0+Rs0ZD+OjXm6g/Dijb20TNEZfDFgwOwQZPIdzAWQN9uLtKXIPJtL7gH3BfAWrhA+Mh9idlyvEPslF2of4J3G5freLxoG0x0MF0JDsYp5RHE6Y1F9H/8adpJO4j8mOdl/Hw/nf)
+[在演练场中尝试一下](https://play.vuejs.org/#eNqFU9tu2zAM/RVBKOAWyGIM25PhFbugDxuwC7a+VX3wEiZ1K0uCRHkuDP/7SKlxk16BILbIQ/KcQ3mUn5xb9hFkJeuw8q3DU2XazlmP4vvtF0tvBgyKjbedKJblXozLCmWUgSHB17BpokYxKiPEaocKlRgPOk0Lzq8bbI5PMlYIDxi92Z2E+GvtzXmLGipR9G86uwYtGr+NHTeAoemc5tEMnfhBf/Sry1kBHRAI1SDQSYj66u3pON73FdNUlxRLuX12d9MqZNQHJecKJUVJ8Lqc+8qFfODGgYlPueK8dWTIRZHaF5fJCuhadumiiI5cgTy6uHxVUmtcxGwC3jomizCgkjlU9Y2OKZjZ5+jHVETRI556fDhyIY6gZylIXgMp4g4nufSxdgwrazbtdnkdrCHlSaCSvPhWg//psLUmKEn7z7OVbLS2/76lGPoISX2quYLVzRPx6zBwTMlfHgL4nmTMucwxp8/+/EjK5yTtMLLoF5K/IVgdmWOGfY5mTbT3cInt1/QptGZ7Hs4GBBN2ophounoJryStn+/Cc9Lv6b5bvt9dWTn9B6F1Lrs=)
 
 如果需要额外的 prop 选项，应该在 model 名称之后传递：
 
@@ -444,7 +455,7 @@ function emitValue(e) {
 
 <div class="options-api">
 
-Modifiers added to a component `v-model` will be provided to the component via the `modelModifiers` prop. In the below example, we have created a component that contains a `modelModifiers` prop that defaults to an empty object:
+添加到组件 `v-model` 的修饰符将通过 `modelModifiers` prop 提供给组件。在下面的示例中，我们创建了一个包含 `modelModifiers` prop 的组件，该 prop 默认为空对象：
 
 ```vue{11}
 <script>
@@ -471,9 +482,9 @@ export default {
 </template>
 ```
 
-Notice the component's `modelModifiers` prop contains `capitalize` and its value is `true` - due to it being set on the `v-model` binding `v-model.capitalize="myText"`.
+请注意，该组件的 `modelModifiers` prop 包含 `capitalize` 且值为 `true` ——因为它是在 `v-model.capitalize="myText"` 这个 `v-model` 绑定上设置的。
 
-Now that we have our prop set up, we can check the `modelModifiers` object keys and write a handler to change the emitted value. In the code below we will capitalize the string whenever the `<input />` element fires an `input` event.
+现在我们已经为组件配置了 prop，我们可以检查 `modelModifiers` 对象的键并编写一个处理程序来更改抛出的值。在下面的代码中，每当 `<input />` 元素触发 `input` 事件时，我们都会将首字母大写。
 
 ```vue{13-15}
 <script>
@@ -547,7 +558,7 @@ const [firstName, firstNameModifiers] = defineModel('firstName')
 const [lastName, lastNameModifiers] = defineModel('lastName')
 
 console.log(firstNameModifiers) // { capitalize: true }
-console.log(lastNameModifiers) // { uppercase: true}
+console.log(lastNameModifiers) // { uppercase: true }
 </script>
 ```
 
@@ -565,7 +576,7 @@ lastNameModifiers: { default: () => ({}) }
 defineEmits(['update:firstName', 'update:lastName'])
 
 console.log(props.firstNameModifiers) // { capitalize: true }
-console.log(props.lastNameModifiers) // { uppercase: true}
+console.log(props.lastNameModifiers) // { uppercase: true }
 </script>
 ```
 
@@ -589,7 +600,7 @@ export default {
   emits: ['update:firstName', 'update:lastName'],
   created() {
     console.log(this.firstNameModifiers) // { capitalize: true }
-    console.log(this.lastNameModifiers) // { uppercase: true}
+    console.log(this.lastNameModifiers) // { uppercase: true }
   }
 }
 </script>

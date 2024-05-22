@@ -86,10 +86,10 @@ import { VTCodeGroup, VTCodeGroupTab } from '@vue/theme'
 
 ## IDE 支持 {#ide-support}
 
-- 推荐使用的 IDE 是 [VSCode](https://code.visualstudio.com/)，配合 [Vue - Official 扩展](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (之前是 Volar)。该插件提供了语法高亮、TypeScript 支持，以及模板内表达式与组件 props 的智能提示。
+- 推荐使用的 IDE 是 [VS Code](https://code.visualstudio.com/)，配合 [Vue - Official 扩展](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (之前是 Volar)。该插件提供了语法高亮、TypeScript 支持，以及模板内表达式与组件 props 的智能提示。
 
   :::tip
-  Vue - Official 取代了我们之前为 Vue 2 提供的官方 VSCode 扩展 [Vetur](https://marketplace.visualstudio.com/items?itemName=octref.vetur)。如果你之前已经安装了 Vetur，请确保在 Vue 3 的项目中禁用它。
+  Vue - Official 取代了我们之前为 Vue 2 提供的官方 VS Code 扩展 [Vetur](https://marketplace.visualstudio.com/items?itemName=octref.vetur)。如果你之前已经安装了 Vetur，请确保在 Vue 3 的项目中禁用它。
   :::
 
 - [WebStorm](https://www.jetbrains.com/webstorm/) 同样也为 Vue 的单文件组件提供了很好的内置支持。
@@ -142,7 +142,7 @@ Vue 团队维护着 [eslint-plugin-vue](https://github.com/vuejs/eslint-plugin-v
 
 1. `npm install -D eslint eslint-plugin-vue`，然后遵照 `eslint-plugin-vue` 的[指引](https://eslint.vuejs.org/user-guide/#usage)进行配置。
 
-2. 启用 ESLint IDE 插件，比如 [ESLint for VSCode](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)，然后你就可以在开发时获得规范检查器的反馈。这同时也避免了启动开发服务器时不必要的规范检查。
+2. 启用 ESLint IDE 插件，比如 [ESLint for VS Code](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)，然后你就可以在开发时获得规范检查器的反馈。这同时也避免了启动开发服务器时不必要的规范检查。
 
 3. 将 ESLint 格式检查作为一个生产构建的步骤，保证你可以在最终打包时获得完整的规范检查反馈。
 
@@ -150,7 +150,7 @@ Vue 团队维护着 [eslint-plugin-vue](https://github.com/vuejs/eslint-plugin-v
 
 ## 格式化 {#formatting}
 
-- [Vue - Official](https://github.com/vuejs/language-tools) VSCode 插件为 Vue SFC 提供了开箱即用的格式化功能。
+- [Vue - Official](https://github.com/vuejs/language-tools) VS Code 插件为 Vue SFC 提供了开箱即用的格式化功能。
 
 - 除此之外，[Prettier](https://prettier.io/) 也提供了内置的 Vue SFC 格式化支持。
 

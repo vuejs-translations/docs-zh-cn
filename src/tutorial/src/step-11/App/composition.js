@@ -1,3 +1,3 @@
 export default {
-  // register component
+  // 注册子组件
 }

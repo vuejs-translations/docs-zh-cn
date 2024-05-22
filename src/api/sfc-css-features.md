@@ -120,7 +120,7 @@
 
 得出的 class 将被哈希化以避免冲突，实现了同样的将 CSS 仅作用于当前组件的效果。
 
-参考 [CSS Modules spec](https://github.com/css-modules/css-modules) 以查看更多详情，例如 [global exceptions](https://github.com/css-modules/css-modules#exceptions) 和 [composition](https://github.com/css-modules/css-modules#composition)。
+参考 [CSS Modules spec](https://github.com/css-modules/css-modules) 以查看更多详情，例如 [global exceptions](https://github.com/css-modules/css-modules/blob/master/docs/composition.md#exceptions) 和 [composition](https://github.com/css-modules/css-modules/blob/master/docs/composition.md#composition)。
 
 ### 自定义注入名称 {#custom-inject-name}
 
@@ -183,9 +183,10 @@ export default {
 
 ```vue
 <script setup>
-const theme = {
-  color: 'red'
-}
+import { ref } from 'vue'
+const theme = ref({
+    color: 'red',
+})
 </script>
 
 <template>

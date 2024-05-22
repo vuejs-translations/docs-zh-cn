@@ -36,12 +36,12 @@ function increment() {
 
 // 生命周期钩子
 onMounted(() => {
-  console.log(`计数器初始值为 ${count.value}。`)
+  console.log(`The initial count is ${count.value}.`)
 })
 </script>
 
 <template>
-  <button @click="increment">点击了：{{ count }} 次</button>
+  <button @click="increment">Count is: {{ count }}</button>
 </template>
 ```
 
@@ -114,7 +114,7 @@ onMounted(() => {
 
 :::
 
-如果你在代码中只使用了组合式 API (以及上述必需的选项)，那么你可以通过配置[编译时标记](https://github.com/vuejs/core/tree/main/packages/vue#bundler-build-feature-flags)来去掉 Vue 运行时中针对选项式 API 支持的代码，从而减小生产包大概几 kb 左右的体积。注意这个配置也会影响你依赖中的 Vue 组件。
+如果你在代码中只使用了组合式 API (以及上述必需的选项)，那么你可以通过配置[编译时标记](/api/compile-time-flags)来去掉 Vue 运行时中针对选项式 API 支持的代码，从而减小生产包大概几 kb 左右的体积。注意这个配置也会影响你依赖中的 Vue 组件。
 
 ### 可以在同一个组件中使用两种 API 吗？ {#can-i-use-both-apis-in-the-same-component}
 

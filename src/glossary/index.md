@@ -145,7 +145,7 @@ Vue 也支持创建自定义指令，尽管它们通常只用作操作 DOM 节�
 函数式组件无法拥有任何自己的状态。它也不会经历通常的组件生命周期，因此无法使用生命周期钩子。这使得它们比正常的有状态组件要稍微轻一些。
 
 详见：
-- [指南 - 渲染函数 & JSX -函数式组件](/guide/extras/render-function.html#functional-components)
+- [指南 - 渲染函数 & JSX - 函数式组件](/guide/extras/render-function.html#functional-components)
 
 ## 变量提升 (hoisting) {#hoisting}
 
@@ -275,7 +275,7 @@ Vue 只能在响应式作用内部跟踪响应式依赖关系。如果在响应�
 
 实现一个响应性系统的方式有很多种。例如，可以通过代码的静态分析来确定其依赖关系。但是，Vue 没有采用这种形式的响应性系统。
 
-取而代之的是，Vue 的响应性系统在运行时跟踪属性的访问。它通过结合 Proxy 包装器和 getter/setter 函数来实现。
+取而代之的是，Vue 的响应性系统在运行时跟踪属性的访问。它通过结合 Proxy 包装器和 [getter](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Functions/get#description)/[setter](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Functions/set#description) 函数来实现。
 
 详见：
 - [指南 - 响应式基础](/guide/essentials/reactivity-fundamentals.html)

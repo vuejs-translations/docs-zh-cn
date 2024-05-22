@@ -6,7 +6,7 @@
       <div></div>
       <div></div>
     </div>
-    <div>Repl is loading...</div>
+    <div>正在加载 Repl 环境...</div>
   </div>
 </template>
 

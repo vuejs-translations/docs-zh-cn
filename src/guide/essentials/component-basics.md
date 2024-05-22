@@ -298,7 +298,7 @@ const posts = ref([
 
 </div>
 
-留意我们是如何使用 `v-bind` 来传递动态 prop 值的。当事先不知道要渲染的确切内容时，这一点特别有用。
+留意我们是如何使用 [`v-bind` 语法](/api/built-in-directives#v-bind) (`:title="post.title"`) 来传递动态 prop 值的。当事先不知道要渲染的确切内容时，这一点特别有用。
 
 以上就是目前你需要了解的关于 props 的全部了。如果你看完本章节后还想知道更多细节，我们推荐你深入阅读关于 props 的[完整指引](/guide/components/props)。
 
@@ -469,6 +469,7 @@ Something bad happened.
 这可以通过 Vue 的自定义 `<slot>` 元素来实现：
 
 ```vue{4}
+<!-- AlertBox.vue -->
 <template>
   <div class="alert-box">
     <strong>This is an Error for Demo Purposes</strong>

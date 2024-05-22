@@ -108,7 +108,7 @@ methods: {
 
 </div>
 
-方法事件处理器会自动接收原生 DOM 事件并触发执行。在上面的例子中，我们能够通过被触发事件的 `event.target.tagName` 访问到该 DOM 元素。
+方法事件处理器会自动接收原生 DOM 事件并触发执行。在上面的例子中，我们能够通过被触发事件的 `event.target` 访问到该 DOM 元素。
 
 <div class="composition-api">
 
@@ -327,7 +327,7 @@ Vue 为一些常用的按键提供了别名：
 
 ### `.exact` 修饰符 {#exact-modifier}
 
-`.exact` 修饰符允许控制触发一个事件所需的确定组合的系统按键修饰符。
+`.exact` 修饰符允许精确控制触发事件所需的系统修饰符的组合。
 
 ```vue-html
 <!-- 当按下 Ctrl 时，即使同时按下 Alt 或 Shift 也会触发 -->

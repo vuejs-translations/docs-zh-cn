@@ -23,7 +23,7 @@ Vue.js 的社区正在急速增长中，如果你正在阅读本文，这说明�
 
 ### 获得帮助 {#get-support}
 
-- [Discord 聊天室](https://chat.vuejs.org/)：一个 Vue 开发者相互认识和实时聊天的地方。
+- [Discord 聊天室](https://discord.com/invite/vue)：一个 Vue 开发者相互认识和实时聊天的地方。
 - [论坛](https://forum.vuejs.org/)：咨询与 Vue 及其生态的相关问题的最佳地点。
 - [DEV 社区](https://dev.to/t/vue)：在 Dev.to 分享与讨论 Vue 的相关话题。
 - [Meetup](https://events.vuejs.org/meetups)：想在当地找到像你一样的 Vue.js 爱好者吗？有兴趣成为社区领袖吗？这里就有你所需要的支持和帮助！
@@ -35,7 +35,7 @@ Vue.js 的社区正在急速增长中，如果你正在阅读本文，这说明�
 - [The Awesome Vue 页面](https://github.com/vuejs/awesome-vue)：一览其他牛人发布的优秀资源。
 - [Vue Telescope Explorer](https://vuetelescope.com/explore)：浏览用 Vue 创建的网站，并洞悉它们具体使用的框架和库。
 - [Made with Vue.js](https://madewithvuejs.com/)：展示用 Vue 创建的项目和库。
-- [“Show and Tell”子论坛](https://forum.vuejs.org/c/show-and-tell)：又一个好地方，可以看看他人借助 Vue 生态完成的作品，以及他人为不断壮大的 Vue 生态的贡献。
+- [“Show and Tell”子论坛](https://github.com/vuejs/core/discussions/categories/show-and-tell)：又一个好地方，可以看看他人借助 Vue 生态完成的作品，以及他人为不断壮大的 Vue 生态的贡献。
 
 ## 参与方式 {#what-you-can-do}
 

@@ -49,7 +49,7 @@ const nav: ThemeConfig['nav'] = [
           { text: 'UI 组件', link: 'https://ui-libs.vercel.app/' },
           {
             text: '证书',
-            link: 'https://certification.vuejs.org/?ref=vuejs-nav'
+            link: 'https://certificates.dev/vuejs/?ref=vuejs-nav'
           },
           { text: '找工作', link: 'https://vuejobs.com/?ref=vuejs' },
           { text: 'T-Shirt 商店', link: 'https://vue.threadless.com/' }
@@ -113,6 +113,7 @@ const nav: ThemeConfig['nav'] = [
         link: '/about/community-guide'
       },
       { text: '行为规范', link: '/about/coc' },
+      { text: '隐私政策', link: '/about/privacy' },
       {
         text: '纪录片',
         link: 'https://www.youtube.com/watch?v=OrxmtDw4pVI'
@@ -636,6 +637,14 @@ export default defineConfigWithTheme<ThemeConfig>({
     ],
     [
       'script',
+      {},
+      fs.readFileSync(
+        path.resolve(__dirname, './inlined-scripts/uwu.js'),
+        'utf-8'
+      )
+    ],
+    [
+      'script',
       {
         src: 'https://cdn.usefathom.com/script.js',
         'data-site': 'ZPMMDSYA',
@@ -699,6 +708,21 @@ export default defineConfigWithTheme<ThemeConfig>({
         repo: 'https://github.com/vuejs-translations/docs-it'
       },
       {
+        link: 'https://fa.vuejs.org',
+        text: 'فارسی',
+        repo: 'https://github.com/vuejs-translations/docs-fa'
+      },
+      {
+        link: 'https://ru.vuejs.org',
+        text: 'Русский',
+        repo: 'https://github.com/translation-gang/docs-ru'
+      },
+      {
+        link: 'https://cs.vuejs.org',
+        text: 'Čeština',
+        repo: 'https://github.com/vuejs-translations/docs-cs'
+      },
+      {
         link: '/translations/',
         text: '帮助我们翻译！',
         isTranslationsDesc: true
@@ -760,7 +784,7 @@ export default defineConfigWithTheme<ThemeConfig>({
     socialLinks: [
       { icon: 'github', link: 'https://github.com/vuejs/' },
       { icon: 'twitter', link: 'https://twitter.com/vuejs' },
-      { icon: 'discord', link: 'https://discord.com/invite/HBherRA' }
+      { icon: 'discord', link: 'https://discord.com/invite/vue' }
     ],
 
     editLink: {

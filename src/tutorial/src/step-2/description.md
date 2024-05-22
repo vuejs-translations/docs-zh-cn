@@ -63,7 +63,7 @@ setup() {
 
 ```vue-html
 <h1>{{ message }}</h1>
-<p>count is: {{ counter.count }}</p>
+<p>Count is: {{ counter.count }}</p>
 ```
 
 注意我们在模板中访问的 `message` ref 时不需要使用 `.value`：它会被自动解包，让使用更简单。

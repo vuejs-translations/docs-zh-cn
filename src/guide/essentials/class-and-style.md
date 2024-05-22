@@ -181,7 +181,7 @@ data() {
 然而，这可能在有多个依赖条件的 class 时会有些冗长。因此也可以在数组中嵌套对象：
 
 ```vue-html
-<div :class="[{ active: isActive }, errorClass]"></div>
+<div :class="[{ activeClass: isActive }, errorClass]"></div>
 ```
 
 ### 在组件上使用 {#with-components}
@@ -222,7 +222,7 @@ Class 的绑定也是同样的：
 <p class="foo bar active">Hi!</p>
 ```
 
-如果你的组件有多个根元素，你将需要指定哪个根元素来接收这个 class。你可以通过组件的 `$attrs` 属性来实现指定：
+如果你的组件有多个根元素，你将需要指定哪个根元素来接收这个 class。你可以通过组件的 `$attrs` 属性来指定接收的元素：
 
 ```vue-html
 <!-- MyComponent 模板使用 $attrs 时 -->
@@ -288,7 +288,7 @@ data() {
 ```js
 const styleObject = reactive({
   color: 'red',
-  fontSize: '13px'
+  fontSize: '30px'
 })
 ```
 

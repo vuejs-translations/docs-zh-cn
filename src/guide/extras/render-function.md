@@ -367,7 +367,7 @@ h(
       /* ... */
     }
   },
-  'click me'
+  'Click Me'
 )
 ```
 
@@ -377,7 +377,7 @@ h(
     /* ... */
   }}
 >
-  click me
+  Click Me
 </button>
 ```
 
@@ -784,7 +784,6 @@ MyComponent.inheritAttrs = false
 ```
 
 函数式组件可以像普通组件一样被注册和使用。如果你将一个函数作为第一个参数传入 `h`，它将会被当作一个函数式组件来对待。
-
 
 ### 为函数式组件标注类型<sup class="vt-badge ts" /> {#typing-functional-components}
 
