@@ -21,16 +21,17 @@
 
 ## 如何在本地编辑和预览该网站
 
-本项目要求：
+建议使用 [pnpm](https://pnpm.io/) 作为本地开发的包管理器：
 
-- Node.js 为 `v14.0.0` 或更高版本
-- pnpm 为 `v7.4.0` 或更高版本
-
-本站基于 [VitePress](https://github.com/vuejs/vitepress) 和 [@vue/theme](https://github.com/vuejs/vue-theme) 建立。网站内容以 Markdown 格式书写，位于 `src` 文件夹中。
-
-```sh
+```bash
 pnpm i
 pnpm run dev
+```
+
+该项目要求 Node.js 为 `v18` 或更高版本。并且建议启用 corepack：
+
+```bash
+corepack enable
 ```
 
 ## 贡献者列表
