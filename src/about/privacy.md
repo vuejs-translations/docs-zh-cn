@@ -8,7 +8,7 @@
 
 1. 在 GitHub (<https://github.com/>) 上使用的开源代码、文档或规范，这些都受适用的开源许可证条款的约束；
 
-2. 在 GitHub 上参与开源项目的拉取请求、问题以及任何其他交互或功能，这些都受 GitHub 的条款和条件的约束；
+2. 在 GitHub 上参与开源项目的 PR、Issue 以及任何其他交互或功能，这些都受 GitHub 的条款和条件的约束；
 
 3. 我们在 NPM (<https://npmjs.com/>) 上发布的包的使用统计数据，这些数据受 NPM 的条款和条件的约束；
 
@@ -24,7 +24,7 @@
 
   - Fathom Analytics 的隐私政策：<https://usefathom.com/legal/privacy>
 
-- **搜索功能的使用数据。**我们的搜索功能由 [Algolia DocSearch](https://docsearch.algolia.com/) 提供支持，该服务不进行任何形式的用户追踪或指纹识别，也不使用 cookies。Algolia 的服务符合 GPDR、CCPA 标准，并获得 TRUSTe 认证。
+- **搜索功能的使用数据。**我们的搜索功能由 [Algolia DocSearch](https://docsearch.algolia.com/) 驱动，该服务不进行任何形式的用户追踪或指纹识别，也不使用 cookies。Algolia 的服务符合 GPDR、CCPA 标准，并获得 TRUSTe 认证。
 
   - Algolia 的隐私政策：<https://www.algolia.com/policies/privacy/>
   - Algolia 的安全与隐私合规性：<https://www.algolia.com/distributed-secure/security-compliance/>
