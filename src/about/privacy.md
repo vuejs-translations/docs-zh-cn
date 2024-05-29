@@ -1,42 +1,42 @@
-# Vue.js Privacy Policy {#vue.js-privacy-policy}
+# Vue.js 隐私政策 {#vue.js-privacy-policy}
 
-> Effective Date: May 3, 2024
+> 生效日期：2024 年 5 月 3 日
 
-<!-- TODO: translation -->This Privacy Policy describes the Vue.js organization ("Vue", "we", "us" or "our") practices for handling your information in connection with this website (https://vuejs.org) and our open source-related websites ("Websites") and any content, related documentation, information and services (e.g. tutorials, tools to support the developer workflow, access to resources, etc.) made available to you on this website (collectively, the "Services"). This Privacy Policy describes the personal information we process to support our Services.
+本隐私政策描述了 Vue.js 组织 (以下简称“Vue”、“我们”或“我们的”) 在本网站 (<https://vuejs.org>) 及我们的开源相关网站 (以下统称“网站”) ，以及在本网站上向您提供的任何内容、相关文档、信息和服务 (例如教程、支持开发者工作流的工具、资源访问等)(统称“服务”)上处理您的信息的做法。本隐私政策阐述了我们如何处理个人信息来支持我们的服务。
 
-For clarity, this Privacy Policy does not apply to any:
+为了明确起见，本隐私政策不适用于以下情况：
 
-1. Use of open source code, documentation or specifications made available on GitHub (https://github.com/), which are governed by the terms of the applicable open source license;
+1. 在 GitHub (<https://github.com/>) 上使用的开源代码、文档或规范，这些都受适用的开源许可证条款的约束；
 
-2. Pull requests, issues and any other interactions or features related to participation in open source projects on GitHub, which are governed by GitHub's terms and conditions; or
+2. 在 GitHub 上参与开源项目的 PR、Issue 以及任何其他交互或功能，这些都受 GitHub 的条款和条件的约束；
 
-3. Usage statistics of our published packages on NPM (https://npmjs.com/), which are governed by NPM's terms and conditions; or
+3. 我们在 NPM (<https://npmjs.com/>) 上发布的包的使用统计数据，这些数据受 NPM 的条款和条件的约束；
 
-4. Usage statistics of our published browser / IDE extensions collected by the browser / IDE vendors. Such statistics are governed by the vendors' respective terms and conditions.
+4. 我们发布的浏览器/IDE 扩展的使用统计数据，这些数据由浏览器/IDE 供应商收集，并受供应商各自的条款和条件的约束。
 
-## What Kinds of Information Do We Collect? {#what-kinds-of-information-do-we-collect}
+## 我们收集哪些信息？ {#what-kinds-of-information-do-we-collect}
 
-We do **not** collect or store any type of personal data, whether through our websites or through our published npm packages or browser / IDE extensions.
+我们**不会**通过我们的网站、发布的 npm 包或浏览器/IDE 扩展收集或存储任何类型的个人数据。
 
-We may collect anonymized data via 3rd party services integrated in our websites:
+我们可能会通过集成在我们网站上的第三方服务收集匿名化数据：
 
-- **Visitor data to our websites.** Our website analytics is powered by [Fathom Analytics](https://usefathom.com/), which doesn't use cookies and complies with the GDPR, ePrivacy (including PECR), COPPA and CCPA. Using this privacy-friendly website analytics software, your IP address is only briefly processed, and we (running this website) have no way of identifying you. As per the CCPA, your personal information is de-identified. You can read more about this on Fathom Analytics' website.
+- **访问者数据。**我们的网站分析由 [Fathom Analytics](https://usefathom.com/) 驱动，该服务不使用 cookies，并且遵守 GDPR、ePrivacy (包括 PECR)、COPPA 和 CCPA。使用这种隐私友好型的网站分析软件，您的 IP 地址仅被短暂处理，我们 (运营此网站的团队) 无法识别您的身份。根据 CCPA，您的个人信息将被去标识化。您可以在 Fathom Analytics 的网站上了解更多相关信息。
 
-  - Fathom Analytics' Privacy Policy: https://usefathom.com/legal/privacy
+  - Fathom Analytics 的隐私政策：<https://usefathom.com/legal/privacy>
 
-- **Usage data of the search functionality.** Our search functionality is powered by [Algolia DocSearch](https://docsearch.algolia.com/), which does not perform any type of user tracking or fingerprinting, and does not use cookies. Algolia services are GPDR compliant, CCPA compliant, and TRUSTe Certified.
+- **搜索功能的使用数据。**我们的搜索功能由 [Algolia DocSearch](https://docsearch.algolia.com/) 驱动，该服务不进行任何形式的用户追踪或指纹识别，也不使用 cookies。Algolia 的服务符合 GPDR、CCPA 标准，并获得 TRUSTe 认证。
 
-  - Algolia's privacy policy: https://www.algolia.com/policies/privacy/
-  - Algolia's security and privacy compliance: https://www.algolia.com/distributed-secure/security-compliance/
+  - Algolia 的隐私政策：<https://www.algolia.com/policies/privacy/>
+  - Algolia 的安全与隐私合规性：<https://www.algolia.com/distributed-secure/security-compliance/>
 
-## How Do We Use Information? {#how-do-we-use-information}
+## 我们如何使用信息？ {#how-do-we-use-information}
 
-The sole purpose of collecting the aforementioned data is to understand our website traffic and usage in the most privacy-friendly way possible so that we can continually improve our website and documentation quality. The lawful basis as per the GDPR is "Article 6(1)(f); where our legitimate interests are to improve our website and business continually." As per the explanation, no personal data is stored over time.
+我们收集上述数据的唯一目的是以最符合隐私保护的方式了解我们网站的流量和使用情况，从而不断提升我们的网站和文档的质量。根据 GDPR 法律依据的“第 6 条第 1 款 (f) 项；我们持续改进网站和业务的合法利益。”，我们不会长期存储任何个人数据。
 
-## Data Retention {#data-retention}
+## 数据保留 {#data-retention}
 
-All data collected are stored on aforementioned 3rd party services and are subject to the services' respective data retention policies.
+我们收集的所有数据都存储在上述第三方服务中，并受到各自服务的数据保留政策的约束。
 
-## Questions {#questions}
+## 咨询 {#questions}
 
-If you have any questions about this Privacy Policy or our practices, please contact us via email at hello@vuejs.org.
+如果您对本隐私政策或我们的做法有任何疑问，请通过电子邮件 <hello@vuejs.org> 与我们联系。
