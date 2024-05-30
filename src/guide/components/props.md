@@ -389,7 +389,7 @@ defineProps({
     type: String,
     required: true
   },
-  // 必传但可为空的字符串
+  // 必传，且为 String 类型或 null
   propD: {
     type: [String, null],
     required: true
