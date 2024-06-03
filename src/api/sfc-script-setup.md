@@ -398,7 +398,7 @@ const attrs = useAttrs()
 
 ```vue
 <script>
-// 普通 <script>, 在模块作用域下执行 (仅一次)
+// 普通 <script>，在模块作用域下执行 (仅一次)
 runSideEffectOnce()
 
 // 声明额外的选项
