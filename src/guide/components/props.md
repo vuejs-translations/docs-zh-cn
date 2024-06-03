@@ -22,7 +22,7 @@ console.log(props.foo)
 </script>
 ```
 
-在没有使用 `<script setup>` 的组件中，prop 可以使用 [`props`](/api/options-state#props) 选项来声明：
+在没有使用 `<script setup>` 的组件中，props 可以使用 [`props`](/api/options-state#props) 选项来声明：
 
 ```js
 export default {
@@ -34,7 +34,7 @@ export default {
 }
 ```
 
-注意传递给 `defineProps()` 的参数和提供给 `props` 选项的值是相同的，两种声明方式背后其实使用的都是 prop 选项。
+注意传递给 `defineProps()` 的参数和提供给 `props` 选项的值是相同的，两种声明方式背后其实使用的都是 props 选项。
 
 </div>
 
@@ -54,7 +54,7 @@ export default {
 
 </div>
 
-除了使用字符串数组来声明 prop 外，还可以使用对象的形式：
+除了使用字符串数组来声明 props 外，还可以使用对象的形式：
 
 <div class="options-api">
 
@@ -156,7 +156,7 @@ export default {
 
 对于组件名我们推荐使用 [PascalCase](/guide/components/registration#component-name-casing)，因为这提高了模板的可读性，能帮助我们区分 Vue 组件和原生 HTML 元素。然而对于传递 props 来说，使用 camelCase 并没有太多优势，因此我们推荐更贴近 HTML 的书写风格。
 
-### 静态 vs. 动态 Prop {#static-vs-dynamic-props}
+### 静态 vs. 动态 Props {#static-vs-dynamic-props}
 
 至此，你已经见过了很多像这样的静态值形式的 props：
 
@@ -365,7 +365,7 @@ export default {
 
 ### 更改对象 / 数组类型的 props {#mutating-object-array-props}
 
-当对象或数组作为 props 被传入时，虽然子组件无法更改 props 绑定，但仍然**可以**更改对象或数组内部的值。这是因为 JavaScript 的对象和数组是按引用传递，而对 Vue 来说，禁止这样的改动，虽然可能生效，但有很大的性能损耗，比较得不偿失。
+当对象或数组作为 props 被传入时，虽然子组件无法更改 props 绑定，但仍然**可以**更改对象或数组内部的值。这是因为 JavaScript 的对象和数组是按引用传递，对 Vue 来说，阻止这种更改需要付出的代价异常昂贵。
 
 这种更改的主要缺陷是它允许了子组件以某种不明显的方式影响父组件的状态，可能会使数据流在将来变得更难以理解。在最佳实践中，你应该尽可能避免这样的更改，除非父子组件在设计上本来就需要紧密耦合。在大多数场景下，子组件应该[抛出一个事件](/guide/components/events)来通知父组件做出改变。
 

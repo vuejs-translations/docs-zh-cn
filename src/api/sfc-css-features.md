@@ -146,10 +146,10 @@
 import { useCssModule } from 'vue'
 
 // 在 setup() 作用域中...
-// 默认情况下, 返回 <style module> 的 class
+// 默认情况下，返回 <style module> 的 class
 useCssModule()
 
-// 具名情况下, 返回 <style module="classes"> 的 class
+// 具名情况下，返回 <style module="classes"> 的 class
 useCssModule('classes')
 ```
 
