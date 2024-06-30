@@ -324,7 +324,7 @@ Vue 需要附加事件监听器，以便知道过渡何时结束。可以是 `tr
 
 2. 大多数的现代浏览器都可以在执行 `transform` 动画时利用 GPU 进行硬件加速。
 
-相比之下，像 `height` 或者 `margin` 这样的属性会触发 CSS 布局变动，因此执行它们的动画效果更昂贵，需要谨慎使用。我们可以在 [CSS-Triggers](https://csstriggers.com/) 这类的网站查询哪些属性会在执行动画时触发 CSS 布局变动。
+相比之下，像 `height` 或者 `margin` 这样的属性会触发 CSS 布局变动，因此执行它们的动画效果更昂贵，需要谨慎使用。
 
 ## JavaScript 钩子 {#javascript-hooks}
 

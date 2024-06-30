@@ -99,7 +99,8 @@ Vue 使用一种基于 HTML 的模板语法，使我们能够声明式地将其�
 ```js
 const objectOfAttrs = {
   id: 'container',
-  class: 'wrapper'
+  class: 'wrapper',
+  style: 'background-color:green'
 }
 ```
 

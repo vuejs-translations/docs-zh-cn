@@ -12,40 +12,31 @@
     "lint": "zhlint 'src/{api,about,guide,sponsor,translations,tutorial}/**/*.md'",
     "clean": "rm -rf .vitepress/dist",
     "sync": "node scripts/sync.js",
-    "preinstall": "npx only-allow pnpm"
+    "preinstall": "npx only-allow pnpm",
+    "type": "vue-tsc --noEmit"
   },
   "dependencies": {
-    "@vue/repl": "^4.0.1",
-    "@vue/theme": "^2.2.5",
+    "@vue/repl": "^4.1.2",
+    "@vue/theme": "^2.2.11",
     "dynamics.js": "^1.1.5",
-    "gsap": "^3.9.0",
-    "vitepress": "^1.1.0",
-    "vue": "^3.4.0"
+    "gsap": "^3.12.5",
+    "vitepress": "^1.2.2",
+    "vue": "^3.4.27"
   },
   "devDependencies": {
-    "@types/markdown-it": "^12.2.3",
-    "@types/node": "^20.10.1",
+    "@types/body-scroll-lock": "^3.1.2",
+    "@types/markdown-it": "^14.1.1",
+    "@types/node": "^20.12.12",
     "chalk": "^4.1.2",
     "commander": "^9.4.0",
     "gray-matter": "^4.0.3",
     "lodash": "^4.17.21",
     "open": "^8.4.0",
     "simple-git": "^2.48.0",
-    "terser": "^5.14.2",
+    "terser": "^5.31.0",
+    "typescript": "^5.4.5",
+    "vue-tsc": "^2.0.19",
     "zhlint": "^0.8.1"
   },
-  "pnpm": {
-    "overrides": {
-      "@vitejs/plugin-vue": "5.0.0-beta.1"
-    },
-    "peerDependencyRules": {
-      "ignoreMissing": [
-        "@algolia/client-search",
-        "react",
-        "react-dom",
-        "@types/react",
-        "search-insights"
-      ]
-    }
-  }
+  "packageManager": "pnpm@9.1.1"
 }
