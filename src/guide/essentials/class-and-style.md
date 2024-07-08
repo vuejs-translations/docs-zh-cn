@@ -181,7 +181,7 @@ data() {
 然而，这可能在有多个依赖条件的 class 时会有些冗长。因此也可以在数组中嵌套对象：
 
 ```vue-html
-<div :class="[{ activeClass: isActive }, errorClass]"></div>
+<div :class="[{ [activeClass]: isActive }, errorClass]"></div>
 ```
 
 ### 在组件上使用 {#with-components}
