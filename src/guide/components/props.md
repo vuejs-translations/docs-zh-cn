@@ -449,7 +449,7 @@ export default {
       type: String,
       required: true
     },
-    // 必传但可为空的字符串
+    // 必传但可为 null 的字符串
     propD: {
       type: [String, null],
       required: true
