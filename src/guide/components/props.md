@@ -389,7 +389,7 @@ defineProps({
     type: String,
     required: true
   },
-  // 必传但可为空的字符串
+  // 必传但可为 null 的字符串
   propD: {
     type: [String, null],
     required: true
@@ -567,9 +567,9 @@ export default {
 
 Vue 会通过 `instanceof Person` 来校验 `author` prop 的值是否是 `Person` 类的一个实例。
 
-### 可为空的类型 {#nullable-type}
+### 可为 null 的类型 {#nullable-type}
 
-如果该类型是必传的但可为空，你可以用一个包含 `null` 的数组语法：
+如果该类型是必传但可为 null 的，你可以用一个包含 `null` 的数组语法：
 
 <div class="composition-api">
 
