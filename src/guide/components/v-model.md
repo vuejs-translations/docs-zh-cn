@@ -286,7 +286,7 @@ export default {
 
 ## 多个 `v-model` 绑定 {#multiple-v-model-bindings}
 
-利用刚才在 [`v-model` 参数](#v-model-arguments)小节中学到的指定参数与事件名的技巧，我们可以在单个组件实例上创建多个 `v-model` 双向绑定。
+利用刚才在 [`v-model` 的参数](#v-model-arguments)小节中学到的指定参数与事件名的技巧，我们可以在单个组件实例上创建多个 `v-model` 双向绑定。
 
 组件上的每一个 `v-model` 都会同步不同的 prop，而无需额外的选项：
 
