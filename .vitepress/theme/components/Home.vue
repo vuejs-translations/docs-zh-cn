@@ -39,7 +39,7 @@ onMounted(load)
         </svg>
       </a>
       <a class="setup" href="/guide/quick-start.html">安装</a>
-      <a class="security" href="https://v2.vuejs.org/eol/" target="_blank">
+      <a class="security" href="https://v2.cn.vuejs.org/eol/" target="_blank">
         获取针对 Vue 2 的安全更新
         <svg
           class="icon"
