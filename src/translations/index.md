@@ -24,6 +24,8 @@ aside: false
 
 - [العربية / 阿拉伯语](https://ar.vuejs.org/) [[源码](https://github.com/vuejs-translations/docs-ar)]
 
+- [Español / 西班牙语](https://vue3-spanish-docs.netlify.app/) [[source](https://github.com/icarusgk/vuejs-spanish-docs)]
+
 ## 启动新的翻译 {#starting-a-new-translation}
 
 近期 Vue 的文档经历了一次大的版本升级，所以其他语言的翻译版本仍不可用或进行中。

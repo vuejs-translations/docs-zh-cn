@@ -74,7 +74,7 @@ const emit = defineEmits(['update:modelValue'])
 </template>
 ```
 
-然后，父组件中的 `v-model="modelValue"` 将被编译为：
+然后，父组件中的 `v-model="foo"` 将被编译为：
 
 ```vue-html
 <!-- Parent.vue -->
