@@ -55,6 +55,15 @@ data() {
 
 当 `isActive` 或者 `hasError` 改变时，class 列表会随之更新。举例来说，如果 `hasError` 变为 `true`，class 列表也会变成 `"static active text-danger"`。
 
+Tips: 如果把text-danger改写成textDanger,则不需要单引号括起来。代码如下：
+```vue-html
+<div
+  class="static"
+  :class="{ active: isActive, textDanger: hasError }"
+></div>
+```
+
+
 绑定的对象并不一定需要写成内联字面量的形式，也可以直接绑定一个对象：
 
 <div class="composition-api">
