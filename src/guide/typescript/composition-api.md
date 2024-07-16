@@ -84,6 +84,10 @@ const props = withDefaults(defineProps<Props>(), {
 
 这将被编译为等效的运行时 props `default` 选项。此外，`withDefaults` 帮助程序为默认值提供类型检查，并确保返回的 props 类型删除了已声明默认值的属性的可选标志。
 
+:::info
+Note that default values for mutable reference types (like arrays or objects) should be wrapped in functions to avoid accidental modification and external side effects. This ensures each component instance gets its own copy of the default value.
+:::
+
 ### 非 `<script setup>` 场景下 {#without-script-setup}
 
 如果没有使用 `<script setup>`，那么为了开启 props 的类型推导，必须使用 `defineComponent()`。传入 `setup()` 的 props 对象类型是从 `props` 选项中推导而来。
