@@ -22,7 +22,7 @@
   </div>
 </template>
 
-<style>
+<style scoped>
   .container {
     margin-top: 20px;
   }
@@ -42,6 +42,10 @@
     background: linear-gradient(var(--vt-c-gray-light-4), var(--vt-c-gray-light-4)) padding-box, 
       linear-gradient(45deg, #42d392, #647eff) border-box;
     transition-duration: 0.2s;
+  }
+  .dark .container .security:hover {
+    background: linear-gradient(var(--vt-c-gray-dark-3), var(--vt-c-gray-dark-3)) padding-box, 
+      linear-gradient(45deg, #42d392, #647eff) border-box;
   }
   .container .security .icon {
     width: 12px;
