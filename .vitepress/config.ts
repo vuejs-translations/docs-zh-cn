@@ -421,7 +421,7 @@ export const sidebar: ThemeConfig['sidebar'] = {
         { text: '服务端渲染', link: '/api/ssr' },
         { text: 'TypeScript 工具类型', link: '/api/utility-types' },
         { text: '自定义渲染', link: '/api/custom-renderer' },
-        { text: '编译时标志', link: '/api/compile-time-flags' },
+        { text: '编译时标志', link: '/api/compile-time-flags' }
       ]
     }
   ],
@@ -587,11 +587,15 @@ const i18n: ThemeConfig['i18n'] = {
   ariaToC: '当前页面的目录',
   ariaMainNav: '主导航',
   ariaMobileNav: '移动版导航',
-  ariaSidebarNav: '侧边栏导航',
+  ariaSidebarNav: '侧边栏导航'
 }
 
 export default defineConfigWithTheme<ThemeConfig>({
   extends: baseConfig,
+
+  sitemap: {
+    hostname: 'https://cn.vuejs.org'
+  },
 
   lang: 'zh-CN',
   title: 'Vue.js',
@@ -778,7 +782,7 @@ export default defineConfigWithTheme<ThemeConfig>({
             reportMissingResultsLinkText: '向我们反馈'
           }
         }
-      },
+      }
     },
 
     // carbonAds: {
@@ -802,7 +806,8 @@ export default defineConfigWithTheme<ThemeConfig>({
         text: '版权声明',
         link: 'https://github.com/vuejs-translations/docs-zh-cn#%E7%89%88%E6%9D%83%E5%A3%B0%E6%98%8E'
       },
-      copyright: '本中文文档采用 知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议  (CC BY-NC-SA 4.0) 进行许可。'
+      copyright:
+        '本中文文档采用 知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议  (CC BY-NC-SA 4.0) 进行许可。'
     }
   },
 
@@ -834,7 +839,6 @@ export default defineConfigWithTheme<ThemeConfig>({
       }
     },
     build: {
-      minify: 'terser',
       chunkSizeWarningLimit: Infinity
     },
     json: {

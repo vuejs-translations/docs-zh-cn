@@ -126,7 +126,7 @@ items.forEach((item, index) => {
 
 ## `v-for` 与对象 {#v-for-with-an-object}
 
-你也可以使用 `v-for` 来遍历一个对象的所有属性。遍历的顺序会基于对该对象调用 `Object.keys()` 的返回值来决定。
+你也可以使用 `v-for` 来遍历一个对象的所有属性。遍历的顺序会基于对该对象调用 `Object.values()` 的返回值来决定。
 
 <div class="composition-api">
 

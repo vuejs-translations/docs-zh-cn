@@ -1,7 +1,7 @@
 {
   "license": "CC BY-NC-SA 4.0",
   "engines": {
-    "node": ">=14.0.0",
+    "node": ">=18.0.0",
     "pnpm": ">=7.4.0"
   },
   "type": "module",
@@ -16,12 +16,12 @@
     "type": "vue-tsc --noEmit"
   },
   "dependencies": {
-    "@vue/repl": "^4.2.1",
+    "@vue/repl": "^4.3.1",
     "@vue/theme": "^2.2.12",
     "dynamics.js": "^1.1.5",
     "gsap": "^3.12.5",
-    "vitepress": "^1.2.3",
-    "vue": "^3.4.27"
+    "vitepress": "^1.3.2",
+    "vue": "^3.5.0-beta.1"
   },
   "devDependencies": {
     "@types/body-scroll-lock": "^3.1.2",
@@ -33,9 +33,8 @@
     "lodash": "^4.17.21",
     "open": "^8.4.0",
     "simple-git": "^2.48.0",
-    "terser": "^5.31.0",
     "typescript": "^5.4.5",
-    "vue-tsc": "^2.0.19",
+    "vue-tsc": "^2.0.29",
     "zhlint": "^0.8.1"
   },
   "packageManager": "pnpm@9.1.4"
