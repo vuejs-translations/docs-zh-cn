@@ -424,7 +424,7 @@ import type { ComponentPublicInstance } from 'vue'
 const child = ref<ComponentPublicInstance | null>(null)
 ```
 
-如果组件是一个[泛型组件](/guide/typescript/overview.html#generic-components)，例如 `MyGenericModal`：
+如果引用的组件是一个[泛型组件](/guide/typescript/overview.html#generic-components)，例如 `MyGenericModal`：
 
 ```vue
 <!-- MyGenericModal.vue -->
