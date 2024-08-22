@@ -441,7 +441,7 @@ defineExpose({
 </script>
 ```
 
-你需要使用 [`vue-component-type-helpers`](https://www.npmjs.com/package/vue-component-type-helpers) 库中的 `ComponentExposed` 来引用组件类型，因为 `InstanceType` 在这种场景下不起作用。
+则需要使用 [`vue-component-type-helpers`](https://www.npmjs.com/package/vue-component-type-helpers) 库中的 `ComponentExposed` 来引用组件类型，因为 `InstanceType` 在这种场景下不起作用。
 
 ```vue
 <!-- App.vue -->
