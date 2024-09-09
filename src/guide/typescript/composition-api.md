@@ -68,10 +68,21 @@ const props = defineProps<Props>()
 
 ### Props 解构默认值 {#props-default-values}
 
-当使用基于类型的声明时，我们失去了为 props 声明默认值的能力。这可以通过 `withDefaults` 编译器宏解决：
+当使用基于类型的声明时，我们失去了为 props 声明默认值的能力。可以通过使用[响应式 Props 解构](/guide/components/props#reactive-props-destructure)解决这个问题。 <sup class="vt-badge" data-text="3.5+" />:
 
 ```ts
-export interface Props {
+interface Props {
+  msg?: string
+  labels?: string[]
+}
+
+const { msg = 'hello', labels = ['one', 'two'] } = defineProps<Props>()
+```
+
+在 3.4 及更低版本，响应式 Props 解构不会被默认启用。另一种选择是使用 `withDefaults` 编译器宏：
+
+```ts
+interface Props {
   msg?: string
   labels?: string[]
 }
@@ -85,7 +96,7 @@ const props = withDefaults(defineProps<Props>(), {
 这将被编译为等效的运行时 props `default` 选项。此外，`withDefaults` 帮助程序为默认值提供类型检查，并确保返回的 props 类型删除了已声明默认值的属性的可选标志。
 
 :::info
-请注意，可变引用类型 (如数组或对象) 的默认值应封装在函数中，以避免被意外修改或产生外部副作用。这样可以确保每个组件实例都能获得属于自己的默认值副本。
+请注意，在使用 `withDefaults` 时，默认值的可变引用类型（如数组或对象）应该在函数中进行包装，以避免意外修改和外部副作用。这样可以确保每个组件实例都会获得自己默认值的副本。当使用解构时，这**不**是必要的。
 :::
 
 ### 非 `<script setup>` 场景下 {#without-script-setup}
@@ -360,6 +371,17 @@ const foo = inject('foo') as string
 
 ## 为模板引用标注类型 {#typing-template-refs}
 
+使用 Vue 3.5 和 `@vue/language-tools` 2.1（为 IDE 语言服务和 `vue-tsc` 提供支持），在单文件组件中，`useTemplateRef()` 创建的 ref 类型可以根据匹配的 `ref` 属性使用的元素**自动推断**为静态 ref。 
+
+在无法进行自动推断的情况下，仍然可以通过通用参数将模板 ref 转换为显式类型。
+
+```ts
+const el = useTemplateRef<HTMLInputElement>(null)
+```
+
+<details>
+<summary>在 3.5 之前的版本使用</summary>
+
 模板引用需要通过一个显式指定的泛型参数和一个初始值 `null` 来创建：
 
 ```vue
@@ -378,50 +400,45 @@ onMounted(() => {
 </template>
 ```
 
+</details>
+
 可以通过类似于 [MDN](https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element/input#technical_summary) 的页面来获取正确的 DOM 接口。
 
 注意为了严格的类型安全，有必要在访问 `el.value` 时使用可选链或类型守卫。这是因为直到组件被挂载前，这个 ref 的值都是初始的 `null`，并且在由于 `v-if` 的行为将引用的元素卸载时也可以被设置为 `null`。
 
 ## 为组件模板引用标注类型 {#typing-component-template-refs}
 
-有时，你可能需要为一个子组件添加一个模板引用，以便调用它公开的方法。举例来说，我们有一个 `MyModal` 子组件，它有一个打开模态框的方法：
+通过 Vue 3.5 和 `@vue/language-tools` 2.1（用于 IDE 语言服务和 `vue-tsc`）自动生成推断的 refs 类型，这将应用在基于 `ref` 属性使用的元素或组件的静态 refs 上，故在 SFC 中使用 `useTemplateRef()` 会**自动推断** ref 类型。
 
-```vue
-<!-- MyModal.vue -->
-<script setup lang="ts">
-import { ref } from 'vue'
+在无法自动推断的情况下（如非 SFC 使用或动态组件），您可以通过泛型参数将模板 ref 强制转换为显式类型。
 
-const isContentShown = ref(false)
-const open = () => (isContentShown.value = true)
-
-defineExpose({
-  open
-})
-</script>
-```
-
-为了获取 `MyModal` 的类型，我们首先需要通过 `typeof` 得到其类型，再使用 TypeScript 内置的 `InstanceType` 工具类型来获取其实例类型：
+为了获取导入组件的实例类型，我们需要先通过 `typeof` 获取其类型，然后使用 TypeScript 的内置 `InstanceType` 实用程序提取其实例类型：
 
 ```vue{5}
 <!-- App.vue -->
 <script setup lang="ts">
-import MyModal from './MyModal.vue'
+import { useTemplateRef } from 'vue'
+import Foo from './Foo.vue'
+import Bar from './Bar.vue'
 
-const modal = ref<InstanceType<typeof MyModal> | null>(null)
+type FooType = InstanceType<typeof Foo>
+type BarType = InstanceType<typeof Bar>
 
-const openModal = () => {
-  modal.value?.open()
-}
+const compRef = useTemplateRef<FooType | BarType>('comp')
 </script>
+
+<template>
+  <component :is="Math.random() > 0.5 ? Foo : Bar" ref="comp" />
+</template>
 ```
 
 如果组件的具体类型无法获得，或者你并不关心组件的具体类型，那么可以使用 `ComponentPublicInstance`。这只会包含所有组件都共享的属性，比如 `$el`。
 
 ```ts
-import { ref } from 'vue'
+import { useTemplateRef } from 'vue'
 import type { ComponentPublicInstance } from 'vue'
 
-const child = ref<ComponentPublicInstance | null>(null)
+const child = useTemplateRef<ComponentPublicInstance | null>(null)
 ```
 
 如果引用的组件是一个[泛型组件](/guide/typescript/overview.html#generic-components)，例如 `MyGenericModal`：
@@ -446,11 +463,11 @@ defineExpose({
 ```vue
 <!-- App.vue -->
 <script setup lang="ts">
+import { useTemplateRef } from 'vue'
 import MyGenericModal from './MyGenericModal.vue'
+import type { ComponentExposed } from 'vue-component-type-helpers'
 
-import type { ComponentExposed } from 'vue-component-type-helpers';
-
-const modal = ref<ComponentExposed<typeof MyModal> | null>(null)
+const modal = useTemplateRef<ComponentExposed<typeof MyModal>>(null)
 
 const openModal = () => {
   modal.value?.open('newValue')
@@ -458,3 +475,4 @@ const openModal = () => {
 </script>
 ```
 
+Note that with `@vue/language-tools` 2.1+, static template refs' types can be automatically inferred and the above is only needed in edge cases.

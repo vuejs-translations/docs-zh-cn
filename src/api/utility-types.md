@@ -34,15 +34,15 @@
 
 ## MaybeRef\<T> {#mayberef}
 
-`T | Ref<T>` 的别名。对于标注[组合式函数](/guide/reusability/composables.html)的参数很有用。
-
 - 仅在 3.3+ 版本中支持。
+
+`T | Ref<T>` 的别名。对于标注[组合式函数](/guide/reusability/composables.html)的参数很有用。
 
 ## MaybeRefOrGetter\<T> {#maybereforgetter}
 
-`T | Ref<T> | (() => T)` 的别名。对于标注[组合式函数](/guide/reusability/composables.html)的参数很有用。
-
 - 仅在 3.3+ 版本中支持。
+
+`T | Ref<T> | (() => T)` 的别名。对于标注[组合式函数](/guide/reusability/composables.html)的参数很有用。
 
 ## ExtractPropTypes\<T> {#extractproptypes}
 
@@ -77,9 +77,9 @@
 
 ## ExtractPublicPropTypes\<T> {#extractpublicproptypes}
 
-从运行时的 props 选项对象中提取 prop。提取的类型是面向外部的，即父组件允许传递的 props。
+- 仅在 3.3+ 版本中支持。
 
-- 仅在 3.3+ 中支持
+Extract prop types from a runtime props options object. The extracted types are public facing - i.e. the props that the parent is allowed to pass.
 
 - **示例**
 

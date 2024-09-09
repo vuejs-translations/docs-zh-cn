@@ -259,7 +259,7 @@
 
 - **缩写：**
   - `:` 或者 `.` (当使用 `.prop` 修饰符)
-  - 值可以省略 (当 attribute 和绑定的值同名时) <sup class="vt-badge">3.4+</sup>
+  - 省略值（当属性和绑定值具有相同的名称时，需要 3.4+）
 
 - **期望：**`any (带参数) | Object (不带参数)`
 
@@ -267,9 +267,9 @@
 
 - **修饰符**
 
-  - `.camel` - 将短横线命名的 attribute 转变为驼峰式命名。
-  - `.prop` - 强制绑定为 DOM property。<sup class="vt-badge">3.2+</sup>
-  - `.attr` - 强制绑定为 DOM attribute。<sup class="vt-badge">3.2+</sup>
+  - `.camel` - 将 kebab-case 属性名称转换为 camelCase。
+  - `.prop` - 强制绑定为 DOM 属性（3.2+）。
+  - `.attr` - 强制绑定为 DOM 属性（3.2+）。
 
 - **用途**
 
@@ -468,7 +468,9 @@
   - [数据绑定语法 - 插值](/guide/essentials/template-syntax#text-interpolation)
   - [v-memo](#v-memo)
 
-## v-memo <sup class="vt-badge" data-text="3.2+" /> {#v-memo}
+## v-memo {#v-memo}
+
+- Only supported in 3.2+
 
 - **期望的绑定值类型：**`any[]`
 

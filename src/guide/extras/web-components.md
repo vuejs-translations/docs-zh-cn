@@ -47,15 +47,15 @@ export default {
 ```js
 // vue.config.js
 module.exports = {
-  chainWebpack: config => {
+  chainWebpack: (config) => {
     config.module
       .rule('vue')
       .use('vue-loader')
-      .tap(options => ({
+      .tap((options) => ({
         ...options,
         compilerOptions: {
           // 将所有以 ion- 开头的标签都视为自定义元素
-          isCustomElement: tag => tag.startsWith('ion-')
+          isCustomElement: (tag) => tag.startsWith('ion-')
         }
       }))
   }
@@ -81,7 +81,7 @@ module.exports = {
 
 ### defineCustomElement {#definecustomelement}
 
-Vue 提供了一个和定义一般 Vue 组件几乎完全一致的 [`defineCustomElement`](/api/general#definecustomelement) 方法来支持创建自定义元素。这个方法接收的参数和 [`defineComponent`](/api/general#definecomponent) 完全相同。但它会返回一个继承自 `HTMLElement` 的自定义元素构造器：
+Vue 提供了一个和定义一般 Vue 组件几乎完全一致的 [`defineCustomElement`](/api/custom-elements#definecustomelement) 方法来支持创建自定义元素。这个方法接收的参数和 [`defineComponent`](/api/general#definecomponent) 完全相同。但它会返回一个继承自 `HTMLElement` 的自定义元素构造器：
 
 ```vue-html
 <my-vue-element></my-vue-element>
@@ -171,6 +171,20 @@ document.body.appendChild(
 
 [Provide / Inject API](/guide/components/provide-inject#provide-inject) 和[相应的组合式 API](/api/composition-api-dependency-injection#provide) 在 Vue 定义的自定义元素中都可以正常工作。但是请注意，依赖关系**只在自定义元素之间**起作用。例如一个 Vue 定义的自定义元素就无法注入一个由常规 Vue 组件所提供的属性。
 
+#### 应用程序级配置 <sup class="vt-badge" data-text="3.5+" /> {#app-level-config}
+
+您可以使用 `configureApp` 选项来配置 Vue 自定义元素的应用程序实例：
+
+```js
+defineCustomElement(MyComponent, {
+  configureApp(app) {
+    app.config.errorHandler = (err) => {
+      /* ... */
+    }
+  }
+})
+```
+
 ### 将 SFC 编译为自定义元素 {#sfc-as-custom-element}
 
 `defineCustomElement` 也可以搭配 Vue 单文件组件 (SFC) 使用。但是，根据默认的工具链配置，SFC 中的 `<style>` 在生产环境构建时仍然会被抽取和合并到一个单独的 CSS 文件中。当正在使用 SFC 编写自定义元素时，通常需要改为注入 `<style>` 标签到自定义元素的 shadow root 上。
@@ -242,7 +256,7 @@ export const Counter = defineCustomElement(CounterSFC)
 // 注册全局类型
 declare module 'vue' {
   export interface GlobalComponents {
-    'Counter': typeof Counter,
+    Counter: typeof Counter
   }
 }
 ```

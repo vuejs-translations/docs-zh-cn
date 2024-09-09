@@ -117,6 +117,71 @@ defineProps<{
 
 </div>
 
+<div class="composition-api">
+
+## 响应式 Props 解构 <sup class="vt-badge" data-text="3.5+" /> \*\* {#reactive-props-destructure}
+
+Vue 的响应系统基于属性访问跟踪状态的使用情况。例如，在计算属性或观察者中访问 `props.foo` 时，`foo` 属性将被跟踪为依赖项。
+
+因此，在以下代码的情况下：
+
+```js
+const { foo } = defineProps(['foo'])
+
+watchEffect(() => {
+  // runs only once before 3.5
+  // re-runs when the "foo" prop changes in 3.5+
+  console.log(foo)
+})
+```
+
+在 3.4 版本及以下，`foo` 是一个实际的常量，永远不会改变。在 3.5 版本及以上，Vue 的编译器会自动在相同 `<script setup>` 块中访问由 `defineProps` 解构的变量时，在代码前自动添加 `props.`。因此，上面的代码等同于以下代码：
+
+```js {5}
+const props = defineProps(['foo'])
+
+watchEffect(() => {
+  // `foo` transformed to `props.foo` by the compiler
+  console.log(props.foo)
+})
+```
+
+此外，您可以使用 JavaScript 的原生默认值语法为 props 声明默认值。当使用基于类型的 props 声明时，这是特别有用的。
+
+```ts
+const { foo = 'hello' } = defineProps<{ foo?: string }>()
+```
+
+如果您希望在您的 IDE 中在解构的 props 和普通变量之间有更多视觉区分，Vue 的 VSCode 扩展提供了一个设置来启用解构 props 的内联提示。
+
+### 将解构的 props 传递到函数中
+
+当我们将解构的 prop 传递到函数中时，例如：
+
+```js
+const { foo } = defineProps(['foo'])
+
+watch(foo, /* ... */)
+```
+
+由于它等价于 `watch(props.foo, ...)` - 我们传递的是一个值而不是一个响应式数据源给 `watch`，所以这并不会按预期工作。事实上，Vue 的编译器会捕捉这种情况并抛出警告。
+
+与我们可以使用 `watch(() => props.foo, ...)` 监视普通 prop 类似，我们也可以通过将其包装在 getter 中来监视解构的 prop：
+
+```js
+watch(() => foo, /* ... */)
+```
+
+此外，这是推荐的方法，当我们需要将解构的 prop 传递到外部函数中并保持响应性时。
+
+```js
+useComposable(() => foo)
+```
+
+外部函数在需要跟踪提供的属性的更改时可以调用 getter（或使用 [toValue](/api/reactivity-utilities.html#tovalue) 进行规范化）。例如，在计算属性或观察者的 getter 中。
+
+</div>
+
 ## 传递 prop 的细节 {#prop-passing-details}
 
 ### Prop 名字格式 {#prop-name-casing}

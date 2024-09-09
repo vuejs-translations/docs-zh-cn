@@ -86,7 +86,9 @@
 
 ## slots<sup class="vt-badge ts"/> {#slots}
 
-一个在渲染函数中以编程方式使用插槽时辅助类型推断的选项。仅在 Vue 3.3+ 中支持。
+- 仅支持 3.3+
+
+An option to assist with type inference when using slots programmatically in render functions.
 
 - **详情**
 

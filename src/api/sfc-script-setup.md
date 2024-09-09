@@ -209,12 +209,48 @@ const emit = defineEmits<{
 
   这个限制已经在 3.3 版本中解决。最新版本的 Vue 支持在类型参数的位置引用导入的和有限的复杂类型。然而，由于类型到运行时的转换仍然基于 AST，因此并不支持使用需要实际类型分析的复杂类型，例如条件类型等。你可以在单个 prop 的类型上使用条件类型，但不能对整个 props 对象使用。
 
-### 使用类型声明时的默认 props 值 {#default-props-values-when-using-type-declaration}
+### 响应式 Props 解构 <sup class="vt-badge" data-text="3.5+" /> {#reactive-props-destructure}
 
-针对类型的 `defineProps` 声明的不足之处在于，它没有可以给 props 提供默认值的方式。为了解决这个问题，我们还提供了 `withDefaults` 编译器宏：
+在 Vue 3.5 及以上版本中，从 `defineProps` 返回值解构出的变量是响应式的。当在同一个 `<script setup>` 块中的代码访问从 `defineProps` 解构出的变量时，Vue 的编译器会自动在前面添加 `props.`。
 
 ```ts
-export interface Props {
+const { foo } = defineProps(['foo'])
+
+watchEffect(() => {
+  // runs only once before 3.5
+  // re-runs when the "foo" prop changes in 3.5+
+  console.log(foo)
+})
+```
+
+以上编译成以下等效内容：
+
+```js {5}
+const props = defineProps(['foo'])
+
+watchEffect(() => {
+  // `foo` transformed to `props.foo` by the compiler
+  console.log(props.foo)
+})
+```
+
+此外，您可以使用 JavaScript 的本机默认值语法为 props 声明默认值。当使用基于类型的 props 声明时，这特别有用。
+
+```ts
+interface Props {
+  msg?: string
+  labels?: string[]
+}
+
+const { msg = 'hello', labels = ['one', 'two'] } = defineProps<Props>()
+```
+
+### 使用类型声明时的默认 props 值 <sup class="vt-badge ts" /> {#default-props-values-when-using-type-declaration}
+
+在 3.5 及以上版本中，当使用响应式 Props 解构时，可以自然地声明默认值。但在 3.4 及以下版本中，默认情况下并未启用响应式 Props 解构。为了用基于类型声明的方式声明 props 的默认值，需要使用 `withDefaults` 编译器宏：
+
+```ts
+interface Props {
   msg?: string
   labels?: string[]
 }
@@ -228,10 +264,12 @@ const props = withDefaults(defineProps<Props>(), {
 上面代码会被编译为等价的运行时 props 的 `default` 选项。此外，`withDefaults` 辅助函数提供了对默认值的类型检查，并确保返回的 `props` 的类型删除了已声明默认值的属性的可选标志。
 
 :::info
-请注意，可变引用类型 (如数组或对象) 的默认值应封装在函数中，以避免被意外修改或产生外部副作用。这样可以确保每个组件实例都能获得属于自己的默认值副本。
+请注意，在使用 `withDefaults` 时，默认值为可变引用类型（如数组或对象）应该封装在函数中，以避免意外修改和外部副作用。这样可以确保每个组件实例都获得默认值的自己的副本。在使用默认值解构时，这**不**是必要的。
 :::
 
-## defineModel() <sup class="vt-badge" data-text="3.4+" /> {#definemodel}
+## defineModel() {#definemodel}
+
+- Only available in 3.4+
 
 这个宏可以用来声明一个双向绑定 prop，通过父组件的 `v-model` 来使用。[组件 `v-model`](/guide/components/v-model) 指南中也讨论了示例用法。
 
@@ -341,7 +379,9 @@ defineExpose({
 
 当父组件通过模板引用的方式获取到当前组件的实例，获取到的实例会像这样 `{ a: number, b: number }` (ref 会和在普通实例中一样被自动解包)
 
-## defineOptions() <sup class="vt-badge" data-text="3.3+" /> {#defineoptions}
+## defineOptions() {#defineoptions}
+
+- 仅支持 3.3+
 
 这个宏可以用来直接在 `<script setup>` 中声明组件选项，而不必使用单独的 `<script>` 块：
 
@@ -356,10 +396,11 @@ defineOptions({
 </script>
 ```
 
-- 仅支持 Vue 3.3+。
 - 这是一个宏定义，选项将会被提升到模块作用域中，无法访问 `<script setup>` 中不是字面常数的局部变量。
 
-## defineSlots()<sup class="vt-badge ts"/> {#defineslots}
+## defineSlots() <sup class="vt-badge ts"/> {#defineslots}
+
+- 仅支持 3.3+
 
 这个宏可以用于为 IDE 提供插槽名称和 props 类型检查的类型提示。
 
@@ -374,8 +415,6 @@ const slots = defineSlots<{
 }>()
 </script>
 ```
-
-- 仅支持 Vue 3.3+。
 
 ## `useSlots()` 和 `useAttrs()` {#useslots-useattrs}
 
@@ -486,7 +525,6 @@ ref<InstanceType<typeof componentWithoutGenerics>>();
 
 ref<ComponentExposed<typeof genericComponent>>();
 ```
-
 
 ## 限制 {#restrictions}
 
