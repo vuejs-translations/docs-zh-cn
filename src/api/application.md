@@ -629,9 +629,9 @@ console.log(app.config)
 
 配置此应用中通过 [useId()](/api/general#useid) 生成的所有 ID 的前缀。
 
-- **类型:** `string`
+- **类型** `string`
 
-- **默认值:** `undefined`
+- **默认值** `undefined`
 
 - **示例**
 
