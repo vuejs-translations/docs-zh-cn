@@ -1,5 +1,4 @@
 <!-- TODO: translation -->
-<!-- TODO: translation -->
 # Custom Elements API {#custom-elements-api}
 
 ## defineCustomElement() {#definecustomelement}

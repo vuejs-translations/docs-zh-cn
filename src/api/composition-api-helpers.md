@@ -1,5 +1,4 @@
 <!-- TODO: translation -->
-<!-- TODO: translation -->
 # Composition API: Helpers {#composition-api-helpers}
 
 ## useAttrs() {#useattrs}
