@@ -315,7 +315,7 @@
   stop()
   ```
 
-  副作用清理:
+  副作用清理：
 
   ```js
   watchEffect(async (onCleanup) => {
@@ -327,7 +327,7 @@
   })
   ```
 
-  Side effect cleanup in 3.5+:
+  3.5+ 中的副作用清理：
 
   ```js
   import { onWatcherCleanup } from 'vue'
@@ -525,7 +525,7 @@
   stop()
   ```
 
-  暂停/恢复侦听器: <sup class="vt-badge" data-text="3.5+" />
+  暂停/恢复侦听器：<sup class="vt-badge" data-text="3.5+" />
 
   ```js
   const { stop, pause, resume } = watchEffect(() => {})
@@ -571,7 +571,7 @@
 
 ## onWatcherCleanup() <sup class="vt-badge" data-text="3.5+" /> {#onwatchercleanup}
 
-注册一个清理函数，在当前侦听器即将重新运行时执行。只能在 `watchEffect` 作用函数或 `watch` 回调函数的同步执行期间调用（即不能在异步函数的 `await` 语句之后调用）。
+注册一个清理函数，在当前侦听器即将重新运行时执行。只能在 `watchEffect` 作用函数或 `watch` 回调函数的同步执行期间调用 (即不能在异步函数的 `await` 语句之后调用)。
 
 - **类型**
 

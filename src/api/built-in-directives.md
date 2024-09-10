@@ -259,7 +259,7 @@
 
 - **缩写：**
   - `:` 或者 `.` (当使用 `.prop` 修饰符)
-  - 值可以省略（当 attribute 和绑定的值同名时，需要 3.4+ 版本）
+  - 值可以省略 (当 attribute 和绑定的值同名时，需要 3.4+ 版本)
 
 - **期望：**`any (带参数) | Object (不带参数)`
 
@@ -268,8 +268,8 @@
 - **修饰符**
 
   - `.camel` - 将短横线命名的 attribute 转变为驼峰式命名。
-  - `.prop` - 强制绑定为 DOM property（3.2+）。
-  - `.attr` - 强制绑定为 DOM attribute（3.2+）。
+  - `.prop` - 强制绑定为 DOM property (3.2+)。
+  - `.attr` - 强制绑定为 DOM attribute (3.2+)。
 
 - **用途**
 

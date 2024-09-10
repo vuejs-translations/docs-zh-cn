@@ -234,7 +234,7 @@ watchEffect(() => {
 })
 ```
 
-此外，你可以使用 JavaScript 原生的默认值语法声明 props 默认值。这在使用基于类型的 props 声明时特别有用。
+此外，你可以使用 JavaScript 原生的默认值语法声明 props 的默认值。这在使用基于类型的 props 声明时特别有用。
 
 ```ts
 interface Props {
@@ -264,7 +264,7 @@ const props = withDefaults(defineProps<Props>(), {
 上面代码会被编译为等价的运行时 props 的 `default` 选项。此外，`withDefaults` 辅助函数提供了对默认值的类型检查，并确保返回的 `props` 的类型删除了已声明默认值的属性的可选标志。
 
 :::info
-请注意，在使用 `withDefaults` 时，默认值为可变引用类型（如数组或对象）应该封装在函数中，以避免意外修改和外部副作用。这样可以确保每个组件实例都获得默认值的自己的副本。在使用默认值解构时，这**不**是必要的。
+请注意，在使用 `withDefaults` 时，默认值为可变引用类型 (如数组或对象) 应该封装在函数中，以避免意外修改和外部副作用。这样可以确保每个组件实例都获得默认值的自己的副本。在使用默认值解构时，这**不**是必要的。
 :::
 
 ## defineModel() {#definemodel}

@@ -92,7 +92,7 @@
 
 ## app.onUnmount() <sup class="vt-badge" data-text="3.5+" /> {#app-onunmount}
 
-注册应用程序卸载时要调用的回调。
+注册一个回调函数，在应用卸载时调用。
 
 - **类型**
 
@@ -285,7 +285,7 @@ Mixins 在 Vue 3 支持主要是为了向后兼容，因为生态中有许多库
 
 ## app.runWithContext() {#app-runwithcontext}
 
-- Only supported in 3.3+
+- 仅在 3.3+ 中支持
 
 使用当前应用作为注入上下文执行回调函数。
 
@@ -649,9 +649,9 @@ console.log(app.config)
 
 强制在生产模式下抛出未处理的错误。
 
-- **类型:** `boolean`
+- **类型** `boolean`
 
-- **默认值:** `false`
+- **默认值** `false`
 
 - **详情**
 

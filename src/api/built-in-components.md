@@ -313,7 +313,7 @@ h(Transition, {
   </Teleport>
   ```
 
-  推迟解析目标 <sup class="vt-badge" data-text="3.5+" />:
+  延迟目标解析 <sup class="vt-badge" data-text="3.5+" />：
 
   ```vue-html
   <Teleport defer to="#late-div">...</Teleport>

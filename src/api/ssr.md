@@ -223,7 +223,7 @@
 
 ## data-allow-mismatch <sup class="vt-badge" data-text="3.5+" /> {#data-allow-mismatch}
 
-可以抑制[激活不匹配](/guide/scaling-up/ssr#hydration-mismatch)警告的特殊 attribute。
+可以消除[激活不匹配](/guide/scaling-up/ssr#hydration-mismatch)警告的特殊 attribute。
 
 - **示例**
 
