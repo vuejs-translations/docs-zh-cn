@@ -131,7 +131,7 @@
 
   ### 函数签名 {#function-signature}
 
-  - 仅支持 3.3+
+  - 仅在 3.3+ 中支持
 
   `defineComponent()` 还有一种备用签名，旨在与组合式 API 和[渲染函数或 JSX](/guide/extras/render-function.html) 一起使用。
 

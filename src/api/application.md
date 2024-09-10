@@ -627,7 +627,7 @@ console.log(app.config)
 
 ## app.config.idPrefix <sup class="vt-badge" data-text="3.5+" /> {#app-config-idprefix}
 
-通过 [useId()](/api/general#useid) 配置此应用程序中生成的所有 ID 的前缀。
+配置此应用中通过 [useId()](/api/general#useid) 生成的所有 ID 的前缀。
 
 - **类型:** `string`
 
@@ -640,7 +640,7 @@ console.log(app.config)
   ```
 
   ```js
-  // in a component:
+  // 在组件中：
   const id1 = useId() // 'my-app:0'
   const id2 = useId() // 'my-app:1'
   ```
@@ -655,10 +655,10 @@ console.log(app.config)
 
 - **详情**
 
-  默认情况下，在 Vue 应用程序中抛出的但未显式处理的错误在开发模式和生产模式之间有不同的行为：
+  默认情况下，在 Vue 应用中抛出但未显式处理的错误在开发和生产模式下有不同的行为：
 
-  - 在开发模式下，错误会被抛出并可能导致应用程序崩溃。这是为了使错误更加突出，以便在开发过程中被注意到并修复。
+  - 在开发模式下，错误会被抛出并可能导致应用崩溃。这是为了使错误更加突出，以便在开发过程中被注意到并修复。
 
-  - 在生产模式下，错误只会被记录到控制台以尽量减少对最终用户的影响。然而，这可能会阻止只在生产中发生的错误被错误监控服务捕获。
+  - 在生产模式下，错误只会被记录到控制台以尽量减少对最终用户的影响。然而，这可能会导致只在生产中发生的错误无法被错误监控服务捕获。
 
   通过将 `app.config.throwUnhandledErrorInProduction` 设置为 `true`，即使在生产模式下也会抛出未处理的错误。

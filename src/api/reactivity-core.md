@@ -300,12 +300,12 @@
   stop()
   ```
 
-  暂停/恢复观察者：<sup class="vt-badge" data-text="3.5+" />
+  暂停/恢复侦听器：<sup class="vt-badge" data-text="3.5+" />
 
   ```js
   const { stop, pause, resume } = watchEffect(() => {})
 
-  // 临时暂停观察者
+  // 暂停侦听器
   pause()
 
   // 稍后恢复
@@ -320,8 +320,8 @@
   ```js
   watchEffect(async (onCleanup) => {
     const { response, cancel } = doAsyncWork(newId)
-    // 如果 `id` 更改，则将调用 `cancel`。
-    // 如果之前的请求尚未完成
+    // 如果 `id` 变化，则调用 `cancel`，
+    // 如果之前的请求未完成，则取消该请求
     onCleanup(cancel)
     data.value = await response
   })
@@ -334,8 +334,8 @@
 
   watchEffect(async () => {
     const { response, cancel } = doAsyncWork(newId)
-    // `cancel` will be called if `id` changes, cancelling
-    // the previous request if it hasn't completed yet
+    // 如果 `id` 变化，则调用 `cancel`，
+    // 如果之前的请求未完成，则取消该请求
     onWatcherCleanup(cancel)
     data.value = await response
   })
@@ -411,7 +411,7 @@
   }
 
   interface WatchHandle {
-    (): void // callable, same as `stop`
+    (): void // 可调用，与 `stop` 相同
     pause: () => void
     resume: () => void
     stop: () => void
@@ -438,10 +438,10 @@
   第三个可选的参数是一个对象，支持以下这些选项：
 
   - **`immediate`**：在侦听器创建时立即触发回调。第一次调用时旧值是 `undefined`。
-  - **`deep`**：如果源是对象，则强制进行深度遍历，以便在深度变化时触发回调。在 3.5+ 版本中，此参数还可以是指示最大遍历深度的数字。请参阅[深度观察者](/guide/essentials/watchers#deep-watchers)。
+  - **`deep`**：如果源是对象，强制深度遍历，以便在深层级变更时触发回调。在 3.5+ 中，此参数还可以是指示最大遍历深度的数字。参考[深层侦听器](/guide/essentials/watchers#deep-watchers)。
   - **`flush`**：调整回调函数的刷新时机。参考[回调的刷新时机](/guide/essentials/watchers#callback-flush-timing)及 [`watchEffect()`](/api/reactivity-core#watcheffect)。
   - **`onTrack / onTrigger`**：调试侦听器的依赖。参考[调试侦听器](/guide/extras/reactivity-in-depth#watcher-debugging)。
-  - **`once`**：（3.4+）仅运行回调一次。观察者在第一次回调运行后自动停止。
+  - **`once`**：（3.4+）回调函数只会运行一次。侦听器将在回调函数首次运行后自动停止。
 
   与 [`watchEffect()`](#watcheffect) 相比，`watch()` 使我们可以：
 
@@ -525,18 +525,18 @@
   stop()
   ```
 
-  暂停/恢复观察者: <sup class="vt-badge" data-text="3.5+" />
+  暂停/恢复侦听器: <sup class="vt-badge" data-text="3.5+" />
 
   ```js
   const { stop, pause, resume } = watchEffect(() => {})
 
-  // temporarily pause the watcher
+  // 暂停侦听器
   pause()
 
-  // resume later
+  // 稍后恢复
   resume()
 
-  // stop
+  // 停止
   stop()
   ```
 
@@ -571,7 +571,7 @@
 
 ## onWatcherCleanup() <sup class="vt-badge" data-text="3.5+" /> {#onwatchercleanup}
 
-注册一个清理函数，当前的观察者即将重新运行时执行。只能在 `watchEffect` 效果函数或 `watch` 回调函数的同步执行期间调用（即不能在异步函数的 `await` 语句之后调用）。
+注册一个清理函数，在当前侦听器即将重新运行时执行。只能在 `watchEffect` 作用函数或 `watch` 回调函数的同步执行期间调用（即不能在异步函数的 `await` 语句之后调用）。
 
 - **类型**
 
@@ -589,7 +589,8 @@
 
   watch(id, (newId) => {
     const { response, cancel } = doAsyncWork(newId)
-    // 如果 `id` 发生更改，将调用 `cancel` 来取消前一个请求，以防它尚未完成。
+    // 如果 `id` 变化，则调用 `cancel`，
+    // 如果之前的请求未完成，则取消该请求
     onWatcherCleanup(cancel)
   })
   ```

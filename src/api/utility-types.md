@@ -79,7 +79,7 @@
 
 - 仅在 3.3+ 版本中支持。
 
-Extract prop types from a runtime props options object. The extracted types are public facing - i.e. the props that the parent is allowed to pass.
+从运行时的 props 选项对象中提取 prop。提取的类型是面向外部的，即父组件允许传递的 props。
 
 - **示例**
 

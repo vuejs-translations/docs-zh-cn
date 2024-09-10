@@ -223,20 +223,20 @@
 
 ## data-allow-mismatch <sup class="vt-badge" data-text="3.5+" /> {#data-allow-mismatch}
 
-A special attribute that can be used to suppress [hydration mismatch](/guide/scaling-up/ssr#hydration-mismatch) warnings.
+可以抑制[激活不匹配](/guide/scaling-up/ssr#hydration-mismatch)警告的特殊 attribute。
 
-- **Example**
+- **示例**
 
   ```html
   <div data-allow-mismatch="text">{{ data.toLocaleString() }}</div>
   ```
 
-  The value can limit the allowed mismatch to a specific type. Allowed values are:
+  值可以限制不匹配为特定类型。允许的值有：
 
   - `text`
-  - `children` (only allows mismatch for direct children)
+  - `children`（仅允许直接子组件不匹配）
   - `class`
   - `style`
   - `attribute`
 
-  If no value is provided, all types of mismatches will be allowed.
+  如果没有提供值，则会允许所有类型的不匹配。

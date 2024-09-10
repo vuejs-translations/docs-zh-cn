@@ -217,8 +217,8 @@ const emit = defineEmits<{
 const { foo } = defineProps(['foo'])
 
 watchEffect(() => {
-  // runs only once before 3.5
-  // re-runs when the "foo" prop changes in 3.5+
+  // 在 3.5 之前仅运行一次
+  // 在 3.5+ 版本中会在 "foo" prop 改变时重新运行
   console.log(foo)
 })
 ```
@@ -229,12 +229,12 @@ watchEffect(() => {
 const props = defineProps(['foo'])
 
 watchEffect(() => {
-  // `foo` transformed to `props.foo` by the compiler
+  // `foo` 由编译器转换为 `props.foo`
   console.log(props.foo)
 })
 ```
 
-此外，您可以使用 JavaScript 的本机默认值语法为 props 声明默认值。当使用基于类型的 props 声明时，这特别有用。
+此外，你可以使用 JavaScript 原生的默认值语法声明 props 默认值。这在使用基于类型的 props 声明时特别有用。
 
 ```ts
 interface Props {
@@ -269,7 +269,7 @@ const props = withDefaults(defineProps<Props>(), {
 
 ## defineModel() {#definemodel}
 
-- Only available in 3.4+
+- 仅在 3.4+ 中可用
 
 这个宏可以用来声明一个双向绑定 prop，通过父组件的 `v-model` 来使用。[组件 `v-model`](/guide/components/v-model) 指南中也讨论了示例用法。
 
@@ -381,7 +381,7 @@ defineExpose({
 
 ## defineOptions() {#defineoptions}
 
-- 仅支持 3.3+
+- 仅在 3.3+ 中支持
 
 这个宏可以用来直接在 `<script setup>` 中声明组件选项，而不必使用单独的 `<script>` 块：
 
@@ -400,7 +400,7 @@ defineOptions({
 
 ## defineSlots() <sup class="vt-badge ts"/> {#defineslots}
 
-- 仅支持 3.3+
+- 仅在 3.3+ 中支持
 
 这个宏可以用于为 IDE 提供插槽名称和 props 类型检查的类型提示。
 

@@ -126,7 +126,7 @@ const Foo = defineAsyncComponent(() => import('./Foo.vue'))
 
 ### 计算属性稳定性 {#computed-stability}
 
-在 Vue 3.4 及更高版本中，计算属性只有在其计算值与上一个值不同时才会触发效果。例如，下面的 `isEven` 计算属性只有在返回的值从 `true` 变为 `false`，或者从 `false` 变为 `true` 时才会触发效果：
+在 Vue 3.4 及更高版本中，计算属性仅在其计算值较前一个值发生更改时才会触发副作用。例如，以下 `isEven` 计算属性仅在返回值从 `true` 更改为 `false` 时才会触发副作用，反之亦然：
 
 ```js
 const count = ref(0)

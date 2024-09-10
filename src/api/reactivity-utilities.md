@@ -134,7 +134,7 @@
 
 ## toValue() {#tovalue}
 
-- Only supported in 3.3+
+- 仅在 3.3+ 中支持
 
 将值、refs 或 getters 规范化为值。这与 [unref()](#unref) 类似，不同的是此函数也会规范化 getter 函数。如果参数是一个 getter，它将会被调用并且返回它的返回值。
 

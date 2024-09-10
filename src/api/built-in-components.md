@@ -287,9 +287,9 @@ h(Transition, {
      */
     disabled?: boolean
     /**
-     * When `true`, the Teleport will defer until other
-     * parts of the application have been mounted before
-     * resolving its target. (3.5+)
+     * 当值为 `true` 时，Teleport 将推迟
+     * 直到应用的其他部分挂载后
+     * 再解析其目标。(3.5+)
      */
     defer?: boolean
   }
@@ -313,12 +313,12 @@ h(Transition, {
   </Teleport>
   ```
 
-  推迟目标解决 <sup class="vt-badge" data-text="3.5+" />:
+  推迟解析目标 <sup class="vt-badge" data-text="3.5+" />:
 
   ```vue-html
   <Teleport defer to="#late-div">...</Teleport>
 
-  <!-- somewhere later in the template -->
+  <!-- 稍后出现于模板中的某处 -->
   <div id="late-div"></div>
   ```
 
