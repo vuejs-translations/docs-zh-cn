@@ -220,3 +220,23 @@
   }
   </script>
   ```
+
+## data-allow-mismatch <sup class="vt-badge" data-text="3.5+" /> {#data-allow-mismatch}
+
+可以消除[激活不匹配](/guide/scaling-up/ssr#hydration-mismatch)警告的特殊 attribute。
+
+- **示例**
+
+  ```html
+  <div data-allow-mismatch="text">{{ data.toLocaleString() }}</div>
+  ```
+
+  值可以限制不匹配为特定类型。允许的值有：
+
+  - `text`
+  - `children` (仅允许直接子组件不匹配)
+  - `class`
+  - `style`
+  - `attribute`
+
+  如果没有提供值，则会允许所有类型的不匹配。

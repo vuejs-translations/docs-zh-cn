@@ -193,6 +193,19 @@ const open = ref(false)
 </div>
 ```
 
+## 延迟解析的 Teleport <sup class="vt-badge" data-text="3.5+" /> {#deferred-teleport}
+
+在 Vue 3.5 及更高版本中，我们可以使用 `defer` prop 推迟 Teleport 的目标解析，直到应用的其他部分挂载。这允许 Teleport 将由 Vue 渲染且位于组件树之后部分的容器元素作为目标：
+
+```vue-html
+<Teleport defer to="#late-div">...</Teleport>
+
+<!-- 稍后出现于模板中的某处 -->
+<div id="late-div"></div>
+```
+
+请注意，目标元素必须与 Teleport 在同一个挂载/更新周期内渲染，即如果 `<div>` 在一秒后才挂载，Teleport 仍然会报错。延迟 Teleport 的原理与 `mounted` 生命周期钩子类似。
+
 ---
 
 **参考**

@@ -336,8 +336,10 @@
 
 这个方法可以作为可复用的组合式函数中 `onUnmounted` 的替代品，它并不与组件耦合，因为每一个 Vue 组件的 `setup()` 函数也是在一个 effect 作用域中调用的。
 
+如果在没有活跃的 effect 作用域的情况下调用此函数，将会抛出警告。在 3.5+ 版本中，可以通过将第二个参数设为 `true` 来消除此警告。
+
 - **类型**
 
   ```ts
-  function onScopeDispose(fn: () => void): void
+  function onScopeDispose(fn: () => void, failSilently?: boolean): void
   ```

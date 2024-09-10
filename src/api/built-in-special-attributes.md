@@ -91,7 +91,9 @@
 
 - **预期**：`string | Component`
 
-- **用于原生元素** <sup class="vt-badge">3.1+</sup>
+- **用于原生元素**
+
+  - 仅在 3.1+ 中支持
 
   当 `is` attribute 用于原生 HTML 元素时，它将被当作 [Customized built-in element](https://html.spec.whatwg.org/multipage/custom-elements.html#custom-elements-customized-builtin-example)，其为原生 web 平台的特性。
 

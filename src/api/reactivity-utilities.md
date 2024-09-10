@@ -132,7 +132,9 @@
 
   当使用对象属性签名时，即使源属性当前不存在，`toRef()` 也会返回一个可用的 ref。这让它在处理可选 props 的时候格外实用，相比之下 [`toRefs`](#torefs) 就不会为可选 props 创建对应的 refs。
 
-## toValue() <sup class="vt-badge" data-text="3.3+" /> {#tovalue}
+## toValue() {#tovalue}
+
+- 仅在 3.3+ 中支持
 
 将值、refs 或 getters 规范化为值。这与 [unref()](#unref) 类似，不同的是此函数也会规范化 getter 函数。如果参数是一个 getter，它将会被调用并且返回它的返回值。
 

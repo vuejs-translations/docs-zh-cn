@@ -124,9 +124,9 @@ const Foo = defineAsyncComponent(() => import('./Foo.vue'))
 
 `v-memo` 是一个内置指令，可以用来有条件地跳过某些大型子树或者 `v-for` 列表的更新。查看它的 [API 参考手册](/api/built-in-directives#v-memo)可以了解更多细节。
 
-### 计算属性稳定性 <sup class="vt-badge" data-text="3.4+" /> {#computed-stability}
+### 计算属性稳定性 {#computed-stability}
 
-从 3.4 开始，计算属性仅在其计算值较前一个值发生更改时才会触发副作用。例如，以下 `isEven` 计算属性仅在返回值从 `true` 更改为 `false` 时才会触发副作用，反之亦然：
+在 Vue 3.4 及更高版本中，计算属性仅在其计算值较前一个值发生更改时才会触发副作用。例如，以下 `isEven` 计算属性仅在返回值从 `true` 更改为 `false` 时才会触发副作用，反之亦然：
 
 ```js
 const count = ref(0)

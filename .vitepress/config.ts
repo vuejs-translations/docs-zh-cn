@@ -368,6 +368,10 @@ export const sidebar: ThemeConfig['sidebar'] = {
         {
           text: '依赖注入',
           link: '/api/composition-api-dependency-injection'
+        },
+        {
+          text: '辅助',
+          link: '/api/composition-api-helpers'
         }
       ]
     },
@@ -417,6 +421,7 @@ export const sidebar: ThemeConfig['sidebar'] = {
     {
       text: '进阶 API',
       items: [
+        { text: '自定义元素', link: '/api/custom-elements' },
         { text: '渲染函数', link: '/api/render-function' },
         { text: '服务端渲染', link: '/api/ssr' },
         { text: 'TypeScript 工具类型', link: '/api/utility-types' },

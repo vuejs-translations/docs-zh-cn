@@ -101,7 +101,13 @@
 
   </div>
 
-- **参考**[透传 attribute](/guide/components/attrs)
+- **参考**
+
+  - [透传 attribute](/guide/components/attrs)
+  <div class="composition-api">
+
+  - [在常规 `<script>` 中使用 `inheritAttrs`](/api/sfc-script-setup.html#usage-alongside-normal-script)
+  </div>
 
 ## components {#components}
 

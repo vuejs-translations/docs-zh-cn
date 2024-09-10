@@ -90,6 +90,18 @@
   }
   ```
 
+## app.onUnmount() <sup class="vt-badge" data-text="3.5+" /> {#app-onunmount}
+
+注册一个回调函数，在应用卸载时调用。
+
+- **类型**
+
+  ```ts
+  interface App {
+    onUnmount(callback: () => any): void
+  }
+  ```
+
 ## app.component() {#app-component}
 
 如果同时传递一个组件名字符串及其定义，则注册一个全局组件；如果只传递一个名字，则会返回用该名字注册的组件 (如果存在的话)。
@@ -271,7 +283,9 @@ Mixins 在 Vue 3 支持主要是为了向后兼容，因为生态中有许多库
   - [应用层 Provide](/guide/components/provide-inject#app-level-provide)
   - [app.runWithContext()](#app-runwithcontext)
 
-## app.runWithContext()<sup class="vt-badge" data-text="3.3+" /> {#app-runwithcontext}
+## app.runWithContext() {#app-runwithcontext}
+
+- 仅在 3.3+ 中支持
 
 使用当前应用作为注入上下文执行回调函数。
 
@@ -610,3 +624,41 @@ console.log(app.config)
   ```
 
 - **参考**[组件实例 - `$options`](/api/component-instance#options)
+
+## app.config.idPrefix <sup class="vt-badge" data-text="3.5+" /> {#app-config-idprefix}
+
+配置此应用中通过 [useId()](/api/general#useid) 生成的所有 ID 的前缀。
+
+- **类型:** `string`
+
+- **默认值:** `undefined`
+
+- **示例**
+
+  ```js
+  app.config.idPrefix = 'my-app'
+  ```
+
+  ```js
+  // 在组件中：
+  const id1 = useId() // 'my-app:0'
+  const id2 = useId() // 'my-app:1'
+  ```
+
+## app.config.throwUnhandledErrorInProduction <sup class="vt-badge" data-text="3.5+" /> {#app-config-throwunhandlederrorinproduction}
+
+强制在生产模式下抛出未处理的错误。
+
+- **类型** `boolean`
+
+- **默认值** `false`
+
+- **详情**
+
+  默认情况下，在 Vue 应用中抛出但未显式处理的错误在开发和生产模式下有不同的行为：
+
+  - 在开发模式下，错误会被抛出并可能导致应用崩溃。这是为了使错误更加突出，以便在开发过程中被注意到并修复。
+
+  - 在生产模式下，错误只会被记录到控制台以尽量减少对最终用户的影响。然而，这可能会导致只在生产中发生的错误无法被错误监控服务捕获。
+
+  通过将 `app.config.throwUnhandledErrorInProduction` 设置为 `true`，即使在生产模式下也会抛出未处理的错误。

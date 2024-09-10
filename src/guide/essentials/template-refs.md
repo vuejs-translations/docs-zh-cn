@@ -12,7 +12,31 @@
 
 <div class="composition-api">
 
-为了通过组合式 API 获得该模板引用，我们需要声明一个匹配模板 ref attribute 值的 ref：
+要在组合式 API 中获取引用，我们可以使用辅助函数 [`useTemplateRef()`](/api/composition-api-helpers#usetemplateref) <sup class="vt-badge" data-text="3.5+" />：
+
+```vue
+<script setup>
+import { useTemplateRef, onMounted } from 'vue'
+
+// 第一个参数必须与模板中的 ref 值匹配
+const input = useTemplateRef('my-input')
+
+onMounted(() => {
+  input.value.focus()
+})
+</script>
+
+<template>
+  <input ref="my-input" />
+</template>
+```
+
+在使用 TypeScript 时，Vue 的 IDE 支持和 `vue-tsc` 将根据匹配的 `ref` attribute 所用的元素或组件自动推断 `inputRef.value` 的类型。
+
+<details>
+<summary>3.5 前的用法</summary>
+
+在 3.5 之前的版本尚未引入 `useTemplateRef()`，我们需要声明一个与模板里 ref attribute 匹配的引用：
 
 ```vue
 <script setup>
@@ -45,6 +69,8 @@ export default {
   }
 }
 ```
+
+</details>
 
 </div>
 <div class="options-api">
@@ -97,6 +123,33 @@ watchEffect(() => {
 
 ```vue
 <script setup>
+import { ref, useTemplateRef, onMounted } from 'vue'
+
+const list = ref([
+  /* ... */
+])
+
+const itemRefs = useTemplateRef('items')
+
+onMounted(() => console.log(itemRefs.value))
+</script>
+
+<template>
+  <ul>
+    <li v-for="item in list" ref="items">
+      {{ item }}
+    </li>
+  </ul>
+</template>
+```
+
+[在演练场中尝试一下](https://play.vuejs.org/#eNp9UsluwjAQ/ZWRLwQpDepyQoDUIg6t1EWUW91DFAZq6tiWF4oU5d87dtgqVRyyzLw3b+aN3bB7Y4ptQDZkI1dZYTw49MFMuBK10dZDAxZXOQSHC6yNLD3OY6zVsw7K4xJaWFldQ49UelxxVWnlPEhBr3GszT6uc7jJ4fazf4KFx5p0HFH+Kme9CLle4h6bZFkfxhNouAIoJVqfHQSKbSkDFnVpMhEpovC481NNVcr3SaWlZzTovJErCqgydaMIYBRk+tKfFLC9Wmk75iyqg1DJBWfRxT7pONvTAZom2YC23QsMpOg0B0l0NDh2YjnzjpyvxLrYOK1o3ckLZ5WujSBHr8YL2gxnw85lxEop9c9TynkbMD/kqy+svv/Jb9wu5jh7s+jQbpGzI+ZLu0byEuHZ+wvt6Ays9TJIYl8A5+i0DHHGjvYQ1JLGPuOlaR/TpRFqvXCzHR2BO5iKg0Zmm/ic0W2ZXrB+Gve2uEt1dJKs/QXbwePE)
+
+<details>
+<summary>3.5 前的用法</summary>
+
+```vue
+<script setup>
 import { ref, onMounted } from 'vue'
 
 const list = ref([
@@ -117,7 +170,7 @@ onMounted(() => console.log(itemRefs.value))
 </template>
 ```
 
-[在演练场中尝试一下](https://play.vuejs.org/#eNpFjs1qwzAQhF9l0CU2uDZtb8UOlJ576bXqwaQyCGRJyCsTEHr3rGwnOehnd2e+nSQ+vW/XqMSH6JdL0J6wKIr+LK2evQuEhKCmBs5+u2hJ/SNjCm7GiV0naaW9OLsQjOZrKNrq97XBW4P3v/o51qTmHzUtd8k+e0CrqsZwRpIWGI0KVN0N7TqaqNp59JUuEt2SutKXY5elmimZT9/t2Tk1F+z0ZiTFFdBHs738Mxrry+TCIEWhQ9sttRQl0tEsK6U4HEBKW3LkfDA6o3dst3H77rFM5BtTfm/P)
+</details>
 
 </div>
 <div class="options-api">
@@ -175,6 +228,26 @@ export default {
 
 ```vue
 <script setup>
+import { useTemplateRef, onMounted } from 'vue'
+import Child from './Child.vue'
+
+const childRef = useTemplateRef('child')
+
+onMounted(() => {
+  // childRef.value 将持有 <Child /> 的实例
+})
+</script>
+
+<template>
+  <Child ref="child" />
+</template>
+```
+
+<details>
+<summary>3.5 前的用法</summary>
+
+```vue
+<script setup>
 import { ref, onMounted } from 'vue'
 import Child from './Child.vue'
 
@@ -189,6 +262,8 @@ onMounted(() => {
   <Child ref="child" />
 </template>
 ```
+
+</details>
 
 </div>
 <div class="options-api">

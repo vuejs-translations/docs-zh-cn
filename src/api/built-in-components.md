@@ -286,6 +286,12 @@ h(Transition, {
      * 可以动态更改。
      */
     disabled?: boolean
+    /**
+     * 当值为 `true` 时，Teleport 将推迟
+     * 直到应用的其他部分挂载后
+     * 再解析其目标。(3.5+)
+     */
+    defer?: boolean
   }
   ```
 
@@ -305,6 +311,15 @@ h(Transition, {
   <Teleport to="#popup" :disabled="displayVideoInline">
     <video src="./my-movie.mp4">
   </Teleport>
+  ```
+
+  延迟目标解析 <sup class="vt-badge" data-text="3.5+" />：
+
+  ```vue-html
+  <Teleport defer to="#late-div">...</Teleport>
+
+  <!-- 稍后出现于模板中的某处 -->
+  <div id="late-div"></div>
   ```
 
 - **参考**[指南 - Teleport](/guide/built-ins/teleport)

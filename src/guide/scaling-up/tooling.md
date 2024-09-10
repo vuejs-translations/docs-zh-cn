@@ -108,17 +108,14 @@ import { VTCodeGroup, VTCodeGroupTab } from '@vue/theme'
 
 ## 浏览器开发者插件 {#browser-devtools}
 
-<VueSchoolLink href="https://vueschool.io/lessons/using-vue-dev-tools-with-vuejs-3" title="免费的 Vue.js Devtools 课程"/>
-
 Vue 的浏览器开发者插件使我们可以浏览一个 Vue 应用的组件树，查看各个组件的状态，追踪状态管理的事件，还可以进行组件性能分析。
 
-![devtools 截图](https://raw.githubusercontent.com/vuejs/devtools/main/media/screenshot-shadow.png)
+![devtools 截图](./images/devtools.png)
 
 - [文档](https://devtools.vuejs.org/)
-- [Chrome 扩展商店页](https://chrome.google.com/webstore/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd)
-- [Firefox 所属插件页](https://addons.mozilla.org/en-US/firefox/addon/vue-js-devtools/)
-- [Edge 扩展](https://microsoftedge.microsoft.com/addons/detail/vuejs-devtools/olofadcdnkkjdfgjcmjaadnlehnnihnl)
-- [独立的 Electron 应用所属插件](https://devtools.vuejs.org/guide/installation.html#standalone)
+- [Chrome 扩展商店页](https://chromewebstore.google.com/detail/vuejs-devtools-beta/ljjemllljcmogpfapbkkighbhhppjdbg)
+- [Vite 插件](https://devtools.vuejs.org/guide/vite-plugin)
+- [独立的 Electron 应用所属插件](https://devtools.vuejs.org/guide/standalone)
 
 ## TypeScript {#typescript}
 

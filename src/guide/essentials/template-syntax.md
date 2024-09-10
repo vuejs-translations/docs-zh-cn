@@ -64,7 +64,9 @@ Vue 使用一种基于 HTML 的模板语法，使我们能够声明式地将其�
 
 > 接下来的指引中，我们都将在示例中使用简写语法，因为这是在实际开发中更常见的用法。
 
-### 同名简写 <sup class="vt-badge" data-text="3.4+" /> {#same-name-shorthand}
+### 同名简写 {#same-name-shorthand}
+
+- 仅支持 3.4 版本及以上
 
 如果 attribute 的名称与绑定的 JavaScript 值的名称相同，那么可以进一步简化语法，省略 attribute 值：
 

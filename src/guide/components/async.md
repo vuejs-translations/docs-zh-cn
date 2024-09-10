@@ -108,6 +108,104 @@ const AsyncComp = defineAsyncComponent({
 
 如果提供了一个报错组件，则它会在加载器函数返回的 Promise 抛错时被渲染。你还可以指定一个超时时间，在请求耗时超过指定时间时也会渲染报错组件。
 
+## 惰性激活 <sup class="vt-badge" data-text="3.5+" /> {#lazy-hydration}
+
+> 如果你正在使用[服务器端渲染](/guide/scaling-up/ssr)，这一部分才会适用。
+
+在 Vue 3.5+ 中，异步组件可以通过提供激活策略来控制何时进行激活。
+
+- Vue 提供了一些内置的激活策略。这些内置策略需要分别导入，以便在未使用时进行 tree-shake。
+
+- 该设计有意保持在底层，以确保灵活性。将来可以在此基础上构建编译器语法糖，无论是在核心还是更上层的解决方案 (如 Nuxt) 中实现。
+
+### 在空闲时进行激活
+
+通过 `requestIdleCallback` 进行激活：
+
+```js
+import { defineAsyncComponent, hydrateOnIdle } from 'vue'
+
+const AsyncComp = defineAsyncComponent({
+  loader: () => import('./Comp.vue'),
+  hydrate: hydrateOnIdle(/* 传递可选的最大超时 */)
+})
+```
+
+### 在可见时激活
+
+通过 `IntersectionObserver` 在元素变为可见时进行激活。
+
+```js
+import { defineAsyncComponent, hydrateOnVisible } from 'vue'
+
+const AsyncComp = defineAsyncComponent({
+  loader: () => import('./Comp.vue'),
+  hydrate: hydrateOnVisible()
+})
+```
+
+可以选择传递一个侦听器的选项对象值：
+
+```js
+hydrateOnVisible({ rootMargin: '100px' })
+```
+
+### 在媒体查询匹配时进行激活
+
+当指定的媒体查询匹配时进行激活。
+
+```js
+import { defineAsyncComponent, hydrateOnMediaQuery } from 'vue'
+
+const AsyncComp = defineAsyncComponent({
+  loader: () => import('./Comp.vue'),
+  hydrate: hydrateOnMediaQuery('(max-width:500px)')
+})
+```
+
+### 交互时激活
+
+当组件元素上触发指定事件时进行激活。完成激活后，触发激活的事件也将被重放。
+
+```js
+import { defineAsyncComponent, hydrateOnInteraction } from 'vue'
+
+const AsyncComp = defineAsyncComponent({
+  loader: () => import('./Comp.vue'),
+  hydrate: hydrateOnInteraction('click')
+})
+```
+
+也可以是多个事件类型的列表:
+
+```js
+hydrateOnInteraction(['wheel', 'mouseover'])
+```
+
+### 自定义策略
+
+```ts
+import { defineAsyncComponent, type HydrationStrategy } from 'vue'
+
+const myStrategy: HydrationStrategy = (hydrate, forEachElement) => {
+  // forEachElement 是一个遍历组件未激活的 DOM 中所有根元素的辅助函数，
+  // 因为根元素可能是一个模板片段而非单个元素
+  forEachElement(el => {
+    // ...
+  })
+  // 准备好时调用 `hydrate`
+  hydrate()
+  return () => {
+    // 如必要，返回一个销毁函数
+  }
+}
+
+const AsyncComp = defineAsyncComponent({
+  loader: () => import('./Comp.vue'),
+  hydrate: myStrategy
+})
+```
+
 ## 搭配 Suspense 使用 {#using-with-suspense}
 
 异步组件可以搭配内置的 `<Suspense>` 组件一起使用，若想了解 `<Suspense>` 和异步组件之间交互，请参阅 [`<Suspense>`](/guide/built-ins/suspense) 章节。

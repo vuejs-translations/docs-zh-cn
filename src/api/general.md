@@ -129,7 +129,9 @@
   type FooInstance = InstanceType<typeof Foo>
   ```
 
-  ### 函数签名 <sup class="vt-badge" data-text="3.3+" /> {#function-signature}
+  ### 函数签名 {#function-signature}
+
+  - 仅在 3.3+ 中支持
 
   `defineComponent()` 还有一种备用签名，旨在与组合式 API 和[渲染函数或 JSX](/guide/extras/render-function.html) 一起使用。
 
@@ -223,46 +225,3 @@
   ```
 
 - **参考**[指南 - 异步组件](/guide/components/async)
-
-## defineCustomElement() {#definecustomelement}
-
-这个方法和 [`defineComponent`](#definecomponent) 接受的参数相同，不同的是会返回一个原生[自定义元素](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_custom_elements)类的构造器。
-
-- **类型**
-
-  ```ts
-  function defineCustomElement(
-    component:
-      | (ComponentOptions & { styles?: string[] })
-      | ComponentOptions['setup']
-  ): {
-    new (props?: object): HTMLElement
-  }
-  ```
-
-  > 为了便于阅读，对类型进行了简化。
-
-- **详细信息**
-
-  除了常规的组件选项，`defineCustomElement()` 还支持一个特别的选项 `styles`，它应该是一个内联 CSS 字符串的数组，所提供的 CSS 会被注入到该元素的 shadow root 上。
-
-  返回值是一个可以通过 [`customElements.define()`](https://developer.mozilla.org/en-US/docs/Web/API/CustomElementRegistry/define) 注册的自定义元素构造器。
-
-- **示例**
-
-  ```js
-  import { defineCustomElement } from 'vue'
-
-  const MyVueElement = defineCustomElement({
-    /* 组件选项 */
-  })
-
-  // 注册自定义元素
-  customElements.define('my-vue-element', MyVueElement)
-  ```
-
-- **参考**
-
-  - [指南 - 使用 Vue 构建自定义元素](/guide/extras/web-components#building-custom-elements-with-vue)
-
-  - 另外请注意在使用单文件组件时 `defineCustomElement()` 需要[特殊的配置](/guide/extras/web-components#sfc-as-custom-element)。
