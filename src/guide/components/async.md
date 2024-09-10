@@ -176,7 +176,7 @@ const AsyncComp = defineAsyncComponent({
 })
 ```
 
-也可以是多个事件类型的列表:
+也可以是多个事件类型的列表：
 
 ```js
 hydrateOnInteraction(['wheel', 'mouseover'])
