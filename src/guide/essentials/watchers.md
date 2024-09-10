@@ -224,7 +224,7 @@ watch(
 
 </div>
 
-在 Vue 3.5+ 中，`deep` 选项还可以是一个数字，表示最大遍历深度 - 即 Vue 应该遍历对象嵌套属性的级数。
+在 Vue 3.5+ 中，`deep` 选项还可以是一个数字，表示最大遍历深度——即 Vue 应该遍历对象嵌套属性的级数。
 
 :::warning 谨慎使用
 深度侦听需要遍历被侦听对象中的所有嵌套的属性，当用于大型数据结构时，开销很大。因此请只在必要时才使用它，并且要留意性能。
@@ -368,14 +368,14 @@ watchEffect(async () => {
 
 ## 副作用清理 {#side-effect-cleanup}
 
-有时我们可能会在观察器中执行副作用，例如异步请求：
+有时我们可能会在侦听器中执行副作用，例如异步请求：
 
 <div class="composition-api">
 
 ```js
 watch(id, (newId) => {
   fetch(`/api/${newId}`).then(() => {
-    // callback logic
+    // 回调逻辑
   })
 })
 ```
@@ -388,7 +388,7 @@ export default {
   watch: {
     id(newId) {
       fetch(`/api/${newId}`).then(() => {
-        // callback logic
+        // 回调逻辑
       })
     }
   }
@@ -397,9 +397,9 @@ export default {
 
 </div>
 
-但是如果在请求完成之前 `id` 发生了变化怎么办？ 当上一个请求完成时，它仍会使用已经过时的 ID 值触发回调。 理想情况下，我们希望能够在 `id` 变为新值时取消过时的请求。
+但是如果在请求完成之前 `id` 发生了变化怎么办？当上一个请求完成时，它仍会使用已经过时的 ID 值触发回调。理想情况下，我们希望能够在 `id` 变为新值时取消过时的请求。
 
-我们可以使用 [`onWatcherCleanup()`](/api/reactivity-core#onwatchercleanup) <sup class="vt-badge" data-text="3.5+" /> API 来注册一个清理函数，当 watcher 被无效并准备重新运行时会被调用：
+我们可以使用 [`onWatcherCleanup()`](/api/reactivity-core#onwatchercleanup) <sup class="vt-badge" data-text="3.5+" /> API 来注册一个清理函数，当侦听器失效并准备重新运行时会被调用：
 
 <div class="composition-api">
 
@@ -410,11 +410,11 @@ watch(id, (newId) => {
   const controller = new AbortController()
 
   fetch(`/api/${newId}`, { signal: controller.signal }).then(() => {
-    // callback logic
+    // 回调逻辑
   })
 
   onWatcherCleanup(() => {
-    // abort stale request
+    // 终止过期请求
     controller.abort()
   })
 })
@@ -432,11 +432,11 @@ export default {
       const controller = new AbortController()
 
       fetch(`/api/${newId}`, { signal: controller.signal }).then(() => {
-        // callback logic
+        // 回调逻辑
       })
 
       onWatcherCleanup(() => {
-        // abort stale request
+        // 终止过期请求
         controller.abort()
       })
     }
@@ -446,9 +446,9 @@ export default {
 
 </div>
 
-请注意，`onWatcherCleanup` 仅在 Vue 3.5+ 中支持，并且必须在 `watchEffect` 效果函数或 `watch` 回调函数的同步执行期间调用：您不能在异步函数的 `await` 语句之后调用它。
+请注意，`onWatcherCleanup` 仅在 Vue 3.5+ 中支持，并且必须在 `watchEffect` 效果函数或 `watch` 回调函数的同步执行期间调用：你不能在异步函数的 `await` 语句之后调用它。
 
-作为替代，`onCleanup` 函数还作为第三个参数传递给观察器回调函数，以及作为第一个参数传递给 `watchEffect` 效果函数：<span class="composition-api"></span>
+作为替代，`onCleanup` 函数还作为第三个参数传递给侦听器回调<span class="composition-api">，以及 `watchEffect` 作用函数的第一个参数</span>：
 
 <div class="composition-api">
 
@@ -456,14 +456,14 @@ export default {
 watch(id, (newId, oldId, onCleanup) => {
   // ...
   onCleanup(() => {
-    // cleanup logic
+    // 清理逻辑
   })
 })
 
 watchEffect((onCleanup) => {
   // ...
   onCleanup(() => {
-    // cleanup logic
+    // 清理逻辑
   })
 })
 ```
@@ -477,7 +477,7 @@ export default {
     id(newId, oldId, onCleanup) {
       // ...
       onCleanup(() => {
-        // cleanup logic
+        // 清理逻辑
       })
     }
   }
@@ -486,7 +486,7 @@ export default {
 
 </div>
 
-这在 3.5 版本之前有效。另外，通过函数参数传递的 `onCleanup` 绑定到监视器实例，因此不受 `onWatcherCleanup` 的同步约束的束缚。
+这在 3.5 之前的版本有效。此外，通过函数参数传递的 `onCleanup` 与侦听器实例相绑定，因此不受 `onWatcherCleanup` 的同步限制。
 
 ## 回调的触发时机 {#callback-flush-timing}
 
