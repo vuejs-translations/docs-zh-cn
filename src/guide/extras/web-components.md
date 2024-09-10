@@ -171,9 +171,9 @@ document.body.appendChild(
 
 [Provide / Inject API](/guide/components/provide-inject#provide-inject) 和[相应的组合式 API](/api/composition-api-dependency-injection#provide) 在 Vue 定义的自定义元素中都可以正常工作。但是请注意，依赖关系**只在自定义元素之间**起作用。例如一个 Vue 定义的自定义元素就无法注入一个由常规 Vue 组件所提供的属性。
 
-#### 应用程序级配置 <sup class="vt-badge" data-text="3.5+" /> {#app-level-config}
+#### 应用级配置 <sup class="vt-badge" data-text="3.5+" /> {#app-level-config}
 
-您可以使用 `configureApp` 选项来配置 Vue 自定义元素的应用程序实例：
+你可以使用 `configureApp` 选项来配置 Vue 自定义元素的应用实例：
 
 ```js
 defineCustomElement(MyComponent, {

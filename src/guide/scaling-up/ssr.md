@@ -314,9 +314,9 @@ export function createApp() {
 
 当 Vue 遇到激活不匹配时，它将尝试自动恢复并调整预渲染的 DOM 以匹配客户端的状态。这将导致一些渲染性能的损失，因为需要丢弃不匹配的节点并渲染新的节点，但大多数情况下，应用应该会如预期一样继续工作。尽管如此，最好还是在开发过程中发现并避免激活不匹配。
 
-#### 抑制水合不匹配 <sup class="vt-badge" data-text="3.5+" /> {#suppressing-hydration-mismatches}
+#### 消除激活不匹配 <sup class="vt-badge" data-text="3.5+" /> {#suppressing-hydration-mismatches}
 
-在 Vue 3.5+ 中，可以使用 [`data-allow-mismatch`](/api/ssr#data-allow-mismatch) 属性有选择地抑制无法避免的水合不匹配。
+在 Vue 3.5+ 中，可以使用 [`data-allow-mismatch`](/api/ssr#data-allow-mismatch) attribute 有选择性地消除无法避免的激活不匹配警告。
 
 ### 自定义指令 {#custom-directives}
 
