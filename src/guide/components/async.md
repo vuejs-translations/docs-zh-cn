@@ -108,32 +108,32 @@ const AsyncComp = defineAsyncComponent({
 
 如果提供了一个报错组件，则它会在加载器函数返回的 Promise 抛错时被渲染。你还可以指定一个超时时间，在请求耗时超过指定时间时也会渲染报错组件。
 
-## 延迟水合 <sup class="vt-badge" data-text="3.5+" /> {#lazy-hydration}
+## 惰性激活 <sup class="vt-badge" data-text="3.5+" /> {#lazy-hydration}
 
 > 如果你正在使用[服务器端渲染](/guide/scaling-up/ssr)，这一部分才会适用。
 
-在 Vue 3.5+ 中，异步组件可以通过提供水合策略来控制何时进行水合。
+在 Vue 3.5+ 中，异步组件可以通过提供激活策略来控制何时进行激活。
 
-- Vue 提供了一些内置的水合策略。这些内置策略需要分别导入，以便在未使用时进行 tree-shaking。
+- Vue 提供了一些内置的激活策略。这些内置策略需要分别导入，以便在未使用时进行 tree-shake。
 
-- 这个设计有意为之，低级别以获得灵活性。将来编译器语法糖可能可以在核心或高级别解决方案（如 Nuxt）中构建在此基础之上。
+- 该设计有意保持在底层，以确保灵活性。将来可以在此基础上构建编译器语法糖，无论是在核心还是更上层的解决方案 (如 Nuxt) 中实现。
 
-### 在空闲时进行水合作用
+### 在空闲时进行激活
 
-通过 `requestIdleCallback` 进行水合作用：
+通过 `requestIdleCallback` 进行激活：
 
 ```js
 import { defineAsyncComponent, hydrateOnIdle } from 'vue'
 
 const AsyncComp = defineAsyncComponent({
   loader: () => import('./Comp.vue'),
-  hydrate: hydrateOnIdle(/* optionally pass a max timeout */)
+  hydrate: hydrateOnIdle(/* 传递可选的最大超时 */)
 })
 ```
 
-### 在可见时水合
+### 在可见时激活
 
-当元素通过 `IntersectionObserver` 变为可见时进行水合。
+通过 `IntersectionObserver` 在元素变为可见时进行激活。
 
 ```js
 import { defineAsyncComponent, hydrateOnVisible } from 'vue'
@@ -144,15 +144,15 @@ const AsyncComp = defineAsyncComponent({
 })
 ```
 
-可以选择传递一个观察者的选项对象值：
+可以选择传递一个侦听器的选项对象值：
 
 ```js
 hydrateOnVisible({ rootMargin: '100px' })
 ```
 
-### 在媒体查询匹配时进行水合作用
+### 在媒体查询匹配时进行激活
 
-当指定的媒体查询匹配时进行水合作用。
+当指定的媒体查询匹配时进行激活。
 
 ```js
 import { defineAsyncComponent, hydrateOnMediaQuery } from 'vue'
@@ -163,9 +163,9 @@ const AsyncComp = defineAsyncComponent({
 })
 ```
 
-### 交互时水合
+### 交互时激活
 
-当组件元素上触发指定事件时进行水合。完成水合后，触发水合的事件也将被重新播放。
+当组件元素上触发指定事件时进行激活。完成激活后，触发激活的事件也将被重放。
 
 ```js
 import { defineAsyncComponent, hydrateOnInteraction } from 'vue'
@@ -188,16 +188,15 @@ hydrateOnInteraction(['wheel', 'mouseover'])
 import { defineAsyncComponent, type HydrationStrategy } from 'vue'
 
 const myStrategy: HydrationStrategy = (hydrate, forEachElement) => {
-  // forEachElement is a helper to iterate through all the root elememts
-  // in the component's non-hydrated DOM, since the root can be a fragment
-  // instead of a single element
+  // forEachElement 是一个遍历组件未激活的 DOM 中所有根元素的辅助函数，
+  // 因为根元素可能是一个模板片段而非单个元素
   forEachElement(el => {
     // ...
   })
-  // call `hydrate` when ready
+  // 准备好时调用 `hydrate`
   hydrate()
   return () => {
-    // return a teardown function if needed
+    // 如必要，返回一个销毁函数
   }
 }
 

@@ -234,7 +234,7 @@
   值可以限制不匹配为特定类型。允许的值有：
 
   - `text`
-  - `children`（仅允许直接子组件不匹配）
+  - `children` (仅允许直接子组件不匹配)
   - `class`
   - `style`
   - `attribute`
