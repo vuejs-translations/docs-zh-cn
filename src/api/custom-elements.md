@@ -1,11 +1,10 @@
-<!-- TODO: translation -->
-# Custom Elements API {#custom-elements-api}
+# 自定义元素 API {#custom-elements-api}
 
 ## defineCustomElement() {#definecustomelement}
 
-This method accepts the same argument as [`defineComponent`](#definecomponent), but instead returns a native [Custom Element](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_custom_elements) class constructor.
+此方法接受与 [`defineComponent`](#definecomponent) 相同参数，但返回一个原生 [Custom Element](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_custom_elements) 类构造函数。
 
-- **Type**
+- **类型**
 
   ```ts
   function defineCustomElement(
@@ -27,21 +26,21 @@ This method accepts the same argument as [`defineComponent`](#definecomponent), 
   }
   ```
 
-  > Type is simplified for readability.
+  > 类型为简化版，便于阅读。
 
-- **Details**
+- **详情**
 
-  In addition to normal component options, `defineCustomElement()` also supports a number of options that are custom-elements-specific:
+  除了标准组件选项，`defineCustomElement()` 还支持一系列特定于自定义元素的选项：
 
-  - **`styles`**: an array of inlined CSS strings for providing CSS that should be injected into the element's shadow root.
+  - **`styles`**: 一个内联 CSS 字符串数组，用于提供应注入元素阴影根的 CSS。
 
-  - **`configureApp`** <sup class="vt-badge" data-text="3.5+"/>: a function that can be used to configure the Vue app instance for the custom element.
+  - **`configureApp`** <sup class="vt-badge" data-text="3.5+"/>: 一个函数，可用于配置自定义元素的 Vue 应用实例。
 
-  - **`shadowRoot`** <sup class="vt-badge" data-text="3.5+"/>: `boolean`, defaults to `true`. Set to `false` to render the custom element without a shadow root. This means `<style>` in custom element SFCs will no longer be encapsulated.
+  - **`shadowRoot`** <sup class="vt-badge" data-text="3.5+"/>: `boolean`，默认为 `true`。设置为 `false` 以在不带阴影根的情况下渲染自定义元素。这意味着自定义元素 SFCs 中的 `<style>` 将不再被封装。
 
-  - **`nonce`** <sup class="vt-badge" data-text="3.5+"/>: `string`, if provided, will be set as the `nonce` attribute on style tags injected to the shadow root.
+  - **`nonce`** <sup class="vt-badge" data-text="3.5+"/>: `string`，如果提供，将作为注入到阴影根的样式标签上的 `nonce` 属性。
 
-  Note that instead of being passed as part of the component itself, these options can also be passed via a second argument:
+  注意，这些选项不是作为组件本身的一部分传递，也可以通过第二个参数传递：
 
   ```js
   import Element from './MyElement.ce.vue'
@@ -53,9 +52,9 @@ This method accepts the same argument as [`defineComponent`](#definecomponent), 
   })
   ```
 
-  The return value is a custom element constructor that can be registered using [`customElements.define()`](https://developer.mozilla.org/en-US/docs/Web/API/CustomElementRegistry/define).
+  返回值是一个自定义元素构造函数，可以使用 [`customElements.define()`](https://developer.mozilla.org/en-US/docs/Web/API/CustomElementRegistry/define) 注册。
 
-- **Example**
+- **示例**
 
   ```js
   import { defineCustomElement } from 'vue'
@@ -68,20 +67,20 @@ This method accepts the same argument as [`defineComponent`](#definecomponent), 
   customElements.define('my-vue-element', MyVueElement)
   ```
 
-- **See also**
+- **参考**
 
-  - [Guide - Building Custom Elements with Vue](/guide/extras/web-components#building-custom-elements-with-vue)
+  - [指南 - 使用 Vue 构建自定义元素](/guide/extras/web-components#building-custom-elements-with-vue)
 
-  - Also note that `defineCustomElement()` requires [special config](/guide/extras/web-components#sfc-as-custom-element) when used with Single-File Components.
+  - 请注意，使用 Single-File Components 时，`defineCustomElement()` 需要 [特殊配置](/guide/extras/web-components#sfc-as-custom-element)。
 
 ## useHost() <sup class="vt-badge" data-text="3.5+"/> {#usehost}
 
-A Composition API helper that returns the host element of the current Vue custom element.
+一个 Composition API 助手，返回当前 Vue 自定义元素的主元素。
 
 ## useShadowRoot() <sup class="vt-badge" data-text="3.5+"/> {#useshadowroot}
 
-A Composition API helper that returns the shadow root of the current Vue custom element.
+一个 Composition API 助手，返回当前 Vue 自定义元素的阴影根。
 
 ## this.$host <sup class="vt-badge" data-text="3.5+"/> {#this-host}
 
-An Options API property that exposes the host element of the current Vue custom element.
+一个 Options API 属性，公开当前 Vue 自定义元素的主元素。
