@@ -58,7 +58,7 @@
 
 - **详细信息**
 
-  `useModel()` 可以用于非 SFC 组件，例如在使用原始的 `setup()` 函数时。它预期的第一个参数是 `props` 对象，第二个参数是 model 名称。可选的第三个参数可以用于为生成的 model ref 声明自定义的 getter 和 setter。请注意，与 `defineModel()` 不同，你需要自己声明 props 和 emits。
+  `useModel()` 可以用于非单文件组件，例如在使用原始的 `setup()` 函数时。它预期的第一个参数是 `props` 对象，第二个参数是 model 名称。可选的第三个参数可以用于为生成的 model ref 声明自定义的 getter 和 setter。请注意，与 `defineModel()` 不同，你需要自己声明 props 和 emits。
 
 ## useTemplateRef() <sup class="vt-badge" data-text="3.5+" /> {#usetemplateref}
 

@@ -371,7 +371,7 @@ const foo = inject('foo') as string
 
 ## 为模板引用标注类型 {#typing-template-refs}
 
-在 Vue 3.5 和 @vue/language-tools 2.1 (为 IDE 语言服务和 vue-tsc 提供支持) 中，在 SFC 中由 `useTemplateRef()` 创建的 ref 类型可以基于匹配的 ref attribute 所在的元素**自动推断**为静态类型。
+在 Vue 3.5 和 @vue/language-tools 2.1 (为 IDE 语言服务和 vue-tsc 提供支持) 中，在单文件组件中由 `useTemplateRef()` 创建的 ref 类型可以基于匹配的 ref attribute 所在的元素**自动推断**为静态类型。
 
 在无法自动推断的情况下，仍然可以通过泛型参数将模板 ref 转换为显式类型。
 
@@ -408,9 +408,9 @@ onMounted(() => {
 
 ## 为组件模板引用标注类型 {#typing-component-template-refs}
 
-在 Vue 3.5 和 @vue/language-tools 2.1 (为 IDE 语言服务和 vue-tsc 提供支持) 中，在 SFC 中由 `useTemplateRef()` 创建的 ref 类型可以基于匹配的 ref attribute 所在的元素**自动推断**为静态类型。
+在 Vue 3.5 和 @vue/language-tools 2.1 (为 IDE 语言服务和 vue-tsc 提供支持) 中，在单文件组件中由 `useTemplateRef()` 创建的 ref 类型可以基于匹配的 ref attribute 所在的元素**自动推断**为静态类型。
 
-在无法自动推断的情况下 (如非 SFC 使用或动态组件)，仍然可以通过泛型参数将模板 ref 强制转换为显式类型。
+在无法自动推断的情况下 (如非单文件组件使用或动态组件)，仍然可以通过泛型参数将模板 ref 强制转换为显式类型。
 
 为了获取导入组件的实例类型，我们需要先通过 `typeof` 获取其类型，然后使用 TypeScript 的内置 `InstanceType` 工具提取其实例类型：
 

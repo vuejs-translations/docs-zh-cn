@@ -53,11 +53,11 @@ const greeting = ref('Hello World!')
 
 </div>
 
-如你所见，Vue 的单文件组件是网页开发中 HTML、CSS 和 JavaScript 三种语言经典组合的自然延伸。`<template>`、`<script>` 和 `<style>` 三个块在同一个文件中封装、组合了组件的视图、逻辑和样式。完整的语法定义可以查阅 [SFC 语法说明](/api/sfc-spec)。
+如你所见，Vue 的单文件组件是网页开发中 HTML、CSS 和 JavaScript 三种语言经典组合的自然延伸。`<template>`、`<script>` 和 `<style>` 三个块在同一个文件中封装、组合了组件的视图、逻辑和样式。完整的语法定义可以查阅[单文件组件语法说明](/api/sfc-spec)。
 
-## 为什么要使用 SFC {#why-sfc}
+## 为什么要使用单文件组件 {#why-sfc}
 
-使用 SFC 必须使用构建工具，但作为回报带来了以下优点：
+使用单文件组件必须使用构建工具，但作为回报带来了以下优点：
 
 - 使用熟悉的 HTML、CSS 和 JavaScript 语法编写模块化的组件
 - [让本来就强相关的关注点自然内聚](#what-about-separation-of-concerns)
@@ -68,17 +68,17 @@ const greeting = ref('Hello World!')
 - [更好的 IDE 支持](/guide/scaling-up/tooling#ide-support)，提供自动补全和对模板中表达式的类型检查
 - 开箱即用的模块热更新 (HMR) 支持
 
-SFC 是 Vue 框架提供的一个功能，并且在下列场景中都是官方推荐的项目组织方式：
+单文件组件是 Vue 框架提供的一个功能，并且在下列场景中都是官方推荐的项目组织方式：
 
 - 单页面应用 (SPA)
 - 静态站点生成 (SSG)
 - 任何值得引入构建步骤以获得更好的开发体验 (DX) 的项目
 
-当然，在一些轻量级场景下使用 SFC 会显得有些杀鸡用牛刀。因此 Vue 同样也可以在无构建步骤的情况下以纯 JavaScript 方式使用。如果你的用例只需要给静态 HTML 添加一些简单的交互，你可以看看 [petite-vue](https://github.com/vuejs/petite-vue)，它是一个 6 kB 左右、预优化过的 Vue 子集，更适合渐进式增强的需求。
+当然，在一些轻量级场景下使用单文件组件会显得有些杀鸡用牛刀。因此 Vue 同样也可以在无构建步骤的情况下以纯 JavaScript 方式使用。如果你的用例只需要给静态 HTML 添加一些简单的交互，你可以看看 [petite-vue](https://github.com/vuejs/petite-vue)，它是一个 6 kB 左右、预优化过的 Vue 子集，更适合渐进式增强的需求。
 
-## SFC 是如何工作的 {#how-it-works}
+## 单文件组件是如何工作的 {#how-it-works}
 
-Vue SFC 是一个框架指定的文件格式，因此必须交由 [@vue/compiler-sfc](https://github.com/vuejs/core/tree/main/packages/compiler-sfc) 编译为标准的 JavaScript 和 CSS，一个编译后的 SFC 是一个标准的 JavaScript(ES) 模块，这也意味着在构建配置正确的前提下，你可以像导入其他 ES 模块一样导入 SFC：
+Vue 单文件组件是一个框架指定的文件格式，因此必须交由 [@vue/compiler-sfc](https://github.com/vuejs/core/tree/main/packages/compiler-sfc) 编译为标准的 JavaScript 和 CSS，一个编译后的单文件组件是一个标准的 JavaScript(ES) 模块，这也意味着在构建配置正确的前提下，你可以像导入其他 ES 模块一样导入单文件组件：
 
 ```js
 import MyComponent from './MyComponent.vue'
@@ -90,15 +90,15 @@ export default {
 }
 ```
 
-SFC 中的 `<style>` 标签一般会在开发时注入成原生的 `<style>` 标签以支持热更新，而生产环境下它们会被抽取、合并成单独的 CSS 文件。
+单文件组件中的 `<style>` 标签一般会在开发时注入成原生的 `<style>` 标签以支持热更新，而生产环境下它们会被抽取、合并成单独的 CSS 文件。
 
-你可以在 [Vue SFC 演练场](https://play.vuejs.org/)中实际使用一下单文件组件，同时可以看到它们最终被编译后的样子。
+你可以在 [Vue 单文件组件演练场](https://play.vuejs.org/)中实际使用一下单文件组件，同时可以看到它们最终被编译后的样子。
 
-在实际项目中，我们一般会使用集成了 SFC 编译器的构建工具，比如 [Vite](https://cn.vitejs.dev/) 或者 [Vue CLI](https://cli.vuejs.org/zh/) (基于 [webpack](https://webpack.js.org/))，Vue 官方也提供了脚手架工具来帮助你尽可能快速地上手开发 SFC。更多细节请查看 [SFC 工具链](/guide/scaling-up/tooling)章节。
+在实际项目中，我们一般会使用集成了单文件组件编译器的构建工具，比如 [Vite](https://cn.vitejs.dev/) 或者 [Vue CLI](https://cli.vuejs.org/zh/) (基于 [webpack](https://webpack.js.org/))，Vue 官方也提供了脚手架工具来帮助你尽可能快速地上手开发单文件组件。更多细节请查看[单文件组件工具链](/guide/scaling-up/tooling)章节。
 
 ## 如何看待关注点分离？ {#what-about-separation-of-concerns}
 
-一些有着传统 Web 开发背景的用户可能会因为 SFC 将不同的关注点集合在一处而有所顾虑，觉得 HTML/CSS/JS 应当是分离开的！
+一些有着传统 Web 开发背景的用户可能会因为单文件组件将不同的关注点集合在一处而有所顾虑，觉得 HTML/CSS/JS 应当是分离开的！
 
 要回答这个问题，我们必须对这一点达成共识：**前端开发的关注点不是完全基于文件类型分离的**。前端工程化的最终目的都是为了能够更好地维护代码。关注点分离不应该是教条式地将其视为文件类型的区别和分离，仅仅这样并不够帮我们在日益复杂的前端应用的背景下提高开发效率。
 
