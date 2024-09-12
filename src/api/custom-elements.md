@@ -19,7 +19,7 @@
   interface CustomElementsOptions {
     styles?: string[]
 
-    // the following options are 3.5+
+    // 以下选项为 3.5+ 版本
     configureApp?: (app: App) => void
     shadowRoot?: boolean
     nonce?: string
@@ -60,10 +60,10 @@
   import { defineCustomElement } from 'vue'
 
   const MyVueElement = defineCustomElement({
-    /* component options */
+    /* 组件选项 */
   })
 
-  // Register the custom element.
+  // 注册自定义元素
   customElements.define('my-vue-element', MyVueElement)
   ```
 
