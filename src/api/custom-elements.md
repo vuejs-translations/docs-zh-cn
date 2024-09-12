@@ -19,7 +19,7 @@
   interface CustomElementsOptions {
     styles?: string[]
 
-    // 以下选项为 3.5+ 版本
+    // 以下选项在 3.5+ 版本中支持
     configureApp?: (app: App) => void
     shadowRoot?: boolean
     nonce?: string
