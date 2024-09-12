@@ -30,15 +30,15 @@
 
 - **详情**
 
-  除了标准组件选项，`defineCustomElement()` 还支持一系列特定于自定义元素的选项：
+  除了常规的组件选项，`defineCustomElement()` 还支持一系列特定于自定义元素的选项：
 
   - **`styles`**: 一个内联 CSS 字符串数组，用于提供应注入元素阴影根的 CSS。
 
-  - **`configureApp`** <sup class="vt-badge" data-text="3.5+"/>: 一个函数，可用于配置自定义元素的 Vue 应用实例。
+  - **`configureApp`** <sup class="vt-badge" data-text="3.5+"/>：一个函数，可用于配置自定义元素的 Vue 应用实例。
 
-  - **`shadowRoot`** <sup class="vt-badge" data-text="3.5+"/>: `boolean`，默认为 `true`。设置为 `false` 以在不带阴影根的情况下渲染自定义元素。这意味着自定义元素单文件组件中的 `<style>` 将不再被封装。
+  - **`shadowRoot`** <sup class="vt-badge" data-text="3.5+"/>: `boolean`，默认为 `true`。设置为 `false` 以在不带 shadow root 的情况下渲染自定义元素。这意味着自定义元素单文件组件中的 `<style>` 将不再被封装隔离。
 
-  - **`nonce`** <sup class="vt-badge" data-text="3.5+"/>: `string`，如果提供，将作为注入到阴影根的样式标签上的 `nonce` 属性。
+  - **`nonce`** <sup class="vt-badge" data-text="3.5+"/>：`string`，如果提供，将在注入到 shadow root 样式标签上设置 `nonce` attribute。
 
   注意，这些选项也可以不作为组件本身的一部分传递，而是通过第二个参数传递：
 
@@ -71,16 +71,16 @@
 
   - [指南 - 使用 Vue 构建自定义元素](/guide/extras/web-components#building-custom-elements-with-vue)
 
-  - 请注意，使用单文件组件时，`defineCustomElement()` 需要 [特殊配置](/guide/extras/web-components#sfc-as-custom-element)。
+  - 请注意，使用单文件组件时，`defineCustomElement()` 需要进行[特殊配置](/guide/extras/web-components#sfc-as-custom-element)。
 
 ## useHost() <sup class="vt-badge" data-text="3.5+"/> {#usehost}
 
-一个 Composition API 助手，返回当前 Vue 自定义元素的宿主元素。
+一个组合式 API 辅助函数，返回当前 Vue 自定义元素的宿主元素。
 
 ## useShadowRoot() <sup class="vt-badge" data-text="3.5+"/> {#useshadowroot}
 
-一个 Composition API 助手，返回当前 Vue 自定义元素的阴影根。
+一个组合式 API 辅助函数，返回当前 Vue 自定义元素的 shadow root。
 
 ## this.$host <sup class="vt-badge" data-text="3.5+"/> {#this-host}
 
-一个 Options API 属性，公开当前 Vue 自定义元素的宿主元素。
+一个选项式 API 的 property，暴露当前 Vue 自定义元素的宿主元素。
