@@ -32,11 +32,11 @@
 
   除了常规的组件选项，`defineCustomElement()` 还支持一系列特定于自定义元素的选项：
 
-  - **`styles`**: 一个内联 CSS 字符串数组，用于提供应注入元素阴影根的 CSS。
+  - **`styles`**：一个内联 CSS 字符串数组，用于提供应注入元素 shadow root 的 CSS。
 
   - **`configureApp`** <sup class="vt-badge" data-text="3.5+"/>：一个函数，可用于配置自定义元素的 Vue 应用实例。
 
-  - **`shadowRoot`** <sup class="vt-badge" data-text="3.5+"/>: `boolean`，默认为 `true`。设置为 `false` 以在不带 shadow root 的情况下渲染自定义元素。这意味着自定义元素单文件组件中的 `<style>` 将不再被封装隔离。
+  - **`shadowRoot`** <sup class="vt-badge" data-text="3.5+"/>：`boolean`，默认为 `true`。设置为 `false` 以在不带 shadow root 的情况下渲染自定义元素。这意味着自定义元素单文件组件中的 `<style>` 将不再被封装隔离。
 
   - **`nonce`** <sup class="vt-badge" data-text="3.5+"/>：`string`，如果提供，将在注入到 shadow root 样式标签上设置 `nonce` attribute。
 
