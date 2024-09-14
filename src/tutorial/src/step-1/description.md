@@ -19,7 +19,7 @@
 
 - Vue 提供了两种 API 风格：选项式 API 和组合式 API。本教程两者都支持——你可以使用顶部的 **API 风格偏好**来选择你喜欢的风格。<a target="_blank" href="/guide/introduction.html#api-styles">了解更多有关 API 风格的信息</a>。
 
-- 你也可以在 SFC 模式和 HTML 模式之间切换。前者会以<a target="_blank" href="/guide/introduction.html#single-file-components">单文件组件</a> (SFC) 的格式展示示例代码，这是大多数开发者配合构建步骤使用 Vue 的模式。HTML 模式则在无需构建步骤时使用。
+- 你也可以在单文件组件模式和 HTML 模式之间切换。前者会以<a target="_blank" href="/guide/introduction.html#single-file-components">单文件组件</a> (SFC) 的格式展示示例代码，这是大多数开发者配合构建步骤使用 Vue 的模式。HTML 模式则在无需构建步骤时使用。
 
 <div class="html">
 

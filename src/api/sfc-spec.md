@@ -1,4 +1,4 @@
-# SFC 语法定义 {#sfc-syntax-specification}
+# 单文件组件语法定义 {#sfc-syntax-specification}
 
 ## 总览 {#overview}
 
@@ -58,7 +58,7 @@ export default {
 
 - 每个 `*.vue` 文件可以包含多个 `<style>` 标签。
 
-- 一个 `<style>` 标签可以使用 `scoped` 或 `module` attribute (查看 [SFC 样式功能](/api/sfc-css-features)了解更多细节) 来帮助封装当前组件的样式。使用了不同封装模式的多个 `<style>` 标签可以被混合入同一个组件。
+- 一个 `<style>` 标签可以使用 `scoped` 或 `module` attribute (查看[单文件组件样式功能](/api/sfc-css-features)了解更多细节) 来帮助封装当前组件的样式。使用了不同封装模式的多个 `<style>` 标签可以被混合入同一个组件。
 
 ### 自定义块 {#custom-blocks}
 
@@ -68,11 +68,11 @@ export default {
 - [vite-plugin-vue-gql：`<gql>`](https://github.com/wheatjs/vite-plugin-vue-gql)
 - [vue-i18n：`<i18n>`](https://github.com/intlify/bundle-tools/tree/main/packages/unplugin-vue-i18n#i18n-custom-block)
 
-自定义块的处理需要依赖工具链。如果你想要在构建中集成你的自定义语块，请参见 [SFC 自定义块集成工具链指南](/guide/scaling-up/tooling#sfc-custom-block-integrations)获取更多细节。
+自定义块的处理需要依赖工具链。如果你想要在构建中集成你的自定义语块，请参见[单文件组件自定义块集成工具链指南](/guide/scaling-up/tooling#sfc-custom-block-integrations)获取更多细节。
 
 ## 自动名称推导 {#automatic-name-inference}
 
-SFC 在以下场景中会根据**文件名**自动推导其组件名：
+单文件组件在以下场景中会根据**文件名**自动推导其组件名：
 
 - 开发警告信息中需要格式化组件名时；
 - DevTools 中观察组件时；

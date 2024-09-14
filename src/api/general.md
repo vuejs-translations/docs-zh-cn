@@ -179,7 +179,7 @@
   )
   ```
 
-  在将来，我们计划提供一个 Babel 插件，自动推断并注入运行时 props (就像在 SFC 中的 `defineProps` 一样)，以便省略运行时 props 的声明。
+  在将来，我们计划提供一个 Babel 插件，自动推断并注入运行时 props (就像在单文件组件中的 `defineProps` 一样)，以便省略运行时 props 的声明。
 
   ### webpack Treeshaking 的注意事项 {#note-on-webpack-treeshaking}
 

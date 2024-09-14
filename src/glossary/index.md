@@ -356,7 +356,7 @@ Ref 有多种不同的类型。例如，可以使用 `ref()`、`shallowRef()`、
 
 参考：
 - [指南 - 单文件组件](/guide/scaling-up/sfc.html)
-- [SFC 语法定义](/api/sfc-spec.html)
+- [单文件组件语法定义](/api/sfc-spec.html)
 
 ## 插槽 (slot) {#slot}
 

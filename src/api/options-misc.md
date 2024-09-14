@@ -24,7 +24,7 @@
 
   另一种场景是当一个组件通过 [`app.component`](/api/application#app-component) 被全局注册时，这个全局 ID 就自动被设为了其名称。
 
-  使用 `name` 选项使你可以覆盖推导出的名称，或是在没有推导出名字时显式提供一个。(例如没有使用构建工具时，或是一个内联的非 SFC 式的组件)
+  使用 `name` 选项使你可以覆盖推导出的名称，或是在没有推导出名字时显式提供一个。(例如没有使用构建工具时，或是一个内联的非单文件组件)
 
   有一种场景下 `name` 必须是已显式声明的：即 [`<KeepAlive>`](/guide/built-ins/keep-alive) 通过其 `include / exclude` prop 来匹配其需要缓存的组件时。
 

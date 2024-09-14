@@ -205,7 +205,7 @@
 :::
 
 :::info 参考
-SFC `<style>` 标签支持通过 `v-bind` CSS 函数来链接 CSS 值与组件状态。这允许在没有类型扩展的情况下自定义属性。
+单文件组件 `<style>` 标签支持通过 `v-bind` CSS 函数来链接 CSS 值与组件状态。这允许在没有类型扩展的情况下自定义属性。
 
 - [CSS 中的 v-bind()](/api/sfc-css-features#v-bind-in-css)
 :::
