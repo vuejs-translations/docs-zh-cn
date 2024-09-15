@@ -166,7 +166,7 @@ watch(foo, /* ... */)
 
 这并不会按预期工作，因为它等价于 `watch(props.foo, ...)`——我们给 `watch` 传递的是一个值而不是响应式数据源。实际上，Vue 的编译器会捕捉这种情况并发出警告。
 
-与我们可以使用 `watch(() => props.foo, ...)` 侦听普通 prop 类似，我们也可以通过将其包装在 getter 中来侦听解构的 prop：
+与使用 `watch(() => props.foo, ...)`来侦听普通 prop 类似，我们也可以通过将其包装在 getter 中来侦听解构的 prop：
 
 ```js
 watch(() => foo, /* ... */)
