@@ -71,7 +71,7 @@ const posts = await res.json()
 
 ## 加载中状态 {#loading-state}
 
-`<Suspense>` 组件有两个插槽：`#default` 和 `#fallback`。两个插槽都只允许**一个**直接子节点。在可能的时候都将显示默认槽中的节点。否则将显示后备槽中的节点。
+`<Suspense>` 组件有两个插槽：`#default` 和 `#fallback`。两个插槽都只允许**一个**直接子节点。在可能的时候都将显示默认插槽中的节点。否则将显示后备插槽中的节点。
 
 ```vue-html
 <Suspense>
