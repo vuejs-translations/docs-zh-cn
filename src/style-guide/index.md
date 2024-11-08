@@ -2,40 +2,40 @@
 outline: deep
 ---
 
-# Style Guide {#style-guide}
+# 风格指南 {#style-guide}
 
-This is the official style guide for Vue-specific code. If you use Vue in a project, it's a great reference to avoid errors, bikeshedding, and anti-patterns. However, we don't believe that any style guide is ideal for all teams or projects, so mindful deviations are encouraged based on past experience, the surrounding tech stack, and personal values.
+这是针对 Vue 特定代码的官方风格指南。它是一个非常好的参考，可以帮助您避免错误、争论以及反模式。然而，我们并不认为有任何一种风格指南能够适用于所有团队或项目，因此基于以往经验、周边技术栈和个人价值观的有意识偏离是受到鼓励的。
 
-For the most part, we also avoid suggestions about JavaScript or HTML in general. We don't mind whether you use semicolons or trailing commas. We don't mind whether your HTML uses single-quotes or double-quotes for attribute values. Some exceptions will exist however, where we've found that a particular pattern is helpful in the context of Vue.
+对于其绝大部分，我们也总体上避免就 JavaScript 或 HTML 的本身提出建议。我们不介意你是否使用分号或结尾的逗号。我们不介意你在 HTML attribute 中使用单引号还是双引号。不过当我们发现在 Vue 的情景下有帮助的特定模式时，也会存在例外。
 
-Finally, we've split rules into four categories:
+最终，我们把所有的规则归为了四个大类：
 
-## Rule Categories {#rule-categories}
+## 规则归类 {#rule-categories}
 
-### Priority A: Essential (Error Prevention) {#priority-a-essential-error-prevention}
+### 优先级 A: 必要规则 (Error Prevention) {#priority-a-essential-error-prevention}
 
-These rules help prevent errors, so learn and abide by them at all costs. Exceptions may exist, but should be very rare and only be made by those with expert knowledge of both JavaScript and Vue.
+这些规则会帮你规避错误，所以学习并接受它们带来的全部代价吧。这里面可能存在例外，但应该非常少，且只有你同时精通 JavaScript 和 Vue 才可以这样做。
 
-- [See all priority A rules](./rules-essential)
+- [查看所有优先级 A 的规则](./rules-essential)
 
-### Priority B: Strongly Recommended {#priority-b-strongly-recommended}
+### 优先级 B: 强烈推荐 {#priority-b-strongly-recommended}
 
-These rules have been found to improve readability and/or developer experience in most projects. Your code will still run if you violate them, but violations should be rare and well-justified.
+这些规则能够在绝大多数工程中改善可读性和开发体验。即使你违反了，代码还是能照常运行，但例外应该尽可能少且有合理的理由。
 
-- [See all priority B rules](./rules-strongly-recommended)
+- [查看所有优先级 B 的规则](./rules-strongly-recommended)
 
-### Priority C: Recommended {#priority-c-recommended}
+### 优先级 C: 推荐 {#priority-c-recommended}
 
-Where multiple, equally good options exist, an arbitrary choice can be made to ensure consistency. In these rules, we describe each acceptable option and suggest a default choice. That means you can feel free to make a different choice in your own codebase, as long as you're consistent and have a good reason. Please do have a good reason though! By adapting to the community standard, you will:
+当存在多个同样好的选项，选任意一个都可以确保一致性。在这些规则里，我们描述了每个选项并建议一个默认的选择。也就是说只要保持一致且理由充分，你可以随意在你的代码库中做出不同的选择。请务必给出一个好的理由！通过接受社区的标准，你将会：
 
-1. Train your brain to more easily parse most of the community code you encounter
-2. Be able to copy and paste most community code examples without modification
-3. Often find new hires are already accustomed to your preferred coding style, at least in regards to Vue
+1. 训练你的大脑，以便更容易的处理你在社区遇到的代码
+2. 不做修改就可以直接复制粘贴社区的代码示例
+3. 能够经常招聘到和你编码习惯相同的新人，至少跟 Vue 相关的东西是这样的
 
-- [See all priority C rules](./rules-recommended)
+- [查看所有优先级 C 的规则](./rules-recommended)
 
-### Priority D: Use with Caution {#priority-d-use-with-caution}
+### 优先级 D: 谨慎使用 {#priority-d-use-with-caution}
 
-Some features of Vue exist to accommodate rare edge cases or smoother migrations from a legacy code base. When overused however, they can make your code more difficult to maintain or even become a source of bugs. These rules shine a light on potentially risky features, describing when and why they should be avoided.
+有些 Vue 特性的存在是为了照顾极端情况或帮助老代码的平稳迁移。当被过度使用时，这些特性会让你的代码难于维护甚至变成 bug 的来源。这些规则是为了给有潜在风险的特性敲个警钟，并说明它们什么时候不应该使用以及为什么。
 
-- [See all priority D rules](./rules-use-with-caution)
+- [查看所有优先级 D 的规则](./rules-use-with-caution)
