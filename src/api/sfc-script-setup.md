@@ -492,7 +492,7 @@ defineProps<{
 </script>
 ```
 
-`generic` 的值与 TypeScript 中位于 `<...>` 之间的参数列表完全相同。例如，您可以使用多个参数，`extends` 约束，默认类型和引用导入的类型：
+`generic` 的值与 TypeScript 中位于 `<...>` 之间的参数列表完全相同。例如，你可以使用多个参数，`extends` 约束，默认类型和引用导入的类型：
 
 ```vue
 <script
