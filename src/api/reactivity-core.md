@@ -278,19 +278,6 @@
   // -> 输出 1
   ```
 
-  副作用清除：
-
-  ```js
-  watchEffect(async (onCleanup) => {
-    const { response, cancel } = doAsyncWork(id.value)
-    // `cancel` 会在 `id` 更改时调用
-    // 以便取消之前
-    // 未完成的请求
-    onCleanup(cancel)
-    data.value = await response
-  })
-  ```
-
   停止侦听器：
 
   ```js
