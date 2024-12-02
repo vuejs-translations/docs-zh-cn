@@ -58,9 +58,9 @@
 
   ```vue
   <script setup>
-  import { ref } from 'vue'
+  import { useTemplateRef } from 'vue'
 
-  const p = ref()
+  const pRef = useTemplateRef('p')
   </script>
 
   <template>
