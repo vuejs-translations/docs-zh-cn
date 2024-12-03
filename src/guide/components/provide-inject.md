@@ -335,9 +335,9 @@ export const myInjectionKey = Symbol()
 import { provide } from 'vue'
 import { myInjectionKey } from './keys.js'
 
-provide(myInjectionKey, { /*
-  要提供的数据
-*/ });
+provide(myInjectionKey, { 
+  /* 要提供的数据 */
+})
 ```
 
 ```js
