@@ -95,6 +95,13 @@ function resolveList(data: SponsorData) {
       @click="track(true)"
       >成为赞助商</a
     >
+    <a
+      v-if="tier === 'special' && data && !data[tier]?.length"
+      href="/sponsor/#tier-benefits"
+      class="sponsor-item action"
+      @click="track(true)"
+      >Inquire about Special Sponsorship</a
+    >
   </div>
 </template>
 
@@ -129,6 +136,9 @@ function resolveList(data: SponsorData) {
 .sponsor-item.action {
   font-size: 11px;
   color: var(--vt-c-text-3);
+}
+.sponsor-container.page .sponsor-item.action {
+ font-size: 16px;
 }
 .sponsor-item img {
   max-width: calc(var(--max-width) - 30px);

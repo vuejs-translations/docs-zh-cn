@@ -434,7 +434,7 @@ export default {
 <input v-model.number="age" />
 ```
 
-如果该值无法被 `parseFloat()` 处理，那么将返回原始值。
+如果该值无法被 `parseFloat()` 处理，那么将返回原始值。特别是当输入为空时 (例如用户清空输入字段之后)，会返回一个空字符串。这种行为与 [DOM 属性 valueAsNumber](https://developer.mozilla.org/zh-CN/docs/Web/API/HTMLInputElement#valueasnumber) 有所不同。
 
 `number` 修饰符会在输入框有 `type="number"` 时自动启用。
 

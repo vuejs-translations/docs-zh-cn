@@ -376,7 +376,7 @@ const foo = inject('foo') as string
 在无法自动推断的情况下，仍然可以通过泛型参数将模板 ref 转换为显式类型。
 
 ```ts
-const el = useTemplateRef<HTMLInputElement>(null)
+const el = useTemplateRef<HTMLInputElement>('el')
 ```
 
 <details>
@@ -438,7 +438,7 @@ const compRef = useTemplateRef<FooType | BarType>('comp')
 import { useTemplateRef } from 'vue'
 import type { ComponentPublicInstance } from 'vue'
 
-const child = useTemplateRef<ComponentPublicInstance | null>(null)
+const child = useTemplateRef<ComponentPublicInstance>('child')
 ```
 
 如果引用的组件是一个[泛型组件](/guide/typescript/overview.html#generic-components)，例如 `MyGenericModal`：
@@ -467,7 +467,7 @@ import { useTemplateRef } from 'vue'
 import MyGenericModal from './MyGenericModal.vue'
 import type { ComponentExposed } from 'vue-component-type-helpers'
 
-const modal = useTemplateRef<ComponentExposed<typeof MyGenericModal>>(null)
+const modal = useTemplateRef<ComponentExposed<typeof MyGenericModal>>('modal')
 
 const openModal = () => {
   modal.value?.open('newValue')

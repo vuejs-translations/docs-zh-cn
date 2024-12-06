@@ -135,6 +135,8 @@ Vue Router 使用动态导入对[懒加载组件](https://router.vuejs.org/zh/gu
 
 ## 嵌套使用 {#nested-suspense}
 
+- 仅在 3.3+ 支持
+
 当我们有多个类似于下方的异步组件 (常见于嵌套或基于布局的路由) 时：
 
 ```vue-html

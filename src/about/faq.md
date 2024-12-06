@@ -30,7 +30,7 @@ Vue 是完全免费的开源项目，且基于 [MIT License](https://opensource.
 
 ## Vue 支持哪些浏览器？ {#what-browsers-does-vue-support}
 
-最新版本的 Vue (3.x) 只支持[原生支持 ES2015 的浏览器](https://caniuse.com/es6)。这并不包括 IE11。Vue 3.x 使用的 ES2015 功能无法在旧版本的浏览器中进行兼容，如果你需要支持旧版本的浏览器，请使用 Vue 2.x 替代。
+最新版本的 Vue (3.x) 只支持[原生支持 ES2016 的浏览器](https://caniuse.com/es2016)。这并不包括 IE11。Vue 3.x 使用的 ES2016 功能无法在旧版本的浏览器中进行兼容，如果你需要支持旧版本的浏览器，请使用 Vue 2.x 替代。
 
 ## Vue 可靠吗？ {#is-vue-reliable}
 
