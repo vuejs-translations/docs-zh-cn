@@ -126,12 +126,12 @@ const nav: ThemeConfig['nav'] = [
     link: '/sponsor/'
   },
   {
-    text: 'Experts',
+    text: '专家',
     badge: { text: '新' },
     activeMatch: `^/(partners|developers)/`,
     items: [
       { text: '合作伙伴', link: '/partners/' },
-      { text: 'Developers', link: '/developers/', badge: { text: '新' } }
+      { text: '开发者', link: '/developers/', badge: { text: '新' } }
     ]
   }
 ]

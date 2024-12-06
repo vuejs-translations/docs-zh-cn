@@ -54,57 +54,37 @@ onMounted(load)
     </p>
   </section>
 
-  <section id="special-sponsor">
-    <template v-if="data && data.platinum_china">
+  <section v-if="data && data.platinum_china" id="special-sponsor">
+    <template >
       <h3>中国区铂金赞助</h3>
       <div id="special-sponsor-container">
-        <template
-          v-for="{
-            url,
-            img,
-            name,
-            height,
-            description
-          } of data.platinum_china"
+        <template v-for="{ url, img, name, height, description } of data.platinum_china"
         >
-          <a
-            class="logo"
-            :href="url"
-            target="_blank"
-            rel="sponsored noopener"
-          >
+          <a class="logo" :href="url" target="_blank" rel="sponsored noopener">
             <picture v-if="img.endsWith('png')">
               <source
                 type="image/avif"
-                :srcset="`${base}/images/${img.replace(
-                  /\.png$/,
-                  '.avif'
-                )}`"
+                :srcset="`${base}/images/${img.replace(/\.png$/,'.avif')}`"
               />
-              <img
-                :src="`${base}/images/${img}`"
-                :alt="name"
-                :style="{ height: height || '50px' }"
-              />
+              <img :src="`${base}/images/${img}`" :alt="name" :style="{ height: height || '50px' }" />
             </picture>
             <img
-              width="150"
+              width="168"
+              height="42"
               v-else
               :src="`${base}/images/${img}`"
               :alt="name"
             />
           </a>
+          <span>{{ description }}</span>
         </template>
       </div>
     </template>
-    <a v-else-if="data" class="lead" href="/sponsor/"
-      >中国区铂金赞助位 点击了解更多</a
-    >
   </section>
   <section v-else id="special-sponsor">
     <span>
       <a href="/sponsor/#tier-benefits">
-        Special Sponsor slot is now vacant - Inquire now
+        中国区铂金赞助位现已空缺-立即咨询
       </a>
     </span>
   </section>
@@ -283,6 +263,8 @@ html:not(.dark) .accent,
   border-top: 1px solid var(--vt-c-divider-light);
   border-bottom: 1px solid var(--vt-c-divider-light);
   padding: 12px 24px;
+  display: flex;
+  align-items: center;
 }
 
 #special-sponsor h3 {
@@ -302,6 +284,30 @@ html:not(.dark) .accent,
   display: flex;
   justify-content: center;
   padding: 0 20px;
+}
+
+#special-sponsor span {
+  color: var(--vt-c-text-2);
+  font-weight: 500;
+  font-size: 13px;
+  vertical-align: middle;
+  flex: 1;
+}
+
+#special-sponsor span:first-child {
+  text-align: right;
+}
+
+
+#special-sponsor a {
+  display: flex;
+  justify-content: center;
+  padding: 0 24px;
+}
+
+#special-sponsor img {
+  height: 42px;
+  margin: -6px 0;
 }
 
 .dark #special-sponsor img {
