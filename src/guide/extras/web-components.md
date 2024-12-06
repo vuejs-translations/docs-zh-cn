@@ -274,7 +274,7 @@ export function MyComponent() {
 
 在编写 Vue SFC 模板时，你可能想要为你的 Vue 组件添加[类型检查](/guide/scaling-up/tooling.html#typescript)，包括那些被定义为自定义元素的组件。
 
-自定义元素是使用原生 API 全局注册的，所以默认情况下，当在 Vue 模板中使用时，它们不会有类型推断。为了给注册为自定义元素的 Vue 组件提供类型支持，我们可以通过扩充 [`GlobalComponents` 接口](https://github.com/vuejs/language-tools/blob/master/packages/vscode-vue/README.md#usage)来注册全局组件类型定义，以便在 Vue 模板中进行类型检查（JSX 用户可以改为扩充 [`JSX.IntrinsicElements`](https://www.typescriptlang.org/docs/handbook/jsx.html#intrinsic-elements) 类型，此处省略这部分内容）。
+自定义元素是使用原生 API 全局注册的，所以默认情况下，当在 Vue 模板中使用时，它们不会有类型推断。为了给注册为自定义元素的 Vue 组件提供类型支持，我们可以通过扩充 [`GlobalComponents` 接口](https://github.com/vuejs/language-tools/blob/master/packages/vscode-vue/README.md#usage)来注册全局组件类型定义，以便在 Vue 模板中进行类型检查 (JSX 用户可以改为扩充 [`JSX.IntrinsicElements`](https://www.typescriptlang.org/docs/handbook/jsx.html#intrinsic-elements) 类型，此处省略这部分内容)。
 
 下面介绍如何使用 Vue 创建的自定义元素定义类型的方法：
 
