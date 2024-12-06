@@ -101,6 +101,13 @@ onMounted(load)
       >中国区铂金赞助位 点击了解更多</a
     >
   </section>
+  <section v-else id="special-sponsor">
+    <span>
+      <a href="/sponsor/#tier-benefits">
+        Special Sponsor slot is now vacant - Inquire now
+      </a>
+    </span>
+  </section>
 
   <section id="highlights" class="vt-box-container">
     <div class="vt-box">

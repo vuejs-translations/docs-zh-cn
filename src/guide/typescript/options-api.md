@@ -230,7 +230,7 @@ declare module 'vue' {
 
 参考：
 
-- [对组件类型扩展的 TypeScript 单元测试](https://github.com/vuejs/core/blob/main/packages/dts-test/componentTypeExtensions.test-d.tsx)
+- [对组件类型扩展的 TypeScript 单元测试](https://github.com/vuejs/core/blob/main/packages-private/dts-test/componentTypeExtensions.test-d.tsx)
 
 ### 类型扩展的位置 {#type-augmentation-placement}
 
@@ -290,6 +290,6 @@ declare module 'vue' {
 
 参考：
 
-- [对组件类型扩展的 TypeScript 单元测试](https://github.com/vuejs/core/blob/main/packages/dts-test/componentTypeExtensions.test-d.tsx)
+- [对组件类型扩展的 TypeScript 单元测试](https://github.com/vuejs/core/blob/main/packages-private/dts-test/componentTypeExtensions.test-d.tsx)
 
 <!-- zhlint disabled -->

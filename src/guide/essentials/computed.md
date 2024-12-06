@@ -251,6 +251,113 @@ const fullName = computed({
 
 </div>
 
+## 获取上一个值 {#previous}
+
+- 仅 3.4+ 支持
+
+如果需要，可以通过访问计算属性的 getter 的第一个参数来获取计算属性返回的上一个值：
+
+<div class="options-api">
+
+```js
+export default {
+  data() {
+    return {
+      count: 2
+    }
+  },
+  computed: {
+    // 这个计算属性在 count 的值小于或等于 3 时，将返回 count 的值。
+    // 当 count 的值大于等于 4 时，将会返回满足我们条件的最后一个值
+    // 直到 count 的值再次小于或等于 3 为止。
+    alwaysSmall(previous) {
+      if (this.count <= 3) {
+        return this.count
+      }
+
+      return previous
+    }
+  }
+}
+```
+</div>
+
+<div class="composition-api">
+
+```vue
+<script setup>
+import { ref, computed } from 'vue'
+
+const count = ref(2)
+
+// 这个计算属性在 count 的值小于或等于 3 时，将返回 count 的值。
+// 当 count 的值大于等于 4 时，将会返回满足我们条件的最后一个值
+// 直到 count 的值再次小于或等于 3 为止。
+const alwaysSmall = computed((previous) => {
+  if (count.value <= 3) {
+    return count.value
+  }
+
+  return previous
+})
+</script>
+```
+</div>
+
+如果你正在使用可写的计算属性的话：
+
+<div class="options-api">
+
+```js
+export default {
+  data() {
+    return {
+      count: 2
+    }
+  },
+  computed: {
+    alwaysSmall: {
+      get(previous) {
+        if (this.count <= 3) {
+          return this.count
+        }
+
+        return previous;
+      },
+      set(newValue) {
+        this.count = newValue * 2
+      }
+    }
+  }
+}
+```
+
+</div>
+<div class="composition-api">
+
+```vue
+<script setup>
+import { ref, computed } from 'vue'
+
+const count = ref(2)
+
+const alwaysSmall = computed({
+  get(previous) {
+    if (count.value <= 3) {
+      return count.value
+    }
+
+    return previous
+  },
+  set(newValue) {
+    count.value = newValue * 2
+  }
+})
+</script>
+```
+
+</div>
+
 ## 最佳实践 {#best-practices}
 
 ### Getter 不应有副作用 {#getters-should-be-side-effect-free}

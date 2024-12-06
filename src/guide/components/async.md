@@ -118,7 +118,7 @@ const AsyncComp = defineAsyncComponent({
 
 - 该设计有意保持在底层，以确保灵活性。将来可以在此基础上构建编译器语法糖，无论是在核心还是更上层的解决方案 (如 Nuxt) 中实现。
 
-### 在空闲时进行激活
+### 在空闲时进行激活 {#hydrate-on-idle}
 
 通过 `requestIdleCallback` 进行激活：
 
@@ -131,7 +131,7 @@ const AsyncComp = defineAsyncComponent({
 })
 ```
 
-### 在可见时激活
+### 在可见时激活 {#hydrate-on-visible}
 
 通过 `IntersectionObserver` 在元素变为可见时进行激活。
 
@@ -150,7 +150,7 @@ const AsyncComp = defineAsyncComponent({
 hydrateOnVisible({ rootMargin: '100px' })
 ```
 
-### 在媒体查询匹配时进行激活
+### 在媒体查询匹配时进行激活 {#hydrate-on-media-query}
 
 当指定的媒体查询匹配时进行激活。
 
@@ -163,7 +163,7 @@ const AsyncComp = defineAsyncComponent({
 })
 ```
 
-### 交互时激活
+### 交互时激活 {#hydrate-on-interaction}
 
 当组件元素上触发指定事件时进行激活。完成激活后，触发激活的事件也将被重放。
 
@@ -182,14 +182,14 @@ const AsyncComp = defineAsyncComponent({
 hydrateOnInteraction(['wheel', 'mouseover'])
 ```
 
-### 自定义策略
+### 自定义策略 {#custom-strategy}
 
 ```ts
 import { defineAsyncComponent, type HydrationStrategy } from 'vue'
 
 const myStrategy: HydrationStrategy = (hydrate, forEachElement) => {
   // forEachElement 是一个遍历组件未激活的 DOM 中所有根元素的辅助函数，
-  // 因为根元素可能是一个模板片段而非单个元素
+  // 因为根元素可能是一个片段而非单个元素
   forEachElement(el => {
     // ...
   })

@@ -154,7 +154,7 @@ const { foo = 'hello' } = defineProps<{ foo?: string }>()
 
 如果你希望在 IDE 中在解构的 props 和普通变量之间有更多视觉上的区分，Vue 的 VSCode 扩展提供了一个设置来启用解构 props 的内联提示。
 
-### 将解构的 props 传递到函数中
+### 将解构的 props 传递到函数中 {#passing-destructured-props-into-functions}
 
 当我们将解构的 prop 传递到函数中时，例如：
 

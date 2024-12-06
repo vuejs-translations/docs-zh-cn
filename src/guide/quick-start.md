@@ -46,6 +46,9 @@ import { VTCodeGroup, VTCodeGroupTab } from '@vue/theme'
   <VTCodeGroupTab label="yarn">
 
   ```sh
+  # For Yarn (v1+)
+  $ yarn create vue
+
   # For Yarn Modern (v2+)
   $ yarn create vue@latest
   
