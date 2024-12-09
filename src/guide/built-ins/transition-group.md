@@ -82,7 +82,7 @@ import ListStagger from './transition-demos/ListStagger.vue'
 
 ### 自定义过渡组 class {#custom-transitiongroup-classes}
 
-你还可以通过向 `<TransitionGroup>` 传递 `moveClass` prop 为移动元素指定自定义过渡 class，就像[自定义过渡 class](/guide/built-ins/transition.html#custom-transition-classes) 一样。
+你还可以通过向 `<TransitionGroup>` 传递 `moveClass` prop 为移动元素指定自定义过渡 class，类似于[自定义过渡 class](/guide/built-ins/transition.html#custom-transition-classes)。
 
 ## 渐进延迟列表动画 {#staggering-list-transitions}
 
