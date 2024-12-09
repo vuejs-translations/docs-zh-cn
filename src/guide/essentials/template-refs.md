@@ -148,7 +148,7 @@ onMounted(() => console.log(itemRefs.value))
 <details>
 <summary>3.5 前的用法</summary>
 
-In versions before 3.5 where `useTemplateRef()` was not introduced, we need to declare a ref with a name that matches the template ref attribute's value. The ref should also contain an array value:
+在 3.5 版本以前，`useTemplateRef()` 尚未引入，需要声明一个与模板引用 attribute 同名的 ref。该 ref 的值需要是一个数组。
 
 ```vue
 <script setup>

@@ -270,7 +270,7 @@ export function MyComponent() {
 }
 ```
 
-### 基于 Web Components 和 TypeScript {#web-components-and-typescript}
+### 基于 Vue 的 Web Components 和 TypeScript {#web-components-and-typescript}
 
 在编写 Vue SFC 模板时，你可能想要为你的 Vue 组件添加[类型检查](/guide/scaling-up/tooling.html#typescript)，包括那些被定义为自定义元素的组件。
 

@@ -31,7 +31,7 @@ const vHighlight = {
 
 ```vue
 <script setup>
-// enables v-highlight in templates
+// 在模板中启用 v-highlight
 const vHighlight = {
   mounted: (el) => {
     el.classList.add('is-highlight')
@@ -55,7 +55,7 @@ const highlight = {
 
 export default {
   directives: {
-    // enables v-highlight in template
+    // 在模板中启用 v-highlight
     highlight
   }
 }
@@ -73,9 +73,9 @@ export default {
 
 <div class="composition-api">
 
-In `<script setup>`, any camelCase variable that starts with the `v` prefix can be used as a custom directive. In the example above, `vHighlight` can be used in the template as `v-highlight`.
+在 `<script setup>` 中，任何以 `v` 开头的驼峰式命名的变量都可以当作自定义指令使用。在上述例子中，`vHighlight` 可以在模板中以 `v-highlight`的形式使用。
 
-If you are not using `<script setup>`, custom directives can be registered using the `directives` option:
+在不使用 `<script setup>` 的情况下，自定义指令需要通过 `directives` 选项注册：
 
 ```js
 export default {
@@ -83,7 +83,7 @@ export default {
     /*...*/
   },
   directives: {
-    // enables v-highlight in template
+    // 在模板中启用 v-highlight
     highlight: {
       /* ... */
     }
@@ -95,16 +95,16 @@ export default {
 
 <div class="options-api">
 
-Similar to components, custom directives must be registered so that they can be used in templates. In the example above, we are using local registration via the `directives` option.
+和组件类似，自定义指令在模板中使用前必须先注册。在上面的例子中，我们使用 `directives` 选项完成了指令的局部注册。
 
 </div>
 
-It is also common to globally register custom directives at the app level:
+将一个自定义指令全局注册到应用层级也是一种常见的做法：
 
 ```js
 const app = createApp({})
 
-// make v-highlight usable in all components
+// 使 v-highlight 在所有组件中都可用
 app.directive('highlight', {
   /* ... */
 })
@@ -112,9 +112,9 @@ app.directive('highlight', {
 
 ## When to use custom directives {#when-to-use}
 
-Custom directives should only be used when the desired functionality can only be achieved via direct DOM manipulation.
+只有当所需功能只能通过直接的 DOM 操作来实现时，才应该使用自定义指令。
 
-A common example of this is a `v-focus` custom directive that brings an element into focus.
+一个常见例子是使元素获取焦点的 `v-focus` 指令。
 
 <div class="composition-api">
 
@@ -156,7 +156,7 @@ export default {
 
 该指令比 `autofocus` 属性更有用，因为它不仅在页面加载时有效，而且在 Vue 动态插入元素时也有效！
 
-在可能的情况下，建议使用内置指令如 `v-bind` 进行声明式模板，因为它们更高效，对服务器渲染也更友好。
+建议尽可能使用 `v-bind` 等内置指令声明模板，因为它们更高效，对服务端渲染也更友好。
 
 ## 指令钩子 {#directive-hooks}
 
