@@ -1,6 +1,29 @@
 <script setup>
 import { VTCodeGroup, VTCodeGroupTab } from '@vue/theme'
 </script>
+<style>
+.lambdatest {
+  background-color: var(--vt-c-bg-soft);
+  border-radius: 8px;
+  padding: 12px 16px 12px 12px;
+  font-size: 13px;
+  a {
+    display: flex;
+    color: var(--vt-c-text-2);
+  }
+  img {
+    background-color: #fff;
+    padding: 12px 16px;
+    border-radius: 6px;
+    margin-right: 24px;
+  }
+  .testing-partner {
+    color: var(--vt-c-text-1);
+    font-size: 15px;
+    font-weight: 600;
+  }
+}
+</style>
 
 # 测试 {#testing}
 
@@ -40,7 +63,7 @@ import { VTCodeGroup, VTCodeGroupTab } from '@vue/theme'
 
 ```js
 // helpers.js
-export function increment (current, max = 10) {
+export function increment(current, max = 10) {
   if (current < max) {
     return current + 1
   }
@@ -129,62 +152,66 @@ describe('increment', () => {
 <VTCodeGroup>
   <VTCodeGroupTab label="Vue Test Utils">
 
-  ```js
-  const valueSelector = '[data-testid=stepper-value]'
-  const buttonSelector = '[data-testid=increment]'
+```js
+const valueSelector = '[data-testid=stepper-value]'
+const buttonSelector = '[data-testid=increment]'
 
-  const wrapper = mount(Stepper, {
-    props: {
-      max: 1
-    }
-  })
+const wrapper = mount(Stepper, {
+  props: {
+    max: 1
+  }
+})
 
-  expect(wrapper.find(valueSelector).text()).toContain('0')
+expect(wrapper.find(valueSelector).text()).toContain('0')
 
-  await wrapper.find(buttonSelector).trigger('click')
+await wrapper.find(buttonSelector).trigger('click')
 
-  expect(wrapper.find(valueSelector).text()).toContain('1')
-  ```
+expect(wrapper.find(valueSelector).text()).toContain('1')
+```
 
   </VTCodeGroupTab>
   <VTCodeGroupTab label="Cypress">
 
-  ```js
-  const valueSelector = '[data-testid=stepper-value]'
-  const buttonSelector = '[data-testid=increment]'
+```js
+const valueSelector = '[data-testid=stepper-value]'
+const buttonSelector = '[data-testid=increment]'
 
-  mount(Stepper, {
-    props: {
-      max: 1
-    }
-  })
+mount(Stepper, {
+  props: {
+    max: 1
+  }
+})
 
-  cy.get(valueSelector).should('be.visible').and('contain.text', '0')
-    .get(buttonSelector).click()
-    .get(valueSelector).should('contain.text', '1')
-  ```
+cy.get(valueSelector)
+  .should('be.visible')
+  .and('contain.text', '0')
+  .get(buttonSelector)
+  .click()
+  .get(valueSelector)
+  .should('contain.text', '1')
+```
 
   </VTCodeGroupTab>
   <VTCodeGroupTab label="Testing Library">
 
-  ```js
-  const { getByText } = render(Stepper, {
-    props: {
-      max: 1
-    }
-  })
+```js
+const { getByText } = render(Stepper, {
+  props: {
+    max: 1
+  }
+})
 
-  getByText('0') // Implicit assertion that "0" is within the component
+getByText('0') // Implicit assertion that "0" is within the component
 
-  const button = getByRole('button', { name: /increment/i })
+const button = getByRole('button', { name: /increment/i })
 
-  // Dispatch a click event to our increment button.
-  await fireEvent.click(button)
+// Dispatch a click event to our increment button.
+await fireEvent.click(button)
 
-  getByText('1')
+getByText('1')
 
-  await fireEvent.click(button)
-  ```
+await fireEvent.click(button)
+```
 
   </VTCodeGroupTab>
 </VTCodeGroup>
@@ -261,13 +288,21 @@ Vitest 和基于浏览器的运行器之间的主要区别是速度和执行上�
 
 ### 推荐方案 {#recommendation-2}
 
-- [Cypress](https://www.cypress.io/)
+- [Playwright](https://playwright.dev/) 是一个非常好的端到端测试解决方案，支持 Chromium、WebKit 和 Firefox。在 Windows、Linux 和 macOS 上进行本地或 CI 测试、无头测试，或使用适用于 Android 和 Mobile Safari 的 Google Chrome 的原生移动端模拟测试。它拥有信息丰富的用户界面、出色的调试能力、内置断言、并行处理功能以及追踪功能，旨在消除不稳定的测试。它还提供对[组件测试](https://docs.cypress.io/guides/component-testing/introduction)的支持，但目前处于实验阶段。Playwright 由微软开源并维护。
 
-  总的来说，我们认为 Cypress 提供了最完整的端到端解决方案，其具有信息丰富的图形界面、出色的调试性、内置断言、存根、抗剥落性、并行化和快照等诸多特性。而且如上所述，它还提供对 [组件测试](https://docs.cypress.io/guides/component-testing/introduction) 的支持。它支持基于 Chromium 的浏览器、Firefox 和 Electron。但 WebKit 被标记为实验性支持。
+- [Cypress](https://www.cypress.io/) 具有信息丰富的图形界面、出色的调试性、内置断言、存根、抗剥落性、并行化和快照等诸多特性。而且如上所述，它还提供对 [组件测试](https://docs.cypress.io/guides/component-testing/introduction) 的支持。它支持基于 Chromium 的浏览器、Firefox 和 Electron。但 WebKit 被标记为实验性支持。Cypress 采用 MIT 许可，但并行化等部分功能需要订阅 Cypress Cloud。
+
+<div class="lambdatest">
+  <a href="https://lambdatest.com" target="_blank">
+    <img src="/images/lambdatest.svg">
+    <div>
+      <div class="testing-partner">测试赞助商</div>
+      <div>Lambdatest 是一个云平台，用于在所有主流浏览器和真实设备上运行 E2E、可访问性和可视化回归测试，并提供人工智能辅助测试生成！</div>
+    </div>
+  </a>
+</div>
 
 ### 其他选项 {#other-options-2}
-
-- [Playwright](https://playwright.dev/) 也是一个非常好的端到端测试解决方案，支持所有的现代渲染引擎，包括 Chromium、WebKit 和 Firefox。在 Windows、Linux 和 macOS 上进行本地或 CI 测试、无头测试，或使用适用于 Android 和 Mobile Safari 的 Google Chrome 的原生移动端模拟测试。
 
 - [Nightwatch](https://nightwatchjs.org/) 是一个基于 [Selenium WebDriver](https://www.npmjs.com/package/selenium-webdriver) 的端到端测试解决方案。它的浏览器品类支持范围是最广的，包括原生移动测试。基于 Selenium 的解决方案将比 Playwright 或 Cypress 慢。
 

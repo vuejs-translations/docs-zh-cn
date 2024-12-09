@@ -627,7 +627,7 @@ console.log(app.config)
 
 ## app.config.idPrefix <sup class="vt-badge" data-text="3.5+" /> {#app-config-idprefix}
 
-配置此应用中通过 [useId()](/api/general#useid) 生成的所有 ID 的前缀。
+配置此应用中通过 [useId()](/api/composition-api-helpers.html#useid) 生成的所有 ID 的前缀。
 
 - **类型** `string`
 
