@@ -479,6 +479,20 @@ const post = await fetch(`/api/post/1`).then((r) => r.json())
 `async setup()` 必须与 [`Suspense`](/guide/built-ins/suspense.html) 组合使用，该特性目前仍处于实验阶段。我们计划在未来的版本中完成该特性并编写文档——但如果你现在就感兴趣，可以参考其[测试](https://github.com/vuejs/core/blob/main/packages/runtime-core/__tests__/components/Suspense.spec.ts)来了解其工作方式。
 :::
 
+## 导入语句 {#imports-statements}
+
+Vue 中的导入语句遵循 [ECMAScript 模块规范](https://nodejs.org/api/esm.html)。
+此外，你还可以使用构建工具配置中定义的别名：
+
+```vue
+<script setup>
+import { ref } from 'vue'
+import { componentA } from './Components'
+import { componentB } from '@/Components'
+import { componentC } from '~/Components'
+</script>
+```
+
 ## 泛型 <sup class="vt-badge ts" /> {#generics}
 
 可以使用 `<script>` 标签上的 `generic` 属性声明泛型类型参数：

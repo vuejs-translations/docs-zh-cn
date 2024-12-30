@@ -136,6 +136,13 @@ p {{ msg }}
 </unit-test>
 ```
 
+:::warning 注意
+在 `src` 中使用别名时，不要以 `~` 开头，后面的任何内容都会被解释为模块请求。这意味着你可以引用 node 模块中的资源：
+```vue
+<img src="~some-npm-package/foo.png">
+```
+:::
+
 ## 注释 {#comments}
 
 在每一个语块中你都可以按照相应语言 (HTML、CSS、JavaScript 和 Pug 等等) 的语法书写注释。对于顶层注释，请使用 HTML 的注释语法 `<!-- comment contents here -->`

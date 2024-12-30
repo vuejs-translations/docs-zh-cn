@@ -31,7 +31,7 @@ onMounted(() => {
 </template>
 ```
 
-在使用 TypeScript 时，Vue 的 IDE 支持和 `vue-tsc` 将根据匹配的 `ref` attribute 所用的元素或组件自动推断 `inputRef.value` 的类型。
+在使用 TypeScript 时，Vue 的 IDE 支持和 `vue-tsc` 将根据匹配的 `ref` attribute 所用的元素或组件自动推断 `input.value` 的类型。
 
 <details>
 <summary>3.5 前的用法</summary>
@@ -115,7 +115,7 @@ watchEffect(() => {
 
 ## `v-for` 中的模板引用 {#refs-inside-v-for}
 
-> 需要 v3.2.25 及以上版本
+> 需要 v3.5 及以上版本
 
 <div class="composition-api">
 
@@ -147,6 +147,8 @@ onMounted(() => console.log(itemRefs.value))
 
 <details>
 <summary>3.5 前的用法</summary>
+
+在 3.5 版本以前，`useTemplateRef()` 尚未引入，需要声明一个与模板引用 attribute 同名的 ref。该 ref 的值需要是一个数组。
 
 ```vue
 <script setup>

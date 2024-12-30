@@ -7,6 +7,10 @@ sponsors: false
 
 <script setup>
 import SponsorsGroup from '@theme/components/SponsorsGroup.vue'
+import { load, data } from '@theme/components/sponsors'
+import { onMounted } from 'vue'
+
+onMounted(load)
 </script>
 
 # 成为 Vue.js 的赞助者 {#become-a-vue-js-sponsor}
@@ -18,6 +22,10 @@ Vue.js 是采用 MIT 许可的开源项目，使用完全免费。
 ## 中国区赞助渠道
 
 来自国内的开发者或公司可以通过[爱发电](https://afdian.com/a/evanyou)平台来支持 Vue.js 的开发。爱发电上的赞助等级和本页下面列出的赞助等级是一一对应的。
+
+如果你对等级、支付流程或赞助商曝光数据有疑问，请联系 [sponsor@vuejs.org](mailto:sponsor@vuejs.org?subject=Vue.js%20sponsorship%20inquiry)。
+
+通过我们的网站和 GitHub 项目 README，赞助 Vue 可让你在全球超过 **200 万**的 Vue 开发人员面前大显身手。这不仅能直接产生潜在客户，还能提高你作为一家重视开源的企业的品牌知名度。对于为开发人员打造产品的公司来说，这是一笔无形但极其重要的资产，因为它能提高你的转换率。
 
 其中**中国区铂金赞助商**是仅针对本站 (cn.vuejs.org) 的赞助位级别，包含以下权益：
 
@@ -56,8 +64,9 @@ Vue.js 是采用 MIT 许可的开源项目，使用完全免费。
 **以下赞助等级均仅针对我们面向国际用户的英文版网站 vuejs.org。**
 
 - **全球特别赞助商**：
-  - 全球独家赞助商 (目前已经满员)。
+  - 全球**独家**赞助商 <span v-if="!data?.special">(目前空缺。[联系我们](mailto:sponsor@vuejs.org?subject=Vue.js%20special%20sponsor%20inquiry)）</span><span v-else>(目前已经满员)</span>
   - [vuejs.org](https://vuejs.org) 首屏无需滚动可见的独家 logo 展示位。
+  - 通过 [Vue 官方 X 账号](https://twitter.com/vuejs) (32 万粉丝) 对主要产品独家发布进行特别喊话和定期转发。
   - 所有级别的 logo 展示位中最显眼的位置。
 - **铂金赞助商 (2,000 美元/月)**：
   - [vuejs.org](https://vuejs.org) 首页明显的 logo 展示位。

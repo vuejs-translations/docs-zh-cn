@@ -112,7 +112,7 @@ export default defineComponent({
 参考：
 
 - [webpack Treeshaking 的注意事项](/api/general#note-on-webpack-treeshaking)
-- [对 `defineComponent` 的类型测试](https://github.com/vuejs/core/blob/main/packages/dts-test/defineComponent.test-d.tsx)
+- [对 `defineComponent` 的类型测试](https://github.com/vuejs/core/blob/main/packages-private/dts-test/defineComponent.test-d.tsx)
 
 :::tip
 `defineComponent()` 也支持对纯 JavaScript 编写的组件进行类型推导。

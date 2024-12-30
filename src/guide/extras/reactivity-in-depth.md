@@ -403,7 +403,7 @@ export function useMachine(options) {
 很多其他框架已经引入了与 Vue 组合式 API 中的 ref 类似的响应性基础类型，并称之为“信号”：
 
 - [Solid 信号](https://www.solidjs.com/docs/latest/api#createsignal)
-- [Angular 信号](https://angular.io/guide/signals)
+- [Angular 信号](https://angular.dev/guide/signals)
 - [Preact 信号](https://preactjs.com/guide/v10/signals/)
 - [Qwik 信号](https://qwik.builder.io/docs/components/state/#usesignal)
 

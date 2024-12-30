@@ -80,6 +80,10 @@ import ListStagger from './transition-demos/ListStagger.vue'
 
 [完整的示例](/examples/#list-transition)
 
+### 自定义过渡组 class {#custom-transitiongroup-classes}
+
+你还可以通过向 `<TransitionGroup>` 传递 `moveClass` prop 为移动元素指定自定义过渡 class，类似于[自定义过渡 class](/guide/built-ins/transition.html#custom-transition-classes)。
+
 ## 渐进延迟列表动画 {#staggering-list-transitions}
 
 通过在 JavaScript 钩子中读取元素的 data attribute，我们可以实现带渐进延迟的列表动画。首先，我们把每一个元素的索引渲染为该元素上的一个 data attribute：

@@ -278,19 +278,6 @@
   // -> 输出 1
   ```
 
-  副作用清除：
-
-  ```js
-  watchEffect(async (onCleanup) => {
-    const { response, cancel } = doAsyncWork(id.value)
-    // `cancel` 会在 `id` 更改时调用
-    // 以便取消之前
-    // 未完成的请求
-    onCleanup(cancel)
-    data.value = await response
-  })
-  ```
-
   停止侦听器：
 
   ```js
@@ -397,9 +384,7 @@
   type WatchSource<T> =
     | Ref<T> // ref
     | (() => T) // getter
-    | T extends object
-    ? T
-    : never // 响应式对象
+    | (T extends object ? T : never) // 响应式对象
 
   interface WatchOptions extends WatchEffectOptions {
     immediate?: boolean // 默认：false
@@ -528,7 +513,7 @@
   暂停/恢复侦听器：<sup class="vt-badge" data-text="3.5+" />
 
   ```js
-  const { stop, pause, resume } = watchEffect(() => {})
+  const { stop, pause, resume } = watch(() => {})
 
   // 暂停侦听器
   pause()
