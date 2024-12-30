@@ -73,7 +73,7 @@ export default {
 
 <div class="composition-api">
 
-在 `<script setup>` 中，任何以 `v` 开头的驼峰式命名的变量都可以当作自定义指令使用。在上述例子中，`vHighlight` 可以在模板中以 `v-highlight`的形式使用。
+在 `<script setup>` 中，任何以 `v` 开头的驼峰式命名的变量都可以当作自定义指令使用。在上述例子中，`vHighlight` 可以在模板中以 `v-highlight` 的形式使用。
 
 在不使用 `<script setup>` 的情况下，自定义指令需要通过 `directives` 选项注册：
 
