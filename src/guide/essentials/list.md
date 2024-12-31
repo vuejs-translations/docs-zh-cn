@@ -242,9 +242,9 @@ data() {
 
 两种常见的情况可能导致这种用法：
 
-- 过滤列表中的项目(例如，`v-for="user in users" v-if="user.isActive"`)。在这种情况下，可以用一个新的计算属性来替换 `users`，该属性返回过滤后的列表(例如 `activeUsers`)。
+- 过滤列表中的项目 (例如，`v-for="user in users" v-if="user.isActive"`)。在这种情况下，可以用一个新的计算属性来替换 `users`，该属性返回过滤后的列表 (例如 `activeUsers`)。
 
-- 避免渲染应该隐藏的列表(例如 `v-for="user in users" v-if="shouldShowUsers"`)。在这种情况下，将 `v-if` 移至容器元素(如 `ul`, `ol`)。
+- 避免渲染应该隐藏的列表 (例如 `v-for="user in users" v-if="shouldShowUsers"`)。在这种情况下，将 `v-if` 移至容器元素 (如 `ul`、`ol`)。
 :::
 
 ## 通过 key 管理状态 {#maintaining-state-with-key}
