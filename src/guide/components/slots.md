@@ -298,12 +298,12 @@ function BaseLayout(slots) {
 
 ## 条件插槽 {#conditional-slots}
 
-有时你需要根据插槽是否存在来渲染某些内容。
+有时你需要根据内容是否被传入了插槽来渲染某些内容。
 
 你可以结合使用 [$slots](/api/component-instance.html#slots) 属性与 [v-if](/guide/essentials/conditional.html#v-if) 来实现。
 
 在下面的示例中，我们定义了一个卡片组件，它拥有三个条件插槽：`header`、`footer` 和 `default`。
-当 header、footer 或 default 存在时，我们希望包装它们以提供额外的样式：
+当 header、footer 或 default 的内容存在时，我们希望包装它以提供额外的样式：
 
 ```vue-html
 <template>

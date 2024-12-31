@@ -102,8 +102,8 @@ const awesome = ref(true)
 
 ## `v-if` 和 `v-for` {#v-if-with-v-for}
 
-::: warning 警告
-同时使用 `v-if` 和 `v-for` 是**不推荐的**，因为这样二者的优先级不明显。请查看[风格指南](/style-guide/rules-essential#avoid-v-if-with-v-for)获得更多信息。
-:::
-
 当 `v-if` 和 `v-for` 同时存在于一个元素上的时候，`v-if` 会首先被执行。请查看[列表渲染指南](list#v-for-with-v-if)获取更多细节。
+
+::: warning 警告
+同时使用 `v-if` 和 `v-for` 是**不推荐的**，因为这样二者的优先级不明显。请查看[列表渲染指南](list#v-for-with-v-if)获得更多信息。
+:::
