@@ -44,7 +44,7 @@ onMounted(() => {
         target="_blank"
         class="accent-button"
       >
-        联系 Proxify 获取定制化的服务
+        联系 {{ partnerConfig.partnerName }} 获取定制化的服务
       </a>
     </template>
 

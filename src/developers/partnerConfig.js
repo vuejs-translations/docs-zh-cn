@@ -8,8 +8,7 @@ const websiteUrl = 'https://proxify.io/'
 const applyUrl = 'https://career.proxify.io/apply'
 const hireUrl = 'https://proxify.io/hire-vuejs'
 const vueArticleUrl = 'https://proxify.io/hire-vue-developers'
-const imageStorageUrl =
-  'https://res.cloudinary.com/proxify-io/image/upload'
+const imageStorageUrl = 'https://res.cloudinary.com/proxify-io/image/upload'
 
 const partnerConfig = {
   // Partner information
@@ -39,8 +38,7 @@ const partnerConfig = {
   // Hero Section
   pageJoinSection: {
     title: '成为一名注册开发者',
-    description:
-      '获得一个长期的兼职或全职职位，适合正在寻找 Vue.js 开发者的公司',
+    description: '获得一个长期的兼职或全职职位，适合正在寻找 Vue.js 开发者的公司',
     applyButton: {
       url: applyUrl,
       label: '申请加入'
@@ -59,8 +57,7 @@ const partnerConfig = {
   // Diagram sections
   profileDiagram: {
     title: 'Candidate profile',
-    prependText:
-      'How our developers score in the parameters that correlate best with future success in the role.'
+    prependText: 'How our developers score in the parameters that correlate best with future success in the role.'
   },
 
   scoreDiagram: {
