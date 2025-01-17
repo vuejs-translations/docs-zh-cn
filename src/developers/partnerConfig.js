@@ -1,7 +1,7 @@
 import partnerData from '../partners/partners.json'
 
 const partnerName = 'Proxify'
-const partner = partnerData.find((partner) => partner.name === partnerName)
+const partner = partnerData.find(partner => partner.name === partnerName)
 
 const websiteLabel = 'proxify.io'
 const websiteUrl = 'https://proxify.io/'
@@ -62,10 +62,8 @@ const partnerConfig = {
 
   scoreDiagram: {
     title: 'Engineering excellence score',
-    prependText:
-      'The practical score range is 0 to 300. This is the distribution of scores for all evaluated Vue.js developers, and here’s where your candidate scored.',
-    appendText:
-      'Data from 3,661 evaluated Vue.js developers and 38,008 applicants.'
+    prependText: 'The practical score range is 0 to 300. This is the distribution of scores for all evaluated Vue.js developers, and here’s where your candidate scored.',
+    appendText: 'Data from 3,661 evaluated Vue.js developers and 38,008 applicants.'
   },
 
   // Proficiency Section
