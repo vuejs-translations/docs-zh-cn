@@ -27,7 +27,7 @@ onMounted(() => {
 <template>
   <PageShowcaseListLayout
     spotlightTitle="Spotlight"
-    featuredTitle="Vue.js Certified developers"
+    featuredTitle="认证的 Vue.js 开发者"
   >
     <template #hero>
       <DeveloperHero />
@@ -44,7 +44,7 @@ onMounted(() => {
         target="_blank"
         class="accent-button"
       >
-        Contact {{ partnerConfig.partnerName }} for a tailored fit
+        联系 {{ partnerConfig.partnerName }} 获取定制化的服务
       </a>
     </template>
 
@@ -64,7 +64,7 @@ onMounted(() => {
           target="_blank"
           class="accent-button"
         >
-          Contact {{ partnerConfig.partnerName }} for a tailored fit
+          联系 Proxify 获取定制化的服务
         </a>
       </div>
     </template>
