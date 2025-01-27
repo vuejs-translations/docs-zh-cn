@@ -110,7 +110,7 @@ app.directive('highlight', {
 })
 ```
 
-## When to use custom directives {#when-to-use}
+## 自定义指令的使用时机 {#when-to-use}
 
 只有当所需功能只能通过直接的 DOM 操作来实现时，才应该使用自定义指令。
 
