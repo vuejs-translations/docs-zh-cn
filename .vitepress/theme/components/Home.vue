@@ -55,31 +55,29 @@ onMounted(load)
   </section>
 
   <section v-if="data && data.platinum_china" id="special-sponsor">
-    <template >
-      <h3>中国区铂金赞助</h3>
-      <div id="special-sponsor-container">
-        <template v-for="{ url, img, name, height, description } of data.platinum_china"
-        >
-          <a class="logo" :href="url" target="_blank" rel="sponsored noopener">
-            <picture v-if="img.endsWith('png')">
-              <source
-                type="image/avif"
-                :srcset="`${base}/images/${img.replace(/\.png$/,'.avif')}`"
-              />
-              <img :src="`${base}/images/${img}`" :alt="name" :style="{ height: height || '50px' }" />
-            </picture>
-            <img
-              width="168"
-              height="42"
-              v-else
-              :src="`${base}/images/${img}`"
-              :alt="name"
+    <h3>中国区铂金赞助</h3>
+    <div id="special-sponsor-container">
+      <template v-for="{ url, img, name, height, description } of data.platinum_china"
+      >
+        <a class="logo" :href="url" target="_blank" rel="sponsored noopener">
+          <picture v-if="img.endsWith('png')">
+            <source
+              type="image/avif"
+              :srcset="`${base}/images/${img.replace(/\.png$/,'.avif')}`"
             />
-          </a>
-          <span>{{ description }}</span>
-        </template>
-      </div>
-    </template>
+            <img :src="`${base}/images/${img}`" :alt="name" :style="{ height: height || '50px' }" />
+          </picture>
+          <img
+            width="168"
+            height="42"
+            v-else
+            :src="`${base}/images/${img}`"
+            :alt="name"
+          />
+        </a>
+        <span>{{ description }}</span>
+      </template>
+    </div>
   </section>
   <section v-else id="special-sponsor">
     <span>
@@ -264,6 +262,7 @@ html:not(.dark) .accent,
   border-bottom: 1px solid var(--vt-c-divider-light);
   padding: 12px 24px;
   display: flex;
+  justify-content: center;
   align-items: center;
 }
 
@@ -271,7 +270,6 @@ html:not(.dark) .accent,
   text-align: center;
   font-size: 13px;
   font-weight: 500;
-  padding-bottom: 10px;
 }
 
 #special-sponsor-container {
