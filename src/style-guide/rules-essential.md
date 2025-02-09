@@ -1,13 +1,15 @@
-# Priority A Rules: Essential {#priority-a-rules-essential}
+# 优先级A：基本规则
 
-These rules help prevent errors, so learn and abide by them at all costs. Exceptions may exist, but should be very rare and only be made by those with expert knowledge of both JavaScript and Vue.
+这些规则有助于防止错误，因此不惜一切代价学习并遵守它们。可能存在例外，但应该非常罕见，只有那些对JavaScript和Vue的专业知识的人才能做到。
 
-## Use multi-word component names {#use-multi-word-component-names}
 
-User component names should always be multi-word, except for root `App` components. This [prevents conflicts](https://html.spec.whatwg.org/multipage/custom-elements.html#valid-custom-element-name) with existing and future HTML elements, since all HTML elements are a single word.
 
-<div class="style-example style-example-bad">
-<h3>Bad</h3>
+## 使用多单词组件名称
+
+
+用户组件名称应始终是多个单词，​​除了根`App`组件。由于所有HTML元素都是一个单词，因此[可以防止与现有和未来的HTML元素发生冲突](https://html.spec.whatwg.org/multipage/custom-elements.html#valid-custom-element-name)。
+
+### 坏的示例
 
 ```vue-html
 <!-- in pre-compiled templates -->
@@ -17,10 +19,9 @@ User component names should always be multi-word, except for root `App` componen
 <item></item>
 ```
 
-</div>
 
-<div class="style-example style-example-good">
-<h3>Good</h3>
+
+### 好的示例
 
 ```vue-html
 <!-- in pre-compiled templates -->
@@ -30,42 +31,37 @@ User component names should always be multi-word, except for root `App` componen
 <todo-item></todo-item>
 ```
 
-</div>
 
-## Use detailed prop definitions {#use-detailed-prop-definitions}
 
-In committed code, prop definitions should always be as detailed as possible, specifying at least type(s).
+## 使用详细的属性定义
 
-::: details Detailed Explanation
-Detailed [prop definitions](/guide/components/props#prop-validation) have two advantages:
+在提交的代码中，属性定义应始终尽可能的详细，至少需要指定属性的类型。
+:::详细说明[属性定义](https://github.com/vuejs-translations/docs-zh-cn/blob/main/guide/components/props#prop-validation)有两个优点：
 
-- They document the API of the component, so that it's easy to see how the component is meant to be used.
-- In development, Vue will warn you if a component is ever provided incorrectly formatted props, helping you catch potential sources of error.
-  :::
+- 他们记录了组件的API，因此很容易看到该组件的使用方式。
+- 在开发中，Vue会警告您，如果提供了错误格式的属性，可以帮助您捕获潜在的错误来源。 :::
 
-<div class="options-api">
+### 坏的示例
 
-<div class="style-example style-example-bad">
-<h3>Bad</h3>
-
-```js
+```
 // This is only OK when prototyping
 props: ['status']
 ```
 
-</div>
 
-<div class="style-example style-example-good">
-<h3>Good</h3>
 
-```js
+### 好的示例
+
+```
 props: {
   status: String
 }
 ```
 
-```js
-// Even better!
+
+
+```
+// 更好的示例!
 props: {
   status: {
     type: String,
@@ -83,33 +79,29 @@ props: {
 }
 ```
 
-</div>
 
-</div>
 
-<div class="composition-api">
+### 坏的示例
 
-<div class="style-example style-example-bad">
-<h3>Bad</h3>
-
-```js
+```
 // This is only OK when prototyping
 const props = defineProps(['status'])
 ```
 
-</div>
 
-<div class="style-example style-example-good">
-<h3>Good</h3>
 
-```js
+### 好的示例
+
+```
 const props = defineProps({
   status: String
 })
 ```
 
-```js
-// Even better!
+
+
+```
+// // 更好的示例!
 
 const props = defineProps({
   status: {
@@ -125,20 +117,17 @@ const props = defineProps({
 })
 ```
 
-</div>
 
-</div>
 
-## Use keyed `v-for` {#use-keyed-v-for}
+## 使用v-for
 
-`key` with `v-for` is _always_ required on components, in order to maintain internal component state down the subtree. Even for elements though, it's a good practice to maintain predictable behavior, such as [object constancy](https://bost.ocks.org/mike/constancy/) in animations.
 
-::: details Detailed Explanation
-Let's say you have a list of todos:
 
-<div class="options-api">
+为了在子树下维护内部组件状态，*始终*需要在组件上使用`v-for`的`key` 。即使对于元素，维持可预测的行为是一个很好的做法，例如动画中的[对象恒定](https://bost.ocks.org/mike/constancy/)。
 
-```js
+:::详细说明:  假设您有todos的列表：
+
+```
 data() {
   return {
     todos: [
@@ -155,11 +144,9 @@ data() {
 }
 ```
 
-</div>
 
-<div class="composition-api">
 
-```js
+```
 const todos = ref([
   {
     id: 1,
@@ -172,17 +159,12 @@ const todos = ref([
 ])
 ```
 
-</div>
+然后，您按字母顺序排序。更新DOM时，VUE将优化渲染以执行最便宜的DOM突变。这可能意味着删除第一个todo元素，然后在列表的末尾再次添加。
 
-Then you sort them alphabetically. When updating the DOM, Vue will optimize rendering to perform the cheapest DOM mutations possible. That might mean deleting the first todo element, then adding it again at the end of the list.
+问题是，在某些情况下，重要的是不要删除将保留在DOM中的元素。例如，您可能需要使用`<transition-group>`来动画列表排序，或者如果渲染元素为`<input>`则保持焦点。在这些情况下，为每个项目添加一个唯一的密钥（例如`:key="todo.id"` ）将告诉Vue如何更可预测的行为。
+根据我们的经验，最好*始终*添加一个唯一的钥匙，这样您和您的团队根本就不必担心这些不常见的情况。然后，在罕见、性能要求高的情况如不需要对象恒定时，您可以做出有意识的例外。 :::
 
-The problem is, there are cases where it's important not to delete elements that will remain in the DOM. For example, you may want to use `<transition-group>` to animate list sorting, or maintain focus if the rendered element is an `<input>`. In these cases, adding a unique key for each item (e.g. `:key="todo.id"`) will tell Vue how to behave more predictably.
-
-In our experience, it's better to _always_ add a unique key, so that you and your team simply never have to worry about these edge cases. Then in the rare, performance-critical scenarios where object constancy isn't necessary, you can make a conscious exception.
-:::
-
-<div class="style-example style-example-bad">
-<h3>Bad</h3>
+### 坏的示例
 
 ```vue-html
 <ul>
@@ -192,10 +174,9 @@ In our experience, it's better to _always_ add a unique key, so that you and you
 </ul>
 ```
 
-</div>
 
-<div class="style-example style-example-good">
-<h3>Good</h3>
+
+### 好的示例
 
 ```vue-html
 <ul>
@@ -208,20 +189,20 @@ In our experience, it's better to _always_ add a unique key, so that you and you
 </ul>
 ```
 
-</div>
 
-## Avoid `v-if` with `v-for` {#avoid-v-if-with-v-for}
 
-**Never use `v-if` on the same element as `v-for`.**
+## 使用`v-for` 时避免`v-if`
 
-There are two common cases where this can be tempting:
+**切勿在与`v-for`相同的元素上使用`v-if` 。**
 
-- To filter items in a list (e.g. `v-for="user in users" v-if="user.isActive"`). In these cases, replace `users` with a new computed property that returns your filtered list (e.g. `activeUsers`).
+在两种常见的情况下，这可能很诱人：
 
-- To avoid rendering a list if it should be hidden (e.g. `v-for="user in users" v-if="shouldShowUsers"`). In these cases, move the `v-if` to a container element (e.g. `ul`, `ol`).
+- 要过滤列表中的项目（例如 `v-for="user in users" v-if="user.isActive"` ）。在这些情况下，用新的计算属性替换`users` ，该属性返回您的过滤列表（例如`activeUsers` ）。
+- 为了避免呈现列表，如果应该隐藏列表（例如 `v-for="user in users" v-if="shouldShowUsers"` ）。在这些情况下，将`v-if`移至容器元件（例如`ul` ， `ol` ）。
 
-::: details Detailed Explanation
-When Vue processes directives, `v-if` has a higher priority than `v-for`, so that this template:
+
+
+:::详细说明: 当VUE处理指令时， `v-if`的优先级高于`v-for` ，因此，如下的模板会出现错误，因为`v-if`指令将首先评估，并且目前不存在迭代变量`user` ：
 
 ```vue-html
 <ul>
@@ -235,13 +216,9 @@ When Vue processes directives, `v-if` has a higher priority than `v-for`, so tha
 </ul>
 ```
 
-Will throw an error, because the `v-if` directive will be evaluated first and the iteration variable `user` does not exist at this moment.
+可以通过在计算的属性上迭代来解决，类似下面的代码：
 
-This could be fixed by iterating over a computed property instead, like this:
-
-<div class="options-api">
-
-```js
+```
 computed: {
   activeUsers() {
     return this.users.filter(user => user.isActive)
@@ -249,17 +226,15 @@ computed: {
 }
 ```
 
-</div>
 
-<div class="composition-api">
 
-```js
+```
 const activeUsers = computed(() => {
   return users.filter((user) => user.isActive)
 })
 ```
 
-</div>
+
 
 ```vue-html
 <ul>
@@ -272,7 +247,9 @@ const activeUsers = computed(() => {
 </ul>
 ```
 
-Alternatively, we can use a `<template>` tag with `v-for` to wrap the `<li>` element:
+
+
+另外，我们可以使用`v-for`的`<template>`标签来包装`<li>`元素：
 
 ```vue-html
 <ul>
@@ -284,10 +261,9 @@ Alternatively, we can use a `<template>` tag with `v-for` to wrap the `<li>` ele
 </ul>
 ```
 
-:::
 
-<div class="style-example style-example-bad">
-<h3>Bad</h3>
+
+### 坏的示例
 
 ```vue-html
 <ul>
@@ -301,10 +277,9 @@ Alternatively, we can use a `<template>` tag with `v-for` to wrap the `<li>` ele
 </ul>
 ```
 
-</div>
 
-<div class="style-example style-example-good">
-<h3>Good</h3>
+
+### 好的示例
 
 ```vue-html
 <ul>
@@ -317,6 +292,8 @@ Alternatively, we can use a `<template>` tag with `v-for` to wrap the `<li>` ele
 </ul>
 ```
 
+
+
 ```vue-html
 <ul>
   <template v-for="user in users" :key="user.id">
@@ -327,26 +304,22 @@ Alternatively, we can use a `<template>` tag with `v-for` to wrap the `<li>` ele
 </ul>
 ```
 
-</div>
 
-## Use component-scoped styling {#use-component-scoped-styling}
 
-For applications, styles in a top-level `App` component and in layout components may be global, but all other components should always be scoped.
+## 使用组件scope样式
 
-This is only relevant for [Single-File Components](/guide/scaling-up/sfc). It does _not_ require that the [`scoped` attribute](https://vue-loader.vuejs.org/guide/scoped-css.html) be used. Scoping could be through [CSS modules](https://vue-loader.vuejs.org/guide/css-modules.html), a class-based strategy such as [BEM](http://getbem.com/), or another library/convention.
+对于应用程序，顶级`App`组件和布局组件中的样式可能是全局的，但是所有其他组件都应始终在某个范围内。
 
-**Component libraries, however, should prefer a class-based strategy instead of using the `scoped` attribute.**
+这仅与[单文件组件](https://github.com/vuejs-translations/docs-zh-cn/blob/main/guide/scaling-up/sfc)有关。它*不需要*使用[`scoped`属性](https://vue-loader.vuejs.org/guide/scoped-css.html)。scope可以通过[CSS模块](https://vue-loader.vuejs.org/guide/css-modules.html)、采用基于类的策略如[BEM](http://getbem.com/)或其他库/公约来进行定义。
 
-This makes overriding internal styles easier, with human-readable class names that don't have too high specificity, but are still very unlikely to result in a conflict.
+**但是，组件库应该推荐使用基于类的策略，而不是使用`scoped`属性。**
 
-::: details Detailed Explanation
-If you are developing a large project, working with other developers, or sometimes include 3rd-party HTML/CSS (e.g. from Auth0), consistent scoping will ensure that your styles only apply to the components they are meant for.
+这使得重载内部样式变得更加容易，采用人类可读的、不是太特殊的类名称，但仍然不太可能导致冲突。
 
-Beyond the `scoped` attribute, using unique class names can help ensure that 3rd-party CSS does not apply to your own HTML. For example, many projects use the `button`, `btn`, or `icon` class names, so even if not using a strategy such as BEM, adding an app-specific and/or component-specific prefix (e.g. `ButtonClose-icon`) can provide some protection.
-:::
+:::详细说明：如果您正在开发一个大型项目，与其他开发人员合作，或者有时包括第三方HTML/CSS（例如Auth0），一致的范围(scope)定义可确保您的样式仅适用于它们的组件。
+除了`scoped`属性之外，使用唯一的类名称可以帮助确保第三方CSS不适用于您自己的HTML。例如，许多项目都使用`button` ， `btn`或`icon`类名称，因此，即使不使用BEM之类的策略，添加特定于APP和/或组件的特殊的前缀（EG `ButtonClose-icon` ）也可以提供一些保护。 :::
 
-<div class="style-example style-example-bad">
-<h3>Bad</h3>
+### 坏的示例
 
 ```vue-html
 <template>
@@ -360,10 +333,9 @@ Beyond the `scoped` attribute, using unique class names can help ensure that 3rd
 </style>
 ```
 
-</div>
 
-<div class="style-example style-example-good">
-<h3>Good</h3>
+
+### 好的示例
 
 ```vue-html
 <template>
@@ -383,6 +355,8 @@ Beyond the `scoped` attribute, using unique class names can help ensure that 3rd
 </style>
 ```
 
+
+
 ```vue-html
 <template>
   <button :class="[$style.button, $style.buttonClose]">×</button>
@@ -400,6 +374,8 @@ Beyond the `scoped` attribute, using unique class names can help ensure that 3rd
 }
 </style>
 ```
+
+
 
 ```vue-html
 <template>
@@ -419,4 +395,3 @@ Beyond the `scoped` attribute, using unique class names can help ensure that 3rd
 </style>
 ```
 
-</div>
