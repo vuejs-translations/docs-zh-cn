@@ -106,10 +106,10 @@ const MyVueElement = defineCustomElement({
 customElements.define('my-vue-element', MyVueElement)
 
 // 你也可以编程式地实例化元素：
-// （必须在注册之后）
+// (必须在注册之后)
 document.body.appendChild(
   new MyVueElement({
-    // 初始化 props（可选）
+    // 初始化 props(可选)
   })
 )
 ```
@@ -293,7 +293,7 @@ customElements.define('some-element', SomeElement)
 // 将新元素类型添加到 Vue 的 GlobalComponents 类型中。
 declare module 'vue' {
   interface GlobalComponents {
-    // 请务必在此处输入 Vue 组件类型（SomeComponent，*而不是* SomeElement）。
+    // 请务必在此处输入 Vue 组件类型(SomeComponent，*而不是* SomeElement)。
     // 自定义元素的名称中需要连字符，因此请在此处使用连字符元素名称。
     'some-element': typeof SomeComponent
   }
@@ -301,10 +301,14 @@ declare module 'vue' {
 ```
 
 ## 非 Vue Web Components 和 TypeScript {#non-vue-web-components-and-typescript}
+
+
 以下是在非Vue构建的自定义元素的SFC模板中启用类型检查的推荐方法。
 
 > [!Note]
-> 这种方法是实现该功能的一种可能方式，但具体实现可能因创建自定义元素所用的框架而异。
+> 这种方法是实现该功能的一种可能方式
+> 但具体实现可能因创建自定义元素所用的框架而异。
+
 
 假设我们有一个自定义元素，其中定义了一些 JS 属性和事件，并且它被包含在一个名为 `some-lib`的库中：
 
@@ -330,7 +334,7 @@ export class SomeElement extends HTMLElement {
 customElements.define('some-element', SomeElement)
 
 // 这是一个包含 SomeElement 属性列表的类型定义
-// 这些属性将用于框架模板 （如 Vue SFC 模板） 的类型检查
+// 这些属性将用于框架模板 (如 Vue SFC 模板 的类型检查
 // 其他属性将不会暴露
 export type SomeElementAttributes = 'foo' | 'bar'
 
@@ -346,7 +350,9 @@ export class AppleFellEvent extends Event {
 
 实现细节已经省略，但重要的是我们有两个东西的类型定义：属性类型和事件类型。
 
+
 让我们创建一个类型助手，以便在 Vue 中轻松注册自定义元素类型定义：
+
 
 ```ts
 // file: some-lib/src/DefineCustomElement.ts
@@ -360,6 +366,7 @@ type DefineCustomElement<
   // 使用 $props 定义暴露给模板类型检查的属性
   // Vue 特别从 `$props` 类型读取属性定义
   // 请注意，我们将元素的属性与全局 HTML 属性和 Vue 的特殊属性结合在一起
+
   /** @deprecated 不要在自定义元素引用上使用 $props 属性，这仅用于模板属性类型检查 */
   $props: HTMLAttributes &
     Partial<Pick<ElementType, SelectedAttributes>> &
@@ -367,8 +374,7 @@ type DefineCustomElement<
 
   // 使用 $emit 专门定义事件类型
   // Vue 特别从 `$emit` 类型读取事件类型
-  // 请注意，`$emit` 期望我们将 `Events` 映射到特定格式。
-Use $emit to specifically define event types. Vue specifically reads event
+  // 请注意，`$emit` 期望我们将 `Events` 映射到特定格式
   /** @deprecated 不要在自定义元素引用上使用 $emit 属性，这仅用于模板属性类型检查 */
   $emit: VueEmit<Events>
 }
@@ -384,9 +390,13 @@ type VueEmit<T extends EventMap> = EmitFn<{
 ```
 
 > [!Note]
->我们将 `$props` 和 `$emit` 标记为已弃用，以便当我们获取自定义元素的 `ref` 时，我们不会被诱导使用这些属性，因为这些属性在自定义元素的情况下仅用于类型检查。这些属性实际上并不存在于自定义元素实例上。
+> 我们将 `$props` 和 `$emit` 标记为已弃用，
+> 以便当我们获取自定义元素的 `ref` 时，我们不会被诱导使用这些属性，
+> 因为这些属性在自定义元素的情况下仅用于类型检查。
+> 这些属性实际上并不存在于自定义元素实例上。
 
 使用类型助手，我们现在可以选择在 Vue 模板中应暴露的 JS 属性进行类型检查：
+
 
 ```ts
 // file: some-lib/src/SomeElement.vue.ts
@@ -413,13 +423,15 @@ declare module 'vue' {
 
 假设 some-lib 将其源 TypeScript 文件构建到 dist/ 文件夹中。some-lib 的用户可以像这样导入 SomeElement 并在 Vue SFC 中使用它：
 
+
 ```vue
 <script setup lang="ts">
 // 这将创建并在浏览器中注册元素
 import 'some-lib/dist/SomeElement.js'
 
 // 使用 TypeScript 和 Vue 的用户应另外导入 Vue 特定的类型定义
-//（使用其他框架的用户可以导入其他框架特定的类型定义）
+//(使用其他框架的用户可以导入其他框架特定的类型定义)
+
 import type {} from 'some-lib/dist/SomeElement.vue.js'
 
 import { useTemplateRef, onMounted } from 'vue'
@@ -457,9 +469,11 @@ onMounted(() => {
 
 如果一个元素没有类型定义，可以通过更手动的方式定义属性和事件的类型：
 
+
 ```vue
 <script setup lang="ts">
 // 假设 `some-lib` 是纯 JavaScript，没有类型定义，并且 TypeScript 无法推断类型：
+
 import { SomeElement } from 'some-lib'
 
 // 我们将使用之前相同的类型助手
@@ -490,6 +504,10 @@ declare module 'vue' {
 ```
 
 自定义元素的作者不应该从他们的库中自动导出特定框架的自定义元素类型定义，例如他们不应该从 `index.ts` 文件中导出它们，而该文件还导出了库的其余部分，否则用户将会遇到意外的模块扩展错误。用户应该导入他们需要的特定框架的类型定义文件。
+
+
+
+
 
 ## Web Components vs. Vue Components {#web-components-vs-vue-components}
 
