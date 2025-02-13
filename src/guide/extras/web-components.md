@@ -293,8 +293,10 @@ customElements.define('some-element', SomeElement)
 // 将新元素类型添加到 Vue 的 GlobalComponents 类型中。
 declare module 'vue' {
   interface GlobalComponents {
-    // 请务必在此处输入 Vue 组件类型(SomeComponent，*而不是* SomeElement)。
-    // 自定义元素的名称中需要连字符，因此请在此处使用连字符元素名称。
+    // 请务必在此处输入 Vue 组件类型
+    // (SomeComponent，*而不是* SomeElement)。
+    // 自定义元素的名称中需要连字符，
+    // 因此请在此处使用连字符元素名称。
     'some-element': typeof SomeComponent
   }
 }
@@ -302,15 +304,13 @@ declare module 'vue' {
 
 ## 非 Vue Web Components 和 TypeScript {#non-vue-web-components-and-typescript}
 
-
-以下是在非Vue构建的自定义元素的SFC模板中启用类型检查的推荐方法。
+以下是在非 Vue 构建的自定义元素的 SFC 模板中启用类型检查的推荐方法。
 
 > [!Note]
 > 这种方法是实现该功能的一种可能方式
 > 但具体实现可能因创建自定义元素所用的框架而异。
 
-
-假设我们有一个自定义元素，其中定义了一些 JS 属性和事件，并且它被包含在一个名为 `some-lib`的库中：
+假设我们有一个自定义元素，其中定义了一些 JS 属性和事件，并且它发布在名为 `some-lib` 的库中：
 
 ```ts
 // file: some-lib/src/SomeElement.ts
@@ -348,11 +348,9 @@ export class AppleFellEvent extends Event {
 }
 ```
 
-实现细节已经省略，但重要的是我们有两个东西的类型定义：属性类型和事件类型。
+实现细节已省略，重点是我们为两个东西提供了类型定义：prop 类型和事件类型。
 
-
-让我们创建一个类型助手，以便在 Vue 中轻松注册自定义元素类型定义：
-
+让我们创建一个类型工具，以便在 Vue 中轻松注册自定义元素类型定义：
 
 ```ts
 // file: some-lib/src/DefineCustomElement.ts
@@ -367,7 +365,8 @@ type DefineCustomElement<
   // Vue 特别从 `$props` 类型读取属性定义
   // 请注意，我们将元素的属性与全局 HTML 属性和 Vue 的特殊属性结合在一起
 
-  /** @deprecated 不要在自定义元素引用上使用 $props 属性，这仅用于模板属性类型检查 */
+  /** @deprecated 不要在自定义元素引用上使用 $props 属性，
+    这仅用于模板属性类型检查 */
   $props: HTMLAttributes &
     Partial<Pick<ElementType, SelectedAttributes>> &
     PublicProps
@@ -375,7 +374,8 @@ type DefineCustomElement<
   // 使用 $emit 专门定义事件类型
   // Vue 特别从 `$emit` 类型读取事件类型
   // 请注意，`$emit` 期望我们将 `Events` 映射到特定格式
-  /** @deprecated 不要在自定义元素引用上使用 $emit 属性，这仅用于模板属性类型检查 */
+  /** @deprecated 不要在自定义元素引用上使用 $emit 属性，
+    这仅用于模板属性类型检查 */
   $emit: VueEmit<Events>
 }
 
@@ -421,8 +421,7 @@ declare module 'vue' {
 }
 ```
 
-假设 some-lib 将其源 TypeScript 文件构建到 dist/ 文件夹中。some-lib 的用户可以像这样导入 SomeElement 并在 Vue SFC 中使用它：
-
+假设 some-lib 将其 TypeScript 源文件构建到 dist/ 文件夹中。some-lib 的用户可以像这样导入 SomeElement 并在 Vue SFC 中使用它：
 
 ```vue
 <script setup lang="ts">
@@ -446,7 +445,8 @@ onMounted(() => {
     el.value!.someMethod()
   )
 
-  // 不要使用这些属性，它们是 `undefined` （IDE 会将它们显示为删除线）：
+  // 不要使用这些属性，它们是 `undefined` 
+  // IDE 会将它们显示为删除线
   el.$props
   el.$emit
 })
@@ -503,11 +503,7 @@ declare module 'vue' {
 </template>
 ```
 
-自定义元素的作者不应该从他们的库中自动导出特定框架的自定义元素类型定义，例如他们不应该从 `index.ts` 文件中导出它们，而该文件还导出了库的其余部分，否则用户将会遇到意外的模块扩展错误。用户应该导入他们需要的特定框架的类型定义文件。
-
-
-
-
+自定义元素的作者不应该从他们的库中自动导出特定框架的自定义元素类型定义，例如他们不应该同时从 `index.ts` 文件中导出它们以及库的其余部分，否则用户将会遇到意外的模块扩展错误。用户应该导入他们需要的特定框架的类型定义文件。
 
 ## Web Components vs. Vue Components {#web-components-vs-vue-components}
 
