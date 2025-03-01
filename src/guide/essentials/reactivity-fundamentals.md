@@ -217,7 +217,7 @@ const myRef = {
 
 另一个 ref 的好处是，与普通变量不同，你可以将 ref 传递给函数，同时保留对最新值和响应式连接的访问。当将复杂的逻辑重构为可重用的代码时，这将非常有用。
 
-该响应性系统在[深入响应式原理](/guide/extras/reactivity-in-depth)章节中有更详细的讨论。
+该响应性系统在[深入响应式系统](/guide/extras/reactivity-in-depth)章节中有更详细的讨论。
 </div>
 
 <div class="options-api">

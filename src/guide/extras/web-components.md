@@ -303,79 +303,83 @@ declare module 'vue' {
 ```
 
 ## 非 Vue Web Components 和 TypeScript {#non-vue-web-components-and-typescript}
-<!-- TODO: translation -->
-Here is the recommended way to enable type checking in SFC templates of Custom Elements that are not built with Vue.
 
-> [!Note]
-> This approach is one possible way to do it, but it may vary depending on the
-> framework being used to create the custom elements.
+以下是在非 Vue 构建的自定义元素的 SFC 模板中启用类型检查的推荐方法。
 
-Suppose we have a custom element with some JS properties and events defined, and it is shipped in a library called `some-lib`:
+:::tip 注意
+- 这种方法是实现该功能的一种可能方式
+- 但具体实现可能因创建自定义元素所用的框架而异。
+:::
+
+假设我们有一个自定义元素，其中定义了一些 JS 属性和事件，并且它发布在名为 `some-lib` 的库中：
 
 ```ts
 // file: some-lib/src/SomeElement.ts
 
-// Define a class with typed JS properties.
+// 定义一个带有类型化 JS 属性的类
 export class SomeElement extends HTMLElement {
   foo: number = 123
   bar: string = 'blah'
 
   lorem: boolean = false
 
-  // This method should not be exposed to template types.
+  // 这个方法不应该暴露给模板类型
   someMethod() {
     /* ... */
   }
 
-  // ... implementation details omitted ...
-  // ... assume the element dispatches events named "apple-fell" ...
+  // ... 省略实现细节 ...
+  // ... 假设元素会分派名为 "apple-fell" 的事件 ...
 }
 
 customElements.define('some-element', SomeElement)
 
-// This is a list of properties of SomeElement that will be selected for type
-// checking in framework templates (f.e. Vue SFC templates). Any other
-// properties will not be exposed.
+// 这是一个包含 SomeElement 属性列表的类型定义
+// 这些属性将用于框架模板 (如 Vue SFC 模板 的类型检查
+// 其他属性将不会暴露
 export type SomeElementAttributes = 'foo' | 'bar'
 
-// Define the event types that SomeElement dispatches.
+// 定义 SomeElement 分派的事件类型
 export type SomeElementEvents = {
   'apple-fell': AppleFellEvent
 }
 
 export class AppleFellEvent extends Event {
-  /* ... details omitted ... */
+  /* ... 省略细节 ... */
 }
 ```
 
-The implementation details have been omitted, but the important part is that we have type definitions for two things: prop types and event types.
+实现细节已省略，重点是我们为两个东西提供了类型定义：prop 类型和事件类型。
 
-Let's create a type helper for easily registering custom element type definitions in Vue:
+让我们创建一个类型工具，以便在 Vue 中轻松注册自定义元素类型定义：
 
 ```ts
 // file: some-lib/src/DefineCustomElement.ts
 
-// We can re-use this type helper per each element we need to define.
+// 我们可以为每个需要定义的元素重复使用这个类型助手
 type DefineCustomElement<
   ElementType extends HTMLElement,
   Events extends EventMap = {},
   SelectedAttributes extends keyof ElementType = keyof ElementType
 > = new () => ElementType & {
-  // Use $props to define the properties exposed to template type checking. Vue
-  // specifically reads prop definitions from the `$props` type. Note that we
-  // combine the element's props with the global HTML props and Vue's special
-  // props.
-  /** @deprecated Do not use the $props property on a Custom Element ref, 
-    this is for template prop types only. */
+
+  // 使用 $props 定义暴露给模板类型检查的属性
+  // Vue 特别从 `$props` 类型读取属性定义
+  // 请注意，我们将元素的属性与全局 HTML 属性和 Vue 的特殊属性结合在一起
+
+  /** @deprecated 不要在自定义元素引用上使用 $props 属性，
+    这仅用于模板属性类型检查 */
+
   $props: HTMLAttributes &
     Partial<Pick<ElementType, SelectedAttributes>> &
     PublicProps
 
-  // Use $emit to specifically define event types. Vue specifically reads event
-  // types from the `$emit` type. Note that `$emit` expects a particular format
-  // that we map `Events` to.
-  /** @deprecated Do not use the $emit property on a Custom Element ref, 
-    this is for template prop types only. */
+  // 使用 $emit 专门定义事件类型
+  // Vue 特别从 `$emit` 类型读取事件类型
+  // 请注意，`$emit` 期望我们将 `Events` 映射到特定格式
+  /** @deprecated 不要在自定义元素引用上使用 $emit 属性，
+    这仅用于模板属性类型检查 */
+
   $emit: VueEmit<Events>
 }
 
@@ -383,19 +387,20 @@ type EventMap = {
   [event: string]: Event
 }
 
-// This maps an EventMap to the format that Vue's $emit type expects.
+// 这将 EventMap 映射到 Vue 的 $emit 类型期望的格式
 type VueEmit<T extends EventMap> = EmitFn<{
   [K in keyof T]: (event: T[K]) => void
 }>
 ```
 
-> [!Note]
-> We marked `$props` and `$emit` as deprecated so that when we get a `ref` to
-> a custom element we will not be tempted to use these properties, as these
-> properties are for type checking purposes only when it comes to custom elements.
-> These properties do not actually exist on the custom element instances.
+:::tip 注意
+- 我们将 `$props` 和 `$emit` 标记为已弃用，
+- 以便当我们获取自定义元素的 `ref` 时，我们不会被诱导使用这些属性，
+- 因为这些属性在自定义元素的情况下仅用于类型检查。
+- 这些属性实际上并不存在于自定义元素实例上。
+:::
 
-Using the type helper we can now select the JS properties that should be exposed for type checking in Vue templates:
+使用类型助手，我们现在可以选择在 Vue 模板中应暴露的 JS 属性进行类型检查：
 
 ```ts
 // file: some-lib/src/SomeElement.vue.ts
@@ -408,7 +413,7 @@ import {
 import type { Component } from 'vue'
 import type { DefineCustomElement } from './DefineCustomElement'
 
-// Add the new element type to Vue's GlobalComponents type.
+// 将新元素类型添加到 Vue 的 GlobalComponents 类型中
 declare module 'vue' {
   interface GlobalComponents {
     'some-element': DefineCustomElement<
@@ -420,16 +425,16 @@ declare module 'vue' {
 }
 ```
 
-Suppose that `some-lib` builds its source TypeScript files into a `dist/` folder. A user of `some-lib` can then import `SomeElement` and use it in a Vue SFC like so:
+假设 some-lib 将其 TypeScript 源文件构建到 dist/ 文件夹中。some-lib 的用户可以像这样导入 SomeElement 并在 Vue SFC 中使用它：
 
 ```vue
 <script setup lang="ts">
-// This will create and register the element with the browser.
+// 这将创建并在浏览器中注册元素
 import 'some-lib/dist/SomeElement.js'
 
-// A user that is using TypeScript and Vue should additionally import the
-// Vue-specific type definition (users of other frameworks may import other
-// framework-specific type definitions).
+// 使用 TypeScript 和 Vue 的用户应另外导入 Vue 特定的类型定义
+//(使用其他框架的用户可以导入其他框架特定的类型定义)
+
 import type {} from 'some-lib/dist/SomeElement.vue.js'
 
 import { useTemplateRef, onMounted } from 'vue'
@@ -444,37 +449,38 @@ onMounted(() => {
     el.value!.someMethod()
   )
 
-  // Do not use these props, they are `undefined`
-  // IDE will show them crossed out
+  // 不要使用这些属性，它们是 `undefined` 
+  // IDE 会将它们显示为删除线
+
   el.$props
   el.$emit
 })
 </script>
 
 <template>
-  <!-- Now we can use the element, with type checking: -->
+  <!-- 现在我们可以使用这个元素，并进行类型检查： -->
   <some-element
     ref="el"
     :foo="456"
     :blah="'hello'"
     @apple-fell="
       (event) => {
-        // The type of `event` is inferred here to be `AppleFellEvent`
+        // 这里 `event` 的类型被推断为 `AppleFellEvent`
       }
     "
   ></some-element>
 </template>
 ```
 
-If an element does not have type definitions, the types of the properties and events can be defined in a more manual fashion:
+如果一个元素没有类型定义，可以通过更手动的方式定义属性和事件的类型：
 
 ```vue
 <script setup lang="ts">
-// Suppose that `some-lib` is plain JS without type definitions, and TypeScript
-// cannot infer the types:
+// 假设 `some-lib` 是纯 JavaScript，没有类型定义，并且 TypeScript 无法推断类型：
+
 import { SomeElement } from 'some-lib'
 
-// We'll use the same type helper as before.
+// 我们将使用之前相同的类型助手
 import { DefineCustomElement } from './DefineCustomElement'
 
 type SomeElementProps = { foo?: number; bar?: string }
@@ -483,7 +489,7 @@ interface AppleFellEvent extends Event {
   /* ... */
 }
 
-// Add the new element type to Vue's GlobalComponents type.
+// 将新元素类型添加到 Vue 的 GlobalComponents 类型中
 declare module 'vue' {
   interface GlobalComponents {
     'some-element': DefineCustomElement<
@@ -493,15 +499,15 @@ declare module 'vue' {
   }
 }
 
-// ... same as before, use a reference to the element ...
+// ... 与之前相同，使用元素引用 ...
 </script>
 
 <template>
-  <!-- ... same as before, use the element in the template ... -->
+  <!-- ... 与之前相同，在模板中使用元素 ... -->
 </template>
 ```
 
-Custom Element authors should not automatically export framework-specific custom element type definitions from their libraries, for example they should not export them from an `index.ts` file that also exports the rest of the library, otherwise users will have unexpected module augmentation errors. Users should import the framework-specific type definition file that they need.
+自定义元素的作者不应该从他们的库中自动导出特定框架的自定义元素类型定义，例如他们不应该同时从 `index.ts` 文件中导出它们以及库的其余部分，否则用户将会遇到意外的模块扩展错误。用户应该导入他们需要的特定框架的类型定义文件。
 
 ## Web Components vs. Vue Components {#web-components-vs-vue-components}
 
