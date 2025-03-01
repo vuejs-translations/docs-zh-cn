@@ -294,7 +294,7 @@ customElements.define('some-element', SomeElement)
 declare module 'vue' {
   interface GlobalComponents {
     // 请务必在此处输入 Vue 组件类型
-    // （SomeComponent，*而不是* SomeElement）。
+    // (SomeComponent，*而不是* SomeElement)。
     // 自定义元素的名称中需要连字符，
     // 因此请在此处使用连字符元素名称。
     'some-element': typeof SomeComponent
