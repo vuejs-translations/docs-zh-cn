@@ -366,7 +366,6 @@ type DefineCustomElement<
   // 使用 $props 定义暴露给模板类型检查的属性
   // Vue 特别从 `$props` 类型读取属性定义
   // 请注意，我们将元素的属性与全局 HTML 属性和 Vue 的特殊属性结合在一起
-
   /** @deprecated 不要在自定义元素引用上使用 $props 属性，
     这仅用于模板属性类型检查 */
 
