@@ -238,7 +238,7 @@ export function register() {
 }
 ```
 
-消费者可以使用 Vue 文件中的元素
+消费者可以使用 Vue 文件中的元素：
 
 ```vue
 <script setup>
@@ -263,8 +263,8 @@ customElements.define('some-bar', MyBar)
 
 export function MyComponent() {
   return <>
-    <some-foo ...>
-      <some-bar ...></some-bar>
+    <some-foo ... >
+      <some-bar ... ></some-bar>
     </some-foo>
   </>
 }
@@ -306,9 +306,10 @@ declare module 'vue' {
 
 以下是在非 Vue 构建的自定义元素的 SFC 模板中启用类型检查的推荐方法。
 
-> [!Note]
-> 这种方法是实现该功能的一种可能方式
-> 但具体实现可能因创建自定义元素所用的框架而异。
+:::tip 注意
+- 这种方法是实现该功能的一种可能方式
+- 但具体实现可能因创建自定义元素所用的框架而异。
+:::
 
 假设我们有一个自定义元素，其中定义了一些 JS 属性和事件，并且它发布在名为 `some-lib` 的库中：
 
@@ -361,12 +362,13 @@ type DefineCustomElement<
   Events extends EventMap = {},
   SelectedAttributes extends keyof ElementType = keyof ElementType
 > = new () => ElementType & {
+
   // 使用 $props 定义暴露给模板类型检查的属性
   // Vue 特别从 `$props` 类型读取属性定义
   // 请注意，我们将元素的属性与全局 HTML 属性和 Vue 的特殊属性结合在一起
-
   /** @deprecated 不要在自定义元素引用上使用 $props 属性，
     这仅用于模板属性类型检查 */
+
   $props: HTMLAttributes &
     Partial<Pick<ElementType, SelectedAttributes>> &
     PublicProps
@@ -376,6 +378,7 @@ type DefineCustomElement<
   // 请注意，`$emit` 期望我们将 `Events` 映射到特定格式
   /** @deprecated 不要在自定义元素引用上使用 $emit 属性，
     这仅用于模板属性类型检查 */
+
   $emit: VueEmit<Events>
 }
 
@@ -389,14 +392,14 @@ type VueEmit<T extends EventMap> = EmitFn<{
 }>
 ```
 
-> [!Note]
-> 我们将 `$props` 和 `$emit` 标记为已弃用，
-> 以便当我们获取自定义元素的 `ref` 时，我们不会被诱导使用这些属性，
-> 因为这些属性在自定义元素的情况下仅用于类型检查。
-> 这些属性实际上并不存在于自定义元素实例上。
+:::tip 注意
+- 我们将 `$props` 和 `$emit` 标记为已弃用，
+- 以便当我们获取自定义元素的 `ref` 时，我们不会被诱导使用这些属性，
+- 因为这些属性在自定义元素的情况下仅用于类型检查。
+- 这些属性实际上并不存在于自定义元素实例上。
+:::
 
 使用类型助手，我们现在可以选择在 Vue 模板中应暴露的 JS 属性进行类型检查：
-
 
 ```ts
 // file: some-lib/src/SomeElement.vue.ts
@@ -447,6 +450,7 @@ onMounted(() => {
 
   // 不要使用这些属性，它们是 `undefined` 
   // IDE 会将它们显示为删除线
+
   el.$props
   el.$emit
 })
@@ -468,7 +472,6 @@ onMounted(() => {
 ```
 
 如果一个元素没有类型定义，可以通过更手动的方式定义属性和事件的类型：
-
 
 ```vue
 <script setup lang="ts">
