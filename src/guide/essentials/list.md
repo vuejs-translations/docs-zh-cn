@@ -215,10 +215,6 @@ data() {
 
 ## `v-for` 与 `v-if` {#v-for-with-v-if}
 
-:::warning 注意
-同时使用 `v-if` 和 `v-for` 是**不推荐的**，因为这样二者的优先级不明显。请转阅[风格指南](/style-guide/rules-essential#avoid-v-if-with-v-for)查看更多细节。
-:::
-
 当它们同时存在于一个节点上时，`v-if` 比 `v-for` 的优先级更高。这意味着 `v-if` 的条件将无法访问到 `v-for` 作用域内定义的变量别名：
 
 ```vue-html
@@ -240,6 +236,16 @@ data() {
   </li>
 </template>
 ```
+
+:::warning 注意
+同时使用 `v-if` 和 `v-for` 是**不推荐的**，因为这样二者的优先级不明显。
+
+两种常见的情况可能导致这种用法：
+
+- 过滤列表中的项目 (例如，`v-for="user in users" v-if="user.isActive"`)。在这种情况下，可以用一个新的计算属性来替换 `users`，该属性返回过滤后的列表 (例如 `activeUsers`)。
+
+- 避免渲染应该隐藏的列表 (例如 `v-for="user in users" v-if="shouldShowUsers"`)。在这种情况下，将 `v-if` 移至容器元素 (如 `ul`、`ol`)。
+:::
 
 ## 通过 key 管理状态 {#maintaining-state-with-key}
 
@@ -267,7 +273,7 @@ Vue 默认按照“就地更新”的策略来更新通过 `v-for` 渲染的元�
 `key` 在这里是一个通过 `v-bind` 绑定的特殊 attribute。请不要和[在 `v-for` 中使用对象](#v-for-with-an-object)里所提到的对象属性名相混淆。
 :::
 
-[推荐](/style-guide/rules-essential#use-keyed-v-for)在任何可行的时候为 `v-for` 提供一个 `key` attribute，除非所迭代的 DOM 内容非常简单 (例如：不包含组件或有状态的 DOM 元素)，或者你想有意采用默认行为来提高性能。
+推荐在任何可行的时候为 `v-for` 提供一个 `key` attribute，除非所迭代的 DOM 内容非常简单 (例如：不包含组件或有状态的 DOM 元素)，或者你想有意采用默认行为来提高性能。
 
 `key` 绑定的值期望是一个基础类型的值，例如字符串或 number 类型。不要用对象作为 `v-for` 的 key。关于 `key` attribute 的更多用途细节，请参阅 [`key` API 文档](/api/built-in-special-attributes#key)。
 

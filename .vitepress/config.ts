@@ -181,15 +181,15 @@ export const sidebar: ThemeConfig['sidebar'] = {
           link: '/guide/essentials/event-handling'
         },
         { text: '表单输入绑定', link: '/guide/essentials/forms' },
-        {
-          text: '生命周期',
-          link: '/guide/essentials/lifecycle'
-        },
         { text: '侦听器', link: '/guide/essentials/watchers' },
         { text: '模板引用', link: '/guide/essentials/template-refs' },
         {
           text: '组件基础',
           link: '/guide/essentials/component-basics'
+        },
+        {
+          text: '生命周期',
+          link: '/guide/essentials/lifecycle'
         }
       ]
     },
