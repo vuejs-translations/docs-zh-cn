@@ -4,7 +4,7 @@ footer: false
 
 <script setup>
 import { VTCodeGroup, VTCodeGroupTab } from '@vue/theme'
-</script>
+</script>                              
 
 # 快速上手 {#quick-start}
 
@@ -28,7 +28,7 @@ import { VTCodeGroup, VTCodeGroupTab } from '@vue/theme'
 
 确保你安装了最新版本的 [Node.js](https://nodejs.org/)，并且你的当前工作目录正是打算创建项目的目录。在命令行中运行以下命令 (不要带上 `$` 符号)：
 
-<VTCodeGroup>
+<VTCodeGroup>  
   <VTCodeGroupTab label="npm">
 
   ```sh
