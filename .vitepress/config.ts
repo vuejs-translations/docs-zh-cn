@@ -1,6 +1,6 @@
 import fs from 'fs'
 import path from 'path'
-import { defineConfigWithTheme } from 'vitepress'
+import { defineConfigWithTheme, type Plugin } from 'vitepress'
 import type { Config as ThemeConfig } from '@vue/theme'
 import llmstxt from 'vitepress-plugin-llms'
 import baseConfig from '@vue/theme/config'
