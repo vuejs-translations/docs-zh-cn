@@ -34,6 +34,7 @@
     "open": "^8.4.0",
     "simple-git": "^2.48.0",
     "typescript": "^5.6.3",
+    "vitepress-plugin-llms": "^0.0.8",
     "vue-tsc": "^2.1.6",
     "zhlint": "^0.8.1"
   },
