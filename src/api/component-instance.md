@@ -42,7 +42,7 @@
 
   ```ts
   interface ComponentPublicInstance {
-    $el: Node | undefined
+    $el: any
   }
   ```
 

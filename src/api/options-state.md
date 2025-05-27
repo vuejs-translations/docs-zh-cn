@@ -93,7 +93,7 @@
 
   - **`required`**：定义该 prop 是否必需传入。在非生产环境中，如果 required 值为[真值](https://developer.mozilla.org/en-US/docs/Glossary/Truthy)且 prop 未被传入，一个控制台警告将会被抛出。
 
-  - **`validator`**：将 prop 值作为唯一参数传入的自定义验证函数。在开发模式下，如果该函数返回一个[假值](https://developer.mozilla.org/en-US/docs/Glossary/Falsy) (即验证失败)，一个控制台警告将会被抛出。
+  - **`validator`**：将 prop 值及其对象作为参数传入的自定义验证函数。在开发模式下，如果该函数返回一个[假值](https://developer.mozilla.org/en-US/docs/Glossary/Falsy) (即验证失败)，一个控制台警告将会被抛出。
 
 - **示例**
 

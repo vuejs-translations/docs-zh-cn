@@ -13,6 +13,7 @@ Web 无障碍访问 (也称为 a11y) 是指创建可供任何人使用的网站�
 通常这个链接会放在 `App.vue` 的顶部，这样它就会是所有页面上的第一个可聚焦元素：
 
 ```vue-html
+<span ref="backToTop" tabindex="-1" />
 <ul class="skip-links">
   <li>
     <a href="#main" ref="skipLink" class="skip-link">Skip to main content</a>
@@ -23,6 +24,9 @@ Web 无障碍访问 (也称为 a11y) 是指创建可供任何人使用的网站�
 若想在非聚焦状态下隐藏该链接，可以添加以下样式：
 
 ```css
+.skip-links {
+  list-style: none;
+}
 .skip-link {
   white-space: nowrap;
   margin: 1em auto;
@@ -40,7 +44,7 @@ Web 无障碍访问 (也称为 a11y) 是指创建可供任何人使用的网站�
 }
 ```
 
-一旦用户改变路由，请将焦点放回到这个“跳过”链接。通过如下方式聚焦“跳过”链接的模板引用 (假设使用了 `vue-router`) 即可实现：
+一旦用户改变路由，就应将焦点置回页面最开始，即跳过链接之前。这可以通过调用“backToTop”模板引用的焦点实现 (假设使用了 `vue-router`) ：
 
 <div class="options-api">
 
@@ -49,7 +53,7 @@ Web 无障碍访问 (也称为 a11y) 是指创建可供任何人使用的网站�
 export default {
   watch: {
     $route() {
-      this.$refs.skipLink.focus()
+      this.$refs.backToTop.focus()
     }
   }
 }
@@ -65,12 +69,12 @@ import { ref, watch } from 'vue'
 import { useRoute } from 'vue-router'
 
 const route = useRoute()
-const skipLink = ref()
+const backToTop = ref()
 
 watch(
   () => route.path,
   () => {
-    skipLink.value.focus()
+    backToTop.value.focus()
   }
 )
 </script>

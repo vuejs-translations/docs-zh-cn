@@ -468,7 +468,7 @@ Something bad happened.
 
 这可以通过 Vue 的自定义 `<slot>` 元素来实现：
 
-```vue{4}
+```vue{5}
 <!-- AlertBox.vue -->
 <template>
   <div class="alert-box">
