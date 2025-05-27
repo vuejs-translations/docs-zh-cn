@@ -564,8 +564,20 @@ const [lastName, lastNameModifiers] = defineModel('lastName')
 
 console.log(firstNameModifiers) // { capitalize: true }
 console.log(lastNameModifiers) // { uppercase: true }
+
+//如果也想处理自定义修饰符，你需要这么写：
+const [lastName, lastNameModifiers] = defineModel('lastName'，{
+  set(value) {
+      if (modifiers.capitalize) {
+        return value.charAt(0).toUpperCase() + value.slice(1)
+      }
+      return value
+    }
+})
+
 </script>
 ```
+
 
 <details>
 <summary>3.4 之前的用法</summary>
