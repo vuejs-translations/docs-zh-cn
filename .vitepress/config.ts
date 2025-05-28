@@ -1,6 +1,6 @@
 import fs from 'fs'
 import path from 'path'
-import { defineConfigWithTheme, type Plugin } from 'vitepress'
+import { defineConfigWithTheme, type HeadConfig, type Plugin } from 'vitepress'
 import type { Config as ThemeConfig } from '@vue/theme'
 import llmstxt from 'vitepress-plugin-llms'
 import baseConfig from '@vue/theme/config'
@@ -497,10 +497,6 @@ export const sidebar: ThemeConfig['sidebar'] = {
           text: '带过渡动效的列表',
           link: '/examples/#list-transition'
         },
-        {
-          text: 'TodoMVC',
-          link: '/examples/#todomvc'
-        }
       ]
     },
     {
@@ -601,6 +597,17 @@ const i18n: ThemeConfig['i18n'] = {
   ariaSidebarNav: '侧边栏导航'
 }
 
+function inlineScript(file: string): HeadConfig {
+  return [
+    'script',
+    {},
+    fs.readFileSync(
+      path.resolve(__dirname, `./inlined-scripts/${file}`),
+      'utf-8'
+    )
+  ]
+}
+
 export default defineConfigWithTheme<ThemeConfig>({
   extends: baseConfig,
 
@@ -639,25 +646,11 @@ export default defineConfigWithTheme<ThemeConfig>({
       'link',
       {
         rel: 'preconnect',
-        href: 'https://sponsors.vuejs.org'
+        href: 'https://automation.vuejs.org'
       }
     ],
-    [
-      'script',
-      {},
-      fs.readFileSync(
-        path.resolve(__dirname, './inlined-scripts/restorePreference.js'),
-        'utf-8'
-      )
-    ],
-    [
-      'script',
-      {},
-      fs.readFileSync(
-        path.resolve(__dirname, './inlined-scripts/uwu.js'),
-        'utf-8'
-      )
-    ],
+    inlineScript('restorePreference.js'),
+    inlineScript('uwu.js'),
     [
       'script',
       {
@@ -673,7 +666,8 @@ export default defineConfigWithTheme<ThemeConfig>({
         src: 'https://vueschool.io/banner.js?affiliate=vuejs&type=top',
         async: 'true'
       }
-    ]
+    ],
+    inlineScript('perfops.js')
   ],
 
   themeConfig: {
@@ -730,7 +724,7 @@ export default defineConfigWithTheme<ThemeConfig>({
       {
         link: 'https://ru.vuejs.org',
         text: 'Русский',
-        repo: 'https://github.com/translation-gang/docs-ru'
+        repo: 'https://github.com/vuejs-translations/docs-ru'
       },
       {
         link: 'https://cs.vuejs.org',
@@ -741,6 +735,11 @@ export default defineConfigWithTheme<ThemeConfig>({
         link: 'https://zh-hk.vuejs.org',
         text: '繁體中文',
         repo: 'https://github.com/vuejs-translations/docs-zh-hk'
+      },
+      {
+        link: 'https://pl.vuejs.org',
+        text: 'Polski',
+        repo: 'https://github.com/vuejs-translations/docs-pl',
       },
       {
         link: '/translations/',

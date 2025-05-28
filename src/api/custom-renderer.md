@@ -22,24 +22,16 @@
       key: string,
       prevValue: any,
       nextValue: any,
-      // 其余部分在大多数自定义渲染器中是不会使用的
-      isSVG?: boolean,
-      prevChildren?: VNode<HostNode, HostElement>[],
+      namespace?: ElementNamespace,
       parentComponent?: ComponentInternalInstance | null,
-      parentSuspense?: SuspenseBoundary | null,
-      unmountChildren?: UnmountChildrenFn
     ): void
-    insert(
-      el: HostNode,
-      parent: HostElement,
-      anchor?: HostNode | null
-    ): void
+    insert(el: HostNode, parent: HostElement, anchor?: HostNode | null): void
     remove(el: HostNode): void
     createElement(
       type: string,
-      isSVG?: boolean,
+      namespace?: ElementNamespace,
       isCustomizedBuiltIn?: string,
-      vnodeProps?: (VNodeProps & { [key: string]: any }) | null
+      vnodeProps?: (VNodeProps & { [key: string]: any }) | null,
     ): HostElement
     createText(text: string): HostNode
     createComment(text: string): HostNode
@@ -47,8 +39,6 @@
     setElementText(node: HostElement, text: string): void
     parentNode(node: HostNode): HostElement | null
     nextSibling(node: HostNode): HostNode | null
-
-    // 可选的, DOM 特有的
     querySelector?(selector: string): HostElement | null
     setScopeId?(el: HostElement, id: string): void
     cloneNode?(node: HostNode): HostNode
@@ -56,7 +46,9 @@
       content: string,
       parent: HostElement,
       anchor: HostNode | null,
-      isSVG: boolean
+      namespace: ElementNamespace,
+      start?: HostNode | null,
+      end?: HostNode | null,
     ): [HostNode, HostNode]
   }
   ```

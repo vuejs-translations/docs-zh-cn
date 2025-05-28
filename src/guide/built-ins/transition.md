@@ -330,7 +330,7 @@ Vue 需要附加事件监听器，以便知道过渡何时结束。可以是 `tr
 
 你可以通过监听 `<Transition>` 组件事件的方式在过渡过程中挂上钩子函数：
 
-```html
+```vue-html
 <Transition
   @before-enter="onBeforeEnter"
   @enter="onEnter"

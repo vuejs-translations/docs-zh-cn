@@ -53,7 +53,7 @@ Vue 团队也维护了一个名为 [VitePress](https://vitepress.dev/) 的静态
 
 尽管 Vue 主要是为构建 Web 应用而设计的，但它绝不仅仅局限于浏览器。你还可以：
 
-- 配合 [Electron](https://www.electronjs.org/) 构建桌面应用
+- 配合 [Electron](https://www.electronjs.org/) 或 [Wails](https://wails.io) 构建桌面应用
 - 配合 [Ionic Vue](https://ionicframework.com/docs/vue/overview) 构建移动端应用
 - 使用 [Quasar](https://quasar.dev/) 或 [Tauri](https://tauri.app) 用同一套代码同时开发桌面端和移动端应用
 - 使用 [TresJS](https://tresjs.org/) 构建 3D WebGL 体验

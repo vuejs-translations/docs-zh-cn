@@ -68,7 +68,7 @@ Vue 使用一种基于 HTML 的模板语法，使我们能够声明式地将其�
 
 - 仅支持 3.4 版本及以上
 
-如果 attribute 的名称与绑定的 JavaScript 值的名称相同，那么可以进一步简化语法，省略 attribute 值：
+如果 attribute 的名称与绑定的 JavaScript 变量的名称相同，那么可以进一步简化语法，省略 attribute 值：
 
 ```vue-html
 <!-- 与 :id="id" 相同 -->

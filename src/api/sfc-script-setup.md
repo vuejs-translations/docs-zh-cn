@@ -521,6 +521,18 @@ defineProps<{
 }>()
 </script>
 ```
+<!-- TODO: translation -->
+You can use `@vue-generic` the directive to pass in explicit types, for when the type cannot be inferred:
+
+```vue
+<template>
+  <!-- @vue-generic {import('@/api').Actor} -->
+  <ApiSelect v-model="peopleIds" endpoint="/api/actors" id-prop="actorId" />
+
+  <!-- @vue-generic {import('@/api').Genre} -->
+  <ApiSelect v-model="genreIds" endpoint="/api/genres" id-prop="genreId" />
+</template>
+```
 
 为了在 `ref` 中使用泛型组件的引用，你需要使用 [`vue-component-type-helpers`](https://www.npmjs.com/package/vue-component-type-helpers) 库，因为 `InstanceType` 在这种场景下不起作用。
 

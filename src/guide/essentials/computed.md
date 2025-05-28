@@ -270,7 +270,7 @@ export default {
     // 这个计算属性在 count 的值小于或等于 3 时，将返回 count 的值。
     // 当 count 的值大于等于 4 时，将会返回满足我们条件的最后一个值
     // 直到 count 的值再次小于或等于 3 为止。
-    alwaysSmall(previous) {
+    alwaysSmall(_, previous) {
       if (this.count <= 3) {
         return this.count
       }

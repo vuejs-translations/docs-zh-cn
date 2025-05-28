@@ -314,6 +314,20 @@ data() {
 ```
 
 同样的，如果样式对象需要更复杂的逻辑，也可以使用返回样式对象的计算属性。
+<!-- TODO: translation -->
+`:style` directives can also coexist with regular style attributes, just like `:class`.
+
+Template:
+
+```vue-html
+<h1 style="color: red" :style="'font-size: 1em'">hello</h1>
+```
+
+It will render:
+
+```vue-html
+<h1 style="color: red; font-size: 1em;">hello</h1>
+```
 
 ### 绑定数组 {#binding-to-arrays-1}
 

@@ -113,113 +113,6 @@ watchEffect(() => {
 
 </div>
 
-## `v-for` 中的模板引用 {#refs-inside-v-for}
-
-> 需要 v3.5 及以上版本
-
-<div class="composition-api">
-
-当在 `v-for` 中使用模板引用时，对应的 ref 中包含的值是一个数组，它将在元素被挂载后包含对应整个列表的所有元素：
-
-```vue
-<script setup>
-import { ref, useTemplateRef, onMounted } from 'vue'
-
-const list = ref([
-  /* ... */
-])
-
-const itemRefs = useTemplateRef('items')
-
-onMounted(() => console.log(itemRefs.value))
-</script>
-
-<template>
-  <ul>
-    <li v-for="item in list" ref="items">
-      {{ item }}
-    </li>
-  </ul>
-</template>
-```
-
-[在演练场中尝试一下](https://play.vuejs.org/#eNp9UsluwjAQ/ZWRLwQpDepyQoDUIg6t1EWUW91DFAZq6tiWF4oU5d87dtgqVRyyzLw3b+aN3bB7Y4ptQDZkI1dZYTw49MFMuBK10dZDAxZXOQSHC6yNLD3OY6zVsw7K4xJaWFldQ49UelxxVWnlPEhBr3GszT6uc7jJ4fazf4KFx5p0HFH+Kme9CLle4h6bZFkfxhNouAIoJVqfHQSKbSkDFnVpMhEpovC481NNVcr3SaWlZzTovJErCqgydaMIYBRk+tKfFLC9Wmk75iyqg1DJBWfRxT7pONvTAZom2YC23QsMpOg0B0l0NDh2YjnzjpyvxLrYOK1o3ckLZ5WujSBHr8YL2gxnw85lxEop9c9TynkbMD/kqy+svv/Jb9wu5jh7s+jQbpGzI+ZLu0byEuHZ+wvt6Ays9TJIYl8A5+i0DHHGjvYQ1JLGPuOlaR/TpRFqvXCzHR2BO5iKg0Zmm/ic0W2ZXrB+Gve2uEt1dJKs/QXbwePE)
-
-<details>
-<summary>3.5 前的用法</summary>
-
-在 3.5 版本以前，`useTemplateRef()` 尚未引入，需要声明一个与模板引用 attribute 同名的 ref。该 ref 的值需要是一个数组。
-
-```vue
-<script setup>
-import { ref, onMounted } from 'vue'
-
-const list = ref([
-  /* ... */
-])
-
-const itemRefs = ref([])
-
-onMounted(() => console.log(itemRefs.value))
-</script>
-
-<template>
-  <ul>
-    <li v-for="item in list" ref="itemRefs">
-      {{ item }}
-    </li>
-  </ul>
-</template>
-```
-
-</details>
-
-</div>
-<div class="options-api">
-
-当在 `v-for` 中使用模板引用时，相应的引用中包含的值是一个数组：
-
-```vue
-<script>
-export default {
-  data() {
-    return {
-      list: [
-        /* ... */
-      ]
-    }
-  },
-  mounted() {
-    console.log(this.$refs.items)
-  }
-}
-</script>
-
-<template>
-  <ul>
-    <li v-for="item in list" ref="items">
-      {{ item }}
-    </li>
-  </ul>
-</template>
-```
-
-[在演练场中尝试一下](https://play.vuejs.org/#eNpFjk0KwjAQha/yCC4Uaou6kyp4DuOi2KkGYhKSiQildzdNa4WQmTc/37xeXJwr35HEUdTh7pXjszT0cdYzWuqaqBm9NEDbcLPeTDngiaM3PwVoFfiI667AvsDhNpWHMQzF+L9sNEztH3C3JlhNpbaPNT9VKFeeulAqplfY5D1p0qurxVQSqel0w5QUUEedY8q0wnvbWX+SYgRAmWxIiuSzm4tBinkc6HvkuSE7TIBKq4lZZWhdLZfE8AWp4l3T)
-
-</div>
-
-应该注意的是，ref 数组**并不**保证与源数组相同的顺序。
-
-## 函数模板引用 {#function-refs}
-
-除了使用字符串值作名字，`ref` attribute 还可以绑定为一个函数，会在每次组件更新时都被调用。该函数会收到元素引用作为其第一个参数：
-
-```vue-html
-<input :ref="(el) => { /* 将 el 赋值给一个数据属性或 ref 变量 */ }">
-```
-
-注意我们这里需要使用动态的 `:ref` 绑定才能够传入一个函数。当绑定的元素被卸载时，函数也会被调用一次，此时的 `el` 参数会是 `null`。你当然也可以绑定一个组件方法而不是内联函数。
-
 ## 组件上的 ref {#ref-on-component}
 
 > 这一小节假设你已了解[组件](/guide/essentials/component-basics)的相关知识，或者你也可以先跳过这里，之后再回来看。
@@ -346,3 +239,110 @@ export default {
 在上面这个例子中，父组件通过模板引用访问到子组件实例后，仅能访问 `publicData` 和 `publicMethod`。
 
 </div>
+
+## `v-for` 中的模板引用 {#refs-inside-v-for}
+
+> 需要 v3.5 及以上版本
+
+<div class="composition-api">
+
+当在 `v-for` 中使用模板引用时，对应的 ref 中包含的值是一个数组，它将在元素被挂载后包含对应整个列表的所有元素：
+
+```vue
+<script setup>
+import { ref, useTemplateRef, onMounted } from 'vue'
+
+const list = ref([
+  /* ... */
+])
+
+const itemRefs = useTemplateRef('items')
+
+onMounted(() => console.log(itemRefs.value))
+</script>
+
+<template>
+  <ul>
+    <li v-for="item in list" ref="items">
+      {{ item }}
+    </li>
+  </ul>
+</template>
+```
+
+[在演练场中尝试一下](https://play.vuejs.org/#eNp9UsluwjAQ/ZWRLwQpDepyQoDUIg6t1EWUW91DFAZq6tiWF4oU5d87dtgqVRyyzLw3b+aN3bB7Y4ptQDZkI1dZYTw49MFMuBK10dZDAxZXOQSHC6yNLD3OY6zVsw7K4xJaWFldQ49UelxxVWnlPEhBr3GszT6uc7jJ4fazf4KFx5p0HFH+Kme9CLle4h6bZFkfxhNouAIoJVqfHQSKbSkDFnVpMhEpovC481NNVcr3SaWlZzTovJErCqgydaMIYBRk+tKfFLC9Wmk75iyqg1DJBWfRxT7pONvTAZom2YC23QsMpOg0B0l0NDh2YjnzjpyvxLrYOK1o3ckLZ5WujSBHr8YL2gxnw85lxEop9c9TynkbMD/kqy+svv/Jb9wu5jh7s+jQbpGzI+ZLu0byEuHZ+wvt6Ays9TJIYl8A5+i0DHHGjvYQ1JLGPuOlaR/TpRFqvXCzHR2BO5iKg0Zmm/ic0W2ZXrB+Gve2uEt1dJKs/QXbwePE)
+
+<details>
+<summary>3.5 前的用法</summary>
+
+在 3.5 版本以前，`useTemplateRef()` 尚未引入，需要声明一个与模板引用 attribute 同名的 ref。该 ref 的值需要是一个数组。
+
+```vue
+<script setup>
+import { ref, onMounted } from 'vue'
+
+const list = ref([
+  /* ... */
+])
+
+const itemRefs = ref([])
+
+onMounted(() => console.log(itemRefs.value))
+</script>
+
+<template>
+  <ul>
+    <li v-for="item in list" ref="itemRefs">
+      {{ item }}
+    </li>
+  </ul>
+</template>
+```
+
+</details>
+
+</div>
+<div class="options-api">
+
+当在 `v-for` 中使用模板引用时，相应的引用中包含的值是一个数组：
+
+```vue
+<script>
+export default {
+  data() {
+    return {
+      list: [
+        /* ... */
+      ]
+    }
+  },
+  mounted() {
+    console.log(this.$refs.items)
+  }
+}
+</script>
+
+<template>
+  <ul>
+    <li v-for="item in list" ref="items">
+      {{ item }}
+    </li>
+  </ul>
+</template>
+```
+
+[在演练场中尝试一下](https://play.vuejs.org/#eNpFjk0KwjAQha/yCC4Uaou6kyp4DuOi2KkGYhKSiQildzdNa4WQmTc/37xeXJwr35HEUdTh7pXjszT0cdYzWuqaqBm9NEDbcLPeTDngiaM3PwVoFfiI667AvsDhNpWHMQzF+L9sNEztH3C3JlhNpbaPNT9VKFeeulAqplfY5D1p0qurxVQSqel0w5QUUEedY8q0wnvbWX+SYgRAmWxIiuSzm4tBinkc6HvkuSE7TIBKq4lZZWhdLZfE8AWp4l3T)
+
+</div>
+
+应该注意的是，ref 数组**并不**保证与源数组相同的顺序。
+
+## 函数模板引用 {#function-refs}
+
+除了使用字符串值作名字，`ref` attribute 还可以绑定为一个函数，会在每次组件更新时都被调用。该函数会收到元素引用作为其第一个参数：
+
+```vue-html
+<input :ref="(el) => { /* 将 el 赋值给一个数据属性或 ref 变量 */ }">
+```
+
+注意我们这里需要使用动态的 `:ref` 绑定才能够传入一个函数。当绑定的元素被卸载时，函数也会被调用一次，此时的 `el` 参数会是 `null`。你当然也可以绑定一个组件方法而不是内联函数。
