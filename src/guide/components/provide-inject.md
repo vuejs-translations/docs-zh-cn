@@ -123,7 +123,7 @@ const message = inject('message')
 </script>
 ```
 
-如果父组件提供了多个相同键的数据，将会使用组件链上最近的父组件所注入的值。
+如果有多个父组件提供了相同键的数据，注入将解析为组件链上最近的父组件所注入的值。
 
 如果提供的值是一个 ref，注入进来的会是该 ref 对象，而**不会**自动解包为其内部的值。这使得注入方组件能够通过 ref 对象保持了和供给方的响应性链接。
 
@@ -171,7 +171,7 @@ export default {
 }
 ```
 
-如果父组件提供了多个相同键的数据，将会使用组件链上最近的父组件所注入的值。
+如果有多个父组件提供了相同键的数据，注入将解析为组件链上最近的父组件所注入的值。
 
 [完整的 provide + inject 示例](https://play.vuejs.org/#eNqNkcFqwzAQRH9l0EUthOhuRKH00FO/oO7B2JtERZaEvA4F43+vZCdOTAIJCImRdpi32kG8h7A99iQKobs6msBvpTNt8JHxcTC2wS76FnKrJpVLZelKR39TSUO7qreMoXRA7ZPPkeOuwHByj5v8EqI/moZeXudCIBL30Z0V0FLXVXsqIA9krU8R+XbMR9rS0mqhS4KpDbZiSgrQc5JKQqvlRWzEQnyvuc9YuWbd4eXq+TZn0IvzOeKr8FvsNcaK/R6Ocb9Uc4FvefpE+fMwP0wH8DU7wB77nIo6x6a2hvNEME5D0CpbrjnHf+8excI=)
 
