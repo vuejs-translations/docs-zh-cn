@@ -314,8 +314,8 @@ data() {
 ```
 
 同样的，如果样式对象需要更复杂的逻辑，也可以使用返回样式对象的计算属性。
-<!-- TODO: translation -->
-`:style` 指令也可以与常规样式属性共存，就像 `:class`.
+
+`:style` 指令也可以和常规的 style attributes 共存，就像 `:class`.
 
 模板:
 
