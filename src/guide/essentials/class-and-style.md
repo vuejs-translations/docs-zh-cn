@@ -314,16 +314,16 @@ data() {
 ```
 
 同样的，如果样式对象需要更复杂的逻辑，也可以使用返回样式对象的计算属性。
-<!-- TODO: translation -->
-`:style` directives can also coexist with regular style attributes, just like `:class`.
 
-Template:
+`:style` 指令也可以和常规的 style attribute 共存，就像 `:class`.
+
+模板:
 
 ```vue-html
 <h1 style="color: red" :style="'font-size: 1em'">hello</h1>
 ```
 
-It will render:
+这将被渲染为:
 
 ```vue-html
 <h1 style="color: red; font-size: 1em;">hello</h1>
