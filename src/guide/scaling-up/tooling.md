@@ -1,7 +1,3 @@
-<script setup>
-import { VTCodeGroup, VTCodeGroupTab } from '@vue/theme'
-</script>
-
 # 工具链 {#tooling}
 
 ## 在线尝试 {#try-it-online}
@@ -25,40 +21,29 @@ import { VTCodeGroup, VTCodeGroupTab } from '@vue/theme'
 
 要使用 Vite 来创建一个 Vue 项目，非常简单：
 
-<VTCodeGroup>
-  <VTCodeGroupTab label="npm">
+::: code-group
 
-  ```sh
-  $ npm create vue@latest
-  ```
+```sh [npm]
+$ npm create vue@latest
+```
 
-  </VTCodeGroupTab>
-  <VTCodeGroupTab label="pnpm">
+```sh [pnpm]
+$ pnpm create vue@latest
+```
   
-  ```sh
-  $ pnpm create vue@latest
-  ```
-
-  </VTCodeGroupTab>
-  <VTCodeGroupTab label="yarn">
+```sh [yarn]
+# For Yarn Modern (v2+)
+$ yarn create vue@latest
   
-  ```sh
-  # For Yarn Modern (v2+)
-  $ yarn create vue@latest
+# For Yarn ^v4.11
+$ yarn dlx create-vue@latest
+```
   
-  # For Yarn ^v4.11
-  $ yarn dlx create-vue@latest
-  ```
+```sh [bun]
+$ bun create vue@latest
+```
 
-  </VTCodeGroupTab>
-  <VTCodeGroupTab label="bun">
-  
-  ```sh
-  $ bun create vue@latest
-  ```
-
-  </VTCodeGroupTab>
-</VTCodeGroup>
+:::
 
 这个命令会安装和执行 [create-vue](https://github.com/vuejs/create-vue)，它是 Vue 提供的官方脚手架工具。跟随命令行的提示继续操作即可。
 

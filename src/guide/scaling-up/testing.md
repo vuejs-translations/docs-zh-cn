@@ -1,6 +1,3 @@
-<script setup>
-import { VTCodeGroup, VTCodeGroupTab } from '@vue/theme'
-</script>
 <style>
 .lambdatest {
   background-color: var(--vt-c-bg-soft);
@@ -61,8 +58,7 @@ import { VTCodeGroup, VTCodeGroupTab } from '@vue/theme'
 
 以这个 `increment` 函数为例：
 
-```js
-// helpers.js
+```js [helpers.js]
 export function increment(current, max = 10) {
   if (current < max) {
     return current + 1
@@ -75,8 +71,7 @@ export function increment(current, max = 10) {
 
 如果任何一条断言失败了，那么问题一定是出在 `increment` 函数上。
 
-```js{4-16}
-// helpers.spec.js
+```js{4-16} [helpers.spec.js]
 import { increment } from './helpers'
 
 describe('increment', () => {
@@ -149,10 +144,9 @@ describe('increment', () => {
 
   我们不了解这个步进器的实现细节，只知道“输入”是这个 `max` prop，“输出”是这个组件状态所呈现出的视图。
 
-<VTCodeGroup>
-  <VTCodeGroupTab label="Vue Test Utils">
+::: code-group
 
-```js
+```js [Vue Test Utils]
 const valueSelector = '[data-testid=stepper-value]'
 const buttonSelector = '[data-testid=increment]'
 
@@ -169,10 +163,7 @@ await wrapper.find(buttonSelector).trigger('click')
 expect(wrapper.find(valueSelector).text()).toContain('1')
 ```
 
-  </VTCodeGroupTab>
-  <VTCodeGroupTab label="Cypress">
-
-```js
+```js [Cypress]
 const valueSelector = '[data-testid=stepper-value]'
 const buttonSelector = '[data-testid=increment]'
 
@@ -191,10 +182,7 @@ cy.get(valueSelector)
   .should('contain.text', '1')
 ```
 
-  </VTCodeGroupTab>
-  <VTCodeGroupTab label="Testing Library">
-
-```js
+```js [Testing Library]
 const { getByText } = render(Stepper, {
   props: {
     max: 1
@@ -213,8 +201,7 @@ getByText('1')
 await fireEvent.click(button)
 ```
 
-  </VTCodeGroupTab>
-</VTCodeGroup>
+:::
 
 **应避免的做法**
 
@@ -320,8 +307,7 @@ Vitest 和基于浏览器的运行器之间的主要区别是速度和执行上�
 
 接着，更新你的 Vite 配置，添加上 `test` 选项：
 
-```js{6-12}
-// vite.config.js
+```js{5-11} [vite.config.js]
 import { defineConfig } from 'vite'
 
 export default defineConfig({
@@ -339,8 +325,7 @@ export default defineConfig({
 :::tip
 如果使用 TypeScript，请将 `vitest/globals` 添加到 `tsconfig.json` 的 `types` 字段当中。
 
-```json
-// tsconfig.json
+```json [tsconfig.json]
 
 {
   "compilerOptions": {
@@ -353,8 +338,7 @@ export default defineConfig({
 
 接着，在你的项目中创建名字以 `*.test.js` 结尾的文件。你可以把所有的测试文件放在项目根目录下的 `test` 目录中，或者放在源文件旁边的 `test` 目录中。Vitest 会使用命名规则自动搜索它们。
 
-```js
-// MyComponent.test.js
+```js [MyComponent.test.js]
 import { render } from '@testing-library/vue'
 import MyComponent from './MyComponent.vue'
 
@@ -372,7 +356,7 @@ test('it should work', () => {
 
 最后，在 `package.json` 之中添加测试命令，然后运行它：
 
-```json{4}
+```json{4} [package.json]
 {
   // ...
   "scripts": {
@@ -398,8 +382,7 @@ test('it should work', () => {
 
 如果一个组合式程序只使用响应式 API，那么它可以通过直接调用并断言其返回的状态或方法来进行测试。
 
-```js
-// counter.js
+```js [counter.js]
 import { ref } from 'vue'
 
 export function useCounter() {
@@ -413,8 +396,7 @@ export function useCounter() {
 }
 ```
 
-```js
-// counter.test.js
+```js [counter.test.js]
 import { useCounter } from './counter.js'
 
 test('useCounter', () => {
@@ -428,8 +410,7 @@ test('useCounter', () => {
 
 一个依赖生命周期钩子或供给/注入的组合式函数需要被包装在一个宿主组件中才可以测试。我们可以创建下面这样的帮手函数：
 
-```js
-// test-utils.js
+```js [test-utils.js]
 import { createApp } from 'vue'
 
 export function withSetup(composable) {

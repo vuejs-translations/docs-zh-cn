@@ -2,10 +2,6 @@
 footer: false
 ---
 
-<script setup>
-import { VTCodeGroup, VTCodeGroupTab } from '@vue/theme'
-</script>
-
 # 快速上手 {#quick-start}
 
 ## 线上尝试 Vue {#try-vue-online}
@@ -27,44 +23,31 @@ import { VTCodeGroup, VTCodeGroupTab } from '@vue/theme'
 在本节中，我们将介绍如何在本地搭建 Vue [单页应用](/guide/extras/ways-of-using-vue#single-page-application-spa)。创建的项目将使用基于 [Vite](https://vitejs.dev) 的构建设置，并允许我们使用 Vue 的[单文件组件](/guide/scaling-up/sfc) (SFC)。
 
 确保你安装了最新版本的 [Node.js](https://nodejs.org/)，并且你的当前工作目录正是打算创建项目的目录。在命令行中运行以下命令 (不要带上 `$` 符号)：
+::: code-group
 
-<VTCodeGroup>
-  <VTCodeGroupTab label="npm">
+```sh [npm]
+$ npm create vue@latest
+```
 
-  ```sh
-  $ npm create vue@latest
-  ```
+```sh [pnpm]
+$ pnpm create vue@latest
+```
 
-  </VTCodeGroupTab>
-  <VTCodeGroupTab label="pnpm">
+```sh [yarn]
+# For Yarn (v1+)
+$ yarn create vue
 
-  ```sh
-  $ pnpm create vue@latest
-  ```
-
-  </VTCodeGroupTab>
-  <VTCodeGroupTab label="yarn">
-
-  ```sh
-  # For Yarn (v1+)
-  $ yarn create vue
-
-  # For Yarn Modern (v2+)
-  $ yarn create vue@latest
+# For Yarn Modern (v2+)
+$ yarn create vue@latest
   
-  # For Yarn ^v4.11
-  $ yarn dlx create-vue@latest
-  ```
+# For Yarn ^v4.11
+$ yarn dlx create-vue@latest
+```
 
-  </VTCodeGroupTab>
-  <VTCodeGroupTab label="bun">
-
-  ```sh
-  $ bun create vue@latest
-  ```
-
-  </VTCodeGroupTab>
-</VTCodeGroup>
+```sh [bun]
+$ bun create vue@latest
+```
+:::
 
 这一指令将会安装并执行 [create-vue](https://github.com/vuejs/create-vue)，它是 Vue 官方的项目脚手架工具。你将会看到一些诸如 TypeScript 和测试支持之类的可选功能提示：
 
@@ -84,44 +67,33 @@ import { VTCodeGroup, VTCodeGroupTab } from '@vue/theme'
 
 如果不确定是否要开启某个功能，你可以直接按下回车键选择 `No`。在项目被创建后，通过以下步骤安装依赖并启动开发服务器：
 
-<VTCodeGroup>
-  <VTCodeGroupTab label="npm">
+::: code-group
 
-  ```sh-vue
-  $ cd {{'<your-project-name>'}}
-  $ npm install
-  $ npm run dev
-  ```
+```sh-vue [npm]
+$ cd {{'<your-project-name>'}}
+$ npm install
+$ npm run dev
+```
 
-  </VTCodeGroupTab>
-  <VTCodeGroupTab label="pnpm">
+```sh-vue [pnpm]
+$ cd {{'<your-project-name>'}}
+$ pnpm install
+$ pnpm run dev
+```
 
-  ```sh-vue
-  $ cd {{'<your-project-name>'}}
-  $ pnpm install
-  $ pnpm run dev
-  ```
+```sh-vue [yarn]
+$ cd {{'<your-project-name>'}}
+$ yarn
+$ yarn dev
+```
 
-  </VTCodeGroupTab>
-  <VTCodeGroupTab label="yarn">
+```sh-vue [bun]
+$ cd {{'<your-project-name>'}}
+$ bun install
+$ bun run dev
+```
 
-  ```sh-vue
-  $ cd {{'<your-project-name>'}}
-  $ yarn
-  $ yarn dev
-  ```
-
-  </VTCodeGroupTab>
-  <VTCodeGroupTab label="bun">
-
-  ```sh-vue
-  $ cd {{'<your-project-name>'}}
-  $ bun install
-  $ bun run dev
-  ```
-
-  </VTCodeGroupTab>
-</VTCodeGroup>
+:::
 
 你现在应该已经运行起来了你的第一个 Vue 项目！请注意，生成的项目中的示例组件使用的是[组合式 API](/guide/introduction#composition-api) 和 `<script setup>`，而非[选项式 API](/guide/introduction#options-api)。下面是一些补充提示：
 
@@ -131,37 +103,25 @@ import { VTCodeGroup, VTCodeGroupTab } from '@vue/theme'
 - 如果你选择使用 TypeScript，请阅读 [TypeScript 使用指南](typescript/overview)。
 
 当你准备将应用发布到生产环境时，请运行：
+::: code-group
 
-<VTCodeGroup>
-  <VTCodeGroupTab label="npm">
+```sh [npm]
+$ npm run build
+```
 
-  ```sh
-  $ npm run build
-  ```
+```sh [pnpm]
+$ pnpm run build
+```
 
-  </VTCodeGroupTab>
-  <VTCodeGroupTab label="pnpm">
+```sh [yarn]
+$ yarn build
+```
 
-  ```sh
-  $ pnpm run build
-  ```
+```sh [bun]
+$ bun run build
+```
 
-  </VTCodeGroupTab>
-  <VTCodeGroupTab label="yarn">
-
-  ```sh
-  $ yarn build
-  ```
-
-  </VTCodeGroupTab>
-  <VTCodeGroupTab label="bun">
-
-  ```sh
-  $ bun run build
-  ```
-
-  </VTCodeGroupTab>
-</VTCodeGroup>
+:::
 
 此命令会在 `./dist` 文件夹中为你的应用创建一个生产环境的构建版本。关于将应用上线生产环境的更多内容，请阅读[生产环境部署指南](/guide/best-practices/production-deployment)。
 
@@ -381,8 +341,7 @@ import { createApp } from 'vue'
 
 随着对这份指南的逐步深入，我们可能需要将代码分割成单独的 JavaScript 文件，以便更容易管理。例如：
 
-```html
-<!-- index.html -->
+```html [index.html]
 <div id="app"></div>
 
 <script type="module">
@@ -395,8 +354,7 @@ import { createApp } from 'vue'
 
 <div class="options-api">
 
-```js
-// my-component.js
+```js [my-component.js]
 export default {
   data() {
     return { count: 0 }
@@ -408,8 +366,7 @@ export default {
 </div>
 <div class="composition-api">
 
-```js
-// my-component.js
+```js [my-component.js]
 import { ref } from 'vue'
 export default {
   setup() {

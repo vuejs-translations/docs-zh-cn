@@ -172,8 +172,7 @@ export function createApp() {
 
 我们在客户端入口导入通用代码，创建应用并执行挂载：
 
-```js
-// client.js
+```js [client.js]
 import { createApp } from './app.js'
 
 createApp().mount('#app')
@@ -181,8 +180,8 @@ createApp().mount('#app')
 
 服务器在请求处理函数中使用相同的应用创建逻辑：
 
-```js{2,5}
-// server.js (不相关的代码省略)
+```js{2,5} [server.js]
+// (不相关的代码省略)
 import { createApp } from './app.js'
 
 server.get('/', (req, res) => {

@@ -293,9 +293,8 @@ Vue 为这些宏函数都提供了类型声明 (全局可用)，因此类型推�
 - 应用于单文件组件和 js(x)/ts(x) 文件。在执行转换之前，会对文件进行快速的使用检查，因此不使用宏的文件不会有性能损失。
 - 注意 `reactivityTransform` 现在是一个插件的顶层选项，而不再是位于 `script.refSugar` 之中了，因为它不仅仅只对单文件组件起效。
 
-```js
-// vite.config.js
-export default {
+```js [vite.config.js]
+export default { 
   plugins: [
     vue({
       reactivityTransform: true
@@ -309,8 +308,7 @@ export default {
 - 目前仅对单文件组件起效
 - 需要 `vue-loader@>=17.0.0`
 
-```js
-// vue.config.js
+```js [vue.config.js]
 module.exports = {
   chainWebpack: (config) => {
     config.module
@@ -331,8 +329,7 @@ module.exports = {
 - 目前仅对单文件组件起效
 - 需要 `vue-loader@>=17.0.0`
 
-```js
-// webpack.config.js
+```js [webpack.config.js]
 module.exports = {
   module: {
     rules: [

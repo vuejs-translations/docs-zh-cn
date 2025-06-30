@@ -40,8 +40,7 @@ const myPlugin = {
 
 让我们从设置插件对象开始。建议在一个单独的文件中创建并导出它，以保证更好地管理逻辑，如下所示：
 
-```js
-// plugins/i18n.js
+```js [plugins/i18n.js]
 export default {
   install: (app, options) => {
     // 在这里编写插件代码
@@ -57,8 +56,7 @@ export default {
 
 这个函数应当能够在任意模板中被全局调用。这一点可以通过在插件中将它添加到 `app.config.globalProperties` 上来实现：
 
-```js{4-11}
-// plugins/i18n.js
+```js{3-10} [plugins/i18n.js]
 export default {
   install: (app, options) => {
     // 注入一个全局可用的 $translate() 方法
@@ -99,8 +97,7 @@ TypeScript 用户请参考：[扩展全局属性](/guide/typescript/options-api#
 
 在插件中，我们可以通过 `provide` 来为插件用户提供访问某个函数或属性的能力。举例来说，我们可以将插件接收到的 `options` 参数提供给整个应用，让任何组件都能使用这个翻译字典对象。
 
-```js{10}
-// plugins/i18n.js
+```js{10} [plugins/i18n.js]
 export default {
   install: (app, options) => {
     app.provide('i18n', options)
