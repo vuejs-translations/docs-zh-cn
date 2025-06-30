@@ -521,6 +521,7 @@ defineProps<{
 }>()
 </script>
 ```
+
 当无法自动推断泛型组件的具体类型时，可使用指令 `@vue-generic` 来显式指定：
 
 ```vue
