@@ -521,8 +521,8 @@ defineProps<{
 }>()
 </script>
 ```
-<!-- TODO: translation -->
-You can use `@vue-generic` the directive to pass in explicit types, for when the type cannot be inferred:
+
+当无法自动推断泛型组件的具体类型时，可使用指令 `@vue-generic` 来显式指定：
 
 ```vue
 <template>
