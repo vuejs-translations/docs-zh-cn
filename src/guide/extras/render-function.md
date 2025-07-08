@@ -705,8 +705,8 @@ const vnode = withDirectives(h('div'), [
 ### 模板引用 {#template-refs}
 
 <div class="composition-api">
-<!-- TODO: translation -->
-With the Composition API, when using [`useTemplateRef()`](/api/composition-api-helpers#usetemplateref) <sup class="vt-badge" data-text="3.5+" />  template refs are created by passing the string value as prop to the vnode:
+
+在组合式 API 中使用 [`useTemplateRef()`](/api/composition-api-helpers#usetemplateref) <sup class="vt-badge" data-text="3.5+" /> 时，模板引用是通过将字符串值作为 prop 传递给 vnode 创建的：
 
 ```js
 import { h, useTemplateRef } from 'vue'
@@ -722,9 +722,9 @@ export default {
 ```
 
 <details>
-<summary>Usage before 3.5</summary>
+<summary>3.5 之前的用法</summary>
 
-In versions before 3.5 where useTemplateRef() was not introduced, template refs are created by passing the ref() itself as a prop to the vnode:
+在 3.5 版本之前 useTemplateRef() 暂未引入，模板引用是通过将 ref() 本身作为 prop 传递给 vnode 创建的：
 
 ```js
 import { h, ref } from 'vue'
