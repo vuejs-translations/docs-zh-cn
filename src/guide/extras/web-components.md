@@ -106,10 +106,10 @@ const MyVueElement = defineCustomElement({
 customElements.define('my-vue-element', MyVueElement)
 
 // 你也可以编程式地实例化元素：
-// （必须在注册之后）
+// (必须在注册之后)
 document.body.appendChild(
   new MyVueElement({
-    // 初始化 props（可选）
+    // 初始化 props (可选)
   })
 )
 ```
