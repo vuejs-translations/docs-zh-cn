@@ -57,9 +57,9 @@ onMounted(load)
   <section v-if="data && data.platinum_china" id="special-sponsor">
     <h3>中国区铂金赞助</h3>
     <div id="special-sponsor-container">
-      <template v-for="{ url, img, name, height, description } of data.platinum_china"
+      <template v-for="{ url, url_cn, img, name, height, description } of data.platinum_china"
       >
-        <a class="logo" :href="url" target="_blank" rel="sponsored noopener">
+        <a class="logo" :href="url_cn || url" target="_blank" rel="sponsored noopener">
           <picture v-if="img.endsWith('png')">
             <source
               type="image/avif"

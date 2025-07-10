@@ -10,6 +10,7 @@ declare global {
 
 export interface Sponsor {
   url: string
+  url_cn: string
   img: string
   name: string
   description?: string

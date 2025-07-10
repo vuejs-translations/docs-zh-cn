@@ -71,9 +71,9 @@ function resolveList(data: SponsorData) {
   >
     <template v-if="data && visible">
       <a
-        v-for="{ url, img, name } of resolveList(data)"
+        v-for="{ url, url_cn, img, name } of resolveList(data)"
         class="spsr-item"
-        :href="url"
+        :href="url_cn || url"
         target="_blank"
         rel="sponsored noopener"
         @click="track()"
