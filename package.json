@@ -9,7 +9,7 @@
     "dev": "vitepress",
     "build": "vitepress build",
     "preview": "vitepress preview",
-    "lint": "zhlint 'src/{api,about,guide,sponsor,translations,tutorial}/**/*.md'",
+    "lint": "zhlint \"src/{api,about,guide,sponsor,translations,tutorial}/**/*.md\"",
     "clean": "rm -rf .vitepress/dist",
     "sync": "node scripts/sync.js",
     "preinstall": "npx only-allow pnpm",
