@@ -50,7 +50,7 @@ Vue 3 是性能最强的主流前端框架之一，可以轻松处理大多数 w
 
 ## Vue 体积小吗？ {#is-vue-lightweight}
 
-当你通过构建工具使用时，Vue 的许多 API 都是可以[“tree-shake”](https://developer.mozilla.org/en-US/docs/Glossary/Tree_shaking)的。例如，如果你不使用内置的 `<Transition>` 组件，它就不会被包含在最终的生产环境包里。
+当你通过构建工具使用时，Vue 的许多 API 都是可以[“tree-shaking”](https://developer.mozilla.org/en-US/docs/Glossary/Tree_shaking)的。例如，如果你不使用内置的 `<Transition>` 组件，它就不会被包含在最终的生产环境包里。
 
 对于一个 Vue 的最少 API 使用的 hello world 应用来说，配合最小化和 brotli 压缩，其基线大小只有 **16kb** 左右。但实际的应用大小取决于你使用了多少框架的可选特性。在极端情况下，如果一个应用使用了 Vue 提供的每一个特性，那么总的运行时大小大约为 **27kb**。
 

@@ -183,9 +183,9 @@
 
   ### webpack Treeshaking 的注意事项 {#note-on-webpack-treeshaking}
 
-  因为 `defineComponent()` 是一个函数调用，所以它可能被某些构建工具认为会产生副作用，如 webpack。即使一个组件从未被使用，也有可能不被 tree-shake。
+  因为 `defineComponent()` 是一个函数调用，所以它可能被某些构建工具认为会产生副作用，如 webpack。即使一个组件从未被使用，也有可能不被 tree-shaking。
 
-  为了告诉 webpack 这个函数调用可以被安全地 tree-shake，我们可以在函数调用之前添加一个 `/*#__PURE__*/` 形式的注释：
+  为了告诉 webpack 这个函数调用可以被安全地 tree-shaking `/*#__PURE__*/` 形式的注释：
 
   ```js
   export default /*#__PURE__*/ defineComponent(/* ... */)
