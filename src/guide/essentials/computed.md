@@ -255,7 +255,13 @@ const fullName = computed({
 
 - 仅 3.4+ 支持
 
+<p class="options-api">
+如果需要，可以通过访问计算属性的 getter 的第二个参数来获取计算属性返回的上一个值：
+</p>
+
+<p class="composition-api">
 如果需要，可以通过访问计算属性的 getter 的第一个参数来获取计算属性返回的上一个值：
+</p>
 
 <div class="options-api">
 
@@ -317,7 +323,7 @@ export default {
   },
   computed: {
     alwaysSmall: {
-      get(previous) {
+      get(_, previous) {
         if (this.count <= 3) {
           return this.count
         }
