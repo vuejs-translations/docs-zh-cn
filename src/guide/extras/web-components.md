@@ -395,7 +395,7 @@ type VueEmit<T extends EventMap> = EmitFn<{
 我们将 `$props` 和 `$emit` 标记为已弃用，以便当我们获取自定义元素的 `ref` 时，我们不会被诱导使用这些属性，因为这些属性在自定义元素的情况下仅用于类型检查。这些属性实际上并不存在于自定义元素实例上。
 :::
 
-使用类型助手，我们现在可以选择在 Vue 模板中应暴露的 JS 属性进行类型检查：
+使用类型助手，我们现在可以选择对在 Vue 模板中暴露的 JS 属性进行类型检查：
 
 ```ts
 // file: some-lib/src/SomeElement.vue.ts
