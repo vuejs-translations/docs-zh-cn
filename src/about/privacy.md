@@ -20,11 +20,11 @@
 
 我们可能会通过集成在我们网站上的第三方服务收集匿名化数据：
 
-- **访问者数据。**我们的网站分析由 [Fathom Analytics](https://usefathom.com/) 驱动，该服务不使用 cookies，并且遵守 GDPR、ePrivacy (包括 PECR)、COPPA 和 CCPA。使用这种隐私友好型的网站分析软件，您的 IP 地址仅被短暂处理，我们 (运营此网站的团队) 无法识别您的身份。根据 CCPA，您的个人信息将被去标识化。您可以在 Fathom Analytics 的网站上了解更多相关信息。
+- **访问者数据**：我们的网站分析由 [Fathom Analytics](https://usefathom.com/) 驱动，该服务不使用 cookies，并且遵守 GDPR、ePrivacy (包括 PECR)、COPPA 和 CCPA。使用这种隐私友好型的网站分析软件，您的 IP 地址仅被短暂处理，我们 (运营此网站的团队) 无法识别您的身份。根据 CCPA，您的个人信息将被去标识化。您可以在 Fathom Analytics 的网站上了解更多相关信息。
 
   - Fathom Analytics 的隐私政策：<https://usefathom.com/legal/privacy>
 
-- **搜索功能的使用数据。**我们的搜索功能由 [Algolia DocSearch](https://docsearch.algolia.com/) 驱动，该服务不进行任何形式的用户追踪或指纹识别，也不使用 cookies。Algolia 的服务符合 GPDR、CCPA 标准，并获得 TRUSTe 认证。
+- **搜索功能的使用数据**：我们的搜索功能由 [Algolia DocSearch](https://docsearch.algolia.com/) 驱动，该服务不进行任何形式的用户追踪或指纹识别，也不使用 cookies。Algolia 的服务符合 GPDR、CCPA 标准，并获得 TRUSTe 认证。
 
   - Algolia 的隐私政策：<https://www.algolia.com/policies/privacy/>
   - Algolia 的安全与隐私合规性：<https://www.algolia.com/distributed-secure/security-compliance/>
