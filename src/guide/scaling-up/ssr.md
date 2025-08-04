@@ -268,7 +268,7 @@ Vite 提供了内置的 [Vue 服务端渲染支持](https://cn.vitejs.dev/guide/
 推荐的解决方案是在每个请求中为整个应用创建一个全新的实例，包括 router 和全局 store。然后，我们使用[应用层级的 provide 方法](/guide/components/provide-inject#app-level-provide)来提供共享状态，并将其注入到需要它的组件中，而不是直接在组件中将其导入：
 
 ```js
-// app.js （在服务端和客户端间共享）
+// app.js (在服务端和客户端间共享)
 import { createSSRApp } from 'vue'
 import { createStore } from './store.js'
 

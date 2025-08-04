@@ -18,10 +18,10 @@ outline: deep
 <Suspense>
 └─ <Dashboard>
    ├─ <Profile>
-   │  └─ <FriendStatus>（组件有异步的 setup()）
+   │  └─ <FriendStatus> (组件有异步的 setup())
    └─ <Content>
-      ├─ <ActivityFeed> （异步组件）
-      └─ <Stats>（异步组件）
+      ├─ <ActivityFeed> (异步组件)
+      └─ <Stats> (异步组件)
 ```
 
 在这个组件树中有多个嵌套组件，要渲染出它们，首先得解析一些异步资源。如果没有 `<Suspense>`，则它们每个都需要处理自己的加载、报错和完成状态。在最坏的情况下，我们可能会在页面上看到三个旋转的加载态，在不同的时间显示出内容。

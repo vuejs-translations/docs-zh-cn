@@ -84,7 +84,7 @@ import { defineAsyncComponent } from 'vue'
 
 // 会为 Foo.vue 及其依赖创建单独的一个块
 // 它只会按需加载
-//（即该异步组件在页面中被渲染时）
+// (即该异步组件在页面中被渲染时)
 const Foo = defineAsyncComponent(() => import('./Foo.vue'))
 ```
 
