@@ -288,7 +288,7 @@ Vitest 和基于浏览器的运行器之间的主要区别是速度和执行上�
 
 ### 推荐方案 {#recommendation-2}
 
-- [Playwright](https://playwright.dev/) 是一个非常好的端到端测试解决方案，支持 Chromium、WebKit 和 Firefox。在 Windows、Linux 和 macOS 上进行本地或 CI 测试、无头测试，或使用适用于 Android 和 Mobile Safari 的 Google Chrome 的原生移动端模拟测试。它拥有信息丰富的用户界面、出色的调试能力、内置断言、并行处理功能以及追踪功能，旨在消除不稳定的测试。它还提供对[组件测试](https://docs.cypress.io/guides/component-testing/introduction)的支持，但目前处于实验阶段。Playwright 由微软开源并维护。
+- [Playwright](https://playwright.dev/) 是一个非常好的端到端测试解决方案，支持 Chromium、WebKit 和 Firefox。在 Windows、Linux 和 macOS 上进行本地或 CI 测试、无头测试，或使用适用于 Android 和 Mobile Safari 的 Google Chrome 的原生移动端模拟测试。它拥有信息丰富的用户界面、出色的调试能力、内置断言、并行处理功能以及追踪功能，旨在消除不稳定的测试。它还提供对[组件测试](https://playwright.dev/docs/test-components)的支持，但目前处于实验阶段。Playwright 由微软开源并维护。
 
 - [Cypress](https://www.cypress.io/) 具有信息丰富的图形界面、出色的调试性、内置断言、存根、抗剥落性、并行化和快照等诸多特性。而且如上所述，它还提供对 [组件测试](https://docs.cypress.io/guides/component-testing/introduction) 的支持。它支持基于 Chromium 的浏览器、Firefox 和 Electron。但 WebKit 被标记为实验性支持。Cypress 采用 MIT 许可，但并行化等部分功能需要订阅 Cypress Cloud。
 
