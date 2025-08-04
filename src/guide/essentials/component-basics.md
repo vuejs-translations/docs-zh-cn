@@ -1,5 +1,9 @@
 # 组件基础 {#components-basics}
 
+<ScrimbaLink href="https://scrimba.com/links/vue-component-basics" title="Free Vue.js Components Basics Lesson" type="scrimba">
+  观看 Scrimba 的互动视频课程
+</ScrimbaLink>
+
 组件允许我们将 UI 划分为独立的、可重用的部分，并且可以对每个部分进行单独的思考。在实际应用中，组件常常被组织成一个层层嵌套的树状结构：
 
 ![组件树](./images/components.png)
@@ -184,8 +188,7 @@ Props 是一种特别的 attributes，你可以在组件上声明注册。要传
 
 <div class="options-api">
 
-```vue
-<!-- BlogPost.vue -->
+```vue [BlogPost.vue]
 <script>
 export default {
   props: ['title']
@@ -202,8 +205,7 @@ export default {
 </div>
 <div class="composition-api">
 
-```vue
-<!-- BlogPost.vue -->
+```vue [BlogPost.vue]
 <script setup>
 defineProps(['title'])
 </script>
@@ -348,8 +350,8 @@ const postFontSize = ref(1)
 
 然后，给 `<BlogPost>` 组件添加一个按钮：
 
-```vue{5}
-<!-- BlogPost.vue, 省略了 <script> -->
+```vue{5} [BlogPost.vue]
+<!-- 省略了 <script> -->
 <template>
   <div class="blog-post">
     <h4>{{ title }}</h4>
@@ -369,8 +371,8 @@ const postFontSize = ref(1)
 
 子组件可以通过调用内置的 [**`$emit`** 方法](/api/component-instance#emit)，通过传入事件名称来抛出一个事件：
 
-```vue{5}
-<!-- BlogPost.vue, 省略了 <script> -->
+```vue{5} [BlogPost.vue]
+<!-- 省略了 <script> -->
 <template>
   <div class="blog-post">
     <h4>{{ title }}</h4>
@@ -396,8 +398,7 @@ const postFontSize = ref(1)
 
 <div class="options-api">
 
-```vue{5}
-<!-- BlogPost.vue -->
+```vue{4} [BlogPost.vue]
 <script>
 export default {
   props: ['title'],
@@ -409,8 +410,7 @@ export default {
 </div>
 <div class="composition-api">
 
-```vue{4}
-<!-- BlogPost.vue -->
+```vue{3} [BlogPost.vue]
 <script setup>
 defineProps(['title'])
 defineEmits(['enlarge-text'])
@@ -468,8 +468,7 @@ Something bad happened.
 
 这可以通过 Vue 的自定义 `<slot>` 元素来实现：
 
-```vue{5}
-<!-- AlertBox.vue -->
+```vue{4} [AlertBox.vue]
 <template>
   <div class="alert-box">
     <strong>This is an Error for Demo Purposes</strong>

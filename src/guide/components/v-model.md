@@ -1,5 +1,9 @@
 # 组件 v-model {#component-v-model}
 
+<ScrimbaLink href="https://scrimba.com/links/vue-component-v-model" title="Free Vue.js Component v-model Lesson" type="scrimba">
+  观看Scrimba的互动视频课程
+</ScrimbaLink>
+
 ## 基本用法 {#basic-usage}
 
 `v-model` 可以在组件上使用以实现双向绑定。
@@ -8,8 +12,7 @@
 
 从 Vue 3.4 开始，推荐的实现方式是使用 [`defineModel()`](/api/sfc-script-setup#definemodel) 宏：
 
-```vue
-<!-- Child.vue -->
+```vue [Child.vue]
 <script setup>
 const model = defineModel()
 
@@ -26,8 +29,7 @@ function update() {
 
 父组件可以用 `v-model` 绑定一个值：
 
-```vue-html
-<!-- Parent.vue -->
+```vue-html [Parent.vue]
 <Child v-model="countModel" />
 ```
 
@@ -59,8 +61,7 @@ const model = defineModel()
 
 在 3.4 版本之前，你一般会按照如下的方式来实现上述相同的子组件：
 
-```vue
-<!-- Child.vue -->
+```vue [Child.vue]
 <script setup>
 const props = defineProps(['modelValue'])
 const emit = defineEmits(['update:modelValue'])
@@ -76,8 +77,7 @@ const emit = defineEmits(['update:modelValue'])
 
 然后，父组件中的 `v-model="foo"` 将被编译为：
 
-```vue-html
-<!-- Parent.vue -->
+```vue-html [Parent.vue]
 <Child
   :modelValue="foo"
   @update:modelValue="$event => (foo = $event)"
@@ -99,20 +99,20 @@ const model = defineModel({ default: 0 })
 :::warning
 如果为 `defineModel` prop 设置了一个 `default` 值且父组件没有为该 prop 提供任何值，会导致父组件与子组件之间不同步。在下面的示例中，父组件的 `myRef` 是 undefined，而子组件的 `model` 是 1：
 
-**子组件：**
-
-```js
+```vue [Child.vue]
+<script setup>
 const model = defineModel({ default: 1 })
+</script>
 ```
 
-**父组件：**
-
-```js
+```vue [Parent.vue]
+<script setup>
 const myRef = ref()
-```
+</script>
 
-```html
-<Child v-model="myRef"></Child>
+<template>
+  <Child v-model="myRef"></Child>
+</template>
 ```
 
 :::
@@ -152,8 +152,7 @@ const myRef = ref()
 
 这里是相应的代码：
 
-```vue
-<!-- CustomInput.vue -->
+```vue [CustomInput.vue]
 <script>
 export default {
   props: ['modelValue'],
@@ -179,8 +178,7 @@ export default {
 
 另一种在组件内实现 `v-model` 的方式是使用一个可写的，同时具有 getter 和 setter 的 `computed` 属性。`get` 方法需返回 `modelValue` prop，而 `set` 方法需触发相应的事件：
 
-```vue
-<!-- CustomInput.vue -->
+```vue [CustomInput.vue]
 <script>
 export default {
   props: ['modelValue'],
@@ -217,8 +215,7 @@ export default {
 
 在子组件中，我们可以通过将字符串作为第一个参数传递给 `defineModel()` 来支持相应的参数：
 
-```vue
-<!-- MyComponent.vue -->
+```vue [MyComponent.vue]
 <script setup>
 const title = defineModel('title')
 </script>
@@ -239,8 +236,7 @@ const title = defineModel('title', { required: true })
 <details>
 <summary>3.4 之前的用法</summary>
 
-```vue
-<!-- MyComponent.vue -->
+```vue [MyComponent.vue]
 <script setup>
 defineProps({
   title: {
@@ -267,8 +263,7 @@ defineEmits(['update:title'])
 
 在这种情况下，子组件应该使用 `title` prop 和 `update:title` 事件来更新父组件的值，而非默认的 `modelValue` prop 和 `update:modelValue` 事件：
 
-```vue
-<!-- MyComponent.vue -->
+```vue [MyComponent.vue]
 <script>
 export default {
   props: ['title'],
@@ -408,7 +403,7 @@ console.log(modifiers) // { capitalize: true }
 
 为了能够基于修饰符选择性地调节值的读取和写入方式，我们可以给 `defineModel()` 传入 `get` 和 `set` 这两个选项。这两个选项在从模型引用中读取或设置值时会接收到当前的值，并且它们都应该返回一个经过处理的新值。下面是一个例子，展示了如何利用 `set` 选项来应用 `capitalize` (首字母大写) 修饰符：
 
-```vue{6-8}
+```vue{4-6}
 <script setup>
 const [model, modifiers] = defineModel({
   set(value) {
@@ -573,10 +568,10 @@ console.log(lastNameModifiers) // { uppercase: true }
 ```vue{5,6,10,11}
 <script setup>
 const props = defineProps({
-firstName: String,
-lastName: String,
-firstNameModifiers: { default: () => ({}) },
-lastNameModifiers: { default: () => ({}) }
+  firstName: String,
+  lastName: String,
+  firstNameModifiers: { default: () => ({}) },
+  lastNameModifiers: { default: () => ({}) }
 })
 defineEmits(['update:firstName', 'update:lastName'])
 

@@ -24,8 +24,7 @@ app.config.compilerOptions.isCustomElement = (tag) => tag.includes('-')
 
 #### Vite 示例配置 {#example-vite-config}
 
-```js
-// vite.config.js
+```js [vite.config.js]
 import vue from '@vitejs/plugin-vue'
 
 export default {
@@ -44,8 +43,7 @@ export default {
 
 #### Vue CLI 示例配置 {#example-vue-cli-config}
 
-```js
-// vue.config.js
+```js [vue.config.js]
 module.exports = {
   chainWebpack: (config) => {
     config.module
@@ -219,8 +217,7 @@ customElements.define('my-example', ExampleElement)
 
 建议按元素分别导出构造函数，以便用户可以灵活地按需导入它们，并使用期望的标签名称注册它们。你还可以导出一个函数来方便用户自动注册所有元素。下面是一个 Vue 自定义元素库的入口文件示例：
 
-```js
-// elements.js
+```js [elements.js]
 
 import { defineCustomElement } from 'vue'
 import Foo from './MyFoo.ce.vue'
@@ -312,9 +309,7 @@ declare module 'vue' {
 
 假设我们有一个自定义元素，其中定义了一些 JS 属性和事件，并且它发布在名为 `some-lib` 的库中：
 
-```ts
-// file: some-lib/src/SomeElement.ts
-
+```ts [some-lib/src/SomeElement.ts]
 // 定义一个带有类型化 JS 属性的类
 export class SomeElement extends HTMLElement {
   foo: number = 123
@@ -352,9 +347,7 @@ export class AppleFellEvent extends Event {
 
 让我们创建一个类型工具，以便在 Vue 中轻松注册自定义元素类型定义：
 
-```ts
-// file: some-lib/src/DefineCustomElement.ts
-
+```ts [some-lib/src/DefineCustomElement.ts]
 // 我们可以为每个需要定义的元素重复使用这个类型助手
 type DefineCustomElement<
   ElementType extends HTMLElement,
@@ -367,7 +360,6 @@ type DefineCustomElement<
   // 请注意，我们将元素的属性与全局 HTML 属性和 Vue 的特殊属性结合在一起
   /** @deprecated 不要在自定义元素引用上使用 $props 属性，
     这仅用于模板属性类型检查 */
-
   $props: HTMLAttributes &
     Partial<Pick<ElementType, SelectedAttributes>> &
     PublicProps
@@ -377,7 +369,6 @@ type DefineCustomElement<
   // 请注意，`$emit` 期望我们将 `Events` 映射到特定格式
   /** @deprecated 不要在自定义元素引用上使用 $emit 属性，
     这仅用于模板属性类型检查 */
-
   $emit: VueEmit<Events>
 }
 
@@ -397,9 +388,7 @@ type VueEmit<T extends EventMap> = EmitFn<{
 
 使用类型助手，我们现在可以选择对在 Vue 模板中暴露的 JS 属性进行类型检查：
 
-```ts
-// file: some-lib/src/SomeElement.vue.ts
-
+```ts [some-lib/src/SomeElement.vue.ts]
 import {
   SomeElement,
   SomeElementAttributes,
@@ -422,7 +411,7 @@ declare module 'vue' {
 
 假设 some-lib 将其 TypeScript 源文件构建到 dist/ 文件夹中。some-lib 的用户可以像这样导入 SomeElement 并在 Vue SFC 中使用它：
 
-```vue
+```vue [SomeElementImpl.vue]
 <script setup lang="ts">
 // 这将创建并在浏览器中注册元素
 import 'some-lib/dist/SomeElement.js'
@@ -446,7 +435,6 @@ onMounted(() => {
 
   // 不要使用这些属性，它们是 `undefined` 
   // IDE 会将它们显示为删除线
-
   el.$props
   el.$emit
 })
@@ -469,7 +457,7 @@ onMounted(() => {
 
 如果一个元素没有类型定义，可以通过更手动的方式定义属性和事件的类型：
 
-```vue
+```vue [SomeElementImpl.vue]
 <script setup lang="ts">
 // 假设 `some-lib` 是纯 JavaScript，没有类型定义，并且 TypeScript 无法推断类型：
 

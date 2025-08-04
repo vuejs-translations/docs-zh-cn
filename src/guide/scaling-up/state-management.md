@@ -83,8 +83,7 @@ export default {
 
 如果你有一部分状态需要在多个组件实例间共享，你可以使用 [`reactive()`](/api/reactivity-core#reactive) 来创建一个响应式对象，并将它导入到多个组件中：
 
-```js
-// store.js
+```js [store.js]
 import { reactive } from 'vue'
 
 export const store = reactive({
@@ -94,8 +93,7 @@ export const store = reactive({
 
 <div class="composition-api">
 
-```vue
-<!-- ComponentA.vue -->
+```vue [ComponentA.vue]
 <script setup>
 import { store } from './store.js'
 </script>
@@ -103,8 +101,7 @@ import { store } from './store.js'
 <template>From A: {{ store.count }}</template>
 ```
 
-```vue
-<!-- ComponentB.vue -->
+```vue [ComponentB.vue]
 <script setup>
 import { store } from './store.js'
 </script>
@@ -115,8 +112,7 @@ import { store } from './store.js'
 </div>
 <div class="options-api">
 
-```vue
-<!-- ComponentA.vue -->
+```vue [ComponentA.vue]
 <script>
 import { store } from './store.js'
 
@@ -132,8 +128,7 @@ export default {
 <template>From A: {{ store.count }}</template>
 ```
 
-```vue
-<!-- ComponentB.vue -->
+```vue [ComponentB.vue]
 <script>
 import { store } from './store.js'
 
@@ -165,8 +160,7 @@ export default {
 
 虽然这在简单的情况下是可行的，但从长远来看，可以被任何组件任意改变的全局状态是不太容易维护的。为了确保改变状态的逻辑像状态本身一样集中，建议在 store 上定义方法，方法的名称应该要能表达出行动的意图：
 
-```js{6-8}
-// store.js
+```js{5-7} [store.js]
 import { reactive } from 'vue'
 
 export const store = reactive({
