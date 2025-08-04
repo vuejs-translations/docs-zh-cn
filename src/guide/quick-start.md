@@ -16,7 +16,7 @@ import { VTCodeGroup, VTCodeGroupTab } from '@vue/theme'
 
 - 如果你已经比较熟悉 Node.js 和构建工具等概念，还可以直接在浏览器中打开 [StackBlitz](https://vite.new/vue) 来尝试完整的构建设置。
 
-- 要了解推荐的设置流程，请观看这个互动式 [Scrimba](http://scrimba.com/links/vue-quickstart) 教程，它将向你展示如何运行、编辑和部署你的第一个Vue应用程序。
+- 要了解推荐的设置流程，请观看这个互动式 [Scrimba](http://scrimba.com/links/vue-quickstart) 教程，它将向你展示如何运行、编辑和部署你的第一个 Vue 应用程序。
 
 ## 创建一个 Vue 应用 {#creating-a-vue-application}
 
