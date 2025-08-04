@@ -61,20 +61,24 @@ export default {
   animation: shake 0.82s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
   transform: translate3d(0, 0, 0);
 }
+
 @keyframes shake {
   10%,
   90% {
     transform: translate3d(-1px, 0, 0);
   }
+
   20%,
   80% {
     transform: translate3d(2px, 0, 0);
   }
+
   30%,
   50%,
   70% {
     transform: translate3d(-4px, 0, 0);
   }
+
   40%,
   60% {
     transform: translate3d(4px, 0, 0);
@@ -92,6 +96,7 @@ export default {
 
 ```js
 const x = ref(0)
+
 function onMousemove(e) {
   x.value = e.clientX
 }
@@ -149,10 +154,14 @@ export default {
 ```js
 import { ref, reactive, watch } from 'vue'
 import gsap from 'gsap'
+
 const number = ref(0)
 const tweened = reactive({
   number: 0
 })
+
+// 注意：对于大于 Number.MAX_SAFE_INTEGER (9007199254740991) 的输入值，
+// 由于 JavaScript 数字精度的限制，结果可能不准确。
 watch(number, (n) => {
   gsap.to(tweened, { duration: 0.5, number: Number(n) || 0 })
 })
@@ -175,6 +184,8 @@ export default {
       tweened: 0
     }
   },
+  // Note: For inputs greater than Number.MAX_SAFE_INTEGER (9007199254740991),
+  // the result may be inaccurate due to limitations in JavaScript number precision.
   watch: {
     number(n) {
       gsap.to(this, { duration: 0.5, tweened: Number(n) || 0 })

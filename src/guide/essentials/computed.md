@@ -1,5 +1,13 @@
 # 计算属性 {#computed-properties}
 
+<div class="options-api">
+  <VueSchoolLink href="https://vueschool.io/lessons/computed-properties-in-vue-3" title="免费的 Vue.js 计算属性课程"/>
+</div>
+
+<div class="composition-api">
+  <VueSchoolLink href="https://vueschool.io/lessons/vue-fundamentals-capi-computed-properties-in-vue-with-the-composition-api" title="免费的 Vue.js 计算属性课程"/>
+</div>
+
 ## 基础示例 {#basic-example}
 
 模板中的表达式虽然方便，但也只能用来做简单的操作。如果在模板中写太多逻辑，会让模板变得臃肿，难以维护。比如说，我们有这样一个包含嵌套数组的对象：

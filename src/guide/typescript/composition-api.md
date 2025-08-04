@@ -1,5 +1,9 @@
 # TypeScript 与组合式 API {#typescript-with-composition-api}
 
+<ScrimbaLink href="https://scrimba.com/links/vue-ts-composition-api" title="Free Vue.js TypeScript with Composition API Lesson" type="scrimba">
+  观看 Scrimba 的互动视频课程
+</ScrimbaLink>
+
 > 这一章假设你已经阅读了[搭配 TypeScript 使用 Vue](./overview) 的概览。
 
 ## 为组件的 props 标注类型 {#typing-component-props}
@@ -414,8 +418,7 @@ onMounted(() => {
 
 为了获取导入组件的实例类型，我们需要先通过 `typeof` 获取其类型，然后使用 TypeScript 的内置 `InstanceType` 工具提取其实例类型：
 
-```vue{5}
-<!-- App.vue -->
+```vue{6,7} [App.vue]
 <script setup lang="ts">
 import { useTemplateRef } from 'vue'
 import Foo from './Foo.vue'
@@ -443,8 +446,7 @@ const child = useTemplateRef<ComponentPublicInstance>('child')
 
 如果引用的组件是一个[泛型组件](/guide/typescript/overview.html#generic-components)，例如 `MyGenericModal`：
 
-```vue
-<!-- MyGenericModal.vue -->
+```vue [MyGenericModal.vue]
 <script setup lang="ts" generic="ContentType extends string | number">
 import { ref } from 'vue'
 
@@ -460,8 +462,7 @@ defineExpose({
 
 则需要使用 [`vue-component-type-helpers`](https://www.npmjs.com/package/vue-component-type-helpers) 库中的 `ComponentExposed` 来引用组件类型，因为 `InstanceType` 在这种场景下不起作用。
 
-```vue
-<!-- App.vue -->
+```vue [App.vue]
 <script setup lang="ts">
 import { useTemplateRef } from 'vue'
 import MyGenericModal from './MyGenericModal.vue'
