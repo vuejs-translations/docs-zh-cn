@@ -134,5 +134,5 @@
   如果同一页面上有多个 Vue 应用实例，可以通过 [`app.config.idPrefix`](/api/application#app-config-idprefix) 为每个应用提供一个 ID 前缀，以避免 ID 冲突。
 
   :::warning Caution
-  `useId()` should be not be called inside a `computed()` property as it may cause instance conflicts. Instead, declare the ID outside of `computed()` and reference it within the computed function.
+  `useId()` 不应在 `computed()` 属性内部调用，因为这可能导致实例冲突。相反，应在 `computed()` 外部声明 ID，并在计算函数内部引用它。
   :::
