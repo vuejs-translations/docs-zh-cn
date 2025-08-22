@@ -297,7 +297,7 @@ provide('read-only-count', readonly(count))
 
 为保证注入方和供给方之间的响应性链接，我们需要使用 [computed()](/api/reactivity-core#computed) 函数提供一个计算属性：
 
-```js{10}
+```js{12}
 import { computed } from 'vue'
 
 export default {
@@ -327,8 +327,7 @@ export default {
 
 我们通常推荐在一个单独的文件中导出这些注入名 Symbol：
 
-```js
-// keys.js
+```js [keys.js]
 export const myInjectionKey = Symbol()
 ```
 

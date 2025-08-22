@@ -156,8 +156,8 @@ app.mount('#app')
 
 这里我们将演示最基础的设置。首先，让我们将应用的创建逻辑拆分到一个单独的文件 `app.js` 中：
 
-```js
-// app.js (在服务器和客户端之间共享)
+```js [app.js]
+// (在服务器和客户端之间共享)
 import { createSSRApp } from 'vue'
 
 export function createApp() {
@@ -172,8 +172,7 @@ export function createApp() {
 
 我们在客户端入口导入通用代码，创建应用并执行挂载：
 
-```js
-// client.js
+```js [client.js]
 import { createApp } from './app.js'
 
 createApp().mount('#app')
@@ -181,8 +180,8 @@ createApp().mount('#app')
 
 服务器在请求处理函数中使用相同的应用创建逻辑：
 
-```js{2,5}
-// server.js (不相关的代码省略)
+```js{2,5} [server.js]
+// (不相关的代码省略)
 import { createApp } from './app.js'
 
 server.get('/', (req, res) => {
@@ -267,8 +266,8 @@ Vite 提供了内置的 [Vue 服务端渲染支持](https://cn.vitejs.dev/guide/
 
 推荐的解决方案是在每个请求中为整个应用创建一个全新的实例，包括 router 和全局 store。然后，我们使用[应用层级的 provide 方法](/guide/components/provide-inject#app-level-provide)来提供共享状态，并将其注入到需要它的组件中，而不是直接在组件中将其导入：
 
-```js
-// app.js (在服务端和客户端间共享)
+```js [app.js]
+// (在服务端和客户端间共享)
 import { createSSRApp } from 'vue'
 import { createStore } from './store.js'
 
