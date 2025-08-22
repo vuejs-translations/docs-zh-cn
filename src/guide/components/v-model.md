@@ -1,7 +1,7 @@
 # 组件 v-model {#component-v-model}
 
 <ScrimbaLink href="https://scrimba.com/links/vue-component-v-model" title="Free Vue.js Component v-model Lesson" type="scrimba">
-  观看Scrimba的互动视频课程
+  观看 Scrimba 的互动视频课程
 </ScrimbaLink>
 
 ## 基本用法 {#basic-usage}
