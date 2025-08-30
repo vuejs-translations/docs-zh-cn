@@ -522,7 +522,7 @@ console.log(app.config)
 
 ### app.config.compilerOptions.comments {#app-config-compileroptions-comments}
 
-用于调整是否移除模板中的 HTML 注释。
+用于调整是否保留模板中的 HTML 注释。
 
 - **类型** `boolean`
 
