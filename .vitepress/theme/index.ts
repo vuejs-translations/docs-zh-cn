@@ -10,9 +10,13 @@ import {
 } from './components/preferences'
 import SponsorsAside from './components/SponsorsAside.vue'
 // import VueSchoolLink from './components/VueSchoolLink.vue'
+import ScrimbaLink from './components/ScrimbaLink.vue'
 import WwAds from './components/WwAds.vue'
-// import Banner from './components/Banner.vue'
+import Banner from './components/Banner.vue'
 // import TextAd from './components/TextAd.vue'
+
+import 'vitepress/dist/client/theme-default/styles/components/vp-code-group.css'
+import 'virtual:group-icons.css'
 
 export default Object.assign({}, VPTheme, {
   Layout: () => {
@@ -30,6 +34,7 @@ export default Object.assign({}, VPTheme, {
     app.provide('prefer-sfc', preferSFC)
     app.provide('filter-headers', filterHeadersByPreference)
     // app.component('VueSchoolLink', VueSchoolLink)
+    app.component('ScrimbaLink', ScrimbaLink)
     // app.component('TextAd', TextAd)
   }
 })
