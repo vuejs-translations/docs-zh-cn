@@ -2,7 +2,7 @@
 
 ## defineCustomElement() {#definecustomelement}
 
-此方法接受的参数与 [`defineComponent`](#definecomponent) 相同，但返回一个原生[自定义元素](https://developer.mozilla.org/zh-CN/docs/Web/Web_Components/Using_custom_elements)类构造函数。
+此方法接受的参数与 [`defineComponent`](/api/general.html#definecomponent) 相同，但返回一个原生[自定义元素](https://developer.mozilla.org/zh-CN/docs/Web/Web_Components/Using_custom_elements)类构造函数。
 
 - **类型**
 
