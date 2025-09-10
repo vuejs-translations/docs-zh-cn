@@ -2,7 +2,7 @@
 
 ## useAttrs() {#useattrs}
 
-从 [Setup 上下文](/api/composition-api-setup#setup-context)中返回 `attrs` 对象，其中包含当前组件的[透传 attributes](/guide/components/attrs#fallthrough-attributes)。这是用于 `<script setup>` 中的，因为在 `<script setup>` 中无法获取 setup 上下文对象的。
+从 [Setup 上下文](/api/composition-api-setup#setup-context)中返回 `attrs` 对象，其中包含当前组件的[透传 attributes](/guide/components/attrs#fallthrough-attributes)。这是用于 `<script setup>` 中的，因为在 `<script setup>` 中无法获取 setup 上下文对象。
 
 - **类型**
 
@@ -12,7 +12,7 @@
 
 ## useSlots() {#useslots}
 
-从 [Setup 上下文](/api/composition-api-setup#setup-context)中返回 `slots` 对象，其中包含父组件传递的插槽。这些插槽为可调用的函数，返回虚拟 DOM 节点。这是用于 `<script setup>` 中的，因为在 `<script setup>` 中无法获取 setup 上下文对象的。
+从 [Setup 上下文](/api/composition-api-setup#setup-context)中返回 `slots` 对象，其中包含父组件传递的插槽。这些插槽为可调用的函数，返回虚拟 DOM 节点。这是用于 `<script setup>` 中的，因为在 `<script setup>` 中无法获取 setup 上下文对象。
 
 如果使用 TypeScript，建议优先使用 [`defineSlots()`](/api/sfc-script-setup#defineslots)。
 
