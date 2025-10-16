@@ -6,7 +6,7 @@
 
 Vue 可以以一个单独 JS 文件的形式使用，无需构建步骤！如果你的后端框架已经渲染了大部分的 HTML，或者你的前端逻辑并不复杂，不需要构建步骤，这是最简单的使用 Vue 的方式。在这些场景中你可以将 Vue 看作一个更加声明式的 jQuery 替代品。
 
-Vue 也提供了另一个更适用于此类无构建步骤场景的版本 [petite-vue](https://github.com/vuejs/petite-vue)。它为渐进式增强已有的 HTML 作了特别的优化，功能更加精简，十分轻量。
+我们曾提供过一个名为 [petite-vue](https://github.com/vuejs/petite-vue) 的替代发行版，该版本专门针对渐进增强现有 HTML 进行了优化。然而 petite-vue 已不再积极维护，其最后发布的版本适配于 Vue 3.2.27。
 
 ## 作为 Web Component 嵌入 {#embedded-web-components}
 

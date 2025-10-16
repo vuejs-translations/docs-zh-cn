@@ -1,12 +1,19 @@
 import fs from 'fs'
 import path from 'path'
-import { defineConfigWithTheme, type HeadConfig, type Plugin } from 'vitepress'
+import {
+  defineConfigWithTheme,
+  type HeadConfig,
+  type Plugin
+} from 'vitepress'
 import type { Config as ThemeConfig } from '@vue/theme'
 import llmstxt from 'vitepress-plugin-llms'
 import baseConfig from '@vue/theme/config'
 import { headerPlugin } from './headerMdPlugin'
 // import { textAdPlugin } from './textAdMdPlugin'
-import { groupIconMdPlugin,groupIconVitePlugin } from 'vitepress-plugin-group-icons'
+import {
+  groupIconMdPlugin,
+  groupIconVitePlugin
+} from 'vitepress-plugin-group-icons'
 
 const nav: ThemeConfig['nav'] = [
   {
@@ -47,9 +54,12 @@ const nav: ThemeConfig['nav'] = [
         text: '资源',
         items: [
           { text: '合作伙伴', link: '/partners/' },
-          { text: '开发者', link: '/developers/' },
           { text: '主题', link: '/ecosystem/themes' },
           { text: 'UI 组件', link: 'https://ui-libs.vercel.app/' },
+          {
+            text: '插件合集',
+            link: 'https://www.vue-plugins.org/'
+          },
           {
             text: '证书',
             link: 'https://certificates.dev/vuejs/?ref=vuejs-nav'
@@ -97,7 +107,7 @@ const nav: ThemeConfig['nav'] = [
         text: '动态',
         items: [
           { text: '博客', link: 'https://blog.vuejs.org/' },
-          { text: 'Twitter', link: 'https://twitter.com/vuejs' },
+          { text: 'Twitter', link: 'https://x.com/vuejs' },
           { text: '活动', link: 'https://events.vuejs.org/' },
           { text: '新闻简报', link: '/ecosystem/newsletters' }
         ]
@@ -128,13 +138,9 @@ const nav: ThemeConfig['nav'] = [
     link: '/sponsor/'
   },
   {
-    text: '专家',
-    badge: { text: '新' },
-    activeMatch: `^/(partners|developers)/`,
-    items: [
-      { text: '合作伙伴', link: '/partners/' },
-      { text: '开发者', link: '/developers/', badge: { text: '新' } }
-    ]
+    text: '合作伙伴',
+    activeMatch: `^/partners/`,
+    link: '/partners/'
   }
 ]
 
@@ -497,7 +503,7 @@ export const sidebar: ThemeConfig['sidebar'] = {
         {
           text: '带过渡动效的列表',
           link: '/examples/#list-transition'
-        },
+        }
       ]
     },
     {
@@ -664,11 +670,10 @@ export default defineConfigWithTheme<ThemeConfig>({
     [
       'script',
       {
-        src: 'https://vueschool.io/banner.js?affiliate=vuejs&type=top',
+        src: 'https://media.bitterbrains.com/main.js?from=vuejs&type=top',
         async: 'true'
       }
-    ],
-    inlineScript('perfops.js')
+    ]
   ],
 
   themeConfig: {
@@ -740,7 +745,7 @@ export default defineConfigWithTheme<ThemeConfig>({
       {
         link: 'https://pl.vuejs.org',
         text: 'Polski',
-        repo: 'https://github.com/vuejs-translations/docs-pl',
+        repo: 'https://github.com/vuejs-translations/docs-pl'
       },
       {
         link: '/translations/',
@@ -803,7 +808,7 @@ export default defineConfigWithTheme<ThemeConfig>({
 
     socialLinks: [
       { icon: 'github', link: 'https://github.com/vuejs/' },
-      { icon: 'twitter', link: 'https://twitter.com/vuejs' },
+      { icon: 'twitter', link: 'https://x.com/vuejs' },
       { icon: 'discord', link: 'https://discord.com/invite/vue' }
     ],
 
@@ -825,8 +830,7 @@ export default defineConfigWithTheme<ThemeConfig>({
   markdown: {
     theme: 'github-dark',
     config(md) {
-      md.use(headerPlugin)
-        .use(groupIconMdPlugin)
+      md.use(headerPlugin).use(groupIconMdPlugin)
       // .use(textAdPlugin)
     }
   },
