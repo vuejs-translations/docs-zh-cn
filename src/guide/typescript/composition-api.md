@@ -479,9 +479,9 @@ const openModal = () => {
 
 请注意在 `@vue/language-tools` 2.1 以上版本中，静态模板 ref 的类型可以被自动推导，上述这些仅在极端情况下需要。
 
-## Typing Global Custom Directives {#typing-global-custom-directives}
+## 为自定义全局指令添加类型 {#typing-global-custom-directives}
 
-In order to get type hints and type checking for global custom directives declared with `app.directive()`, you can extend `ComponentCustomProperties`
+可以通过扩展 `ComponentCustomProperties` 来为使用 `app.directive()` 声明的全局自定义指令获取类型提示和类型检查
 
 ```ts [src/directives/highlight.ts]
 import type { Directive } from 'vue'
@@ -490,7 +490,7 @@ export type HighlightDirective = Directive<HTMLElement, string>
 
 declare module 'vue' {
   export interface ComponentCustomProperties {
-    // prefix with v (v-highlight)
+    // 使用 v 作为前缀 (v-highlight)
     vHighlight: HighlightDirective
   }
 }
@@ -504,12 +504,12 @@ export default {
 
 ```ts [main.ts]
 import highlight from './directives/highlight'
-// ...other code
+// ...其它代码
 const app = createApp(App)
 app.directive('highlight', highlight)
 ```
 
-Usage in component
+在组件中使用
 
 ```vue [App.vue]
 <template>
