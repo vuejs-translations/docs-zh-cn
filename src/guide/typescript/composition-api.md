@@ -468,7 +468,8 @@ import { useTemplateRef } from 'vue'
 import MyGenericModal from './MyGenericModal.vue'
 import type { ComponentExposed } from 'vue-component-type-helpers'
 
-const modal = useTemplateRef<ComponentExposed<typeof MyGenericModal>>('modal')
+const modal =
+  useTemplateRef<ComponentExposed<typeof MyGenericModal>>('modal')
 
 const openModal = () => {
   modal.value?.open('newValue')
@@ -477,3 +478,41 @@ const openModal = () => {
 ```
 
 请注意在 `@vue/language-tools` 2.1 以上版本中，静态模板 ref 的类型可以被自动推导，上述这些仅在极端情况下需要。
+
+## 为自定义全局指令添加类型 {#typing-global-custom-directives}
+
+可以通过扩展 `ComponentCustomProperties` 来为使用 `app.directive()` 声明的全局自定义指令获取类型提示和类型检查
+
+```ts [src/directives/highlight.ts]
+import type { Directive } from 'vue'
+
+export type HighlightDirective = Directive<HTMLElement, string>
+
+declare module 'vue' {
+  export interface ComponentCustomProperties {
+    // 使用 v 作为前缀 (v-highlight)
+    vHighlight: HighlightDirective
+  }
+}
+
+export default {
+  mounted: (el, binding) => {
+    el.style.backgroundColor = binding.value
+  }
+} satisfies HighlightDirective
+```
+
+```ts [main.ts]
+import highlight from './directives/highlight'
+// ...其它代码
+const app = createApp(App)
+app.directive('highlight', highlight)
+```
+
+在组件中使用
+
+```vue [App.vue]
+<template>
+  <p v-highlight="'blue'">This sentence is important!</p>
+</template>
+```

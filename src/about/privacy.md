@@ -24,7 +24,7 @@
 
   - Fathom Analytics 的隐私政策：<https://usefathom.com/legal/privacy>
 
-- **搜索功能的使用数据**：我们的搜索功能由 [Algolia DocSearch](https://docsearch.algolia.com/) 驱动，该服务不进行任何形式的用户追踪或指纹识别，也不使用 cookies。Algolia 的服务符合 GPDR、CCPA 标准，并获得 TRUSTe 认证。
+- **搜索功能的使用数据**：我们的搜索功能由 [Algolia DocSearch](https://docsearch.algolia.com/) 驱动，该服务不进行任何形式的用户追踪或指纹识别，也不使用 cookies。Algolia 的服务符合 GDPR、CCPA 标准，并获得 TRUSTe 认证。
 
   - Algolia 的隐私政策：<https://www.algolia.com/policies/privacy/>
   - Algolia 的安全与隐私合规性：<https://www.algolia.com/distributed-secure/security-compliance/>

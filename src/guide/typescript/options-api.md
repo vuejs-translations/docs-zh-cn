@@ -293,3 +293,7 @@ declare module 'vue' {
 - [对组件类型扩展的 TypeScript 单元测试](https://github.com/vuejs/core/blob/main/packages-private/dts-test/componentTypeExtensions.test-d.tsx)
 
 <!-- zhlint disabled -->
+
+## Typing Global Custom Directives {#typing-global-custom-directives}
+
+See: [Typing Custom Global Directives](/guide/typescript/composition-api#typing-global-custom-directives) <sup class="vt-badge ts" />

@@ -323,7 +323,7 @@ export default {
 
 ## 使用 Symbol 作注入名 {#working-with-symbol-keys}
 
-至此，我们已经了解了如何使用字符串作为注入名。但如果你正在构建大型的应用，包含非常多的依赖提供，或者你正在编写提供给其他开发者使用的组件库，建议最好使用 Symbol 来作为注入名以避免潜在的冲突。
+至此，我们已经了解了如何使用字符串作为注入名。但如果你正在构建大型的应用，包含非常多的依赖提供，或者你正在编写提供给其他开发者使用的组件库，建议最好使用 [Symbol](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Symbol) 来作为注入名以避免潜在的冲突。
 
 我们通常推荐在一个单独的文件中导出这些注入名 Symbol：
 
