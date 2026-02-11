@@ -216,7 +216,7 @@ function render() {
 }
 ```
 
-### 在 `<template>` 中使用 Vnodes
+### 在 `<template>` 中使用 Vnode
 
 ```vue
 <script setup>
