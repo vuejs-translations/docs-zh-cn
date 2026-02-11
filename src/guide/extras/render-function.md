@@ -216,6 +216,33 @@ function render() {
 }
 ```
 
+### 在 `<template>` 中使用 Vnodes
+
+```vue
+<script setup>
+import { h } from 'vue'
+
+const vnode = h('button', ['Hello'])
+</script>
+
+<template>
+  <!-- 通过 <component /> -->
+  <component :is="vnode">Hi</component>
+
+  <!-- 或者直接作为元素 -->
+  <vnode />
+  <vnode>Hi</vnode>
+</template>
+```
+
+由于 vnode 对象已经在 `setup()` 中定义，你可以像普通组件那样直接渲染它。
+
+:::warning
+一个 vnode 表示的是一个静态的渲染输出，而不是一个组件定义。在 `<template>` 中使用 vnode 并不会创建一个新的组件实例，vnode 将按它原样渲染。
+
+这种用法需要特别注意，它不是组件的替代品。
+:::
+
 ## JSX / TSX {#jsx-tsx}
 
 [JSX](https://facebook.github.io/jsx/) 是 JavaScript 的一个类似 XML 的扩展，有了它，我们可以用以下的方式来书写代码：
