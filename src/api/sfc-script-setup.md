@@ -129,7 +129,7 @@ import * as Form from './form-components'
 
 ## 使用自定义指令 {#using-custom-directives}
 
-全局注册的自定义指令将正常工作。本地的自定义指令在 `<script setup>` 中不需要显式注册，但他们必须遵循 `vNameOfDirective` 这样的命名规范：
+全局注册的自定义指令将正常工作。本地的自定义指令在 `<script setup>` 中不需要显式注册，但它们必须遵循 `vNameOfDirective` 这样的命名规范：
 
 ```vue
 <script setup>
@@ -167,7 +167,7 @@ const emit = defineEmits(['change', 'delete'])
 </script>
 ```
 
-- `defineProps` 和 `defineEmits` 都是只能在 `<script setup>` 中使用的**编译器宏**。他们不需要导入，且会随着 `<script setup>` 的处理过程一同被编译掉。
+- `defineProps` 和 `defineEmits` 都是只能在 `<script setup>` 中使用的**编译器宏**。它们不需要导入，且会随着 `<script setup>` 的处理过程一同被编译掉。
 
 - `defineProps` 接收与 `props` 选项相同的值，`defineEmits` 接收与 `emits` 选项相同的值。
 
