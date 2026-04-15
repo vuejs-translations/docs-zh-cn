@@ -516,7 +516,7 @@ console.log(app.config)
 - **示例**
 
   ```js
-  // 分隔符改为ES6模板字符串样式
+  // 分隔符改为 ES6 模板字符串样式
   app.config.compilerOptions.delimiters = ['${', '}']
   ```
 

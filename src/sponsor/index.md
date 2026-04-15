@@ -64,7 +64,7 @@ Vue.js 是采用 MIT 许可的开源项目，使用完全免费。
 **以下赞助等级均仅针对我们面向国际用户的英文版网站 vuejs.org。**
 
 - **全球特别赞助商**：
-  - 全球**独家**赞助商 <span v-if="!data?.special">(目前空缺。[联系我们](mailto:sponsor@vuejs.org?subject=Vue.js%20special%20sponsor%20inquiry)）</span><span v-else>(目前已经满员)</span>
+  - 全球**独家**赞助商 <span v-if="!data?.special">(目前空缺。[联系我们](mailto:sponsor@vuejs.org?subject=Vue.js%20special%20sponsor%20inquiry))</span><span v-else>(目前已经满员)</span>
   - [vuejs.org](https://vuejs.org) 首屏无需滚动可见的独家 logo 展示位。
   - 通过 [Vue 官方 X 账号](https://twitter.com/vuejs) (32 万粉丝) 对主要产品独家发布进行特别喊话和定期转发。
   - 所有级别的 logo 展示位中最显眼的位置。
