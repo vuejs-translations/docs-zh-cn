@@ -78,6 +78,6 @@ Vue 核心库提供了一份[贡献指南](https://github.com/vuejs/core/blob/ma
 
 - **参加当地的 meetup**。不论是准备一个话题还是组织一个 workshop，你都可以通过帮助新老 Vue 开发者的发展来为社区带来很多价值。
 - **自己组织 meetup**。如果你所在的地方没有人组织 meetup，你可以自己组织起来！要善用 [events.vuejs.org 的资源](https://events.vuejs.org/resources/#getting-started)！
-- **帮助 meetup 组织者**。在举办活动时，帮助永远不嫌多，所以请帮助当地组织者让每个活动都能够成功举办。
+- **帮助 meetup 组织者**。举办活动向来是众人拾柴火焰高，不妨主动搭把手，协助当地组织者将每场活动办得圆满成功。
 
 对于如何参与当地的 Vue 社区，如果你有任何问题，请联系 [@Vuejs_Events](https://www.twitter.com/vuejs_events)！
