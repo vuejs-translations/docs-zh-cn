@@ -433,7 +433,7 @@ const attrs = useAttrs()
 </script>
 ```
 
-`useSlots` 和 `useAttrs` 是真实的运行时函数，它的返回与 `setupContext.slots` 和 `setupContext.attrs` 等价。它们同样也能在普通的组合式 API 中使用。
+`useSlots` 和 `useAttrs` 是真实的运行时函数，它们的返回值分别与 `setupContext.slots` 和 `setupContext.attrs` 等价。它们同样也能在普通的组合式 API 中使用。
 
 ## 与普通的 `<script>` 一起使用 {#usage-alongside-normal-script}
 
