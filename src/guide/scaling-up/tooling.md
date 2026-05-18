@@ -163,7 +163,7 @@ Vue 团队维护着 [eslint-plugin-vue](https://github.com/vuejs/eslint-plugin-v
 这个包本身提供了处理 Vue 单文件组件的底层的功能，并只适用于需要支持 Vue 单文件组件相关工具链的开发者。
 
 :::tip
-请始终选择通过 `vue/compiler-sfc` 的深度导入来使用这个包，因为这样可以确保其与 Vue 运行时版本同步。<!-- TODO: need check -->
+请始终选择通过 `vue/compiler-sfc` 的深度导入来使用这个包，因为这样可以确保其与 Vue 运行时版本同步。
 :::
 
 ### `@vitejs/plugin-vue` {#vitejs-plugin-vue}
