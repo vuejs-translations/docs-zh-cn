@@ -64,7 +64,7 @@ export default {
 
 <div class="composition-api">
 
-也可以直接在父组件中直接定义它们：
+也可以直接在父组件中定义它们：
 
 ```vue
 <script setup>
