@@ -134,7 +134,7 @@ watch([x, () => y.value], ([newX, newY]) => {
 })
 ```
 
-注意，你不能直接侦听响应式对象的属性值，例如:
+注意，你不能直接侦听响应式对象的属性值，例如：
 
 ```js
 const obj = reactive({ count: 0 })
