@@ -3,7 +3,7 @@
 :::info 参考
 要更好地了解响应式 API，推荐阅读下面几个指南中的章节：
 
-- [响应式基础](/guide/essentials/reactivity-fundamentals)（需将 API 偏好设置为组合式 API）
+- [响应式基础](/guide/essentials/reactivity-fundamentals) (需将 API 偏好设置为组合式 API)
 - [深入响应式系统](/guide/extras/reactivity-in-depth)
   :::
 
