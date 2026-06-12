@@ -142,7 +142,7 @@
 
   ```js
   // 诸如 CloudFlare worker 这样的环境中，TransformStream 是可用的。
-  // 在 Node.js 中，TransformStream 需要从 'stream/web' 显示导入。
+  // 在 Node.js 中，TransformStream 需要从 'stream/web' 显式导入。
   const { readable, writable } = new TransformStream()
   pipeToWebWritable(app, {}, writable)
 

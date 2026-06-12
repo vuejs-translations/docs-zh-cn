@@ -102,7 +102,7 @@ h(Transition, {
   </Transition>
   ```
 
-  通过改变 `key` 属性来强制过度执行：
+  通过改变 `key` 属性来强制过渡执行：
 
   ```vue-html
   <Transition>
