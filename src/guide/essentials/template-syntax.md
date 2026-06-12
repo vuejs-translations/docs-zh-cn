@@ -146,12 +146,12 @@ data() {
 <div :id="`list-${id}`"></div>
 ```
 
-这些表达式都会被作为 JavaScript ，以当前组件实例为作用域解析执行。
+这些表达式都会被作为 JavaScript，以当前组件实例为作用域解析执行。
 
 在 Vue 模板内，JavaScript 表达式可以被使用在如下场景上：
 
 - 在文本插值中 (双大括号)
-- 在任何 Vue 指令 (以 `v-` 开头的特殊 attribute) attribute 的值中
+- 在任何 Vue 指令的 attribute 值中（即以 \v-` 开头的特殊 attribute）`
 
 ### 仅支持表达式 {#expressions-only}
 

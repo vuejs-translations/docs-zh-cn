@@ -11,11 +11,11 @@
 ## 官方路由 {#official-router}
 
 <!-- TODO update links -->
-<div>
+<!-- <div>
   <VueSchoolLink href="https://vueschool.io/courses/vue-router-4-for-everyone" title="免费的 Vue Router 课程">
     在 Vue School 上观看免费的视频课程
   </VueSchoolLink>
-</div>
+</div> -->
 
 Vue 很适合用来构建单页面应用。对于大多数此类应用，都推荐使用官方支持的[路由库](https://github.com/vuejs/router)。要了解更多细节，请查看 [Vue Router 的文档](https://router.vuejs.org/zh/)。
 
