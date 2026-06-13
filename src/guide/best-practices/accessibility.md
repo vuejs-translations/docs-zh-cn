@@ -137,7 +137,7 @@ watch(
 
 当创建一个表单，你可能使用到以下几个元素：`<form>`、`<label>`、`<input>`、`<textarea>` 和 `<button>`。
 
-标签通常放置在表格字段的顶部或左侧：
+标签通常放置在表单字段的顶部或左侧：
 
 ```vue-html
 <form action="/dataCollectionLocation" method="post" autocomplete="on">
@@ -169,7 +169,7 @@ watch(
 
 ![Chrome 开发者工具正在通过标签展示无障碍访问的 input 框的名字](./images/AccessibleLabelChromeDevTools.png)
 
-:::warning 警告：
+:::warning 警告
 你可能还见过这样的包装 input 框的标签：
 
 ```vue-html
@@ -179,7 +179,7 @@ watch(
 </label>
 ```
 
-但我们仍建议你显式地为 input 元素设置 id 相匹配的标签，以更好地实现无障碍访问。
+但我们仍建议你显式地为 input 元素设置与 id 相匹配的标签，以更好地实现无障碍访问。
 :::
 
 #### `aria-label` {#aria-label}
@@ -356,7 +356,7 @@ watch(
 </form>
 ```
 
-现在，只要视力情况良好，用户可以就能通过按钮的内容识别出该 input 框的目的。
+现在，只要视力情况良好，用户就能通过按钮的内容识别出该 input 框的目的。
 
 此时我们可以使用 CSS 从视觉上隐藏元素，同时也不会影响到无障碍访问：
 
