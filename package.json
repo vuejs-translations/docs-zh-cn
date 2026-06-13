@@ -12,6 +12,7 @@
     "lint": "zhlint \"src/{api,about,guide,sponsor,translations,tutorial}/**/*.md\"",
     "clean": "rm -rf .vitepress/dist",
     "sync": "node scripts/sync.js",
+    "auto-pr": "node scripts/auto-pr.js",
     "preinstall": "npx only-allow pnpm",
     "type": "vue-tsc --noEmit"
   },
@@ -24,6 +25,7 @@
     "vue": "^3.5.12"
   },
   "devDependencies": {
+    "openai": "^4.77.0",
     "@types/body-scroll-lock": "^3.1.2",
     "@types/markdown-it": "^14.1.2",
     "@types/node": "^22.7.5",
