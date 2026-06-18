@@ -26,14 +26,14 @@ jobs:
   sync-merge-translate-apply:
     runs-on: ubuntu-latest
     env:
-      GITHUB_TOKEN: ${{ secrets.REPO_ACTION_TOKEN }}
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       UPSTREAM_BRANCH: upstream
     steps:
       - uses: actions/checkout@v4
         with:
           ref: ${{ env.SYNC_BRANCH }}
           fetch-depth: 0
-          token: ${{ secrets.REPO_ACTION_TOKEN }}
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       - uses: oven-sh/setup-bun@v2
       - uses: pnpm/action-setup@v4
@@ -86,7 +86,7 @@ jobs:
         if: steps.merge.outputs.merge_status == 'conflict'
         continue-on-error: true
         env:
-          COPILOT_GITHUB_TOKEN: ${{ secrets.COPILOT_GITHUB_TOKEN }}
+          COPILOT_TOKEN: ${{ secrets.COPILOT_TOKEN }}
           UPSTREAM_HASH: ${{ steps.detect.outputs.upstream_hash }}
         run: bun .github/scripts/auto-pr/3-translate-job.js
 
@@ -152,7 +152,7 @@ jobs:
               || steps.check-translate.outcome == 'success'
               || inputs.skip_translate_gate == true)
         env:
-          GH_TOKEN: ${{ secrets.REPO_ACTION_TOKEN }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GITHUB_REPOSITORY: ${{ github.repository }}
           UPSTREAM_REPO: vuejs/docs
           SYNC_BRANCH: sync

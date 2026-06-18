@@ -131,8 +131,8 @@ vuejs/docs:main ──autosync.yml──→ vuejs-translations:upstream
 
 | Secret 名称            | 用途                                                          |
 |------------------------|---------------------------------------------------------------|
-| `REPO_ACTION_TOKEN`    | Classic PAT，用于 checkout、push、创建 PR/Issue、请求 review      |
-| `COPILOT_GITHUB_TOKEN` | Fine-Grained PAT，Copilot CLI 认证（需 "Copilot Requests" 权限） |
+| `GITHUB_TOKEN`    | Classic PAT，用于 checkout、push、创建 PR/Issue、请求 review      |
+| `COPILOT_TOKEN` | Fine-Grained PAT，Copilot CLI 认证（需 "Copilot Requests" 权限） |
 
 ## 翻译约定
 
