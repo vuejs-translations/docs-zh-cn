@@ -70,15 +70,12 @@
 | template ref                 | 模版引用                                                          |
 | nullable                     | 可为 null 的                                                      |
 
-> truthy: https://developer.mozilla.org/en-US/docs/Glossary/Truthy
-> falsy: https://developer.mozilla.org/en-US/docs/Glossary/Falsy
-
 ## API 名词与产品/品牌名称保留英文
 
-- **CSS Modules** — 产品/品牌名称，保留英文及复数形式。原文用自然语言"a CSS module"时译为"一个 CSS 模块"。
-- **effect** — 特指 effect scope 时保留英文，即"effect 作用域"；一般语境译为"作用"，如"side effect"译为"副作用"。
-- **proxy** — 仅大写特指 ES6 Proxy 对象时保留英文"Proxy"，其他译为"代理"。
-- **tree-shaking** 及相关语法变换 — 保留英文，动词用"tree-shake"，名词用"tree-shaking"。
+- **CSS Modules** — 产品/品牌名称，保留英文及复数形式。原文用自然语言“a CSS module”时译为“一个 CSS 模块”。
+- **effect** — 特指 effect scope 时保留英文，即“effect 作用域”；一般语境译为“作用”，如“side effect”译为“副作用”。
+- **proxy** — 仅大写特指 ES6 Proxy 对象时保留英文“Proxy”，其他译为“代理”。
+- **tree-shaking** 及相关语法变换 — 保留英文，动词用“tree-shake”，名词用“tree-shaking”。
 - **webpack**、**npm** 等刻意小写的产品名称 — 保持开头小写，即使作为句子第一个词。
 - **web component(s)** — 保留英文。
 
@@ -122,5 +119,5 @@
 
 ## 英文缩写处理
 
-1. 大众熟悉的日常缩写（HTML、DOM 等）保留。
-2. Vue 本身创造的缩写（SFC、VOA、VCA 等）译为中文，首次出现时可选附英文缩写。
+1. 大众熟悉的日常缩写 (HTML、DOM 等) 保留。
+2. Vue 本身创造的缩写 (SFC、VOA、VCA 等) 译为中文，首次出现时可选附英文缩写。
