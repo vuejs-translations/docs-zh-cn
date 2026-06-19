@@ -1,6 +1,6 @@
 # Vue.js 中文文档自动同步 PR 工作流
 
-本文档介绍 `tedocs/docs-zh-cn` 仓库的自动化同步流程，包括上游同步、冲突检测、Copilot CLI 翻译、PR 和 Review。
+本文档介绍 `vuejs-translations/docs-zh-cn` 仓库的自动化同步流程，包括上游同步、冲突检测、Copilot CLI 翻译、PR 和 Review。
 
 ## 流程总览
 

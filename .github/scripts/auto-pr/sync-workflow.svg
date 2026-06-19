@@ -49,7 +49,7 @@
     Vue.js 中文文档同步工作流
   </text>
   <text x="450" y="64" text-anchor="middle" fill="#8b949e" font-size="12">
-    tedocs/docs-zh-cn · autosync.yml + autopr.yml
+    vuejs-translations/docs-zh-cn: autosync.yml + autopr.yml
   </text>
 
   <!-- ═══════════════════════════════════════════════════ -->
@@ -162,7 +162,7 @@
   <!-- Target: main -->
   <!-- ═══════════════════════════════════════════════════ -->
   <rect x="310" y="794" width="280" height="48" rx="10" fill="url(#g-purple)" filter="url(#shadow)"/>
-  <text x="450" y="815" text-anchor="middle" fill="#fff" font-size="13" font-weight="600">tedocs/docs-zh-cn : main</text>
+  <text x="450" y="815" text-anchor="middle" fill="#fff" font-size="13" font-weight="600">vuejs-translations/docs-zh-cn : main</text>
   <text x="450" y="832" text-anchor="middle" fill="rgba(255,255,255,0.7)" font-size="10">merge commit with Copilot review</text>
 
   <!-- ═══════════════════════════════════════════════════ -->
