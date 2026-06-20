@@ -1,4 +1,3 @@
-// git-find-conflicts-es6.js
 import { execSync } from "child_process";
 import { existsSync, readFileSync, writeFileSync } from "fs";
 
