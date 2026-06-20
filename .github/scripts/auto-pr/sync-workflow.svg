@@ -1,0 +1,186 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 960" font-family="Segoe UI, -apple-system, sans-serif">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0d1117"/>
+      <stop offset="100%" stop-color="#161b22"/>
+    </linearGradient>
+    <linearGradient id="g-blue" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#1f6feb"/>
+      <stop offset="100%" stop-color="#388bfd"/>
+    </linearGradient>
+    <linearGradient id="g-green" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#238636"/>
+      <stop offset="100%" stop-color="#2ea043"/>
+    </linearGradient>
+    <linearGradient id="g-purple" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#a371f7"/>
+      <stop offset="100%" stop-color="#bc8cff"/>
+    </linearGradient>
+    <linearGradient id="g-red" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#da3633"/>
+      <stop offset="100%" stop-color="#f85149"/>
+    </linearGradient>
+    <linearGradient id="g-gold" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#bf8700"/>
+      <stop offset="100%" stop-color="#d29922"/>
+    </linearGradient>
+    <filter id="shadow">
+      <feDropShadow dx="0" dy="2" stdDeviation="4" flood-color="#000" flood-opacity="0.5"/>
+    </filter>
+    <marker id="arrow" viewBox="0 0 10 7" refX="10" refY="3.5" markerWidth="10" markerHeight="7" orient="auto-start-reverse">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#8b949e"/>
+    </marker>
+    <marker id="arrow-green" viewBox="0 0 10 7" refX="10" refY="3.5" markerWidth="10" markerHeight="7" orient="auto-start-reverse">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#3fb950"/>
+    </marker>
+    <marker id="arrow-purple" viewBox="0 0 10 7" refX="10" refY="3.5" markerWidth="10" markerHeight="7" orient="auto-start-reverse">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#bc8cff"/>
+    </marker>
+    <marker id="arrow-gold" viewBox="0 0 10 7" refX="10" refY="3.5" markerWidth="10" markerHeight="7" orient="auto-start-reverse">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#d29922"/>
+    </marker>
+  </defs>
+
+  <!-- Background -->
+  <rect width="900" height="960" fill="url(#bg)" rx="12"/>
+
+  <!-- Title -->
+  <text x="450" y="42" text-anchor="middle" fill="#e6edf3" font-size="22" font-weight="700">
+    Vue.js 中文文档同步工作流
+  </text>
+  <text x="450" y="64" text-anchor="middle" fill="#8b949e" font-size="12">
+    vuejs-translations/docs-zh-cn: autosync.yml + autopr.yml
+  </text>
+
+  <!-- ═══════════════════════════════════════════════════ -->
+  <!-- Source: vuejs/docs -->
+  <!-- ═══════════════════════════════════════════════════ -->
+  <rect x="310" y="84" width="280" height="48" rx="10" fill="url(#g-blue)" filter="url(#shadow)"/>
+  <text x="450" y="105" text-anchor="middle" fill="#fff" font-size="13" font-weight="600">vuejs/docs : main</text>
+  <text x="450" y="122" text-anchor="middle" fill="rgba(255,255,255,0.7)" font-size="10">upstream source</text>
+
+  <!-- Arrow: source → autosync -->
+  <line x1="450" y1="132" x2="450" y2="158" stroke="#8b949e" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <!-- ═══════════════════════════════════════════════════ -->
+  <!-- autosync.yml -->
+  <!-- ═══════════════════════════════════════════════════ -->
+  <rect x="275" y="162" width="350" height="60" rx="10" fill="#1c2128" stroke="#30363d" stroke-width="1" filter="url(#shadow)"/>
+  <rect x="275" y="162" width="350" height="24" rx="10" fill="#238636" opacity="0.2"/>
+  <text x="295" y="179" fill="#3fb950" font-size="11" font-weight="600">autosync.yml</text>
+  <text x="605" y="179" text-anchor="end" fill="#8b949e" font-size="9">daily 00:00</text>
+  <text x="450" y="202" text-anchor="middle" fill="#e6edf3" font-size="11">github-forks-sync-action · mirror to upstream</text>
+
+  <!-- Arrow: autosync → branches -->
+  <line x1="450" y1="222" x2="450" y2="250" stroke="#3fb950" stroke-width="1.5" marker-end="url(#arrow-green)"/>
+
+  <!-- ═══════════════════════════════════════════════════ -->
+  <!-- Branches -->
+  <!-- ═══════════════════════════════════════════════════ -->
+  <rect x="130" y="254" width="170" height="40" rx="8" fill="#1a7f37" filter="url(#shadow)"/>
+  <text x="215" y="270" text-anchor="middle" fill="#fff" font-size="12" font-weight="600">upstream</text>
+  <text x="215" y="286" text-anchor="middle" fill="rgba(255,255,255,0.6)" font-size="9">mirror of vuejs/docs</text>
+
+  <rect x="600" y="254" width="170" height="40" rx="8" fill="#1a7f37" filter="url(#shadow)"/>
+  <text x="685" y="270" text-anchor="middle" fill="#fff" font-size="12" font-weight="600">sync</text>
+  <text x="685" y="286" text-anchor="middle" fill="rgba(255,255,255,0.6)" font-size="9">translation branch</text>
+
+  <!-- ═══════════════════════════════════════════════════ -->
+  <!-- autopr.yml — single runner -->
+  <!-- ═══════════════════════════════════════════════════ -->
+
+  <!-- Outer container -->
+  <rect x="145" y="318" width="610" height="500" rx="12" fill="none" stroke="#30363d" stroke-width="1" stroke-dasharray="6 3"/>
+  <text x="160" y="338" fill="#8b949e" font-size="11" font-weight="600">autopr.yml · single runner</text>
+  <text x="740" y="338" text-anchor="end" fill="#8b949e" font-size="9">weekly Mon 03:17 UTC</text>
+
+  <!-- Arrows: branches → runner -->
+  <line x1="300" y1="294" x2="370" y2="356" stroke="#388bfd" stroke-width="1.2" marker-end="url(#arrow)"/>
+  <line x1="600" y1="294" x2="530" y2="356" stroke="#388bfd" stroke-width="1.2" marker-end="url(#arrow)"/>
+
+  <!-- ── Step 1: Detect ── -->
+  <rect x="275" y="350" width="350" height="44" rx="8" fill="#1c2128" stroke="#388bfd" stroke-width="1"/>
+  <rect x="275" y="350" width="350" height="20" rx="8" fill="#1f6feb" opacity="0.15"/>
+  <text x="290" y="364" fill="#388bfd" font-size="10" font-weight="600">1-detect-changes-job.js</text>
+  <text x="450" y="383" text-anchor="middle" fill="#e6edf3" font-size="10">rev-list count · diff --name-only src/**/*.md</text>
+
+  <line x1="450" y1="394" x2="450" y2="410" stroke="#8b949e" stroke-width="1" marker-end="url(#arrow)"/>
+  <text x="458" y="406" fill="#3fb950" font-size="9">has_changes</text>
+
+  <!-- ── Step 2: Merge ── -->
+  <rect x="275" y="412" width="350" height="44" rx="8" fill="#1c2128" stroke="#d29922" stroke-width="1"/>
+  <rect x="275" y="412" width="350" height="20" rx="8" fill="#d29922" opacity="0.12"/>
+  <text x="290" y="426" fill="#d29922" font-size="10" font-weight="600">2-merge-job.js</text>
+  <text x="450" y="445" text-anchor="middle" fill="#e6edf3" font-size="10">git merge origin/upstream · resolve conflict markers</text>
+
+  <line x1="450" y1="456" x2="450" y2="472" stroke="#8b949e" stroke-width="1" marker-end="url(#arrow)"/>
+  <text x="458" y="468" fill="#d29922" font-size="9">todo-translation.json</text>
+
+  <!-- ── Step 3: Translate ── -->
+  <rect x="275" y="474" width="350" height="44" rx="8" fill="#1c2128" stroke="#d29922" stroke-width="1"/>
+  <rect x="275" y="474" width="350" height="20" rx="8" fill="#d29922" opacity="0.12"/>
+  <text x="290" y="488" fill="#d29922" font-size="10" font-weight="600">3-translate-job.js</text>
+  <text x="450" y="507" text-anchor="middle" fill="#e6edf3" font-size="10">Copilot CLI · EN→ZH per conventions</text>
+
+  <line x1="450" y1="518" x2="450" y2="534" stroke="#8b949e" stroke-width="1" marker-end="url(#arrow)"/>
+  <text x="458" y="530" fill="#d29922" font-size="9">done-translation.json</text>
+
+  <!-- ── Step 4: Apply ── -->
+  <rect x="275" y="536" width="350" height="44" rx="8" fill="#1c2128" stroke="#2ea043" stroke-width="1"/>
+  <rect x="275" y="536" width="350" height="20" rx="8" fill="#238636" opacity="0.12"/>
+  <text x="290" y="550" fill="#3fb950" font-size="10" font-weight="600">4-apply-job.js</text>
+  <text x="450" y="569" text-anchor="middle" fill="#e6edf3" font-size="10">replace conflict blocks with translations</text>
+
+  <line x1="450" y1="580" x2="450" y2="596" stroke="#8b949e" stroke-width="1" marker-end="url(#arrow)"/>
+
+  <!-- ── Step 5: Collect ── -->
+  <rect x="275" y="598" width="350" height="44" rx="8" fill="#1c2128" stroke="#388bfd" stroke-width="1"/>
+  <rect x="275" y="598" width="350" height="20" rx="8" fill="#1f6feb" opacity="0.12"/>
+  <text x="290" y="612" fill="#388bfd" font-size="10" font-weight="600">5-collect-merge-info.js</text>
+  <text x="450" y="631" text-anchor="middle" fill="#e6edf3" font-size="10">merge_result · conflict_files · changed_files</text>
+
+  <line x1="450" y1="642" x2="450" y2="658" stroke="#8b949e" stroke-width="1" marker-end="url(#arrow)"/>
+
+  <!-- ── Push ── -->
+  <rect x="275" y="660" width="350" height="36" rx="8" fill="#1c2128" stroke="#2ea043" stroke-width="1"/>
+  <rect x="275" y="660" width="350" height="18" rx="8" fill="#238636" opacity="0.12"/>
+  <text x="290" y="673" fill="#3fb950" font-size="10" font-weight="600">commit + push</text>
+  <text x="450" y="688" text-anchor="middle" fill="#8b949e" font-size="9">git add -A → force-with-lease → sync</text>
+
+  <line x1="450" y1="696" x2="450" y2="714" stroke="#8b949e" stroke-width="1" marker-end="url(#arrow)"/>
+
+  <!-- ── Step 6: PR + Review ── -->
+  <rect x="275" y="716" width="350" height="44" rx="8" fill="#1c2128" stroke="#bc8cff" stroke-width="1"/>
+  <rect x="275" y="716" width="350" height="20" rx="8" fill="#a371f7" opacity="0.12"/>
+  <text x="290" y="730" fill="#bc8cff" font-size="10" font-weight="600">6-create-pr-and-review.js</text>
+  <text x="450" y="749" text-anchor="middle" fill="#e6edf3" font-size="10">gh pr create · copilot-pull-request-reviewer</text>
+
+  <!-- Arrow: PR → main -->
+  <line x1="450" y1="760" x2="450" y2="790" stroke="#bc8cff" stroke-width="1.5" marker-end="url(#arrow-purple)"/>
+
+  <!-- ═══════════════════════════════════════════════════ -->
+  <!-- Target: main -->
+  <!-- ═══════════════════════════════════════════════════ -->
+  <rect x="310" y="794" width="280" height="48" rx="10" fill="url(#g-purple)" filter="url(#shadow)"/>
+  <text x="450" y="815" text-anchor="middle" fill="#fff" font-size="13" font-weight="600">vuejs-translations/docs-zh-cn : main</text>
+  <text x="450" y="832" text-anchor="middle" fill="rgba(255,255,255,0.7)" font-size="10">merge commit with Copilot review</text>
+
+  <!-- ═══════════════════════════════════════════════════ -->
+  <!-- Legend -->
+  <!-- ═══════════════════════════════════════════════════ -->
+  <rect x="145" y="870" width="610" height="72" rx="8" fill="#161b22" stroke="#30363d" stroke-width="1"/>
+  <text x="450" y="890" text-anchor="middle" fill="#8b949e" font-size="10" font-weight="600">data flow between scripts</text>
+
+  <circle cx="200" cy="910" r="5" fill="#1f6feb"/>
+  <text x="212" y="914" fill="#8b949e" font-size="9">detect / collect</text>
+  <circle cx="330" cy="910" r="5" fill="#d29922"/>
+  <text x="342" y="914" fill="#8b949e" font-size="9">merge / translate</text>
+  <circle cx="460" cy="910" r="5" fill="#2ea043"/>
+  <text x="472" y="914" fill="#8b949e" font-size="9">apply / push</text>
+  <circle cx="560" cy="910" r="5" fill="#bc8cff"/>
+  <text x="572" y="914" fill="#8b949e" font-size="9">PR / review</text>
+
+  <text x="450" y="932" text-anchor="middle" fill="#484f58" font-size="9">
+    2-merge → todo-translation.json → 3-translate → done-translation.json → 4-apply
+  </text>
+</svg>

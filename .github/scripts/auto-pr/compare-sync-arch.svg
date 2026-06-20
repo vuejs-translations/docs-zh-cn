@@ -1,0 +1,179 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 750" font-family="Segoe UI, -apple-system, sans-serif">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0d1117"/>
+      <stop offset="100%" stop-color="#161b22"/>
+    </linearGradient>
+    <linearGradient id="g-blue" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#1f6feb"/>
+      <stop offset="100%" stop-color="#388bfd"/>
+    </linearGradient>
+    <linearGradient id="g-green" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#238636"/>
+      <stop offset="100%" stop-color="#2ea043"/>
+    </linearGradient>
+    <linearGradient id="g-purple" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#a371f7"/>
+      <stop offset="100%" stop-color="#bc8cff"/>
+    </linearGradient>
+    <linearGradient id="g-red" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#da3633"/>
+      <stop offset="100%" stop-color="#f85149"/>
+    </linearGradient>
+    <linearGradient id="g-gold" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#bf8700"/>
+      <stop offset="100%" stop-color="#d29922"/>
+    </linearGradient>
+    <filter id="shadow">
+      <feDropShadow dx="0" dy="2" stdDeviation="4" flood-color="#000" flood-opacity="0.5"/>
+    </filter>
+    <marker id="arrow" viewBox="0 0 10 7" refX="10" refY="3.5" markerWidth="10" markerHeight="7" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#8b949e"/>
+    </marker>
+    <marker id="arrow-green" viewBox="0 0 10 7" refX="10" refY="3.5" markerWidth="10" markerHeight="7" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#3fb950"/>
+    </marker>
+    <marker id="arrow-red" viewBox="0 0 10 7" refX="10" refY="3.5" markerWidth="10" markerHeight="7" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#f85149"/>
+    </marker>
+    <marker id="arrow-gold" viewBox="0 0 10 7" refX="10" refY="3.5" markerWidth="10" markerHeight="7" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#d29922"/>
+    </marker>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1100" height="750" fill="url(#bg)" rx="12"/>
+
+  <!-- ============================================================ -->
+  <!--                    旧方案（左侧）                              -->
+  <!-- ============================================================ -->
+
+  <text x="275" y="35" text-anchor="middle" font-size="20" font-weight="bold" fill="#f85149">旧方案（手动流程）</text>
+  <text x="275" y="55" text-anchor="middle" font-size="12" fill="#8b949e">autosync.yml 同步 + 手动处理</text>
+
+  <!-- 节点 1 -->
+  <rect x="125" y="70" width="300" height="45" rx="8" fill="#1c2128" stroke="#388bfd" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="275" y="97" text-anchor="middle" font-size="14" fill="#58a6ff">上游 vuejs/docs（英文仓库）</text>
+
+  <line x1="275" y1="115" x2="275" y2="140" stroke="#8b949e" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <text x="285" y="130" font-size="10" fill="#8b949e">autosync.yml 自动同步</text>
+
+  <!-- 节点 2 -->
+  <rect x="125" y="145" width="300" height="40" rx="8" fill="#1c2128" stroke="#2ea043" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="275" y="170" text-anchor="middle" font-size="14" fill="#3fb950">upstream 分支</text>
+
+  <line x1="275" y1="185" x2="275" y2="210" stroke="#8b949e" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <text x="285" y="200" font-size="10" fill="#8b949e">手动合并</text>
+
+  <!-- 节点 3 -->
+  <rect x="125" y="215" width="300" height="40" rx="8" fill="#1c2128" stroke="#d29922" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="275" y="240" text-anchor="middle" font-size="14" fill="#e3b341">sync 分支</text>
+
+  <line x1="275" y1="255" x2="275" y2="280" stroke="#f85149" stroke-width="1.5" marker-end="url(#arrow-red)"/>
+
+  <!-- 节点 4：痛点高亮 -->
+  <rect x="105" y="285" width="340" height="55" rx="8" fill="#1c2128" stroke="#f85149" stroke-width="2" filter="url(#shadow)"/>
+  <rect x="105" y="285" width="340" height="20" rx="8" fill="#da3633" opacity="0.2"/>
+  <text x="275" y="306" text-anchor="middle" font-size="13" font-weight="bold" fill="#f85149">⚠ 本地处理（耗时耗力）</text>
+  <text x="275" y="326" text-anchor="middle" font-size="11" fill="#f0883e">手动解决冲突 + 翻译</text>
+
+  <line x1="275" y1="340" x2="275" y2="365" stroke="#f85149" stroke-width="1.5" marker-end="url(#arrow-red)"/>
+  <text x="285" y="355" font-size="10" fill="#8b949e">发起 PR</text>
+
+  <!-- 节点 5 -->
+  <rect x="125" y="370" width="300" height="40" rx="8" fill="#1c2128" stroke="#2ea043" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="275" y="395" text-anchor="middle" font-size="13" fill="#3fb950">Pull Request（sync → main）</text>
+
+  <line x1="275" y1="410" x2="275" y2="435" stroke="#8b949e" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <text x="285" y="425" font-size="10" fill="#8b949e">社区 Review</text>
+
+  <!-- 节点 6 -->
+  <rect x="125" y="440" width="300" height="40" rx="8" fill="#1c2128" stroke="#388bfd" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="275" y="465" text-anchor="middle" font-size="14" fill="#58a6ff">main 分支（最终发布）</text>
+
+  <!-- 痛点总结 -->
+  <rect x="30" y="510" width="180" height="65" rx="6" fill="#1c2128" stroke="#d29922" stroke-width="1" stroke-dasharray="5,3"/>
+  <text x="120" y="530" text-anchor="middle" font-size="11" font-weight="bold" fill="#e3b341">💡 痛点</text>
+  <text x="120" y="548" text-anchor="middle" font-size="10" fill="#f0883e">• 依赖本地手动操作</text>
+  <text x="120" y="563" text-anchor="middle" font-size="10" fill="#f0883e">• 维护者耗费大量精力</text>
+
+  <!-- ==================== 分隔线 ==================== -->
+  <line x1="550" y1="20" x2="550" y2="600" stroke="#30363d" stroke-width="1.5" stroke-dasharray="6,4"/>
+
+  <!-- ============================================================ -->
+  <!--                    新方案（右侧）                              -->
+  <!-- ============================================================ -->
+
+  <text x="825" y="35" text-anchor="middle" font-size="20" font-weight="bold" fill="#3fb950">新方案（自动化流程）</text>
+  <text x="825" y="55" text-anchor="middle" font-size="12" fill="#8b949e">autopr.yml 全自动流水线</text>
+
+  <!-- 触发方式 -->
+  <rect x="650" y="70" width="350" height="55" rx="10" fill="#1c2128" stroke="#bc8cff" stroke-width="1.5" filter="url(#shadow)"/>
+  <rect x="650" y="70" width="350" height="22" rx="10" fill="#a371f7" opacity="0.15"/>
+  <text x="825" y="88" text-anchor="middle" font-size="12" font-weight="bold" fill="#bc8cff">触发方式</text>
+  <text x="825" y="112" text-anchor="middle" font-size="11" fill="#d2a8ff">⏰ 定时（每周）  |  👆 手动（点按运行）</text>
+
+  <line x1="825" y1="125" x2="825" y2="150" stroke="#3fb950" stroke-width="1.5" marker-end="url(#arrow-green)"/>
+
+  <!-- GitHub Actions -->
+  <rect x="675" y="155" width="300" height="40" rx="8" fill="#1c2128" stroke="#2ea043" stroke-width="1.5" filter="url(#shadow)"/>
+  <rect x="675" y="155" width="300" height="18" rx="8" fill="#238636" opacity="0.2"/>
+  <text x="825" y="180" text-anchor="middle" font-size="14" font-weight="bold" fill="#3fb950">🚀 GitHub Actions 启动</text>
+
+  <line x1="825" y1="195" x2="825" y2="220" stroke="#3fb950" stroke-width="1.5" marker-end="url(#arrow-green)"/>
+
+  <!-- 步骤 1 -->
+  <rect x="675" y="225" width="300" height="40" rx="8" fill="#1c2128" stroke="#388bfd" stroke-width="1" filter="url(#shadow)"/>
+  <rect x="675" y="225" width="300" height="18" rx="8" fill="#1f6feb" opacity="0.15"/>
+  <text x="825" y="248" text-anchor="middle" font-size="13" fill="#58a6ff">① 分支预处理</text>
+
+  <line x1="825" y1="265" x2="825" y2="290" stroke="#3fb950" stroke-width="1.5" marker-end="url(#arrow-green)"/>
+
+  <!-- 步骤 2 -->
+  <rect x="675" y="295" width="300" height="40" rx="8" fill="#1c2128" stroke="#d29922" stroke-width="1" filter="url(#shadow)"/>
+  <rect x="675" y="295" width="300" height="18" rx="8" fill="#d29922" opacity="0.12"/>
+  <text x="825" y="318" text-anchor="middle" font-size="13" fill="#e3b341">② 自动解决冲突</text>
+
+  <line x1="825" y1="335" x2="825" y2="360" stroke="#3fb950" stroke-width="1.5" marker-end="url(#arrow-green)"/>
+
+  <!-- 步骤 3 -->
+  <rect x="675" y="365" width="300" height="40" rx="8" fill="#1c2128" stroke="#bc8cff" stroke-width="1" filter="url(#shadow)"/>
+  <rect x="675" y="365" width="300" height="18" rx="8" fill="#a371f7" opacity="0.12"/>
+  <text x="825" y="388" text-anchor="middle" font-size="13" fill="#d2a8ff">③ 自动翻译</text>
+
+  <line x1="825" y1="405" x2="825" y2="430" stroke="#3fb950" stroke-width="1.5" marker-end="url(#arrow-green)"/>
+
+  <!-- 步骤 4 -->
+  <rect x="675" y="435" width="300" height="40" rx="8" fill="#1c2128" stroke="#2ea043" stroke-width="1" filter="url(#shadow)"/>
+  <rect x="675" y="435" width="300" height="18" rx="8" fill="#238636" opacity="0.15"/>
+  <text x="825" y="458" text-anchor="middle" font-size="13" fill="#3fb950">④ 自动发起 PR</text>
+
+  <line x1="825" y1="475" x2="825" y2="500" stroke="#3fb950" stroke-width="1.5" marker-end="url(#arrow-green)"/>
+
+  <!-- Review -->
+  <rect x="675" y="505" width="300" height="40" rx="8" fill="#1c2128" stroke="#d29922" stroke-width="1" filter="url(#shadow)"/>
+  <rect x="675" y="505" width="300" height="18" rx="8" fill="#d29922" opacity="0.12"/>
+  <text x="825" y="528" text-anchor="middle" font-size="13" fill="#e3b341">👀 社区 Review（如 #1113）</text>
+
+  <line x1="825" y1="545" x2="825" y2="570" stroke="#3fb950" stroke-width="1.5" marker-end="url(#arrow-green)"/>
+
+  <!-- main -->
+  <rect x="675" y="575" width="300" height="40" rx="8" fill="#1c2128" stroke="#388bfd" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="825" y="600" text-anchor="middle" font-size="14" fill="#58a6ff">main 分支（最终发布）</text>
+
+  <!-- 优势总结 -->
+  <rect x="930" y="510" width="140" height="65" rx="6" fill="#1c2128" stroke="#2ea043" stroke-width="1" stroke-dasharray="5,3"/>
+  <text x="1000" y="530" text-anchor="middle" font-size="11" font-weight="bold" fill="#3fb950">✅ 优势</text>
+  <text x="1000" y="548" text-anchor="middle" font-size="10" fill="#2ea043">• 全自动流水线</text>
+  <text x="1000" y="563" text-anchor="middle" font-size="10" fill="#2ea043">• 一键完成</text>
+
+  <!-- 底部对比总结 -->
+  <rect x="130" y="620" width="840" height="45" rx="10" fill="#161b22" stroke="#30363d" stroke-width="1"/>
+  <text x="550" y="642" text-anchor="middle" font-size="13" fill="#e6edf3">
+    对比：左侧旧方案需手动解决冲突 + 翻译（红色高亮）→ 右侧新方案全自动化（绿色流程），维护者仅需 Review
+  </text>
+  <text x="550" y="658" text-anchor="middle" font-size="11" fill="#8b949e">
+    从「人工耗时」到「一键触发」，大幅降低维护成本
+  </text>
+
+</svg>
