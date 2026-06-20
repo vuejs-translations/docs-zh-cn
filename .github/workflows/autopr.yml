@@ -1,0 +1,165 @@
+name: Auto PR (Sync & Translate)
+
+on:
+  schedule:
+    - cron: "17 3 * * 1" # Weekly on Monday at 03:17 UTC
+  workflow_dispatch:
+    # 默认 Copilot 阻断，true 为测试需要
+    inputs:
+      skip_translate_gate:
+        description: "Skip translation failure gate (allow PR even if Copilot fails)"
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+  pull-requests: write
+  issues: write
+
+env:
+  UPSTREAM_REPO: vuejs/docs
+  SYNC_BRANCH: sync
+  TARGET_BRANCH: main
+
+jobs:
+  # ── Sync: detect → merge → translate → apply (single runner) ──
+  sync-merge-translate-apply:
+    runs-on: ubuntu-latest
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      UPSTREAM_BRANCH: upstream
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ env.SYNC_BRANCH }}
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - uses: oven-sh/setup-bun@v2
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: "pnpm"
+
+      - name: Install dependencies
+        run: |
+          pnpm install --no-frozen-lockfile
+          bun install -g @github/copilot
+
+      # ── 0. Capture sync base hash (last synced upstream commit) ──
+      - name: Capture sync base hash
+        id: sync-base
+        run: |
+          HASH=$(git rev-parse --short "$(git merge-base HEAD origin/upstream)")
+          echo "sync_hash=$HASH" >> "$GITHUB_OUTPUT"
+
+      # ── 1. Detect changes ──
+      - name: Detect changes
+        id: detect
+        run: bun .github/scripts/auto-pr/1-detect-changes-job.js
+
+      # ── 2. Merge upstream ──
+      - name: Merge upstream
+        id: merge
+        if: steps.detect.outputs.merge_result != 'no_changes'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          git fetch origin upstream
+
+          if git merge origin/upstream --no-edit; then
+            echo "merge_status=clean" >> "$GITHUB_OUTPUT"
+          else
+            echo "merge_status=conflict" >> "$GITHUB_OUTPUT"
+            echo "Merge has conflicts, 2-merge-job.js will resolve them."
+          fi
+
+      - name: Resolve conflicts with 2-merge-job.js
+        if: steps.merge.outputs.merge_status == 'conflict'
+        run: bun .github/scripts/auto-pr/2-merge-job.js
+
+      # ── 3. Translate conflict blocks ──
+      - name: Translate with Copilot CLI
+        id: translate
+        if: steps.merge.outputs.merge_status == 'conflict'
+        continue-on-error: true
+        env:
+          COPILOT_TOKEN: ${{ secrets.COPILOT_TOKEN }}
+          UPSTREAM_HASH: ${{ steps.detect.outputs.upstream_hash }}
+        run: bun .github/scripts/auto-pr/3-translate-job.js
+
+      # ── Gate: block if translation failed (quota exhausted, etc.) ──
+      - name: Check translation status
+        id: check-translate
+        if: steps.merge.outputs.merge_status == 'conflict' && inputs.skip_translate_gate != true
+        run: |
+          if [ "${{ steps.translate.outcome }}" != "success" ]; then
+            echo "::error::Translation failed (outcome=${{ steps.translate.outcome }}). Blocking downstream steps."
+            exit 1
+          fi
+
+      # ── 4. Apply translations ──
+      - name: Check done-translation.json
+        id: check-done
+        if: steps.merge.outputs.merge_status == 'conflict'
+        run: |
+          if [ -f ".github/scripts/auto-pr/done-translation.json" ]; then
+            echo "done_file_exists=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "done_file_exists=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Apply translations
+        if: steps.check-done.outputs.done_file_exists == 'true'
+        run: bun .github/scripts/auto-pr/4-apply-job.js
+
+      # ── 5. Collect actual merge result (after conflict resolution) ──
+      - name: Collect merge info
+        id: info
+        env:
+          MERGE_STATUS: ${{ steps.merge.outputs.merge_status }}
+          DETECT_CHANGED_FILES: ${{ steps.detect.outputs.changed_files }}
+        run: bun .github/scripts/auto-pr/5-collect-merge-info.js
+
+      # ── Push merge (always, even if translation was skipped) ──
+      - name: Commit and push to sync
+        if: steps.detect.outputs.merge_result != 'no_changes'
+        env:
+          MERGE_RESULT: ${{ steps.info.outputs.merge_result }}
+          UPSTREAM_HASH: ${{ steps.detect.outputs.upstream_hash }}
+        run: |
+          git add -A
+
+          if git diff --cached --quiet; then
+            echo "No changes to commit."
+            exit 0
+          fi
+
+          git commit -m "sync(autopr): merge upstream $UPSTREAM_HASH
+          - Merge result: $MERGE_RESULT
+          - Upstream: vuejs/docs@$UPSTREAM_HASH
+          sync #$UPSTREAM_HASH"
+
+          git push origin sync --force-with-lease
+
+      # ── 6. Create PR only if translation succeeded (or no conflicts, or gate skipped) ──
+      - name: Create PR and request review
+        if: >-
+          steps.detect.outputs.merge_result != 'no_changes'
+          && (steps.merge.outputs.merge_status != 'conflict'
+              || steps.check-translate.outcome == 'success'
+              || inputs.skip_translate_gate == true)
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+          UPSTREAM_REPO: vuejs/docs
+          SYNC_BRANCH: sync
+          TARGET_BRANCH: main
+          UPSTREAM_HASH: ${{ steps.detect.outputs.upstream_hash }}
+          SYNC_BASE_HASH: ${{ steps.sync-base.outputs.sync_hash }}
+          MERGE_RESULT: ${{ steps.info.outputs.merge_result }}
+          CONFLICT_FILES: ${{ steps.info.outputs.conflict_files }}
+          CHANGED_FILES: ${{ steps.info.outputs.changed_files }}
+        run: bun .github/scripts/auto-pr/6-create-pr-and-review.js

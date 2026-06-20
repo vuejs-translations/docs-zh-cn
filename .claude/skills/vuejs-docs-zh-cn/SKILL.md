@@ -13,10 +13,10 @@ triggers:
 
 # Vue.js 中文翻译约定
 
-用於 Vue.js 文档中文翻译的术语、格式与流程约定。
+用于 Vue.js 文档中文翻译的术语、格式与流程约定。
 
 ## 约定文件
 
 - [术语翻译约定](./references/terminology.md) — 英文术语对照表、保留英文规则、单复数、中文术语、MDN 处理、缩写处理
 - [文本格式](./references/formatting.md) — 译注、标点符号、内联代码、空格、加粗斜体
-- [翻译指南](./references/guidelines.md) — 代码片段、图片处理、翻译建议
+- [翻译指南](./references/guidelines.md) — 代码片段、翻译建议
