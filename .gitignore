@@ -115,3 +115,6 @@ draft.md
 # IDEs
 # folders created by IDE
 .idea
+
+# ignore auto PR scripts
+.github/scripts/auto-pr/*.json
