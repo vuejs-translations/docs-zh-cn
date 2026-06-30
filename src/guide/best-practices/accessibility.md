@@ -229,6 +229,31 @@ watch(
 
 ![Chrome 开发者工具通过 aria-labelledby 展示 input 的无障碍访问名称](./images/AccessibleARIAlabelledbyDevTools.png)
 
+在可复用组件中使用这种模式时，请通过 [`useId()`](/api/composition-api-helpers.html#useid) 生成 ID，而不要将其硬编码。这样既能让每个组件实例的 `id` 值保持唯一，又能将可见文本与表单控件关联起来：
+
+```vue
+<script setup>
+import { useId } from 'vue'
+
+const sectionId = useId()
+const nameId = useId()
+</script>
+
+<template>
+  <section class="form-section">
+    <h2 :id="sectionId">Billing</h2>
+
+    <label :id="nameId" :for="`${nameId}-input`">Name: </label>
+    <input
+      :id="`${nameId}-input`"
+      type="text"
+      name="name"
+      :aria-labelledby="`${sectionId} ${nameId}`"
+    />
+  </section>
+</template>
+```
+
 #### `aria-describedby` {#aria-describedby}
 
 [aria-describedby](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-describedby) 的用法与 `aria-labelledby` 相同，它提供了一条用户可能需要的附加描述信息。这可用于描述任何输入的标准：
