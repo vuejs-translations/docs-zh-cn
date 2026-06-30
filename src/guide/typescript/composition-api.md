@@ -481,7 +481,7 @@ const openModal = () => {
 
 ## 为自定义全局指令添加类型 {#typing-global-custom-directives}
 
-可以通过扩展 `ComponentCustomProperties` 来为使用 `app.directive()` 声明的全局自定义指令获取类型提示和类型检查
+可以通过扩展 `GlobalDirectives` 来为使用 `app.directive()` 声明的全局自定义指令获取类型提示和类型检查
 
 ```ts [src/directives/highlight.ts]
 import type { Directive } from 'vue'
@@ -489,7 +489,7 @@ import type { Directive } from 'vue'
 export type HighlightDirective = Directive<HTMLElement, string>
 
 declare module 'vue' {
-  export interface ComponentCustomProperties {
+  export interface GlobalDirectives {
     // 使用 v 作为前缀 (v-highlight)
     vHighlight: HighlightDirective
   }
