@@ -193,6 +193,7 @@ vuejs/docs:main ──autosync.yml──→ vuejs-translations:upstream
 | 条件 | 说明 |
 |------|------|
 | Node.js >= 18 | 运行 JS 脚本 |
+| Bun | 规避 `package.json` 失败时候无法跑的问题 |
 | git 分支状态 | 不同步骤需要不同分支状态（见各步骤说明） |
 | Claude CLI (步骤 3) | 安装: `npm install -g @anthropic-ai/claude-code` |
 | GH Token (步骤 6 正式版) | 仅在需要实际创建 PR 时配置 |
@@ -212,6 +213,8 @@ node .github/scripts/auto-pr/local-test.js --step 3 --mode file
 ```
 
 ### 分步执行说明
+
+> 当 `package.json` 存在冲突导致 `node` 执行失败时，建议使用 `bun`
 
 #### 步骤 1：检测变更
 

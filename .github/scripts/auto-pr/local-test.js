@@ -11,6 +11,8 @@
  *   node .github/scripts/auto-pr/local-test.js --step 1,2,3      # 跑步骤 1、2、3
  *   node .github/scripts/auto-pr/local-test.js --step all        # 跑所有步骤
  *   node .github/scripts/auto-pr/local-test.js --step 3 --mode file  # 指定翻译模式
+ * 注意：
+ *  当 package.json 冲突时，node 执行步骤 2 会失败，请使用 bun
  */
 
 import { execSync } from "child_process";
@@ -51,9 +53,21 @@ const SEP = "=".repeat(72);
 const STEP_SCRIPTS = {
   1: { script: "1-detect-changes-job.js", label: "检测变更" },
   2: { script: "2-merge-job.js", label: "合并冲突解析" },
-  3: { script: "3-local-job.js", label: "翻译 (Claude CLI)", depHint: "请先执行步骤 2 生成 todo-translation.json" },
-  4: { script: "4-apply-job.js", label: "应用翻译", depHint: "请先执行步骤 3 生成 done-translation.json" },
-  5: { script: "5-collect-merge-info.js", label: "收集合并信息", depHint: "请先执行步骤 2 生成 todo-translation.json" },
+  3: {
+    script: "3-local-job.js",
+    label: "翻译 (Claude CLI)",
+    depHint: "请先执行步骤 2 生成 todo-translation.json",
+  },
+  4: {
+    script: "4-apply-job.js",
+    label: "应用翻译",
+    depHint: "请先执行步骤 3 生成 done-translation.json",
+  },
+  5: {
+    script: "5-collect-merge-info.js",
+    label: "收集合并信息",
+    depHint: "请先执行步骤 2 生成 todo-translation.json",
+  },
   6: { script: "6-create-pr-and-review.js", label: "PR 内容预览 (dry-run)" },
 };
 
@@ -83,9 +97,9 @@ for (const stepNum of selectedSteps) {
 
   // Pre-check: required artifacts from earlier steps
   const deps = {
-    3:  [".github/scripts/auto-pr/todo-translation.json"],
-    4:  [".github/scripts/auto-pr/done-translation.json"],
-    5:  [".github/scripts/auto-pr/todo-translation.json"],
+    3: [".github/scripts/auto-pr/todo-translation.json"],
+    4: [".github/scripts/auto-pr/done-translation.json"],
+    5: [".github/scripts/auto-pr/todo-translation.json"],
   };
   for (const dep of deps[stepNum] || []) {
     if (!existsSync(resolve(ROOT, dep))) {
@@ -107,7 +121,7 @@ for (const stepNum of selectedSteps) {
         console.error("  ✗ 工作区有未提交的更改，merge 被 git 拒绝。请先提交或暂存：\n");
         execSync("git status --short", { cwd: ROOT, stdio: "inherit" });
         console.log("\n  提交当前改动后再重试：");
-        console.log("    git add -A && git commit -m \"chore: auto-pr local test changes\"");
+        console.log('    git add -A && git commit -m "chore: auto-pr local test changes"');
         process.exit(1);
       }
 
@@ -134,7 +148,8 @@ for (const stepNum of selectedSteps) {
         // Pre-resolve package.json so Node.js can start (CI uses bun, no package.json issue)
         console.log("  ⚠  package.json 冲突 -> accept theirs (Node.js 启动需要)\n");
         execSync("git checkout --theirs -- package.json && git add package.json", {
-          cwd: ROOT, stdio: "pipe",
+          cwd: ROOT,
+          stdio: "pipe",
         });
 
         console.log("  运行 2-merge-job.js 解析剩余冲突...\n");
