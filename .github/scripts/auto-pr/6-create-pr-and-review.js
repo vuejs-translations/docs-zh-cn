@@ -1,5 +1,5 @@
 import { execSync } from "child_process";
-import { writeFileSync, unlinkSync } from "fs";
+import { existsSync, readFileSync, writeFileSync, unlinkSync } from "fs";
 
 const gh = (cmd) => execSync(cmd, { encoding: "utf-8" }).trim();
 
@@ -14,22 +14,13 @@ const {
   CONFLICT_FILES,
   CHANGED_FILES,
   GITHUB_REPOSITORY,
+  LOCAL,
 } = process.env;
 
 const repo = GITHUB_REPOSITORY;
 
-// ── 1. Check if PR already exists ──
-const existing = gh(
-  `gh pr list --repo "${repo}" --base "${TARGET_BRANCH}" --head "${SYNC_BRANCH}" --state open --json number --jq '.[0].number'`,
-);
-
-let prNumber;
-
-if (existing) {
-  console.log(`PR already exists: #${existing}`);
-  prNumber = existing;
-} else {
-  // ── 2. Build PR body ──
+// ── Build PR body (shared for both local dry-run and CI) ──
+function buildPrBody() {
   let body = `## Upstream Sync\n\n- Upstream: \`${UPSTREAM_REPO}\` @ \`${UPSTREAM_HASH}\`\n- Merge result: \`${MERGE_RESULT}\`\n`;
 
   if (SYNC_BASE_HASH && UPSTREAM_HASH) {
@@ -55,6 +46,44 @@ if (existing) {
   }
 
   body += `\n> Automated by [autopr.yml](.github/workflows/autopr.yml)\n`;
+  return body;
+}
+
+// ── LOCAL mode: dry-run, print PR content and exit ──
+if (LOCAL) {
+  // Read actual data from JSON artifacts when env vars are missing
+  const todoPath = ".github/scripts/auto-pr/todo-translation.json";
+  const donePath = ".github/scripts/auto-pr/done-translation.json";
+  if (!UPSTREAM_HASH && existsSync(todoPath)) {
+    const items = JSON.parse(readFileSync(todoPath, "utf-8"));
+    if (!CONFLICT_FILES) {
+      CONFLICT_FILES = [...new Set(items.map((i) => i.file))].join(",");
+    }
+  }
+  if (!CHANGED_FILES && existsSync(donePath)) {
+    const items = JSON.parse(readFileSync(donePath, "utf-8"));
+    CHANGED_FILES = [...new Set(items.map((i) => i.file))].join(",");
+  }
+
+  const body = buildPrBody();
+  console.log(`[local dry-run] PR Title: Sync(autopr) #${UPSTREAM_HASH || "(unknown-hash)"} — upstream merge & translate`);
+  console.log(`[local dry-run] PR Body:\n${body}`);
+  process.exit(0);
+}
+
+// ── 1. Check if PR already exists ──
+const existing = gh(
+  `gh pr list --repo "${repo}" --base "${TARGET_BRANCH}" --head "${SYNC_BRANCH}" --state open --json number --jq '.[0].number'`,
+);
+
+let prNumber;
+
+if (existing) {
+  console.log(`PR already exists: #${existing}`);
+  prNumber = existing;
+} else {
+  // ── 2. Build PR body ──
+  const body = buildPrBody();
 
   // ── 3. Create PR ──
   const tmpFile = "/tmp/pr-body.md";
