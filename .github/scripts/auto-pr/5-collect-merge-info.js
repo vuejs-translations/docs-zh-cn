@@ -11,6 +11,9 @@ function setOutput(key, value) {
   if (GITHUB_OUTPUT) {
     appendFileSync(GITHUB_OUTPUT, `${key}=${value}\n`);
   }
+  if (process.env.LOCAL) {
+    console.log(`[local] ${key}=${value}`);
+  }
 }
 
 // ── merge_result & conflict_files ──

@@ -18,6 +18,9 @@ function setOutput(key, value) {
   if (outputFile) {
     appendFileSync(outputFile, `${key}=${value}\n`);
   }
+  if (process.env.LOCAL) {
+    console.log(`[local] ${key}=${value}`);
+  }
 }
 
 // ── Main ─────────────────────────────────────────────────────────
