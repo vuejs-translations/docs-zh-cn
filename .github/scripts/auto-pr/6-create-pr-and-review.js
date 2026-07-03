@@ -11,13 +11,12 @@ const {
   UPSTREAM_HASH,
   SYNC_BASE_HASH,
   MERGE_RESULT,
-  CONFLICT_FILES,
-  CHANGED_FILES,
   GITHUB_REPOSITORY,
   LOCAL,
 } = process.env;
 
-const repo = GITHUB_REPOSITORY;
+let { CONFLICT_FILES, CHANGED_FILES } = process.env;
+const repo = GITHUB_REPOSITORY || "vuejs-translations/docs-zh-cn";
 
 // ── Build PR body (shared for both local dry-run and CI) ──
 function buildPrBody() {
@@ -54,11 +53,9 @@ if (LOCAL) {
   // Read actual data from JSON artifacts when env vars are missing
   const todoPath = ".github/scripts/auto-pr/todo-translation.json";
   const donePath = ".github/scripts/auto-pr/done-translation.json";
-  if (!UPSTREAM_HASH && existsSync(todoPath)) {
+  if (!CONFLICT_FILES && existsSync(todoPath)) {
     const items = JSON.parse(readFileSync(todoPath, "utf-8"));
-    if (!CONFLICT_FILES) {
-      CONFLICT_FILES = [...new Set(items.map((i) => i.file))].join(",");
-    }
+    CONFLICT_FILES = [...new Set(items.map((i) => i.file))].join(",");
   }
   if (!CHANGED_FILES && existsSync(donePath)) {
     const items = JSON.parse(readFileSync(donePath, "utf-8"));
