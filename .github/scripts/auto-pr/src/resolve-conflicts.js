@@ -1,5 +1,9 @@
 import { execSync } from "child_process";
 import { existsSync, readFileSync, writeFileSync } from "fs";
+import { resolve } from "path";
+import { AUTO_PR_DIR, isDirectRun } from "./helpers.js";
+
+const TODO_PATH = resolve(AUTO_PR_DIR, "todo-translation.json");
 
 // 无脑接受 incoming 的文件列表及其策略
 // "markers"  - 解析冲突标记，只替换冲突块，保留非冲突区域（适合 package.json 等），类似 vscode 的 "Accept Incoming Changes" 功能
@@ -24,10 +28,9 @@ function isGlobMatch(file, pattern) {
   return new RegExp(`^${regex}$`).test(file);
 }
 
-const all_replace_contents = [];
-
 class GitConflictFinder {
-  constructor() {
+  constructor(replacements) {
+    this.replacements = replacements;
     this.colors = {
       reset: "\x1b[0m",
       red: "\x1b[31m",
@@ -173,7 +176,7 @@ class GitConflictFinder {
           const endLine = startLine + conflict.theirs.split("\n").length - 1;
           content = this.resolveConflictAt(content, conflict);
 
-          all_replace_contents.push({
+          this.replacements.push({
             current: conflict.ours,
             incoming: conflict.theirs,
             file,
@@ -187,11 +190,20 @@ class GitConflictFinder {
   }
 }
 
-const finder = new GitConflictFinder();
-finder.run();
+export function resolveConflicts() {
+  const replacements = [];
+  const finder = new GitConflictFinder(replacements);
+  finder.run();
 
-writeFileSync(
-  ".github/scripts/auto-pr/todo-translation.json",
-  JSON.stringify(all_replace_contents, null, 2),
-  "utf-8",
-);
+  writeFileSync(
+    TODO_PATH,
+    JSON.stringify(replacements, null, 2),
+    "utf-8",
+  );
+
+  return replacements;
+}
+
+if (isDirectRun(import.meta.url)) {
+  resolveConflicts();
+}

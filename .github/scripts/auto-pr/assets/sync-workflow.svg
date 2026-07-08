@@ -101,7 +101,7 @@
   <!-- ── Step 1: Detect ── -->
   <rect x="275" y="350" width="350" height="44" rx="8" fill="#1c2128" stroke="#388bfd" stroke-width="1"/>
   <rect x="275" y="350" width="350" height="20" rx="8" fill="#1f6feb" opacity="0.15"/>
-  <text x="290" y="364" fill="#388bfd" font-size="10" font-weight="600">1-detect-changes-job.js</text>
+  <text x="290" y="364" fill="#388bfd" font-size="10" font-weight="600">bin/stage.js prepare</text>
   <text x="450" y="383" text-anchor="middle" fill="#e6edf3" font-size="10">rev-list count · diff --name-only src/**/*.md</text>
 
   <line x1="450" y1="394" x2="450" y2="410" stroke="#8b949e" stroke-width="1" marker-end="url(#arrow)"/>
@@ -110,7 +110,7 @@
   <!-- ── Step 2: Merge ── -->
   <rect x="275" y="412" width="350" height="44" rx="8" fill="#1c2128" stroke="#d29922" stroke-width="1"/>
   <rect x="275" y="412" width="350" height="20" rx="8" fill="#d29922" opacity="0.12"/>
-  <text x="290" y="426" fill="#d29922" font-size="10" font-weight="600">2-merge-job.js</text>
+  <text x="290" y="426" fill="#d29922" font-size="10" font-weight="600">src/resolve-conflicts.js</text>
   <text x="450" y="445" text-anchor="middle" fill="#e6edf3" font-size="10">git merge origin/upstream · resolve conflict markers</text>
 
   <line x1="450" y1="456" x2="450" y2="472" stroke="#8b949e" stroke-width="1" marker-end="url(#arrow)"/>
@@ -119,7 +119,7 @@
   <!-- ── Step 3: Translate ── -->
   <rect x="275" y="474" width="350" height="44" rx="8" fill="#1c2128" stroke="#d29922" stroke-width="1"/>
   <rect x="275" y="474" width="350" height="20" rx="8" fill="#d29922" opacity="0.12"/>
-  <text x="290" y="488" fill="#d29922" font-size="10" font-weight="600">3-translate-job.js</text>
+  <text x="290" y="488" fill="#d29922" font-size="10" font-weight="600">src/translator.js</text>
   <text x="450" y="507" text-anchor="middle" fill="#e6edf3" font-size="10">Copilot CLI · EN→ZH per conventions</text>
 
   <line x1="450" y1="518" x2="450" y2="534" stroke="#8b949e" stroke-width="1" marker-end="url(#arrow)"/>
@@ -128,7 +128,7 @@
   <!-- ── Step 4: Apply ── -->
   <rect x="275" y="536" width="350" height="44" rx="8" fill="#1c2128" stroke="#2ea043" stroke-width="1"/>
   <rect x="275" y="536" width="350" height="20" rx="8" fill="#238636" opacity="0.12"/>
-  <text x="290" y="550" fill="#3fb950" font-size="10" font-weight="600">4-apply-job.js</text>
+  <text x="290" y="550" fill="#3fb950" font-size="10" font-weight="600">src/apply-translations.js</text>
   <text x="450" y="569" text-anchor="middle" fill="#e6edf3" font-size="10">replace conflict blocks with translations</text>
 
   <line x1="450" y1="580" x2="450" y2="596" stroke="#8b949e" stroke-width="1" marker-end="url(#arrow)"/>
