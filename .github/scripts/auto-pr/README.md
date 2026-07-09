@@ -95,7 +95,6 @@ vuejs/docs:main ──autosync.yml──→ vuejs-translations:upstream
 - 根据 `TRANSLATE_PROVIDER` 选择 AI CLI：
   - `copilot`：CI 默认，调用 `copilot -p "..." --allow-all -s`
   - `claude`：本地默认，调用 `claude -p "..."`
-- 根据 `TRANSLATE_MODE` 环境变量选择模式 (默认 `all`)
 - 输出 `done-translation.json`
 - 调用 `src/apply-translations.js` 将翻译结果写回源文件
 
@@ -129,20 +128,6 @@ CI 默认使用 `TRANSLATE_PROVIDER=copilot`。本地测试默认使用 `claude`
 - [翻译指南](../../../.claude/skills/vuejs-docs-zh-cn/references/guidelines.md)
 
 ## 特殊说明
-
-### 翻译模式
-
-通过环境变量 `TRANSLATE_MODE` 控制，默认 `all`。
-
-| 模式   | 行为                                      | 适用场景                   |
-|--------|-------------------------------------------|--------------------------|
-| `all`  | 一次 AI CLI 调用翻译所有条目                | 条目少（<50），追求效率     |
-| `file` | 按文件分组，每个文件一次调用                 | 条目较多，按文件粒度控制    |
-| `item` | 每个条目单独一次调用                        | 大量变更，需要精确控制质量   |
-
-[src/translator.js](src/translator.js) 会自动过滤 identical 条目 (`incoming === current`)，仅翻译有实际差异的条目，减少不必要的 AI CLI 调用。
-
-如果出现大量变更导致 `todo-translation.json` 过大、AI CLI 处理失败，可切换到 `file` 或 `item` 模式解决。
 
 ### prompts/translation.md
 
@@ -222,10 +207,7 @@ pnpm exec node .github/scripts/auto-pr/bin/local-test.js --stage prepare
 
 ```bash
 # 默认本地 provider 是 claude
-pnpm exec node .github/scripts/auto-pr/bin/local-test.js --stage translate --mode all
-
-# 按文件分组翻译
-pnpm exec node .github/scripts/auto-pr/bin/local-test.js --stage translate --mode file
+pnpm exec node .github/scripts/auto-pr/bin/local-test.js --stage translate
 
 # 本地也可以显式测试 copilot provider
 pnpm exec node .github/scripts/auto-pr/bin/local-test.js --stage translate --provider copilot
@@ -247,8 +229,7 @@ pnpm exec node .github/scripts/auto-pr/bin/local-test.js --stage submit
 # 1. 先在临时 worktree 中准备 merge 结果
 pnpm exec node .github/scripts/auto-pr/bin/local-test.js --stage prepare
 
-# 2. 快速迭代翻译模式
-pnpm exec node .github/scripts/auto-pr/bin/local-test.js --stage translate --mode file
+# 2. 快速迭代翻译
 
 # 3. 检查差异
 git diff -- src/**/*.md
@@ -263,7 +244,7 @@ pnpm exec node .github/scripts/auto-pr/bin/local-test.js --stage submit
 |------|------|------|
 | `src/detect-changes.js` 报 git 错误 | 缺少远程分支引用 | 执行 `git fetch origin upstream sync` |
 | `todo-translation.json` 为空数组 | 没有冲突块需要翻译 | 检查 `git merge` 是否真的产生了冲突 |
-| Claude CLI 翻译失败 | 输出不是合法 JSON | 尝试 `--mode item` 逐条翻译 |
+| Claude CLI 翻译失败 | 输出不是合法 JSON | 检查翻译 prompt，确保 Claude 返回正确格式的 JSON 数组 |
 | `done-translation.json` 缺少 `review` 字段 | Claude 输出格式不匹配 | 检查翻译 prompt，确保 Claude 返回正确格式的 JSON 数组 |
 | `src/apply-translations.js` 替换后文件错乱 | 行号索引偏移 | 检查 `conflicts` 是否按行号倒序排列 |
 

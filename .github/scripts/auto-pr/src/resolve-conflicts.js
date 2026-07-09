@@ -1,7 +1,7 @@
 import { execSync } from "child_process";
 import { existsSync, readFileSync, writeFileSync } from "fs";
 import { resolve } from "path";
-import { AUTO_PR_DIR, isDirectRun } from "./helpers.js";
+import { AUTO_PR_DIR, isDirectRun, readState } from "./helpers.js";
 
 const TODO_PATH = resolve(AUTO_PR_DIR, "todo-translation.json");
 
@@ -26,6 +26,47 @@ function isGlobMatch(file, pattern) {
     .replace(/\*/g, "[^/]*")
     .replace(/<<GLOBSTAR>>/g, ".*");
   return new RegExp(`^${regex}$`).test(file);
+}
+
+// 将 markdown 内容按段落拆分，保护代码块内部的空行
+function splitIntoParagraphs(content) {
+  const lines = content.split("\n");
+  const paragraphs = [];
+  let start = 0;
+  let inCodeBlock = false;
+
+  for (let i = 0; i < lines.length; i++) {
+    // 检测代码块边界
+    if (/^```/.test(lines[i])) {
+      inCodeBlock = !inCodeBlock;
+    }
+
+    // 空行且不在代码块内 → 段落结束
+    if (lines[i].trim() === "" && !inCodeBlock && i > start) {
+      // 检查从 start 到 i 是否有非空内容
+      if (lines.slice(start, i).some((l) => l.trim())) {
+        const text = lines.slice(start, i).join("\n");
+        paragraphs.push({
+          current: "",
+          incoming: text,
+          lines: [start + 1, i], // 1-based 行号
+        });
+      }
+      start = i + 1;
+    }
+  }
+
+  // 最后一段
+  if (start < lines.length) {
+    const text = lines.slice(start).join("\n");
+    paragraphs.push({
+      current: "",
+      incoming: text,
+      lines: [start + 1, lines.length],
+    });
+  }
+
+  return paragraphs;
 }
 
 class GitConflictFinder {
@@ -105,8 +146,8 @@ class GitConflictFinder {
 
     while ((match = regex.exec(content)) !== null) {
       conflicts.push({
-        ours: match[1].trim(),
-        theirs: match[2].trim(),
+        ours: match[1],
+        theirs: match[2],
         startIndex: match.index,
         endIndex: match.index + match[0].length,
       });
@@ -122,71 +163,112 @@ class GitConflictFinder {
     );
   }
 
+  // ── 阶段1：检测冲突文件处理 ──
+  handleConflictFiles() {
+    const files = this.getConflictFiles();
+
+    if (files.length === 0) {
+      console.log(this.colorize("green", "✓ 没有发现冲突文件"));
+    } else {
+      console.log(this.colorize("yellow", `发现 ${files.length} 个冲突文件:\n`));
+
+      files.forEach((file) => {
+        console.log(this.colorize("red", `\n📄 文件: ${file}`));
+        // 检查是否匹配 glob 模式
+        const matchedPattern = Object.keys(DEFAULT_ACCEPT_INCOMING_LIST).find((pattern) =>
+          isGlobMatch(file, pattern),
+        );
+        if (matchedPattern) {
+          const strategy = DEFAULT_ACCEPT_INCOMING_LIST[matchedPattern];
+          if (strategy === "whole") {
+            this.acceptIncomingWhole(file);
+          } else {
+            this.resolveConflictMarkers(file);
+          }
+          console.log(
+            this.colorize("magenta", `   - [conflict] -> ${strategy} (matched: ${matchedPattern})`),
+          );
+          this.stageFile(file);
+          return;
+        }
+
+        const conflicts = this.parseFile(file);
+
+        if (conflicts.length === 0) {
+          console.log(this.colorize("cyan", `   - [无冲突] ✓ `));
+          this.stageFile(file);
+        } else {
+          /** 处理 markdown 文件冲突块 */
+          // 按 startIndex 倒序处理，避免替换后索引偏移
+          const sorted = [...conflicts].sort((a, b) => b.startIndex - a.startIndex);
+          let content = readFileSync(file, "utf-8");
+
+          sorted.forEach((conflict, idx) => {
+            console.log(this.colorize("green", `\n  冲突块 #${conflicts.length - idx}:`));
+
+            // 计算 theirs 替换后的起始和结束行号，然后替换单个冲突块
+            const before = content.slice(0, conflict.startIndex);
+            const startLine = before.split("\n").length;
+            const endLine = startLine + conflict.theirs.split("\n").length - 1;
+            content = this.resolveConflictAt(content, conflict);
+
+            this.replacements.push({
+              current: conflict.ours,
+              incoming: conflict.theirs,
+              file,
+              lines: [startLine, endLine],
+            });
+          });
+
+          writeFileSync(file, content, "utf-8");
+        }
+      });
+    }
+  }
+
+  // ── 阶段2：检测新增文件 ──
+  handleNewFiles() {
+    const { sync_branch, upstream_branch } = readState();
+    if (!sync_branch || !upstream_branch) {
+      console.error(this.colorize("red", "\n 无有效的同步分支或上游分支"));
+      return;
+    }
+
+    const output = this.exec(
+      `git diff --diff-filter=A --name-only ${sync_branch} ${upstream_branch} -- :(glob)src/**/*.md`,
+    );
+    const newFiles = output.split("\n").filter(Boolean);
+    if (newFiles.length === 0) {
+      console.log(this.colorize("cyan", "\n📂 没有新增的 .md 文件"));
+      return;
+    }
+
+    console.log(this.colorize("yellow", `\n📂 发现 ${newFiles.length} 个新增文件:\n`));
+    for (const file of newFiles) {
+      const content = readFileSync(file, "utf-8");
+      const paragraphs = splitIntoParagraphs(content);
+
+      for (const para of paragraphs) {
+        this.replacements.push({
+          ...para,
+          file,
+        });
+      }
+      console.log(
+        `   ➕ ${file} (${paragraphs.length} 个段落) → 加入翻译队列`,
+      );
+    }
+  }
+
   run() {
     console.log(this.colorize("blue", "========================================"));
     console.log(this.colorize("blue", "Vuejs 中文仓库处理 Git 冲突扫描器 (ES6 版本)"));
     console.log(this.colorize("blue", "========================================\n"));
 
-    const files = this.getConflictFiles();
-
-    if (files.length === 0) {
-      console.log(this.colorize("green", "✓ 没有发现冲突文件"));
-      return;
-    }
-
-    console.log(this.colorize("yellow", `发现 ${files.length} 个冲突文件:\n`));
-
-    files.forEach((file) => {
-      console.log(this.colorize("red", `\n📄 文件: ${file}`));
-      // 检查是否匹配 glob 模式
-      const matchedPattern = Object.keys(DEFAULT_ACCEPT_INCOMING_LIST).find((pattern) =>
-        isGlobMatch(file, pattern),
-      );
-      if (matchedPattern) {
-        const strategy = DEFAULT_ACCEPT_INCOMING_LIST[matchedPattern];
-        if (strategy === "whole") {
-          this.acceptIncomingWhole(file);
-        } else {
-          this.resolveConflictMarkers(file);
-        }
-        console.log(
-          this.colorize("magenta", `   - [conflict] -> ${strategy} (matched: ${matchedPattern})`),
-        );
-        this.stageFile(file);
-        return;
-      }
-
-      const conflicts = this.parseFile(file);
-
-      if (conflicts.length === 0) {
-        console.log(this.colorize("cyan", `   - [无冲突] ✓ `));
-        this.stageFile(file);
-      } else {
-        /** 处理 markdown 文件冲突块 */
-        // 按 startIndex 倒序处理，避免替换后索引偏移
-        const sorted = [...conflicts].sort((a, b) => b.startIndex - a.startIndex);
-        let content = readFileSync(file, "utf-8");
-
-        sorted.forEach((conflict, idx) => {
-          console.log(this.colorize("green", `\n  冲突块 #${conflicts.length - idx}:`));
-
-          // 计算 theirs 替换后的起始和结束行号，然后替换单个冲突块
-          const before = content.slice(0, conflict.startIndex);
-          const startLine = before.split("\n").length;
-          const endLine = startLine + conflict.theirs.split("\n").length - 1;
-          content = this.resolveConflictAt(content, conflict);
-
-          this.replacements.push({
-            current: conflict.ours,
-            incoming: conflict.theirs,
-            file,
-            lines: [startLine, endLine],
-          });
-        });
-
-        writeFileSync(file, content, "utf-8");
-      }
-    });
+    // ── 阶段1：既有冲突解析逻辑 ──
+    this.handleConflictFiles();
+    // ── 阶段2：处理新文件 ──
+    this.handleNewFiles();
   }
 }
 
@@ -197,7 +279,7 @@ export function resolveConflicts() {
 
   writeFileSync(
     TODO_PATH,
-    JSON.stringify(replacements, null, 2),
+    JSON.stringify(replacements, ["file", "lines", "current", "incoming"], 2),
     "utf-8",
   );
 

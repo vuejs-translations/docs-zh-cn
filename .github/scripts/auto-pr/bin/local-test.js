@@ -30,7 +30,6 @@ function parseStages(value) {
 const args = process.argv.slice(2);
 const selectedStages = parseStages(parseArg(args, "--stage") || "all");
 const provider = parseArg(args, "--provider") || process.env.TRANSLATE_PROVIDER || "claude";
-const mode = parseArg(args, "--mode") || process.env.TRANSLATE_MODE || "all";
 
 const env = {
   ...process.env,
@@ -40,7 +39,6 @@ const env = {
   SYNC_BRANCH: process.env.SYNC_BRANCH || "sync",
   TARGET_BRANCH: process.env.TARGET_BRANCH || "main",
   TRANSLATE_PROVIDER: provider,
-  TRANSLATE_MODE: mode,
   SKIP_TRANSLATE_GATE: process.env.SKIP_TRANSLATE_GATE || "false",
 };
 
@@ -49,13 +47,12 @@ console.log(`\n${sep}`);
 console.log("  Auto-PR local test");
 console.log(`  stages: ${selectedStages.join(", ")}`);
 console.log(`  provider: ${provider}`);
-console.log(`  translate mode: ${mode}`);
 console.log(`${sep}\n`);
 
 for (const stage of selectedStages) {
   console.log(`\n${sep}`);
   console.log(`  stage: ${stage}`);
-  console.log(`  ${new Date().toISOString()}`);
+  console.log(`  ${new Date().toLocaleString()}`);
   console.log(`${sep}\n`);
 
   execFileSync(process.execPath, [STAGE_SCRIPT, stage], {

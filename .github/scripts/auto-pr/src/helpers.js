@@ -38,6 +38,6 @@ export function readState() {
 export function writeState(state) {
   writeJson(STATE_PATH, {
     ...state,
-    updated_at: new Date().toISOString(),
+    updated_at: new Date().toLocaleString(),
   });
 }
