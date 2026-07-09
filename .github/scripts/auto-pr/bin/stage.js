@@ -56,6 +56,7 @@ function ensureCleanWorkingTree() {
 }
 
 function configureGitUser() {
+  if (isLocal()) return; // 本地不改用户配置
   command('git config user.name "github-actions[bot]"');
   command('git config user.email "github-actions[bot]@users.noreply.github.com"');
 }
