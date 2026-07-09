@@ -129,11 +129,10 @@ async function prepareStage() {
   });
 }
 
-function translateStage() {
+async function translateStage() {
   const state = readState();
   const skipTranslateGate = isTruthy(process.env.SKIP_TRANSLATE_GATE);
   const provider = process.env.TRANSLATE_PROVIDER || (isLocal() ? "claude" : "copilot");
-  const mode = process.env.TRANSLATE_MODE || "all";
 
   console.log("Stage 2/3: translate with AI and apply results");
 
@@ -151,13 +150,12 @@ function translateStage() {
 
   let translation;
   try {
-    translation = translateConflicts({ provider, mode });
+    translation = await translateConflicts({ provider });
   } catch (err) {
     writeState({
       ...state,
       translation_status: "failed",
       translation_provider: provider,
-      translation_mode: mode,
     });
 
     if (skipTranslateGate) {
@@ -180,7 +178,6 @@ function translateStage() {
     ...state,
     translation_status: translation.status,
     translation_provider: provider,
-    translation_mode: mode,
     translations_applied: applied,
   });
 }
@@ -264,7 +261,7 @@ async function run() {
   if (stage === "prepare") {
     await prepareStage();
   } else if (stage === "translate") {
-    translateStage();
+    await translateStage();
   } else if (stage === "submit") {
     await submitStage();
   } else if (stage === "--help" || stage === "-h") {
