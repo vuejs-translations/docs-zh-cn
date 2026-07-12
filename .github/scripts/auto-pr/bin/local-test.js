@@ -46,7 +46,9 @@ const sep = "=".repeat(72);
 console.log(`\n${sep}`);
 console.log("  Auto-PR local test");
 console.log(`  stages: ${selectedStages.join(", ")}`);
-console.log(`  provider: ${provider}`);
+if (selectedStages.includes("translate")) {
+  console.log(`  provider: ${provider}`);
+}
 console.log(`${sep}\n`);
 
 for (const stage of selectedStages) {

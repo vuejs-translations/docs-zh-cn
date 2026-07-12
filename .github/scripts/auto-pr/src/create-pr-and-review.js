@@ -38,10 +38,10 @@ export function buildPrBody({
   let body = `## Upstream Sync\n\n- Upstream: \`${upstreamRepo}\` @ \`${upstreamHash}\`\n- Merge result: \`${mergeResult}\`\n`;
 
   if (syncBaseHash && upstreamHash) {
-    body += `\n- https://github.com/${upstreamRepo}/compare/${syncBaseHash}...${upstreamHash}\n`;
+    body += `\n- [View upstream changes](https://github.com/${upstreamRepo}/compare/${syncBaseHash}...${upstreamHash})\n`;
   }
 
-  body += `\n\n ## Changes \n`;
+  body += `\n\n## Changes\n`;
 
   if (conflictFiles) {
     body += `### Conflict files (resolved)\n`;
@@ -53,7 +53,7 @@ export function buildPrBody({
   }
 
   if (changedFiles) {
-    body += `### Translated files\n`;
+    body += `### Changed Markdown files\n`;
     body += changedFiles
       .split(",")
       .map((f) => `- ${f.trim()}`)
