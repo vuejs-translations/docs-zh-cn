@@ -1,6 +1,8 @@
 name: Auto PR (Sync & Translate)
 
 on:
+  schedule:
+    - cron: "17 3 * * 1" # Weekly on Monday at 03:17 UTC
   workflow_dispatch:
     inputs:
       skip_translate_gate:
@@ -54,19 +56,29 @@ jobs:
           cache: "pnpm"
 
       - name: Install dependencies
+        run: pnpm install --no-frozen-lockfile
+
+      - name: Install AI CLI (workflow_dispatch only)
+        if: github.event_name == 'workflow_dispatch'
         run: |
-          pnpm install --no-frozen-lockfile
           if [ "$TRANSLATE_PROVIDER" = "copilot" ]; then
             bun install -g @github/copilot
           elif [ "$TRANSLATE_PROVIDER" = "claude" ]; then
             bun install -g @anthropic-ai/claude-code
           fi
 
+      - name: Detect upstream changes (schedule only)
+        if: github.event_name == 'schedule'
+        run: bun .github/scripts/auto-pr/src/detect-changes.js
+
       - name: Prepare before AI translation
+        if: github.event_name == 'workflow_dispatch'
         run: bun .github/scripts/auto-pr/bin/stage.js prepare
 
       - name: Translate with AI
+        if: github.event_name == 'workflow_dispatch'
         run: bun .github/scripts/auto-pr/bin/stage.js translate
 
       - name: Submit sync PR
+        if: github.event_name == 'workflow_dispatch'
         run: bun .github/scripts/auto-pr/bin/stage.js submit
