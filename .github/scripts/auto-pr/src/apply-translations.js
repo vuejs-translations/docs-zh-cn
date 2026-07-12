@@ -8,6 +8,15 @@ export function applyTranslations() {
   const raw = readFileSync(DONE_PATH, "utf-8").replace(/^\uFEFF/, "");
   const items = JSON.parse(raw);
 
+  // 全局排序：先按 file 字典序，再按 lines 首个索引升序，确保替换顺序确定
+  items.sort((a, b) => {
+    const fileCmp = a.file.localeCompare(b.file);
+    if (fileCmp !== 0) return fileCmp;
+    const lineA = (a.lines ?? [a.line ?? 0])[0];
+    const lineB = (b.lines ?? [b.line ?? 0])[0];
+    return lineA - lineB;
+  });
+
   // 按文件分组，同一文件内正序替换 + offset 累积修正索引偏移
   const grouped = {};
   for (const item of items) {
@@ -18,9 +27,6 @@ export function applyTranslations() {
   for (const [file, conflicts] of Object.entries(grouped)) {
     // 兼容 lines: [start, end] 和 line: number 两种格式
     const getRange = (c) => c.lines ?? [c.line, c.line];
-
-    // 按行号正序
-    conflicts.sort((a, b) => getRange(a)[0] - getRange(b)[0]);
 
     const filePath = resolve(ROOT, file);
     const lines = readFileSync(filePath, "utf-8").split("\n");
