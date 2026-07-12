@@ -8,7 +8,7 @@ export function applyTranslations() {
   const raw = readFileSync(DONE_PATH, "utf-8").replace(/^\uFEFF/, "");
   const items = JSON.parse(raw);
 
-  // 按文件分组，同一文件内从后往前替换避免索引偏移
+  // 按文件分组，同一文件内正序替换 + offset 累积修正索引偏移
   const grouped = {};
   for (const item of items) {
     if (!grouped[item.file]) grouped[item.file] = [];
@@ -19,16 +19,25 @@ export function applyTranslations() {
     // 兼容 lines: [start, end] 和 line: number 两种格式
     const getRange = (c) => c.lines ?? [c.line, c.line];
 
-    // 按行号倒序
-    conflicts.sort((a, b) => getRange(b)[0] - getRange(a)[0]);
+    // 按行号正序
+    conflicts.sort((a, b) => getRange(a)[0] - getRange(b)[0]);
 
     const filePath = resolve(ROOT, file);
     const lines = readFileSync(filePath, "utf-8").split("\n");
 
+    // 记录每次替换后行数的变化，修正后续冲突的行号
+    let offset = 0;
+
     for (const c of conflicts) {
-      const [start, end] = getRange(c); // 1-based
+      const [origStart, origEnd] = getRange(c); // 1-based
+      const adjStart = origStart + offset;
+      const adjEnd = origEnd + offset;
+      const origLen = adjEnd - adjStart + 1;
       const transLines = c.review.split("\n");
-      lines.splice(start - 1, end - start + 1, ...transLines);
+      const newLen = transLines.length;
+
+      lines.splice(adjStart - 1, origLen, ...transLines);
+      offset += newLen - origLen;
     }
 
     writeFileSync(filePath, lines.join("\n"), "utf-8");
