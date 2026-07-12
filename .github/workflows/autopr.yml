@@ -1,8 +1,6 @@
 name: Auto PR (Sync & Translate)
 
 on:
-  schedule:
-    - cron: "17 3 * * 1" # Weekly on Monday at 03:17 UTC
   workflow_dispatch:
     inputs:
       skip_translate_gate:
