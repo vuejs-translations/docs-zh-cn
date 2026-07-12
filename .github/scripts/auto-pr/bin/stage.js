@@ -66,6 +66,25 @@ function getSyncBaseHash(upstreamBranch) {
   return commandOutput(`git rev-parse --short ${base}`);
 }
 
+function checkExistingSyncPr() {
+  try {
+    const output = execSync(
+      'gh pr list --label "从英文版同步" --state open --json number --jq "length"',
+      { cwd: ROOT, encoding: "utf-8", stdio: ["pipe", "pipe", "pipe"] },
+    ).trim();
+    const count = parseInt(output, 10) || 0;
+    console.log(`Existing sync PRs in review: ${count}`);
+    return count;
+  } catch (err) {
+    console.warn("Failed to check existing sync PRs (gh CLI may not be available):", err.message);
+    return 0;
+  }
+}
+
+function isBlockedByExistingSyncPr(state) {
+  return (state.existing_sync_pr_count || 0) > 0;
+}
+
 async function prepareStage() {
   const upstreamRepo = process.env.UPSTREAM_REPO || "vuejs/docs";
   const upstreamBranch = process.env.UPSTREAM_BRANCH || "upstream";
@@ -98,6 +117,22 @@ async function prepareStage() {
       has_changes: false,
     });
     console.log("No markdown changes to sync. Later stages will skip.");
+    return;
+  }
+
+  const existingSyncPrCount = checkExistingSyncPr();
+  if (existingSyncPrCount > 0) {
+    writeState({
+      ...baseState,
+      existing_sync_pr_count: existingSyncPrCount,
+      has_changes: false,
+      merge_result: "blocked_by_existing_pr",
+      merge_status: "blocked",
+    });
+    console.log(
+      `Found ${existingSyncPrCount} open PR(s) with label '从英文版同步'. ` +
+      "A previous sync is still in review. Skipping translation pipeline.",
+    );
     return;
   }
 
@@ -136,6 +171,12 @@ async function translateStage() {
   const provider = process.env.TRANSLATE_PROVIDER || (isLocal() ? "claude" : "copilot");
 
   console.log("Stage 2/3: translate with AI and apply results");
+
+  if (isBlockedByExistingSyncPr(state)) {
+    console.log("Blocked by existing sync PR in review. Skipping translation.");
+    writeState({ ...state, translation_status: "skipped" });
+    return;
+  }
 
   if (!state.has_changes || state.merge_result === "no_changes") {
     console.log("No changes were prepared. Skipping translation.");
@@ -188,6 +229,11 @@ async function submitStage() {
   const skipTranslateGate = isTruthy(process.env.SKIP_TRANSLATE_GATE);
 
   console.log("Stage 3/3: submit sync branch and create PR");
+
+  if (isBlockedByExistingSyncPr(state)) {
+    console.log("Blocked by existing sync PR in review. Skipping submit.");
+    return;
+  }
 
   if (!state.has_changes || state.merge_result === "no_changes") {
     console.log("No changes were prepared. Skipping submit.");
