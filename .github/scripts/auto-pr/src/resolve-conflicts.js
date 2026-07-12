@@ -156,13 +156,6 @@ class GitConflictFinder {
     return conflicts;
   }
 
-  // 替换单个冲突块，返回新的内容字符串
-  resolveConflictAt(content, conflict) {
-    return (
-      content.slice(0, conflict.startIndex) + conflict.theirs + content.slice(conflict.endIndex)
-    );
-  }
-
   // ── 阶段1：检测冲突文件处理 ──
   handleConflictFiles() {
     const files = this.getConflictFiles();
@@ -199,28 +192,43 @@ class GitConflictFinder {
           this.stageFile(file);
         } else {
           /** 处理 markdown 文件冲突块 */
-          // 按 startIndex 倒序处理，避免替换后索引偏移
-          const sorted = [...conflicts].sort((a, b) => b.startIndex - a.startIndex);
           let content = readFileSync(file, "utf-8");
 
-          sorted.forEach((conflict, idx) => {
-            console.log(this.colorize("green", `\n  冲突块 #${conflicts.length - idx}:`));
-
-            // 计算 theirs 替换后的起始和结束行号，然后替换单个冲突块
-            const before = content.slice(0, conflict.startIndex);
-            const startLine = before.split("\n").length;
-            const endLine = startLine + conflict.theirs.split("\n").length - 1;
-            content = this.resolveConflictAt(content, conflict);
-
-            this.replacements.push({
-              current: conflict.ours,
-              incoming: conflict.theirs,
-              file,
-              lines: [startLine, endLine],
-            });
+          // 计算每个冲突在原始文件中的行号
+          const withLines = conflicts.map((c) => {
+            const startLine = content.slice(0, c.startIndex).split("\n").length; // 1-based
+            const endLine = content.slice(0, c.endIndex).split("\n").length;
+            return { ...c, startLine, endLine };
           });
 
-          writeFileSync(file, content, "utf-8");
+          // 按行号正序，配合 offset 逐块替换
+          withLines.sort((a, b) => a.startLine - b.startLine);
+
+          const lines = content.split("\n");
+          let offset = 0;
+
+          for (const c of withLines) {
+            console.log(this.colorize("green", `\n  冲突块 #${c.startLine}:`));
+
+            const adjStart = c.startLine + offset;
+            const adjEnd = c.endLine + offset;
+            const origLen = adjEnd - adjStart + 1;
+            const theirLines = c.theirs.split("\n");
+            const newLen = theirLines.length;
+
+            lines.splice(adjStart - 1, origLen, ...theirLines);
+
+            this.replacements.push({
+              current: c.ours,
+              incoming: c.theirs,
+              file,
+              lines: [adjStart, adjStart + newLen - 1],
+            });
+
+            offset += newLen - origLen;
+          }
+
+          writeFileSync(file, lines.join("\n"), "utf-8");
         }
       });
     }
