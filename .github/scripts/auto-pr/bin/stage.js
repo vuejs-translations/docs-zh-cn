@@ -7,7 +7,16 @@ import { translateConflicts } from "../src/translator.js";
 import { applyTranslations } from "../src/apply-translations.js";
 import { collectMergeInfo } from "../src/collect-merge-info.js";
 import { createPrAndRequestReview } from "../src/create-pr-and-review.js";
-import { AUTO_PR_DIR, ROOT, isFileIgnored, isLocal, readJson, readState, writeState } from "../src/helpers.js";
+import {
+  AUTO_PR_DIR,
+  ROOT,
+  STATE_PATH,
+  isFileIgnored,
+  isLocal,
+  readJson,
+  readState,
+  writeState,
+} from "../src/helpers.js";
 
 const TODO_PATH = resolve(AUTO_PR_DIR, "todo-translation.json");
 const DONE_PATH = resolve(AUTO_PR_DIR, "done-translation.json");
@@ -38,7 +47,7 @@ function git(args) {
 }
 
 function removeGeneratedArtifacts() {
-  for (const path of [TODO_PATH, DONE_PATH]) {
+  for (const path of [TODO_PATH, DONE_PATH, STATE_PATH]) {
     if (existsSync(path)) unlinkSync(path);
   }
 }
@@ -170,18 +179,19 @@ async function prepareStage() {
   }
 
   // 无论是否有冲突，都要检测新文件/修改文件加入翻译队列
-  const replacements = resolveConflicts();
-  if (replacements.length > 0) {
-    console.log(`Prepared ${replacements.length} item(s) for translation.`);
-  }
-  console.log("[todo-translation.json]", JSON.stringify(readJson(TODO_PATH, []), null, 2));
-
+  // 先写入 state（含 ignore_globs），供 resolveConflicts 读取过滤
   writeState({
     ...baseState,
     merge_result: mergeStatus,
     merge_status: mergeStatus,
     has_changes: true,
   });
+
+  const replacements = resolveConflicts();
+  if (replacements.length > 0) {
+    console.log(`Prepared ${replacements.length} item(s) for translation.`);
+  }
+  console.log("[todo-translation.json]", JSON.stringify(readJson(TODO_PATH, []), null, 2));
 }
 
 async function translateStage() {
