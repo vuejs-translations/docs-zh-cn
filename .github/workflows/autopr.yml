@@ -40,7 +40,7 @@ jobs:
     env:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      COPILOT_TOKEN: ${{ secrets.COPILOT_TOKEN }}
+      COPILOT_GITHUB_TOKEN: ${{ secrets.COPILOT_TOKEN }}
     steps:
       - uses: actions/checkout@v4
         with:
