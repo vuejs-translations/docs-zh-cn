@@ -7,7 +7,7 @@ import { translateConflicts } from "../src/translator.js";
 import { applyTranslations } from "../src/apply-translations.js";
 import { collectMergeInfo } from "../src/collect-merge-info.js";
 import { createPrAndRequestReview } from "../src/create-pr-and-review.js";
-import { AUTO_PR_DIR, ROOT, isLocal, readJson, readState, writeState } from "../src/helpers.js";
+import { AUTO_PR_DIR, ROOT, isFileIgnored, isLocal, readJson, readState, writeState } from "../src/helpers.js";
 
 const TODO_PATH = resolve(AUTO_PR_DIR, "todo-translation.json");
 const DONE_PATH = resolve(AUTO_PR_DIR, "done-translation.json");
@@ -112,6 +112,17 @@ async function prepareStage() {
     // 特定文件跳过翻译，命中这个 glob 匹配的文件，不会在 todo-translation.json 中生成
     ignore_globs: IGNORE_GLOBS,
   };
+
+  // 打印被 IGNORE_GLOBS 忽略的文件清单
+  if (IGNORE_GLOBS && detected.changed_files) {
+    const changedFiles = detected.changed_files.split(",").filter(Boolean);
+    const ignoredFiles = changedFiles.filter((file) => isFileIgnored(file, IGNORE_GLOBS));
+    if (ignoredFiles.length > 0) {
+      console.log(`\n以下文件匹配 ignore_globs ("${IGNORE_GLOBS}")，跳过 AI 翻译:`);
+      ignoredFiles.forEach((f) => console.log(`  ⏭️  ${f}`));
+      console.log(`共 ${ignoredFiles.length} 个文件将被排除在翻译队列之外\n`);
+    }
+  }
 
   if (detected.merge_result === "no_changes") {
     writeState({
@@ -276,6 +287,8 @@ async function submitStage() {
 
   if (isLocal()) {
     console.log("[local dry-run] Skipping commit and push to sync.");
+  } else if (!nextState.create_pr) {
+    console.log("[skip-create-pr] CREATED_PR=false, skipping commit and push.");
   } else {
     command("git add -A", { inherit: true });
 
