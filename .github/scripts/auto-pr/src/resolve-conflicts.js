@@ -1,7 +1,7 @@
 import { execSync } from "child_process";
 import { existsSync, readFileSync, writeFileSync } from "fs";
 import { resolve } from "path";
-import { AUTO_PR_DIR, isDirectRun, readState } from "./helpers.js";
+import { AUTO_PR_DIR, isDirectRun, isFileIgnored, isGlobMatch, readState } from "./helpers.js";
 
 const TODO_PATH = resolve(AUTO_PR_DIR, "todo-translation.json");
 
@@ -17,16 +17,6 @@ const DEFAULT_ACCEPT_INCOMING_LIST = {
   "**/*.ts": "markers",
   "**/*.json": "markers",
 };
-
-// 轻量 glob 匹配，支持 * 和 **
-function isGlobMatch(file, pattern) {
-  const regex = pattern
-    .replace(/[.+^${}()|[\]\\]/g, "\\$&") // 转义特殊字符
-    .replace(/\*\*/g, "<<GLOBSTAR>>")
-    .replace(/\*/g, "[^/]*")
-    .replace(/<<GLOBSTAR>>/g, ".*");
-  return new RegExp(`^${regex}$`).test(file);
-}
 
 // 将 markdown 内容按段落拆分，保护代码块内部的空行
 function splitIntoParagraphs(content) {
@@ -229,6 +219,7 @@ class GitConflictFinder {
           }
 
           writeFileSync(file, lines.join("\n"), "utf-8");
+          this.stageFile(file);
         }
       });
     }
@@ -268,6 +259,88 @@ class GitConflictFinder {
     }
   }
 
+  // ── 阶段3：检测内容有变更的已有文件 ──
+  handleModifiedFiles() {
+    const { sync_branch, upstream_branch } = readState();
+    if (!sync_branch || !upstream_branch) {
+      console.error(this.colorize("red", "\n 无有效的同步分支或上游分支"));
+      return;
+    }
+
+    const output = this.exec(
+      `git diff --diff-filter=M --name-only ${sync_branch} ${upstream_branch} -- :(glob)src/**/*.md`,
+    );
+    const modifiedFiles = output.split("\n").filter(Boolean);
+    if (modifiedFiles.length === 0) {
+      console.log(this.colorize("cyan", "\n📝 没有修改的 .md 文件"));
+      return;
+    }
+
+    // 获取 merge-base，即上游上次同步的位置
+    const mergeBase = this.exec(`git merge-base ${sync_branch} ${upstream_branch}`);
+    if (!mergeBase) {
+      console.error(this.colorize("red", "\n 无法获取 merge-base"));
+      return;
+    }
+
+    console.log(this.colorize("yellow", `\n📝 发现 ${modifiedFiles.length} 个修改文件 (merge-base: ${mergeBase}):\n`));
+
+    for (const file of modifiedFiles) {
+      // 对比上游英文版自身的变化（merge-base vs 当前 upstream）
+      const diffOutput = this.exec(
+        `git diff --unified=0 ${mergeBase} ${upstream_branch} -- "${file}"`,
+      );
+      if (!diffOutput) {
+        console.log(`   ⏭️  ${file} (无差异)`);
+        continue;
+      }
+
+      // 解析 hunk 头，提取上游新版本中受影响行的行号
+      const changedLines = new Set();
+      for (const line of diffOutput.split("\n")) {
+        const match = line.match(/^@@ -\d+(?:,\d+)? \+(\d+)(?:,(\d+))? @@/);
+        if (match) {
+          const start = parseInt(match[1], 10);
+          const count = parseInt(match[2] || "1", 10);
+          for (let i = start; i < start + count; i++) {
+            changedLines.add(i);
+          }
+        }
+      }
+
+      if (changedLines.size === 0) {
+        console.log(`   ✓ ${file} (无新增行)`);
+        continue;
+      }
+
+      // 读取合并后的文件，找到包含变更行的段落
+      const mergedContent = readFileSync(file, "utf-8");
+      const paragraphs = splitIntoParagraphs(mergedContent);
+
+      const changedParas = paragraphs.filter((para) => {
+        const [pStart, pEnd] = para.lines;
+        for (let line = pStart; line <= pEnd; line++) {
+          if (changedLines.has(line)) return true;
+        }
+        return false;
+      });
+
+      if (changedParas.length > 0) {
+        for (const para of changedParas) {
+          this.replacements.push({
+            current: "",
+            incoming: para.incoming,
+            file,
+            lines: para.lines,
+          });
+        }
+        console.log(`   ✏️ ${file} (${changedParas.length} 个受影响段落) → 加入翻译队列`);
+      } else {
+        console.log(`   ✓ ${file} (段落无变化)`);
+      }
+    }
+  }
+
   run() {
     console.log(this.colorize("blue", "========================================"));
     console.log(this.colorize("blue", "Vuejs 中文仓库处理 Git 冲突扫描器 (ES6 版本)"));
@@ -277,6 +350,8 @@ class GitConflictFinder {
     this.handleConflictFiles();
     // ── 阶段2：处理新文件 ──
     this.handleNewFiles();
+    // ── 阶段3：处理有变更的已有文件 ──
+    this.handleModifiedFiles();
   }
 }
 
@@ -285,13 +360,36 @@ export function resolveConflicts() {
   const finder = new GitConflictFinder(replacements);
   finder.run();
 
+  // 过滤掉被 ignore_globs 排除的文件
+  const { ignore_globs } = readState();
+  let filtered = replacements;
+  if (ignore_globs) {
+    filtered = replacements.filter((item) => !isFileIgnored(item.file, ignore_globs));
+
+    const excludedFiles = [
+      ...new Set(
+        replacements
+          .filter((item) => isFileIgnored(item.file, ignore_globs))
+          .map((item) => item.file),
+      ),
+    ];
+    if (excludedFiles.length > 0) {
+      console.log(
+        `\n以下文件匹配 ignore_globs ("${ignore_globs}")，跳过 AI 翻译:`,
+      );
+      excludedFiles.forEach((f) => console.log(`  ⏭️  ${f}`));
+      const excludedCount = replacements.length - filtered.length;
+      console.log(`共排除 ${excludedFiles.length} 个文件（${excludedCount} 个条目）\n`);
+    }
+  }
+
   writeFileSync(
     TODO_PATH,
-    JSON.stringify(replacements, ["file", "lines", "current", "incoming"], 2),
+    JSON.stringify(filtered, ["file", "lines", "current", "incoming"], 2),
     "utf-8",
   );
 
-  return replacements;
+  return filtered;
 }
 
 if (isDirectRun(import.meta.url)) {

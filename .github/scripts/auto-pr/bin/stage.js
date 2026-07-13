@@ -7,14 +7,11 @@ import { translateConflicts } from "../src/translator.js";
 import { applyTranslations } from "../src/apply-translations.js";
 import { collectMergeInfo } from "../src/collect-merge-info.js";
 import { createPrAndRequestReview } from "../src/create-pr-and-review.js";
-import { AUTO_PR_DIR, ROOT, readState, writeState } from "../src/helpers.js";
+import { AUTO_PR_DIR, ROOT, isLocal, readJson, readState, writeState } from "../src/helpers.js";
 
 const TODO_PATH = resolve(AUTO_PR_DIR, "todo-translation.json");
 const DONE_PATH = resolve(AUTO_PR_DIR, "done-translation.json");
-
-function isLocal() {
-  return process.env.LOCAL === "true";
-}
+const IGNORE_GLOBS = "src/style-guide/*"; // 忽略翻译的文件 glob 列表，逗号分隔，src/style-guide/*
 
 function isTruthy(value) {
   return value === true || value === "true" || value === "1";
@@ -94,7 +91,12 @@ async function prepareStage() {
   console.log("Stage 1/3: prepare before AI translation");
   removeGeneratedArtifacts();
   configureGitUser();
-  command(`git fetch origin ${upstreamBranch}`, { inherit: true });
+  if (!isLocal()) {
+    command(`git fetch origin ${upstreamBranch}`, { inherit: true });
+    command(`git fetch origin ${syncBranch}`, { inherit: true });
+    // 切换到 sync 分支，确保 merge、commit、push 都以 sync 为目标
+    command(`git checkout -B ${syncBranch} origin/${syncBranch}`, { inherit: true });
+  }
 
   const syncBaseHash = getSyncBaseHash(upstreamBranch);
   const detected = await detectChanges({ upstreamBranch, syncBranch });
@@ -107,6 +109,8 @@ async function prepareStage() {
     upstream_hash: detected.upstream_hash,
     detect_changed_files: detected.changed_files,
     upstream_behind_count: detected.upstream_behind_count,
+    // 特定文件跳过翻译，命中这个 glob 匹配的文件，不会在 todo-translation.json 中生成
+    ignore_globs: IGNORE_GLOBS,
   };
 
   if (detected.merge_result === "no_changes") {
@@ -120,20 +124,22 @@ async function prepareStage() {
     return;
   }
 
-  const existingSyncPrCount = checkExistingSyncPr();
-  if (existingSyncPrCount > 0) {
-    writeState({
-      ...baseState,
-      existing_sync_pr_count: existingSyncPrCount,
-      has_changes: false,
-      merge_result: "blocked_by_existing_pr",
-      merge_status: "blocked",
-    });
-    console.log(
-      `Found ${existingSyncPrCount} open PR(s) with label '从英文版同步'. ` +
-      "A previous sync is still in review. Skipping translation pipeline.",
-    );
-    return;
+  if (!isLocal()) {
+    const existingSyncPrCount = checkExistingSyncPr();
+    if (existingSyncPrCount > 0) {
+      writeState({
+        ...baseState,
+        existing_sync_pr_count: existingSyncPrCount,
+        has_changes: false,
+        merge_result: "blocked_by_existing_pr",
+        merge_status: "blocked",
+      });
+      console.log(
+        `Found ${existingSyncPrCount} open PR(s) with label '从英文版同步'. ` +
+          "A previous sync is still in review. Skipping translation pipeline.",
+      );
+      return;
+    }
   }
 
   if (isLocal()) {
@@ -152,10 +158,12 @@ async function prepareStage() {
     console.log("Merge has conflicts. Resolving conflict blocks before translation.");
   }
 
-  if (mergeStatus === "conflict") {
-    const replacements = resolveConflicts();
-    console.log(`Prepared ${replacements.length} conflict block(s) for translation.`);
+  // 无论是否有冲突，都要检测新文件/修改文件加入翻译队列
+  const replacements = resolveConflicts();
+  if (replacements.length > 0) {
+    console.log(`Prepared ${replacements.length} item(s) for translation.`);
   }
+  console.log("[todo-translation.json]", JSON.stringify(readJson(TODO_PATH, []), null, 2));
 
   writeState({
     ...baseState,
@@ -184,8 +192,10 @@ async function translateStage() {
     return;
   }
 
-  if (state.merge_status !== "conflict") {
-    console.log("Merge was clean. No conflict translation is required.");
+  // 检查是否存在待翻译内容（来自冲突、新增文件、或修改文件）
+  const hasTodoItems = existsSync(TODO_PATH);
+  if (!hasTodoItems) {
+    console.log("No todo-translation.json found. No translation needed.");
     writeState({ ...state, translation_status: "skipped" });
     return;
   }
@@ -209,8 +219,11 @@ async function translateStage() {
   }
 
   let applied = false;
+  console.log("[done-translation.json]", JSON.stringify(readJson(DONE_PATH, []), null, 2));
   if (existsSync(DONE_PATH)) {
     applyTranslations();
+    // 将翻译后的内容重新暂存，确保 staging area 包含中文版
+    command("git add -A", { inherit: true });
     applied = true;
   } else {
     console.log("No done-translation.json found. Nothing to apply.");
@@ -257,6 +270,7 @@ async function submitStage() {
     merge_result: info.merge_result,
     conflict_files: info.conflict_files,
     changed_files: info.changed_files,
+    create_pr: isTruthy(process.env.CREATE_PR),
   };
   writeState(nextState);
 
@@ -297,6 +311,7 @@ sync #${nextState.upstream_hash}`;
     mergeResult: nextState.merge_result,
     conflictFiles: nextState.conflict_files,
     changedFiles: nextState.changed_files,
+    skipCreatePr: !nextState.create_pr,
     githubRepository: process.env.GITHUB_REPOSITORY,
     ghToken: process.env.GH_TOKEN || process.env.GITHUB_TOKEN,
   });
