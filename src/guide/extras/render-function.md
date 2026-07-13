@@ -216,7 +216,7 @@ function render() {
 }
 ```
 
-### 在 `<template>` 中使用 Vnode
+### 在 `<template>` 中使用 Vnode {#using-vnodes-in-template}
 
 ```vue
 <script setup>
@@ -235,12 +235,12 @@ const vnode = h('button', ['Hello'])
 </template>
 ```
 
-由于 vnode 对象已经在 `setup()` 中定义，你可以像普通组件那样直接渲染它。
+A vnode object has been declared in `setup()`, you can use it like a normal component for rendering.
 
 :::warning
-一个 vnode 表示的是一个静态的渲染输出，而不是一个组件定义。在 `<template>` 中使用 vnode 并不会创建一个新的组件实例，vnode 将按它原样渲染。
+A vnode represents an already created render output, not a component definition. Using a vnode in `<template>` does not create a new component instance, and the vnode will be rendered as-is.
 
-这种用法需要特别注意，它不是组件的替代品。
+This pattern should be used with care and is not a replacement for normal components.
 :::
 
 ## JSX / TSX {#jsx-tsx}

@@ -302,7 +302,7 @@ Mouse position is at: {{ mouse.x }}, {{ mouse.y }}
 
 1. 将生命周期钩子注册到该组件实例上
 
-2. 将计算属性和监听器注册到该组件实例上，以便在该组件被卸载时停止监听，避免内存泄漏。
+2. Watchers can be linked to it, so that they can be disposed when the instance is unmounted to prevent memory leaks.
 
 :::tip
 `<script setup>` 是唯一在调用 `await` **之后**仍可调用组合式函数的地方。编译器会在异步操作之后自动为你恢复当前的组件实例。

@@ -110,7 +110,7 @@ app.directive('highlight', {
 })
 ```
 
-通过扩展 `vue` 中的 `ComponentCustomProperties` 接口，可以为自定义的全局指令添加类型。
+It is possible to type global custom directives by extending the `GlobalDirectives` interface from `vue`
 
 更多细节参考：[为自定义全局指令添加类型](/guide/typescript/composition-api#typing-global-custom-directives) <sup class="vt-badge ts" />
 

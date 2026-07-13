@@ -22,11 +22,11 @@ import { VTCodeGroup, VTCodeGroupTab } from '@vue/theme'
 
 :::tip 前提条件
 
-- 熟悉命令行
-- 已安装 `^20.19.0 || >=22.12.0` 版本的 [Node.js](https://nodejs.org/)
-:::
+- Familiarity with the command line
+- Install [Node.js](https://nodejs.org/) version `^22.18.0 || >=24.12.0`
+  :::
 
-在本节中，我们将介绍如何在本地搭建 Vue [单页应用](/guide/extras/ways-of-using-vue#single-page-application-spa)。创建的项目将使用基于 [Vite](https://vite.dev) 的构建设置，并允许我们使用 Vue 的[单文件组件](/guide/scaling-up/sfc) (SFC)。
+In this section we will introduce how to scaffold a Vue [Single Page Application](/guide/extras/ways-of-using-vue#single-page-application-spa) on your local machine. The created project will be using a build setup based on [Vite](https://vite.dev/) and allow us to use Vue [Single-File Components](/guide/scaling-up/sfc) (SFCs).
 
 确保你安装了最新版本的 [Node.js](https://nodejs.org/)，并且你的当前工作目录正是打算创建项目的目录。在命令行中运行以下命令 (不要带上 `$` 符号)：
 
@@ -105,10 +105,10 @@ $ bun run dev
 
 你现在应该已经运行起来了你的第一个 Vue 项目！请注意，生成的项目中的示例组件使用的是[组合式 API](/guide/introduction#composition-api) 和 `<script setup>`，而非[选项式 API](/guide/introduction#options-api)。下面是一些补充提示：
 
-- 推荐的 IDE 配置是 [Visual Studio Code](https://code.visualstudio.com/) + [Vue - Official 扩展](https://marketplace.visualstudio.com/items?itemName=Vue.volar)。如果使用其他编辑器，参考 [IDE 支持章节](/guide/scaling-up/tooling#ide-support)。
-- 更多工具细节，包括与后端框架的整合，我们会在[工具链指南](/guide/scaling-up/tooling)进行讨论。
-- 要了解构建工具 Vite 更多背后的细节，请查看 [Vite 文档](https://cn.vitejs.dev)。
-- 如果你选择使用 TypeScript，请阅读 [TypeScript 使用指南](typescript/overview)。
+- The recommended IDE setup is [Visual Studio Code](https://code.visualstudio.com/) + [Vue - Official extension](https://marketplace.visualstudio.com/items?itemName=Vue.volar). If you use other editors, check out the [IDE support section](/guide/scaling-up/tooling#ide-support).
+- More tooling details, including integration with backend frameworks, are discussed in the [Tooling Guide](/guide/scaling-up/tooling).
+- To learn more about the underlying build tool Vite, check out the [Vite docs](https://vite.dev/).
+- If you choose to use TypeScript, check out the [TypeScript Usage Guide](typescript/overview).
 
 当你准备将应用发布到生产环境时，请运行：
 
@@ -397,7 +397,25 @@ export default {
 
 可能你也注意到了，这里导入的组件模板是内联的 JavaScript 字符串。如果你正在使用 VS Code，你可以安装 [es6-string-html](https://marketplace.visualstudio.com/items?itemName=Tobermory.es6-string-html) 扩展，然后在字符串前加上一个前缀注释 `/*html*/` 以高亮语法。
 
-## 下一步 {#next-steps}
+## Frameworks {#frameworks}
+
+There are Vue frameworks which support [SSR](/guide/scaling-up/ssr) and other features out-of-the-box:
+- [Nuxt](https://nuxt.com/)
+- [Vike](https://vike.dev/)
+- [Astro](https://astro.build/)
+- [Quasar](https://quasar.dev/)
+
+:::tip
+The general recommendation is to use a framework only if you need SSR.
+
+If you don't need SSR, you can simply use [Vite](https://vite.dev/) (this is what the section above [Creating a Vue Application](#creating-a-vue-application) scaffolds).
+:::
+
+:::info
+Vue frameworks typically use Vite under the hood, so directly using Vite instead of a Vue framework is a simpler setup if you don't need SSR. That said, frameworks also support extra features, such as UI themes, which can also be a reason to favor a Vue framework instead of just using Vite.
+:::
+
+## Next Steps {#next-steps}
 
 如果你尚未阅读[简介](/guide/introduction)，我们强烈推荐你在移步到后续文档之前返回去阅读一下。
 

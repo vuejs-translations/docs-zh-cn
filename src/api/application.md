@@ -400,6 +400,11 @@ console.log(app.config)
   }
   ```
 
+- **Default**
+
+  The default error handler will re-throw errors during development and log errors during production.
+  You can configure this using the [throwUnhandledErrorInProduction](#app-config-throwunhandlederrorinproduction) property.
+
 ## app.config.warnHandler {#app-config-warnhandler}
 
 用于为 Vue 的运行时警告指定一个自定义处理函数。

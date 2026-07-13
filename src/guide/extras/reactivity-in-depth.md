@@ -278,7 +278,7 @@ type DebuggerEvent = {
 
 ### 计算属性调试 {#computed-debugging}
 
-<!-- TODO options API equivalent -->
+<div class="composition-api">
 
 我们可以向 `computed()` 传入第二个参数，是一个包含了 `onTrack` 和 `onTrigger` 两个回调函数的对象：
 
@@ -310,9 +310,17 @@ count.value++
 计算属性的 `onTrack` 和 `onTrigger` 选项仅会在开发模式下工作。
 :::
 
+</div>
+
+<div class="options-api">
+
+计算属性调试选项仅在组合式 API 的 `computed()` 函数中可用。
+
+</div>
+
 ### 侦听器调试 {#watcher-debugging}
 
-<!-- TODO options API equivalent -->
+<div class="composition-api">
 
 和 `computed()` 类似，侦听器也支持 `onTrack` 和 `onTrigger` 选项：
 
@@ -335,6 +343,32 @@ watchEffect(callback, {
   }
 })
 ```
+
+</div>
+
+<div class="options-api">
+
+Watchers declared with the object syntax also support the `onTrack` and `onTrigger` options:
+
+```js
+export default {
+  watch: {
+    source: {
+      handler() {
+        // ...
+      },
+      onTrack(e) {
+        debugger
+      },
+      onTrigger(e) {
+        debugger
+      }
+    }
+  }
+}
+```
+
+</div>
 
 :::tip
 侦听器的 `onTrack` 和 `onTrigger` 选项仅会在开发模式下工作。
@@ -402,7 +436,7 @@ export function useMachine(options) {
 
 很多其他框架已经引入了与 Vue 组合式 API 中的 ref 类似的响应性基础类型，并称之为“信号”：
 
-- [Solid 信号](https://www.solidjs.com/docs/latest/api#createsignal)
+- [Solid 信号](https://docs.solidjs.com/concepts/signals)
 - [Angular 信号](https://angular.dev/guide/signals)
 - [Preact 信号](https://preactjs.com/guide/v10/signals/)
 - [Qwik 信号](https://qwik.builder.io/docs/components/state/#usesignal)

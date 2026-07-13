@@ -579,8 +579,8 @@ export default {
 ```js
 export default {
   created() {
-    // 每个实例都有了自己的预置防抖的处理函数
-    this.debouncedClick = _.debounce(this.click, 500)
+    // 每个实例都有了自己的防抖处理函数副本
+    this.debouncedClick = debounce(this.click, 500)
   },
   unmounted() {
     // 最好是在组件卸载时

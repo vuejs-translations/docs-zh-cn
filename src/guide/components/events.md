@@ -204,7 +204,7 @@ TypeScript 用户请参考：[如何为组件所抛出事件标注类型](/guide
 </div>
 <div class="options-api">
 
-```js
+```ts
 export default {
   emits: {
     submit(payload: { email: string, password: string }) {

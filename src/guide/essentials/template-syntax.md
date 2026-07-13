@@ -286,7 +286,7 @@ data() {
 
 最后，在这里你可以直观地看到完整的指令语法：
 
-![指令语法图](./images/directive.png)
+![可视化展示完整指令语法的图示，包括指令名称、参数、修饰符和值](./images/directive.png)
 
 <!-- https://www.figma.com/file/BGWUknIrtY9HOmbmad0vFr/Directive -->
 

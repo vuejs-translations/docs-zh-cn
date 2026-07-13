@@ -54,7 +54,7 @@ const props = defineProps<Props>()
 </script>
 ```
 
-这同样适用于 `Props` 从另一个源文件中导入的情况。该功能要求 TypeScript 作为 Vue 的一个 peer dependency。
+This also works if `Props` is imported from another file such as a relative import, a path alias (e.g., `@/types`), or an external dependency (e.g., `node_modules`). This feature requires TypeScript to be a peer dependency of Vue.
 
 ```vue
 <script setup lang="ts">
@@ -481,7 +481,7 @@ const openModal = () => {
 
 ## 为自定义全局指令添加类型 {#typing-global-custom-directives}
 
-可以通过扩展 `ComponentCustomProperties` 来为使用 `app.directive()` 声明的全局自定义指令获取类型提示和类型检查
+为了给使用 `app.directive()` 声明的全局自定义指令提供类型提示和类型检查，你可以扩展 `GlobalDirectives`
 
 ```ts [src/directives/highlight.ts]
 import type { Directive } from 'vue'
@@ -489,7 +489,7 @@ import type { Directive } from 'vue'
 export type HighlightDirective = Directive<HTMLElement, string>
 
 declare module 'vue' {
-  export interface ComponentCustomProperties {
+  export interface GlobalDirectives {
     // 使用 v 作为前缀 (v-highlight)
     vHighlight: HighlightDirective
   }

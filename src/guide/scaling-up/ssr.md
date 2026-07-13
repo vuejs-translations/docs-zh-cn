@@ -194,9 +194,9 @@ server.get('/', (req, res) => {
 
 此外，为了在浏览器中加载客户端文件，我们还需要：
 
-1. 在 `server.js` 中添加 `server.use(express.static('.'))` 来托管客户端文件。
-2. 将 `<script type="module" src="/client.js"></script>` 添加到 HTML 外壳以加载客户端入口文件。
-3. 通过在 HTML 外壳中添加 [Import Map](https://github.com/WICG/import-maps) 以支持在浏览器中使用 `import * from 'vue'`。
+1. Serve client files by adding `server.use(express.static('.'))` in `server.js`.
+2. Load the client entry by adding `<script type="module" src="/client.js"></script>` to the HTML shell.
+3. Support usage like `import * from 'vue'` in the browser by adding an [Import Map](https://html.spec.whatwg.org/multipage/webappapis.html#import-maps) to the HTML shell.
 
 [在 StackBlitz 上尝试完整的示例](https://stackblitz.com/fork/vue-ssr-example?file=index.js)。按钮现在可以交互了！
 
@@ -214,21 +214,7 @@ server.get('/', (req, res) => {
 
 - 以一种通用的方式管理路由、数据获取和状态存储。
 
-完整的实现会非常复杂，并且取决于你选择使用的构建工具链。因此，我们强烈建议你使用一种更通用的、更集成化的解决方案，帮你抽象掉那些复杂的东西。下面推荐几个 Vue 生态中的 SSR 解决方案。
-
-### Nuxt {#nuxt}
-
-[Nuxt](https://nuxt.com/) 是一个构建于 Vue 生态系统之上的全栈框架，它为编写 Vue SSR 应用提供了丝滑的开发体验。更棒的是，你还可以把它当作一个静态站点生成器来用！我们强烈建议你试一试。
-
-### Quasar {#quasar}
-
-[Quasar](https://quasar.dev) 是一个基于 Vue 的完整解决方案，它可以让你用同一套代码库构建不同目标的应用，如 SPA、SSR、PWA、移动端应用、桌面端应用以及浏览器插件。除此之外，它还提供了一整套 Material Design 风格的组件库。
-
-### Vite SSR {#vite-ssr}
-
-Vite 提供了内置的 [Vue 服务端渲染支持](https://cn.vitejs.dev/guide/ssr.html)，但它在设计上是偏底层的。如果你想要直接使用 Vite，可以看看 [vite-plugin-ssr](https://vite-plugin-ssr.com/)，一个帮你抽象掉许多复杂细节的社区插件。
-
-你也可以在[这里](https://github.com/vitejs/vite-plugin-vue/tree/main/playground/ssr-vue)查看一个使用手动配置的 Vue + Vite SSR 的示例项目，以它作为基础来构建。请注意，这种方式只有在你有丰富的 SSR 和构建工具经验，并希望对应用的架构做深入的定制时才推荐使用。
+A complete implementation would be quite complex and depends on the build toolchain you have chosen to work with. Therefore, we highly recommend using [Vue frameworks](/guide/quick-start#frameworks) if you need SSR since they often have built-in SSR support.
 
 ## 书写 SSR 友好的代码 {#writing-ssr-friendly-code}
 

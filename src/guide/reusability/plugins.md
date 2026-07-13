@@ -133,6 +133,6 @@ export default {
 
 </div>
 
-### 为 NPM 打包
+### Bundle for NPM {#bundle-for-npm}
 
-如果你想进一步打包并发布插件给他人使用，请参阅 [Vite 库模式](https://vite.dev/guide/build.html#library-mode)。
+If you further want to build and publish your plugin for others to use, see [Vite's section on Library Mode](https://vite.dev/guide/build.html#library-mode).
