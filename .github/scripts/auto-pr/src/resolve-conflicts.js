@@ -240,17 +240,9 @@ class GitConflictFinder {
       return;
     }
 
-    // debug: 验证 ref 状态
-    const syncRev = this.exec(`git rev-parse --short ${sync_branch}`);
-    const upstreamRev = this.exec(`git rev-parse --short ${upstream_branch}`);
-    const mergeBase = this.exec(`git merge-base ${sync_branch} ${upstream_branch}`);
-    console.log(`[debug] sync=${syncRev}, upstream=${upstreamRev}, merge-base=${mergeBase ? mergeBase.substring(0, 8) : "empty"}`);
-
     const output = this.exec(
-      `git diff --diff-filter=A --name-only ${sync_branch} ${upstream_branch} -- :(glob)src/**/*.md`,
-      { debug: true },
+      `git diff --diff-filter=A --name-only ${sync_branch} ${upstream_branch} -- ":(glob)src/**/*.md"`,
     );
-    console.log(`[debug] raw output length: ${output.length}, first 200 chars: ${output.substring(0, 200).replace(/\n/g, "\\n")}`);
     const newFiles = output.split("\n").filter(Boolean);
     if (newFiles.length === 0) {
       console.log(this.colorize("cyan", "\n📂 没有新增的 .md 文件"));
@@ -282,28 +274,9 @@ class GitConflictFinder {
       return;
     }
 
-    // debug: 验证 ref 状态
-    const syncRev2 = this.exec(`git rev-parse --short ${sync_branch}`);
-    const upstreamRev2 = this.exec(`git rev-parse --short ${upstream_branch}`);
-    console.log(`[debug] sync=${syncRev2}, upstream=${upstreamRev2}`);
-
-    // debug: 对比 with/without :(glob)
-    const outGlob = this.exec(
-      `git diff --diff-filter=M --name-only ${sync_branch} ${upstream_branch} -- ":(glob)src/**/*.md"`,
-      { debug: true },
-    );
-    const outNoGlob = this.exec(
-      `git diff --diff-filter=M --name-only ${sync_branch} ${upstream_branch} -- src/**/*.md`,
-      { debug: true },
-    );
-    console.log(`[debug] output with :(glob): ${outGlob.split("\n").filter(Boolean).length} files`);
-    console.log(`[debug] output without :(glob): ${outNoGlob.split("\n").filter(Boolean).length} files`);
-
     const output = this.exec(
-      `git diff --diff-filter=M --name-only ${sync_branch} ${upstream_branch} -- :(glob)src/**/*.md`,
-      { debug: true },
+      `git diff --diff-filter=M --name-only ${sync_branch} ${upstream_branch} -- ":(glob)src/**/*.md"`,
     );
-    console.log(`[debug] raw output length: ${output.length}, first 200 chars: ${output.substring(0, 200).replace(/\n/g, "\\n")}`);
     const modifiedFiles = output.split("\n").filter(Boolean);
     if (modifiedFiles.length === 0) {
       console.log(this.colorize("cyan", "\n📝 没有修改的 .md 文件"));
