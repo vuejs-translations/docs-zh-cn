@@ -325,6 +325,8 @@ sync #${nextState.upstream_hash}`;
     conflictFiles: nextState.conflict_files,
     changedFiles: nextState.changed_files,
     skipCreatePr: !nextState.create_pr,
+    ignoreGlobs: nextState.ignore_globs,
+    detectChangedFiles: nextState.detect_changed_files,
     githubRepository: process.env.GITHUB_REPOSITORY,
     ghToken: process.env.GH_TOKEN || process.env.GITHUB_TOKEN,
   });
