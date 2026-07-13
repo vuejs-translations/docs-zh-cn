@@ -144,21 +144,14 @@ async function prepareStage() {
     return;
   }
 
+  let existingSyncPrCount = 0;
   if (!isLocal()) {
-    const existingSyncPrCount = checkExistingSyncPr();
+    existingSyncPrCount = checkExistingSyncPr();
     if (existingSyncPrCount > 0) {
-      writeState({
-        ...baseState,
-        existing_sync_pr_count: existingSyncPrCount,
-        has_changes: false,
-        merge_result: "blocked_by_existing_pr",
-        merge_status: "blocked",
-      });
       console.log(
         `Found ${existingSyncPrCount} open PR(s) with label '从英文版同步'. ` +
-          "A previous sync is still in review. Skipping translation pipeline.",
+          "Will generate todo-translation.json but skip AI translation.",
       );
-      return;
     }
   }
 
@@ -182,6 +175,7 @@ async function prepareStage() {
   // 先写入 state（含 ignore_globs），供 resolveConflicts 读取过滤
   writeState({
     ...baseState,
+    existing_sync_pr_count: existingSyncPrCount,
     merge_result: mergeStatus,
     merge_status: mergeStatus,
     has_changes: true,
