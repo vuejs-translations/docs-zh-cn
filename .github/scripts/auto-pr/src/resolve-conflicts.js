@@ -233,6 +233,12 @@ class GitConflictFinder {
       return;
     }
 
+    // debug: 验证 ref 状态
+    const syncRev = this.exec(`git rev-parse --short ${sync_branch}`);
+    const upstreamRev = this.exec(`git rev-parse --short ${upstream_branch}`);
+    const mergeBase = this.exec(`git merge-base ${sync_branch} ${upstream_branch}`);
+    console.log(`[debug] sync=${syncRev}, upstream=${upstreamRev}, merge-base=${mergeBase ? mergeBase.substring(0, 8) : "empty"}`);
+
     const output = this.exec(
       `git diff --diff-filter=A --name-only ${sync_branch} ${upstream_branch} -- :(glob)src/**/*.md`,
     );
@@ -267,6 +273,11 @@ class GitConflictFinder {
       return;
     }
 
+    // debug: 验证 ref 状态
+    const syncRev2 = this.exec(`git rev-parse --short ${sync_branch}`);
+    const upstreamRev2 = this.exec(`git rev-parse --short ${upstream_branch}`);
+    console.log(`[debug] sync=${syncRev2}, upstream=${upstreamRev2}`);
+
     const output = this.exec(
       `git diff --diff-filter=M --name-only ${sync_branch} ${upstream_branch} -- :(glob)src/**/*.md`,
     );
@@ -278,6 +289,7 @@ class GitConflictFinder {
 
     // 获取 merge-base，即上游上次同步的位置
     const mergeBase = this.exec(`git merge-base ${sync_branch} ${upstream_branch}`);
+    console.log(`[debug] merge-base for modified files: ${mergeBase ? mergeBase.substring(0, 8) : "empty"}`);
     if (!mergeBase) {
       console.error(this.colorize("red", "\n 无法获取 merge-base"));
       return;
