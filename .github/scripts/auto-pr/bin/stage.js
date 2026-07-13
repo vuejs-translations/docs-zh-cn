@@ -105,6 +105,8 @@ async function prepareStage() {
     command(`git fetch origin ${syncBranch}`, { inherit: true });
     // 切换到 sync 分支，确保 merge、commit、push 都以 sync 为目标
     command(`git checkout -B ${syncBranch} origin/${syncBranch}`, { inherit: true });
+    // 创建本地 upstream 分支指向 origin/upstream，供后续 git diff/merge-base 使用
+    command(`git branch -f ${upstreamBranch} origin/${upstreamBranch}`, { inherit: true });
   }
 
   const syncBaseHash = getSyncBaseHash(upstreamBranch);
