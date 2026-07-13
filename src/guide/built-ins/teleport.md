@@ -12,7 +12,7 @@
 
 ```vue-html
 <div class="outer">
-  <h3>Tooltips with Vue 3 Teleport</h3>
+  <h3>Modal with Vue 3 Teleport</h3>
   <div>
     <MyModal />
   </div>
