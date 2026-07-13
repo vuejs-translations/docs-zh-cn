@@ -60,7 +60,7 @@ setTimeout(() => {
 
 下面是实例生命周期的图表。你现在并不需要完全理解图中的所有内容，但以后它将是一个有用的参考。
 
-![组件生命周期图示](./images/lifecycle_zh-CN.png)
+![展示 Vue 组件完整生命周期的图示，从创建到销毁，包括所有主要生命周期钩子及模板编译、挂载等内部过程](./images/lifecycle.png)
 
 <!-- https://www.figma.com/file/Xw3UeNMOralY6NV7gSjWdS/Vue-Lifecycle -->
 <!-- https://www.figma.com/file/QHo4ehJ4TRx3f7gzRP1F1k/Vue-Lifecycle-(zh-CN) -->

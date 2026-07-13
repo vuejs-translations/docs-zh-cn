@@ -21,7 +21,7 @@ import { VTCodeGroup, VTCodeGroupTab } from '@vue/theme'
 
 ### Vite {#vite}
 
-[Vite](https://cn.vitejs.dev/) 是一个轻量级的、速度极快的构建工具，对 Vue 单文件组件提供第一优先级支持。作者是尤雨溪，同时也是 Vue 的作者！
+[Vite](https://vite.dev/) 是一个轻量级的、速度极快的构建工具，对 Vue 单文件组件提供第一优先级支持。作者是尤雨溪，同时也是 Vue 的作者！
 
 要使用 Vite 来创建一个 Vue 项目，非常简单：
 
@@ -51,7 +51,7 @@ $ bun create vue@latest
 
 这个命令会安装和执行 [create-vue](https://github.com/vuejs/create-vue)，它是 Vue 提供的官方脚手架工具。跟随命令行的提示继续操作即可。
 
-- 要学习更多关于 Vite 的知识，请查看 [Vite 官方文档](https://cn.vitejs.dev)。
+- 要学习更多关于 Vite 的知识，请查看 [Vite 官方文档](https://vite.dev/)。
 - 若要了解如何为一个 Vite 项目配置 Vue 相关的特殊行为，比如向 Vue 编译器传递相关选项，请查看 [@vitejs/plugin-vue](https://github.com/vitejs/vite-plugin-vue/tree/main/packages/plugin-vue#readme) 的文档。
 
 上面提到的两种在线演练场也支持将文件作为一个 Vite 项目下载。
@@ -186,4 +186,8 @@ Vue 团队维护着 [eslint-plugin-vue](https://github.com/vuejs/eslint-plugin-v
 - [Vue on Codepen](https://codepen.io/pen/editor/vue)
 - [Vue on WebComponents.dev](https://webcomponents.dev/create/cevue)
 
-<!-- TODO ## Backend Framework Integrations -->
+## Backend Framework Integrations {#backend-framework-integrations}
+
+If you are using Vue with [Laravel](https://laravel.com/), the framework ships an official [Vite plugin](https://laravel.com/docs/vite) that handles asset bundling and hot-module replacement out of the box.
+
+For any other backend, refer to Vite's [Backend Integration guide](https://vite.dev/guide/backend-integration.html) to wire it up manually.

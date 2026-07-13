@@ -6,7 +6,7 @@
 
 组件允许我们将 UI 划分为独立的、可重用的部分，并且可以对每个部分进行单独的思考。在实际应用中，组件常常被组织成一个层层嵌套的树状结构：
 
-![组件树](./images/components.png)
+![展示根组件分支出多个子组件和嵌套子组件的组件树结构图示](./images/components.png)
 
 <!-- https://www.figma.com/file/qa7WHDQRWuEZNRs7iZRZSI/components -->
 

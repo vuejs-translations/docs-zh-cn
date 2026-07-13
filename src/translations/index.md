@@ -11,21 +11,23 @@ aside: false
 - [日本語 / 日语](https://ja.vuejs.org/) [[源码](https://github.com/vuejs-translations/docs-ja)]
 - [Українська / 乌克兰语](https://ua.vuejs.org/) [[源码](https://github.com/vuejs-translations/docs-uk)]
 - [Français / 法语](https://fr.vuejs.org) [[源码](https://github.com/vuejs-translations/docs-fr)]
+- [Deutsch / 德语](https://de.vuejs.org) [[源码](https://github.com/vuejs-translations/docs-de)]
 - [한국어 / 韩语](https://ko.vuejs.org) [[源码](https://github.com/vuejs-translations/docs-ko)]
 - [Português / 葡萄牙语](https://pt.vuejs.org) [[源码](https://github.com/vuejs-translations/docs-pt)]
 - [বাংলা / 孟加拉语](https://bn.vuejs.org) [[源码](https://github.com/vuejs-translations/docs-bn)]
 - [Italiano / 意大利语](https://it.vuejs.org) [[源码](https://github.com/vuejs-translations/docs-it)]
-- [فارسی / 波斯语](https://fa.vuejs.org) [[source](https://github.com/vuejs-translations/docs-fa)]
-- [Русский / 俄罗斯语](https://ru.vuejs.org/) [[source](https://github.com/vuejs-translations/docs-ru)]
-- [Čeština / 捷克语](https://cs.vuejs.org/) [[source](https://github.com/vuejs-translations/docs-cs)]
-- [繁體中文 / 繁体中文](https://zh-hk.vuejs.org/) [[source](https://github.com/vuejs-translations/docs-zh-hk)]
-- [Polski / 波兰语](https://pl.vuejs.org/) [[source](https://github.com/vuejs-translations/docs-pl)]
+- [فارسی / 波斯语](https://fa.vuejs.org) [[源码](https://github.com/vuejs-translations/docs-fa)]
+- [Русский / 俄罗斯语](https://ru.vuejs.org/) [[源码](https://github.com/vuejs-translations/docs-ru)]
+- [Čeština / 捷克语](https://cs.vuejs.org/) [[源码](https://github.com/vuejs-translations/docs-cs)]
+- [繁體中文 / 繁体中文](https://zh-hk.vuejs.org/) [[源码](https://github.com/vuejs-translations/docs-zh-hk)]
+- [Polski / 波兰语](https://pl.vuejs.org/) [[源码](https://github.com/vuejs-translations/docs-pl)]
 
 ## 翻译中的语言 {#work-in-progress-languages}
 
 - [العربية / 阿拉伯语](https://ar.vuejs.org/) [[源码](https://github.com/vuejs-translations/docs-ar)]
+- [Español / 西班牙语](https://vue3-spanish-docs.netlify.app/) [[源码](https://github.com/icarusgk/vuejs-spanish-docs)]
 
-- [Español / 西班牙语](https://vue3-spanish-docs.netlify.app/) [[source](https://github.com/icarusgk/vuejs-spanish-docs)]
+## 贡献翻译 {#contributing-to-translations}
 
 - [Deutsch / 德语](https://de.vuejs.org/) [[source](https://github.com/vuejs-translations/docs-de)]
 
