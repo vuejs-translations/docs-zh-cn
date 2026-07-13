@@ -66,7 +66,8 @@ export function buildPrBody({
 }
 
 export async function createPrAndRequestReview(options = {}) {
-  const repo = options.githubRepository || process.env.GITHUB_REPOSITORY || "vuejs-translations/docs-zh-cn";
+  const repo =
+    options.githubRepository || process.env.GITHUB_REPOSITORY || "vuejs-translations/docs-zh-cn";
   const upstreamRepo = options.upstreamRepo || process.env.UPSTREAM_REPO;
   const syncBranch = options.syncBranch || process.env.SYNC_BRANCH;
   const targetBranch = options.targetBranch || process.env.TARGET_BRANCH;
@@ -75,6 +76,7 @@ export async function createPrAndRequestReview(options = {}) {
   const mergeResult = options.mergeResult || process.env.MERGE_RESULT;
   const local = options.local ?? process.env.LOCAL === "true";
   const ghToken = options.ghToken || process.env.GH_TOKEN;
+  const skipCreatePr = options.skipCreatePr ?? process.env.CREATE_PR !== "true";
 
   const { conflictFiles, changedFiles } = readArtifactFiles({
     conflictFiles: options.conflictFiles || process.env.CONFLICT_FILES,
@@ -97,6 +99,12 @@ export async function createPrAndRequestReview(options = {}) {
     return { prNumber: null, title, body };
   }
 
+  if (skipCreatePr) {
+    console.log(`[skip-create-pr] PR creation skipped. Title: ${title}`);
+    console.log(`[skip-create-pr] PR Body:\n${body}`);
+    return { prNumber: null, title, body };
+  }
+
   const existing = gh(
     `gh pr list --repo "${repo}" --base "${targetBranch}" --head "${syncBranch}" --state open --json number --jq '.[0].number'`,
   );
@@ -110,7 +118,7 @@ export async function createPrAndRequestReview(options = {}) {
     const tmpFile = "/tmp/pr-body.md";
     writeFileSync(tmpFile, body, "utf-8");
     const prUrl = gh(
-      `gh pr create --repo "${repo}" --base "${targetBranch}" --head "${syncBranch}" --title "${title}" --body-file "${tmpFile}" --label "从英文版同步" --label "请使用 merge commit 合并"`,
+      `gh pr create --repo "${repo}" --base "${targetBranch}" --head "${syncBranch}" --title "${title}" --body-file "${tmpFile}" --label "从英文版同步" --label "请使用 merge commit 合并" --label "autopr(自动合并工作流)"`,
     );
     unlinkSync(tmpFile);
 

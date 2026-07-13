@@ -6,9 +6,13 @@ on:
   workflow_dispatch:
     inputs:
       skip_translate_gate:
-        description: "Skip translation failure gate (allow PR even if AI translation fails)"
+        description: "翻译失败时仍继续"
         type: boolean
         default: false
+      create_pr:
+        description: "创建 PR（取消不创建，方便调试）"
+        type: boolean
+        default: true
       translate_provider:
         description: "AI CLI used by the translation stage"
         type: choice
@@ -33,6 +37,7 @@ env:
   TARGET_BRANCH: main
   TRANSLATE_PROVIDER: ${{ github.event.inputs.translate_provider || 'copilot' }}
   SKIP_TRANSLATE_GATE: ${{ github.event.inputs.skip_translate_gate || 'false' }}
+  CREATE_PR: ${{ github.event.inputs.create_pr || 'true' }}
 
 jobs:
   sync-translate-submit:
@@ -40,11 +45,11 @@ jobs:
     env:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      COPILOT_TOKEN: ${{ secrets.COPILOT_TOKEN }}
+      COPILOT_GITHUB_TOKEN: ${{ secrets.COPILOT_TOKEN }}
     steps:
       - uses: actions/checkout@v4
         with:
-          ref: ${{ env.SYNC_BRANCH }}
+          ref: ${{ github.ref_name }}
           fetch-depth: 0
           token: ${{ secrets.GITHUB_TOKEN }}
 

@@ -1,5 +1,5 @@
 import SimpleGit from "simple-git";
-import { isDirectRun, ROOT, setOutput } from "./helpers.js";
+import { isDirectRun, isLocal, ROOT, setOutput } from "./helpers.js";
 
 const git = SimpleGit(ROOT);
 
@@ -7,10 +7,15 @@ export async function detectChanges({
   upstreamBranch = process.env.UPSTREAM_BRANCH || "upstream",
   syncBranch = process.env.SYNC_BRANCH || "sync",
 } = {}) {
-  await git.fetch("origin");
+  if (!isLocal()) {
+    await git.fetch("origin");
+  }
+
+  const upstreamRef = isLocal() ? upstreamBranch : `origin/${upstreamBranch}`;
+  const syncRef = isLocal() ? syncBranch : `origin/${syncBranch}`;
 
   // Get upstream hash
-  const upstreamHash = (await git.raw(["rev-parse", "--short", "origin/" + upstreamBranch])).trim();
+  const upstreamHash = (await git.raw(["rev-parse", "--short", upstreamRef])).trim();
   console.log(`Upstream hash: ${upstreamHash}`);
 
   // Check if there are upstream commits not yet in sync
@@ -18,7 +23,7 @@ export async function detectChanges({
     await git.raw([
       "rev-list",
       "--count",
-      `origin/${syncBranch}..origin/${upstreamBranch}`,
+      `${syncRef}..${upstreamRef}`,
     ])
   ).trim();
 
@@ -38,8 +43,8 @@ export async function detectChanges({
   const diff = await git.diff([
     "--name-only",
     "--diff-filter=ACMR",
-    `origin/${syncBranch}`,
-    `origin/${upstreamBranch}`,
+    `${syncRef}`,
+    upstreamRef,
     "--",
     "src/**/*.md",
   ]);

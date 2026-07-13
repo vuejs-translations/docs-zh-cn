@@ -8,6 +8,10 @@ export const AUTO_PR_DIR = resolve(SRC_DIR, "..");
 export const ROOT = resolve(AUTO_PR_DIR, "..", "..", "..");
 export const STATE_PATH = resolve(AUTO_PR_DIR, "autopr-state.json");
 
+export function isLocal() {
+  return process.env.LOCAL === "true";
+}
+
 export function isDirectRun(metaUrl) {
   return process.argv[1] && fileURLToPath(metaUrl) === resolve(process.argv[1]);
 }
@@ -40,4 +44,31 @@ export function writeState(state) {
     ...state,
     updated_at: new Date().toLocaleString(),
   });
+}
+
+// ── Glob 匹配工具 ──
+
+/**
+ * 轻量 glob 匹配，支持 * 和 **
+ */
+export function isGlobMatch(file, pattern) {
+  const regex = pattern
+    .replace(/[.+^${}()|[\]\\]/g, "\\$&")
+    .replace(/\*\*/g, "<<GLOBSTAR>>")
+    .replace(/\*/g, "[^/]*")
+    .replace(/<<GLOBSTAR>>/g, ".*");
+  return new RegExp(`^${regex}$`).test(file);
+}
+
+/**
+ * 判断文件是否匹配 ignore_globs（逗号分隔的 glob 列表）
+ * ignoreGlobs: "src/style-guide/*,src/foo/*" 或空字符串
+ */
+export function isFileIgnored(file, ignoreGlobs) {
+  if (!ignoreGlobs) return false;
+  return ignoreGlobs
+    .split(",")
+    .map((g) => g.trim())
+    .filter(Boolean)
+    .some((pattern) => isGlobMatch(file, pattern));
 }
