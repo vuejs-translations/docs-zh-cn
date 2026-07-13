@@ -20,6 +20,7 @@ const DEFAULT_ACCEPT_INCOMING_LIST = {
 
 // 将 markdown 内容按段落拆分，保护代码块内部的空行
 function splitIntoParagraphs(content) {
+  content = content.replace(/\r\n/g, "\n");
   const lines = content.split("\n");
   const paragraphs = [];
   let start = 0;
