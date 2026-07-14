@@ -7,7 +7,16 @@ import { translateConflicts } from "../src/translator.js";
 import { applyTranslations } from "../src/apply-translations.js";
 import { collectMergeInfo } from "../src/collect-merge-info.js";
 import { createPrAndRequestReview } from "../src/create-pr-and-review.js";
-import { AUTO_PR_DIR, ROOT, isLocal, readJson, readState, writeState } from "../src/helpers.js";
+import {
+  AUTO_PR_DIR,
+  ROOT,
+  STATE_PATH,
+  isFileIgnored,
+  isLocal,
+  readJson,
+  readState,
+  writeState,
+} from "../src/helpers.js";
 
 const TODO_PATH = resolve(AUTO_PR_DIR, "todo-translation.json");
 const DONE_PATH = resolve(AUTO_PR_DIR, "done-translation.json");
@@ -38,7 +47,7 @@ function git(args) {
 }
 
 function removeGeneratedArtifacts() {
-  for (const path of [TODO_PATH, DONE_PATH]) {
+  for (const path of [TODO_PATH, DONE_PATH, STATE_PATH]) {
     if (existsSync(path)) unlinkSync(path);
   }
 }
@@ -96,6 +105,8 @@ async function prepareStage() {
     command(`git fetch origin ${syncBranch}`, { inherit: true });
     // 切换到 sync 分支，确保 merge、commit、push 都以 sync 为目标
     command(`git checkout -B ${syncBranch} origin/${syncBranch}`, { inherit: true });
+    // 创建本地 upstream 分支指向 origin/upstream，供后续 git diff/merge-base 使用
+    command(`git branch -f ${upstreamBranch} origin/${upstreamBranch}`, { inherit: true });
   }
 
   const syncBaseHash = getSyncBaseHash(upstreamBranch);
@@ -113,6 +124,17 @@ async function prepareStage() {
     ignore_globs: IGNORE_GLOBS,
   };
 
+  // 打印被 IGNORE_GLOBS 忽略的文件清单
+  if (IGNORE_GLOBS && detected.changed_files) {
+    const changedFiles = detected.changed_files.split(",").filter(Boolean);
+    const ignoredFiles = changedFiles.filter((file) => isFileIgnored(file, IGNORE_GLOBS));
+    if (ignoredFiles.length > 0) {
+      console.log(`\n以下文件匹配 ignore_globs ("${IGNORE_GLOBS}")，跳过 AI 翻译:`);
+      ignoredFiles.forEach((f) => console.log(`  ⏭️  ${f}`));
+      console.log(`共 ${ignoredFiles.length} 个文件将被排除在翻译队列之外\n`);
+    }
+  }
+
   if (detected.merge_result === "no_changes") {
     writeState({
       ...baseState,
@@ -124,21 +146,14 @@ async function prepareStage() {
     return;
   }
 
+  let existingSyncPrCount = 0;
   if (!isLocal()) {
-    const existingSyncPrCount = checkExistingSyncPr();
+    existingSyncPrCount = checkExistingSyncPr();
     if (existingSyncPrCount > 0) {
-      writeState({
-        ...baseState,
-        existing_sync_pr_count: existingSyncPrCount,
-        has_changes: false,
-        merge_result: "blocked_by_existing_pr",
-        merge_status: "blocked",
-      });
       console.log(
         `Found ${existingSyncPrCount} open PR(s) with label '从英文版同步'. ` +
-          "A previous sync is still in review. Skipping translation pipeline.",
+          "Will generate todo-translation.json but skip AI translation.",
       );
-      return;
     }
   }
 
@@ -159,18 +174,20 @@ async function prepareStage() {
   }
 
   // 无论是否有冲突，都要检测新文件/修改文件加入翻译队列
+  // 先写入 state（含 ignore_globs），供 resolveConflicts 读取过滤
+  writeState({
+    ...baseState,
+    existing_sync_pr_count: existingSyncPrCount,
+    merge_result: mergeStatus,
+    merge_status: mergeStatus,
+    has_changes: true,
+  });
+
   const replacements = resolveConflicts();
   if (replacements.length > 0) {
     console.log(`Prepared ${replacements.length} item(s) for translation.`);
   }
   console.log("[todo-translation.json]", JSON.stringify(readJson(TODO_PATH, []), null, 2));
-
-  writeState({
-    ...baseState,
-    merge_result: mergeStatus,
-    merge_status: mergeStatus,
-    has_changes: true,
-  });
 }
 
 async function translateStage() {
@@ -276,6 +293,8 @@ async function submitStage() {
 
   if (isLocal()) {
     console.log("[local dry-run] Skipping commit and push to sync.");
+  } else if (!nextState.create_pr) {
+    console.log("[skip-create-pr] CREATED_PR=false, skipping commit and push.");
   } else {
     command("git add -A", { inherit: true });
 
@@ -312,6 +331,8 @@ sync #${nextState.upstream_hash}`;
     conflictFiles: nextState.conflict_files,
     changedFiles: nextState.changed_files,
     skipCreatePr: !nextState.create_pr,
+    ignoreGlobs: nextState.ignore_globs,
+    detectChangedFiles: nextState.detect_changed_files,
     githubRepository: process.env.GITHUB_REPOSITORY,
     ghToken: process.env.GH_TOKEN || process.env.GITHUB_TOKEN,
   });
