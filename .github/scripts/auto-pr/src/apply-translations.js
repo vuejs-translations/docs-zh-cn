@@ -29,7 +29,7 @@ export function applyTranslations() {
     const getRange = (c) => c.lines ?? [c.line, c.line];
 
     const filePath = resolve(ROOT, file);
-    const lines = readFileSync(filePath, "utf-8").split("\n");
+    const lines = readFileSync(filePath, "utf-8").replace(/\r\n/g, "\n").split("\n");
 
     // 记录每次替换后行数的变化，修正后续冲突的行号
     let offset = 0;

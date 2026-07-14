@@ -34,6 +34,8 @@ export function buildPrBody({
   mergeResult,
   conflictFiles,
   changedFiles,
+  ignoreGlobs = "",
+  detectChangedFiles = "",
 }) {
   let body = `## Upstream Sync\n\n- Upstream: \`${upstreamRepo}\` @ \`${upstreamHash}\`\n- Merge result: \`${mergeResult}\`\n`;
 
@@ -59,6 +61,29 @@ export function buildPrBody({
       .map((f) => `- ${f.trim()}`)
       .join("\n");
     body += "\n";
+  }
+
+  if (ignoreGlobs && detectChangedFiles) {
+    const files = detectChangedFiles.split(",").filter(Boolean);
+    const ignored = files.filter((f) => {
+      return ignoreGlobs
+        .split(",")
+        .map((g) => g.trim())
+        .filter(Boolean)
+        .some((pattern) => {
+          const regex = pattern
+            .replace(/[.+^${}()|[\]\\]/g, "\\$&")
+            .replace(/\*\*/g, "<<GS>>")
+            .replace(/\*/g, "[^/]*")
+            .replace(/<<GS>>/g, ".*");
+          return new RegExp(`^${regex}$`).test(f);
+        });
+    });
+    if (ignored.length > 0) {
+      body += `### Skipping files (IGNORE_GLOBS)\n`;
+      body += ignored.map((f) => `- \`${f}\``).join("\n");
+      body += "\n";
+    }
   }
 
   body += `\n> Automated by [autopr.yml](.github/workflows/autopr.yml)\n`;
@@ -91,6 +116,8 @@ export async function createPrAndRequestReview(options = {}) {
     mergeResult,
     conflictFiles,
     changedFiles,
+    ignoreGlobs: options.ignoreGlobs,
+    detectChangedFiles: options.detectChangedFiles,
   });
 
   if (local) {
