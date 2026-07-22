@@ -144,7 +144,8 @@
 
   type ComputedGetter<T> = (
     this: ComponentPublicInstance,
-    vm: ComponentPublicInstance
+    vm: ComponentPublicInstance,
+    previous?: T
   ) => T
 
   type ComputedSetter<T> = (

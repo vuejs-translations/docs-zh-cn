@@ -2,7 +2,7 @@
 
 ## 谁在维护 Vue？ {#who-maintains-vue}
 
-Vue 是一个独立的社区驱动的项目。它是由[尤雨溪](https://twitter.com/yuxiyou)在 2014 年作为其个人项目创建的。今天，Vue 由[来自世界各地的全职成员和志愿者组成的团队](/about/team)积极活跃地维护着，并由尤雨溪担任项目负责人。你可以在[这部纪录片](https://www.youtube.com/watch?v=OrxmtDw4pVI)中了解更多关于 Vue 的故事。
+Vue is an independent, community-driven project. It was created by [Evan You](https://x.com/youyuxi) in 2014 as a personal side project. Today, Vue is actively maintained by [a team of both full-time and volunteer members from all around the world](/about/team), where Evan serves as the project lead. You can learn more about the story of Vue in this [documentary](https://www.youtube.com/watch?v=OrxmtDw4pVI).
 
 自 2016 年以来，Vue 的发展主要是通过赞助来保障的，我们在财务上是可持续的。如果你或你的企业从 Vue 中受益，请考虑[赞助](/sponsor/)我们，以支持 Vue 的发展！
 

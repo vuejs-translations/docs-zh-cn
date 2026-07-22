@@ -39,7 +39,26 @@ Vue.js 是采用 MIT 许可的开源项目，使用完全免费。
 
 3. 在 [`vuejs/core`](https://github.com/vuejs/core) 和 [`vuejs/vue`](https://github.com/vuejs/core) 的 README 上明显的 logo 展示位。
 
-此赞助位同样可以通过[爱发电](https://afdian.net/a/evanyou)来订阅。如果您对此赞助位感兴趣但还抱有疑问，请致信 [sponsor@vuejs.org](mailto:sponsor@vuejs.org) 咨询具体事宜。
+- **全球特别赞助商**：
+  - 全球限定 **一名** 赞助商。<span v-if="!data?.special">目前空缺。[联系我们](mailto:sponsor@vuejs.org?subject=Vue.js%20special%20sponsor%20inquiry)！</span><span v-else>(目前已满)</span>
+  - (独享) 在 [vuejs.org](/) 首页**顶部可视区域**放置 Logo。
+  - (独享) 通过 [Vue 官方 X 账号](https://x.com/vuejs) (32 万粉丝) 特别提及并定期转发重大产品发布。
+  - 在下述所有级别中享有最显著的 Logo 展示位置。
+- **白金赞助商 (USD$2,000/mo)**：
+  - 在 [vuejs.org](/) 首页显著位置放置 Logo。
+  - 在所有内容页面的侧边栏显著位置放置 Logo。
+  - 在 [`vuejs/core`](https://github.com/vuejs/core) 和 [`vuejs/vue`](https://github.com/vuejs/vue) 的 README 中显著放置 Logo。
+- **黄金赞助商 (USD$500/mo)**：
+  - 在 [vuejs.org](/) 首页放置大尺寸 Logo。
+  - 在 `vuejs/core` 和 `vuejs/vue` 的 README 中放置大尺寸 Logo。
+- **白银赞助商 (USD$250/mo)**：
+  - 在 `vuejs/core` 和 `vuejs/vue` 的 `BACKERS.md` 文件中放置中等尺寸 Logo。
+- **青铜赞助商 (USD$100/mo)**：
+  - 在 `vuejs/core` 和 `vuejs/vue` 的 `BACKERS.md` 文件中放置小尺寸 Logo。
+- **慷慨支持者 (USD$50/mo)**：
+  - 姓名列于 `vuejs/core` 和 `vuejs/vue` 的 `BACKERS.md` 文件中，排在其他个人支持者之前。
+- **个人支持者 (USD$5/mo)**：
+  - 姓名列于 `vuejs/core` 和 `vuejs/vue` 的 `BACKERS.md` 文件中。
 
 ## 国际站赞助 {#how-to-sponsor}
 

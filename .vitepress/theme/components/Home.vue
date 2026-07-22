@@ -89,20 +89,24 @@ onMounted(load)
 
   <section id="highlights" class="vt-box-container">
     <div class="vt-box">
-      <h2>易学易用</h2>
+      <h2>Versatile</h2>
+      <p>
+        A rich, incrementally adoptable ecosystem that scales between a
+        library and a full-featured framework.
+      </p>
+    </div>
+    <div class="vt-box">
+      <h2>User-friendly</h2>
       <p>
         基于标准 HTML、CSS 和 JavaScript 构建，提供容易上手的 API
         和一流的文档。
       </p>
     </div>
     <div class="vt-box">
-      <h2>性能出色</h2>
-      <p>经过编译器优化、完全响应式的渲染系统，几乎不需要手动优化。</p>
-    </div>
-    <div class="vt-box">
-      <h2>灵活多变</h2>
+      <h2>Efficient</h2>
       <p>
-        丰富的、可渐进式集成的生态系统，可以根据应用规模在库和框架间切换自如。
+        Truly reactive, compiler-optimized rendering system that rarely
+        requires manual optimization.
       </p>
     </div>
   </section>
@@ -334,6 +338,10 @@ html:not(.dark) .accent,
 
 #highlights .vt-box {
   background-color: transparent;
+}
+
+#highlights .vt-box h2::first-letter{
+  color: var(--vt-c-green);
 }
 
 #spsrs {

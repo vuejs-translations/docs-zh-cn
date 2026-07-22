@@ -17,16 +17,17 @@ import {
 
 const nav: ThemeConfig['nav'] = [
   {
-    text: '文档',
-    activeMatch: `^/(guide|style-guide|cookbook|examples)/`,
+    text: 'Docs',
+    activeMatch: `^/(guide|tutorial|examples|api|glossary|error-reference)/`,
     items: [
-      { text: '深度指南', link: '/guide/introduction' },
-      { text: '互动教程', link: '/tutorial/' },
-      { text: '示例', link: '/examples/' },
-      { text: '快速上手', link: '/guide/quick-start' },
-      // { text: '风格指南', link: '/style-guide/' },
-      { text: '术语表', link: '/glossary/' },
-      { text: '错误码参照表', link: '/error-reference/' },
+      { text: 'Quick Start', link: '/guide/quick-start' },
+      { text: 'Guide', link: '/guide/introduction' },
+      { text: 'Tutorial', link: '/tutorial/' },
+      { text: 'Examples', link: '/examples/' },
+      { text: 'API', link: '/api/' },
+      // { text: 'Style Guide', link: '/style-guide/' },
+      { text: 'Glossary', link: '/glossary/' },
+      { text: 'Error Reference', link: '/error-reference/' },
       {
         text: 'Vue 2 文档',
         link: 'https://v2.cn.vuejs.org'
@@ -38,12 +39,7 @@ const nav: ThemeConfig['nav'] = [
     ]
   },
   {
-    text: 'API',
-    activeMatch: `^/api/`,
-    link: '/api/'
-  },
-  {
-    text: '演练场',
+    text: 'Playground',
     link: 'https://play.vuejs.org'
   },
   {
@@ -53,9 +49,8 @@ const nav: ThemeConfig['nav'] = [
       {
         text: '资源',
         items: [
-          { text: '合作伙伴', link: '/partners/' },
-          { text: '主题', link: '/ecosystem/themes' },
-          { text: 'UI 组件', link: 'https://ui-libs.vercel.app/' },
+          { text: 'Themes', link: '/ecosystem/themes' },
+          { text: 'UI Components', link: 'https://ui-libs.vercel.app/' },
           {
             text: '插件合集',
             link: 'https://www.vue-plugins.org/'
@@ -134,13 +129,12 @@ const nav: ThemeConfig['nav'] = [
     ]
   },
   {
-    text: '赞助',
-    link: '/sponsor/'
-  },
-  {
-    text: '合作伙伴',
-    activeMatch: `^/partners/`,
-    link: '/partners/'
+    text: 'Support',
+    activeMatch: `^/(sponsor|partners)/`,
+    items: [
+      { text: 'Sponsor', link: '/sponsor/' },
+      { text: 'Partners', link: '/partners/' }
+    ]
   }
 ]
 
@@ -703,6 +697,11 @@ export default defineConfigWithTheme<ThemeConfig>({
         repo: 'https://github.com/vuejs-translations/docs-fr'
       },
       {
+        link: 'https://de.vuejs.org',
+        text: 'Deutsch',
+        repo: 'https://github.com/vuejs-translations/docs-de'
+      },
+      {
         link: 'https://ko.vuejs.org',
         text: '한국어',
         repo: 'https://github.com/vuejs-translations/docs-ko'
@@ -755,9 +754,9 @@ export default defineConfigWithTheme<ThemeConfig>({
     ],
 
     algolia: {
-      indexName: 'vuejs_cn2',
-      appId: 'UURH1MHAF7',
-      apiKey: 'c23eb8e7895f42daeaf2bf6f63eb4bf6',
+      indexName: 'vuejs',
+      appId: 'ML0LEBN7FQ',
+      apiKey: '10e7a8b13e6aec4007343338ab134e05',
       searchParameters: {
         facetFilters: ['version:v3']
       },

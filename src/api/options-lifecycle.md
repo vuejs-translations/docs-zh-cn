@@ -215,7 +215,9 @@
 
   - `errorCaptured` 钩子可以通过返回 `false` 来阻止错误继续向上传递。即表示“这个错误已经被处理了，应当被忽略”，它将阻止其他的 `errorCaptured` 钩子或 `app.config.errorHandler` 因这个错误而被调用。
 
-  **错误捕获注意事项**
+  **Error Capturing Caveats**
+  
+  - In components with async `setup()` function (with top-level `await`) Vue **will always** try to render component template, even if `setup()` threw error. This will likely cause more errors because during render component's template might try to access non-existing properties of failed `setup()` context. When capturing errors in such components, be ready to handle errors from both failed async `setup()` (they will always come first) and failed render process.
 
   - 在使用异步 `setup()` 函数 (使用了顶层 `await`) 的组件中，即使 `setup()` 抛出了错误，Vue 也会尝试渲染组件模板。这可能会导致更多错误，因为在渲染组件模板时，可能会尝试访问失败的 `setup()` 上下文中不存在的属性。当捕获这类组件的错误时，应当同时准备好捕获异步 `setup()` (永远会先抛出错误) 和失败的渲染过程中的错误。
 

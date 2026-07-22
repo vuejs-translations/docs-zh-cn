@@ -28,7 +28,7 @@ pnpm i
 pnpm run dev
 ```
 
-该项目要求 Node.js 为 `v18` 或更高版本。并且建议启用 corepack：
+This project requires Node.js to be `v20` or higher. And it is recommended to enable corepack:
 
 ```bash
 corepack enable
@@ -46,6 +46,4 @@ corepack enable
   </a>
 </p>
 
-## 版权声明
-
-<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="知识共享许可协议" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><br />本作品采用<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议  (CC BY-NC-SA 4.0) </a>进行许可。
+If changes need to be made for the theme, check out the [instructions for developing the theme alongside the docs](https://github.com/vuejs/vue-theme#developing-with-real-content).
