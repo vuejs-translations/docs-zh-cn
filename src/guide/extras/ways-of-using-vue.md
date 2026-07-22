@@ -33,7 +33,7 @@ SPA 一般要求后端提供 API 数据接口，但你也可以将 Vue 和如 [I
 
 Vue 提供了一系列 API，支持将一个 Vue 应用在服务端渲染成 HTML 字符串。这能让服务器直接返回渲染好的 HTML，让用户在 JavaScript 下载完毕前就看到页面内容。Vue 之后会在客户端对应用进行“激活 (hydrate)”使其重获可交互性。这被称为[服务端渲染 (SSR)](/guide/scaling-up/ssr)，它能够极大地改善应用在 Web 核心指标上的性能表现，如[最大内容绘制 (LCP)](https://web.dev/lcp/)。
 
-此外还有一些构建于此范式之上的更高层级的 [Vue 框架](/guide/quick-start#frameworks)，它们为开发全栈应用内置了 SSR 支持。
+Vue 生态中有一些针对此类场景的、基于 Vue 的上层框架，比如 [Vue 框架](/guide/quick-start#frameworks)，它们为开发全栈应用内置了 SSR 支持。
 
 ## JAMStack / SSG {#jamstack-ssg}
 

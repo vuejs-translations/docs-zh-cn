@@ -1,4 +1,5 @@
 {
+  "license": "CC BY-NC-SA 4.0",
   "private": true,
   "type": "module",
   "scripts": {
@@ -23,11 +24,15 @@
     "@types/body-scroll-lock": "^3.1.2",
     "@types/markdown-it": "^14.1.2",
     "@types/node": "^25.5.2",
+    "commander": "^9.4.0",
+    "open": "^8.4.0",
+    "simple-git": "^2.48.0",
     "oxc-minify": "^0.124.0",
     "typescript": "^5.9.3",
     "vitepress-plugin-group-icons": "^1.7.3",
     "vitepress-plugin-llms": "^1.12.0",
-    "vue-tsc": "^3.2.6"
+    "vue-tsc": "^3.2.6",
+    "zhlint": "^0.8.1"
   },
   "engines": {
     "node": ">=20"

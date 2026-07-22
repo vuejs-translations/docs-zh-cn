@@ -400,10 +400,10 @@ console.log(app.config)
   }
   ```
 
-- **Default**
+- **默认**
 
-  The default error handler will re-throw errors during development and log errors during production.
-  You can configure this using the [throwUnhandledErrorInProduction](#app-config-throwunhandlederrorinproduction) property.
+  默认错误处理函数会在开发期间重新抛出错误，并在生产环境记录错误。
+  你可以使用 [throwUnhandledErrorInProduction](#app-config-throwunhandlederrorinproduction) 属性来配置。
 
 ## app.config.warnHandler {#app-config-warnhandler}
 

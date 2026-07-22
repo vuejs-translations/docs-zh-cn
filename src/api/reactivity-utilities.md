@@ -266,9 +266,9 @@
 
 ## isShallow() {#isshallow}
 
-Checks if an object is a proxy created by [`shallowRef`](./reactivity-advanced#shallowref), [`shallowReactive()`](./reactivity-advanced#shallowreactive) or [`shallowReadonly()`](./reactivity-advanced#shallowreadonly).
+检查一个对象是否是由 [`shallowRef`](./reactivity-advanced#shallowref)、[`shallowReactive()`](./reactivity-advanced#shallowreactive) 或 [`shallowReadonly()`](./reactivity-advanced#shallowreadonly) 创建的代理。
 
-- **Type**
+- **类型**
 
   ```ts
   function isShallow(value: unknown): boolean

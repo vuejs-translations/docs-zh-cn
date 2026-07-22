@@ -229,10 +229,9 @@ watch(
 
 ![Chrome 开发者工具通过 aria-labelledby 展示 input 的无障碍访问名称](./images/AccessibleARIAlabelledbyDevTools.png)
 
-When this pattern is used inside a reusable component, generate the IDs with
-[`useId()`](/api/composition-api-helpers.html#useid) instead of hard-coding
-them. This keeps each component instance's `id` values unique while still
-linking the visible text to the form control:
+在可复用组件中使用这种模式时，请使用
+[`useId()`](/api/composition-api-helpers.html#useid) 生成 ID，而不是硬编码它们。这样可以在保持每个组件实例的 `id` 值唯一的同时，
+仍然将可见文本与表单控件关联起来：
 
 ```vue
 <script setup>

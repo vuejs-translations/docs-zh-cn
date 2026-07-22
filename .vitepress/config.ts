@@ -17,17 +17,17 @@ import {
 
 const nav: ThemeConfig['nav'] = [
   {
-    text: 'Docs',
+    text: '文档',
     activeMatch: `^/(guide|tutorial|examples|api|glossary|error-reference)/`,
     items: [
-      { text: 'Quick Start', link: '/guide/quick-start' },
-      { text: 'Guide', link: '/guide/introduction' },
-      { text: 'Tutorial', link: '/tutorial/' },
-      { text: 'Examples', link: '/examples/' },
+      { text: '快速上手', link: '/guide/quick-start' },
+      { text: '深度指南', link: '/guide/introduction' },
+      { text: '互动教程', link: '/tutorial/' },
+      { text: '示例', link: '/examples/' },
       { text: 'API', link: '/api/' },
       // { text: 'Style Guide', link: '/style-guide/' },
-      { text: 'Glossary', link: '/glossary/' },
-      { text: 'Error Reference', link: '/error-reference/' },
+      { text: '术语表', link: '/glossary/' },
+      { text: '错误码参照表', link: '/error-reference/' },
       {
         text: 'Vue 2 文档',
         link: 'https://v2.cn.vuejs.org'
@@ -39,7 +39,7 @@ const nav: ThemeConfig['nav'] = [
     ]
   },
   {
-    text: 'Playground',
+    text: '演练场',
     link: 'https://play.vuejs.org'
   },
   {
@@ -49,8 +49,8 @@ const nav: ThemeConfig['nav'] = [
       {
         text: '资源',
         items: [
-          { text: 'Themes', link: '/ecosystem/themes' },
-          { text: 'UI Components', link: 'https://ui-libs.vercel.app/' },
+          { text: '主题', link: '/ecosystem/themes' },
+          { text: 'UI 组件', link: 'https://ui-libs.vercel.app/' },
           {
             text: '插件合集',
             link: 'https://www.vue-plugins.org/'
@@ -129,7 +129,7 @@ const nav: ThemeConfig['nav'] = [
     ]
   },
   {
-    text: 'Support',
+    text: '支持',
     activeMatch: `^/(sponsor|partners)/`,
     items: [
       { text: 'Sponsor', link: '/sponsor/' },
@@ -754,9 +754,9 @@ export default defineConfigWithTheme<ThemeConfig>({
     ],
 
     algolia: {
-      indexName: 'vuejs',
-      appId: 'ML0LEBN7FQ',
-      apiKey: '10e7a8b13e6aec4007343338ab134e05',
+      indexName: 'vuejs_cn2',
+      appId: 'UURH1MHAF7',
+      apiKey: 'c23eb8e7895f42daeaf2bf6f63eb4bf6',
       searchParameters: {
         facetFilters: ['version:v3']
       },

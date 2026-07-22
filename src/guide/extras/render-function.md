@@ -235,12 +235,12 @@ const vnode = h('button', ['Hello'])
 </template>
 ```
 
-一个 vnode 对象已经在 `setup()` 中声明，你可以像普通组件那样使用它进行渲染。
+由于 vnode 对象已经在 `setup()` 中定义，你可以像普通组件那样直接渲染它。
 
 :::warning
-一个 vnode 表示的是一个已经创建好的渲染输出，而不是一个组件定义。在 `<template>` 中使用 vnode 不会创建新的组件实例，vnode 将按原样渲染。
+一个 vnode 表示的是一个静态的渲染输出，而不是一个组件定义。在 `<template>` 中使用 vnode 并不会创建一个新的组件实例，vnode 将按它原样渲染。
 
-这种用法需要谨慎使用，它不是普通组件的替代品。
+种用法需要特别注意，它不是组件的替代品。
 :::
 
 ## JSX / TSX {#jsx-tsx}
@@ -765,6 +765,7 @@ export default {
   }
 }
 ```
+
 </details>
 </div>
 <div class="options-api">

@@ -201,13 +201,13 @@ const emit = defineEmits<{
 
 - 使用类型声明的时候，静态分析会自动生成等效的运行时声明，从而在避免双重声明的前提下确保正确的运行时行为。
 
-  - In dev mode, the compiler will try to infer corresponding runtime validation from the types. For example here `foo: String` is inferred from the `foo: string` type. Imported types are also resolved, provided TypeScript is installed as a peer dependency.
+  - 在开发模式下，编译器会尝试从类型中推断对应的运行时验证。例如这里从 `foo: string` 类型中推断出 `foo: String`。只要 TypeScript 作为 peer dependency 安装，导入的类型也会被解析。
 
   - 在生产模式下，编译器会生成数组格式的声明来减少打包体积 (这里的 props 会被编译成 `['foo', 'bar']`)。
 
 - 在 3.2 及以下版本中，`defineProps()` 的泛型类型参数只能使用类型字面量或者本地接口的引用。
 
-  This limitation was resolved in 3.3. The latest version of Vue supports referencing imported and a limited set of complex types in the type parameter position. However, because the type to runtime conversion is still AST-based, some complex types that require actual type analysis, e.g. conditional types, are not supported. You can use conditional types for the type of a single prop, but not the entire props object.
+  这个限制已经在 3.3 版本中得到解决。最新版本的 Vue 支持在类型参数位置引用导入的类型以及有限的一组复杂类型。然而，由于类型到运行时的转换仍然基于 AST，因此并不支持需要实际类型分析的一些复杂类型，例如条件类型等。你可以在单个 prop 的类型上使用条件类型，但不能对整个 props 对象使用。
 
 ### 响应式 Props 解构 <sup class="vt-badge" data-text="3.5+" /> {#reactive-props-destructure}
 

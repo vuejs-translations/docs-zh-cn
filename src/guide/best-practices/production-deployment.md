@@ -32,9 +32,9 @@
 
 其他参考：
 
-- [Vite production build guide](https://vite.dev/guide/build.html)
-- [Vite deployment guide](https://vite.dev/guide/static-deploy.html)
-- [Vue CLI deployment guide](https://cli.vuejs.org/guide/deployment.html)
+- [Vite 生产环境指南](https://cn.vitejs.dev/guide/build.html)
+- [Vite 部署指南](https://cn.vitejs.dev/guide/static-deploy.html)
+- [Vue CLI 部署指南](https://cli.vuejs.org/zh/guide/deployment.html)
 
 ## 追踪运行时错误 {#tracking-runtime-errors}
 

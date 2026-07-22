@@ -21,18 +21,18 @@ import { VTCodeGroup, VTCodeGroupTab } from '@vue/theme'
 
 ### Vite {#vite}
 
-[Vite](https://vite.dev/) 是一个轻量级的、速度极快的构建工具，对 Vue 单文件组件提供第一优先级支持。作者是尤雨溪，同时也是 Vue 的作者！
+[Vite](https://cn.vite.dev/) 是一个轻量级的、速度极快的构建工具，对 Vue 单文件组件提供第一优先级支持。作者是尤雨溪，同时也是 Vue 的作者！
 
 要使用 Vite 来创建一个 Vue 项目，非常简单：
 
 ::: code-group
 
 ```sh [npm]
-$ npm create vue@latest
+npm create vue@latest
 ```
 
 ```sh [pnpm]
-$ pnpm create vue@latest
+pnpm create vue@latest
 ```
   
 ```sh [yarn]
@@ -44,14 +44,14 @@ $ yarn dlx create-vue@latest
 ```
   
 ```sh [bun]
-$ bun create vue@latest
+bun create vue@latest
 ```
 
 :::
 
 这个命令会安装和执行 [create-vue](https://github.com/vuejs/create-vue)，它是 Vue 提供的官方脚手架工具。跟随命令行的提示继续操作即可。
 
-- 要了解更多关于 Vite 的信息，请查看 [Vite 文档](https://vite.dev/)。
+- 要了解更多关于 Vite 的信息，请查看 [Vite 文档](https://cn.vite.dev/)。
 - 若要为一个 Vite 项目配置 Vue 相关的特殊行为，比如向 Vue 编译器传递选项，请查看 [@vitejs/plugin-vue](https://github.com/vitejs/vite-plugin-vue/tree/main/packages/plugin-vue#readme) 的文档。
 
 上面提到的两种在线演练场也支持将文件作为一个 Vite 项目下载。
@@ -190,4 +190,4 @@ Vue 团队维护着 [eslint-plugin-vue](https://github.com/vuejs/eslint-plugin-v
 
 如果你正在将 Vue 与 [Laravel](https://laravel.com/) 搭配使用，该框架自带了官方的 [Vite 插件](https://laravel.com/docs/vite)，可以开箱即用地处理资源打包和模块热替换。
 
-对于其他后端框架，请参考 Vite 的[后端集成指南](https://vite.dev/guide/backend-integration.html)进行手动配置。
+对于其他后端框架，请参考 Vite 的[后端集成指南](https://cn.vite.dev/guide/backend-integration.html)进行手动配置。
