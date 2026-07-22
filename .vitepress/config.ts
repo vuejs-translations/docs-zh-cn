@@ -25,7 +25,7 @@ const nav: ThemeConfig['nav'] = [
       { text: '互动教程', link: '/tutorial/' },
       { text: '示例', link: '/examples/' },
       { text: 'API', link: '/api/' },
-      // { text: 'Style Guide', link: '/style-guide/' },
+      // { text: '风格指南', link: '/style-guide/' },
       { text: '术语表', link: '/glossary/' },
       { text: '错误码参照表', link: '/error-reference/' },
       {

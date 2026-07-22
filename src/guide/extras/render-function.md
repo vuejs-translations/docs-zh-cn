@@ -240,7 +240,7 @@ const vnode = h('button', ['Hello'])
 :::warning
 一个 vnode 表示的是一个静态的渲染输出，而不是一个组件定义。在 `<template>` 中使用 vnode 并不会创建一个新的组件实例，vnode 将按它原样渲染。
 
-种用法需要特别注意，它不是组件的替代品。
+这种用法需要特别注意，它不是组件的替代品。
 :::
 
 ## JSX / TSX {#jsx-tsx}
