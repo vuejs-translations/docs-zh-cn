@@ -6,7 +6,7 @@
 
 通常情况下，当我们需要从父组件向子组件传递数据时，会使用 [props](/guide/components/props)。想象一下这样的结构：有一些多层级嵌套的组件，形成了一棵巨大的组件树，而某个深层的子组件需要一个较远的祖先组件中的部分数据。在这种情况下，如果仅使用 props 则必须将其沿着组件链逐级传递下去，这会非常麻烦：
 
-![Prop 逐级透传的过程图示](./images/prop-drilling.png)
+![展示 props 逐级透传经过多层组件，最终到达深层嵌套子组件的图示](./images/prop-drilling.png)
 
 <!-- https://www.figma.com/file/yNDTtReM2xVgjcGVRzChss/prop-drilling -->
 
@@ -14,7 +14,7 @@
 
 `provide` 和 `inject` 可以帮助我们解决这一问题 <sup>[[1]](#footnote-1)</sup>。一个父组件相对于其所有的后代组件，会作为**依赖提供者**。任何后代的组件树，无论层级有多深，都可以**注入**由父组件提供给整条链路的依赖。
 
-![Provide/inject 模式](./images/provide-inject.png)
+![展示 provide/inject 机制的图示：父组件提供一个依赖，深层嵌套的子组件可以直接注入该依赖，从而跳过中间组件](./images/provide-inject.png)
 
 <!-- https://www.figma.com/file/PbTJ9oXis5KUawEOWdy2cE/provide-inject -->
 

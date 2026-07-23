@@ -23,21 +23,21 @@ import { VTCodeGroup, VTCodeGroupTab } from '@vue/theme'
 :::tip 前提条件
 
 - 熟悉命令行
-- 已安装 `^20.19.0 || >=22.12.0` 版本的 [Node.js](https://nodejs.org/)
-:::
+- 已安装 `^22.18.0 || >=24.12.0` 版本的 [Node.js](https://nodejs.org/)
+  :::
 
-在本节中，我们将介绍如何在本地搭建 Vue [单页应用](/guide/extras/ways-of-using-vue#single-page-application-spa)。创建的项目将使用基于 [Vite](https://vite.dev) 的构建设置，并允许我们使用 Vue 的[单文件组件](/guide/scaling-up/sfc) (SFC)。
+在本节中，我们将介绍如何在本地搭建 Vue [单页应用](/guide/extras/ways-of-using-vue#single-page-application-spa)。创建的项目将使用基于 [Vite](https://cn.vite.dev/) 的构建设置，并允许我们使用 Vue 的[单文件组件](/guide/scaling-up/sfc) (SFC)。
 
 确保你安装了最新版本的 [Node.js](https://nodejs.org/)，并且你的当前工作目录正是打算创建项目的目录。在命令行中运行以下命令 (不要带上 `$` 符号)：
 
 ::: code-group
 
 ```sh [npm]
-$ npm create vue@latest
+npm create vue@latest
 ```
 
 ```sh [pnpm]
-$ pnpm create vue@latest
+pnpm create vue@latest
 ```
 
 ```sh [yarn]
@@ -52,8 +52,9 @@ $ yarn dlx create-vue@latest
 ```
 
 ```sh [bun]
-$ bun create vue@latest
+bun create vue@latest
 ```
+
 :::
 
 这一指令将会安装并执行 [create-vue](https://github.com/vuejs/create-vue)，它是 Vue 官方的项目脚手架工具。你将会看到一些诸如 TypeScript 和测试支持之类的可选功能提示：
@@ -77,37 +78,36 @@ $ bun create vue@latest
 ::: code-group
 
 ```sh-vue [npm]
-$ cd {{'<your-project-name>'}}
-$ npm install
-$ npm run dev
+cd {{'<your-project-name>'}}
+npm install
+npm run dev
 ```
 
 ```sh-vue [pnpm]
-$ cd {{'<your-project-name>'}}
-$ pnpm install
-$ pnpm run dev
+cd {{'<your-project-name>'}}
+pnpm install
+pnpm run dev
 ```
 
 ```sh-vue [yarn]
-$ cd {{'<your-project-name>'}}
-$ yarn
-$ yarn dev
+cd {{'<your-project-name>'}}
+yarn
+yarn dev
 ```
 
 ```sh-vue [bun]
-$ cd {{'<your-project-name>'}}
-$ bun install
-$ bun run dev
+cd {{'<your-project-name>'}}
+bun install
+bun run dev
 ```
 
 :::
-
 
 你现在应该已经运行起来了你的第一个 Vue 项目！请注意，生成的项目中的示例组件使用的是[组合式 API](/guide/introduction#composition-api) 和 `<script setup>`，而非[选项式 API](/guide/introduction#options-api)。下面是一些补充提示：
 
 - 推荐的 IDE 配置是 [Visual Studio Code](https://code.visualstudio.com/) + [Vue - Official 扩展](https://marketplace.visualstudio.com/items?itemName=Vue.volar)。如果使用其他编辑器，参考 [IDE 支持章节](/guide/scaling-up/tooling#ide-support)。
 - 更多工具细节，包括与后端框架的整合，我们会在[工具链指南](/guide/scaling-up/tooling)进行讨论。
-- 要了解构建工具 Vite 更多背后的细节，请查看 [Vite 文档](https://cn.vitejs.dev)。
+- 要了解构建工具 Vite 更多背后的细节，请查看 [Vite 文档](https://cn.vite.dev/)。
 - 如果你选择使用 TypeScript，请阅读 [TypeScript 使用指南](typescript/overview)。
 
 当你准备将应用发布到生产环境时，请运行：
@@ -115,23 +115,22 @@ $ bun run dev
 ::: code-group
 
 ```sh [npm]
-$ npm run build
+npm run build
 ```
 
 ```sh [pnpm]
-$ pnpm run build
+pnpm run build
 ```
 
 ```sh [yarn]
-$ yarn build
+yarn build
 ```
 
 ```sh [bun]
-$ bun run build
+bun run build
 ```
 
 :::
-
 
 此命令会在 `./dist` 文件夹中为你的应用创建一个生产环境的构建版本。关于将应用上线生产环境的更多内容，请阅读[生产环境部署指南](/guide/best-practices/production-deployment)。
 
@@ -396,6 +395,25 @@ export default {
 要启动一个本地的 HTTP 服务器，请先安装 [Node.js](https://nodejs.org/zh/)，然后通过命令行在 HTML 文件所在文件夹下运行 `npx serve`。你也可以使用其他任何可以基于正确的 MIME 类型服务静态文件的 HTTP 服务器。
 
 可能你也注意到了，这里导入的组件模板是内联的 JavaScript 字符串。如果你正在使用 VS Code，你可以安装 [es6-string-html](https://marketplace.visualstudio.com/items?itemName=Tobermory.es6-string-html) 扩展，然后在字符串前加上一个前缀注释 `/*html*/` 以高亮语法。
+
+## 框架 {#frameworks}
+
+有一些 Vue 框架开箱即用地支持 [SSR](/guide/scaling-up/ssr) 及其他功能：
+
+- [Nuxt](https://nuxt.com/)
+- [Vike](https://vike.dev/)
+- [Astro](https://astro.build/)
+- [Quasar](https://quasar.dev/)
+
+:::tip
+通常建议仅在你需要 SSR 时才使用框架。
+
+如果你不需要 SSR，可以直接使用 [Vite](https://cn.vite.dev/) (这正是上文[创建一个 Vue 应用](#creating-a-vue-application)章节所搭建的内容)。
+:::
+
+:::info
+Vue 框架通常在底层使用 Vite，因此如果你不需要 SSR，直接使用 Vite 而非 Vue 框架会是更简单的配置。不过，框架也支持一些额外功能，比如 UI 主题，这也可能是选择 Vue 框架而非单纯使用 Vite 的理由。
+:::
 
 ## 下一步 {#next-steps}
 

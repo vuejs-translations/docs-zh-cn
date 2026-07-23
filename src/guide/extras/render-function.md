@@ -216,7 +216,7 @@ function render() {
 }
 ```
 
-### 在 `<template>` 中使用 Vnode
+### 在 `<template>` 中使用 Vnode {#using-vnodes-in-template}
 
 ```vue
 <script setup>
@@ -765,6 +765,7 @@ export default {
   }
 }
 ```
+
 </details>
 </div>
 <div class="options-api">

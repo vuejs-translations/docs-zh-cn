@@ -105,7 +105,7 @@ p {{ msg }}
 
 注意对不同预处理器的集成会根据你所使用的工具链而有所不同，具体细节请查看相应的工具链文档来确认：
 
-- [Vite](https://cn.vitejs.dev/guide/features.html#css-pre-processors)
+- [Vite](https://cn.vite.dev/guide/features.html#css-pre-processors)
 - [Vue CLI](https://cli.vuejs.org/zh/guide/css.html#%E9%A2%84%E5%A4%84%E7%90%86%E5%99%A8)
 - [webpack + vue-loader](https://vue-loader.vuejs.org/zh/guide/pre-processors.html#%E4%BD%BF%E7%94%A8%E9%A2%84%E5%A4%84%E7%90%86%E5%99%A8)
 
@@ -138,9 +138,11 @@ p {{ msg }}
 
 :::warning 注意
 在 `src` 中使用别名时，不要以 `~` 开头，后面的任何内容都会被解释为模块请求。这意味着你可以引用 node 模块中的资源：
+
 ```vue
 <img src="~some-npm-package/foo.png">
 ```
+
 :::
 
 ## 注释 {#comments}

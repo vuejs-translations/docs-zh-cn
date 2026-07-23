@@ -8,7 +8,7 @@
 
 - **详细信息**
 
-  `v-text` 通过设置元素的 [textContent](https://developer.mozilla.org/en-US/docs/Web/API/Node/textContent) 属性来工作，因此它将覆盖元素中所有现有的内容。如果你需要更新 `textContent` 的部分，应该使用 [mustache interpolations](/guide/essentials/template-syntax#text-interpolation) 代替。
+  `v-text` 通过设置元素的 [textContent](https://developer.mozilla.org/en-US/docs/Web/API/Node/textContent) 属性来工作，因此它将覆盖元素中所有现有的内容。如果你只需要更新 `textContent` 的一部分，应该使用 [mustache interpolations](/guide/essentials/template-syntax#text-interpolation) 代替 (即 <span v-pre>`<span>保留此部分，但更新 {{dynamicPortion}}</span>`</span>)。
 
 - **示例**
 

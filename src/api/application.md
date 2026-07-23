@@ -400,6 +400,11 @@ console.log(app.config)
   }
   ```
 
+- **默认**
+
+  默认错误处理函数会在开发期间重新抛出错误，并在生产环境记录错误。
+  你可以使用 [throwUnhandledErrorInProduction](#app-config-throwunhandlederrorinproduction) 属性来配置。
+
 ## app.config.warnHandler {#app-config-warnhandler}
 
 用于为 Vue 的运行时警告指定一个自定义处理函数。

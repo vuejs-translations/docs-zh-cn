@@ -94,7 +94,7 @@ export default {
 
 你可以在 [Vue 单文件组件演练场](https://play.vuejs.org/)中实际使用一下单文件组件，同时可以看到它们最终被编译后的样子。
 
-在实际项目中，我们一般会使用集成了单文件组件编译器的构建工具，比如 [Vite](https://cn.vitejs.dev/) 或者 [Vue CLI](https://cli.vuejs.org/zh/) (基于 [webpack](https://webpack.js.org/))，Vue 官方也提供了脚手架工具来帮助你尽可能快速地上手开发单文件组件。更多细节请查看[单文件组件工具链](/guide/scaling-up/tooling)章节。
+在实际项目中，我们一般会使用集成了单文件组件编译器的构建工具，比如 [Vite](https://cn.vite.dev/) 或者 [Vue CLI](https://cli.vuejs.org/zh/) (基于 [webpack](https://webpack.js.org/))，Vue 官方也提供了脚手架工具来帮助你尽可能快速地上手开发单文件组件。更多细节请查看[单文件组件工具链](/guide/scaling-up/tooling)章节。
 
 ## 如何看待关注点分离？ {#what-about-separation-of-concerns}
 

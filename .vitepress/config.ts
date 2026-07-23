@@ -18,12 +18,13 @@ import {
 const nav: ThemeConfig['nav'] = [
   {
     text: '文档',
-    activeMatch: `^/(guide|style-guide|cookbook|examples)/`,
+    activeMatch: `^/(guide|tutorial|examples|api|glossary|error-reference)/`,
     items: [
+      { text: '快速上手', link: '/guide/quick-start' },
       { text: '深度指南', link: '/guide/introduction' },
       { text: '互动教程', link: '/tutorial/' },
       { text: '示例', link: '/examples/' },
-      { text: '快速上手', link: '/guide/quick-start' },
+      { text: 'API', link: '/api/' },
       // { text: '风格指南', link: '/style-guide/' },
       { text: '术语表', link: '/glossary/' },
       { text: '错误码参照表', link: '/error-reference/' },
@@ -38,11 +39,6 @@ const nav: ThemeConfig['nav'] = [
     ]
   },
   {
-    text: 'API',
-    activeMatch: `^/api/`,
-    link: '/api/'
-  },
-  {
     text: '演练场',
     link: 'https://play.vuejs.org'
   },
@@ -53,7 +49,6 @@ const nav: ThemeConfig['nav'] = [
       {
         text: '资源',
         items: [
-          { text: '合作伙伴', link: '/partners/' },
           { text: '主题', link: '/ecosystem/themes' },
           { text: 'UI 组件', link: 'https://ui-libs.vercel.app/' },
           {
@@ -134,13 +129,12 @@ const nav: ThemeConfig['nav'] = [
     ]
   },
   {
-    text: '赞助',
-    link: '/sponsor/'
-  },
-  {
-    text: '合作伙伴',
-    activeMatch: `^/partners/`,
-    link: '/partners/'
+    text: '支持',
+    activeMatch: `^/(sponsor|partners)/`,
+    items: [
+      { text: 'Sponsor', link: '/sponsor/' },
+      { text: 'Partners', link: '/partners/' }
+    ]
   }
 ]
 
@@ -701,6 +695,11 @@ export default defineConfigWithTheme<ThemeConfig>({
         link: 'https://fr.vuejs.org',
         text: 'Français',
         repo: 'https://github.com/vuejs-translations/docs-fr'
+      },
+      {
+        link: 'https://de.vuejs.org',
+        text: 'Deutsch',
+        repo: 'https://github.com/vuejs-translations/docs-de'
       },
       {
         link: 'https://ko.vuejs.org',

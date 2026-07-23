@@ -28,7 +28,7 @@ pnpm i
 pnpm run dev
 ```
 
-该项目要求 Node.js 为 `v18` 或更高版本。并且建议启用 corepack：
+该项目要求 Node.js 为 `v20` 或更高版本。并且建议启用 corepack：
 
 ```bash
 corepack enable

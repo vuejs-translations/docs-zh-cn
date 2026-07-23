@@ -116,7 +116,7 @@ const AsyncComp = defineAsyncComponent({
 
 - Vue 提供了一些内置的激活策略。这些内置策略需要分别导入，以便在未使用时进行 tree-shake。
 
-- 该设计有意保持在底层，以确保灵活性。将来可以在此基础上构建编译器语法糖，无论是在核心还是更上层的解决方案 (如 Nuxt) 中实现。
+- 该设计有意保持在底层，以确保灵活性。将来可以在此基础上构建编译器语法糖，无论是在核心还是更上层的解决方案 (如 [Vue 框架](/guide/quick-start#frameworks)) 中实现。
 
 ### 在空闲时进行激活 {#hydrate-on-idle}
 
