@@ -502,7 +502,7 @@ defineProps({
   // 在 3.4+ 中完整的 props 作为第二个参数传入
   propG: {
     validator(value, props) {
-      // value必须匹配以下字符串其中之一
+      // value 必须匹配以下字符串其中之一
       return ['success', 'warning', 'danger'].includes(value)
     }
   },
