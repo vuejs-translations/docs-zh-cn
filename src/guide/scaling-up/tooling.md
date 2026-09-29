@@ -102,7 +102,7 @@ Vue 的浏览器开发者插件使我们可以浏览一个 Vue 应用的组件�
 ![devtools 截图](./images/devtools.png)
 
 - [文档](https://devtools.vuejs.org/)
-- [Chrome 扩展商店页](https://chromewebstore.google.com/detail/vuejs-devtools-beta/ljjemllljcmogpfapbkkighbhhppjdbg)
+- [Chrome 扩展商店页](https://chromewebstore.google.com/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd)
 - [Vite 插件](https://devtools.vuejs.org/guide/vite-plugin)
 - [独立的 Electron 应用所属插件](https://devtools.vuejs.org/guide/standalone)
 
