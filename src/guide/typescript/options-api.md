@@ -294,6 +294,6 @@ declare module 'vue' {
 
 <!-- zhlint disabled -->
 
-## Typing Global Custom Directives {#typing-global-custom-directives}
+## 为自定义全局指令添加类型 {#typing-global-custom-directives}
 
-See: [Typing Custom Global Directives](/guide/typescript/composition-api#typing-global-custom-directives) <sup class="vt-badge ts" />
+参考：[为自定义全局指令添加类型](/guide/typescript/composition-api#typing-global-custom-directives) <sup class="vt-badge ts" />
