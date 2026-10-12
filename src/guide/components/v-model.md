@@ -115,6 +115,7 @@ const myRef = ref()
 </template>
 ```
 
+另外，当搭配 `defineProps` 使用 `withDefaults` 时，对于可变引用类型 (如数组或对象) 的默认值，应在 `defineModel` 中用函数包装，以避免意外修改和外部副作用。
 :::
 
 </div>
