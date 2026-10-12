@@ -2,4 +2,4 @@ User-agent: *
 Content-Signal: search=yes, ai-train=yes, ai-input=yes
 Disallow:
 
-Sitemap: https://vuejs.org/sitemap.xml 
+Sitemap: https://cn.vuejs.org/sitemap.xml 
