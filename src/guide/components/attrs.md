@@ -8,7 +8,7 @@ outline: deep
 
 ## Attributes 继承 {#attribute-inheritance}
 
-“透传 attribute”指的是传递给一个组件，却没有被该组件声明为 [props](./props) 或 [emits](./events#defining-custom-events) 的 attribute 或者 `v-on` 事件监听器。最常见的例子就是 `class`、`style` 和 `id`。
+“透传 attribute”指的是传递给一个组件，却没有被该组件声明为 [props](./props) 或 [emits](./events#declaring-emitted-events) 的 attribute 或者 `v-on` 事件监听器。最常见的例子就是 `class`、`style` 和 `id`。
 
 当一个组件以单个元素为根作渲染时，透传的 attribute 会自动被添加到根元素上。举例来说，假如我们有一个 `<MyButton>` 组件，它的模板长这样：
 
