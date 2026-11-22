@@ -25,8 +25,6 @@ Vue.js 是采用 MIT 许可的开源项目，使用完全免费。
 
 如果你对等级、支付流程或赞助商曝光数据有疑问，请联系 [sponsor@vuejs.org](mailto:sponsor@vuejs.org?subject=Vue.js%20sponsorship%20inquiry)。
 
-通过我们的网站和 GitHub 项目 README，赞助 Vue 可让你在全球超过 **200 万**的 Vue 开发人员面前大显身手。这不仅能直接产生潜在客户，还能提高你作为一家重视开源的企业的品牌知名度。对于为开发人员打造产品的公司来说，这是一笔无形但极其重要的资产，因为它能提高你的转换率。
-
 其中**中国区铂金赞助商**是仅针对本站 (cn.vuejs.org) 的赞助位级别，包含以下权益：
 
 1. [cn.vuejs.org](/) 首屏无需滚动可见的 logo 展示位：
@@ -37,7 +35,7 @@ Vue.js 是采用 MIT 许可的开源项目，使用完全免费。
 
 ![内页放置位](./sponsor-placement-2.png)
 
-3. 在 [`vuejs/core`](https://github.com/vuejs/core) 和 [`vuejs/vue`](https://github.com/vuejs/core) 的 README 上明显的 logo 展示位。
+3. 在 [`vuejs/core`](https://github.com/vuejs/core) 和 [`vuejs/vue`](https://github.com/vuejs/vue) 的 README 上明显的 logo 展示位。
 
 此赞助位同样可以通过[爱发电](https://afdian.com/a/evanyou)来订阅。如果您对此赞助位感兴趣但还抱有疑问，请致信 [sponsor@vuejs.org](mailto:sponsor@vuejs.org) 咨询具体事宜。
 
@@ -47,7 +45,7 @@ Vue.js 是采用 MIT 许可的开源项目，使用完全免费。
 
 ## 以企业名义赞助 Vue {#sponsoring-vue-as-a-business}
 
-赞助 Vue 可以让你通过我们的网站和 GitHub 项目的 README 在全球超过 **170 万**的 Vue 开发者面前获得巨大曝光。此外，支持开源项目可以提高你的品牌声誉，这对任何与开发者互动的公司来说都是重要的资产。
+赞助 Vue 可以让你通过我们的网站和 GitHub 项目的 README 在全球超过 **200 万**的 Vue 开发者面前获得巨大曝光。此外，支持开源项目可以提高你的品牌声誉，这对任何与开发者互动的公司来说都是重要的资产。
 
 如果你正在使用 Vue 来构建一款创收的产品，那么赞助 Vue 的开发是很有商业意义的。**它可以确保你的产品所依赖的项目保持在健康和积极的维护状态**。在 Vue 社区的曝光和积极的品牌形象也会使你更容易吸引和招募 Vue 开发者。
 
