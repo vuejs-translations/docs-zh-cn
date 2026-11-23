@@ -25,6 +25,8 @@ Vue.js 是采用 MIT 许可的开源项目，使用完全免费。
 
 如果你对等级、支付流程或赞助商曝光数据有疑问，请联系 [sponsor@vuejs.org](mailto:sponsor@vuejs.org?subject=Vue.js%20sponsorship%20inquiry)。
 
+通过我们的网站和 GitHub 项目 README，赞助 Vue 可让你在全球超过 **200 万**的 Vue 开发人员面前大显身手。这不仅能直接产生潜在客户，还能提高你作为一家重视开源的企业的品牌知名度。对于为开发人员打造产品的公司来说，这是一笔无形但极其重要的资产，因为它能提高你的转换率。
+
 其中**中国区铂金赞助商**是仅针对本站 (cn.vuejs.org) 的赞助位级别，包含以下权益：
 
 1. [cn.vuejs.org](/) 首屏无需滚动可见的 logo 展示位：
